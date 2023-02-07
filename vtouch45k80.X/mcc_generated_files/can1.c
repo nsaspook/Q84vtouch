@@ -159,32 +159,32 @@ static void CAN1_TX_FIFO_Configuration(void)
 
 static void CAN1_BitRateConfiguration(void)
 {
-    // SJW 9; 
-    C1NBTCFGL = 0x09;
+    // SJW 4; 
+    C1NBTCFGL = 0x04;
     
-    // TSEG2 9; 
-    C1NBTCFGH = 0x09;
+    // TSEG2 4; 
+    C1NBTCFGH = 0x04;
     
-    // TSEG1 28; 
-    C1NBTCFGU = 0x1C;
+    // TSEG1 13; 
+    C1NBTCFGU = 0x0D;
     
     // BRP 0; 
     C1NBTCFGT = 0x00;
     
-    // SJW 3; 
-    C1DBTCFGL = 0x03;
+    // SJW 1; 
+    C1DBTCFGL = 0x01;
     
-    // TSEG2 3; 
-    C1DBTCFGH = 0x03;
+    // TSEG2 1; 
+    C1DBTCFGH = 0x01;
     
-    // TSEG1 14; 
-    C1DBTCFGU = 0x0E;
+    // TSEG1 6; 
+    C1DBTCFGU = 0x06;
     
     // BRP 0; 
     C1DBTCFGT = 0x00;
     
-    // TDCO 15; 
-    C1TDCH = 0x0F;
+    // TDCO 7; 
+    C1TDCH = 0x07;
     
     // TDCMOD Auto; 
     C1TDCU = 0x02;
@@ -201,8 +201,8 @@ void CAN1_Initialize(void)
         /* Initialize the C1FIFOBA with the start address of the CAN FIFO message object area. */
         C1FIFOBA = 0x3800;
         
-        // CLKSEL0 enabled; PXEDIS enabled; ISOCRCEN enabled; DNCNT 0; 
-        C1CONL = 0xE0;
+        // CLKSEL0 disabled; PXEDIS enabled; ISOCRCEN enabled; DNCNT 0; 
+        C1CONL = 0x60;
 
         // ON enabled; FRZ disabled; SIDL disabled; BRSDIS disabled; WFT T11 Filter; WAKFIL enabled; 
         C1CONH = 0x87;

@@ -1,4 +1,4 @@
-# 1 "mcc_generated_files/can1.c"
+# 1 "mcc_generated_files/interrupt_manager.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,8 +6,15 @@
 # 1 "<built-in>" 2
 # 1 "/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.15.360/xc8/pic/include/language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "mcc_generated_files/can1.c" 2
-# 47 "mcc_generated_files/can1.c"
+# 1 "mcc_generated_files/interrupt_manager.c" 2
+# 49 "mcc_generated_files/interrupt_manager.c"
+# 1 "mcc_generated_files/interrupt_manager.h" 1
+# 109 "mcc_generated_files/interrupt_manager.h"
+void INTERRUPT_Initialize (void);
+# 49 "mcc_generated_files/interrupt_manager.c" 2
+
+# 1 "mcc_generated_files/mcc.h" 1
+# 49 "mcc_generated_files/mcc.h"
 # 1 "/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.15.360/xc8/pic/include/xc.h" 1 3
 # 18 "/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.15.360/xc8/pic/include/xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -38267,71 +38274,304 @@ __attribute__((__unsupported__("The READTIMER" "3" "() macro is not available wi
 unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 # 34 "/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.15.360/xc8/pic/include/xc.h" 2 3
-# 47 "mcc_generated_files/can1.c" 2
+# 49 "mcc_generated_files/mcc.h" 2
+
+# 1 "mcc_generated_files/device_config.h" 1
+# 50 "mcc_generated_files/mcc.h" 2
+
+# 1 "mcc_generated_files/pin_manager.h" 1
+# 126 "mcc_generated_files/pin_manager.h"
+void PIN_MANAGER_Initialize (void);
+# 51 "mcc_generated_files/mcc.h" 2
 
 
-# 1 "/opt/microchip/xc8/v2.36/pic/include/c99/string.h" 1 3
-# 25 "/opt/microchip/xc8/v2.36/pic/include/c99/string.h" 3
+# 1 "/opt/microchip/xc8/v2.36/pic/include/c99/stdbool.h" 1 3
+# 53 "mcc_generated_files/mcc.h" 2
+
+# 1 "/opt/microchip/xc8/v2.36/pic/include/c99/conio.h" 1 3
+
+
+
+
+
+
+# 1 "/opt/microchip/xc8/v2.36/pic/include/c99/stdio.h" 1 3
+# 24 "/opt/microchip/xc8/v2.36/pic/include/c99/stdio.h" 3
 # 1 "/opt/microchip/xc8/v2.36/pic/include/c99/bits/alltypes.h" 1 3
-# 411 "/opt/microchip/xc8/v2.36/pic/include/c99/bits/alltypes.h" 3
-typedef struct __locale_struct * locale_t;
-# 26 "/opt/microchip/xc8/v2.36/pic/include/c99/string.h" 2 3
-
-void *memcpy (void *restrict, const void *restrict, size_t);
-void *memmove (void *, const void *, size_t);
-void *memset (void *, int, size_t);
-int memcmp (const void *, const void *, size_t);
-void *memchr (const void *, int, size_t);
-
-char *strcpy (char *restrict, const char *restrict);
-char *strncpy (char *restrict, const char *restrict, size_t);
-
-char *strcat (char *restrict, const char *restrict);
-char *strncat (char *restrict, const char *restrict, size_t);
-
-int strcmp (const char *, const char *);
-int strncmp (const char *, const char *, size_t);
-
-int strcoll (const char *, const char *);
-size_t strxfrm (char *restrict, const char *restrict, size_t);
-
-char *strchr (const char *, int);
-char *strrchr (const char *, int);
-
-size_t strcspn (const char *, const char *);
-size_t strspn (const char *, const char *);
-char *strpbrk (const char *, const char *);
-char *strstr (const char *, const char *);
-char *strtok (char *restrict, const char *restrict);
-
-size_t strlen (const char *);
-
-char *strerror (int);
-# 65 "/opt/microchip/xc8/v2.36/pic/include/c99/string.h" 3
-char *strtok_r (char *restrict, const char *restrict, char **restrict);
-int strerror_r (int, char *, size_t);
-char *stpcpy(char *restrict, const char *restrict);
-char *stpncpy(char *restrict, const char *restrict, size_t);
-size_t strnlen (const char *, size_t);
-char *strdup (const char *);
-char *strndup (const char *, size_t);
-char *strsignal(int);
-char *strerror_l (int, locale_t);
-int strcoll_l (const char *, const char *, locale_t);
-size_t strxfrm_l (char *restrict, const char *restrict, size_t, locale_t);
 
 
 
 
-void *memccpy (void *restrict, const void *restrict, int, size_t);
-# 49 "mcc_generated_files/can1.c" 2
+
+typedef void * va_list[1];
+
+
+
+
+typedef void * __isoc_va_list[1];
+# 137 "/opt/microchip/xc8/v2.36/pic/include/c99/bits/alltypes.h" 3
+typedef long ssize_t;
+# 246 "/opt/microchip/xc8/v2.36/pic/include/c99/bits/alltypes.h" 3
+typedef long long off_t;
+# 399 "/opt/microchip/xc8/v2.36/pic/include/c99/bits/alltypes.h" 3
+typedef struct _IO_FILE FILE;
+# 25 "/opt/microchip/xc8/v2.36/pic/include/c99/stdio.h" 2 3
+# 52 "/opt/microchip/xc8/v2.36/pic/include/c99/stdio.h" 3
+typedef union _G_fpos64_t {
+ char __opaque[16];
+ double __align;
+} fpos_t;
+
+extern FILE *const stdin;
+extern FILE *const stdout;
+extern FILE *const stderr;
+
+
+
+
+
+FILE *fopen(const char *restrict, const char *restrict);
+FILE *freopen(const char *restrict, const char *restrict, FILE *restrict);
+int fclose(FILE *);
+
+int remove(const char *);
+int rename(const char *, const char *);
+
+int feof(FILE *);
+int ferror(FILE *);
+int fflush(FILE *);
+void clearerr(FILE *);
+
+int fseek(FILE *, long, int);
+long ftell(FILE *);
+void rewind(FILE *);
+
+int fgetpos(FILE *restrict, fpos_t *restrict);
+int fsetpos(FILE *, const fpos_t *);
+
+size_t fread(void *restrict, size_t, size_t, FILE *restrict);
+size_t fwrite(const void *restrict, size_t, size_t, FILE *restrict);
+
+int fgetc(FILE *);
+int getc(FILE *);
+int getchar(void);
+int ungetc(int, FILE *);
+
+int fputc(int, FILE *);
+int putc(int, FILE *);
+int putchar(int);
+
+char *fgets(char *restrict, int, FILE *restrict);
+
+char *gets(char *);
+
+
+int fputs(const char *restrict, FILE *restrict);
+int puts(const char *);
+
+__attribute__((__format__(__printf__, 1, 2)))
+int printf(const char *restrict, ...);
+__attribute__((__format__(__printf__, 2, 3)))
+int fprintf(FILE *restrict, const char *restrict, ...);
+__attribute__((__format__(__printf__, 2, 3)))
+int sprintf(char *restrict, const char *restrict, ...);
+__attribute__((__format__(__printf__, 3, 4)))
+int snprintf(char *restrict, size_t, const char *restrict, ...);
+
+__attribute__((__format__(__printf__, 1, 0)))
+int vprintf(const char *restrict, __isoc_va_list);
+int vfprintf(FILE *restrict, const char *restrict, __isoc_va_list);
+__attribute__((__format__(__printf__, 2, 0)))
+int vsprintf(char *restrict, const char *restrict, __isoc_va_list);
+__attribute__((__format__(__printf__, 3, 0)))
+int vsnprintf(char *restrict, size_t, const char *restrict, __isoc_va_list);
+
+__attribute__((__format__(__scanf__, 1, 2)))
+int scanf(const char *restrict, ...);
+__attribute__((__format__(__scanf__, 2, 3)))
+int fscanf(FILE *restrict, const char *restrict, ...);
+__attribute__((__format__(__scanf__, 2, 3)))
+int sscanf(const char *restrict, const char *restrict, ...);
+
+__attribute__((__format__(__scanf__, 1, 0)))
+int vscanf(const char *restrict, __isoc_va_list);
+int vfscanf(FILE *restrict, const char *restrict, __isoc_va_list);
+__attribute__((__format__(__scanf__, 2, 0)))
+int vsscanf(const char *restrict, const char *restrict, __isoc_va_list);
+
+void perror(const char *);
+
+int setvbuf(FILE *restrict, char *restrict, int, size_t);
+void setbuf(FILE *restrict, char *restrict);
+
+char *tmpnam(char *);
+FILE *tmpfile(void);
+
+
+
+
+FILE *fmemopen(void *restrict, size_t, const char *restrict);
+FILE *open_memstream(char **, size_t *);
+FILE *fdopen(int, const char *);
+FILE *popen(const char *, const char *);
+int pclose(FILE *);
+int fileno(FILE *);
+int fseeko(FILE *, off_t, int);
+off_t ftello(FILE *);
+int dprintf(int, const char *restrict, ...);
+int vdprintf(int, const char *restrict, __isoc_va_list);
+void flockfile(FILE *);
+int ftrylockfile(FILE *);
+void funlockfile(FILE *);
+int getc_unlocked(FILE *);
+int getchar_unlocked(void);
+int putc_unlocked(int, FILE *);
+int putchar_unlocked(int);
+ssize_t getdelim(char **restrict, size_t *restrict, int, FILE *restrict);
+ssize_t getline(char **restrict, size_t *restrict, FILE *restrict);
+int renameat(int, const char *, int, const char *);
+char *ctermid(char *);
+
+
+
+
+
+
+
+char *tempnam(const char *, const char *);
+# 8 "/opt/microchip/xc8/v2.36/pic/include/c99/conio.h" 2 3
+# 54 "mcc_generated_files/mcc.h" 2
+
+
+# 1 "mcc_generated_files/tmr0.h" 1
+# 100 "mcc_generated_files/tmr0.h"
+void TMR0_Initialize(void);
+# 129 "mcc_generated_files/tmr0.h"
+void TMR0_StartTimer(void);
+# 161 "mcc_generated_files/tmr0.h"
+void TMR0_StopTimer(void);
+# 196 "mcc_generated_files/tmr0.h"
+uint8_t TMR0_ReadTimer(void);
+# 235 "mcc_generated_files/tmr0.h"
+void TMR0_WriteTimer(uint8_t timerVal);
+# 272 "mcc_generated_files/tmr0.h"
+void TMR0_Reload(uint8_t periodVal);
+# 293 "mcc_generated_files/tmr0.h"
+ void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
+# 311 "mcc_generated_files/tmr0.h"
+extern void (*TMR0_InterruptHandler)(void);
+# 329 "mcc_generated_files/tmr0.h"
+void TMR0_DefaultInterruptHandler(void);
+# 56 "mcc_generated_files/mcc.h" 2
+
+# 1 "mcc_generated_files/uart2.h" 1
+# 74 "mcc_generated_files/uart2.h"
+typedef union {
+    struct {
+        unsigned perr : 1;
+        unsigned ferr : 1;
+        unsigned oerr : 1;
+        unsigned reserved : 5;
+    };
+    uint8_t status;
+}uart2_status_t;
+
+
+
+
+extern volatile uint8_t uart2TxBufferRemaining;
+extern volatile uint8_t uart2RxCount;
+# 115 "mcc_generated_files/uart2.h"
+void UART2_Initialize(void);
+# 163 "mcc_generated_files/uart2.h"
+_Bool UART2_is_rx_ready(void);
+# 211 "mcc_generated_files/uart2.h"
+_Bool UART2_is_tx_ready(void);
+# 258 "mcc_generated_files/uart2.h"
+_Bool UART2_is_tx_done(void);
+# 306 "mcc_generated_files/uart2.h"
+uart2_status_t UART2_get_last_status(void);
+# 355 "mcc_generated_files/uart2.h"
+uint8_t UART2_Read(void);
+# 380 "mcc_generated_files/uart2.h"
+void UART2_Write(uint8_t txData);
+# 401 "mcc_generated_files/uart2.h"
+void UART2_Transmit_ISR(void);
+# 422 "mcc_generated_files/uart2.h"
+void UART2_Receive_ISR(void);
+# 443 "mcc_generated_files/uart2.h"
+void UART2_RxDataHandler(void);
+# 461 "mcc_generated_files/uart2.h"
+void UART2_SetFramingErrorHandler(void (* interruptHandler)(void));
+# 479 "mcc_generated_files/uart2.h"
+void UART2_SetOverrunErrorHandler(void (* interruptHandler)(void));
+# 497 "mcc_generated_files/uart2.h"
+void UART2_SetErrorHandler(void (* interruptHandler)(void));
+# 517 "mcc_generated_files/uart2.h"
+void (*UART2_RxInterruptHandler)(void);
+# 535 "mcc_generated_files/uart2.h"
+void (*UART2_TxInterruptHandler)(void);
+# 555 "mcc_generated_files/uart2.h"
+void UART2_SetRxInterruptHandler(void (* InterruptHandler)(void));
+# 573 "mcc_generated_files/uart2.h"
+void UART2_SetTxInterruptHandler(void (* InterruptHandler)(void));
+# 57 "mcc_generated_files/mcc.h" 2
+
+# 1 "mcc_generated_files/uart1.h" 1
+# 74 "mcc_generated_files/uart1.h"
+typedef union {
+    struct {
+        unsigned perr : 1;
+        unsigned ferr : 1;
+        unsigned oerr : 1;
+        unsigned reserved : 5;
+    };
+    uint8_t status;
+}uart1_status_t;
+
+
+
+
+extern volatile uint8_t uart1TxBufferRemaining;
+extern volatile uint8_t uart1RxCount;
+# 115 "mcc_generated_files/uart1.h"
+void UART1_Initialize(void);
+# 163 "mcc_generated_files/uart1.h"
+_Bool UART1_is_rx_ready(void);
+# 211 "mcc_generated_files/uart1.h"
+_Bool UART1_is_tx_ready(void);
+# 258 "mcc_generated_files/uart1.h"
+_Bool UART1_is_tx_done(void);
+# 306 "mcc_generated_files/uart1.h"
+uart1_status_t UART1_get_last_status(void);
+# 355 "mcc_generated_files/uart1.h"
+uint8_t UART1_Read(void);
+# 380 "mcc_generated_files/uart1.h"
+void UART1_Write(uint8_t txData);
+# 401 "mcc_generated_files/uart1.h"
+void UART1_Transmit_ISR(void);
+# 422 "mcc_generated_files/uart1.h"
+void UART1_Receive_ISR(void);
+# 443 "mcc_generated_files/uart1.h"
+void UART1_RxDataHandler(void);
+# 461 "mcc_generated_files/uart1.h"
+void UART1_SetFramingErrorHandler(void (* interruptHandler)(void));
+# 479 "mcc_generated_files/uart1.h"
+void UART1_SetOverrunErrorHandler(void (* interruptHandler)(void));
+# 497 "mcc_generated_files/uart1.h"
+void UART1_SetErrorHandler(void (* interruptHandler)(void));
+# 517 "mcc_generated_files/uart1.h"
+void (*UART1_RxInterruptHandler)(void);
+# 535 "mcc_generated_files/uart1.h"
+void (*UART1_TxInterruptHandler)(void);
+# 555 "mcc_generated_files/uart1.h"
+void UART1_SetRxInterruptHandler(void (* InterruptHandler)(void));
+# 573 "mcc_generated_files/uart1.h"
+void UART1_SetTxInterruptHandler(void (* InterruptHandler)(void));
+# 58 "mcc_generated_files/mcc.h" 2
 
 # 1 "mcc_generated_files/can1.h" 1
-# 54 "mcc_generated_files/can1.h"
-# 1 "/opt/microchip/xc8/v2.36/pic/include/c99/stdbool.h" 1 3
-# 54 "mcc_generated_files/can1.h" 2
-
-
+# 56 "mcc_generated_files/can1.h"
 # 1 "mcc_generated_files/can_types.h" 1
 # 65 "mcc_generated_files/can_types.h"
 typedef union
@@ -38478,472 +38718,43 @@ uint8_t CAN1_ReceivedMessageCountGet(void);
 void CAN1_SetFIFO2nullHandler(void (*handler)(void));
 # 892 "mcc_generated_files/can1.h"
 void CAN1_SetFIFO1nullHandler(void (*handler)(void));
-# 50 "mcc_generated_files/can1.c" 2
-# 71 "mcc_generated_files/can1.c"
-struct CAN_FIFOREG
+# 59 "mcc_generated_files/mcc.h" 2
+# 74 "mcc_generated_files/mcc.h"
+void SYSTEM_Initialize(void);
+# 87 "mcc_generated_files/mcc.h"
+void OSCILLATOR_Initialize(void);
+# 100 "mcc_generated_files/mcc.h"
+void PMD_Initialize(void);
+# 50 "mcc_generated_files/interrupt_manager.c" 2
+
+
+void INTERRUPT_Initialize (void)
 {
-    uint8_t CONL;
-    uint8_t CONH;
-    uint8_t CONU;
-    uint8_t CONT;
-    uint8_t STAL;
-    uint8_t STAH;
-    uint8_t STAU;
-    uint8_t STAT;
-    uint32_t UA;
-};
+    INTCON0bits.IPEN = 1;
 
-typedef enum
-{
-    CAN_RX_MSG_NOT_AVAILABLE = 0U,
-    CAN_RX_MSG_AVAILABLE = 1U,
-    CAN_RX_MSG_OVERFLOW = 8U
-} CAN_RX_FIFO_STATUS;
+    _Bool state = (unsigned char)GIE;
+    GIE = 0;
+    IVTLOCK = 0x55;
+    IVTLOCK = 0xAA;
+    IVTLOCKbits.IVTLOCKED = 0x00;
 
-typedef enum
-{
-    FIFO2 = 2
-} CAN1_RX_FIFO_CHANNELS;
+    IVTBASEU = 0;
+    IVTBASEH = 0;
+    IVTBASEL = 8;
 
-struct CAN1_RX_FIFO
-{
-    CAN1_RX_FIFO_CHANNELS channel;
-    volatile uint8_t fifoHead;
-};
+    IVTLOCK = 0x55;
+    IVTLOCK = 0xAA;
+    IVTLOCKbits.IVTLOCKED = 0x01;
 
+    GIE = state;
 
-static uint8_t rxMsgData[(64U)];
-
-static struct CAN1_RX_FIFO rxFifos[] =
-{
-    {FIFO2, 0u}
-};
-
-static volatile struct CAN_FIFOREG * const FIFO = (struct CAN_FIFOREG *)&C1TXQCONL;
-static const uint8_t DLC_BYTES[] = {0U, 1U, 2U, 3U, 4U, 5U, 6U, 7U, 8U, 12U, 16U, 20U, 24U, 32U, 48U, 64U};
-
-
-void CAN1_RX_FIFO_ResetInfo(void)
-{
-    uint8_t index;
-
-    for (index = 0; index < (1U); index++)
-    {
-        rxFifos[index].fifoHead = 0;
-    }
+    IPR8bits.U2TXIP = 1;
+    IPR8bits.U2RXIP = 1;
+    IPR4bits.U1TXIP = 1;
+    IPR4bits.U1RXIP = 1;
+    IPR3bits.TMR0IP = 1;
 }
 
-static void CAN1_RX_FIFO_Configuration(void)
+void __attribute__((picinterrupt(("irq(default),base(8)")))) Default_ISR()
 {
-
-    C1FIFOCON2L = 0x00;
-
-
-    C1FIFOCON2H = 0x04;
-
-
-    C1FIFOCON2U = 0x60;
-
-
-    C1FIFOCON2T = 0xE7;
-
-}
-
-static void CAN1_RX_FIFO_FilterMaskConfiguration(void)
-{
-}
-
-static void CAN1_TX_FIFO_Configuration(void)
-{
-
-    C1FIFOCON1L = 0x80;
-
-
-    C1FIFOCON1H = 0x04;
-
-
-    C1FIFOCON1U = 0x60;
-
-
-    C1FIFOCON1T = 0xE7;
-
-}
-
-static void CAN1_BitRateConfiguration(void)
-{
-
-    C1NBTCFGL = 0x04;
-
-
-    C1NBTCFGH = 0x04;
-
-
-    C1NBTCFGU = 0x0D;
-
-
-    C1NBTCFGT = 0x00;
-
-
-    C1DBTCFGL = 0x01;
-
-
-    C1DBTCFGH = 0x01;
-
-
-    C1DBTCFGU = 0x06;
-
-
-    C1DBTCFGT = 0x00;
-
-
-    C1TDCH = 0x07;
-
-
-    C1TDCU = 0x02;
-}
-
-
-void CAN1_Initialize(void)
-{
-
-    C1CONHbits.ON = 1;
-
-    if (CAN_OP_MODE_REQUEST_SUCCESS == CAN1_OperationModeSet(CAN_CONFIGURATION_MODE))
-    {
-
-        C1FIFOBA = 0x3800;
-
-
-        C1CONL = 0x60;
-
-
-        C1CONH = 0x87;
-
-
-        C1CONU = 0x00;
-
-        CAN1_BitRateConfiguration();
-        CAN1_TX_FIFO_Configuration();
-        CAN1_RX_FIFO_Configuration();
-        CAN1_RX_FIFO_FilterMaskConfiguration();
-        CAN1_RX_FIFO_ResetInfo();
-        CAN1_OperationModeSet(CAN_NORMAL_FD_MODE);
-    }
-}
-
-CAN_OP_MODE_STATUS CAN1_OperationModeSet(const CAN_OP_MODES requestMode)
-{
-    CAN_OP_MODE_STATUS status = CAN_OP_MODE_REQUEST_SUCCESS;
-    CAN_OP_MODES opMode = CAN1_OperationModeGet();
-
-    if (CAN_CONFIGURATION_MODE == opMode
-            || CAN_DISABLE_MODE == requestMode
-            || CAN_CONFIGURATION_MODE == requestMode)
-    {
-        C1CONTbits.REQOP = requestMode;
-
-        while (C1CONUbits.OPMOD != requestMode)
-        {
-
-            if (1 == C1INTHbits.SERRIF)
-            {
-                status = CAN_OP_MODE_SYS_ERROR_OCCURED;
-                break;
-            }
-        }
-    }
-    else
-    {
-        status = CAN_OP_MODE_REQUEST_FAIL;
-    }
-
-    return status;
-}
-
-CAN_OP_MODES CAN1_OperationModeGet(void)
-{
-    return C1CONUbits.OPMOD;
-}
-
-static uint8_t GetRxFifoDepth(uint8_t validChannel)
-{
-    return 1U + (FIFO[validChannel].CONT & 0x1F);
-}
-
-static CAN_RX_FIFO_STATUS GetRxFifoStatus(uint8_t validChannel)
-{
-    return FIFO[validChannel].STAL & (CAN_RX_MSG_AVAILABLE | CAN_RX_MSG_OVERFLOW);
-}
-
-static void ReadMessageFromFifo(uint8_t *rxFifoObj, CAN_MSG_OBJ *rxCanMsg)
-{
-    uint32_t msgId;
-    uint8_t status = rxFifoObj[4];
-    const uint8_t payloadOffsetBytes =
-              4U
-            + 1U
-            + 1U
-            + 2U;
-
-    rxCanMsg->field.dlc = status;
-    rxCanMsg->field.idType = (status & (1UL << (4U))) ? CAN_FRAME_EXT : CAN_FRAME_STD;
-    rxCanMsg->field.frameType = (status & (1UL << (5U))) ? CAN_FRAME_RTR : CAN_FRAME_DATA;
-    rxCanMsg->field.brs = (status & (1UL << (6U))) ? CAN_BRS_MODE : CAN_NON_BRS_MODE;
-    rxCanMsg->field.formatType = (status & (1UL << (7U))) ? CAN_FRAME_EXT : CAN_FRAME_STD;
-
-    msgId = rxFifoObj[1] & (0x07U);
-    msgId <<= (8U);
-    msgId |= rxFifoObj[0];
-    if (CAN_FRAME_EXT == rxCanMsg->field.idType)
-    {
-        msgId <<= (5U);
-        msgId |= (rxFifoObj[3] & (0x1FU));
-        msgId <<= (8U);
-        msgId |= rxFifoObj[2];
-        msgId <<= (5U);
-        msgId |= (rxFifoObj[1] & (0xF8U)) >> (3U);
-    }
-    rxCanMsg->msgId = msgId;
-
-    memcpy(rxMsgData, rxFifoObj + payloadOffsetBytes, (DLC_BYTES[(rxCanMsg->field.dlc)]));
-    rxCanMsg->data = rxMsgData;
-}
-
-_Bool CAN1_Receive(CAN_MSG_OBJ *rxCanMsg)
-{
-    uint8_t index;
-    _Bool status = 0;
-
-    for (index = 0; index < (1U); index++)
-    {
-        CAN1_RX_FIFO_CHANNELS channel = rxFifos[index].channel;
-        CAN_RX_FIFO_STATUS rxMsgStatus = GetRxFifoStatus(channel);
-
-        if (CAN_RX_MSG_AVAILABLE == (rxMsgStatus & CAN_RX_MSG_AVAILABLE))
-        {
-            uint8_t *rxFifoObj = (uint8_t *) FIFO[channel].UA;
-
-            if (rxFifoObj != ((void*)0))
-            {
-                ReadMessageFromFifo(rxFifoObj, rxCanMsg);
-                FIFO[channel].CONH |= 0x1;
-
-                rxFifos[index].fifoHead += 1;
-                if (rxFifos[index].fifoHead >= GetRxFifoDepth(channel))
-                {
-                    rxFifos[index].fifoHead = 0;
-                }
-
-                if (CAN_RX_MSG_OVERFLOW == (rxMsgStatus & CAN_RX_MSG_OVERFLOW))
-                {
-                    FIFO[channel].STAL &= ~0x8;
-                }
-
-                status = 1;
-            }
-
-            break;
-        }
-    }
-    return status;
-}
-
-uint8_t CAN1_ReceivedMessageCountGet(void)
-{
-    uint8_t index, totalMsgObj = 0;
-
-    for (index = 0; index < (1U); index++)
-    {
-        CAN1_RX_FIFO_CHANNELS channel = rxFifos[index].channel;
-        CAN_RX_FIFO_STATUS rxMsgStatus = GetRxFifoStatus(channel);
-
-        if (CAN_RX_MSG_AVAILABLE == (rxMsgStatus & CAN_RX_MSG_AVAILABLE))
-        {
-            uint8_t numOfMsg, fifoDepth = GetRxFifoDepth(channel);
-
-            if (CAN_RX_MSG_OVERFLOW == (rxMsgStatus & CAN_RX_MSG_OVERFLOW))
-            {
-                numOfMsg = fifoDepth;
-            }
-            else
-            {
-                uint8_t fifoTail = FIFO[channel].STAH & 0x1F;
-                uint8_t fifoHead = rxFifos[index].fifoHead;
-
-                if (fifoTail < fifoHead)
-                {
-                    numOfMsg = ((fifoTail + fifoDepth) - fifoHead);
-                }
-                else if (fifoTail > fifoHead)
-                {
-                    numOfMsg = fifoTail - fifoHead;
-                }
-                else
-                {
-                    numOfMsg = fifoDepth;
-                }
-            }
-
-            totalMsgObj += numOfMsg;
-        }
-    }
-
-    return totalMsgObj;
-}
-
-static _Bool isTxChannel(uint8_t channel)
-{
-    return channel < 4u && (FIFO[channel].CONL & 0x80);
-}
-
-static CAN_TX_FIFO_STATUS GetTxFifoStatus(uint8_t validChannel)
-{
-    return (FIFO[validChannel].STAL & 0x1);
-}
-
-static void WriteMessageToFifo(uint8_t *txFifoObj, CAN_MSG_OBJ *txCanMsg)
-{
-    uint32_t msgId = txCanMsg->msgId;
-    uint8_t status;
-    const uint8_t payloadOffsetBytes =
-              4U
-            + 1U
-            + 1U
-            + 2U;
-
-    if (CAN_FRAME_EXT == txCanMsg->field.idType)
-    {
-        txFifoObj[1] = (msgId << (3U)) & (0xF8U);
-        msgId >>= (5U);
-        txFifoObj[2] = msgId;
-        msgId >>= (8U);
-        txFifoObj[3] = (msgId & (0x1FU));
-        msgId >>= (5U);
-    }
-    else
-    {
-        txFifoObj[1] = txFifoObj[2] = txFifoObj[3] = 0;
-    }
-
-    txFifoObj[0] = msgId;
-    msgId >>= (8U);
-    txFifoObj[1] |= (msgId & (0x07U));
-
-    status = txCanMsg->field.dlc;
-    status |= (txCanMsg->field.idType << (4U));
-    status |= (txCanMsg->field.frameType << (5U));
-    status |= (txCanMsg->field.brs << (6U));
-    status |= (txCanMsg->field.formatType << (7U));
-    txFifoObj[4] = status;
-
-    if (CAN_FRAME_DATA == txCanMsg->field.frameType)
-    {
-        memcpy(txFifoObj + payloadOffsetBytes, txCanMsg->data, (DLC_BYTES[(txCanMsg->field.dlc)]));
-    }
-}
-
-static CAN_TX_MSG_REQUEST_STATUS ValidateTransmission(uint8_t validChannel, CAN_MSG_OBJ *txCanMsg)
-{
-    CAN_TX_MSG_REQUEST_STATUS txMsgStatus = CAN_TX_MSG_REQUEST_SUCCESS;
-    CAN_MSG_FIELD field = txCanMsg->field;
-    uint8_t plsize = (FIFO[validChannel].CONT & 0xE0) >> 0x5;
-
-    if (CAN_BRS_MODE == field.brs && (1 == C1CONHbits.BRSDIS || CAN_NORMAL_2_0_MODE == CAN1_OperationModeGet()))
-    {
-        txMsgStatus |= CAN_TX_MSG_REQUEST_BRS_ERROR;
-    }
-
-    if (field.dlc > DLC_8 && (CAN_2_0_FORMAT == field.formatType || CAN_NORMAL_2_0_MODE == CAN1_OperationModeGet()))
-    {
-        txMsgStatus |= CAN_TX_MSG_REQUEST_DLC_EXCEED_ERROR;
-    }
-
-    if ((DLC_BYTES[(field.dlc)]) > ((DLC_BYTES[(8u + (plsize))])))
-    {
-        txMsgStatus |= CAN_TX_MSG_REQUEST_DLC_EXCEED_ERROR;
-    }
-
-    if (CAN_TX_FIFO_FULL == GetTxFifoStatus(validChannel))
-    {
-        txMsgStatus |= CAN_TX_MSG_REQUEST_FIFO_FULL;
-    }
-
-    return txMsgStatus;
-}
-
-CAN_TX_MSG_REQUEST_STATUS CAN1_Transmit(const CAN1_TX_FIFO_CHANNELS fifoChannel, CAN_MSG_OBJ *txCanMsg)
-{
-    CAN_TX_MSG_REQUEST_STATUS status = CAN_TX_MSG_REQUEST_FIFO_FULL;
-
-    if (isTxChannel(fifoChannel))
-    {
-        status = ValidateTransmission(fifoChannel, txCanMsg);
-        if (CAN_TX_MSG_REQUEST_SUCCESS == status)
-        {
-            uint8_t *txFifoObj = (uint8_t *) FIFO[fifoChannel].UA;
-
-            if (txFifoObj != ((void*)0))
-            {
-                WriteMessageToFifo(txFifoObj, txCanMsg);
-                FIFO[fifoChannel].CONH |= (0x2 | 0x1);
-            }
-        }
-    }
-
-    return status;
-}
-
-CAN_TX_FIFO_STATUS CAN1_TransmitFIFOStatusGet(const CAN1_TX_FIFO_CHANNELS fifoChannel)
-{
-    CAN_TX_FIFO_STATUS status = CAN_TX_FIFO_FULL;
-
-    if (isTxChannel(fifoChannel))
-    {
-        status = GetTxFifoStatus(fifoChannel);
-    }
-
-    return status;
-}
-
-_Bool CAN1_IsBusOff(void)
-{
-    return C1TRECUbits.TXBO;
-}
-
-_Bool CAN1_IsRxErrorPassive(void)
-{
-    return C1TRECUbits.RXBP;
-}
-
-_Bool CAN1_IsRxErrorWarning(void)
-{
-    return C1TRECUbits.RXWARN;
-}
-
-_Bool CAN1_IsRxErrorActive(void)
-{
-    return !CAN1_IsRxErrorPassive();
-}
-
-_Bool CAN1_IsTxErrorPassive(void)
-{
-    return C1TRECUbits.TXBP;
-}
-
-_Bool CAN1_IsTxErrorWarning(void)
-{
-    return C1TRECUbits.TXWARN;
-}
-
-_Bool CAN1_IsTxErrorActive(void)
-{
-    return !CAN1_IsTxErrorPassive();
-}
-
-void CAN1_Sleep(void)
-{
-    C1INTHbits.WAKIF = 0;
-    C1INTTbits.WAKIE = 1;
-
-    CAN1_OperationModeSet(CAN_DISABLE_MODE);
 }

@@ -38275,7 +38275,7 @@ unsigned char __t3rd16on(void);
 # 50 "mcc_generated_files/mcc.h" 2
 
 # 1 "mcc_generated_files/pin_manager.h" 1
-# 78 "mcc_generated_files/pin_manager.h"
+# 126 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
 # 51 "mcc_generated_files/mcc.h" 2
 
@@ -38437,6 +38437,138 @@ char *tempnam(const char *, const char *);
 # 8 "/opt/microchip/xc8/v2.36/pic/include/c99/conio.h" 2 3
 # 54 "mcc_generated_files/mcc.h" 2
 
+# 1 "mcc_generated_files/interrupt_manager.h" 1
+# 109 "mcc_generated_files/interrupt_manager.h"
+void INTERRUPT_Initialize (void);
+# 55 "mcc_generated_files/mcc.h" 2
+
+# 1 "mcc_generated_files/tmr0.h" 1
+# 100 "mcc_generated_files/tmr0.h"
+void TMR0_Initialize(void);
+# 129 "mcc_generated_files/tmr0.h"
+void TMR0_StartTimer(void);
+# 161 "mcc_generated_files/tmr0.h"
+void TMR0_StopTimer(void);
+# 196 "mcc_generated_files/tmr0.h"
+uint8_t TMR0_ReadTimer(void);
+# 235 "mcc_generated_files/tmr0.h"
+void TMR0_WriteTimer(uint8_t timerVal);
+# 272 "mcc_generated_files/tmr0.h"
+void TMR0_Reload(uint8_t periodVal);
+# 293 "mcc_generated_files/tmr0.h"
+ void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
+# 311 "mcc_generated_files/tmr0.h"
+extern void (*TMR0_InterruptHandler)(void);
+# 329 "mcc_generated_files/tmr0.h"
+void TMR0_DefaultInterruptHandler(void);
+# 56 "mcc_generated_files/mcc.h" 2
+
+# 1 "mcc_generated_files/uart2.h" 1
+# 74 "mcc_generated_files/uart2.h"
+typedef union {
+    struct {
+        unsigned perr : 1;
+        unsigned ferr : 1;
+        unsigned oerr : 1;
+        unsigned reserved : 5;
+    };
+    uint8_t status;
+}uart2_status_t;
+
+
+
+
+extern volatile uint8_t uart2TxBufferRemaining;
+extern volatile uint8_t uart2RxCount;
+# 115 "mcc_generated_files/uart2.h"
+void UART2_Initialize(void);
+# 163 "mcc_generated_files/uart2.h"
+_Bool UART2_is_rx_ready(void);
+# 211 "mcc_generated_files/uart2.h"
+_Bool UART2_is_tx_ready(void);
+# 258 "mcc_generated_files/uart2.h"
+_Bool UART2_is_tx_done(void);
+# 306 "mcc_generated_files/uart2.h"
+uart2_status_t UART2_get_last_status(void);
+# 355 "mcc_generated_files/uart2.h"
+uint8_t UART2_Read(void);
+# 380 "mcc_generated_files/uart2.h"
+void UART2_Write(uint8_t txData);
+# 401 "mcc_generated_files/uart2.h"
+void UART2_Transmit_ISR(void);
+# 422 "mcc_generated_files/uart2.h"
+void UART2_Receive_ISR(void);
+# 443 "mcc_generated_files/uart2.h"
+void UART2_RxDataHandler(void);
+# 461 "mcc_generated_files/uart2.h"
+void UART2_SetFramingErrorHandler(void (* interruptHandler)(void));
+# 479 "mcc_generated_files/uart2.h"
+void UART2_SetOverrunErrorHandler(void (* interruptHandler)(void));
+# 497 "mcc_generated_files/uart2.h"
+void UART2_SetErrorHandler(void (* interruptHandler)(void));
+# 517 "mcc_generated_files/uart2.h"
+void (*UART2_RxInterruptHandler)(void);
+# 535 "mcc_generated_files/uart2.h"
+void (*UART2_TxInterruptHandler)(void);
+# 555 "mcc_generated_files/uart2.h"
+void UART2_SetRxInterruptHandler(void (* InterruptHandler)(void));
+# 573 "mcc_generated_files/uart2.h"
+void UART2_SetTxInterruptHandler(void (* InterruptHandler)(void));
+# 57 "mcc_generated_files/mcc.h" 2
+
+# 1 "mcc_generated_files/uart1.h" 1
+# 74 "mcc_generated_files/uart1.h"
+typedef union {
+    struct {
+        unsigned perr : 1;
+        unsigned ferr : 1;
+        unsigned oerr : 1;
+        unsigned reserved : 5;
+    };
+    uint8_t status;
+}uart1_status_t;
+
+
+
+
+extern volatile uint8_t uart1TxBufferRemaining;
+extern volatile uint8_t uart1RxCount;
+# 115 "mcc_generated_files/uart1.h"
+void UART1_Initialize(void);
+# 163 "mcc_generated_files/uart1.h"
+_Bool UART1_is_rx_ready(void);
+# 211 "mcc_generated_files/uart1.h"
+_Bool UART1_is_tx_ready(void);
+# 258 "mcc_generated_files/uart1.h"
+_Bool UART1_is_tx_done(void);
+# 306 "mcc_generated_files/uart1.h"
+uart1_status_t UART1_get_last_status(void);
+# 355 "mcc_generated_files/uart1.h"
+uint8_t UART1_Read(void);
+# 380 "mcc_generated_files/uart1.h"
+void UART1_Write(uint8_t txData);
+# 401 "mcc_generated_files/uart1.h"
+void UART1_Transmit_ISR(void);
+# 422 "mcc_generated_files/uart1.h"
+void UART1_Receive_ISR(void);
+# 443 "mcc_generated_files/uart1.h"
+void UART1_RxDataHandler(void);
+# 461 "mcc_generated_files/uart1.h"
+void UART1_SetFramingErrorHandler(void (* interruptHandler)(void));
+# 479 "mcc_generated_files/uart1.h"
+void UART1_SetOverrunErrorHandler(void (* interruptHandler)(void));
+# 497 "mcc_generated_files/uart1.h"
+void UART1_SetErrorHandler(void (* interruptHandler)(void));
+# 517 "mcc_generated_files/uart1.h"
+void (*UART1_RxInterruptHandler)(void);
+# 535 "mcc_generated_files/uart1.h"
+void (*UART1_TxInterruptHandler)(void);
+# 555 "mcc_generated_files/uart1.h"
+void UART1_SetRxInterruptHandler(void (* InterruptHandler)(void));
+# 573 "mcc_generated_files/uart1.h"
+void UART1_SetTxInterruptHandler(void (* InterruptHandler)(void));
+# 58 "mcc_generated_files/mcc.h" 2
+
 # 1 "mcc_generated_files/can1.h" 1
 # 56 "mcc_generated_files/can1.h"
 # 1 "mcc_generated_files/can_types.h" 1
@@ -38585,12 +38717,12 @@ uint8_t CAN1_ReceivedMessageCountGet(void);
 void CAN1_SetFIFO2nullHandler(void (*handler)(void));
 # 892 "mcc_generated_files/can1.h"
 void CAN1_SetFIFO1nullHandler(void (*handler)(void));
-# 55 "mcc_generated_files/mcc.h" 2
-# 70 "mcc_generated_files/mcc.h"
+# 59 "mcc_generated_files/mcc.h" 2
+# 74 "mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
-# 83 "mcc_generated_files/mcc.h"
+# 87 "mcc_generated_files/mcc.h"
 void OSCILLATOR_Initialize(void);
-# 96 "mcc_generated_files/mcc.h"
+# 100 "mcc_generated_files/mcc.h"
 void PMD_Initialize(void);
 # 47 "mcc_generated_files/mcc.c" 2
 
@@ -38598,9 +38730,13 @@ void PMD_Initialize(void);
 
 void SYSTEM_Initialize(void)
 {
+    INTERRUPT_Initialize();
     PMD_Initialize();
     PIN_MANAGER_Initialize();
     OSCILLATOR_Initialize();
+    TMR0_Initialize();
+    UART2_Initialize();
+    UART1_Initialize();
     CAN1_Initialize();
 }
 

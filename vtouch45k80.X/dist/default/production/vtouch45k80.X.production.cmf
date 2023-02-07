@@ -12,30 +12,69 @@
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
 $dist/default/production/vtouch45k80.X.production.o
-cinit CODE 0 3862 3862 36 1 2
+ivt0x8 CODE 0 8 8 102 1 2
+cinit CODE 0 3B14 3B14 68 1 2
 idloc IDLOC 5 200000 200000 40 1 1
-text0 CODE 0 396A 396A C 1 2
-text1 CODE 0 3958 3958 12 1 2
-text2 CODE 0 38F0 38F0 28 1 2
-text3 CODE 0 379C 379C 72 1 2
-text4 CODE 0 3918 3918 18 1 2
-text5 CODE 0 380E 380E 54 1 2
-text6 CODE 0 3930 3930 14 1 2
-text7 CODE 0 3898 3898 2C 1 2
-text8 CODE 0 3982 3982 2 1 2
-text9 CODE 0 3944 3944 14 1 2
-text10 CODE 0 3714 3714 88 1 2
-text11 CODE 0 3976 3976 A 1 2
-text12 CODE 0 38C4 38C4 2C 1 2
-idataCOMRAM CODE 0 3980 3980 2 1 1
-cstackCOMRAM COMRAM 1 541 541 3 1 1
+text0 CODE 0 4000 4000 C 1 2
+text1 CODE 0 3F04 3F04 22 1 2
+text2 CODE 0 389C 389C B2 1 2
+text3 CODE 0 3F66 3F66 E 1 2
+text4 CODE 0 3F74 3F74 E 1 2
+text5 CODE 0 3F82 3F82 E 1 2
+text6 CODE 0 3F90 3F90 E 1 2
+text7 CODE 0 3F9E 3F9E E 1 2
+text8 CODE 0 394E 394E B2 1 2
+text9 CODE 0 3FAC 3FAC E 1 2
+nvCOMRAM COMRAM 1 501 501 23 1 1
+text10 CODE 0 3FBA 3FBA E 1 2
+text11 CODE 0 3FC8 3FC8 E 1 2
+text12 CODE 0 3FD6 3FD6 E 1 2
+text13 CODE 0 3FE4 3FE4 E 1 2
+text14 CODE 0 3E5E 3E5E 2A 1 2
+text15 CODE 0 3FF2 3FF2 E 1 2
+text16 CODE 0 3EDC 3EDC 28 1 2
+text17 CODE 0 3A00 3A00 8C 1 2
+text18 CODE 0 3F26 3F26 18 1 2
+text19 CODE 0 3D3C 3D3C 46 1 2
+text20 CODE 0 3B7C 3B7C 54 1 2
+text21 CODE 0 3F3E 3F3E 14 1 2
+text22 CODE 0 3E06 3E06 2C 1 2
+text23 CODE 0 4024 4024 2 1 2
+text24 CODE 0 3F52 3F52 14 1 2
+text25 CODE 0 3A8C 3A8C 88 1 2
+text26 CODE 0 400C 400C A 1 2
+text27 CODE 0 3E32 3E32 2C 1 2
+text28 CODE 0 3BD0 3BD0 4A 1 4
+text29 CODE 0 4026 4026 2 1 2
+text30 CODE 0 4028 4028 2 1 4
+text31 CODE 0 3C1C 3C1C 48 1 4
+text32 CODE 0 3D82 3D82 42 1 2
+text33 CODE 0 3C64 3C64 48 1 4
+text34 CODE 0 3714 3714 C4 1 2
+text35 CODE 0 402A 402A 2 1 2
+text36 CODE 0 402C 402C 2 1 2
+text37 CODE 0 4016 4016 6 1 2
+text38 CODE 0 3E88 3E88 2A 1 2
+text39 CODE 0 3CAC 3CAC 48 1 4
+text40 CODE 0 3DC4 3DC4 42 1 2
+text41 CODE 0 3CF4 3CF4 48 1 4
+text42 CODE 0 37D8 37D8 C4 1 2
+text43 CODE 0 402E 402E 2 1 2
+text44 CODE 0 4030 4030 2 1 2
+text45 CODE 0 401C 401C 6 1 2
+text46 CODE 0 3EB2 3EB2 2A 1 2
+idataCOMRAM CODE 0 4022 4022 2 1 1
+cstackCOMRAM COMRAM 1 524 524 D 1 1
+bssBANK5 BANK5 1 560 560 80 1 1
+bssBANK6 BANK6 1 600 600 100 1 1
+bssBANK7 BANK7 1 700 700 40 1 1
 smallconst SMALLCONST 0 3700 3700 14 1 2
-dataCOMRAM COMRAM 1 544 544 2 1 1
-bssCOMRAM COMRAM 1 501 501 40 1 1
+dataCOMRAM COMRAM 1 53D 53D 2 1 1
+bssCOMRAM COMRAM 1 531 531 C 1 1
 config CONFIG 4 300000 300000 23 1 1
-$/tmp/xcXebiMji.o
+$/tmp/xcXjplloc.o
 idloc IDLOC 5 200000 200000 40 1 1
-init CODE 0 1FFFC 1FFFC 4 1 2
+init CODE 0 10A 10A 4 1 2
 reset_vec CODE 0 0 0 4 1 2
 config CONFIG 4 300000 300000 23 1 1
 # %UNUSED Section
@@ -44,19 +83,24 @@ config CONFIG 4 300000 300000 23 1 1
 #    <class name> <range> <delta>
 # Addresses given in the range are in hexadecimal and units of delta.
 %UNUSED
-RAM 560-36FF 1
+RAM 5E0-5FF 1
+RAM 740-36FF 1
 SFR 0-4FF 1
 SFR 3700-3FFF 1
-BANK5 560-5FF 1
-BANK6 600-6FF 1
-BANK7 700-7FF 1
+BANK5 5E0-5FF 1
+BANK7 740-7FF 1
 BANK8 800-8FF 1
 BANK9 900-9FF 1
-CONST 4-36FF 1
-CONST 3984-1FFFB 1
-SMALLCONST 3984-1FFFB 1
-CODE 4-36FF 1
-CODE 3984-1FFFB 1
+CONST 4-7 1
+CONST 10E-36FF 1
+CONST 3C1A-3C1B 1
+CONST 4032-1FFFF 1
+SMALLCONST 3C1A-3C1B 1
+SMALLCONST 4032-1FFFF 1
+CODE 4-7 1
+CODE 10E-36FF 1
+CODE 3C1A-3C1B 1
+CODE 4032-1FFFF 1
 BANK10 A00-AFF 1
 BANK11 B00-BFF 1
 BANK12 C00-CFF 1
@@ -102,14 +146,17 @@ BANK51 3300-33FF 1
 BANK52 3400-34FF 1
 BANK53 3500-35FF 1
 BANK54 3600-36FF 1
-BIGRAM 546-36FF 1
+BIGRAM 53F-55F 1
+BIGRAM 5E0-5FF 1
+BIGRAM 740-36FF 1
 BIGSFR 0-4FF 1
 BIGSFR 3700-3FFF 1
-COMRAM 546-55F 1
+COMRAM 53F-55F 1
 CONFIG 300023-300023 1
 EEDATA 380000-3803FF 1
-MEDIUMCONST 3984-FFFF 1
-MEDIUMCONST 13700-1FFFB 1
+MEDIUMCONST 3C1A-3C1B 1
+MEDIUMCONST 4032-FFFF 1
+MEDIUMCONST 13700-1FFFF 1
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -124,159 +171,416 @@ MEDIUMCONST 13700-1FFFB 1
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production/vtouch45k80.X.production.o
-38C4 text12 CODE >160:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-38C4 text12 CODE >163:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-38CA text12 CODE >166:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-38CE text12 CODE >169:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-38D2 text12 CODE >172:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-38D6 text12 CODE >175:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-38DA text12 CODE >178:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-38DE text12 CODE >181:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-38E2 text12 CODE >184:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-38E6 text12 CODE >187:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-38EA text12 CODE >190:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-38EE text12 CODE >191:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-3976 text11 CODE >251:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-3976 text11 CODE >253:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-397E text11 CODE >254:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-3714 text10 CODE >222:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-3716 text10 CODE >224:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-371A text10 CODE >225:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-3720 text10 CODE >227:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-3754 text10 CODE >231:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-3760 text10 CODE >233:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-3764 text10 CODE >236:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-3772 text10 CODE >238:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-3776 text10 CODE >239:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-377A text10 CODE >233:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-3794 text10 CODE >245:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-3798 text10 CODE >246:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-3798 text10 CODE >248:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-379A text10 CODE >249:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-3944 text9 CODE >124:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-3944 text9 CODE >127:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-394A text9 CODE >130:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-394E text9 CODE >133:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-3952 text9 CODE >136:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-3956 text9 CODE >138:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-3982 text8 CODE >140:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-3982 text8 CODE >142:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-3898 text7 CODE >114:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-3898 text7 CODE >118:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-389C text7 CODE >120:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-38B0 text7 CODE >121:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-38C2 text7 CODE >122:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-3930 text6 CODE >144:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-3930 text6 CODE >147:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-3936 text6 CODE >150:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-393A text6 CODE >153:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-393E text6 CODE >156:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-3942 text6 CODE >158:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-380E text5 CODE >194:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-380E text5 CODE >197:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-3812 text5 CODE >199:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-3828 text5 CODE >202:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-383A text5 CODE >205:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-383E text5 CODE >208:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-3842 text5 CODE >211:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-3846 text5 CODE >213:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-384A text5 CODE >214:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-384E text5 CODE >215:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-3852 text5 CODE >216:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-3856 text5 CODE >217:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-385A text5 CODE >218:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-3860 text5 CODE >220:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
-3918 text4 CODE >58:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
-3918 text4 CODE >61:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
-391E text4 CODE >63:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
-3922 text4 CODE >65:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
-3926 text4 CODE >67:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
-392A text4 CODE >69:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
-392E text4 CODE >70:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
-379C text3 CODE >55:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
-379C text3 CODE >60:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
-37A0 text3 CODE >61:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
-37A4 text3 CODE >62:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
-37A8 text3 CODE >63:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
-37AC text3 CODE >64:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
-37B0 text3 CODE >69:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
-37B4 text3 CODE >70:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
-37B8 text3 CODE >71:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
-37BA text3 CODE >72:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
-37BC text3 CODE >73:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
-37BE text3 CODE >78:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
-37C2 text3 CODE >79:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
-37C4 text3 CODE >80:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
-37C6 text3 CODE >81:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
-37CA text3 CODE >82:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
-37CC text3 CODE >87:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
-37D0 text3 CODE >88:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
-37D4 text3 CODE >89:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
-37D8 text3 CODE >90:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
-37DC text3 CODE >91:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
-37E0 text3 CODE >96:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
-37E4 text3 CODE >97:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
-37E8 text3 CODE >98:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
-37EC text3 CODE >99:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
-37F0 text3 CODE >100:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
-37F4 text3 CODE >105:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
-37F6 text3 CODE >106:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
-37F8 text3 CODE >107:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
-37FA text3 CODE >108:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
-37FC text3 CODE >109:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
-3800 text3 CODE >114:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
-3802 text3 CODE >115:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
-3804 text3 CODE >116:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
-3806 text3 CODE >117:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
-3808 text3 CODE >118:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
-380C text3 CODE >126:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
-38F0 text2 CODE >72:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
-38F0 text2 CODE >75:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
-38F6 text2 CODE >77:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
-38FA text2 CODE >79:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
-38FE text2 CODE >81:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
-3902 text2 CODE >83:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
-3906 text2 CODE >85:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
-390A text2 CODE >87:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
-390E text2 CODE >89:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
-3912 text2 CODE >91:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
-3916 text2 CODE >92:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
-3958 text1 CODE >50:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
-3958 text1 CODE >52:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
-395C text1 CODE >53:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
-3960 text1 CODE >54:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
-3964 text1 CODE >55:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
-3968 text1 CODE >56:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
-396A text0 CODE >49:/fred/vtouch18f45k80/vtouch45k80.X/main.c
-396A text0 CODE >52:/fred/vtouch18f45k80/vtouch45k80.X/main.c
-396E text0 CODE >70:/fred/vtouch18f45k80/vtouch45k80.X/main.c
-396E text0 CODE >73:/fred/vtouch18f45k80/vtouch45k80.X/main.c
-3862 cinit CODE >9940:/tmp/xcXdOIgfk.s
-3862 cinit CODE >9942:/tmp/xcXdOIgfk.s
-3862 cinit CODE >9945:/tmp/xcXdOIgfk.s
-3862 cinit CODE >9964:/tmp/xcXdOIgfk.s
-3864 cinit CODE >9965:/tmp/xcXdOIgfk.s
-3866 cinit CODE >9966:/tmp/xcXdOIgfk.s
-3868 cinit CODE >9967:/tmp/xcXdOIgfk.s
-386A cinit CODE >9968:/tmp/xcXdOIgfk.s
-386C cinit CODE >9969:/tmp/xcXdOIgfk.s
-386E cinit CODE >9970:/tmp/xcXdOIgfk.s
-3870 cinit CODE >9971:/tmp/xcXdOIgfk.s
-3876 cinit CODE >9972:/tmp/xcXdOIgfk.s
-3878 cinit CODE >9973:/tmp/xcXdOIgfk.s
-387E cinit CODE >9977:/tmp/xcXdOIgfk.s
-3882 cinit CODE >9978:/tmp/xcXdOIgfk.s
-3884 cinit CODE >9979:/tmp/xcXdOIgfk.s
-3884 cinit CODE >9980:/tmp/xcXdOIgfk.s
-3886 cinit CODE >9981:/tmp/xcXdOIgfk.s
-3888 cinit CODE >9982:/tmp/xcXdOIgfk.s
-388A cinit CODE >9988:/tmp/xcXdOIgfk.s
-388A cinit CODE >9991:/tmp/xcXdOIgfk.s
-388C cinit CODE >9992:/tmp/xcXdOIgfk.s
-388E cinit CODE >9993:/tmp/xcXdOIgfk.s
-3890 cinit CODE >9994:/tmp/xcXdOIgfk.s
-3892 cinit CODE >9995:/tmp/xcXdOIgfk.s
-3894 cinit CODE >9996:/tmp/xcXdOIgfk.s
+3EB2 text46 CODE >287:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3EB2 text46 CODE >289:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3EC4 text46 CODE >290:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3ED4 text46 CODE >292:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3ED8 text46 CODE >294:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3EDA text46 CODE >295:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+401C text45 CODE >301:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+401C text45 CODE >302:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+4020 text45 CODE >303:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+4030 text44 CODE >297:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+402E text43 CODE >299:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+37D8 text42 CODE >263:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+37D8 text42 CODE >266:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+37E8 text42 CODE >268:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+37F8 text42 CODE >269:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3808 text42 CODE >270:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3822 text42 CODE >273:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3832 text42 CODE >274:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3842 text42 CODE >275:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+385C text42 CODE >278:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3878 text42 CODE >279:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3892 text42 CODE >280:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3896 text42 CODE >281:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+389A text42 CODE >285:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3CF4 text41 CODE >233:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3CF4 text41 CODE >261:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3D00 text41 CODE >235:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3D14 text41 CODE >237:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3D2E text41 CODE >239:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3DC4 text40 CODE >243:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3DC4 text40 CODE >246:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3DD4 text40 CODE >248:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3DE8 text40 CODE >249:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3DF8 text40 CODE >251:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3DFC text40 CODE >253:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3DFE text40 CODE >254:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3E02 text40 CODE >255:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3E02 text40 CODE >257:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3E04 text40 CODE >261:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3CAC text39 CODE >225:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3CAC text39 CODE >295:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3CB8 text39 CODE >227:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3CCC text39 CODE >229:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3CE6 text39 CODE >231:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3E88 text38 CODE >287:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3E88 text38 CODE >289:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3E9A text38 CODE >290:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3EAA text38 CODE >292:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3EAE text38 CODE >294:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3EB0 text38 CODE >295:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+4016 text37 CODE >301:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+4016 text37 CODE >302:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+401A text37 CODE >303:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+402C text36 CODE >297:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+402A text35 CODE >299:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3714 text34 CODE >263:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3714 text34 CODE >266:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3724 text34 CODE >268:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3734 text34 CODE >269:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3744 text34 CODE >270:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+375E text34 CODE >273:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+376E text34 CODE >274:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+377E text34 CODE >275:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3798 text34 CODE >278:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+37B4 text34 CODE >279:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+37CE text34 CODE >280:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+37D2 text34 CODE >281:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+37D6 text34 CODE >285:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3C64 text33 CODE >233:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3C64 text33 CODE >261:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3C70 text33 CODE >235:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3C84 text33 CODE >237:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3C9E text33 CODE >239:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3D82 text32 CODE >243:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3D82 text32 CODE >246:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3D92 text32 CODE >248:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3DA6 text32 CODE >249:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3DB6 text32 CODE >251:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3DBA text32 CODE >253:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3DBC text32 CODE >254:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3DC0 text32 CODE >255:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3DC0 text32 CODE >257:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3DC2 text32 CODE >261:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3C1C text31 CODE >81:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/interrupt_manager.c
+3C1C text31 CODE >225:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3C28 text31 CODE >227:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3C3C text31 CODE >229:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3C56 text31 CODE >231:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+4028 text30 CODE >79:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/interrupt_manager.c
+4028 text30 CODE >81:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/interrupt_manager.c
+4028 text30 CODE >142:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/tmr0.c
+4026 text29 CODE >139:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/tmr0.c
+4026 text29 CODE >142:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/tmr0.c
+3BD0 text28 CODE >191:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3BD0 text28 CODE >122:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/tmr0.c
+3BDC text28 CODE >125:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/tmr0.c
+3BDE text28 CODE >126:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/tmr0.c
+3BF2 text28 CODE >128:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/tmr0.c
+3C0C text28 CODE >132:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/tmr0.c
+3E32 text27 CODE >160:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3E32 text27 CODE >163:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3E38 text27 CODE >166:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3E3C text27 CODE >169:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3E40 text27 CODE >172:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3E44 text27 CODE >175:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3E48 text27 CODE >178:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3E4C text27 CODE >181:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3E50 text27 CODE >184:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3E54 text27 CODE >187:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3E58 text27 CODE >190:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3E5C text27 CODE >191:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+400C text26 CODE >251:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+400C text26 CODE >253:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+4014 text26 CODE >254:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3A8C text25 CODE >222:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3A8E text25 CODE >224:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3A92 text25 CODE >225:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3A98 text25 CODE >227:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3ACC text25 CODE >231:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3AD8 text25 CODE >233:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3ADC text25 CODE >236:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3AEA text25 CODE >238:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3AEE text25 CODE >239:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3AF2 text25 CODE >233:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3B0C text25 CODE >245:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3B10 text25 CODE >246:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3B10 text25 CODE >248:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3B12 text25 CODE >249:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3F52 text24 CODE >124:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3F52 text24 CODE >127:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3F58 text24 CODE >130:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3F5C text24 CODE >133:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3F60 text24 CODE >136:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3F64 text24 CODE >138:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+4024 text23 CODE >140:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+4024 text23 CODE >142:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3E06 text22 CODE >114:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3E06 text22 CODE >118:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3E0A text22 CODE >120:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3E1E text22 CODE >121:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3E30 text22 CODE >122:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3F3E text21 CODE >144:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3F3E text21 CODE >147:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3F44 text21 CODE >150:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3F48 text21 CODE >153:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3F4C text21 CODE >156:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3F50 text21 CODE >158:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3B7C text20 CODE >194:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3B7C text20 CODE >197:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3B80 text20 CODE >199:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3B96 text20 CODE >202:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3BA8 text20 CODE >205:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3BAC text20 CODE >208:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3BB0 text20 CODE >211:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3BB4 text20 CODE >213:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3BB8 text20 CODE >214:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3BBC text20 CODE >215:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3BC0 text20 CODE >216:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3BC4 text20 CODE >217:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3BC8 text20 CODE >218:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3BCE text20 CODE >220:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/can1.c
+3D3C text19 CODE >52:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/interrupt_manager.c
+3D3C text19 CODE >54:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/interrupt_manager.c
+3D3E text19 CODE >56:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/interrupt_manager.c
+3D46 text19 CODE >57:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/interrupt_manager.c
+3D48 text19 CODE >58:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/interrupt_manager.c
+3D4E text19 CODE >59:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/interrupt_manager.c
+3D52 text19 CODE >60:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/interrupt_manager.c
+3D54 text19 CODE >62:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/interrupt_manager.c
+3D58 text19 CODE >63:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/interrupt_manager.c
+3D5C text19 CODE >64:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/interrupt_manager.c
+3D60 text19 CODE >66:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/interrupt_manager.c
+3D64 text19 CODE >67:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/interrupt_manager.c
+3D68 text19 CODE >68:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/interrupt_manager.c
+3D6A text19 CODE >70:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/interrupt_manager.c
+3D74 text19 CODE >72:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/interrupt_manager.c
+3D78 text19 CODE >73:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/interrupt_manager.c
+3D7A text19 CODE >74:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/interrupt_manager.c
+3D7C text19 CODE >75:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/interrupt_manager.c
+3D7E text19 CODE >76:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/interrupt_manager.c
+3D80 text19 CODE >77:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/interrupt_manager.c
+3F26 text18 CODE >62:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
+3F26 text18 CODE >65:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
+3F2C text18 CODE >67:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
+3F30 text18 CODE >69:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
+3F34 text18 CODE >71:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
+3F38 text18 CODE >73:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
+3F3C text18 CODE >74:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
+3A00 text17 CODE >55:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
+3A00 text17 CODE >60:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
+3A04 text17 CODE >61:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
+3A08 text17 CODE >62:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
+3A0C text17 CODE >63:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
+3A10 text17 CODE >64:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
+3A14 text17 CODE >69:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
+3A18 text17 CODE >70:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
+3A1C text17 CODE >71:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
+3A20 text17 CODE >72:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
+3A22 text17 CODE >73:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
+3A26 text17 CODE >78:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
+3A2C text17 CODE >79:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
+3A2E text17 CODE >80:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
+3A32 text17 CODE >81:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
+3A36 text17 CODE >82:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
+3A38 text17 CODE >87:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
+3A3C text17 CODE >88:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
+3A40 text17 CODE >89:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
+3A44 text17 CODE >90:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
+3A48 text17 CODE >91:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
+3A4C text17 CODE >96:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
+3A50 text17 CODE >97:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
+3A54 text17 CODE >98:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
+3A58 text17 CODE >99:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
+3A5C text17 CODE >100:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
+3A60 text17 CODE >105:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
+3A62 text17 CODE >106:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
+3A64 text17 CODE >107:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
+3A66 text17 CODE >108:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
+3A68 text17 CODE >109:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
+3A6C text17 CODE >114:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
+3A6E text17 CODE >115:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
+3A70 text17 CODE >116:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
+3A72 text17 CODE >117:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
+3A74 text17 CODE >118:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
+3A78 text17 CODE >127:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
+3A7E text17 CODE >128:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
+3A82 text17 CODE >129:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
+3A86 text17 CODE >130:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
+3A8A text17 CODE >131:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/pin_manager.c
+3EDC text16 CODE >76:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
+3EDC text16 CODE >79:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
+3EE2 text16 CODE >81:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
+3EE6 text16 CODE >83:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
+3EEA text16 CODE >85:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
+3EEE text16 CODE >87:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
+3EF2 text16 CODE >89:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
+3EF6 text16 CODE >91:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
+3EFA text16 CODE >93:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
+3EFE text16 CODE >95:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
+3F02 text16 CODE >96:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
+3FF2 text15 CODE >135:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/tmr0.c
+3FF2 text15 CODE >136:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/tmr0.c
+3FFE text15 CODE >137:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/tmr0.c
+3E5E text14 CODE >62:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/tmr0.c
+3E5E text14 CODE >67:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/tmr0.c
+3E64 text14 CODE >70:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/tmr0.c
+3E68 text14 CODE >73:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/tmr0.c
+3E6C text14 CODE >76:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/tmr0.c
+3E6E text14 CODE >79:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/tmr0.c
+3E70 text14 CODE >82:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/tmr0.c
+3E80 text14 CODE >85:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/tmr0.c
+3E86 text14 CODE >86:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/tmr0.c
+3FE4 text13 CODE >313:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3FE4 text13 CODE >314:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3FF0 text13 CODE >315:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3FD6 text12 CODE >305:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3FD6 text12 CODE >306:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3FE2 text12 CODE >307:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3FC8 text11 CODE >309:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3FC8 text11 CODE >310:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3FD4 text11 CODE >311:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3FBA text10 CODE >319:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3FBA text10 CODE >320:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3FC6 text10 CODE >321:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3FAC text9 CODE >323:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3FAC text9 CODE >324:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3FB8 text9 CODE >325:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+394E text8 CODE >87:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+394E text8 CODE >90:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3950 text8 CODE >91:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3960 text8 CODE >92:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3962 text8 CODE >93:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3972 text8 CODE >98:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3978 text8 CODE >101:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+397C text8 CODE >104:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3980 text8 CODE >107:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3984 text8 CODE >110:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3988 text8 CODE >113:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+398C text8 CODE >116:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3990 text8 CODE >119:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3994 text8 CODE >122:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3998 text8 CODE >125:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+399C text8 CODE >128:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+39A0 text8 CODE >131:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+39A4 text8 CODE >134:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+39A8 text8 CODE >137:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+39AC text8 CODE >140:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+39B0 text8 CODE >143:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+39C0 text8 CODE >144:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+39D0 text8 CODE >145:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+39E0 text8 CODE >147:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+39E4 text8 CODE >150:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+39E8 text8 CODE >151:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+39EC text8 CODE >152:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+39F0 text8 CODE >153:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+39F4 text8 CODE >154:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+39F8 text8 CODE >155:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+39FC text8 CODE >158:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+39FE text8 CODE >159:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart1.c
+3F9E text7 CODE >313:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3F9E text7 CODE >314:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3FAA text7 CODE >315:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3F90 text6 CODE >305:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3F90 text6 CODE >306:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3F9C text6 CODE >307:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3F82 text5 CODE >309:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3F82 text5 CODE >310:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3F8E text5 CODE >311:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3F74 text4 CODE >319:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3F74 text4 CODE >320:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3F80 text4 CODE >321:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3F66 text3 CODE >323:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3F66 text3 CODE >324:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3F72 text3 CODE >325:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+389C text2 CODE >87:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+389C text2 CODE >90:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+389E text2 CODE >91:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+38AE text2 CODE >92:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+38B0 text2 CODE >93:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+38C0 text2 CODE >98:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+38C6 text2 CODE >101:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+38CA text2 CODE >104:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+38CE text2 CODE >107:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+38D2 text2 CODE >110:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+38D6 text2 CODE >113:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+38DA text2 CODE >116:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+38DE text2 CODE >119:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+38E2 text2 CODE >122:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+38E6 text2 CODE >125:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+38EA text2 CODE >128:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+38EE text2 CODE >131:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+38F2 text2 CODE >134:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+38F6 text2 CODE >137:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+38FA text2 CODE >140:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+38FE text2 CODE >143:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+390E text2 CODE >144:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+391E text2 CODE >145:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+392E text2 CODE >147:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3932 text2 CODE >150:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3936 text2 CODE >151:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+393A text2 CODE >152:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+393E text2 CODE >153:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3942 text2 CODE >154:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3946 text2 CODE >155:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+394A text2 CODE >158:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+394C text2 CODE >159:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/uart2.c
+3F04 text1 CODE >50:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
+3F04 text1 CODE >52:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
+3F08 text1 CODE >53:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
+3F0C text1 CODE >54:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
+3F10 text1 CODE >55:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
+3F14 text1 CODE >56:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
+3F18 text1 CODE >57:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
+3F1C text1 CODE >58:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
+3F20 text1 CODE >59:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
+3F24 text1 CODE >60:/fred/vtouch18f45k80/vtouch45k80.X/mcc_generated_files/mcc.c
+4000 text0 CODE >49:/fred/vtouch18f45k80/vtouch45k80.X/main.c
+4000 text0 CODE >52:/fred/vtouch18f45k80/vtouch45k80.X/main.c
+4004 text0 CODE >70:/fred/vtouch18f45k80/vtouch45k80.X/main.c
+4004 text0 CODE >73:/fred/vtouch18f45k80/vtouch45k80.X/main.c
+3B14 cinit CODE >19713:/tmp/xcXEBeBBp.s
+3B14 cinit CODE >19715:/tmp/xcXEBeBBp.s
+3B14 cinit CODE >19718:/tmp/xcXEBeBBp.s
+3B14 cinit CODE >19784:/tmp/xcXEBeBBp.s
+3B16 cinit CODE >19785:/tmp/xcXEBeBBp.s
+3B18 cinit CODE >19786:/tmp/xcXEBeBBp.s
+3B1A cinit CODE >19787:/tmp/xcXEBeBBp.s
+3B1C cinit CODE >19788:/tmp/xcXEBeBBp.s
+3B1E cinit CODE >19789:/tmp/xcXEBeBBp.s
+3B20 cinit CODE >19790:/tmp/xcXEBeBBp.s
+3B22 cinit CODE >19791:/tmp/xcXEBeBBp.s
+3B28 cinit CODE >19792:/tmp/xcXEBeBBp.s
+3B2A cinit CODE >19793:/tmp/xcXEBeBBp.s
+3B30 cinit CODE >19797:/tmp/xcXEBeBBp.s
+3B34 cinit CODE >19798:/tmp/xcXEBeBBp.s
+3B36 cinit CODE >19799:/tmp/xcXEBeBBp.s
+3B36 cinit CODE >19800:/tmp/xcXEBeBBp.s
+3B38 cinit CODE >19801:/tmp/xcXEBeBBp.s
+3B3A cinit CODE >19802:/tmp/xcXEBeBBp.s
+3B3C cinit CODE >19805:/tmp/xcXEBeBBp.s
+3B40 cinit CODE >19806:/tmp/xcXEBeBBp.s
+3B44 cinit CODE >19807:/tmp/xcXEBeBBp.s
+3B44 cinit CODE >19808:/tmp/xcXEBeBBp.s
+3B46 cinit CODE >19809:/tmp/xcXEBeBBp.s
+3B48 cinit CODE >19810:/tmp/xcXEBeBBp.s
+3B4A cinit CODE >19811:/tmp/xcXEBeBBp.s
+3B4C cinit CODE >19812:/tmp/xcXEBeBBp.s
+3B4E cinit CODE >19813:/tmp/xcXEBeBBp.s
+3B50 cinit CODE >19816:/tmp/xcXEBeBBp.s
+3B54 cinit CODE >19817:/tmp/xcXEBeBBp.s
+3B56 cinit CODE >19818:/tmp/xcXEBeBBp.s
+3B56 cinit CODE >19819:/tmp/xcXEBeBBp.s
+3B58 cinit CODE >19820:/tmp/xcXEBeBBp.s
+3B5A cinit CODE >19821:/tmp/xcXEBeBBp.s
+3B5C cinit CODE >19824:/tmp/xcXEBeBBp.s
+3B60 cinit CODE >19825:/tmp/xcXEBeBBp.s
+3B62 cinit CODE >19826:/tmp/xcXEBeBBp.s
+3B62 cinit CODE >19827:/tmp/xcXEBeBBp.s
+3B64 cinit CODE >19828:/tmp/xcXEBeBBp.s
+3B66 cinit CODE >19829:/tmp/xcXEBeBBp.s
+3B68 cinit CODE >19837:/tmp/xcXEBeBBp.s
+3B6A cinit CODE >19838:/tmp/xcXEBeBBp.s
+3B6C cinit CODE >19839:/tmp/xcXEBeBBp.s
+3B6E cinit CODE >19840:/tmp/xcXEBeBBp.s
+3B70 cinit CODE >19841:/tmp/xcXEBeBBp.s
+3B72 cinit CODE >19842:/tmp/xcXEBeBBp.s
+3B74 cinit CODE >19843:/tmp/xcXEBeBBp.s
+3B76 cinit CODE >19849:/tmp/xcXEBeBBp.s
+3B76 cinit CODE >19851:/tmp/xcXEBeBBp.s
+3B78 cinit CODE >19852:/tmp/xcXEBeBBp.s
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -290,14 +594,20 @@ $dist/default/production/vtouch45k80.X.production.o
 # is the name of the object file in which the symbol was defined.
 %SYMTAB
 __Lmediumconst 0 0 MEDIUMCONST 0 mediumconst dist/default/production/vtouch45k80.X.production.o
-__Hspace_0 20000 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
-__Hspace_1 546 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+__Hspace_0 4032 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+__Hspace_1 740 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 __Hspace_2 0 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 __Hspace_4 600023 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 __Hibigdata 0 0 CODE 0 ibigdata dist/default/production/vtouch45k80.X.production.o
-__mediumconst 0 0 MEDIUMCONST 0 mediumconst /tmp/xcXebiMji.o
+__mediumconst 0 0 MEDIUMCONST 0 mediumconst /tmp/xcXjplloc.o
 __Heeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production/vtouch45k80.X.production.o
-_PMD_Initialize 38F0 0 CODE 0 text2 dist/default/production/vtouch45k80.X.production.o
+__end_of_UART1_SetFramingErrorHandler 3FE4 0 CODE 0 text12 dist/default/production/vtouch45k80.X.production.o
+__end_of_UART1_SetOverrunErrorHandler 3FD6 0 CODE 0 text11 dist/default/production/vtouch45k80.X.production.o
+__end_of_INTERRUPT_Initialize 3D82 0 CODE 0 text19 dist/default/production/vtouch45k80.X.production.o
+_PMD_Initialize 3EDC 0 CODE 0 text16 dist/default/production/vtouch45k80.X.production.o
+UART1_SetOverrunErrorHandler@interruptHandler 52E 0 COMRAM 1 cstackCOMRAM dist/default/production/vtouch45k80.X.production.o
+__end_of_UART2_Receive_ISR 37D8 0 CODE 0 text34 dist/default/production/vtouch45k80.X.production.o
+_UART1_RxDataHandler 3EB2 0 CODE 0 text46 dist/default/production/vtouch45k80.X.production.o
 __Lsmallconst 3700 0 SMALLCONST 0 smallconst dist/default/production/vtouch45k80.X.production.o
 _LATA 4BE 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 _LATB 4BF 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
@@ -318,29 +628,54 @@ _WPUB 409 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 _WPUC 411 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 _WPUD 419 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 _WPUE 421 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
-___sp 0 0 STACK 2 stack /tmp/xcXebiMji.o
-_main 396A 0 CODE 0 text0 dist/default/production/vtouch45k80.X.production.o
-_CAN1_Initialize 380E 0 CODE 0 text5 dist/default/production/vtouch45k80.X.production.o
-start 1FFFC 0 CODE 0 init /tmp/xcXebiMji.o
+___sp 0 0 STACK 2 stack /tmp/xcXjplloc.o
+_main 4000 0 CODE 0 text0 dist/default/production/vtouch45k80.X.production.o
+__end_of_Default_ISR 402A 0 CODE 0 text30 dist/default/production/vtouch45k80.X.production.o
+_CAN1_Initialize 3B7C 0 CODE 0 text20 dist/default/production/vtouch45k80.X.production.o
+start 10A 0 CODE 0 init /tmp/xcXjplloc.o
+_TMR0_InterruptHandler 513 0 COMRAM 1 nvCOMRAM dist/default/production/vtouch45k80.X.production.o
+_uart1TxBufferRemaining 522 0 COMRAM 1 nvCOMRAM dist/default/production/vtouch45k80.X.production.o
+_uart2TxBuffer 6C0 0 BANK6 1 bssBANK6 dist/default/production/vtouch45k80.X.production.o
 __HbssCOMRAM 0 0 ABS 0 bssCOMRAM dist/default/production/vtouch45k80.X.production.o
+__end_of_TMR0_SetInterruptHandler 4000 0 CODE 0 text15 dist/default/production/vtouch45k80.X.production.o
+_UART2_FramingErrorHandler 510 0 COMRAM 1 nvCOMRAM dist/default/production/vtouch45k80.X.production.o
+_UART2_OverrunErrorHandler 50D 0 COMRAM 1 nvCOMRAM dist/default/production/vtouch45k80.X.production.o
+__end_of_UART2_SetRxInterruptHandler 3F82 0 CODE 0 text4 dist/default/production/vtouch45k80.X.production.o
 _C1CONHbits 101 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 _C1CONTbits 103 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 _C1CONUbits 102 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 __Hpowerup 0 0 CODE 0 powerup dist/default/production/vtouch45k80.X.production.o
-__end_of_CAN1_BitRateConfiguration 38F0 0 CODE 0 text12 dist/default/production/vtouch45k80.X.production.o
+__end_of_CAN1_BitRateConfiguration 3E5E 0 CODE 0 text27 dist/default/production/vtouch45k80.X.production.o
+_UART1_ErrorHandler 501 0 COMRAM 1 nvCOMRAM dist/default/production/vtouch45k80.X.production.o
+UART2_SetOverrunErrorHandler@interruptHandler 52E 0 COMRAM 1 cstackCOMRAM dist/default/production/vtouch45k80.X.production.o
+_UART2_DefaultErrorHandler 4016 0 CODE 0 text37 dist/default/production/vtouch45k80.X.production.o
+__LnvCOMRAM 0 0 ABS 0 nvCOMRAM dist/default/production/vtouch45k80.X.production.o
 __HdataCOMRAM 0 0 ABS 0 dataCOMRAM dist/default/production/vtouch45k80.X.production.o
-__accesstop 560 0 ABS 0 - /tmp/xcXebiMji.o
-intlevel0 0 0 CODE 0 text /tmp/xcXebiMji.o
-intlevel1 0 0 CODE 0 text /tmp/xcXebiMji.o
-intlevel2 0 0 CODE 0 text /tmp/xcXebiMji.o
-intlevel3 0 0 CODE 0 text /tmp/xcXebiMji.o
+TMR0_SetInterruptHandler@InterruptHandler 52E 0 COMRAM 1 cstackCOMRAM dist/default/production/vtouch45k80.X.production.o
+__accesstop 560 0 ABS 0 - /tmp/xcXjplloc.o
+intlevel0 0 0 CODE 0 text /tmp/xcXjplloc.o
+intlevel1 0 0 CODE 0 text /tmp/xcXjplloc.o
+intlevel2 0 0 CODE 0 text /tmp/xcXjplloc.o
+intlevel3 0 0 CODE 0 text /tmp/xcXjplloc.o
 __LbssCOMRAM 0 0 ABS 0 bssCOMRAM dist/default/production/vtouch45k80.X.production.o
+UART1_SetTxInterruptHandler@InterruptHandler 52E 0 COMRAM 1 cstackCOMRAM dist/default/production/vtouch45k80.X.production.o
 __LnvFARRAM 0 0 FARRAM 0 nvFARRAM dist/default/production/vtouch45k80.X.production.o
+UART2_SetTxInterruptHandler@InterruptHandler 52E 0 COMRAM 1 cstackCOMRAM dist/default/production/vtouch45k80.X.production.o
+__end_of_UART1_SetTxInterruptHandler 3FBA 0 CODE 0 text9 dist/default/production/vtouch45k80.X.production.o
 __Hifardata 0 0 CODE 0 ifardata dist/default/production/vtouch45k80.X.production.o
-__end_of_PMD_Initialize 3918 0 CODE 0 text2 dist/default/production/vtouch45k80.X.production.o
+__end_of_PMD_Initialize 3F04 0 CODE 0 text16 dist/default/production/vtouch45k80.X.production.o
 __Hclrtext 0 0 ABS 0 clrtext dist/default/production/vtouch45k80.X.production.o
-__pidataCOMRAM 3980 0 CODE 0 idataCOMRAM dist/default/production/vtouch45k80.X.production.o
-_CAN1_RX_FIFO_FilterMaskConfiguration 3982 0 CODE 0 text8 dist/default/production/vtouch45k80.X.production.o
+__pidataCOMRAM 4022 0 CODE 0 idataCOMRAM dist/default/production/vtouch45k80.X.production.o
+_U1ERRIE 2B3 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_U1ERRIR 2B2 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+ivt0x8_base 8 0 CODE 0 ivt0x8 dist/default/production/vtouch45k80.X.production.o
+_IVTBASEH 45E 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_IVTBASEL 45D 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_IVTBASEU 45F 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_CAN1_RX_FIFO_FilterMaskConfiguration 4024 0 CODE 0 text23 dist/default/production/vtouch45k80.X.production.o
+_U2ERRIE 2C6 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_U2ERRIR 2C5 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_U2RXPPS 274 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 _ANSELA 400 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 _ANSELB 408 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 _ANSELC 410 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
@@ -354,26 +689,42 @@ _C1FIFOCON2H 169 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 _C1FIFOCON2L 168 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 _C1FIFOCON2T 16B 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 _C1FIFOCON2U 16A 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
-___inthi_sp 0 0 STACK 2 stack /tmp/xcXebiMji.o
-___intlo_sp 0 0 STACK 2 stack /tmp/xcXebiMji.o
+_TMR0_DefaultInterruptHandler 4026 0 CODE 0 text29 dist/default/production/vtouch45k80.X.production.o
+___inthi_sp 0 0 STACK 2 stack /tmp/xcXjplloc.o
+___intlo_sp 0 0 STACK 2 stack /tmp/xcXjplloc.o
 _C1CONH 101 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 _C1CONL 100 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 _C1CONU 102 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 _C1TDCH 10D 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 _C1TDCU 10E 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 __LdataCOMRAM 0 0 ABS 0 dataCOMRAM dist/default/production/vtouch45k80.X.production.o
+__end_of_UART1_rx_vect_isr 3D3C 0 CODE 0 text41 dist/default/production/vtouch45k80.X.production.o
+_uart2RxBuffer 680 0 BANK6 1 bssBANK6 dist/default/production/vtouch45k80.X.production.o
 __Lintsave_regs 0 0 BIGRAM 1 intsave_regs dist/default/production/vtouch45k80.X.production.o
-__end_of_CAN1_TX_FIFO_Configuration 3944 0 CODE 0 text6 dist/default/production/vtouch45k80.X.production.o
-_CAN1_RX_FIFO_ResetInfo 3898 0 CODE 0 text7 dist/default/production/vtouch45k80.X.production.o
+__end_of_CAN1_TX_FIFO_Configuration 3F52 0 CODE 0 text21 dist/default/production/vtouch45k80.X.production.o
+_UART2_Receive_ISR 3714 0 CODE 0 text34 dist/default/production/vtouch45k80.X.production.o
+_CAN1_RX_FIFO_ResetInfo 3E06 0 CODE 0 text22 dist/default/production/vtouch45k80.X.production.o
 __Hmediumconst 0 0 MEDIUMCONST 0 mediumconst dist/default/production/vtouch45k80.X.production.o
+__end_of_UART1_tx_vect_isr 3CF4 0 CODE 0 text39 dist/default/production/vtouch45k80.X.production.o
+_uart2RxStatusBuffer 5A0 0 BANK5 1 bssBANK5 dist/default/production/vtouch45k80.X.production.o
+__end_of_UART1_RxDataHandler 3EDC 0 CODE 0 text46 dist/default/production/vtouch45k80.X.production.o
 _INLVLA 404 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 _INLVLB 40C 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 _INLVLC 414 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 _INLVLD 41C 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 _INLVLE 424 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_uart2RxCount 538 0 COMRAM 1 bssCOMRAM dist/default/production/vtouch45k80.X.production.o
+_CANRXPPS 23D 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 __LidataCOMRAM 0 0 ABS 0 idataCOMRAM dist/default/production/vtouch45k80.X.production.o
-_PIN_MANAGER_Initialize 379C 0 CODE 0 text3 dist/default/production/vtouch45k80.X.production.o
-start_initialization 3862 0 CODE 0 cinit dist/default/production/vtouch45k80.X.production.o
+__end_of_UART1_Transmit_ISR 3E06 0 CODE 0 text40 dist/default/production/vtouch45k80.X.production.o
+__end_of_UART1_SetRxInterruptHandler 3FC8 0 CODE 0 text10 dist/default/production/vtouch45k80.X.production.o
+__HnvCOMRAM 0 0 ABS 0 nvCOMRAM dist/default/production/vtouch45k80.X.production.o
+_INTCON0bits 4D6 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+UART1_SetFramingErrorHandler@interruptHandler 52E 0 COMRAM 1 cstackCOMRAM dist/default/production/vtouch45k80.X.production.o
+_PIN_MANAGER_Initialize 3A00 0 CODE 0 text17 dist/default/production/vtouch45k80.X.production.o
+__end_of_UART1_DefaultFramingErrorHandler 4032 0 CODE 0 text44 dist/default/production/vtouch45k80.X.production.o
+__end_of_UART1_DefaultOverrunErrorHandler 4030 0 CODE 0 text43 dist/default/production/vtouch45k80.X.production.o
+start_initialization 3B14 0 CODE 0 cinit dist/default/production/vtouch45k80.X.production.o
 _ODCONA 402 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 _ODCONB 40A 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 _ODCONC 412 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
@@ -381,11 +732,40 @@ _ODCOND 41A 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 _ODCONE 422 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 _OSCFRQ B1 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 __HnvFARRAM 0 0 FARRAM 0 nvFARRAM dist/default/production/vtouch45k80.X.production.o
+_UART1_Initialize 394E 0 CODE 0 text8 dist/default/production/vtouch45k80.X.production.o
+_UART2_ErrorHandler 50A 0 COMRAM 1 nvCOMRAM dist/default/production/vtouch45k80.X.production.o
 ___rparam_used 1 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
-__end_of_SYSTEM_Initialize 396A 0 CODE 0 text1 dist/default/production/vtouch45k80.X.production.o
+_RB1PPS 20A 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_RD6PPS 21F 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+__end_of_SYSTEM_Initialize 3F26 0 CODE 0 text1 dist/default/production/vtouch45k80.X.production.o
+_uart1RxCount 532 0 COMRAM 1 bssCOMRAM dist/default/production/vtouch45k80.X.production.o
+_T0CON0 31A 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_T0CON1 31B 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_IPR3bits 365 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_IPR4bits 366 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_IPR8bits 36A 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_UART2_DefaultFramingErrorHandler 402C 0 CODE 0 text36 dist/default/production/vtouch45k80.X.production.o
+_UART2_DefaultOverrunErrorHandler 402A 0 CODE 0 text35 dist/default/production/vtouch45k80.X.production.o
+_U1BRGH 2AF 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_U1BRGL 2AE 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_U1CON0 2AB 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_U1CON1 2AC 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_U1CON2 2AD 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_U1FIFO 2B0 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_U2BRGH 2C2 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_U2BRGL 2C1 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_U2CON0 2BE 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_U2CON1 2BF 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_U2CON2 2C0 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_U2FIFO 2C3 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_UART2_TxInterruptHandler 51C 0 COMRAM 1 nvCOMRAM dist/default/production/vtouch45k80.X.production.o
 _C1INTHbits 11D 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 _C1INTTbits 11F 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
-isa$xinst 0 0 ABS 0 - /tmp/xcXebiMji.o
+_UART1_Transmit_ISR 3DC4 0 CODE 0 text40 dist/default/production/vtouch45k80.X.production.o
+isa$xinst 0 0 ABS 0 - /tmp/xcXjplloc.o
+UART2_SetFramingErrorHandler@interruptHandler 52E 0 COMRAM 1 cstackCOMRAM dist/default/production/vtouch45k80.X.production.o
+_UART2_SetTxInterruptHandler 3F66 0 CODE 0 text3 dist/default/production/vtouch45k80.X.production.o
+_UART1_rx_vect_isr 3CF4 0 CODE 0 text41 dist/default/production/vtouch45k80.X.production.o
 _C1FIFOBA 14C 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 __Hbank5 0 0 ABS 0 bank5 dist/default/production/vtouch45k80.X.production.o
 __Hbank6 0 0 ABS 0 bank6 dist/default/production/vtouch45k80.X.production.o
@@ -458,9 +838,13 @@ __Hbank54 0 0 ABS 0 bank54 dist/default/production/vtouch45k80.X.production.o
 __Hbigbss 0 0 BIGRAM 1 bigbss dist/default/production/vtouch45k80.X.production.o
 __Hbigram 0 0 ABS 0 bigram dist/default/production/vtouch45k80.X.production.o
 __Hbigsfr 0 0 ABS 0 bigsfr dist/default/production/vtouch45k80.X.production.o
-__smallconst 3700 0 SMALLCONST 0 smallconst /tmp/xcXebiMji.o
+__smallconst 3700 0 SMALLCONST 0 smallconst /tmp/xcXjplloc.o
 __Hcomram 0 0 ABS 0 comram dist/default/production/vtouch45k80.X.production.o
 __Hconfig 300023 0 CONFIG 4 config dist/default/production/vtouch45k80.X.production.o
+__end_of_UART1_DefaultErrorHandler 4022 0 CODE 0 text45 dist/default/production/vtouch45k80.X.production.o
+_uart1RxHead 534 0 COMRAM 1 bssCOMRAM dist/default/production/vtouch45k80.X.production.o
+_uart1RxTail 533 0 COMRAM 1 bssCOMRAM dist/default/production/vtouch45k80.X.production.o
+_UART1_tx_vect_isr 3CAC 0 CODE 0 text39 dist/default/production/vtouch45k80.X.production.o
 __Lbank5 0 0 ABS 0 bank5 dist/default/production/vtouch45k80.X.production.o
 __Lbank6 0 0 ABS 0 bank6 dist/default/production/vtouch45k80.X.production.o
 __Lbank7 0 0 ABS 0 bank7 dist/default/production/vtouch45k80.X.production.o
@@ -484,11 +868,14 @@ __Ltext6 0 0 ABS 0 text6 dist/default/production/vtouch45k80.X.production.o
 __Ltext7 0 0 ABS 0 text7 dist/default/production/vtouch45k80.X.production.o
 __Ltext8 0 0 ABS 0 text8 dist/default/production/vtouch45k80.X.production.o
 __Ltext9 0 0 ABS 0 text9 dist/default/production/vtouch45k80.X.production.o
+_uart1TxHead 536 0 COMRAM 1 bssCOMRAM dist/default/production/vtouch45k80.X.production.o
+_uart1TxTail 535 0 COMRAM 1 bssCOMRAM dist/default/production/vtouch45k80.X.production.o
 __Hfarbss 0 0 FARRAM 0 farbss dist/default/production/vtouch45k80.X.production.o
+_INTERRUPT_Initialize 3D3C 0 CODE 0 text19 dist/default/production/vtouch45k80.X.production.o
 __Habs1 0 0 ABS 0 abs1 dist/default/production/vtouch45k80.X.production.o
 __Hdata 0 0 ABS 0 data dist/default/production/vtouch45k80.X.production.o
 __Hheap 0 0 HEAP 7 heap dist/default/production/vtouch45k80.X.production.o
-__Hinit 20000 0 CODE 0 init dist/default/production/vtouch45k80.X.production.o
+__Hinit 10E 0 CODE 0 init dist/default/production/vtouch45k80.X.production.o
 __Hrbit 0 0 COMRAM 1 rbit dist/default/production/vtouch45k80.X.production.o
 __Hrbss 0 0 COMRAM 1 rbss dist/default/production/vtouch45k80.X.production.o
 __Htemp 0 0 COMRAM 1 temp dist/default/production/vtouch45k80.X.production.o
@@ -496,19 +883,22 @@ __Htext 0 0 ABS 0 text dist/default/production/vtouch45k80.X.production.o
 __Labs1 0 0 ABS 0 abs1 dist/default/production/vtouch45k80.X.production.o
 __Ldata 0 0 ABS 0 data dist/default/production/vtouch45k80.X.production.o
 __Lheap 0 0 HEAP 7 heap dist/default/production/vtouch45k80.X.production.o
-__Linit 1FFFC 0 CODE 0 init dist/default/production/vtouch45k80.X.production.o
+__Linit 10A 0 CODE 0 init dist/default/production/vtouch45k80.X.production.o
 __Lrbit 0 0 COMRAM 1 rbit dist/default/production/vtouch45k80.X.production.o
 __Lrbss 0 0 COMRAM 1 rbss dist/default/production/vtouch45k80.X.production.o
 __Ltemp 0 0 COMRAM 1 temp dist/default/production/vtouch45k80.X.production.o
 __Ltext 0 0 ABS 0 text dist/default/production/vtouch45k80.X.production.o
 _C1TRECUbits 136 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 __HcstackCOMRAM 0 0 ABS 0 cstackCOMRAM dist/default/production/vtouch45k80.X.production.o
-_CAN1_BitRateConfiguration 38C4 0 CODE 0 text12 dist/default/production/vtouch45k80.X.production.o
+_CAN1_BitRateConfiguration 3E32 0 CODE 0 text27 dist/default/production/vtouch45k80.X.production.o
+__end_of_UART2_SetErrorHandler 3FAC 0 CODE 0 text7 dist/default/production/vtouch45k80.X.production.o
 __Hirdata 0 0 CODE 0 irdata dist/default/production/vtouch45k80.X.production.o
-__S0 20000 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
-__S1 546 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_GIE 26B7 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+__S0 4032 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+__S1 740 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 __S4 0 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 __S5 0 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+__Hivt0x8 10A 0 CODE 0 ivt0x8 dist/default/production/vtouch45k80.X.production.o
 _C1DBTCFGH 109 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 _C1DBTCFGL 108 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 _C1DBTCFGT 10B 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
@@ -517,30 +907,130 @@ _C1NBTCFGH 105 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 _C1NBTCFGL 104 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 _C1NBTCFGT 107 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 _C1NBTCFGU 106 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+IVTBASEH 45E 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+IVTBASEL 45D 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+IVTBASEU 45F 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_uart1RxLastError 531 0 COMRAM 1 bssCOMRAM dist/default/production/vtouch45k80.X.production.o
 _C1TXQCONL 150 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+__end_of_UART1_Initialize 3A00 0 CODE 0 text8 dist/default/production/vtouch45k80.X.production.o
+__pnvCOMRAM 501 0 COMRAM 1 nvCOMRAM dist/default/production/vtouch45k80.X.production.o
+_UART2_RxInterruptHandler 51F 0 COMRAM 1 nvCOMRAM dist/default/production/vtouch45k80.X.production.o
+__end_of_TMR0_DefaultInterruptHandler 4028 0 CODE 0 text29 dist/default/production/vtouch45k80.X.production.o
+__pivt0x8 8 0 CODE 0 ivt0x8 dist/default/production/vtouch45k80.X.production.o
+_UART2_Initialize 389C 0 CODE 0 text2 dist/default/production/vtouch45k80.X.production.o
+__end_of_UART2_rx_vect_isr 3CAC 0 CODE 0 text33 dist/default/production/vtouch45k80.X.production.o
+_UART2_SetRxInterruptHandler 3F74 0 CODE 0 text4 dist/default/production/vtouch45k80.X.production.o
+__end_of_UART2_Transmit_ISR 3DC4 0 CODE 0 text32 dist/default/production/vtouch45k80.X.production.o
 __HidataCOMRAM 0 0 ABS 0 idataCOMRAM dist/default/production/vtouch45k80.X.production.o
 __Lbigdata 0 0 BIGRAM 1 bigdata dist/default/production/vtouch45k80.X.production.o
+_UART2_SetFramingErrorHandler 3F90 0 CODE 0 text6 dist/default/production/vtouch45k80.X.production.o
 __Hnvrram 0 0 COMRAM 1 nvrram dist/default/production/vtouch45k80.X.production.o
-_SYSTEM_Initialize 3958 0 CODE 0 text1 dist/default/production/vtouch45k80.X.production.o
-__end_of_CAN1_RX_FIFO_ResetInfo 38C4 0 CODE 0 text7 dist/default/production/vtouch45k80.X.production.o
-_rxFifos 544 0 COMRAM 1 dataCOMRAM dist/default/production/vtouch45k80.X.production.o
-_rxMsgData 501 0 COMRAM 1 bssCOMRAM dist/default/production/vtouch45k80.X.production.o
+_UART2_SetOverrunErrorHandler 3F82 0 CODE 0 text5 dist/default/production/vtouch45k80.X.production.o
+_UART2_SetErrorHandler 3F9E 0 CODE 0 text7 dist/default/production/vtouch45k80.X.production.o
+_SYSTEM_Initialize 3F04 0 CODE 0 text1 dist/default/production/vtouch45k80.X.production.o
+__end_of_CAN1_RX_FIFO_ResetInfo 3E32 0 CODE 0 text22 dist/default/production/vtouch45k80.X.production.o
+_rxFifos 53D 0 COMRAM 1 dataCOMRAM dist/default/production/vtouch45k80.X.production.o
+_rxMsgData 700 0 BANK7 1 bssBANK7 dist/default/production/vtouch45k80.X.production.o
+__end_of_UART2_tx_vect_isr 3C64 0 CODE 0 text31 dist/default/production/vtouch45k80.X.production.o
 __Hramtop 3700 0 RAM 0 ramtop dist/default/production/vtouch45k80.X.production.o
 __Hrparam 0 0 COMRAM 1 rparam dist/default/production/vtouch45k80.X.production.o
-CAN1_OperationModeSet@requestMode 543 0 COMRAM 1 cstackCOMRAM dist/default/production/vtouch45k80.X.production.o
-__activetblptr 1 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_UART1_TxInterruptHandler 516 0 COMRAM 1 nvCOMRAM dist/default/production/vtouch45k80.X.production.o
+CAN1_OperationModeSet@requestMode 530 0 COMRAM 1 cstackCOMRAM dist/default/production/vtouch45k80.X.production.o
+__activetblptr 3 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 __Hstruct 0 0 COMRAM 1 struct dist/default/production/vtouch45k80.X.production.o
+__LbssBANK5 0 0 ABS 0 bssBANK5 dist/default/production/vtouch45k80.X.production.o
+__LbssBANK6 0 0 ABS 0 bssBANK6 dist/default/production/vtouch45k80.X.production.o
+__LbssBANK7 0 0 ABS 0 bssBANK7 dist/default/production/vtouch45k80.X.production.o
 __Htext10 0 0 ABS 0 text10 dist/default/production/vtouch45k80.X.production.o
 __Htext11 0 0 ABS 0 text11 dist/default/production/vtouch45k80.X.production.o
 __Htext12 0 0 ABS 0 text12 dist/default/production/vtouch45k80.X.production.o
-__end_of_CAN1_OperationModeGet 3980 0 CODE 0 text11 dist/default/production/vtouch45k80.X.production.o
-__end_of_CAN1_OperationModeSet 379C 0 CODE 0 text10 dist/default/production/vtouch45k80.X.production.o
-__end_of_CAN1_RX_FIFO_Configuration 3958 0 CODE 0 text9 dist/default/production/vtouch45k80.X.production.o
-__ptext10 3714 0 CODE 0 text10 dist/default/production/vtouch45k80.X.production.o
-__ptext11 3976 0 CODE 0 text11 dist/default/production/vtouch45k80.X.production.o
-__ptext12 38C4 0 CODE 0 text12 dist/default/production/vtouch45k80.X.production.o
-_CAN1_TX_FIFO_Configuration 3930 0 CODE 0 text6 dist/default/production/vtouch45k80.X.production.o
-__end_of_PIN_MANAGER_Initialize 380E 0 CODE 0 text3 dist/default/production/vtouch45k80.X.production.o
+__Htext13 0 0 ABS 0 text13 dist/default/production/vtouch45k80.X.production.o
+__Htext14 0 0 ABS 0 text14 dist/default/production/vtouch45k80.X.production.o
+__Htext15 0 0 ABS 0 text15 dist/default/production/vtouch45k80.X.production.o
+__Htext16 0 0 ABS 0 text16 dist/default/production/vtouch45k80.X.production.o
+__Htext17 0 0 ABS 0 text17 dist/default/production/vtouch45k80.X.production.o
+__Htext18 0 0 ABS 0 text18 dist/default/production/vtouch45k80.X.production.o
+__Htext19 0 0 ABS 0 text19 dist/default/production/vtouch45k80.X.production.o
+__Htext20 0 0 ABS 0 text20 dist/default/production/vtouch45k80.X.production.o
+__Htext21 0 0 ABS 0 text21 dist/default/production/vtouch45k80.X.production.o
+__Htext22 0 0 ABS 0 text22 dist/default/production/vtouch45k80.X.production.o
+__Htext23 0 0 ABS 0 text23 dist/default/production/vtouch45k80.X.production.o
+__Htext24 0 0 ABS 0 text24 dist/default/production/vtouch45k80.X.production.o
+__Htext25 0 0 ABS 0 text25 dist/default/production/vtouch45k80.X.production.o
+__Htext26 0 0 ABS 0 text26 dist/default/production/vtouch45k80.X.production.o
+__Htext27 0 0 ABS 0 text27 dist/default/production/vtouch45k80.X.production.o
+__Htext28 0 0 ABS 0 text28 dist/default/production/vtouch45k80.X.production.o
+__Htext29 0 0 ABS 0 text29 dist/default/production/vtouch45k80.X.production.o
+__Htext30 0 0 ABS 0 text30 dist/default/production/vtouch45k80.X.production.o
+__Htext31 0 0 ABS 0 text31 dist/default/production/vtouch45k80.X.production.o
+__Htext32 0 0 ABS 0 text32 dist/default/production/vtouch45k80.X.production.o
+__Htext33 0 0 ABS 0 text33 dist/default/production/vtouch45k80.X.production.o
+__Htext34 0 0 ABS 0 text34 dist/default/production/vtouch45k80.X.production.o
+__Htext35 0 0 ABS 0 text35 dist/default/production/vtouch45k80.X.production.o
+__Htext36 0 0 ABS 0 text36 dist/default/production/vtouch45k80.X.production.o
+__Htext37 0 0 ABS 0 text37 dist/default/production/vtouch45k80.X.production.o
+__Htext38 0 0 ABS 0 text38 dist/default/production/vtouch45k80.X.production.o
+__Htext39 0 0 ABS 0 text39 dist/default/production/vtouch45k80.X.production.o
+__Htext40 0 0 ABS 0 text40 dist/default/production/vtouch45k80.X.production.o
+__Htext41 0 0 ABS 0 text41 dist/default/production/vtouch45k80.X.production.o
+__Htext42 0 0 ABS 0 text42 dist/default/production/vtouch45k80.X.production.o
+__Htext43 0 0 ABS 0 text43 dist/default/production/vtouch45k80.X.production.o
+__Htext44 0 0 ABS 0 text44 dist/default/production/vtouch45k80.X.production.o
+__Htext45 0 0 ABS 0 text45 dist/default/production/vtouch45k80.X.production.o
+__Htext46 0 0 ABS 0 text46 dist/default/production/vtouch45k80.X.production.o
+__Htext47 0 0 ABS 0 text47 dist/default/production/vtouch45k80.X.production.o
+__end_of_CAN1_OperationModeGet 4016 0 CODE 0 text26 dist/default/production/vtouch45k80.X.production.o
+__end_of_CAN1_OperationModeSet 3B14 0 CODE 0 text25 dist/default/production/vtouch45k80.X.production.o
+_PIE3bits 4A1 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_PIE4bits 4A2 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_PIE8bits 4A6 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+__end_of_CAN1_RX_FIFO_Configuration 3F66 0 CODE 0 text24 dist/default/production/vtouch45k80.X.production.o
+_UART1_SetTxInterruptHandler 3FAC 0 CODE 0 text9 dist/default/production/vtouch45k80.X.production.o
+_TMR0_ISR 3BD0 0 CODE 0 text28 dist/default/production/vtouch45k80.X.production.o
+__ptext10 3FBA 0 CODE 0 text10 dist/default/production/vtouch45k80.X.production.o
+__ptext11 3FC8 0 CODE 0 text11 dist/default/production/vtouch45k80.X.production.o
+__ptext12 3FD6 0 CODE 0 text12 dist/default/production/vtouch45k80.X.production.o
+__ptext13 3FE4 0 CODE 0 text13 dist/default/production/vtouch45k80.X.production.o
+__ptext14 3E5E 0 CODE 0 text14 dist/default/production/vtouch45k80.X.production.o
+__ptext15 3FF2 0 CODE 0 text15 dist/default/production/vtouch45k80.X.production.o
+__ptext16 3EDC 0 CODE 0 text16 dist/default/production/vtouch45k80.X.production.o
+__ptext17 3A00 0 CODE 0 text17 dist/default/production/vtouch45k80.X.production.o
+__ptext18 3F26 0 CODE 0 text18 dist/default/production/vtouch45k80.X.production.o
+__ptext19 3D3C 0 CODE 0 text19 dist/default/production/vtouch45k80.X.production.o
+__ptext20 3B7C 0 CODE 0 text20 dist/default/production/vtouch45k80.X.production.o
+__ptext21 3F3E 0 CODE 0 text21 dist/default/production/vtouch45k80.X.production.o
+__ptext22 3E06 0 CODE 0 text22 dist/default/production/vtouch45k80.X.production.o
+__ptext23 4024 0 CODE 0 text23 dist/default/production/vtouch45k80.X.production.o
+__ptext24 3F52 0 CODE 0 text24 dist/default/production/vtouch45k80.X.production.o
+__ptext25 3A8C 0 CODE 0 text25 dist/default/production/vtouch45k80.X.production.o
+__ptext26 400C 0 CODE 0 text26 dist/default/production/vtouch45k80.X.production.o
+__ptext27 3E32 0 CODE 0 text27 dist/default/production/vtouch45k80.X.production.o
+__ptext28 3BD0 0 CODE 0 text28 dist/default/production/vtouch45k80.X.production.o
+__ptext29 4026 0 CODE 0 text29 dist/default/production/vtouch45k80.X.production.o
+__ptext30 4028 0 CODE 0 text30 dist/default/production/vtouch45k80.X.production.o
+__ptext31 3C1C 0 CODE 0 text31 dist/default/production/vtouch45k80.X.production.o
+__ptext32 3D82 0 CODE 0 text32 dist/default/production/vtouch45k80.X.production.o
+__ptext33 3C64 0 CODE 0 text33 dist/default/production/vtouch45k80.X.production.o
+__ptext34 3714 0 CODE 0 text34 dist/default/production/vtouch45k80.X.production.o
+__ptext35 402A 0 CODE 0 text35 dist/default/production/vtouch45k80.X.production.o
+__ptext36 402C 0 CODE 0 text36 dist/default/production/vtouch45k80.X.production.o
+__ptext37 4016 0 CODE 0 text37 dist/default/production/vtouch45k80.X.production.o
+__ptext38 3E88 0 CODE 0 text38 dist/default/production/vtouch45k80.X.production.o
+__ptext39 3CAC 0 CODE 0 text39 dist/default/production/vtouch45k80.X.production.o
+__ptext40 3DC4 0 CODE 0 text40 dist/default/production/vtouch45k80.X.production.o
+__ptext41 3CF4 0 CODE 0 text41 dist/default/production/vtouch45k80.X.production.o
+__ptext42 37D8 0 CODE 0 text42 dist/default/production/vtouch45k80.X.production.o
+__ptext43 402E 0 CODE 0 text43 dist/default/production/vtouch45k80.X.production.o
+__ptext44 4030 0 CODE 0 text44 dist/default/production/vtouch45k80.X.production.o
+__ptext45 401C 0 CODE 0 text45 dist/default/production/vtouch45k80.X.production.o
+__ptext46 3EB2 0 CODE 0 text46 dist/default/production/vtouch45k80.X.production.o
+__ptext47 0 0 CODE 0 text47 dist/default/production/vtouch45k80.X.production.o
+_CAN1_TX_FIFO_Configuration 3F3E 0 CODE 0 text21 dist/default/production/vtouch45k80.X.production.o
+_UART2_Transmit_ISR 3D82 0 CODE 0 text32 dist/default/production/vtouch45k80.X.production.o
+_uart1TxBuffer 640 0 BANK6 1 bssBANK6 dist/default/production/vtouch45k80.X.production.o
+__end_of_PIN_MANAGER_Initialize 3A8C 0 CODE 0 text17 dist/default/production/vtouch45k80.X.production.o
+_uart1RxStatusBuffer 560 0 BANK5 1 bssBANK5 dist/default/production/vtouch45k80.X.production.o
+__end_of_TMR0_Initialize 3E88 0 CODE 0 text14 dist/default/production/vtouch45k80.X.production.o
 __Lbank10 0 0 ABS 0 bank10 dist/default/production/vtouch45k80.X.production.o
 __Lbank11 0 0 ABS 0 bank11 dist/default/production/vtouch45k80.X.production.o
 __Lbank12 0 0 ABS 0 bank12 dist/default/production/vtouch45k80.X.production.o
@@ -589,77 +1079,176 @@ __Lbank54 0 0 ABS 0 bank54 dist/default/production/vtouch45k80.X.production.o
 __Lbigbss 0 0 BIGRAM 1 bigbss dist/default/production/vtouch45k80.X.production.o
 __Lbigram 0 0 ABS 0 bigram dist/default/production/vtouch45k80.X.production.o
 __Lbigsfr 0 0 ABS 0 bigsfr dist/default/production/vtouch45k80.X.production.o
+UART1_SetErrorHandler@interruptHandler 52E 0 COMRAM 1 cstackCOMRAM dist/default/production/vtouch45k80.X.production.o
 __Lcomram 0 0 ABS 0 comram dist/default/production/vtouch45k80.X.production.o
 __Lconfig 0 0 CONFIG 4 config dist/default/production/vtouch45k80.X.production.o
-_CAN1_OperationModeGet 3976 0 CODE 0 text11 dist/default/production/vtouch45k80.X.production.o
-_CAN1_OperationModeSet 3714 0 CODE 0 text10 dist/default/production/vtouch45k80.X.production.o
+__end_of_TMR0_ISR 3C1A 0 CODE 0 text28 dist/default/production/vtouch45k80.X.production.o
+_CAN1_OperationModeGet 400C 0 CODE 0 text26 dist/default/production/vtouch45k80.X.production.o
+_CAN1_OperationModeSet 3A8C 0 CODE 0 text25 dist/default/production/vtouch45k80.X.production.o
+ivt0x8_undefint 108 0 CODE 0 ivt0x8 dist/default/production/vtouch45k80.X.production.o
+_IVTLOCKbits 459 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 __Lfarbss 0 0 FARRAM 0 farbss dist/default/production/vtouch45k80.X.production.o
+UART1_SetRxInterruptHandler@InterruptHandler 52E 0 COMRAM 1 cstackCOMRAM dist/default/production/vtouch45k80.X.production.o
+_Default_ISR 4028 0 CODE 0 text30 dist/default/production/vtouch45k80.X.production.o
+UART2_SetRxInterruptHandler@InterruptHandler 52E 0 COMRAM 1 cstackCOMRAM dist/default/production/vtouch45k80.X.production.o
+_TMR0_SetInterruptHandler 3FF2 0 CODE 0 text15 dist/default/production/vtouch45k80.X.production.o
 __Lfardata 0 0 FARRAM 0 fardata dist/default/production/vtouch45k80.X.production.o
-isa$std 1 0 ABS 0 - /tmp/xcXebiMji.o
-stackhi 0 0 ABS 0 - /tmp/xcXebiMji.o
-stacklo 0 0 ABS 0 - /tmp/xcXebiMji.o
-CAN1_OperationModeSet@opMode 541 0 COMRAM 1 cstackCOMRAM dist/default/production/vtouch45k80.X.production.o
+isa$std 1 0 ABS 0 - /tmp/xcXjplloc.o
+stackhi 0 0 ABS 0 - /tmp/xcXjplloc.o
+stacklo 0 0 ABS 0 - /tmp/xcXjplloc.o
+CAN1_OperationModeSet@opMode 52E 0 COMRAM 1 cstackCOMRAM dist/default/production/vtouch45k80.X.production.o
 _OSCCON1 AD 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 _OSCCON3 AF 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 _OSCTUNE B0 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 __Lirdata 0 0 CODE 0 irdata dist/default/production/vtouch45k80.X.production.o
+_uart2RxLastError 537 0 COMRAM 1 bssCOMRAM dist/default/production/vtouch45k80.X.production.o
+__Livt0x8 8 0 CODE 0 ivt0x8 dist/default/production/vtouch45k80.X.production.o
+__end_of_UART2_Initialize 394E 0 CODE 0 text2 dist/default/production/vtouch45k80.X.production.o
+_UART2_RxDataHandler 3E88 0 CODE 0 text38 dist/default/production/vtouch45k80.X.production.o
 __Lspace_0 0 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 __Lspace_1 0 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 __Lspace_2 0 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 __Lspace_4 0 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
-__pbssCOMRAM 501 0 COMRAM 1 bssCOMRAM dist/default/production/vtouch45k80.X.production.o
+_UART2_rx_vect_isr 3C64 0 CODE 0 text33 dist/default/production/vtouch45k80.X.production.o
+__pbssCOMRAM 531 0 COMRAM 1 bssCOMRAM dist/default/production/vtouch45k80.X.production.o
+_UART1_RxInterruptHandler 519 0 COMRAM 1 nvCOMRAM dist/default/production/vtouch45k80.X.production.o
+_PIR3bits 4B1 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 __LcstackCOMRAM 0 0 ABS 0 cstackCOMRAM dist/default/production/vtouch45k80.X.production.o
-CAN1_OperationModeSet@status 542 0 COMRAM 1 cstackCOMRAM dist/default/production/vtouch45k80.X.production.o
-end_of_initialization 388A 0 CODE 0 cinit dist/default/production/vtouch45k80.X.production.o
+_UART1_SetFramingErrorHandler 3FD6 0 CODE 0 text12 dist/default/production/vtouch45k80.X.production.o
+CAN1_OperationModeSet@status 52F 0 COMRAM 1 cstackCOMRAM dist/default/production/vtouch45k80.X.production.o
+_UART1_SetOverrunErrorHandler 3FC8 0 CODE 0 text11 dist/default/production/vtouch45k80.X.production.o
+end_of_initialization 3B76 0 CODE 0 cinit dist/default/production/vtouch45k80.X.production.o
+_TMR0_Initialize 3E5E 0 CODE 0 text14 dist/default/production/vtouch45k80.X.production.o
 __Lnvrram 0 0 COMRAM 1 nvrram dist/default/production/vtouch45k80.X.production.o
+_uart2RxHead 53A 0 COMRAM 1 bssCOMRAM dist/default/production/vtouch45k80.X.production.o
+_uart2RxTail 539 0 COMRAM 1 bssCOMRAM dist/default/production/vtouch45k80.X.production.o
+_UART1_SetRxInterruptHandler 3FBA 0 CODE 0 text10 dist/default/production/vtouch45k80.X.production.o
+__end_of_UART1_Receive_ISR 389C 0 CODE 0 text42 dist/default/production/vtouch45k80.X.production.o
+_UART2_tx_vect_isr 3C1C 0 CODE 0 text31 dist/default/production/vtouch45k80.X.production.o
+__end_of_UART2_DefaultErrorHandler 401C 0 CODE 0 text37 dist/default/production/vtouch45k80.X.production.o
+_uart2TxHead 53C 0 COMRAM 1 bssCOMRAM dist/default/production/vtouch45k80.X.production.o
+_uart2TxTail 53B 0 COMRAM 1 bssCOMRAM dist/default/production/vtouch45k80.X.production.o
 __Hreset_vec 4 0 CODE 0 reset_vec dist/default/production/vtouch45k80.X.production.o
+__HbssBANK5 0 0 ABS 0 bssBANK5 dist/default/production/vtouch45k80.X.production.o
+__HbssBANK6 0 0 ABS 0 bssBANK6 dist/default/production/vtouch45k80.X.production.o
+__HbssBANK7 0 0 ABS 0 bssBANK7 dist/default/production/vtouch45k80.X.production.o
+_UART1_FramingErrorHandler 507 0 COMRAM 1 nvCOMRAM dist/default/production/vtouch45k80.X.production.o
+_UART1_OverrunErrorHandler 504 0 COMRAM 1 nvCOMRAM dist/default/production/vtouch45k80.X.production.o
 __end_of_DLC_BYTES 3711 0 SMALLCONST 0 smallconst dist/default/production/vtouch45k80.X.production.o
 __Lramtop 3700 0 RAM 0 ramtop dist/default/production/vtouch45k80.X.production.o
+_uart1RxBuffer 600 0 BANK6 1 bssBANK6 dist/default/production/vtouch45k80.X.production.o
 __Lrparam 0 0 COMRAM 1 rparam dist/default/production/vtouch45k80.X.production.o
-__pcinit 3862 0 CODE 0 cinit dist/default/production/vtouch45k80.X.production.o
-__ptext0 396A 0 CODE 0 text0 dist/default/production/vtouch45k80.X.production.o
-__ptext1 3958 0 CODE 0 text1 dist/default/production/vtouch45k80.X.production.o
-__ptext2 38F0 0 CODE 0 text2 dist/default/production/vtouch45k80.X.production.o
-__ptext3 379C 0 CODE 0 text3 dist/default/production/vtouch45k80.X.production.o
-__ptext4 3918 0 CODE 0 text4 dist/default/production/vtouch45k80.X.production.o
-__ptext5 380E 0 CODE 0 text5 dist/default/production/vtouch45k80.X.production.o
-__ptext6 3930 0 CODE 0 text6 dist/default/production/vtouch45k80.X.production.o
-__ptext7 3898 0 CODE 0 text7 dist/default/production/vtouch45k80.X.production.o
-__ptext8 3982 0 CODE 0 text8 dist/default/production/vtouch45k80.X.production.o
-__ptext9 3944 0 CODE 0 text9 dist/default/production/vtouch45k80.X.production.o
+__pcinit 3B14 0 CODE 0 cinit dist/default/production/vtouch45k80.X.production.o
+__ptext0 4000 0 CODE 0 text0 dist/default/production/vtouch45k80.X.production.o
+__ptext1 3F04 0 CODE 0 text1 dist/default/production/vtouch45k80.X.production.o
+__ptext2 389C 0 CODE 0 text2 dist/default/production/vtouch45k80.X.production.o
+__ptext3 3F66 0 CODE 0 text3 dist/default/production/vtouch45k80.X.production.o
+__ptext4 3F74 0 CODE 0 text4 dist/default/production/vtouch45k80.X.production.o
+__ptext5 3F82 0 CODE 0 text5 dist/default/production/vtouch45k80.X.production.o
+__ptext6 3F90 0 CODE 0 text6 dist/default/production/vtouch45k80.X.production.o
+__ptext7 3F9E 0 CODE 0 text7 dist/default/production/vtouch45k80.X.production.o
+__ptext8 394E 0 CODE 0 text8 dist/default/production/vtouch45k80.X.production.o
+__ptext9 3FAC 0 CODE 0 text9 dist/default/production/vtouch45k80.X.production.o
 __Lstruct 0 0 COMRAM 1 struct dist/default/production/vtouch45k80.X.production.o
 __Ltext10 0 0 ABS 0 text10 dist/default/production/vtouch45k80.X.production.o
 __Ltext11 0 0 ABS 0 text11 dist/default/production/vtouch45k80.X.production.o
 __Ltext12 0 0 ABS 0 text12 dist/default/production/vtouch45k80.X.production.o
-__ramtop 3700 0 RAM 0 ramtop /tmp/xcXebiMji.o
-__end_of_CAN1_RX_FIFO_FilterMaskConfiguration 3984 0 CODE 0 text8 dist/default/production/vtouch45k80.X.production.o
+__Ltext13 0 0 ABS 0 text13 dist/default/production/vtouch45k80.X.production.o
+__Ltext14 0 0 ABS 0 text14 dist/default/production/vtouch45k80.X.production.o
+__Ltext15 0 0 ABS 0 text15 dist/default/production/vtouch45k80.X.production.o
+__Ltext16 0 0 ABS 0 text16 dist/default/production/vtouch45k80.X.production.o
+__Ltext17 0 0 ABS 0 text17 dist/default/production/vtouch45k80.X.production.o
+__Ltext18 0 0 ABS 0 text18 dist/default/production/vtouch45k80.X.production.o
+__Ltext19 0 0 ABS 0 text19 dist/default/production/vtouch45k80.X.production.o
+__Ltext20 0 0 ABS 0 text20 dist/default/production/vtouch45k80.X.production.o
+__Ltext21 0 0 ABS 0 text21 dist/default/production/vtouch45k80.X.production.o
+__Ltext22 0 0 ABS 0 text22 dist/default/production/vtouch45k80.X.production.o
+__Ltext23 0 0 ABS 0 text23 dist/default/production/vtouch45k80.X.production.o
+__Ltext24 0 0 ABS 0 text24 dist/default/production/vtouch45k80.X.production.o
+__Ltext25 0 0 ABS 0 text25 dist/default/production/vtouch45k80.X.production.o
+__Ltext26 0 0 ABS 0 text26 dist/default/production/vtouch45k80.X.production.o
+__Ltext27 0 0 ABS 0 text27 dist/default/production/vtouch45k80.X.production.o
+__Ltext28 0 0 ABS 0 text28 dist/default/production/vtouch45k80.X.production.o
+__Ltext29 0 0 ABS 0 text29 dist/default/production/vtouch45k80.X.production.o
+__Ltext30 0 0 ABS 0 text30 dist/default/production/vtouch45k80.X.production.o
+__Ltext31 0 0 ABS 0 text31 dist/default/production/vtouch45k80.X.production.o
+__Ltext32 0 0 ABS 0 text32 dist/default/production/vtouch45k80.X.production.o
+__Ltext33 0 0 ABS 0 text33 dist/default/production/vtouch45k80.X.production.o
+__Ltext34 0 0 ABS 0 text34 dist/default/production/vtouch45k80.X.production.o
+__Ltext35 0 0 ABS 0 text35 dist/default/production/vtouch45k80.X.production.o
+__Ltext36 0 0 ABS 0 text36 dist/default/production/vtouch45k80.X.production.o
+__Ltext37 0 0 ABS 0 text37 dist/default/production/vtouch45k80.X.production.o
+__Ltext38 0 0 ABS 0 text38 dist/default/production/vtouch45k80.X.production.o
+__Ltext39 0 0 ABS 0 text39 dist/default/production/vtouch45k80.X.production.o
+__Ltext40 0 0 ABS 0 text40 dist/default/production/vtouch45k80.X.production.o
+__Ltext41 0 0 ABS 0 text41 dist/default/production/vtouch45k80.X.production.o
+__Ltext42 0 0 ABS 0 text42 dist/default/production/vtouch45k80.X.production.o
+__Ltext43 0 0 ABS 0 text43 dist/default/production/vtouch45k80.X.production.o
+__Ltext44 0 0 ABS 0 text44 dist/default/production/vtouch45k80.X.production.o
+__Ltext45 0 0 ABS 0 text45 dist/default/production/vtouch45k80.X.production.o
+__Ltext46 0 0 ABS 0 text46 dist/default/production/vtouch45k80.X.production.o
+__Ltext47 0 0 ABS 0 text47 dist/default/production/vtouch45k80.X.production.o
+__ramtop 3700 0 RAM 0 ramtop /tmp/xcXjplloc.o
+__end_of_CAN1_RX_FIFO_FilterMaskConfiguration 4026 0 CODE 0 text23 dist/default/production/vtouch45k80.X.production.o
 __Lpowerup 0 0 CODE 0 powerup dist/default/production/vtouch45k80.X.production.o
 __Leeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production/vtouch45k80.X.production.o
+_UART1_DefaultErrorHandler 401C 0 CODE 0 text45 dist/default/production/vtouch45k80.X.production.o
 __psmallconst 3700 0 SMALLCONST 0 smallconst dist/default/production/vtouch45k80.X.production.o
 __Lreset_vec 0 0 CODE 0 reset_vec dist/default/production/vtouch45k80.X.production.o
 _DLC_BYTES 3701 0 SMALLCONST 0 smallconst dist/default/production/vtouch45k80.X.production.o
+__end_of_UART2_DefaultFramingErrorHandler 402E 0 CODE 0 text36 dist/default/production/vtouch45k80.X.production.o
+__end_of_UART2_DefaultOverrunErrorHandler 402C 0 CODE 0 text35 dist/default/production/vtouch45k80.X.production.o
 _SLRCONA 403 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 _SLRCONB 40B 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 _SLRCONC 413 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 _SLRCOND 41B 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 _SLRCONE 423 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
-___heap_hi 0 0 ABS 0 - /tmp/xcXebiMji.o
-___heap_lo 0 0 ABS 0 - /tmp/xcXebiMji.o
+___heap_hi 0 0 ABS 0 - /tmp/xcXjplloc.o
+___heap_lo 0 0 ABS 0 - /tmp/xcXjplloc.o
 ___param_bank 0 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 __Hbigdata 0 0 BIGRAM 1 bigdata dist/default/production/vtouch45k80.X.production.o
-__end_of__initialization 388A 0 CODE 0 cinit dist/default/production/vtouch45k80.X.production.o
+__end_of__initialization 3B76 0 CODE 0 cinit dist/default/production/vtouch45k80.X.production.o
+__end_of_UART2_SetFramingErrorHandler 3F9E 0 CODE 0 text6 dist/default/production/vtouch45k80.X.production.o
+__end_of_UART2_SetOverrunErrorHandler 3F90 0 CODE 0 text5 dist/default/production/vtouch45k80.X.production.o
 __Libigdata 0 0 CODE 0 ibigdata dist/default/production/vtouch45k80.X.production.o
+UART2_SetErrorHandler@interruptHandler 52E 0 COMRAM 1 cstackCOMRAM dist/default/production/vtouch45k80.X.production.o
+_UART1_DefaultFramingErrorHandler 4030 0 CODE 0 text44 dist/default/production/vtouch45k80.X.production.o
+_UART1_DefaultOverrunErrorHandler 402E 0 CODE 0 text43 dist/default/production/vtouch45k80.X.production.o
 __Lclrtext 0 0 ABS 0 clrtext dist/default/production/vtouch45k80.X.production.o
-__pcstackCOMRAM 541 0 COMRAM 1 cstackCOMRAM dist/default/production/vtouch45k80.X.production.o
+__pcstackCOMRAM 524 0 COMRAM 1 cstackCOMRAM dist/default/production/vtouch45k80.X.production.o
+_T0CON0bits 31A 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+__end_of_UART2_RxDataHandler 3EB2 0 CODE 0 text38 dist/default/production/vtouch45k80.X.production.o
 __end_of_FIFO 3713 0 SMALLCONST 0 smallconst dist/default/production/vtouch45k80.X.production.o
-__end_of_main 3976 0 CODE 0 text0 dist/default/production/vtouch45k80.X.production.o
-CAN1_RX_FIFO_ResetInfo@index 541 0 COMRAM 1 cstackCOMRAM dist/default/production/vtouch45k80.X.production.o
+__end_of_main 400C 0 CODE 0 text0 dist/default/production/vtouch45k80.X.production.o
+__end_of_UART1_SetErrorHandler 3FF2 0 CODE 0 text13 dist/default/production/vtouch45k80.X.production.o
+_IVTLOCK 459 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+CAN1_RX_FIFO_ResetInfo@index 52E 0 COMRAM 1 cstackCOMRAM dist/default/production/vtouch45k80.X.production.o
 _OSCEN B3 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_TMR0H 319 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_TMR0L 318 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 _TRISA 4C6 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 _TRISB 4C7 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 _TRISC 4C8 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 _TRISD 4C9 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 _TRISE 4CA 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_U1P1H 2A6 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_U1P1L 2A5 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_U1P2H 2A8 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_U1P2L 2A7 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_U1P3H 2AA 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_U1P3L 2A9 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_U1RXB 2A1 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_U1TXB 2A3 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_U1UIR 2B1 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_U2P1H 2B9 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_U2P1L 2B8 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_U2P2H 2BB 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_U2P2L 2BA 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_U2P3H 2BD 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_U2P3L 2BC 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_U2RXB 2B4 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_U2TXB 2B6 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
+_U2UIR 2C4 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 __HRAM 0 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 __Hbss 0 0 RAM 1 bss dist/default/production/vtouch45k80.X.production.o
 __Hram 0 0 ABS 0 ram dist/default/production/vtouch45k80.X.production.o
@@ -668,16 +1257,26 @@ __LRAM 1 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 __Lbss 0 0 RAM 1 bss dist/default/production/vtouch45k80.X.production.o
 __Lram 0 0 ABS 0 ram dist/default/production/vtouch45k80.X.production.o
 __Lsfr 0 0 ABS 0 sfr dist/default/production/vtouch45k80.X.production.o
-__end_of_OSCILLATOR_Initialize 3930 0 CODE 0 text4 dist/default/production/vtouch45k80.X.production.o
-__end_of_CAN1_Initialize 3862 0 CODE 0 text5 dist/default/production/vtouch45k80.X.production.o
-__initialization 3862 0 CODE 0 cinit dist/default/production/vtouch45k80.X.production.o
-__pdataCOMRAM 544 0 COMRAM 1 dataCOMRAM dist/default/production/vtouch45k80.X.production.o
+_UART1_Receive_ISR 37D8 0 CODE 0 text42 dist/default/production/vtouch45k80.X.production.o
+__end_of_UART2_SetTxInterruptHandler 3F74 0 CODE 0 text3 dist/default/production/vtouch45k80.X.production.o
+__end_of_OSCILLATOR_Initialize 3F3E 0 CODE 0 text18 dist/default/production/vtouch45k80.X.production.o
+__end_of_CAN1_Initialize 3BD0 0 CODE 0 text20 dist/default/production/vtouch45k80.X.production.o
+__initialization 3B14 0 CODE 0 cinit dist/default/production/vtouch45k80.X.production.o
+__pbssBANK5 560 0 BANK5 1 bssBANK5 dist/default/production/vtouch45k80.X.production.o
+__pbssBANK6 600 0 BANK6 1 bssBANK6 dist/default/production/vtouch45k80.X.production.o
+__pbssBANK7 700 0 BANK7 1 bssBANK7 dist/default/production/vtouch45k80.X.production.o
+_UART1_SetErrorHandler 3FE4 0 CODE 0 text13 dist/default/production/vtouch45k80.X.production.o
+__pdataCOMRAM 53D 0 COMRAM 1 dataCOMRAM dist/default/production/vtouch45k80.X.production.o
 __Hfardata 0 0 FARRAM 0 fardata dist/default/production/vtouch45k80.X.production.o
 __Hsmallconst 3714 0 SMALLCONST 0 smallconst dist/default/production/vtouch45k80.X.production.o
-_CAN1_RX_FIFO_Configuration 3944 0 CODE 0 text9 dist/default/production/vtouch45k80.X.production.o
+_CAN1_RX_FIFO_Configuration 3F52 0 CODE 0 text24 dist/default/production/vtouch45k80.X.production.o
 __Lifardata 0 0 CODE 0 ifardata dist/default/production/vtouch45k80.X.production.o
+INTERRUPT_Initialize@state 52E 0 COMRAM 1 cstackCOMRAM dist/default/production/vtouch45k80.X.production.o
+_U1ERRIRbits 2B2 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 __Hintsave_regs 0 0 BIGRAM 1 intsave_regs dist/default/production/vtouch45k80.X.production.o
-_OSCILLATOR_Initialize 3918 0 CODE 0 text4 dist/default/production/vtouch45k80.X.production.o
+_uart2TxBufferRemaining 523 0 COMRAM 1 nvCOMRAM dist/default/production/vtouch45k80.X.production.o
+_OSCILLATOR_Initialize 3F26 0 CODE 0 text18 dist/default/production/vtouch45k80.X.production.o
+_U2ERRIRbits 2C5 0 ABS 0 - dist/default/production/vtouch45k80.X.production.o
 # %SPLITSTAB Section
 # This section enumerates all the psect splits performed by the assembler.
 # The beginning of the section is indicated by %SPLITSTAB.
@@ -702,11 +1301,15 @@ _OSCILLATOR_Initialize 3918 0 CODE 0 text4 dist/default/production/vtouch45k80.X
 # and size are in units of delta. The file address is in units of bytes.
 # All other numeric quantities are in decimal.
 %SEGMENTS
-text10 0 3714 3714 270 1
-init 0 1FFFC 1FFFC 4 1
+ivt0x8 0 8 8 106 1
+nvCOMRAM 1 501 501 3E 1
+text31 0 3C1C 3C1C 416 1
+text34 0 3714 3714 506 1
 reset_vec 0 0 0 4 1
+bssBANK5 1 560 560 80 1
+bssBANK6 1 600 600 100 1
+bssBANK7 1 700 700 40 1
 smallconst 0 3700 3700 14 1
-bssCOMRAM 1 501 501 45 1
 # %NOTES Section
 # This section contains data of all the note-psects.  The beginning of the section
 # is indicated by %NOTES. The first line indicates the name and decimal

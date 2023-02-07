@@ -8,7 +8,7 @@
 # 2 "<built-in>" 2
 # 1 "mcc_generated_files/device_config.c" 2
 # 50 "mcc_generated_files/device_config.c"
-#pragma config FEXTOSC = OFF
+#pragma config FEXTOSC = HS
 #pragma config RSTOSC = EXTOSC
 
 
@@ -33,7 +33,7 @@
 #pragma config ZCD = OFF
 #pragma config PPS1WAY = ON
 #pragma config STVREN = ON
-#pragma config LVP = ON
+#pragma config LVP = OFF
 #pragma config XINST = OFF
 
 
