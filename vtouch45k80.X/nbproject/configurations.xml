@@ -4,6 +4,15 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <logicalFolder name="MCC Generated Files"
+                     displayName="MCC Generated Files"
+                     projectFiles="true">
+        <itemPath>mcc_generated_files/mcc.h</itemPath>
+        <itemPath>mcc_generated_files/pin_manager.h</itemPath>
+        <itemPath>mcc_generated_files/device_config.h</itemPath>
+        <itemPath>mcc_generated_files/can_types.h</itemPath>
+        <itemPath>mcc_generated_files/can1.h</itemPath>
+      </logicalFolder>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -12,7 +21,16 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <logicalFolder name="MCC Generated Files"
+                     displayName="MCC Generated Files"
+                     projectFiles="true">
+        <itemPath>mcc_generated_files/device_config.c</itemPath>
+        <itemPath>mcc_generated_files/mcc.c</itemPath>
+        <itemPath>mcc_generated_files/pin_manager.c</itemPath>
+        <itemPath>mcc_generated_files/can1.c</itemPath>
+      </logicalFolder>
       <itemPath>../example2.c</itemPath>
+      <itemPath>main.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -29,7 +47,7 @@
     <conf name="default" type="2">
       <toolsSet>
         <developmentServer>localhost</developmentServer>
-        <targetDevice>PIC18F45K80</targetDevice>
+        <targetDevice>PIC18F47Q84</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
         <platformTool>noID</platformTool>
@@ -38,7 +56,7 @@
         <platform>2</platform>
       </toolsSet>
       <packs>
-        <pack name="PIC18F-K_DFP" vendor="Microchip" version="1.6.125"/>
+        <pack name="PIC18F-Q_DFP" vendor="Microchip" version="1.15.360"/>
       </packs>
       <ScriptingSettings>
       </ScriptingSettings>
@@ -68,95 +86,38 @@
         <makeCustomizationNormalizeHexFile>false</makeCustomizationNormalizeHexFile>
       </makeCustomizationType>
       <HI-TECH-COMP>
-        <property key="additional-options-checksum.prefix" value="-mchecksum="/>
-        <property key="additional-options-code-offset.prefix" value="-mcodeoffset="/>
-        <property key="additional-options-errata.prefix" value="-merrata="/>
-        <property key="asmlist.true" value="-Wa,-a"/>
-        <property key="avr-device.used" value="false"/>
-        <property key="backup-reset-condition-flags.false"
-                  value="-mno-resetbits -mno-save-resetbits"/>
-        <property key="backup-reset-condition-flags.true"
-                  value="-mresetbits -msave-resetbits"/>
-        <property key="calibrate-oscillator-value.prefix" value="-moscval="/>
-        <property key="calibrate-oscillator.false" value="-mno-osccal"/>
-        <property key="calibrate-oscillator.true" value="-mosccal"/>
-        <property key="code-model-external.prefix" value="-memi="/>
-        <property key="code-model-rom.prefix" value="-mrom="/>
-        <property key="codepointer.suppress" value="true"/>
-        <property key="data-model-ram.prefix" value="-mram="/>
-        <property key="data-model-size-of-double-gcc.suppress" value="false"/>
-        <property key="data-model-size-of-double.suppress" value="true"/>
-        <property key="data-model-size-of-float-gcc.suppress" value="false"/>
-        <property key="data-model-size-of-float.suppress" value="true"/>
-        <property key="disable-optimizations.suppress" value="true"/>
-        <property key="disable-optimizations.true" value="-O0"/>
-        <property key="favor-optimization-for.suppress" value="true"/>
-        <property key="fill-options.prefix" value="--fill="/>
-        <property key="format-hex-file-for-download.false" value="-mno-download"/>
-        <property key="format-hex-file-for-download.true" value="-mdownload"/>
-        <property key="gcc-driver-options.enable" value="true"/>
-        <property key="gcc-opt-std.default" value="-std=c99"/>
-        <property key="hitech-driver-options.enable" value="false"/>
-        <property key="initialize-data.false" value="-Wl,--no-data-init"/>
-        <property key="initialize-data.true" value="-Wl,--data-init"/>
-        <property key="invariant.suppress" value="true"/>
-        <property key="keep-generated-startup.as.false" value="-mno-keep-startup"/>
-        <property key="keep-generated-startup.as.true" value="-mkeep-startup"/>
-        <property key="ld-extra.false" value="-ginhx32"/>
-        <property key="ld-extra.prefix" value=" "/>
-        <property key="ld-extra.true" value="-ginhx032"/>
-        <property key="link-in-c-library-gcc.suppress" value="false"/>
-        <property key="link-in-c-library.suppress" value="true"/>
-        <property key="linker-report-options.prefix" value="-msummary="/>
-        <property key="linker-report-options.separator" value=","/>
-        <property key="linker-runtime-options.prefix" value=""/>
-        <property key="linker-runtime-options.separator" value=" "/>
-        <property key="local-generation.false" value=""/>
-        <property key="local-generation.true" value="-flocal"/>
-        <property key="localgeneration.suppress" value="false"/>
-        <property key="managed-stack.false" value="-mno-stackcall"/>
-        <property key="managed-stack.true" value="-mstackcall"/>
-        <property key="omit_pack_options.available" value="true"/>
-        <property key="opt-xc8-compiler-operation_mode.free_license" value="true"/>
-        <property key="opt-xc8-compiler-operation_mode.license" value="free"/>
-        <property key="opt-xc8-compiler-operation_mode.non_free_license" value="false"/>
-        <property key="opt-xc8-compiler-operation_mode.pro_enabled" value="false"/>
-        <property key="opt-xc8-compiler-operation_mode.std_enabled" value="false"/>
-        <property key="opt-xc8-interrupt-high-stack-size.suppress" value="false"/>
-        <property key="opt-xc8-interrupt-low-stack-size.suppress" value="false"/>
-        <property key="opt-xc8-linker-alt_osc_calib_val.suppress" value="true"/>
-        <property key="opt-xc8-linker-backup_reset.suppress" value="true"/>
-        <property key="opt-xc8-linker-calib_osc.suppress" value="true"/>
-        <property key="opt-xc8-linker-link_startup.false" value=""/>
-        <property key="opt-xc8-linker-link_startup.true" value="-Wl,-nostartfiles"/>
-        <property key="opt-xc8-linker-managed_stack.suppress" value="true"/>
-        <property key="opt-xc8-linker-perif_lib.default" value="false"/>
-        <property key="opt-xc8-linker-perif_lib.suppress" value="true"/>
-        <property key="opt-xc8-linker-response-files.suppress" value="true"/>
-        <property key="opt-xc8-linker-serial.prefix" value="-mserial="/>
-        <property key="opt-xc8-linker-serial.separator" value=" -mserial="/>
-        <property key="opt-xc8-main-stack-size.suppress" value="false"/>
-        <property key="optimization-assembler-files.false" value=""/>
-        <property key="optimization-assembler-files.true" value="-fasmfile"/>
-        <property key="optimization-debug.false" value=""/>
-        <property key="optimization-debug.true" value="-Og"/>
-        <property key="optimization-invariant-value.prefix" value="-fcp="/>
-        <property key="optimization-level.default" value="-O0"/>
-        <property key="optimization-options.prefix" value=""/>
-        <property key="optimization-options.separator" value=" "/>
-        <property key="optimization-speed.suppress" value="true"/>
-        <property key="preprocess-assembler.trueemission" value="-xassembler-with-cpp"/>
-        <property key="program-the-device-with-default-config-words.false"
-                  value="-mno-default-config-bits"/>
-        <property key="program-the-device-with-default-config-words.true"
-                  value="-mdefault-config-bits"/>
-        <property key="stable.suppress" value="true"/>
-        <property key="stack-options.prefix" value="-mstack="/>
-        <property key="stack-options.separator" value=":"/>
-        <property key="tentative.default" value="-fno-common"/>
-        <property key="use-cci.true" value="-mext=cci"/>
-        <property key="warn-level.prefix" value="-mwarn="/>
-        <property key="what-to-do.prefix" value="-maddrqual="/>
+        <property key="additional-warnings" value="true"/>
+        <property key="asmlist" value="true"/>
+        <property key="call-prologues" value="false"/>
+        <property key="default-bitfield-type" value="true"/>
+        <property key="default-char-type" value="true"/>
+        <property key="define-macros" value=""/>
+        <property key="disable-optimizations" value="true"/>
+        <property key="extra-include-directories" value=""/>
+        <property key="favor-optimization-for" value="-speed,+space"/>
+        <property key="garbage-collect-data" value="true"/>
+        <property key="garbage-collect-functions" value="true"/>
+        <property key="identifier-length" value="255"/>
+        <property key="local-generation" value="false"/>
+        <property key="operation-mode" value="free"/>
+        <property key="opt-xc8-compiler-strict_ansi" value="false"/>
+        <property key="optimization-assembler" value="true"/>
+        <property key="optimization-assembler-files" value="true"/>
+        <property key="optimization-debug" value="false"/>
+        <property key="optimization-invariant-enable" value="false"/>
+        <property key="optimization-invariant-value" value="16"/>
+        <property key="optimization-level" value="-O0"/>
+        <property key="optimization-speed" value="false"/>
+        <property key="optimization-stable-enable" value="false"/>
+        <property key="preprocess-assembler" value="true"/>
+        <property key="short-enums" value="true"/>
+        <property key="tentative-definitions" value="-fno-common"/>
+        <property key="undefine-macros" value=""/>
+        <property key="use-cci" value="false"/>
+        <property key="use-iar" value="false"/>
+        <property key="verbose" value="false"/>
+        <property key="warning-level" value="-3"/>
+        <property key="what-to-do" value="ignore"/>
       </HI-TECH-COMP>
       <HI-TECH-LINK>
         <property key="additional-options-checksum" value=""/>
@@ -210,12 +171,15 @@
       </XC8-CO>
       <XC8-config-global>
         <property key="advanced-elf" value="false"/>
+        <property key="constdata-progmem" value="true"/>
         <property key="gcc-opt-driver-new" value="false"/>
         <property key="gcc-opt-std" value="${gcc-opt-std.default}"/>
         <property key="gcc-output-file-format" value="dwarf-3"/>
+        <property key="mapped-progmem" value="false"/>
         <property key="omit-pack-options" value="false"/>
         <property key="omit-pack-options-new" value="1"/>
         <property key="output-file-format" value="-mcof,+elf"/>
+        <property key="smart-io-format" value=""/>
         <property key="stack-size-high" value=""/>
         <property key="stack-size-low" value=""/>
         <property key="stack-size-main" value=""/>
