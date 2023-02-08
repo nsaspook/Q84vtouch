@@ -11,15 +11,19 @@
  Intel Hex-file ranges:
   0h - 3h		(dist/default/production/vtouch45k80.X.production.hex)
   8h - 10Dh		(dist/default/production/vtouch45k80.X.production.hex)
-  3700h - 3C19h		(dist/default/production/vtouch45k80.X.production.hex)
-  3C1Ch - 4031h		(dist/default/production/vtouch45k80.X.production.hex)
+  3700h - 3C49h		(dist/default/production/vtouch45k80.X.production.hex)
+  3C4Ch - 3C95h		(dist/default/production/vtouch45k80.X.production.hex)
+  3C98h - 40C1h		(dist/default/production/vtouch45k80.X.production.hex)
+  40C4h - 40CDh		(dist/default/production/vtouch45k80.X.production.hex)
   200000h - 20003Fh		(dist/default/production/vtouch45k80.X.production.hex)
   300000h - 300022h		(dist/default/production/vtouch45k80.X.production.hex)
  Unused ranges:
   4h - 7h
   10Eh - 36FFh
-  3C1Ah - 3C1Bh
-  4032h - 1FFFFFh
+  3C4Ah - 3C4Bh
+  3C96h - 3C97h
+  40C2h - 40C3h
+  40CEh - 1FFFFFh
   200040h - 2FFFFFh
 
 ### Hex Memory Map ###
@@ -128,15 +132,15 @@
 00003BE0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00003BF0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00003C00 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00003C10 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 -- -- H1 H1 H1 H1
+00003C10 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00003C20 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00003C30 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00003C40 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00003C40 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 -- -- H1 H1 H1 H1
 00003C50 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00003C60 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00003C70 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00003C80 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00003C90 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00003C90 | H1 H1 H1 H1 H1 H1 -- -- H1 H1 H1 H1 H1 H1 H1 H1
 00003CA0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00003CB0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00003CC0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
@@ -194,7 +198,16 @@
 00004000 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00004010 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00004020 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00004030 | H1 H1 -- -- -- -- -- -- -- -- -- -- -- -- -- --
+00004030 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00004040 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00004050 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00004060 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00004070 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00004080 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00004090 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+000040A0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+000040B0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+000040C0 | H1 H1 -- -- H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 -- --
 ----------------------------------------------------------
 00200000 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00200010 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1

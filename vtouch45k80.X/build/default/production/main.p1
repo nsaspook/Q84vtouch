@@ -3,10 +3,40 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v F22965 `(v ~T0 @X0 0 tf ]
 [v F23009 `(v ~T0 @X0 0 tf ]
 [v F23011 `(v ~T0 @X0 0 tf ]
+"2711 /root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.15.360/xc8/pic/include/proc/pic18f47q84.h
+[s S3105 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S3105 . LATB0 LATB1 LATB2 LATB3 LATB4 LATB5 LATB6 LATB7 ]
+"2710
+[u S3104 `S3105 1 ]
+[n S3104 . . ]
+"2722
+[v _LATBbits `VS3104 ~T0 @X0 0 e@1215 ]
 [p mainexit ]
 "74 ./mcc_generated_files/mcc.h
 [; ;./mcc_generated_files/mcc.h: 74: void SYSTEM_Initialize(void);
 [v _SYSTEM_Initialize `(v ~T0 @X0 0 ef ]
+[v F22922 `(v ~T0 @X0 0 tf ]
+"293 ./mcc_generated_files/tmr0.h
+[; ;./mcc_generated_files/tmr0.h: 293:  void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
+[v _TMR0_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F22922 ]
+"3495 /root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.15.360/xc8/pic/include/proc/pic18f47q84.h
+[; ;/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.15.360/xc8/pic/include/proc/pic18f47q84.h: 3495: 
+[s S3133 :1 `uc 1 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S3133 . INT0EDG INT1EDG INT2EDG . IPEN GIEL GIE ]
+"3504
+[; ;/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.15.360/xc8/pic/include/proc/pic18f47q84.h: 3504:         unsigned RXB2 :1;
+[s S3134 :7 `uc 1 :1 `uc 1 ]
+[n S3134 . . GIEH ]
+"3494
+[; ;/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.15.360/xc8/pic/include/proc/pic18f47q84.h: 3494: __asm("SPI1RXB equ 080h");
+[u S3132 `S3133 1 `S3134 1 ]
+[n S3132 . . . ]
+"3509
+[; ;/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.15.360/xc8/pic/include/proc/pic18f47q84.h: 3509:         unsigned RXB7 :1;
+[v _INTCON0bits `VS3132 ~T0 @X0 0 e@1238 ]
+"129 ./mcc_generated_files/tmr0.h
+[; ;./mcc_generated_files/tmr0.h: 129: void TMR0_StartTimer(void);
+[v _TMR0_StartTimer `(v ~T0 @X0 0 ef ]
 "362 /root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.15.360/xc8/pic/include/proc/pic18f47q84.h
 [; ;/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.15.360/xc8/pic/include/proc/pic18f47q84.h: 362: __asm("BOOTREG equ 038h");
 [; <" BOOTREG equ 038h ;# ">
@@ -3598,31 +3628,74 @@ Version 4.0 HI-TECH Software Intermediate Code
 "535
 [; ;./mcc_generated_files/uart1.h: 535: void (*UART1_TxInterruptHandler)(void);
 [v _UART1_TxInterruptHandler `*F23011 ~T0 @X0 1 e ]
-[v $root$_main `(v ~T0 @X0 0 e ]
-"49 main.c
-[; ;main.c: 49: void main(void)
-[v _main `(v ~T0 @X0 1 ef ]
+"48 main.c
+[; ;main.c: 48: void tmr0_isr(void)
+[v _tmr0_isr `(v ~T0 @X0 1 ef ]
+"49
+[; ;main.c: 49: {
+{
+[e :U _tmr0_isr ]
+[f ]
 "50
-[; ;main.c: 50: {
+[; ;main.c: 50:  do { LATBbits.LATB1 = ~LATBbits.LATB1; } while(0);
+[e :U 3238 ]
+{
+[e = . . _LATBbits 0 1 -> ~ -> . . _LATBbits 0 1 `i `uc ]
+}
+[e :U 3237 ]
+"51
+[; ;main.c: 51:  do { LATBbits.LATB2 = ~LATBbits.LATB2; } while(0);
+[e :U 3241 ]
+{
+[e = . . _LATBbits 0 2 -> ~ -> . . _LATBbits 0 2 `i `uc ]
+}
+[e :U 3240 ]
+"52
+[; ;main.c: 52:  do { LATBbits.LATB3 = ~LATBbits.LATB3; } while(0);
+[e :U 3244 ]
+{
+[e = . . _LATBbits 0 3 -> ~ -> . . _LATBbits 0 3 `i `uc ]
+}
+[e :U 3243 ]
+"53
+[; ;main.c: 53: }
+[e :UE 3235 ]
+}
+[v $root$_main `(v ~T0 @X0 0 e ]
+"58
+[; ;main.c: 58: void main(void)
+[v _main `(v ~T0 @X0 1 ef ]
+"59
+[; ;main.c: 59: {
 {
 [e :U _main ]
 [f ]
-"52
-[; ;main.c: 52:     SYSTEM_Initialize();
+"61
+[; ;main.c: 61:  SYSTEM_Initialize();
 [e ( _SYSTEM_Initialize ..  ]
+"63
+[; ;main.c: 63:  TMR0_SetInterruptHandler(tmr0_isr);
+[e ( _TMR0_SetInterruptHandler (1 &U _tmr0_isr ]
 "70
-[; ;main.c: 70:     while (1)
-[e :U 3237 ]
-"71
-[; ;main.c: 71:     {
-{
+[; ;main.c: 70:  (INTCON0bits.GIEH = 1);
+[e = . . _INTCON0bits 1 1 -> -> 1 `i `uc ]
 "73
-[; ;main.c: 73:     }
+[; ;main.c: 73:  (INTCON0bits.GIEL = 1);
+[e = . . _INTCON0bits 0 5 -> -> 1 `i `uc ]
+"81
+[; ;main.c: 81:  TMR0_StartTimer();
+[e ( _TMR0_StartTimer ..  ]
+"83
+[; ;main.c: 83:  while (1) {
+[e :U 3247 ]
+{
+"85
+[; ;main.c: 85:  }
 }
-[e :U 3236 ]
-[e $U 3237  ]
-[e :U 3238 ]
-"74
-[; ;main.c: 74: }
-[e :UE 3235 ]
+[e :U 3246 ]
+[e $U 3247  ]
+[e :U 3248 ]
+"86
+[; ;main.c: 86: }
+[e :UE 3245 ]
 }

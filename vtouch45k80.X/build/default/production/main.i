@@ -38275,7 +38275,7 @@ unsigned char __t3rd16on(void);
 # 50 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/pin_manager.h" 1
-# 126 "./mcc_generated_files/pin_manager.h"
+# 210 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
 # 51 "./mcc_generated_files/mcc.h" 2
 
@@ -38727,16 +38727,44 @@ void PMD_Initialize(void);
 # 44 "main.c" 2
 
 
+void tmr0_isr(void);
+
+void tmr0_isr(void)
+{
+ do { LATBbits.LATB1 = ~LATBbits.LATB1; } while(0);
+ do { LATBbits.LATB2 = ~LATBbits.LATB2; } while(0);
+ do { LATBbits.LATB3 = ~LATBbits.LATB3; } while(0);
+}
+
 
 
 
 void main(void)
 {
 
-    SYSTEM_Initialize();
-# 70 "main.c"
-    while (1)
-    {
+ SYSTEM_Initialize();
 
-    }
+ TMR0_SetInterruptHandler(tmr0_isr);
+
+
+
+
+
+
+ (INTCON0bits.GIEH = 1);
+
+
+ (INTCON0bits.GIEL = 1);
+
+
+
+
+
+
+
+ TMR0_StartTimer();
+
+ while (1) {
+
+ }
 }
