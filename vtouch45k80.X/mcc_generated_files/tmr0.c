@@ -66,8 +66,8 @@ void TMR0_Initialize(void)
     // T0CS FOSC/4; T0CKPS 1:32768; T0ASYNC synchronised; 
     T0CON1 = 0x4F;
 
-    // TMR0H 152; 
-    TMR0H = 0x98;
+    // TMR0H 121; 
+    TMR0H = 0x79;
 
     // TMR0L 0; 
     TMR0L = 0x00;
@@ -139,7 +139,6 @@ void TMR0_SetInterruptHandler(void (* InterruptHandler)(void)){
 void TMR0_DefaultInterruptHandler(void){
     // add your TMR0 interrupt custom code
     // or set custom function using TMR0_SetInterruptHandler()
-	
 }
 
 /**
