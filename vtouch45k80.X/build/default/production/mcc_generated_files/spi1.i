@@ -1,4 +1,4 @@
-# 1 "mcc_generated_files/interrupt_manager.c"
+# 1 "mcc_generated_files/spi1.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,108 +6,164 @@
 # 1 "<built-in>" 2
 # 1 "/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.17.379/xc8/pic/include/language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "mcc_generated_files/interrupt_manager.c" 2
-# 49 "mcc_generated_files/interrupt_manager.c"
-# 1 "mcc_generated_files/interrupt_manager.h" 1
-# 109 "mcc_generated_files/interrupt_manager.h"
-void INTERRUPT_Initialize (void);
-# 49 "mcc_generated_files/interrupt_manager.c" 2
-
-# 1 "mcc_generated_files/mcc.h" 1
-# 49 "mcc_generated_files/mcc.h"
-# 1 "/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.17.379/xc8/pic/include/xc.h" 1 3
-# 18 "/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.17.379/xc8/pic/include/xc.h" 3
-extern const char __xc8_OPTIM_SPEED;
-
-extern double __fpnormalize(double);
-
-
-
-# 1 "/opt/microchip/xc8/v2.40/pic/include/c99/xc8debug.h" 1 3
-
-
-
-# 1 "/opt/microchip/xc8/v2.40/pic/include/c99/stdlib.h" 1 3
+# 1 "mcc_generated_files/spi1.c" 2
+# 47 "mcc_generated_files/spi1.c"
+# 1 "mcc_generated_files/spi1.h" 1
+# 54 "mcc_generated_files/spi1.h"
+# 1 "/opt/microchip/xc8/v2.40/pic/include/c99/stdio.h" 1 3
 
 
 
 # 1 "/opt/microchip/xc8/v2.40/pic/include/c99/musl_xc8.h" 1 3
-# 5 "/opt/microchip/xc8/v2.40/pic/include/c99/stdlib.h" 2 3
+# 5 "/opt/microchip/xc8/v2.40/pic/include/c99/stdio.h" 2 3
 
 
 
 
 
 # 1 "/opt/microchip/xc8/v2.40/pic/include/c99/features.h" 1 3
-# 11 "/opt/microchip/xc8/v2.40/pic/include/c99/stdlib.h" 2 3
-# 21 "/opt/microchip/xc8/v2.40/pic/include/c99/stdlib.h" 3
+# 11 "/opt/microchip/xc8/v2.40/pic/include/c99/stdio.h" 2 3
+# 24 "/opt/microchip/xc8/v2.40/pic/include/c99/stdio.h" 3
 # 1 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 1 3
-# 18 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 3
-typedef long int wchar_t;
+
+
+
+
+
+typedef void * va_list[1];
+
+
+
+
+typedef void * __isoc_va_list[1];
 # 122 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 3
 typedef unsigned size_t;
+# 137 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 3
+typedef long ssize_t;
 # 168 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 3
 typedef __int24 int24_t;
 # 204 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 3
 typedef __uint24 uint24_t;
-# 22 "/opt/microchip/xc8/v2.40/pic/include/c99/stdlib.h" 2 3
+# 246 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 3
+typedef long long off_t;
+# 399 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 3
+typedef struct _IO_FILE FILE;
+# 25 "/opt/microchip/xc8/v2.40/pic/include/c99/stdio.h" 2 3
+# 52 "/opt/microchip/xc8/v2.40/pic/include/c99/stdio.h" 3
+typedef union _G_fpos64_t {
+ char __opaque[16];
+ double __align;
+} fpos_t;
 
-int atoi (const char *);
-long atol (const char *);
-long long atoll (const char *);
-double atof (const char *);
-
-float strtof (const char *restrict, char **restrict);
-double strtod (const char *restrict, char **restrict);
-long double strtold (const char *restrict, char **restrict);
-
-
-
-long strtol (const char *restrict, char **restrict, int);
-unsigned long strtoul (const char *restrict, char **restrict, int);
-long long strtoll (const char *restrict, char **restrict, int);
-unsigned long long strtoull (const char *restrict, char **restrict, int);
-
-int rand (void);
-void srand (unsigned);
-
-void *malloc (size_t);
-void *calloc (size_t, size_t);
-void *realloc (void *, size_t);
-void free (void *);
-
-          void abort (void);
-int atexit (void (*) (void));
-          void exit (int);
-          void _Exit (int);
-
-void *bsearch (const void *, const void *, size_t, size_t, int (*)(const void *, const void *));
+extern FILE *const stdin;
+extern FILE *const stdout;
+extern FILE *const stderr;
 
 
 
 
 
+FILE *fopen(const char *restrict, const char *restrict);
+FILE *freopen(const char *restrict, const char *restrict, FILE *restrict);
+int fclose(FILE *);
+
+int remove(const char *);
+int rename(const char *, const char *);
+
+int feof(FILE *);
+int ferror(FILE *);
+int fflush(FILE *);
+void clearerr(FILE *);
+
+int fseek(FILE *, long, int);
+long ftell(FILE *);
+void rewind(FILE *);
+
+int fgetpos(FILE *restrict, fpos_t *restrict);
+int fsetpos(FILE *, const fpos_t *);
+
+size_t fread(void *restrict, size_t, size_t, FILE *restrict);
+size_t fwrite(const void *restrict, size_t, size_t, FILE *restrict);
+
+int fgetc(FILE *);
+int getc(FILE *);
+int getchar(void);
+int ungetc(int, FILE *);
+
+int fputc(int, FILE *);
+int putc(int, FILE *);
+int putchar(int);
+
+char *fgets(char *restrict, int, FILE *restrict);
+
+char *gets(char *);
 
 
-__attribute__((nonreentrant)) void qsort (void *, size_t, size_t, int (*)(const void *, const void *));
+int fputs(const char *restrict, FILE *restrict);
+int puts(const char *);
 
-int abs (int);
-long labs (long);
-long long llabs (long long);
+__attribute__((__format__(__printf__, 1, 2)))
+int printf(const char *restrict, ...);
+__attribute__((__format__(__printf__, 2, 3)))
+int fprintf(FILE *restrict, const char *restrict, ...);
+__attribute__((__format__(__printf__, 2, 3)))
+int sprintf(char *restrict, const char *restrict, ...);
+__attribute__((__format__(__printf__, 3, 4)))
+int snprintf(char *restrict, size_t, const char *restrict, ...);
 
-typedef struct { int quot, rem; } div_t;
-typedef struct { long quot, rem; } ldiv_t;
-typedef struct { long long quot, rem; } lldiv_t;
+__attribute__((__format__(__printf__, 1, 0)))
+int vprintf(const char *restrict, __isoc_va_list);
+int vfprintf(FILE *restrict, const char *restrict, __isoc_va_list);
+__attribute__((__format__(__printf__, 2, 0)))
+int vsprintf(char *restrict, const char *restrict, __isoc_va_list);
+__attribute__((__format__(__printf__, 3, 0)))
+int vsnprintf(char *restrict, size_t, const char *restrict, __isoc_va_list);
 
-div_t div (int, int);
-ldiv_t ldiv (long, long);
-lldiv_t lldiv (long long, long long);
+__attribute__((__format__(__scanf__, 1, 2)))
+int scanf(const char *restrict, ...);
+__attribute__((__format__(__scanf__, 2, 3)))
+int fscanf(FILE *restrict, const char *restrict, ...);
+__attribute__((__format__(__scanf__, 2, 3)))
+int sscanf(const char *restrict, const char *restrict, ...);
 
-typedef struct { unsigned int quot, rem; } udiv_t;
-typedef struct { unsigned long quot, rem; } uldiv_t;
-udiv_t udiv (unsigned int, unsigned int);
-uldiv_t uldiv (unsigned long, unsigned long);
-# 5 "/opt/microchip/xc8/v2.40/pic/include/c99/xc8debug.h" 2 3
+__attribute__((__format__(__scanf__, 1, 0)))
+int vscanf(const char *restrict, __isoc_va_list);
+int vfscanf(FILE *restrict, const char *restrict, __isoc_va_list);
+__attribute__((__format__(__scanf__, 2, 0)))
+int vsscanf(const char *restrict, const char *restrict, __isoc_va_list);
+
+void perror(const char *);
+
+int setvbuf(FILE *restrict, char *restrict, int, size_t);
+void setbuf(FILE *restrict, char *restrict);
+
+char *tmpnam(char *);
+FILE *tmpfile(void);
+
+
+
+
+FILE *fmemopen(void *restrict, size_t, const char *restrict);
+FILE *open_memstream(char **, size_t *);
+FILE *fdopen(int, const char *);
+FILE *popen(const char *, const char *);
+int pclose(FILE *);
+int fileno(FILE *);
+int fseeko(FILE *, off_t, int);
+off_t ftello(FILE *);
+int dprintf(int, const char *restrict, ...);
+int vdprintf(int, const char *restrict, __isoc_va_list);
+void flockfile(FILE *);
+int ftrylockfile(FILE *);
+void funlockfile(FILE *);
+int getc_unlocked(FILE *);
+int getchar_unlocked(void);
+int putc_unlocked(int, FILE *);
+int putchar_unlocked(int);
+ssize_t getdelim(char **restrict, size_t *restrict, int, FILE *restrict);
+ssize_t getline(char **restrict, size_t *restrict, FILE *restrict);
+int renameat(int, const char *, int, const char *);
+char *ctermid(char *);
 
 
 
@@ -115,12 +171,8 @@ uldiv_t uldiv (unsigned long, unsigned long);
 
 
 
-#pragma intrinsic(__builtin_software_breakpoint)
-extern void __builtin_software_breakpoint(void);
-# 24 "/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.17.379/xc8/pic/include/xc.h" 2 3
-# 1 "/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.17.379/xc8/pic/include/builtins.h" 1 3
-
-
+char *tempnam(const char *, const char *);
+# 54 "mcc_generated_files/spi1.h" 2
 
 # 1 "/opt/microchip/xc8/v2.40/pic/include/c99/stdint.h" 1 3
 # 22 "/opt/microchip/xc8/v2.40/pic/include/c99/stdint.h" 3
@@ -206,7 +258,120 @@ typedef int32_t int_fast32_t;
 typedef uint16_t uint_fast16_t;
 typedef uint32_t uint_fast32_t;
 # 145 "/opt/microchip/xc8/v2.40/pic/include/c99/stdint.h" 2 3
-# 5 "/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.17.379/xc8/pic/include/builtins.h" 2 3
+# 55 "mcc_generated_files/spi1.h" 2
+
+# 1 "/opt/microchip/xc8/v2.40/pic/include/c99/stdbool.h" 1 3
+# 56 "mcc_generated_files/spi1.h" 2
+
+
+
+typedef enum {
+    SPI1_DEFAULT
+} spi1_modes_t;
+
+typedef void (*spi1InterruptHandler_t)(void);
+
+void SPI1_Initialize(void);
+_Bool SPI1_Open(spi1_modes_t spi1UniqueConfiguration);
+void SPI1_Close(void);
+uint8_t SPI1_ExchangeByte(uint8_t data);
+void SPI1_ExchangeBlock(void *block, size_t blockSize);
+void SPI1_WriteBlock(void *block, size_t blockSize);
+void SPI1_ReadBlock(void *block, size_t blockSize);
+void SPI1_WriteByte(uint8_t byte);
+uint8_t SPI1_ReadByte(void);
+# 47 "mcc_generated_files/spi1.c" 2
+
+# 1 "/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.17.379/xc8/pic/include/xc.h" 1 3
+# 18 "/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.17.379/xc8/pic/include/xc.h" 3
+extern const char __xc8_OPTIM_SPEED;
+
+extern double __fpnormalize(double);
+
+
+
+# 1 "/opt/microchip/xc8/v2.40/pic/include/c99/xc8debug.h" 1 3
+
+
+
+# 1 "/opt/microchip/xc8/v2.40/pic/include/c99/stdlib.h" 1 3
+# 21 "/opt/microchip/xc8/v2.40/pic/include/c99/stdlib.h" 3
+# 1 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 1 3
+# 18 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 3
+typedef long int wchar_t;
+# 22 "/opt/microchip/xc8/v2.40/pic/include/c99/stdlib.h" 2 3
+
+int atoi (const char *);
+long atol (const char *);
+long long atoll (const char *);
+double atof (const char *);
+
+float strtof (const char *restrict, char **restrict);
+double strtod (const char *restrict, char **restrict);
+long double strtold (const char *restrict, char **restrict);
+
+
+
+long strtol (const char *restrict, char **restrict, int);
+unsigned long strtoul (const char *restrict, char **restrict, int);
+long long strtoll (const char *restrict, char **restrict, int);
+unsigned long long strtoull (const char *restrict, char **restrict, int);
+
+int rand (void);
+void srand (unsigned);
+
+void *malloc (size_t);
+void *calloc (size_t, size_t);
+void *realloc (void *, size_t);
+void free (void *);
+
+          void abort (void);
+int atexit (void (*) (void));
+          void exit (int);
+          void _Exit (int);
+
+void *bsearch (const void *, const void *, size_t, size_t, int (*)(const void *, const void *));
+
+
+
+
+
+
+
+__attribute__((nonreentrant)) void qsort (void *, size_t, size_t, int (*)(const void *, const void *));
+
+int abs (int);
+long labs (long);
+long long llabs (long long);
+
+typedef struct { int quot, rem; } div_t;
+typedef struct { long quot, rem; } ldiv_t;
+typedef struct { long long quot, rem; } lldiv_t;
+
+div_t div (int, int);
+ldiv_t ldiv (long, long);
+lldiv_t lldiv (long long, long long);
+
+typedef struct { unsigned int quot, rem; } udiv_t;
+typedef struct { unsigned long quot, rem; } uldiv_t;
+udiv_t udiv (unsigned int, unsigned int);
+uldiv_t uldiv (unsigned long, unsigned long);
+# 5 "/opt/microchip/xc8/v2.40/pic/include/c99/xc8debug.h" 2 3
+
+
+
+
+
+
+
+#pragma intrinsic(__builtin_software_breakpoint)
+extern void __builtin_software_breakpoint(void);
+# 24 "/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.17.379/xc8/pic/include/xc.h" 2 3
+# 1 "/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.17.379/xc8/pic/include/builtins.h" 1 3
+
+
+
+
 
 
 #pragma intrinsic(__nop)
@@ -38286,501 +38451,104 @@ __attribute__((__unsupported__("The READTIMER" "3" "() macro is not available wi
 unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 # 34 "/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.17.379/xc8/pic/include/xc.h" 2 3
-# 49 "mcc_generated_files/mcc.h" 2
+# 48 "mcc_generated_files/spi1.c" 2
 
-# 1 "mcc_generated_files/device_config.h" 1
-# 50 "mcc_generated_files/mcc.h" 2
 
-# 1 "mcc_generated_files/pin_manager.h" 1
-# 234 "mcc_generated_files/pin_manager.h"
-void PIN_MANAGER_Initialize (void);
-# 51 "mcc_generated_files/mcc.h" 2
 
+typedef struct {
+    uint8_t con0;
+    uint8_t con1;
+    uint8_t con2;
+    uint8_t baud;
+    uint8_t operation;
+} spi1_configuration_t;
 
-# 1 "/opt/microchip/xc8/v2.40/pic/include/c99/stdbool.h" 1 3
-# 53 "mcc_generated_files/mcc.h" 2
 
-# 1 "/opt/microchip/xc8/v2.40/pic/include/c99/conio.h" 1 3
+static const spi1_configuration_t spi1_configuration[] = {
+    { 0x2, 0x40, 0x0, 0x0, 0 }
+};
 
-
-
-
-
-
-# 1 "/opt/microchip/xc8/v2.40/pic/include/c99/stdio.h" 1 3
-# 24 "/opt/microchip/xc8/v2.40/pic/include/c99/stdio.h" 3
-# 1 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 1 3
-
-
-
-
-
-typedef void * va_list[1];
-
-
-
-
-typedef void * __isoc_va_list[1];
-# 137 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 3
-typedef long ssize_t;
-# 246 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 3
-typedef long long off_t;
-# 399 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 3
-typedef struct _IO_FILE FILE;
-# 25 "/opt/microchip/xc8/v2.40/pic/include/c99/stdio.h" 2 3
-# 52 "/opt/microchip/xc8/v2.40/pic/include/c99/stdio.h" 3
-typedef union _G_fpos64_t {
- char __opaque[16];
- double __align;
-} fpos_t;
-
-extern FILE *const stdin;
-extern FILE *const stdout;
-extern FILE *const stderr;
-
-
-
-
-
-FILE *fopen(const char *restrict, const char *restrict);
-FILE *freopen(const char *restrict, const char *restrict, FILE *restrict);
-int fclose(FILE *);
-
-int remove(const char *);
-int rename(const char *, const char *);
-
-int feof(FILE *);
-int ferror(FILE *);
-int fflush(FILE *);
-void clearerr(FILE *);
-
-int fseek(FILE *, long, int);
-long ftell(FILE *);
-void rewind(FILE *);
-
-int fgetpos(FILE *restrict, fpos_t *restrict);
-int fsetpos(FILE *, const fpos_t *);
-
-size_t fread(void *restrict, size_t, size_t, FILE *restrict);
-size_t fwrite(const void *restrict, size_t, size_t, FILE *restrict);
-
-int fgetc(FILE *);
-int getc(FILE *);
-int getchar(void);
-int ungetc(int, FILE *);
-
-int fputc(int, FILE *);
-int putc(int, FILE *);
-int putchar(int);
-
-char *fgets(char *restrict, int, FILE *restrict);
-
-char *gets(char *);
-
-
-int fputs(const char *restrict, FILE *restrict);
-int puts(const char *);
-
-__attribute__((__format__(__printf__, 1, 2)))
-int printf(const char *restrict, ...);
-__attribute__((__format__(__printf__, 2, 3)))
-int fprintf(FILE *restrict, const char *restrict, ...);
-__attribute__((__format__(__printf__, 2, 3)))
-int sprintf(char *restrict, const char *restrict, ...);
-__attribute__((__format__(__printf__, 3, 4)))
-int snprintf(char *restrict, size_t, const char *restrict, ...);
-
-__attribute__((__format__(__printf__, 1, 0)))
-int vprintf(const char *restrict, __isoc_va_list);
-int vfprintf(FILE *restrict, const char *restrict, __isoc_va_list);
-__attribute__((__format__(__printf__, 2, 0)))
-int vsprintf(char *restrict, const char *restrict, __isoc_va_list);
-__attribute__((__format__(__printf__, 3, 0)))
-int vsnprintf(char *restrict, size_t, const char *restrict, __isoc_va_list);
-
-__attribute__((__format__(__scanf__, 1, 2)))
-int scanf(const char *restrict, ...);
-__attribute__((__format__(__scanf__, 2, 3)))
-int fscanf(FILE *restrict, const char *restrict, ...);
-__attribute__((__format__(__scanf__, 2, 3)))
-int sscanf(const char *restrict, const char *restrict, ...);
-
-__attribute__((__format__(__scanf__, 1, 0)))
-int vscanf(const char *restrict, __isoc_va_list);
-int vfscanf(FILE *restrict, const char *restrict, __isoc_va_list);
-__attribute__((__format__(__scanf__, 2, 0)))
-int vsscanf(const char *restrict, const char *restrict, __isoc_va_list);
-
-void perror(const char *);
-
-int setvbuf(FILE *restrict, char *restrict, int, size_t);
-void setbuf(FILE *restrict, char *restrict);
-
-char *tmpnam(char *);
-FILE *tmpfile(void);
-
-
-
-
-FILE *fmemopen(void *restrict, size_t, const char *restrict);
-FILE *open_memstream(char **, size_t *);
-FILE *fdopen(int, const char *);
-FILE *popen(const char *, const char *);
-int pclose(FILE *);
-int fileno(FILE *);
-int fseeko(FILE *, off_t, int);
-off_t ftello(FILE *);
-int dprintf(int, const char *restrict, ...);
-int vdprintf(int, const char *restrict, __isoc_va_list);
-void flockfile(FILE *);
-int ftrylockfile(FILE *);
-void funlockfile(FILE *);
-int getc_unlocked(FILE *);
-int getchar_unlocked(void);
-int putc_unlocked(int, FILE *);
-int putchar_unlocked(int);
-ssize_t getdelim(char **restrict, size_t *restrict, int, FILE *restrict);
-ssize_t getline(char **restrict, size_t *restrict, FILE *restrict);
-int renameat(int, const char *, int, const char *);
-char *ctermid(char *);
-
-
-
-
-
-
-
-char *tempnam(const char *, const char *);
-# 8 "/opt/microchip/xc8/v2.40/pic/include/c99/conio.h" 2 3
-# 54 "mcc_generated_files/mcc.h" 2
-
-
-# 1 "mcc_generated_files/tmr0.h" 1
-# 100 "mcc_generated_files/tmr0.h"
-void TMR0_Initialize(void);
-# 129 "mcc_generated_files/tmr0.h"
-void TMR0_StartTimer(void);
-# 161 "mcc_generated_files/tmr0.h"
-void TMR0_StopTimer(void);
-# 196 "mcc_generated_files/tmr0.h"
-uint8_t TMR0_ReadTimer(void);
-# 235 "mcc_generated_files/tmr0.h"
-void TMR0_WriteTimer(uint8_t timerVal);
-# 272 "mcc_generated_files/tmr0.h"
-void TMR0_Reload(uint8_t periodVal);
-# 293 "mcc_generated_files/tmr0.h"
- void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
-# 311 "mcc_generated_files/tmr0.h"
-extern void (*TMR0_InterruptHandler)(void);
-# 329 "mcc_generated_files/tmr0.h"
-void TMR0_DefaultInterruptHandler(void);
-# 56 "mcc_generated_files/mcc.h" 2
-
-# 1 "mcc_generated_files/uart2.h" 1
-# 74 "mcc_generated_files/uart2.h"
-typedef union {
-    struct {
-        unsigned perr : 1;
-        unsigned ferr : 1;
-        unsigned oerr : 1;
-        unsigned reserved : 5;
-    };
-    uint8_t status;
-}uart2_status_t;
-
-
-
-
-extern volatile uint8_t uart2TxBufferRemaining;
-extern volatile uint8_t uart2RxCount;
-# 115 "mcc_generated_files/uart2.h"
-void UART2_Initialize(void);
-# 163 "mcc_generated_files/uart2.h"
-_Bool UART2_is_rx_ready(void);
-# 211 "mcc_generated_files/uart2.h"
-_Bool UART2_is_tx_ready(void);
-# 258 "mcc_generated_files/uart2.h"
-_Bool UART2_is_tx_done(void);
-# 306 "mcc_generated_files/uart2.h"
-uart2_status_t UART2_get_last_status(void);
-# 355 "mcc_generated_files/uart2.h"
-uint8_t UART2_Read(void);
-# 380 "mcc_generated_files/uart2.h"
-void UART2_Write(uint8_t txData);
-# 401 "mcc_generated_files/uart2.h"
-void UART2_Transmit_ISR(void);
-# 422 "mcc_generated_files/uart2.h"
-void UART2_Receive_ISR(void);
-# 443 "mcc_generated_files/uart2.h"
-void UART2_RxDataHandler(void);
-# 461 "mcc_generated_files/uart2.h"
-void UART2_SetFramingErrorHandler(void (* interruptHandler)(void));
-# 479 "mcc_generated_files/uart2.h"
-void UART2_SetOverrunErrorHandler(void (* interruptHandler)(void));
-# 497 "mcc_generated_files/uart2.h"
-void UART2_SetErrorHandler(void (* interruptHandler)(void));
-# 517 "mcc_generated_files/uart2.h"
-void (*UART2_RxInterruptHandler)(void);
-# 535 "mcc_generated_files/uart2.h"
-void (*UART2_TxInterruptHandler)(void);
-# 555 "mcc_generated_files/uart2.h"
-void UART2_SetRxInterruptHandler(void (* InterruptHandler)(void));
-# 573 "mcc_generated_files/uart2.h"
-void UART2_SetTxInterruptHandler(void (* InterruptHandler)(void));
-# 57 "mcc_generated_files/mcc.h" 2
-
-# 1 "mcc_generated_files/uart1.h" 1
-# 74 "mcc_generated_files/uart1.h"
-typedef union {
-    struct {
-        unsigned perr : 1;
-        unsigned ferr : 1;
-        unsigned oerr : 1;
-        unsigned reserved : 5;
-    };
-    uint8_t status;
-}uart1_status_t;
-# 110 "mcc_generated_files/uart1.h"
-void UART1_Initialize(void);
-# 158 "mcc_generated_files/uart1.h"
-_Bool UART1_is_rx_ready(void);
-# 206 "mcc_generated_files/uart1.h"
-_Bool UART1_is_tx_ready(void);
-# 253 "mcc_generated_files/uart1.h"
-_Bool UART1_is_tx_done(void);
-# 301 "mcc_generated_files/uart1.h"
-uart1_status_t UART1_get_last_status(void);
-# 350 "mcc_generated_files/uart1.h"
-uint8_t UART1_Read(void);
-# 375 "mcc_generated_files/uart1.h"
-void UART1_Write(uint8_t txData);
-# 394 "mcc_generated_files/uart1.h"
-void UART1_SetAddresstoTransmit(uint8_t txAddress);
-# 414 "mcc_generated_files/uart1.h"
-void UART1_SetFramingErrorHandler(void (* interruptHandler)(void));
-# 432 "mcc_generated_files/uart1.h"
-void UART1_SetOverrunErrorHandler(void (* interruptHandler)(void));
-# 450 "mcc_generated_files/uart1.h"
-void UART1_SetErrorHandler(void (* interruptHandler)(void));
-# 58 "mcc_generated_files/mcc.h" 2
-
-# 1 "mcc_generated_files/can1.h" 1
-# 56 "mcc_generated_files/can1.h"
-# 1 "mcc_generated_files/can_types.h" 1
-# 65 "mcc_generated_files/can_types.h"
-typedef union
-{
-    uint8_t msgfields;
-    struct
-    {
-        uint8_t idType:1;
-        uint8_t frameType:1;
-        uint8_t dlc:4;
-        uint8_t formatType:1;
-        uint8_t brs:1;
-    };
-} CAN_MSG_FIELD;
-
-typedef struct
-{
-    uint32_t msgId;
-    CAN_MSG_FIELD field;
-    uint8_t *data;
-} CAN_MSG_OBJ;
-# 94 "mcc_generated_files/can_types.h"
-typedef enum
-{
-    CAN_NON_BRS_MODE = 0,
-    CAN_BRS_MODE = 1
-} CAN_MSG_OBJ_BRS_MODE;
-# 109 "mcc_generated_files/can_types.h"
-typedef enum
-{
-    CAN_FRAME_STD = 0,
-    CAN_FRAME_EXT = 1,
-} CAN_MSG_OBJ_ID_TYPE;
-# 124 "mcc_generated_files/can_types.h"
-typedef enum
-{
-    CAN_FRAME_DATA = 0,
-    CAN_FRAME_RTR = 1,
-} CAN_MSG_OBJ_FRAME_TYPE;
-# 139 "mcc_generated_files/can_types.h"
-typedef enum
-{
-    CAN_2_0_FORMAT = 0,
-    CAN_FD_FORMAT = 1
-} CAN_MSG_OBJ_TYPE;
-# 154 "mcc_generated_files/can_types.h"
-typedef enum
-{
-    CAN_TX_MSG_REQUEST_SUCCESS = 0,
-    CAN_TX_MSG_REQUEST_DLC_EXCEED_ERROR = 1,
-    CAN_TX_MSG_REQUEST_BRS_ERROR = 2,
-    CAN_TX_MSG_REQUEST_FIFO_FULL = 3,
-} CAN_TX_MSG_REQUEST_STATUS;
-# 171 "mcc_generated_files/can_types.h"
-typedef enum
-{
-    CAN_NORMAL_FD_MODE = 0,
-    CAN_DISABLE_MODE = 1,
-    CAN_INTERNAL_LOOPBACK_MODE = 2,
-    CAN_LISTEN_ONLY_MODE = 3,
-    CAN_CONFIGURATION_MODE = 4,
-    CAN_EXTERNAL_LOOPBACK_MODE = 5,
-    CAN_NORMAL_2_0_MODE = 6,
-    CAN_RESTRICTED_OPERATION_MODE =7,
-} CAN_OP_MODES;
-# 192 "mcc_generated_files/can_types.h"
-typedef enum
-{
-    CAN_OP_MODE_REQUEST_SUCCESS,
-    CAN_OP_MODE_REQUEST_FAIL,
-    CAN_OP_MODE_SYS_ERROR_OCCURED
-} CAN_OP_MODE_STATUS;
-# 208 "mcc_generated_files/can_types.h"
-typedef enum
-{
-    CAN_TX_FIFO_FULL,
-    CAN_TX_FIFO_AVAILABLE,
-} CAN_TX_FIFO_STATUS;
-# 223 "mcc_generated_files/can_types.h"
-typedef enum
+void SPI1_Initialize(void)
 {
 
-    DLC_0,
-    DLC_1,
-    DLC_2,
-    DLC_3,
-    DLC_4,
-    DLC_5,
-    DLC_6,
-    DLC_7,
-    DLC_8,
+    SPI1CON0 = 0x02;
 
+    SPI1CON1 = 0x40;
 
+    SPI1CON2 = 0x00;
 
-    DLC_12,
-    DLC_16,
-    DLC_20,
-    DLC_24,
-    DLC_32,
-    DLC_48,
-    DLC_64,
-} CAN_DLC;
-# 56 "mcc_generated_files/can1.h" 2
+    SPI1CLK = 0x00;
 
-
-
-
-
-typedef enum
-{
-    FIFO1 = 1
-} CAN1_TX_FIFO_CHANNELS;
-# 102 "mcc_generated_files/can1.h"
-void CAN1_Initialize(void);
-# 143 "mcc_generated_files/can1.h"
-CAN_OP_MODE_STATUS CAN1_OperationModeSet(const CAN_OP_MODES reqestMode);
-# 181 "mcc_generated_files/can1.h"
-CAN_OP_MODES CAN1_OperationModeGet(void);
-# 231 "mcc_generated_files/can1.h"
-_Bool CAN1_Receive(CAN_MSG_OBJ *rxCanMsg);
-# 290 "mcc_generated_files/can1.h"
-CAN_TX_MSG_REQUEST_STATUS CAN1_Transmit(const CAN1_TX_FIFO_CHANNELS fifoChannel, CAN_MSG_OBJ *txCanMsg);
-# 346 "mcc_generated_files/can1.h"
-_Bool CAN1_IsBusOff(void);
-# 404 "mcc_generated_files/can1.h"
-_Bool CAN1_IsTxErrorPassive(void);
-# 463 "mcc_generated_files/can1.h"
-_Bool CAN1_IsTxErrorWarning(void);
-# 522 "mcc_generated_files/can1.h"
-_Bool CAN1_IsTxErrorActive(void);
-# 570 "mcc_generated_files/can1.h"
-_Bool CAN1_IsRxErrorPassive(void);
-# 618 "mcc_generated_files/can1.h"
-_Bool CAN1_IsRxErrorWarning(void);
-# 666 "mcc_generated_files/can1.h"
-_Bool CAN1_IsRxErrorActive(void);
-# 717 "mcc_generated_files/can1.h"
-void CAN1_Sleep(void);
-# 771 "mcc_generated_files/can1.h"
-CAN_TX_FIFO_STATUS CAN1_TransmitFIFOStatusGet(const CAN1_TX_FIFO_CHANNELS fifoChannel);
-# 813 "mcc_generated_files/can1.h"
-uint8_t CAN1_ReceivedMessageCountGet(void);
-# 880 "mcc_generated_files/can1.h"
-void CAN1_SetInvalidMessageInterruptHandler(void (*handler)(void));
-# 937 "mcc_generated_files/can1.h"
-void CAN1_SetBusWakeUpActivityInterruptHandler(void (*handler)(void));
-# 1005 "mcc_generated_files/can1.h"
-void CAN1_SetBusErrorInterruptHandler(void (*handler)(void));
-# 1056 "mcc_generated_files/can1.h"
-void CAN1_SetModeChangeInterruptHandler(void (*handler)(void));
-# 1125 "mcc_generated_files/can1.h"
-void CAN1_SetSystemErrorInterruptHandler(void (*handler)(void));
-# 1193 "mcc_generated_files/can1.h"
-void CAN1_SetTxAttemptInterruptHandler(void (*handler)(void));
-# 1245 "mcc_generated_files/can1.h"
-void CAN1_SetRxBufferOverFlowInterruptHandler(void (*handler)(void));
-# 1280 "mcc_generated_files/can1.h"
-void CAN1_SetFIFO2nullHandler(void (*handler)(void));
-# 1324 "mcc_generated_files/can1.h"
-void CAN1_SetFIFO1nullHandler(void (*handler)(void));
-# 59 "mcc_generated_files/mcc.h" 2
-
-# 1 "mcc_generated_files/spi1.h" 1
-# 59 "mcc_generated_files/spi1.h"
-typedef enum {
-    SPI1_DEFAULT
-} spi1_modes_t;
-
-typedef void (*spi1InterruptHandler_t)(void);
-
-void SPI1_Initialize(void);
-_Bool SPI1_Open(spi1_modes_t spi1UniqueConfiguration);
-void SPI1_Close(void);
-uint8_t SPI1_ExchangeByte(uint8_t data);
-void SPI1_ExchangeBlock(void *block, size_t blockSize);
-void SPI1_WriteBlock(void *block, size_t blockSize);
-void SPI1_ReadBlock(void *block, size_t blockSize);
-void SPI1_WriteByte(uint8_t byte);
-uint8_t SPI1_ReadByte(void);
-# 60 "mcc_generated_files/mcc.h" 2
-# 75 "mcc_generated_files/mcc.h"
-void SYSTEM_Initialize(void);
-# 88 "mcc_generated_files/mcc.h"
-void OSCILLATOR_Initialize(void);
-# 101 "mcc_generated_files/mcc.h"
-void PMD_Initialize(void);
-# 50 "mcc_generated_files/interrupt_manager.c" 2
-
-
-void INTERRUPT_Initialize (void)
-{
-    INTCON0bits.IPEN = 1;
-
-    _Bool state = (unsigned char)GIE;
-    GIE = 0;
-    IVTLOCK = 0x55;
-    IVTLOCK = 0xAA;
-    IVTLOCKbits.IVTLOCKED = 0x00;
-
-    IVTBASEU = 0;
-    IVTBASEH = 0;
-    IVTBASEL = 8;
-
-    IVTLOCK = 0x55;
-    IVTLOCK = 0xAA;
-    IVTLOCKbits.IVTLOCKED = 0x01;
-
-    GIE = state;
-
-    IPR8bits.U2TXIP = 1;
-    IPR8bits.U2RXIP = 1;
-    IPR3bits.TMR0IP = 1;
-    IPR0bits.CANIP = 1;
+    SPI1BAUD = 0x00;
+    TRISCbits.TRISC3 = 0;
 }
 
-void __attribute__((picinterrupt(("irq(default),base(8)")))) Default_ISR()
+_Bool SPI1_Open(spi1_modes_t spi1UniqueConfiguration)
 {
+    if(!SPI1CON0bits.EN)
+    {
+        SPI1CON0 = spi1_configuration[spi1UniqueConfiguration].con0;
+        SPI1CON1 = spi1_configuration[spi1UniqueConfiguration].con1;
+        SPI1CON2 = spi1_configuration[spi1UniqueConfiguration].con2 | (0x1 | 0x2);
+        SPI1CLK = 0x00;
+        SPI1BAUD = spi1_configuration[spi1UniqueConfiguration].baud;
+        TRISCbits.TRISC3 = spi1_configuration[spi1UniqueConfiguration].operation;
+        SPI1CON0bits.EN = 1;
+        return 1;
+    }
+    return 0;
+}
+
+void SPI1_Close(void)
+{
+    SPI1CON0bits.EN = 0;
+}
+
+uint8_t SPI1_ExchangeByte(uint8_t data)
+{
+    SPI1TCNTL = 1;
+    SPI1TXB = data;
+    while(!PIR3bits.SPI1RXIF);
+    return SPI1RXB;
+}
+
+void SPI1_ExchangeBlock(void *block, size_t blockSize)
+{
+    uint8_t *data = block;
+    while(blockSize--)
+    {
+        SPI1TCNTL = 1;
+        SPI1TXB = *data;
+        while(!PIR3bits.SPI1RXIF);
+        *data++ = SPI1RXB;
+    }
+}
+
+
+void SPI1_WriteBlock(void *block, size_t blockSize)
+{
+    uint8_t *data = block;
+    while(blockSize--)
+    {
+        SPI1_ExchangeByte(*data++);
+    }
+}
+
+void SPI1_ReadBlock(void *block, size_t blockSize)
+{
+    uint8_t *data = block;
+    while(blockSize--)
+    {
+        *data++ = SPI1_ExchangeByte(0);
+    }
+}
+
+void SPI1_WriteByte(uint8_t byte)
+{
+    SPI1TXB = byte;
+}
+
+uint8_t SPI1_ReadByte(void)
+{
+    return SPI1RXB;
 }

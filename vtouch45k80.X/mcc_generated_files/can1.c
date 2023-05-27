@@ -110,6 +110,41 @@ static struct CAN1_RX_FIFO rxFifos[] =
 static volatile struct CAN_FIFOREG * const FIFO = (struct CAN_FIFOREG *)&C1TXQCONL;
 static const uint8_t DLC_BYTES[] = {0U, 1U, 2U, 3U, 4U, 5U, 6U, 7U, 8U, 12U, 16U, 20U, 24U, 32U, 48U, 64U};
 
+static void (*CAN1_InvalidMessageHandler)(void);
+static void (*CAN1_BusWakeUpActivityHandler)(void);
+static void (*CAN1_BusErrorHandler)(void);
+static void (*CAN1_ModeChangeHandler)(void);
+static void (*CAN1_SystemErrorHandler)(void);
+static void (*CAN1_TxAttemptHandler)(void);
+static void (*CAN1_RxBufferOverflowHandler)(void);
+
+static void DefaultInvalidMessageHandler(void)
+{
+}
+
+static void DefaultBusWakeUpActivityHandler(void)
+{
+}
+
+static void DefaultBusErrorHandler(void)
+{
+}
+
+static void DefaultModeChangeHandler(void)
+{
+}
+
+static void DefaultSystemErrorHandler(void)
+{
+}
+
+static void DefaultTxAttemptHandler(void)
+{
+}
+
+static void DefaultRxBufferOverflowHandler(void)
+{
+}
 
 void CAN1_RX_FIFO_ResetInfo(void)
 {
@@ -123,8 +158,8 @@ void CAN1_RX_FIFO_ResetInfo(void)
 
 static void CAN1_RX_FIFO_Configuration(void)
 {
-    // TXEN disabled; RTREN disabled; RXTSEN disabled; TXATIE disabled; RXOVIE disabled; TFERFFIE disabled; TFHRFHIE disabled; TFNRFNIE disabled; 
-    C1FIFOCON2L = 0x00;
+    // TXEN disabled; RTREN disabled; RXTSEN disabled; TXATIE disabled; RXOVIE enabled; TFERFFIE disabled; TFHRFHIE disabled; TFNRFNIE disabled; 
+    C1FIFOCON2L = 0x08;
     
     // FRESET enabled; TXREQ disabled; UINC disabled; 
     C1FIFOCON2H = 0x04;
@@ -143,8 +178,8 @@ static void CAN1_RX_FIFO_FilterMaskConfiguration(void)
 
 static void CAN1_TX_FIFO_Configuration(void)
 {
-    // TXEN enabled; RTREN disabled; RXTSEN disabled; TXATIE disabled; RXOVIE disabled; TFERFFIE disabled; TFHRFHIE disabled; TFNRFNIE disabled; 
-    C1FIFOCON1L = 0x80;
+    // TXEN enabled; RTREN disabled; RXTSEN disabled; TXATIE enabled; RXOVIE disabled; TFERFFIE disabled; TFHRFHIE disabled; TFNRFNIE disabled; 
+    C1FIFOCON1L = 0x90;
     
     // FRESET enabled; TXREQ disabled; UINC disabled; 
     C1FIFOCON1H = 0x04;
@@ -159,37 +194,62 @@ static void CAN1_TX_FIFO_Configuration(void)
 
 static void CAN1_BitRateConfiguration(void)
 {
-    // SJW 3; 
-    C1NBTCFGL = 0x03;
+    // SJW 9; 
+    C1NBTCFGL = 0x09;
     
-    // TSEG2 3; 
-    C1NBTCFGH = 0x03;
+    // TSEG2 9; 
+    C1NBTCFGH = 0x09;
     
-    // TSEG1 10; 
-    C1NBTCFGU = 0x0A;
+    // TSEG1 28; 
+    C1NBTCFGU = 0x1C;
     
     // BRP 0; 
     C1NBTCFGT = 0x00;
     
-    // SJW 1; 
-    C1DBTCFGL = 0x01;
+    // SJW 3; 
+    C1DBTCFGL = 0x03;
     
-    // TSEG2 1; 
-    C1DBTCFGH = 0x01;
+    // TSEG2 3; 
+    C1DBTCFGH = 0x03;
     
-    // TSEG1 4; 
-    C1DBTCFGU = 0x04;
+    // TSEG1 14; 
+    C1DBTCFGU = 0x0E;
     
     // BRP 0; 
     C1DBTCFGT = 0x00;
     
-    // TDCO 5; 
-    C1TDCH = 0x05;
+    // TDCO 15; 
+    C1TDCH = 0x0F;
     
     // TDCMOD Auto; 
     C1TDCU = 0x02;
 }
 
+static void CAN1_ErrorNotificationInterruptEnable(void)
+{
+    CAN1_SetInvalidMessageInterruptHandler(DefaultInvalidMessageHandler);
+    CAN1_SetBusWakeUpActivityInterruptHandler(DefaultBusWakeUpActivityHandler);
+    CAN1_SetBusErrorInterruptHandler(DefaultBusErrorHandler);
+    CAN1_SetModeChangeInterruptHandler(DefaultModeChangeHandler);
+    CAN1_SetSystemErrorInterruptHandler(DefaultSystemErrorHandler);
+    CAN1_SetTxAttemptInterruptHandler(DefaultTxAttemptHandler);
+    CAN1_SetRxBufferOverFlowInterruptHandler(DefaultRxBufferOverflowHandler);
+    PIR0bits.CANIF = 0;
+    
+    // MODIF disabled; TBCIF disabled; 
+    C1INTL = 0x00;
+    
+    // IVMIF disabled; WAKIF disabled; CERRIF disabled; SERRIF disabled; 
+    C1INTH = 0x00;
+    
+    // TEFIE disabled; MODIE enabled; TBCIE disabled; RXIE disabled; TXIE disabled; 
+    C1INTU = 0x08;
+    
+    // IVMIE enabled; WAKIE enabled; CERRIE enabled; SERRIE enabled; RXOVIE enabled; TXATIE enabled; 
+    C1INTT = 0xFC;
+    
+    PIE0bits.CANIE = 1;
+}
 
 void CAN1_Initialize(void)
 {
@@ -215,6 +275,7 @@ void CAN1_Initialize(void)
         CAN1_RX_FIFO_Configuration();
         CAN1_RX_FIFO_FilterMaskConfiguration();
         CAN1_RX_FIFO_ResetInfo();
+        CAN1_ErrorNotificationInterruptEnable();
         CAN1_OperationModeSet(CAN_NORMAL_FD_MODE);    
     }
 }
@@ -536,6 +597,93 @@ void CAN1_Sleep(void)
     CAN1_OperationModeSet(CAN_DISABLE_MODE);
 }
 
+void CAN1_SetInvalidMessageInterruptHandler(void (*handler)(void))
+{
+    CAN1_InvalidMessageHandler = handler;
+}
+
+void CAN1_SetBusWakeUpActivityInterruptHandler(void (*handler)(void))
+{
+    CAN1_BusWakeUpActivityHandler = handler;
+}
+
+void CAN1_SetBusErrorInterruptHandler(void (*handler)(void))
+{
+    CAN1_BusErrorHandler = handler;
+}
+
+void CAN1_SetModeChangeInterruptHandler(void (*handler)(void))
+{
+    CAN1_ModeChangeHandler = handler;
+}
+
+void CAN1_SetSystemErrorInterruptHandler(void (*handler)(void))
+{
+    CAN1_SystemErrorHandler = handler;
+}
+
+void CAN1_SetTxAttemptInterruptHandler(void (*handler)(void))
+{
+    CAN1_TxAttemptHandler = handler;
+}
+
+void CAN1_SetRxBufferOverFlowInterruptHandler(void (*handler)(void))
+{
+    CAN1_RxBufferOverflowHandler = handler;
+}
+
+void __interrupt(irq(CAN),base(8)) CAN1_ISR(void)
+{
+    if (1 == C1INTHbits.IVMIF)
+    {
+        CAN1_InvalidMessageHandler();
+        C1INTHbits.IVMIF = 0;
+    }
+    
+    if (1 == C1INTHbits.WAKIF)
+    {
+        CAN1_BusWakeUpActivityHandler();
+        C1INTHbits.WAKIF = 0;
+    }
+    
+    if (1 == C1INTHbits.CERRIF)
+    {
+        CAN1_BusErrorHandler();
+        C1INTHbits.CERRIF = 0;
+    }
+    
+    if (1 == C1INTLbits.MODIF)
+    {
+        CAN1_ModeChangeHandler();
+        C1INTLbits.MODIF = 0;
+    }
+    
+    if (1 == C1INTHbits.SERRIF)
+    {
+        CAN1_SystemErrorHandler();
+        C1INTHbits.SERRIF = 0;
+    }
+    
+    if (1 == C1INTHbits.TXATIF)
+    {
+        CAN1_TxAttemptHandler();
+        if (1 == C1FIFOSTA1Lbits.TXATIF)
+        {
+            C1FIFOSTA1Lbits.TXATIF = 0;
+        }
+    }
+    
+    if (1 == C1INTHbits.RXOVIF)
+    {
+        CAN1_RxBufferOverflowHandler();
+        if (1 == C1FIFOSTA2Lbits.RXOVIF)
+        {
+            C1FIFOSTA2Lbits.RXOVIF = 0;
+        }
+    }
+    
+    PIR0bits.CANIF = 0;
+}
 
 
 

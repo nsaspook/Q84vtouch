@@ -57,6 +57,7 @@
 #include "uart2.h"
 #include "uart1.h"
 #include "can1.h"
+#include "spi1.h"
 
 
 
