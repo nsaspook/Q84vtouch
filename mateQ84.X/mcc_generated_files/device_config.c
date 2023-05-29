@@ -51,7 +51,7 @@
 #pragma config RSTOSC = EXTOSC_4PLL    // Reset Oscillator Selection->EXTOSC with 4x PLL, with EXTOSC operating per FEXTOSC bits
 
 // CONFIG2
-#pragma config CLKOUTEN = OFF    // Clock out Enable bit->CLKOUT function is disabled
+#pragma config CLKOUTEN = ON    // Clock out Enable bit->CLKOUT function is enabled
 #pragma config PR1WAY = ON    // PRLOCKED One-Way Set Enable bit->PRLOCKED bit can be cleared and set only once
 #pragma config CSWEN = ON    // Clock Switch Enable bit->Writing to NOSC and NDIV is allowed
 #pragma config JTAGEN = ON    // JTAG Enable bit->Enable JTAG Boundary Scan mode and pins
