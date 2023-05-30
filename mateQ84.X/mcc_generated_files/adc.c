@@ -348,8 +348,8 @@ void ADC_Initialize(void)
     ADC_SetContext3ThresholdInterruptHandler(ADC_DefaultContext3Threshold_ISR);
     ADC_SetActiveClockTuningInterruptHandler(ADC_DefaultActiveClockTuning_ISR);
         
-    //ADON enabled; CSEN enabled; ADCS FOSC/ADCLK; ADFM right; GO_nDONE stop; 
-    ADCON0 = 0xA4;
+    //ADON enabled; CSEN disabled; ADCS FOSC/ADCLK; ADFM right; GO_nDONE stop; 
+    ADCON0 = 0x84;
 }
 
 inline void ADC_EnableChannelSequencer(void)

@@ -59,8 +59,8 @@ void SYSTEM_Initialize(void)
     UART2_Initialize();
     UART1_Initialize();
     SPI1_Initialize();
-    CLKREF_Initialize();
     CAN1_Initialize();
+    CLKREF_Initialize();
 }
 
 void OSCILLATOR_Initialize(void)

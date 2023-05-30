@@ -1,6 +1,8 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[v F23078 `(v ~T0 @X0 0 tf ]
-[v F23080 `(v ~T0 @X0 0 tf ]
+[v F23075 `(v ~T0 @X0 0 tf ]
+[v F23077 `(v ~T0 @X0 0 tf ]
+[v F23123 `(v ~T0 @X0 0 tf ]
+[v F23125 `(v ~T0 @X0 0 tf ]
 "109 mcc_generated_files/interrupt_manager.h
 [; ;mcc_generated_files/interrupt_manager.h: 109: void INTERRUPT_Initialize (void);
 [v _INTERRUPT_Initialize `(v ~T0 @X0 0 ef ]
@@ -22,21 +24,21 @@ Version 4.0 HI-TECH Software Intermediate Code
 "100 mcc_generated_files/tmr0.h
 [; ;mcc_generated_files/tmr0.h: 100: void TMR0_Initialize(void);
 [v _TMR0_Initialize `(v ~T0 @X0 0 ef ]
-"115 mcc_generated_files/uart2.h
-[; ;mcc_generated_files/uart2.h: 115: void UART2_Initialize(void);
+"116 mcc_generated_files/uart2.h
+[; ;mcc_generated_files/uart2.h: 116: void UART2_Initialize(void);
 [v _UART2_Initialize `(v ~T0 @X0 0 ef ]
-"110 mcc_generated_files/uart1.h
-[; ;mcc_generated_files/uart1.h: 110: void UART1_Initialize(void);
+"115 mcc_generated_files/uart1.h
+[; ;mcc_generated_files/uart1.h: 115: void UART1_Initialize(void);
 [v _UART1_Initialize `(v ~T0 @X0 0 ef ]
 "63 mcc_generated_files/spi1.h
 [; ;mcc_generated_files/spi1.h: 63: void SPI1_Initialize(void);
 [v _SPI1_Initialize `(v ~T0 @X0 0 ef ]
-"92 mcc_generated_files/clkref.h
-[; ;mcc_generated_files/clkref.h: 92: void CLKREF_Initialize(void);
-[v _CLKREF_Initialize `(v ~T0 @X0 0 ef ]
 "102 mcc_generated_files/can1.h
 [; ;mcc_generated_files/can1.h: 102: void CAN1_Initialize(void);
 [v _CAN1_Initialize `(v ~T0 @X0 0 ef ]
+"92 mcc_generated_files/clkref.h
+[; ;mcc_generated_files/clkref.h: 92: void CLKREF_Initialize(void);
+[v _CLKREF_Initialize `(v ~T0 @X0 0 ef ]
 "5335 /root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.18.389/xc8/pic/include/proc/pic18f47q84.h
 [; ;/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.18.389/xc8/pic/include/proc/pic18f47q84.h: 5335: extern volatile unsigned char OSCCON1 __attribute__((address(0x0AD)));
 [v _OSCCON1 `Vuc ~T0 @X0 0 e@173 ]
@@ -3658,12 +3660,18 @@ Version 4.0 HI-TECH Software Intermediate Code
 "70293
 [; ;/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.18.389/xc8/pic/include/proc/pic18f47q84.h: 70293: __asm("TOSU equ 04FFh");
 [; <" TOSU equ 04FFh ;# ">
-"517 mcc_generated_files/uart2.h
-[; ;mcc_generated_files/uart2.h: 517: void (*UART2_RxInterruptHandler)(void);
-[v _UART2_RxInterruptHandler `*F23078 ~T0 @X0 1 e ]
-"535
-[; ;mcc_generated_files/uart2.h: 535: void (*UART2_TxInterruptHandler)(void);
-[v _UART2_TxInterruptHandler `*F23080 ~T0 @X0 1 e ]
+"518 mcc_generated_files/uart2.h
+[; ;mcc_generated_files/uart2.h: 518: void (*UART2_RxInterruptHandler)(void);
+[v _UART2_RxInterruptHandler `*F23075 ~T0 @X0 1 e ]
+"536
+[; ;mcc_generated_files/uart2.h: 536: void (*UART2_TxInterruptHandler)(void);
+[v _UART2_TxInterruptHandler `*F23077 ~T0 @X0 1 e ]
+"536 mcc_generated_files/uart1.h
+[; ;mcc_generated_files/uart1.h: 536: void (*UART1_RxInterruptHandler)(void);
+[v _UART1_RxInterruptHandler `*F23123 ~T0 @X0 1 e ]
+"554
+[; ;mcc_generated_files/uart1.h: 554: void (*UART1_TxInterruptHandler)(void);
+[v _UART1_TxInterruptHandler `*F23125 ~T0 @X0 1 e ]
 "50 mcc_generated_files/mcc.c
 [; ;mcc_generated_files/mcc.c: 50: void SYSTEM_Initialize(void)
 [v _SYSTEM_Initialize `(v ~T0 @X0 1 ef ]
@@ -3703,11 +3711,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;mcc_generated_files/mcc.c: 61:     SPI1_Initialize();
 [e ( _SPI1_Initialize ..  ]
 "62
-[; ;mcc_generated_files/mcc.c: 62:     CLKREF_Initialize();
-[e ( _CLKREF_Initialize ..  ]
-"63
-[; ;mcc_generated_files/mcc.c: 63:     CAN1_Initialize();
+[; ;mcc_generated_files/mcc.c: 62:     CAN1_Initialize();
 [e ( _CAN1_Initialize ..  ]
+"63
+[; ;mcc_generated_files/mcc.c: 63:     CLKREF_Initialize();
+[e ( _CLKREF_Initialize ..  ]
 "64
 [; ;mcc_generated_files/mcc.c: 64: }
 [e :UE 3235 ]

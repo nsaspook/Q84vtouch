@@ -1,6 +1,8 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[v F23078 `(v ~T0 @X0 0 tf ]
-[v F23080 `(v ~T0 @X0 0 tf ]
+[v F23075 `(v ~T0 @X0 0 tf ]
+[v F23077 `(v ~T0 @X0 0 tf ]
+[v F23123 `(v ~T0 @X0 0 tf ]
+[v F23125 `(v ~T0 @X0 0 tf ]
 "3513 /root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.18.389/xc8/pic/include/proc/pic18f47q84.h
 [s S3133 :1 `uc 1 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S3133 . INT0EDG INT1EDG INT2EDG . IPEN GIEL GIE ]
@@ -60,6 +62,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 "47826
 [; ;/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.18.389/xc8/pic/include/proc/pic18f47q84.h: 47826: extern volatile IPR8bits_t IPR8bits __attribute__((address(0x36A)));
 [v _IPR8bits `VS2233 ~T0 @X0 0 e@874 ]
+"47572
+[; ;/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.18.389/xc8/pic/include/proc/pic18f47q84.h: 47572:     struct {
+[s S2226 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S2226 . U1RXIP U1TXIP U1EIP U1IP CANRXIP CANTXIP PWM1PIP PWM1IP ]
+"47571
+[; ;/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.18.389/xc8/pic/include/proc/pic18f47q84.h: 47571: typedef union {
+[u S2225 `S2226 1 ]
+[n S2225 . . ]
+"47583
+[; ;/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.18.389/xc8/pic/include/proc/pic18f47q84.h: 47583: extern volatile IPR4bits_t IPR4bits __attribute__((address(0x366)));
+[v _IPR4bits `VS2225 ~T0 @X0 0 e@870 ]
 "47510
 [; ;/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.18.389/xc8/pic/include/proc/pic18f47q84.h: 47510:     struct {
 [s S2224 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -3674,12 +3687,18 @@ Version 4.0 HI-TECH Software Intermediate Code
 "70293
 [; ;/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.18.389/xc8/pic/include/proc/pic18f47q84.h: 70293: __asm("TOSU equ 04FFh");
 [; <" TOSU equ 04FFh ;# ">
-"517 mcc_generated_files/uart2.h
-[; ;mcc_generated_files/uart2.h: 517: void (*UART2_RxInterruptHandler)(void);
-[v _UART2_RxInterruptHandler `*F23078 ~T0 @X0 1 e ]
-"535
-[; ;mcc_generated_files/uart2.h: 535: void (*UART2_TxInterruptHandler)(void);
-[v _UART2_TxInterruptHandler `*F23080 ~T0 @X0 1 e ]
+"518 mcc_generated_files/uart2.h
+[; ;mcc_generated_files/uart2.h: 518: void (*UART2_RxInterruptHandler)(void);
+[v _UART2_RxInterruptHandler `*F23075 ~T0 @X0 1 e ]
+"536
+[; ;mcc_generated_files/uart2.h: 536: void (*UART2_TxInterruptHandler)(void);
+[v _UART2_TxInterruptHandler `*F23077 ~T0 @X0 1 e ]
+"536 mcc_generated_files/uart1.h
+[; ;mcc_generated_files/uart1.h: 536: void (*UART1_RxInterruptHandler)(void);
+[v _UART1_RxInterruptHandler `*F23123 ~T0 @X0 1 e ]
+"554
+[; ;mcc_generated_files/uart1.h: 554: void (*UART1_TxInterruptHandler)(void);
+[v _UART1_TxInterruptHandler `*F23125 ~T0 @X0 1 e ]
 "52 mcc_generated_files/interrupt_manager.c
 [; ;mcc_generated_files/interrupt_manager.c: 52: void INTERRUPT_Initialize (void)
 [v _INTERRUPT_Initialize `(v ~T0 @X0 1 ef ]
@@ -3738,28 +3757,34 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;mcc_generated_files/interrupt_manager.c: 75:     IPR8bits.U2RXIP = 1;
 [e = . . _IPR8bits 0 0 -> -> 1 `i `uc ]
 "76
-[; ;mcc_generated_files/interrupt_manager.c: 76:     IPR3bits.TMR0IP = 1;
-[e = . . _IPR3bits 0 7 -> -> 1 `i `uc ]
+[; ;mcc_generated_files/interrupt_manager.c: 76:     IPR4bits.U1TXIP = 1;
+[e = . . _IPR4bits 0 1 -> -> 1 `i `uc ]
 "77
-[; ;mcc_generated_files/interrupt_manager.c: 77:     IPR6bits.NCO1IP = 1;
-[e = . . _IPR6bits 0 3 -> -> 1 `i `uc ]
+[; ;mcc_generated_files/interrupt_manager.c: 77:     IPR4bits.U1RXIP = 1;
+[e = . . _IPR4bits 0 0 -> -> 1 `i `uc ]
 "78
-[; ;mcc_generated_files/interrupt_manager.c: 78:     IPR0bits.CANIP = 1;
-[e = . . _IPR0bits 0 6 -> -> 1 `i `uc ]
+[; ;mcc_generated_files/interrupt_manager.c: 78:     IPR3bits.TMR0IP = 1;
+[e = . . _IPR3bits 0 7 -> -> 1 `i `uc ]
 "79
-[; ;mcc_generated_files/interrupt_manager.c: 79: }
+[; ;mcc_generated_files/interrupt_manager.c: 79:     IPR6bits.NCO1IP = 1;
+[e = . . _IPR6bits 0 3 -> -> 1 `i `uc ]
+"80
+[; ;mcc_generated_files/interrupt_manager.c: 80:     IPR0bits.CANIP = 1;
+[e = . . _IPR0bits 0 6 -> -> 1 `i `uc ]
+"81
+[; ;mcc_generated_files/interrupt_manager.c: 81: }
 [e :UE 3235 ]
 }
 [v $root$_Default_ISR `(v ~T0 @X0 0 e ]
-"81
-[; ;mcc_generated_files/interrupt_manager.c: 81: void __attribute__((picinterrupt(("irq(default),base(8)")))) Default_ISR()
+"83
+[; ;mcc_generated_files/interrupt_manager.c: 83: void __attribute__((picinterrupt(("irq(default),base(8)")))) Default_ISR()
 [v _Default_ISR `(v ~T1 @X0 1 ef ]
-"82
-[; ;mcc_generated_files/interrupt_manager.c: 82: {
+"84
+[; ;mcc_generated_files/interrupt_manager.c: 84: {
 {
 [e :U _Default_ISR ]
 [f ]
-"83
-[; ;mcc_generated_files/interrupt_manager.c: 83: }
+"85
+[; ;mcc_generated_files/interrupt_manager.c: 85: }
 [e :UE 3236 ]
 }

@@ -16,34 +16,34 @@ extern double __fpnormalize(double);
 
 
 
-# 1 "/opt/microchip/xc8/v2.41/pic/include/c99/xc8debug.h" 1 3
+# 1 "/opt/microchip/xc8/v2.40/pic/include/c99/xc8debug.h" 1 3
 
 
 
-# 1 "/opt/microchip/xc8/v2.41/pic/include/c99/stdlib.h" 1 3
+# 1 "/opt/microchip/xc8/v2.40/pic/include/c99/stdlib.h" 1 3
 
 
 
-# 1 "/opt/microchip/xc8/v2.41/pic/include/c99/musl_xc8.h" 1 3
-# 5 "/opt/microchip/xc8/v2.41/pic/include/c99/stdlib.h" 2 3
+# 1 "/opt/microchip/xc8/v2.40/pic/include/c99/musl_xc8.h" 1 3
+# 5 "/opt/microchip/xc8/v2.40/pic/include/c99/stdlib.h" 2 3
 
 
 
 
 
-# 1 "/opt/microchip/xc8/v2.41/pic/include/c99/features.h" 1 3
-# 11 "/opt/microchip/xc8/v2.41/pic/include/c99/stdlib.h" 2 3
-# 21 "/opt/microchip/xc8/v2.41/pic/include/c99/stdlib.h" 3
-# 1 "/opt/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 1 3
-# 18 "/opt/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 3
+# 1 "/opt/microchip/xc8/v2.40/pic/include/c99/features.h" 1 3
+# 11 "/opt/microchip/xc8/v2.40/pic/include/c99/stdlib.h" 2 3
+# 21 "/opt/microchip/xc8/v2.40/pic/include/c99/stdlib.h" 3
+# 1 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 1 3
+# 18 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 3
 typedef long int wchar_t;
-# 122 "/opt/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 3
+# 122 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 3
 typedef unsigned size_t;
-# 168 "/opt/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 3
+# 168 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 3
 typedef __int24 int24_t;
-# 204 "/opt/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 3
+# 204 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 3
 typedef __uint24 uint24_t;
-# 22 "/opt/microchip/xc8/v2.41/pic/include/c99/stdlib.h" 2 3
+# 22 "/opt/microchip/xc8/v2.40/pic/include/c99/stdlib.h" 2 3
 
 int atoi (const char *);
 long atol (const char *);
@@ -100,7 +100,7 @@ typedef struct { unsigned int quot, rem; } udiv_t;
 typedef struct { unsigned long quot, rem; } uldiv_t;
 udiv_t udiv (unsigned int, unsigned int);
 uldiv_t uldiv (unsigned long, unsigned long);
-# 5 "/opt/microchip/xc8/v2.41/pic/include/c99/xc8debug.h" 2 3
+# 5 "/opt/microchip/xc8/v2.40/pic/include/c99/xc8debug.h" 2 3
 
 
 
@@ -115,21 +115,21 @@ extern void __builtin_software_breakpoint(void);
 
 
 
-# 1 "/opt/microchip/xc8/v2.41/pic/include/c99/stdint.h" 1 3
-# 22 "/opt/microchip/xc8/v2.41/pic/include/c99/stdint.h" 3
-# 1 "/opt/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 1 3
-# 127 "/opt/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 3
+# 1 "/opt/microchip/xc8/v2.40/pic/include/c99/stdint.h" 1 3
+# 22 "/opt/microchip/xc8/v2.40/pic/include/c99/stdint.h" 3
+# 1 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 1 3
+# 127 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 3
 typedef unsigned long uintptr_t;
-# 142 "/opt/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 3
+# 142 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 3
 typedef long intptr_t;
-# 158 "/opt/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 3
+# 158 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 3
 typedef signed char int8_t;
 
 
 
 
 typedef short int16_t;
-# 173 "/opt/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 3
+# 173 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 3
 typedef long int32_t;
 
 
@@ -137,7 +137,7 @@ typedef long int32_t;
 
 
 typedef long long int64_t;
-# 188 "/opt/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 3
+# 188 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 3
 typedef long long intmax_t;
 
 
@@ -150,7 +150,7 @@ typedef unsigned char uint8_t;
 
 
 typedef unsigned short uint16_t;
-# 209 "/opt/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 3
+# 209 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 3
 typedef unsigned long uint32_t;
 
 
@@ -158,9 +158,9 @@ typedef unsigned long uint32_t;
 
 
 typedef unsigned long long uint64_t;
-# 229 "/opt/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 3
+# 229 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 3
 typedef unsigned long long uintmax_t;
-# 23 "/opt/microchip/xc8/v2.41/pic/include/c99/stdint.h" 2 3
+# 23 "/opt/microchip/xc8/v2.40/pic/include/c99/stdint.h" 2 3
 
 typedef int8_t int_fast8_t;
 
@@ -192,13 +192,13 @@ typedef uint24_t uint_fast24_t;
 typedef uint32_t uint_least32_t;
 
 typedef uint64_t uint_least64_t;
-# 144 "/opt/microchip/xc8/v2.41/pic/include/c99/stdint.h" 3
-# 1 "/opt/microchip/xc8/v2.41/pic/include/c99/bits/stdint.h" 1 3
+# 144 "/opt/microchip/xc8/v2.40/pic/include/c99/stdint.h" 3
+# 1 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/stdint.h" 1 3
 typedef int16_t int_fast16_t;
 typedef int32_t int_fast32_t;
 typedef uint16_t uint_fast16_t;
 typedef uint32_t uint_fast32_t;
-# 145 "/opt/microchip/xc8/v2.41/pic/include/c99/stdint.h" 2 3
+# 145 "/opt/microchip/xc8/v2.40/pic/include/c99/stdint.h" 2 3
 # 5 "/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.18.389/xc8/pic/include/builtins.h" 2 3
 
 
@@ -38291,9 +38291,156 @@ unsigned char __t3rd16on(void);
 
 # 1 "mcc_generated_files/uart2.h" 1
 # 55 "mcc_generated_files/uart2.h"
-# 1 "/opt/microchip/xc8/v2.41/pic/include/c99/stdbool.h" 1 3
+# 1 "/opt/microchip/xc8/v2.40/pic/include/c99/stdbool.h" 1 3
 # 55 "mcc_generated_files/uart2.h" 2
-# 74 "mcc_generated_files/uart2.h"
+
+
+# 1 "/opt/microchip/xc8/v2.40/pic/include/c99/stdio.h" 1 3
+# 24 "/opt/microchip/xc8/v2.40/pic/include/c99/stdio.h" 3
+# 1 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 1 3
+
+
+
+
+
+typedef void * va_list[1];
+
+
+
+
+typedef void * __isoc_va_list[1];
+# 137 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 3
+typedef long ssize_t;
+# 246 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 3
+typedef long long off_t;
+# 399 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 3
+typedef struct _IO_FILE FILE;
+# 25 "/opt/microchip/xc8/v2.40/pic/include/c99/stdio.h" 2 3
+# 52 "/opt/microchip/xc8/v2.40/pic/include/c99/stdio.h" 3
+typedef union _G_fpos64_t {
+ char __opaque[16];
+ double __align;
+} fpos_t;
+
+extern FILE *const stdin;
+extern FILE *const stdout;
+extern FILE *const stderr;
+
+
+
+
+
+FILE *fopen(const char *restrict, const char *restrict);
+FILE *freopen(const char *restrict, const char *restrict, FILE *restrict);
+int fclose(FILE *);
+
+int remove(const char *);
+int rename(const char *, const char *);
+
+int feof(FILE *);
+int ferror(FILE *);
+int fflush(FILE *);
+void clearerr(FILE *);
+
+int fseek(FILE *, long, int);
+long ftell(FILE *);
+void rewind(FILE *);
+
+int fgetpos(FILE *restrict, fpos_t *restrict);
+int fsetpos(FILE *, const fpos_t *);
+
+size_t fread(void *restrict, size_t, size_t, FILE *restrict);
+size_t fwrite(const void *restrict, size_t, size_t, FILE *restrict);
+
+int fgetc(FILE *);
+int getc(FILE *);
+int getchar(void);
+int ungetc(int, FILE *);
+
+int fputc(int, FILE *);
+int putc(int, FILE *);
+int putchar(int);
+
+char *fgets(char *restrict, int, FILE *restrict);
+
+char *gets(char *);
+
+
+int fputs(const char *restrict, FILE *restrict);
+int puts(const char *);
+
+__attribute__((__format__(__printf__, 1, 2)))
+int printf(const char *restrict, ...);
+__attribute__((__format__(__printf__, 2, 3)))
+int fprintf(FILE *restrict, const char *restrict, ...);
+__attribute__((__format__(__printf__, 2, 3)))
+int sprintf(char *restrict, const char *restrict, ...);
+__attribute__((__format__(__printf__, 3, 4)))
+int snprintf(char *restrict, size_t, const char *restrict, ...);
+
+__attribute__((__format__(__printf__, 1, 0)))
+int vprintf(const char *restrict, __isoc_va_list);
+int vfprintf(FILE *restrict, const char *restrict, __isoc_va_list);
+__attribute__((__format__(__printf__, 2, 0)))
+int vsprintf(char *restrict, const char *restrict, __isoc_va_list);
+__attribute__((__format__(__printf__, 3, 0)))
+int vsnprintf(char *restrict, size_t, const char *restrict, __isoc_va_list);
+
+__attribute__((__format__(__scanf__, 1, 2)))
+int scanf(const char *restrict, ...);
+__attribute__((__format__(__scanf__, 2, 3)))
+int fscanf(FILE *restrict, const char *restrict, ...);
+__attribute__((__format__(__scanf__, 2, 3)))
+int sscanf(const char *restrict, const char *restrict, ...);
+
+__attribute__((__format__(__scanf__, 1, 0)))
+int vscanf(const char *restrict, __isoc_va_list);
+int vfscanf(FILE *restrict, const char *restrict, __isoc_va_list);
+__attribute__((__format__(__scanf__, 2, 0)))
+int vsscanf(const char *restrict, const char *restrict, __isoc_va_list);
+
+void perror(const char *);
+
+int setvbuf(FILE *restrict, char *restrict, int, size_t);
+void setbuf(FILE *restrict, char *restrict);
+
+char *tmpnam(char *);
+FILE *tmpfile(void);
+
+
+
+
+FILE *fmemopen(void *restrict, size_t, const char *restrict);
+FILE *open_memstream(char **, size_t *);
+FILE *fdopen(int, const char *);
+FILE *popen(const char *, const char *);
+int pclose(FILE *);
+int fileno(FILE *);
+int fseeko(FILE *, off_t, int);
+off_t ftello(FILE *);
+int dprintf(int, const char *restrict, ...);
+int vdprintf(int, const char *restrict, __isoc_va_list);
+void flockfile(FILE *);
+int ftrylockfile(FILE *);
+void funlockfile(FILE *);
+int getc_unlocked(FILE *);
+int getchar_unlocked(void);
+int putc_unlocked(int, FILE *);
+int putchar_unlocked(int);
+ssize_t getdelim(char **restrict, size_t *restrict, int, FILE *restrict);
+ssize_t getline(char **restrict, size_t *restrict, FILE *restrict);
+int renameat(int, const char *, int, const char *);
+char *ctermid(char *);
+
+
+
+
+
+
+
+char *tempnam(const char *, const char *);
+# 57 "mcc_generated_files/uart2.h" 2
+# 75 "mcc_generated_files/uart2.h"
 typedef union {
     struct {
         unsigned perr : 1;
@@ -38309,39 +38456,39 @@ typedef union {
 
 extern volatile uint8_t uart2TxBufferRemaining;
 extern volatile uint8_t uart2RxCount;
-# 115 "mcc_generated_files/uart2.h"
+# 116 "mcc_generated_files/uart2.h"
 void UART2_Initialize(void);
-# 163 "mcc_generated_files/uart2.h"
+# 164 "mcc_generated_files/uart2.h"
 _Bool UART2_is_rx_ready(void);
-# 211 "mcc_generated_files/uart2.h"
+# 212 "mcc_generated_files/uart2.h"
 _Bool UART2_is_tx_ready(void);
-# 258 "mcc_generated_files/uart2.h"
+# 259 "mcc_generated_files/uart2.h"
 _Bool UART2_is_tx_done(void);
-# 306 "mcc_generated_files/uart2.h"
+# 307 "mcc_generated_files/uart2.h"
 uart2_status_t UART2_get_last_status(void);
-# 355 "mcc_generated_files/uart2.h"
+# 356 "mcc_generated_files/uart2.h"
 uint8_t UART2_Read(void);
-# 380 "mcc_generated_files/uart2.h"
+# 381 "mcc_generated_files/uart2.h"
 void UART2_Write(uint8_t txData);
-# 401 "mcc_generated_files/uart2.h"
+# 402 "mcc_generated_files/uart2.h"
 void UART2_Transmit_ISR(void);
-# 422 "mcc_generated_files/uart2.h"
+# 423 "mcc_generated_files/uart2.h"
 void UART2_Receive_ISR(void);
-# 443 "mcc_generated_files/uart2.h"
+# 444 "mcc_generated_files/uart2.h"
 void UART2_RxDataHandler(void);
-# 461 "mcc_generated_files/uart2.h"
+# 462 "mcc_generated_files/uart2.h"
 void UART2_SetFramingErrorHandler(void (* interruptHandler)(void));
-# 479 "mcc_generated_files/uart2.h"
+# 480 "mcc_generated_files/uart2.h"
 void UART2_SetOverrunErrorHandler(void (* interruptHandler)(void));
-# 497 "mcc_generated_files/uart2.h"
+# 498 "mcc_generated_files/uart2.h"
 void UART2_SetErrorHandler(void (* interruptHandler)(void));
-# 517 "mcc_generated_files/uart2.h"
+# 518 "mcc_generated_files/uart2.h"
 void (*UART2_RxInterruptHandler)(void);
-# 535 "mcc_generated_files/uart2.h"
+# 536 "mcc_generated_files/uart2.h"
 void (*UART2_TxInterruptHandler)(void);
-# 555 "mcc_generated_files/uart2.h"
+# 556 "mcc_generated_files/uart2.h"
 void UART2_SetRxInterruptHandler(void (* InterruptHandler)(void));
-# 573 "mcc_generated_files/uart2.h"
+# 574 "mcc_generated_files/uart2.h"
 void UART2_SetTxInterruptHandler(void (* InterruptHandler)(void));
 # 51 "mcc_generated_files/uart2.c" 2
 
@@ -38411,10 +38558,10 @@ void UART2_Initialize(void)
     U2CON2 = 0x00;
 
 
-    U2BRGL = 0x11;
+    U2BRGL = 0x56;
 
 
-    U2BRGH = 0x04;
+    U2BRGH = 0x00;
 
 
     U2FIFO = 0x00;
@@ -38509,6 +38656,16 @@ void UART2_Write(uint8_t txData)
         uart2TxBufferRemaining--;
     }
     PIE8bits.U2TXIE = 1;
+}
+
+char getch(void)
+{
+    return UART2_Read();
+}
+
+void putch(char txData)
+{
+    UART2_Write(txData);
 }
 
 void __attribute__((picinterrupt(("irq(U2TX),base(8)")))) UART2_tx_vect_isr()
