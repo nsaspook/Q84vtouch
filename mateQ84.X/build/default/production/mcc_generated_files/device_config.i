@@ -12,7 +12,7 @@
 #pragma config RSTOSC = EXTOSC_4PLL
 
 
-#pragma config CLKOUTEN = OFF
+#pragma config CLKOUTEN = ON
 #pragma config PR1WAY = ON
 #pragma config CSWEN = ON
 #pragma config JTAGEN = ON

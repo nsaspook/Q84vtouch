@@ -1,18 +1,24 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[v F22972 `(v ~T0 @X0 0 tf ]
-[v F22974 `(v ~T0 @X0 0 tf ]
+[v F23078 `(v ~T0 @X0 0 tf ]
+[v F23080 `(v ~T0 @X0 0 tf ]
 "109 mcc_generated_files/interrupt_manager.h
 [; ;mcc_generated_files/interrupt_manager.h: 109: void INTERRUPT_Initialize (void);
 [v _INTERRUPT_Initialize `(v ~T0 @X0 0 ef ]
-"101 mcc_generated_files/mcc.h
-[; ;mcc_generated_files/mcc.h: 101: void PMD_Initialize(void);
+"104 mcc_generated_files/mcc.h
+[; ;mcc_generated_files/mcc.h: 104: void PMD_Initialize(void);
 [v _PMD_Initialize `(v ~T0 @X0 0 ef ]
-"234 mcc_generated_files/pin_manager.h
-[; ;mcc_generated_files/pin_manager.h: 234: void PIN_MANAGER_Initialize (void);
+"119 mcc_generated_files/adc.h
+[; ;mcc_generated_files/adc.h: 119: void ADC_Initialize(void);
+[v _ADC_Initialize `(v ~T0 @X0 0 ef ]
+"358 mcc_generated_files/pin_manager.h
+[; ;mcc_generated_files/pin_manager.h: 358: void PIN_MANAGER_Initialize (void);
 [v _PIN_MANAGER_Initialize `(v ~T0 @X0 0 ef ]
-"88 mcc_generated_files/mcc.h
-[; ;mcc_generated_files/mcc.h: 88: void OSCILLATOR_Initialize(void);
+"91 mcc_generated_files/mcc.h
+[; ;mcc_generated_files/mcc.h: 91: void OSCILLATOR_Initialize(void);
 [v _OSCILLATOR_Initialize `(v ~T0 @X0 0 ef ]
+"93 mcc_generated_files/nco1.h
+[; ;mcc_generated_files/nco1.h: 93: void NCO1_Initialize(void);
+[v _NCO1_Initialize `(v ~T0 @X0 0 ef ]
 "100 mcc_generated_files/tmr0.h
 [; ;mcc_generated_files/tmr0.h: 100: void TMR0_Initialize(void);
 [v _TMR0_Initialize `(v ~T0 @X0 0 ef ]
@@ -22,9 +28,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "110 mcc_generated_files/uart1.h
 [; ;mcc_generated_files/uart1.h: 110: void UART1_Initialize(void);
 [v _UART1_Initialize `(v ~T0 @X0 0 ef ]
-"65 mcc_generated_files/spi1.h
-[; ;mcc_generated_files/spi1.h: 65: void SPI1_Initialize(void);
+"63 mcc_generated_files/spi1.h
+[; ;mcc_generated_files/spi1.h: 63: void SPI1_Initialize(void);
 [v _SPI1_Initialize `(v ~T0 @X0 0 ef ]
+"92 mcc_generated_files/clkref.h
+[; ;mcc_generated_files/clkref.h: 92: void CLKREF_Initialize(void);
+[v _CLKREF_Initialize `(v ~T0 @X0 0 ef ]
 "102 mcc_generated_files/can1.h
 [; ;mcc_generated_files/can1.h: 102: void CAN1_Initialize(void);
 [v _CAN1_Initialize `(v ~T0 @X0 0 ef ]
@@ -3651,10 +3660,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; <" TOSU equ 04FFh ;# ">
 "517 mcc_generated_files/uart2.h
 [; ;mcc_generated_files/uart2.h: 517: void (*UART2_RxInterruptHandler)(void);
-[v _UART2_RxInterruptHandler `*F22972 ~T0 @X0 1 e ]
+[v _UART2_RxInterruptHandler `*F23078 ~T0 @X0 1 e ]
 "535
 [; ;mcc_generated_files/uart2.h: 535: void (*UART2_TxInterruptHandler)(void);
-[v _UART2_TxInterruptHandler `*F22974 ~T0 @X0 1 e ]
+[v _UART2_TxInterruptHandler `*F23080 ~T0 @X0 1 e ]
 "50 mcc_generated_files/mcc.c
 [; ;mcc_generated_files/mcc.c: 50: void SYSTEM_Initialize(void)
 [v _SYSTEM_Initialize `(v ~T0 @X0 1 ef ]
@@ -3670,93 +3679,102 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;mcc_generated_files/mcc.c: 53:     PMD_Initialize();
 [e ( _PMD_Initialize ..  ]
 "54
-[; ;mcc_generated_files/mcc.c: 54:     PIN_MANAGER_Initialize();
-[e ( _PIN_MANAGER_Initialize ..  ]
+[; ;mcc_generated_files/mcc.c: 54:     ADC_Initialize();
+[e ( _ADC_Initialize ..  ]
 "55
-[; ;mcc_generated_files/mcc.c: 55:     OSCILLATOR_Initialize();
-[e ( _OSCILLATOR_Initialize ..  ]
+[; ;mcc_generated_files/mcc.c: 55:     PIN_MANAGER_Initialize();
+[e ( _PIN_MANAGER_Initialize ..  ]
 "56
-[; ;mcc_generated_files/mcc.c: 56:     TMR0_Initialize();
-[e ( _TMR0_Initialize ..  ]
+[; ;mcc_generated_files/mcc.c: 56:     OSCILLATOR_Initialize();
+[e ( _OSCILLATOR_Initialize ..  ]
 "57
-[; ;mcc_generated_files/mcc.c: 57:     UART2_Initialize();
-[e ( _UART2_Initialize ..  ]
+[; ;mcc_generated_files/mcc.c: 57:     NCO1_Initialize();
+[e ( _NCO1_Initialize ..  ]
 "58
-[; ;mcc_generated_files/mcc.c: 58:     UART1_Initialize();
-[e ( _UART1_Initialize ..  ]
+[; ;mcc_generated_files/mcc.c: 58:     TMR0_Initialize();
+[e ( _TMR0_Initialize ..  ]
 "59
-[; ;mcc_generated_files/mcc.c: 59:     SPI1_Initialize();
-[e ( _SPI1_Initialize ..  ]
+[; ;mcc_generated_files/mcc.c: 59:     UART2_Initialize();
+[e ( _UART2_Initialize ..  ]
 "60
-[; ;mcc_generated_files/mcc.c: 60:     CAN1_Initialize();
-[e ( _CAN1_Initialize ..  ]
+[; ;mcc_generated_files/mcc.c: 60:     UART1_Initialize();
+[e ( _UART1_Initialize ..  ]
 "61
-[; ;mcc_generated_files/mcc.c: 61: }
+[; ;mcc_generated_files/mcc.c: 61:     SPI1_Initialize();
+[e ( _SPI1_Initialize ..  ]
+"62
+[; ;mcc_generated_files/mcc.c: 62:     CLKREF_Initialize();
+[e ( _CLKREF_Initialize ..  ]
+"63
+[; ;mcc_generated_files/mcc.c: 63:     CAN1_Initialize();
+[e ( _CAN1_Initialize ..  ]
+"64
+[; ;mcc_generated_files/mcc.c: 64: }
 [e :UE 3235 ]
 }
-"63
-[; ;mcc_generated_files/mcc.c: 63: void OSCILLATOR_Initialize(void)
+"66
+[; ;mcc_generated_files/mcc.c: 66: void OSCILLATOR_Initialize(void)
 [v _OSCILLATOR_Initialize `(v ~T0 @X0 1 ef ]
-"64
-[; ;mcc_generated_files/mcc.c: 64: {
+"67
+[; ;mcc_generated_files/mcc.c: 67: {
 {
 [e :U _OSCILLATOR_Initialize ]
 [f ]
-"66
-[; ;mcc_generated_files/mcc.c: 66:     OSCCON1 = 0x20;
+"69
+[; ;mcc_generated_files/mcc.c: 69:     OSCCON1 = 0x20;
 [e = _OSCCON1 -> -> 32 `i `uc ]
-"68
-[; ;mcc_generated_files/mcc.c: 68:     OSCCON3 = 0x00;
+"71
+[; ;mcc_generated_files/mcc.c: 71:     OSCCON3 = 0x00;
 [e = _OSCCON3 -> -> 0 `i `uc ]
-"70
-[; ;mcc_generated_files/mcc.c: 70:     OSCEN = 0x01;
+"73
+[; ;mcc_generated_files/mcc.c: 73:     OSCEN = 0x01;
 [e = _OSCEN -> -> 1 `i `uc ]
-"72
-[; ;mcc_generated_files/mcc.c: 72:     OSCFRQ = 0x05;
-[e = _OSCFRQ -> -> 5 `i `uc ]
-"74
-[; ;mcc_generated_files/mcc.c: 74:     OSCTUNE = 0x00;
-[e = _OSCTUNE -> -> 0 `i `uc ]
 "75
-[; ;mcc_generated_files/mcc.c: 75: }
+[; ;mcc_generated_files/mcc.c: 75:     OSCFRQ = 0x05;
+[e = _OSCFRQ -> -> 5 `i `uc ]
+"77
+[; ;mcc_generated_files/mcc.c: 77:     OSCTUNE = 0x00;
+[e = _OSCTUNE -> -> 0 `i `uc ]
+"78
+[; ;mcc_generated_files/mcc.c: 78: }
 [e :UE 3236 ]
 }
-"77
-[; ;mcc_generated_files/mcc.c: 77: void PMD_Initialize(void)
+"80
+[; ;mcc_generated_files/mcc.c: 80: void PMD_Initialize(void)
 [v _PMD_Initialize `(v ~T0 @X0 1 ef ]
-"78
-[; ;mcc_generated_files/mcc.c: 78: {
+"81
+[; ;mcc_generated_files/mcc.c: 81: {
 {
 [e :U _PMD_Initialize ]
 [f ]
-"80
-[; ;mcc_generated_files/mcc.c: 80:     PMD0 = 0x00;
+"83
+[; ;mcc_generated_files/mcc.c: 83:     PMD0 = 0x00;
 [e = _PMD0 -> -> 0 `i `uc ]
-"82
-[; ;mcc_generated_files/mcc.c: 82:     PMD1 = 0x00;
+"85
+[; ;mcc_generated_files/mcc.c: 85:     PMD1 = 0x00;
 [e = _PMD1 -> -> 0 `i `uc ]
-"84
-[; ;mcc_generated_files/mcc.c: 84:     PMD2 = 0x00;
+"87
+[; ;mcc_generated_files/mcc.c: 87:     PMD2 = 0x00;
 [e = _PMD2 -> -> 0 `i `uc ]
-"86
-[; ;mcc_generated_files/mcc.c: 86:     PMD3 = 0x00;
+"89
+[; ;mcc_generated_files/mcc.c: 89:     PMD3 = 0x00;
 [e = _PMD3 -> -> 0 `i `uc ]
-"88
-[; ;mcc_generated_files/mcc.c: 88:     PMD4 = 0x00;
+"91
+[; ;mcc_generated_files/mcc.c: 91:     PMD4 = 0x00;
 [e = _PMD4 -> -> 0 `i `uc ]
-"90
-[; ;mcc_generated_files/mcc.c: 90:     PMD5 = 0x00;
+"93
+[; ;mcc_generated_files/mcc.c: 93:     PMD5 = 0x00;
 [e = _PMD5 -> -> 0 `i `uc ]
-"92
-[; ;mcc_generated_files/mcc.c: 92:     PMD6 = 0x00;
+"95
+[; ;mcc_generated_files/mcc.c: 95:     PMD6 = 0x00;
 [e = _PMD6 -> -> 0 `i `uc ]
-"94
-[; ;mcc_generated_files/mcc.c: 94:     PMD7 = 0x00;
-[e = _PMD7 -> -> 0 `i `uc ]
-"96
-[; ;mcc_generated_files/mcc.c: 96:     PMD8 = 0x00;
-[e = _PMD8 -> -> 0 `i `uc ]
 "97
-[; ;mcc_generated_files/mcc.c: 97: }
+[; ;mcc_generated_files/mcc.c: 97:     PMD7 = 0x00;
+[e = _PMD7 -> -> 0 `i `uc ]
+"99
+[; ;mcc_generated_files/mcc.c: 99:     PMD8 = 0x00;
+[e = _PMD8 -> -> 0 `i `uc ]
+"100
+[; ;mcc_generated_files/mcc.c: 100: }
 [e :UE 3237 ]
 }

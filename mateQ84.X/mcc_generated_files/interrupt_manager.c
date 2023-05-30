@@ -15,12 +15,12 @@
     For individual peripheral handlers please see the peripheral driver for
     all modules selected in the GUI.
     Generation Information :
-        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.7
+        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.8
         Device            :  PIC18F47Q84
         Driver Version    :  2.12
     The generated drivers are tested against the following:
-        Compiler          :  XC8 2.31 and above or later
-        MPLAB 	          :  MPLAB X 5.45
+        Compiler          :  XC8 2.36 and above or later
+        MPLAB 	          :  MPLAB X 6.00
 */
 
 /*
@@ -68,7 +68,9 @@ void  INTERRUPT_Initialize (void)
     IVTLOCKbits.IVTLOCKED = 0x01; // lock IVT
 
     GIE = state;
+
     // Assign peripheral interrupt priority vectors
+    IPR1bits.ADIP = 1;
     IPR8bits.U2TXIP = 1;
     IPR8bits.U2RXIP = 1;
     IPR3bits.TMR0IP = 1;

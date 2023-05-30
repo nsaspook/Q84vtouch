@@ -13,12 +13,12 @@
   @Description
     This header file provides APIs for driver for ADC.
     Generation Information :
-        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.7
+        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.8
         Device            :  PIC18F47Q84
         Driver Version    :  1.0.0
     The generated drivers are tested against the following:
-        Compiler          :  XC8 2.31 and above
-        MPLAB             :  MPLAB X 5.45
+        Compiler          :  XC8 2.36 and above
+        MPLAB             :  MPLAB X 6.00
 */
 
 /*
@@ -71,6 +71,11 @@ typedef uint16_t adc_result_t;
  */
 typedef enum
 {
+    channel_ANA0 =  0x0,
+    channel_ANA1 =  0x1,
+    channel_ANA2 =  0x2,
+    channel_ANA4 =  0x4,
+    channel_ANA5 =  0x5,
     channel_VSS =  0x3B,
     channel_Temp =  0x3C,
     channel_DAC1 =  0x3D,
@@ -86,6 +91,8 @@ typedef enum
 typedef enum
 {
     CONTEXT_1,
+    CONTEXT_2,
+    CONTEXT_3,
 } ADC_context_t;
 
 /**

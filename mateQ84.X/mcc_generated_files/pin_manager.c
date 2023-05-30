@@ -13,12 +13,12 @@
   Description:
     This header file provides implementations for pin APIs for all pins selected in the GUI.
     Generation Information :
-        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.7
+        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.8
         Device            :  PIC18F47Q84
         Driver Version    :  2.11
     The generated drivers are tested against the following:
-        Compiler          :  XC8 2.31 and above
-        MPLAB             :  MPLAB X 5.45
+        Compiler          :  XC8 2.36 and above
+        MPLAB             :  MPLAB X 6.00
 
     Copyright (c) 2013 - 2015 released Microchip Technology Inc.  All rights reserved.
 */
@@ -60,7 +60,7 @@ void PIN_MANAGER_Initialize(void)
     LATE = 0x00;
     LATD = 0x00;
     LATA = 0x00;
-    LATB = 0x0A;
+    LATB = 0x0E;
     LATC = 0x00;
 
     /**
@@ -69,14 +69,14 @@ void PIN_MANAGER_Initialize(void)
     TRISE = 0x07;
     TRISA = 0xEF;
     TRISB = 0xE1;
-    TRISC = 0xB7;
+    TRISC = 0x97;
     TRISD = 0xBF;
 
     /**
     ANSELx registers
     */
     ANSELD = 0xBE;
-    ANSELC = 0x67;
+    ANSELC = 0x07;
     ANSELB = 0xE0;
     ANSELE = 0x07;
     ANSELA = 0xFF;
@@ -86,7 +86,7 @@ void PIN_MANAGER_Initialize(void)
     */
     WPUD = 0x00;
     WPUE = 0x00;
-    WPUB = 0x11;
+    WPUB = 0x01;
     WPUA = 0x00;
     WPUC = 0x00;
 
@@ -125,11 +125,11 @@ void PIN_MANAGER_Initialize(void)
     
 	
     U2RXPPS = 0x18;   //RD0->UART2:RX2;    
-    ADACTPPS = 0x0C;   //RB4->ADC:ADACT;    
     SPI1SCKPPS = 0x13;   //RC3->SPI1:SCK1;    
     RC3PPS = 0x31;   //RC3->SPI1:SCK1;    
     CANRXPPS = 0x08;   //RB0->CAN1:CANRX;    
     RB4PPS = 0x46;   //RB4->CAN1:CANTX;    
+    RC5PPS = 0x32;   //RC5->SPI1:SDO1;    
     RC6PPS = 0x20;   //RC6->UART1:TX1;    
     U1RXPPS = 0x17;   //RC7->UART1:RX1;    
     RD6PPS = 0x23;   //RD6->UART2:TX2;    
