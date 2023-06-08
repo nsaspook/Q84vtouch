@@ -16,34 +16,34 @@ extern double __fpnormalize(double);
 
 
 
-# 1 "/opt/microchip/xc8/v2.40/pic/include/c99/xc8debug.h" 1 3
+# 1 "/opt/microchip/xc8/v2.41/pic/include/c99/xc8debug.h" 1 3
 
 
 
-# 1 "/opt/microchip/xc8/v2.40/pic/include/c99/stdlib.h" 1 3
+# 1 "/opt/microchip/xc8/v2.41/pic/include/c99/stdlib.h" 1 3
 
 
 
-# 1 "/opt/microchip/xc8/v2.40/pic/include/c99/musl_xc8.h" 1 3
-# 5 "/opt/microchip/xc8/v2.40/pic/include/c99/stdlib.h" 2 3
+# 1 "/opt/microchip/xc8/v2.41/pic/include/c99/musl_xc8.h" 1 3
+# 5 "/opt/microchip/xc8/v2.41/pic/include/c99/stdlib.h" 2 3
 
 
 
 
 
-# 1 "/opt/microchip/xc8/v2.40/pic/include/c99/features.h" 1 3
-# 11 "/opt/microchip/xc8/v2.40/pic/include/c99/stdlib.h" 2 3
-# 21 "/opt/microchip/xc8/v2.40/pic/include/c99/stdlib.h" 3
-# 1 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 1 3
-# 18 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 3
+# 1 "/opt/microchip/xc8/v2.41/pic/include/c99/features.h" 1 3
+# 11 "/opt/microchip/xc8/v2.41/pic/include/c99/stdlib.h" 2 3
+# 21 "/opt/microchip/xc8/v2.41/pic/include/c99/stdlib.h" 3
+# 1 "/opt/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 1 3
+# 18 "/opt/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 3
 typedef long int wchar_t;
-# 122 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 3
+# 122 "/opt/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 3
 typedef unsigned size_t;
-# 168 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 3
+# 168 "/opt/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 3
 typedef __int24 int24_t;
-# 204 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 3
+# 204 "/opt/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 3
 typedef __uint24 uint24_t;
-# 22 "/opt/microchip/xc8/v2.40/pic/include/c99/stdlib.h" 2 3
+# 22 "/opt/microchip/xc8/v2.41/pic/include/c99/stdlib.h" 2 3
 
 int atoi (const char *);
 long atol (const char *);
@@ -100,7 +100,7 @@ typedef struct { unsigned int quot, rem; } udiv_t;
 typedef struct { unsigned long quot, rem; } uldiv_t;
 udiv_t udiv (unsigned int, unsigned int);
 uldiv_t uldiv (unsigned long, unsigned long);
-# 5 "/opt/microchip/xc8/v2.40/pic/include/c99/xc8debug.h" 2 3
+# 5 "/opt/microchip/xc8/v2.41/pic/include/c99/xc8debug.h" 2 3
 
 
 
@@ -115,21 +115,21 @@ extern void __builtin_software_breakpoint(void);
 
 
 
-# 1 "/opt/microchip/xc8/v2.40/pic/include/c99/stdint.h" 1 3
-# 22 "/opt/microchip/xc8/v2.40/pic/include/c99/stdint.h" 3
-# 1 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 1 3
-# 127 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 3
+# 1 "/opt/microchip/xc8/v2.41/pic/include/c99/stdint.h" 1 3
+# 22 "/opt/microchip/xc8/v2.41/pic/include/c99/stdint.h" 3
+# 1 "/opt/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 1 3
+# 127 "/opt/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 3
 typedef unsigned long uintptr_t;
-# 142 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 3
+# 142 "/opt/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 3
 typedef long intptr_t;
-# 158 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 3
+# 158 "/opt/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 3
 typedef signed char int8_t;
 
 
 
 
 typedef short int16_t;
-# 173 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 3
+# 173 "/opt/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 3
 typedef long int32_t;
 
 
@@ -137,7 +137,7 @@ typedef long int32_t;
 
 
 typedef long long int64_t;
-# 188 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 3
+# 188 "/opt/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 3
 typedef long long intmax_t;
 
 
@@ -150,7 +150,7 @@ typedef unsigned char uint8_t;
 
 
 typedef unsigned short uint16_t;
-# 209 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 3
+# 209 "/opt/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 3
 typedef unsigned long uint32_t;
 
 
@@ -158,9 +158,9 @@ typedef unsigned long uint32_t;
 
 
 typedef unsigned long long uint64_t;
-# 229 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/alltypes.h" 3
+# 229 "/opt/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 3
 typedef unsigned long long uintmax_t;
-# 23 "/opt/microchip/xc8/v2.40/pic/include/c99/stdint.h" 2 3
+# 23 "/opt/microchip/xc8/v2.41/pic/include/c99/stdint.h" 2 3
 
 typedef int8_t int_fast8_t;
 
@@ -192,13 +192,13 @@ typedef uint24_t uint_fast24_t;
 typedef uint32_t uint_least32_t;
 
 typedef uint64_t uint_least64_t;
-# 144 "/opt/microchip/xc8/v2.40/pic/include/c99/stdint.h" 3
-# 1 "/opt/microchip/xc8/v2.40/pic/include/c99/bits/stdint.h" 1 3
+# 144 "/opt/microchip/xc8/v2.41/pic/include/c99/stdint.h" 3
+# 1 "/opt/microchip/xc8/v2.41/pic/include/c99/bits/stdint.h" 1 3
 typedef int16_t int_fast16_t;
 typedef int32_t int_fast32_t;
 typedef uint16_t uint_fast16_t;
 typedef uint32_t uint_fast32_t;
-# 145 "/opt/microchip/xc8/v2.40/pic/include/c99/stdint.h" 2 3
+# 145 "/opt/microchip/xc8/v2.41/pic/include/c99/stdint.h" 2 3
 # 5 "/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.18.389/xc8/pic/include/builtins.h" 2 3
 
 
@@ -38291,7 +38291,7 @@ unsigned char __t3rd16on(void);
 
 # 1 "mcc_generated_files/uart1.h" 1
 # 55 "mcc_generated_files/uart1.h"
-# 1 "/opt/microchip/xc8/v2.40/pic/include/c99/stdbool.h" 1 3
+# 1 "/opt/microchip/xc8/v2.41/pic/include/c99/stdbool.h" 1 3
 # 55 "mcc_generated_files/uart1.h" 2
 # 74 "mcc_generated_files/uart1.h"
 typedef union {
@@ -38303,65 +38303,31 @@ typedef union {
     };
     uint8_t status;
 }uart1_status_t;
-
-
-
-
-extern volatile uint8_t uart1TxBufferRemaining;
-extern volatile uint8_t uart1RxCount;
-# 115 "mcc_generated_files/uart1.h"
+# 110 "mcc_generated_files/uart1.h"
 void UART1_Initialize(void);
-# 163 "mcc_generated_files/uart1.h"
+# 158 "mcc_generated_files/uart1.h"
 _Bool UART1_is_rx_ready(void);
-# 211 "mcc_generated_files/uart1.h"
+# 206 "mcc_generated_files/uart1.h"
 _Bool UART1_is_tx_ready(void);
-# 258 "mcc_generated_files/uart1.h"
+# 253 "mcc_generated_files/uart1.h"
 _Bool UART1_is_tx_done(void);
-# 306 "mcc_generated_files/uart1.h"
+# 301 "mcc_generated_files/uart1.h"
 uart1_status_t UART1_get_last_status(void);
-# 355 "mcc_generated_files/uart1.h"
+# 350 "mcc_generated_files/uart1.h"
 uint8_t UART1_Read(void);
-# 380 "mcc_generated_files/uart1.h"
+# 375 "mcc_generated_files/uart1.h"
 void UART1_Write(uint8_t txData);
-# 399 "mcc_generated_files/uart1.h"
+# 394 "mcc_generated_files/uart1.h"
 void UART1_SetAddresstoTransmit(uint8_t txAddress);
-# 420 "mcc_generated_files/uart1.h"
-void UART1_Transmit_ISR(void);
-# 441 "mcc_generated_files/uart1.h"
-void UART1_Receive_ISR(void);
-# 462 "mcc_generated_files/uart1.h"
-void UART1_RxDataHandler(void);
-# 480 "mcc_generated_files/uart1.h"
+# 414 "mcc_generated_files/uart1.h"
 void UART1_SetFramingErrorHandler(void (* interruptHandler)(void));
-# 498 "mcc_generated_files/uart1.h"
+# 432 "mcc_generated_files/uart1.h"
 void UART1_SetOverrunErrorHandler(void (* interruptHandler)(void));
-# 516 "mcc_generated_files/uart1.h"
+# 450 "mcc_generated_files/uart1.h"
 void UART1_SetErrorHandler(void (* interruptHandler)(void));
-# 536 "mcc_generated_files/uart1.h"
-void (*UART1_RxInterruptHandler)(void);
-# 554 "mcc_generated_files/uart1.h"
-void (*UART1_TxInterruptHandler)(void);
-# 574 "mcc_generated_files/uart1.h"
-void UART1_SetRxInterruptHandler(void (* InterruptHandler)(void));
-# 592 "mcc_generated_files/uart1.h"
-void UART1_SetTxInterruptHandler(void (* InterruptHandler)(void));
 # 51 "mcc_generated_files/uart1.c" 2
 
-# 1 "mcc_generated_files/interrupt_manager.h" 1
-# 109 "mcc_generated_files/interrupt_manager.h"
-void INTERRUPT_Initialize (void);
-# 52 "mcc_generated_files/uart1.c" 2
-# 64 "mcc_generated_files/uart1.c"
-static volatile uint8_t uart1TxHead = 0;
-static volatile uint8_t uart1TxTail = 0;
-static volatile uint8_t uart1TxBuffer[64];
-volatile uint8_t uart1TxBufferRemaining;
 
-static volatile uint8_t uart1RxHead = 0;
-static volatile uint8_t uart1RxTail = 0;
-static volatile uint8_t uart1RxBuffer[64];
-static volatile uart1_status_t uart1RxStatusBuffer[64];
-volatile uint8_t uart1RxCount;
 static volatile uart1_status_t uart1RxLastError;
 
 
@@ -38378,10 +38344,6 @@ void UART1_DefaultErrorHandler(void);
 void UART1_Initialize(void)
 {
 
-    PIE4bits.U1RXIE = 0;
-    UART1_SetRxInterruptHandler(UART1_Receive_ISR);
-    PIE4bits.U1TXIE = 0;
-    UART1_SetTxInterruptHandler(UART1_Transmit_ISR);
 
 
 
@@ -38437,26 +38399,16 @@ void UART1_Initialize(void)
 
     uart1RxLastError.status = 0;
 
-
-    uart1TxHead = 0;
-    uart1TxTail = 0;
-    uart1TxBufferRemaining = sizeof(uart1TxBuffer);
-    uart1RxHead = 0;
-    uart1RxTail = 0;
-    uart1RxCount = 0;
-
-
-    PIE4bits.U1RXIE = 1;
 }
 
 _Bool UART1_is_rx_ready(void)
 {
-    return (uart1RxCount ? 1 : 0);
+    return (_Bool)(PIR4bits.U1RXIF);
 }
 
 _Bool UART1_is_tx_ready(void)
 {
-    return (uart1TxBufferRemaining ? 1 : 0);
+    return (_Bool)(PIR4bits.U1TXIF && U1CON0bits.TXEN);
 }
 
 _Bool UART1_is_tx_done(void)
@@ -38470,47 +38422,36 @@ uart1_status_t UART1_get_last_status(void){
 
 uint8_t UART1_Read(void)
 {
-    uint8_t readValue = 0;
-
-    while(0 == uart1RxCount)
+    while(!PIR4bits.U1RXIF)
     {
     }
 
-    uart1RxLastError = uart1RxStatusBuffer[uart1RxTail];
+    uart1RxLastError.status = 0;
 
-    readValue = uart1RxBuffer[uart1RxTail++];
-    if(sizeof(uart1RxBuffer) <= uart1RxTail)
-    {
-        uart1RxTail = 0;
+    if(U1ERRIRbits.FERIF){
+        uart1RxLastError.ferr = 1;
+        UART1_FramingErrorHandler();
     }
-    PIE4bits.U1RXIE = 0;
-    uart1RxCount--;
-    PIE4bits.U1RXIE = 1;
 
-    return readValue;
+    if(U1ERRIRbits.RXFOIF){
+        uart1RxLastError.oerr = 1;
+        UART1_OverrunErrorHandler();
+    }
+
+    if(uart1RxLastError.status){
+        UART1_ErrorHandler();
+    }
+
+    return U1RXB;
 }
 
 void UART1_Write(uint8_t txData)
 {
-    while(0 == uart1TxBufferRemaining)
+    while(0 == PIR4bits.U1TXIF)
     {
     }
 
-    if(0 == PIE4bits.U1TXIE)
-    {
-        U1TXB = txData;
-    }
-    else
-    {
-        PIE4bits.U1TXIE = 0;
-        uart1TxBuffer[uart1TxHead++] = txData;
-        if(sizeof(uart1TxBuffer) <= uart1TxHead)
-        {
-            uart1TxHead = 0;
-        }
-        uart1TxBufferRemaining--;
-    }
-    PIE4bits.U1TXIE = 1;
+    U1TXB = txData;
 }
 
 void UART1_SetAddresstoTransmit(uint8_t txAddress)
@@ -38518,84 +38459,15 @@ void UART1_SetAddresstoTransmit(uint8_t txAddress)
     U1P1L = txAddress;
 }
 
-void __attribute__((picinterrupt(("irq(U1TX),base(8)")))) UART1_tx_vect_isr()
-{
-    if(UART1_TxInterruptHandler)
-    {
-        UART1_TxInterruptHandler();
-    }
-}
-
-void __attribute__((picinterrupt(("irq(U1RX),base(8)")))) UART1_rx_vect_isr()
-{
-    if(UART1_RxInterruptHandler)
-    {
-        UART1_RxInterruptHandler();
-    }
-}
 
 
 
-void UART1_Transmit_ISR(void)
-{
-
-    if(sizeof(uart1TxBuffer) > uart1TxBufferRemaining)
-    {
-        U1TXB = uart1TxBuffer[uart1TxTail++];
-       if(sizeof(uart1TxBuffer) <= uart1TxTail)
-        {
-            uart1TxTail = 0;
-        }
-        uart1TxBufferRemaining++;
-    }
-    else
-    {
-        PIE4bits.U1TXIE = 0;
-    }
-
-
-}
-
-void UART1_Receive_ISR(void)
-{
-
-    uart1RxStatusBuffer[uart1RxHead].status = 0;
-
-    if(U1ERRIRbits.FERIF){
-        uart1RxStatusBuffer[uart1RxHead].ferr = 1;
-        UART1_FramingErrorHandler();
-    }
-
-    if(U1ERRIRbits.RXFOIF){
-        uart1RxStatusBuffer[uart1RxHead].oerr = 1;
-        UART1_OverrunErrorHandler();
-    }
-
-    if(uart1RxStatusBuffer[uart1RxHead].status){
-        UART1_ErrorHandler();
-    } else {
-        UART1_RxDataHandler();
-    }
-
-
-}
-
-void UART1_RxDataHandler(void){
-
-    uart1RxBuffer[uart1RxHead++] = U1RXB;
-    if(sizeof(uart1RxBuffer) <= uart1RxHead)
-    {
-        uart1RxHead = 0;
-    }
-    uart1RxCount++;
-}
 
 void UART1_DefaultFramingErrorHandler(void){}
 
 void UART1_DefaultOverrunErrorHandler(void){}
 
 void UART1_DefaultErrorHandler(void){
-    UART1_RxDataHandler();
 }
 
 void UART1_SetFramingErrorHandler(void (* interruptHandler)(void)){
@@ -38608,14 +38480,4 @@ void UART1_SetOverrunErrorHandler(void (* interruptHandler)(void)){
 
 void UART1_SetErrorHandler(void (* interruptHandler)(void)){
     UART1_ErrorHandler = interruptHandler;
-}
-
-
-
-void UART1_SetRxInterruptHandler(void (* InterruptHandler)(void)){
-    UART1_RxInterruptHandler = InterruptHandler;
-}
-
-void UART1_SetTxInterruptHandler(void (* InterruptHandler)(void)){
-    UART1_TxInterruptHandler = InterruptHandler;
 }

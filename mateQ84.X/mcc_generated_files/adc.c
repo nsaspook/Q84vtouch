@@ -55,14 +55,10 @@
 //User can use them in application code to initialize with custom ISRs
 static void (*ADC_ConversionComplete_ISR)(void);
 static void (*ADC_Context1Thereshld_ISR)(void);
-static void (*ADC_Context2Thereshld_ISR)(void);
-static void (*ADC_Context3Thereshld_ISR)(void);
 static void (*ADC_ActiveClockTuning_ISR)(void);
 
 static void ADC_DefaultADI_ISR(void);
 static void ADC_DefaultContext1Threshold_ISR(void);
-static void ADC_DefaultContext2Threshold_ISR(void);
-static void ADC_DefaultContext3Threshold_ISR(void);
 static void ADC_DefaultActiveClockTuning_ISR(void);
 
 
@@ -125,8 +121,8 @@ void ADC_Initialize(void)
     //ADCHS ANA0; 
     ADPCH = 0x00;
 
-    //ADACQL 0; 
-    ADACQL = 0x00;
+    //ADACQL 10; 
+    ADACQL = 0x0A;
 
     //ADACQH 0; 
     ADACQH = 0x00;
@@ -160,172 +156,6 @@ void ADC_Initialize(void)
     
     //CHEN channel content is not included; SSI scan sequence continues; 
     ADCSEL1 = 0x00;
-	
-    /****************************************
-     *         Configure Context-2          *
-     ****************************************/
-    ADCTX = 0x1;
-
-    //ADLTHL 0; 
-    ADLTHL = 0x00;
-
-    //ADLTHH 0; 
-    ADLTHH = 0x00;
-
-    //ADUTHL 0; 
-    ADUTHL = 0x00;
-
-    //ADUTHH 0; 
-    ADUTHH = 0x00;
-
-    //ADSTPTL 0; 
-    ADSTPTL = 0x00;
-
-    //ADSTPTH 0; 
-    ADSTPTH = 0x00;
-
-    //ADACCL 0; 
-    ADACCL = 0x00;
-
-    //ADACCH 0; 
-    ADACCH = 0x00;
-
-    //ADACCU 0; 
-    ADACCU = 0x00;
-
-    //ADCNT 0; 
-    ADCNT = 0x00;
-
-    //ADRPT 0; 
-    ADRPT = 0x00;
-
-    //ADRESL 0; 
-    ADRESL = 0x00;
-
-    //ADRESH 0; 
-    ADRESH = 0x00;
-
-    //ADCHS ANA1; 
-    ADPCH = 0x01;
-
-    //ADACQL 0; 
-    ADACQL = 0x00;
-
-    //ADACQH 0; 
-    ADACQH = 0x00;
-
-    //ADCAP Additional uC disabled; 
-    ADCAP = 0x00;
-
-    //ADPREL 0; 
-    ADPREL = 0x00;
-
-    //ADPREH 0; 
-    ADPREH = 0x00;
-    
-    //ADCONT disabled; 
-    ADCON0 = 0x00;
-
-    //ADPPOL Vss; ADIPEN disabled; ADGPOL digital_low; ADDSEN disabled; 
-    ADCON1 = 0x00;
-
-    //ADPSIS RES; ADCRS 1; ADACLR disabled; ADMD Basic_mode; 
-    ADCON2 = 0x10;
-
-    //ADCALC First derivative of Single measurement; ADSOI ADGO not cleared; ADTMD disabled; 
-    ADCON3 = 0x00;
-
-    //ADMATH registers not updated; 
-    ADSTAT = 0x00;
-
-    //ADNREF VSS; ADPREF external; 
-    ADREF = 0x02;
-    
-    //CHEN channel content is not included; SSI scan sequence continues; 
-    ADCSEL2 = 0x00;
-	
-    /****************************************
-     *         Configure Context-3          *
-     ****************************************/
-    ADCTX = 0x2;
-
-    //ADLTHL 0; 
-    ADLTHL = 0x00;
-
-    //ADLTHH 0; 
-    ADLTHH = 0x00;
-
-    //ADUTHL 0; 
-    ADUTHL = 0x00;
-
-    //ADUTHH 0; 
-    ADUTHH = 0x00;
-
-    //ADSTPTL 0; 
-    ADSTPTL = 0x00;
-
-    //ADSTPTH 0; 
-    ADSTPTH = 0x00;
-
-    //ADACCL 0; 
-    ADACCL = 0x00;
-
-    //ADACCH 0; 
-    ADACCH = 0x00;
-
-    //ADACCU 0; 
-    ADACCU = 0x00;
-
-    //ADCNT 0; 
-    ADCNT = 0x00;
-
-    //ADRPT 0; 
-    ADRPT = 0x00;
-
-    //ADRESL 0; 
-    ADRESL = 0x00;
-
-    //ADRESH 0; 
-    ADRESH = 0x00;
-
-    //ADCHS ANA2; 
-    ADPCH = 0x02;
-
-    //ADACQL 0; 
-    ADACQL = 0x00;
-
-    //ADACQH 0; 
-    ADACQH = 0x00;
-
-    //ADCAP Additional uC disabled; 
-    ADCAP = 0x00;
-
-    //ADPREL 0; 
-    ADPREL = 0x00;
-
-    //ADPREH 0; 
-    ADPREH = 0x00;
-    
-    //ADCONT disabled; 
-    ADCON0 = 0x00;
-
-    //ADPPOL Vss; ADIPEN disabled; ADGPOL digital_low; ADDSEN disabled; 
-    ADCON1 = 0x00;
-
-    //ADPSIS RES; ADCRS 1; ADACLR disabled; ADMD Basic_mode; 
-    ADCON2 = 0x10;
-
-    //ADCALC First derivative of Single measurement; ADSOI ADGO not cleared; ADTMD disabled; 
-    ADCON3 = 0x00;
-
-    //ADMATH registers not updated; 
-    ADSTAT = 0x00;
-
-    //ADNREF VSS; ADPREF external; 
-    ADREF = 0x02;
-    
-    //CHEN channel content is not included; SSI scan sequence continues; 
-    ADCSEL3 = 0x00;
     
     //Clear ADC Interrupt Flag
     PIR1bits.ADIF = 0;
@@ -335,8 +165,6 @@ void ADC_Initialize(void)
     
     //Clear ADC Context Threshold Interrupt Flag
     PIR2bits.ADCH1IF = 0;
-    PIR2bits.ADCH2IF = 0;
-    PIR2bits.ADCH3IF = 0;
     
     //Set ADC interrupt enable bit
     PIE1bits.ADIE = 1;
@@ -344,8 +172,6 @@ void ADC_Initialize(void)
     //Configure interrupt handlers
     ADC_SetADIInterruptHandler(ADC_DefaultADI_ISR);
     ADC_SetContext1ThresholdInterruptHandler(ADC_DefaultContext1Threshold_ISR);
-    ADC_SetContext2ThresholdInterruptHandler(ADC_DefaultContext2Threshold_ISR);
-    ADC_SetContext3ThresholdInterruptHandler(ADC_DefaultContext3Threshold_ISR);
     ADC_SetActiveClockTuningInterruptHandler(ADC_DefaultActiveClockTuning_ISR);
         
     //ADON enabled; CSEN disabled; ADCS FOSC/ADCLK; ADFM right; GO_nDONE stop; 
@@ -379,12 +205,6 @@ void ADC_EnableChannelScan(ADC_context_t context)
     case CONTEXT_1:
         ADCSEL1bits.CHEN = 1;
         break;
-    case CONTEXT_2:
-        ADCSEL2bits.CHEN = 1;
-        break;
-    case CONTEXT_3:
-        ADCSEL3bits.CHEN = 1;
-        break;
     default:
         break;
     }
@@ -396,12 +216,6 @@ void ADC_DisableChannelScan(ADC_context_t context)
     {
     case CONTEXT_1:
         ADCSEL1bits.CHEN = 0;
-        break;
-    case CONTEXT_2:
-        ADCSEL2bits.CHEN = 0;
-        break;
-    case CONTEXT_3:
-        ADCSEL3bits.CHEN = 0;
         break;
     default:
         break;
@@ -603,20 +417,6 @@ void __interrupt(irq(ADCH1),base(8)) ADC_ADCH1_ISR(void)
         ADC_Context1Thereshld_ISR();
 }
 
-void __interrupt(irq(ADCH2),base(8)) ADC_ADCH2_ISR(void)
-{
-    PIR2bits.ADCH2IF = 0;
-    if (ADC_Context2Thereshld_ISR != NULL)
-        ADC_Context2Thereshld_ISR();
-}
-
-void __interrupt(irq(ADCH3),base(8)) ADC_ADCH3_ISR(void)
-{
-    PIR2bits.ADCH3IF = 0;
-    if (ADC_Context3Thereshld_ISR != NULL)
-        ADC_Context3Thereshld_ISR();
-}
-
 void ADC_SetADIInterruptHandler(void (* InterruptHandler)(void))
 {
     ADC_ConversionComplete_ISR = InterruptHandler;
@@ -625,16 +425,6 @@ void ADC_SetADIInterruptHandler(void (* InterruptHandler)(void))
 void ADC_SetContext1ThresholdInterruptHandler(void (* InterruptHandler)(void))
 {
     ADC_Context1Thereshld_ISR = InterruptHandler;
-}
-
-void ADC_SetContext2ThresholdInterruptHandler(void (* InterruptHandler)(void))
-{
-    ADC_Context2Thereshld_ISR = InterruptHandler;
-}
-
-void ADC_SetContext3ThresholdInterruptHandler(void (* InterruptHandler)(void))
-{
-    ADC_Context3Thereshld_ISR = InterruptHandler;
 }
 
 void ADC_SetActiveClockTuningInterruptHandler(void (* InterruptHandler)(void))
@@ -653,18 +443,6 @@ static void ADC_DefaultContext1Threshold_ISR(void)
 {
     //Add your interrupt code here or
     //Use ADC_SetContext1ThresholdInterruptHandler() function to use Custom ISR
-}
-
-static void ADC_DefaultContext2Threshold_ISR(void)
-{
-    //Add your interrupt code here or
-    //Use ADC_SetContext2ThresholdInterruptHandler() function to use Custom ISR
-}
-
-static void ADC_DefaultContext3Threshold_ISR(void)
-{
-    //Add your interrupt code here or
-    //Use ADC_SetContext3ThresholdInterruptHandler() function to use Custom ISR
 }
 
 static void ADC_DefaultActiveClockTuning_ISR(void)

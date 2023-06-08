@@ -92,6 +92,40 @@
  */
 void NCO1_Initialize(void);
 
+/**
+  @Summary
+    Determines if output status is high or low.
+
+  @Description
+    This routine returns the NCO1 output status.
+    high - Indicates output is high
+    low - Indicates output is low
+
+  @Preconditions
+    NCO1_Initialize() function should have been called
+	before calling this function.
+
+  @Param
+    None
+
+  @Returns
+    high - Indicates output is high
+    low - Indicates output is low
+
+  @Example
+    <code>
+    NCO1_Initialize();
+    if(NCO1_GetOutputStatus())
+    {
+        // User code..
+    }
+    else
+    {
+         // User code..
+    }
+    </code>
+ */
+bool NCO1_GetOutputStatus(void);
 
 #ifdef __cplusplus  // Provide C++ Compatibility
 

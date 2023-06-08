@@ -50,7 +50,6 @@
 
 #include <xc.h>
 #include "nco1.h"
-#include "interrupt_manager.h"
 
 /**
   Section: NCO Module APIs
@@ -79,16 +78,12 @@ void NCO1_Initialize (void)
     // Enable the NCO module
     NCO1CONbits.EN = 1;
    
-    // Clearing IF flag before enabling the interrupt.
-    PIR6bits.NCO1IF = 0;
-    // Enabling NCO1 interrupt.
-    PIE6bits.NCO1IE = 1;
 }
 
-void __interrupt(irq(NCO1),base(8)) NCO1_ISR()
+bool NCO1_GetOutputStatus(void)
 {
-    // Clear the NCO1 interrupt flag
-    PIR6bits.NCO1IF = 0;
+    // Return output status on accumulator over flow
+    return (NCO1CONbits.OUT);
 }
 /**
  End of File

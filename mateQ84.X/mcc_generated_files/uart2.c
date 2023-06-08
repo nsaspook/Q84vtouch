@@ -222,7 +222,7 @@ void UART2_Write(uint8_t txData)
     PIE8bits.U2TXIE = 1;
 }
 
-char getch(void)
+int getch(void)
 {
     return UART2_Read();
 }
