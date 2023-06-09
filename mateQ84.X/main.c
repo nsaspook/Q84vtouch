@@ -69,6 +69,9 @@ uint16_t volt_whole, panel_watts, cc_mode;
 enum state_type state = state_init;
 uint16_t pacing = 0, rx_count = 0, flush;
 volatile bool mx80_online = true;
+char buffer[64];
+char build_version[] = "V1.00 FM80 Q84";
+char *build_date = __DATE__, *build_time = __TIME__;
 
 mx_status_packed_t *status_packed = (void *) abuf;
 /*
@@ -93,6 +96,18 @@ void state_batterya_cb(void);
 void state_watts_cb(void);
 void state_misc_cb(void);
 void state_mx_status_cb(void);
+
+/*
+ * busy loop delay with WDT reset
+ */
+void wdtdelay(const uint32_t delay)
+{
+	uint32_t dcount;
+
+	for (dcount = 0; dcount <= delay; dcount++) { // delay a bit
+		ClrWdt(); // reset the WDT timer
+	};
+}
 
 /*
  * Main application
@@ -124,6 +139,17 @@ void main(void)
 	TMR0_StartTimer();
 	TMR2_SetInterruptHandler(tensec_io);
 	TMR2_StartTimer();
+
+	init_display();
+	sprintf(buffer, "%s ", "          ");
+	eaDogM_WriteStringAtPos(0, 0, buffer);
+	sprintf(buffer, "%s ", build_version);
+	eaDogM_WriteStringAtPos(0, 0, buffer);
+	sprintf(buffer, "%s ", build_date);
+	eaDogM_WriteStringAtPos(1, 0, buffer);
+	/* display build time and boot status codes 67 34 07, WDT reset 67 24 07 */
+	sprintf(buffer, "%s B:%X %X %X", build_time, STATUS, PCON0, PCON1);
+	eaDogM_WriteStringAtPos(2, 0, buffer);
 
 	while (true) {
 		// Add your application code

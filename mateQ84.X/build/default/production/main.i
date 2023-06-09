@@ -38503,7 +38503,7 @@ unsigned char __t3rd16on(void);
 # 50 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/pin_manager.h" 1
-# 418 "./mcc_generated_files/pin_manager.h"
+# 478 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
 # 51 "./mcc_generated_files/mcc.h" 2
 
@@ -38632,6 +38632,110 @@ void ADC_SetContext3ThresholdInterruptHandler(void (* InterruptHandler)(void));
 # 1135 "./mcc_generated_files/adc.h"
 void ADC_SetContext4ThresholdInterruptHandler(void (* InterruptHandler)(void));
 # 56 "./mcc_generated_files/mcc.h" 2
+
+# 1 "./mcc_generated_files/dma1.h" 1
+# 55 "./mcc_generated_files/dma1.h"
+uint8_t SrcVarName0[1];
+
+
+
+
+
+
+
+void DMA1_Initialize(void);
+
+
+
+
+
+
+void DMA1_SelectSourceRegion(uint8_t region);
+
+
+
+
+
+
+void DMA1_SetSourceAddress(uint24_t address);
+
+
+
+
+
+
+void DMA1_SetDestinationAddress(uint16_t address);
+
+
+
+
+
+
+void DMA1_SetSourceSize(uint16_t size);
+
+
+
+
+
+
+void DMA1_SetDestinationSize(uint16_t size);
+
+
+
+
+
+
+uint24_t DMA1_GetSourcePointer(void);
+
+
+
+
+
+
+uint16_t DMA1_GetDestinationPointer(void);
+
+
+
+
+
+
+void DMA1_SetStartTrigger(uint8_t sirq);
+
+
+
+
+
+
+void DMA1_SetAbortTrigger(uint8_t airq);
+
+
+
+
+
+
+void DMA1_StartTransfer(void);
+
+
+
+
+
+
+void DMA1_StartTransferWithTrigger(void);
+
+
+
+
+
+
+void DMA1_StopTransfer(void);
+
+
+
+
+
+
+void DMA1_SetDMAPriority(uint8_t priority);
+# 57 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/tmr4.h" 1
 # 79 "./mcc_generated_files/tmr4.h"
@@ -38924,7 +39028,7 @@ void TMR4_LoadPeriodRegister(uint8_t periodVal);
 extern void (*TMR4_InterruptHandler)(void);
 # 913 "./mcc_generated_files/tmr4.h"
 void TMR4_DefaultInterruptHandler(void);
-# 57 "./mcc_generated_files/mcc.h" 2
+# 58 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/tmr2.h" 1
 # 79 "./mcc_generated_files/tmr2.h"
@@ -39217,7 +39321,7 @@ void TMR2_LoadPeriodRegister(uint8_t periodVal);
 extern void (*TMR2_InterruptHandler)(void);
 # 913 "./mcc_generated_files/tmr2.h"
 void TMR2_DefaultInterruptHandler(void);
-# 58 "./mcc_generated_files/mcc.h" 2
+# 59 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/tmr0.h" 1
 # 100 "./mcc_generated_files/tmr0.h"
@@ -39238,14 +39342,14 @@ void TMR0_Reload(uint8_t periodVal);
 extern void (*TMR0_InterruptHandler)(void);
 # 329 "./mcc_generated_files/tmr0.h"
 void TMR0_DefaultInterruptHandler(void);
-# 59 "./mcc_generated_files/mcc.h" 2
+# 60 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/nco1.h" 1
 # 93 "./mcc_generated_files/nco1.h"
 void NCO1_Initialize(void);
 # 128 "./mcc_generated_files/nco1.h"
 _Bool NCO1_GetOutputStatus(void);
-# 60 "./mcc_generated_files/mcc.h" 2
+# 61 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/uart2.h" 1
 # 75 "./mcc_generated_files/uart2.h"
@@ -39298,7 +39402,7 @@ void (*UART2_TxInterruptHandler)(void);
 void UART2_SetRxInterruptHandler(void (* InterruptHandler)(void));
 # 574 "./mcc_generated_files/uart2.h"
 void UART2_SetTxInterruptHandler(void (* InterruptHandler)(void));
-# 61 "./mcc_generated_files/mcc.h" 2
+# 62 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/uart1.h" 1
 # 74 "./mcc_generated_files/uart1.h"
@@ -39333,7 +39437,7 @@ void UART1_SetFramingErrorHandler(void (* interruptHandler)(void));
 void UART1_SetOverrunErrorHandler(void (* interruptHandler)(void));
 # 450 "./mcc_generated_files/uart1.h"
 void UART1_SetErrorHandler(void (* interruptHandler)(void));
-# 62 "./mcc_generated_files/mcc.h" 2
+# 63 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/can1.h" 1
 # 56 "./mcc_generated_files/can1.h"
@@ -39497,7 +39601,7 @@ void CAN1_SetRxBufferOverFlowInterruptHandler(void (*handler)(void));
 void CAN1_SetFIFO2nullHandler(void (*handler)(void));
 # 1324 "./mcc_generated_files/can1.h"
 void CAN1_SetFIFO1nullHandler(void (*handler)(void));
-# 63 "./mcc_generated_files/mcc.h" 2
+# 64 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/spi1.h" 1
 # 59 "./mcc_generated_files/spi1.h"
@@ -39514,19 +39618,88 @@ void SPI1_WriteBlock(void *block, size_t blockSize);
 void SPI1_ReadBlock(void *block, size_t blockSize);
 void SPI1_WriteByte(uint8_t byte);
 uint8_t SPI1_ReadByte(void);
-# 64 "./mcc_generated_files/mcc.h" 2
+# 65 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/clkref.h" 1
 # 92 "./mcc_generated_files/clkref.h"
 void CLKREF_Initialize(void);
-# 65 "./mcc_generated_files/mcc.h" 2
-# 80 "./mcc_generated_files/mcc.h"
+# 66 "./mcc_generated_files/mcc.h" 2
+# 81 "./mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
-# 93 "./mcc_generated_files/mcc.h"
+# 94 "./mcc_generated_files/mcc.h"
 void OSCILLATOR_Initialize(void);
-# 106 "./mcc_generated_files/mcc.h"
+# 107 "./mcc_generated_files/mcc.h"
 void PMD_Initialize(void);
+# 119 "./mcc_generated_files/mcc.h"
+void SystemArbiter_Initialize(void);
 # 21 "./mxcmd.h" 2
+# 1 "./../eadog.h" 1
+# 26 "./../eadog.h"
+# 1 "./../qconfig.h" 1
+# 38 "./../qconfig.h"
+# 1 "./../ringbufs.h" 1
+# 19 "./../ringbufs.h"
+ typedef struct ringBufS_t {
+  uint8_t buf[32];
+  uint8_t head;
+  uint8_t tail;
+  uint8_t count;
+ } ringBufS_t;
+
+ void *ringBufS_init(volatile ringBufS_t *_this);
+ int8_t ringBufS_empty(ringBufS_t *_this);
+ int8_t ringBufS_full(ringBufS_t *_this);
+ uint8_t ringBufS_get(ringBufS_t *_this);
+ void ringBufS_put(ringBufS_t *_this, const uint8_t c);
+ void ringBufS_put_dma(ringBufS_t *_this, const uint8_t c);
+ void ringBufS_put_dma_cpy(ringBufS_t *, const char *, const uint8_t);
+ void *ringBufS_flush(ringBufS_t *_this, const _Bool clearBuffer);
+# 39 "./../qconfig.h" 2
+# 57 "./../qconfig.h"
+struct spi_link_type {
+ uint8_t SPI_LCD : 1;
+ uint8_t SPI_AUX : 1;
+ uint8_t LCD_TIMER : 1;
+ volatile uint8_t LCD_DATA : 1;
+ uint16_t delay;
+ uint8_t config;
+ struct ringBufS_t *tx1b, *tx1a;
+ volatile int32_t int_count;
+};
+# 27 "./../eadog.h" 2
+
+
+ typedef struct {
+  uint8_t con0;
+  uint8_t con1;
+  uint8_t con2;
+  uint8_t baud;
+  uint8_t operation;
+ } spi1_configuration_t;
+
+ extern struct V_data V;
+# 48 "./../eadog.h"
+ void wdtdelay(uint32_t);
+ _Bool init_display(void);
+ void send_lcd_data_dma(uint8_t);
+ void send_lcd_cmd_dma(uint8_t);
+ void start_lcd(void);
+ void wait_lcd_set(void);
+ _Bool wait_lcd_check(void);
+ void wait_lcd_done(void);
+ void eaDogM_WriteChr(int8_t);
+ void eaDogM_WriteCommand(uint8_t);
+ void eaDogM_SetPos(uint8_t, uint8_t);
+ void eaDogM_ClearRow(uint8_t);
+ void eaDogM_WriteString(char *);
+ void eaDogM_WriteStringAtPos(uint8_t, uint8_t, char *);
+ void eaDogM_WriteIntAtPos(uint8_t, uint8_t, uint8_t);
+ void eaDogM_WriteByteToCGRAM(uint8_t, uint8_t);
+
+
+ void clear_lcd_done(void);
+ void spi_rec_done(void);
+# 22 "./mxcmd.h" 2
 
 
 
@@ -39571,6 +39744,7 @@ void PMD_Initialize(void);
  extern _Bool FM_rx_ready(void);
  extern uint8_t FM_rx_count(void);
  extern void FM_restart(void);
+ extern void wdtdelay(const uint32_t);
 
  extern volatile _Bool ten_sec_flag;
 # 47 "main.c" 2
@@ -39599,6 +39773,9 @@ uint16_t volt_whole, panel_watts, cc_mode;
 enum state_type state = state_init;
 uint16_t pacing = 0, rx_count = 0, flush;
 volatile _Bool mx80_online = 1;
+char buffer[64];
+char build_version[] = "V1.00 FM80 Q84";
+char *build_date = "Jun  8 2023", *build_time = "19:39:21";
 
 mx_status_packed_t *status_packed = (void *) abuf;
 
@@ -39623,6 +39800,18 @@ void state_batterya_cb(void);
 void state_watts_cb(void);
 void state_misc_cb(void);
 void state_mx_status_cb(void);
+
+
+
+
+void wdtdelay(const uint32_t delay)
+{
+ uint32_t dcount;
+
+ for (dcount = 0; dcount <= delay; dcount++) {
+  __asm(" clrwdt");
+ };
+}
 
 
 
@@ -39654,6 +39843,17 @@ void main(void)
  TMR0_StartTimer();
  TMR2_SetInterruptHandler(tensec_io);
  TMR2_StartTimer();
+
+ init_display();
+ sprintf(buffer, "%s ", "          ");
+ eaDogM_WriteStringAtPos(0, 0, buffer);
+ sprintf(buffer, "%s ", build_version);
+ eaDogM_WriteStringAtPos(0, 0, buffer);
+ sprintf(buffer, "%s ", build_date);
+ eaDogM_WriteStringAtPos(1, 0, buffer);
+
+ sprintf(buffer, "%s B:%X %X %X", build_time, STATUS, PCON0, PCON1);
+ eaDogM_WriteStringAtPos(2, 0, buffer);
 
  while (1) {
 

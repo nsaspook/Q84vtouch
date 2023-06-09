@@ -54,6 +54,7 @@ void SYSTEM_Initialize(void)
     ADC_Initialize();
     PIN_MANAGER_Initialize();
     OSCILLATOR_Initialize();
+    DMA1_Initialize();
     NCO1_Initialize();
     TMR4_Initialize();
     TMR2_Initialize();
@@ -61,8 +62,9 @@ void SYSTEM_Initialize(void)
     UART1_Initialize();
     UART2_Initialize();
     SPI1_Initialize();
-    CLKREF_Initialize();
     CAN1_Initialize();
+    CLKREF_Initialize();
+    SystemArbiter_Initialize();
 }
 
 void OSCILLATOR_Initialize(void)
@@ -102,6 +104,13 @@ void PMD_Initialize(void)
 }
 
 
+void SystemArbiter_Initialize(void)
+{
+    // This function is dependant on the PR1WAY CONFIG bit
+    PRLOCK = 0x55;
+    PRLOCK = 0xAA;
+    PRLOCKbits.PRLOCKED = 1;
+}
 /**
  End of File
 */

@@ -130,13 +130,13 @@ uint8_t FM_rx_count(void)
 
 void onesec_io(void)
 {
-	//	RLED_Toggle();
+	RLED_Toggle();
 	MLED_SetLow();
 }
 
 void tensec_io(void)
 {
-	RLED_Toggle();
+	DLED_Toggle();
 	MLED_SetLow();
 	ten_sec_flag = true;
 }
