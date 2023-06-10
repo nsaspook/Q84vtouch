@@ -54,6 +54,9 @@
 #include <conio.h>
 #include "interrupt_manager.h"
 #include "adc.h"
+#include "dma1.h"
+#include "tmr4.h"
+#include "tmr2.h"
 #include "tmr0.h"
 #include "nco1.h"
 #include "uart2.h"
@@ -103,6 +106,17 @@ void OSCILLATOR_Initialize(void);
  */
 void PMD_Initialize(void);
 
+/**
+ * @Param
+    none
+ * @Returns
+    none
+ * @Description
+    Initializes the System Arbiter for DMA to the default priority.
+ * @Example
+    SystemArbiter_DMA_Initialize();
+ */
+void SystemArbiter_Initialize(void);
 
 #endif	/* MCC_H */
 /**
