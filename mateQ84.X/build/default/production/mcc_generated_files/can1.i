@@ -38644,13 +38644,13 @@ static void CAN1_TX_FIFO_Configuration(void)
 static void CAN1_BitRateConfiguration(void)
 {
 
-    C1NBTCFGL = 0x09;
+    C1NBTCFGL = 0x07;
 
 
-    C1NBTCFGH = 0x09;
+    C1NBTCFGH = 0x07;
 
 
-    C1NBTCFGU = 0x1C;
+    C1NBTCFGU = 0x1E;
 
 
     C1NBTCFGT = 0x00;
