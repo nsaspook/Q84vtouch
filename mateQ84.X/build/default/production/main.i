@@ -40005,7 +40005,7 @@ uint16_t pacing = 0, rx_count = 0, flush;
 volatile _Bool mx80_online = 1;
 char buffer[64];
 char build_version[] = "V1.00 FM80 Q84";
-char *build_date = "Jun 11 2023", *build_time = "06:50:20";
+char *build_date = "Jun 11 2023", *build_time = "07:39:00";
 volatile uint16_t tickCount[TMR_COUNT];
 
 mx_status_packed_t *status_packed = (void *) abuf;

@@ -39652,8 +39652,8 @@ void INTERRUPT_Initialize (void)
     IPR13bits.U5RXIP = 1;
     IPR3bits.TMR0IP = 1;
     IPR11bits.TMR4IP = 1;
-    IPR3bits.TMR2IP = 1;
     IPR0bits.CANIP = 1;
+    IPR3bits.TMR2IP = 1;
 }
 
 void __attribute__((picinterrupt(("irq(default),base(8)")))) Default_ISR()
