@@ -190,6 +190,7 @@
 #include <xc.h>
 #include "mxcmd.h"
 #include "../timers.h"
+#include "../modbus_master.h"
 
 #define PACE	31000	// commands delay in count units
 #define CMD_LEN	8
@@ -286,6 +287,11 @@ void main(void)
 	TMR2_SetInterruptHandler(tensec_io);
 	TMR2_StartTimer();
 
+#ifdef MB_MASTER
+	init_mb_master_timers();
+	UART5_SetRxInterruptHandler(my_modbus_rx_32);
+#endif
+
 	init_display();
 	sprintf(buffer, "%s ", "                    ");
 	eaDogM_WriteStringAtPos(0, 0, buffer);
@@ -347,6 +353,9 @@ void main(void)
 			sprintf(buffer, "Energy Monitor  %c%c    ", spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
 			eaDogM_WriteStringAtPos(1, 0, buffer);
 		}
+#ifdef MB_MASTER
+		master_controller_work(&C); // master MODBUS processing	
+#endif
 	}
 }
 

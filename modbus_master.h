@@ -34,11 +34,13 @@ extern "C" {
 	 */
 	//#define MODBUS_DEBUG
 
-#include "vcan.h"
+#include <xc.h>
 #include <stdint.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
+#include "mateQ84.X/mcc_generated_files/mcc.h"
+#include "timers.h"
 
 #define MAX_DATA        128
 	//#define LOCAL_ECHO	1
@@ -52,12 +54,12 @@ extern "C" {
 
 	/*
 	 * RS485 port defines
-	 * port is configured in harmony3 for PIC32MK
+	 * port
 	 */
-#define Swrite		UART6_Write
-#define Strmt		U6STA&_U6STA_TRMT_MASK
-#define Serror		UART6_ErrorGet
-#define Sread		UART6_Read
+#define Swrite		UART5_Write
+#define Strmt		UART5_is_tx_done
+#define Serror		UART5_get_last_status
+#define Sread		UART5_Read
 
 	/*
 	 * serial communications states
@@ -96,6 +98,15 @@ extern "C" {
 		T_spacing,
 	} trace_type;
 
+	struct V_type {
+		uint32_t StartTime, TimeUsed;
+		volatile uint32_t pacing, pwm_update, pwm_stop, fault_count, fault_ticks, fault_source, modbus_rx, modbus_tx;
+		int32_t motor_speed;
+		volatile bool fault_active, dmt_sosc_flag;
+		volatile uart5_status_t mb_error;
+		volatile bool forward, rx;
+	};
+
 	union PWMDC {
 		uint16_t lpwm;
 		uint8_t bpwm[2];
@@ -116,7 +127,7 @@ extern "C" {
 		comm_type cstate;
 		cmd_type modbus_command;
 		uint16_t req_length;
-		uint8_t trace;
+		int8_t trace;
 		bool id_ok, passwd_ok, config_ok, data_ok;
 		uint32_t data_count, data_prev;
 	} C_data;
@@ -222,13 +233,13 @@ extern "C" {
 #define BOFF	0
 #define BON	255
 
-#define MM_ERROR_S	BSP_LED1_Set()
-#define MM_ERROR_C	BSP_LED1_Clear()
+#define MM_ERROR_S	RLED_SetHigh()
+#define MM_ERROR_C	RLED_SetLow()
 
 	uint16_t crc16(volatile uint8_t *, uint16_t);
 	uint16_t modbus_rtu_send_msg(void *, const void *, uint16_t);
 
-	void my_modbus_rx_32(UART_EVENT, uintptr_t);
+	void my_modbus_rx_32(void);
 	uint8_t init_stream_params(void);
 	void init_mb_master_timers(void);
 	int8_t master_controller_work(C_data *);
@@ -243,8 +254,8 @@ extern "C" {
 
 	bool set_led_blink(uint8_t);
 
-	void timer_500ms_tick(uint32_t, uintptr_t);
-	void timer_2ms_tick(uint32_t, uintptr_t);
+	void timer_500ms_tick(void);
+	void timer_2ms_tick(void);
 
 	extern volatile struct V_type V;
 	extern C_data C; // MODBUS client state data

@@ -34,7 +34,7 @@ extern "C" {
 		uint8_t operation;
 	} spi1_configuration_t;
 
-	extern struct V_data V;
+//	extern struct V_data V;
 
 #define LCD_CMD_MASK	0x01
 #define LCD_CMD_SET	0x100

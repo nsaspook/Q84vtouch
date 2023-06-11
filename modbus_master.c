@@ -35,6 +35,17 @@ C_data C = {
 	.passwd_ok = false,
 };
 
+volatile struct V_type V = {
+	.StartTime = 1,
+	.TimeUsed = 1,
+	.pacing = 1,
+	.pwm_update = true,
+	.pwm_stop = true,
+	.fault_active = false,
+	.fault_count = 0,
+	.dmt_sosc_flag = false,
+};
+
 /*
  * send and receive MODBUS templates for 3-phase energy monitor EM540
  * https://www.gavazzionline.com/pdf/EM540_DS_ENG.pdf
@@ -112,7 +123,7 @@ uint16_t crc16(volatile uint8_t *buffer, uint16_t buffer_length)
 		crc_lo = table_crc_lo[i];
 	}
 
-	crc16t = crc_hi << (uint16_t) 8 | (uint16_t) crc_lo;
+	crc16t = (uint16_t) crc_hi << (uint16_t) 8 | (uint16_t) crc_lo;
 	return crc16t;
 }
 
@@ -120,23 +131,18 @@ uint16_t crc16(volatile uint8_t *buffer, uint16_t buffer_length)
  * callback for UART received character from MODBUS client
  * for each RX byte received on the RS485 serial port
  */
-void my_modbus_rx_32(UART_EVENT event, uintptr_t context)
+void my_modbus_rx_32(void)
 {
 	static uint8_t m_data = 0;
 
-	BSP_LED3_Set();
-	if (event == UART_EVENT_READ_ERROR) {
-		V.mb_error = Serror();
-	} else {
-		V.rx = true;
-		/*
-		 * process received controller data stream
-		 */
-		Sread(&m_data, 1);
-		cc_buffer[M.recv_count] = m_data;
-		if (++M.recv_count >= MAX_DATA) {
-			M.recv_count = 0; // reset buffer position
-		}
+	V.rx = true;
+	/*
+	 * process received controller data stream
+	 */
+	m_data = Sread();
+	cc_buffer[M.recv_count] = m_data;
+	if (++M.recv_count >= MAX_DATA) {
+		M.recv_count = 0; // reset buffer position
 	}
 }
 
@@ -151,10 +157,10 @@ uint8_t init_stream_params(void)
  */
 void init_mb_master_timers(void)
 {
-	TMR8_CallbackRegister(timer_500ms_tick, 0);
-	TMR8_Start();
-	TMR9_CallbackRegister(timer_2ms_tick, 0);
-	TMR9_Start();
+	TMR5_SetInterruptHandler(timer_500ms_tick);
+	TMR5_StartTimer();
+	TMR6_SetInterruptHandler(timer_2ms_tick);
+	TMR6_StartTimer();
 }
 
 /*
@@ -213,17 +219,14 @@ int8_t master_controller_work(C_data * client)
 	static uint32_t spacing = 0;
 
 	if (spacing++ <SPACING && !V.rx) {
-		DEBUGB0_Clear();
 		return T_spacing;
 	}
-	DEBUGB0_Set();
 	spacing = 0;
 
 	client->trace = T_begin;
 	switch (client->cstate) {
 	case CLEAR:
 		client->trace = T_clear;
-		BSP_LED3_Clear();
 		clear_2hz();
 		clear_10hz();
 		client->cstate = INIT;
@@ -292,7 +295,9 @@ int8_t master_controller_work(C_data * client)
 	case SEND:
 		client->trace = T_send;
 		if (get_500hz(false) >= TDELAY) {
-			Swrite((uint8_t*) cc_buffer_tx, client->req_length);
+			for (int8_t i = 0; i < client->req_length; i++) {
+				Swrite(cc_buffer_tx[i]);
+			}
 			client->cstate = RECV;
 			clear_500hz(); // state machine execute background timer clear
 			client->trace = T_send_d;
@@ -309,7 +314,6 @@ int8_t master_controller_work(C_data * client)
 			uint16_t c_crc, c_crc_rec;
 
 			client->trace = T_recv_r;
-			BSP_LED3_Set();
 			half_dup_rx(false); // no delays here
 
 			/*
@@ -323,7 +327,6 @@ int8_t master_controller_work(C_data * client)
 					c_crc = crc16(cc_buffer, client->req_length - 2);
 					c_crc_rec = crc16_receive(client);
 					if (DBUG_R c_crc == c_crc_rec) {
-						BSP_LED1_Toggle();
 						client->passwd_ok = true;
 					} else {
 						client->passwd_ok = false;
@@ -349,7 +352,7 @@ int8_t master_controller_work(C_data * client)
 					c_crc = crc16(cc_buffer, client->req_length - 2);
 					c_crc_rec = crc16_receive(client);
 					if (DBUG_R c_crc == c_crc_rec) {
-						BSP_LED2_Toggle();
+
 						client->config_ok = true;
 					} else {
 						client->config_ok = false;
@@ -374,7 +377,6 @@ int8_t master_controller_work(C_data * client)
 					c_crc = crc16(cc_buffer, client->req_length - 2);
 					c_crc_rec = crc16_receive(client);
 					if (DBUG_R c_crc == c_crc_rec) {
-						BSP_LED1_Toggle();
 						client->data_ok = true;
 						/*
 						 * move from receive buffer to data structure and munge the data into the correct local 32-bit format from MODBUS client
@@ -415,7 +417,7 @@ int8_t master_controller_work(C_data * client)
 					c_crc = crc16(cc_buffer, client->req_length - 2);
 					c_crc_rec = crc16_receive(client);
 					if (DBUG_R c_crc == c_crc_rec) {
-						BSP_LED2_Toggle();
+
 						client->id_ok = true;
 					} else {
 						client->id_ok = false;
@@ -445,7 +447,6 @@ int8_t master_controller_work(C_data * client)
 	default:
 		break;
 	}
-	DEBUGB0_Clear();
 	return client->trace;
 }
 
@@ -515,10 +516,10 @@ bool set_led_blink(uint8_t blinks)
 
 static void half_dup_tx(bool delay)
 {
-	if (DERE_Get()) {
+	if (DERE_GetValue()) {
 		return;
 	}
-	DERE_Set(); // enable modbus transmitter
+	DERE_SetHigh(); // enable modbus transmitter
 	if (delay) {
 		delay_ms(2); // busy waits
 	}
@@ -528,18 +529,18 @@ static void half_dup_tx(bool delay)
 
 static void half_dup_rx(bool delay)
 {
-	if (!DERE_Get()) {
+	if (!DERE_GetValue()) {
 		return;
 	}
 	if (delay) {
 		delay_ms(2); // busy waits
 	}
-	DERE_Clear(); // enable modbus receiver	
+	DERE_SetLow(); // enable modbus receiver	
 }
 
 // ISR function for TMR8
 
-void timer_500ms_tick(uint32_t status, uintptr_t context)
+void timer_500ms_tick(void)
 {
 	M.clock_2hz++;
 	M.clock_blinks++;
@@ -547,7 +548,7 @@ void timer_500ms_tick(uint32_t status, uintptr_t context)
 
 // ISR function for TMR9
 
-void timer_2ms_tick(uint32_t status, uintptr_t context)
+void timer_2ms_tick(void)
 {
 	M.clock_500hz++;
 	M.clock_10hz++;
