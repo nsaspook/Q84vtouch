@@ -38300,7 +38300,7 @@ unsigned char __t3rd16on(void);
 # 50 "mcc_generated_files/mcc.h" 2
 
 # 1 "mcc_generated_files/pin_manager.h" 1
-# 478 "mcc_generated_files/pin_manager.h"
+# 498 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
 # 51 "mcc_generated_files/mcc.h" 2
 
@@ -39292,13 +39292,6 @@ extern void (*TMR0_InterruptHandler)(void);
 void TMR0_DefaultInterruptHandler(void);
 # 60 "mcc_generated_files/mcc.h" 2
 
-# 1 "mcc_generated_files/nco1.h" 1
-# 93 "mcc_generated_files/nco1.h"
-void NCO1_Initialize(void);
-# 128 "mcc_generated_files/nco1.h"
-_Bool NCO1_GetOutputStatus(void);
-# 61 "mcc_generated_files/mcc.h" 2
-
 # 1 "mcc_generated_files/uart2.h" 1
 # 75 "mcc_generated_files/uart2.h"
 typedef union {
@@ -39350,7 +39343,7 @@ void (*UART2_TxInterruptHandler)(void);
 void UART2_SetRxInterruptHandler(void (* InterruptHandler)(void));
 # 574 "mcc_generated_files/uart2.h"
 void UART2_SetTxInterruptHandler(void (* InterruptHandler)(void));
-# 62 "mcc_generated_files/mcc.h" 2
+# 61 "mcc_generated_files/mcc.h" 2
 
 # 1 "mcc_generated_files/uart1.h" 1
 # 74 "mcc_generated_files/uart1.h"
@@ -39385,7 +39378,7 @@ void UART1_SetFramingErrorHandler(void (* interruptHandler)(void));
 void UART1_SetOverrunErrorHandler(void (* interruptHandler)(void));
 # 450 "mcc_generated_files/uart1.h"
 void UART1_SetErrorHandler(void (* interruptHandler)(void));
-# 63 "mcc_generated_files/mcc.h" 2
+# 62 "mcc_generated_files/mcc.h" 2
 
 # 1 "mcc_generated_files/can1.h" 1
 # 56 "mcc_generated_files/can1.h"
@@ -39549,7 +39542,7 @@ void CAN1_SetRxBufferOverFlowInterruptHandler(void (*handler)(void));
 void CAN1_SetFIFO2nullHandler(void (*handler)(void));
 # 1324 "mcc_generated_files/can1.h"
 void CAN1_SetFIFO1nullHandler(void (*handler)(void));
-# 64 "mcc_generated_files/mcc.h" 2
+# 63 "mcc_generated_files/mcc.h" 2
 
 # 1 "mcc_generated_files/spi1.h" 1
 # 59 "mcc_generated_files/spi1.h"
@@ -39566,19 +39559,14 @@ void SPI1_WriteBlock(void *block, size_t blockSize);
 void SPI1_ReadBlock(void *block, size_t blockSize);
 void SPI1_WriteByte(uint8_t byte);
 uint8_t SPI1_ReadByte(void);
-# 65 "mcc_generated_files/mcc.h" 2
-
-# 1 "mcc_generated_files/clkref.h" 1
-# 92 "mcc_generated_files/clkref.h"
-void CLKREF_Initialize(void);
-# 66 "mcc_generated_files/mcc.h" 2
-# 81 "mcc_generated_files/mcc.h"
+# 64 "mcc_generated_files/mcc.h" 2
+# 79 "mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
-# 94 "mcc_generated_files/mcc.h"
+# 92 "mcc_generated_files/mcc.h"
 void OSCILLATOR_Initialize(void);
-# 107 "mcc_generated_files/mcc.h"
+# 105 "mcc_generated_files/mcc.h"
 void PMD_Initialize(void);
-# 119 "mcc_generated_files/mcc.h"
+# 117 "mcc_generated_files/mcc.h"
 void SystemArbiter_Initialize(void);
 # 50 "mcc_generated_files/interrupt_manager.c" 2
 
@@ -39609,8 +39597,8 @@ void INTERRUPT_Initialize (void)
     IPR8bits.U2RXIP = 1;
     IPR3bits.TMR0IP = 1;
     IPR11bits.TMR4IP = 1;
-    IPR3bits.TMR2IP = 1;
     IPR0bits.CANIP = 1;
+    IPR3bits.TMR2IP = 1;
 }
 
 void __attribute__((picinterrupt(("irq(default),base(8)")))) Default_ISR()

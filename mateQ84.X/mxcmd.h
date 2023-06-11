@@ -19,6 +19,8 @@ extern "C" {
 #include <string.h>
 #include "mcc_generated_files/mcc.h"
 #include "../eadog.h"
+	
+#define VER	1
 
 #define	FM_BUFFER	32
 #define BUFFER_SPACING	2
@@ -65,7 +67,7 @@ extern "C" {
 	extern void FM_restart(void);
 	extern void wdtdelay(const uint32_t);
 	
-	extern volatile bool ten_sec_flag;
+	extern volatile bool ten_sec_flag, one_sec_flag;
 
 #ifdef	__cplusplus
 }

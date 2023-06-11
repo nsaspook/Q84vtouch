@@ -9,10 +9,8 @@ mcc_generated_files/dma1.h  \
 mcc_generated_files/tmr4.h  \
 mcc_generated_files/tmr2.h  \
 mcc_generated_files/tmr0.h  \
-mcc_generated_files/nco1.h  \
 mcc_generated_files/uart2.h  \
 mcc_generated_files/uart1.h  \
 mcc_generated_files/can1.h  \
 mcc_generated_files/can_types.h  \
-mcc_generated_files/spi1.h  \
-mcc_generated_files/clkref.h 
+mcc_generated_files/spi1.h 

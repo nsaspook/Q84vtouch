@@ -58,12 +58,10 @@
 #include "tmr4.h"
 #include "tmr2.h"
 #include "tmr0.h"
-#include "nco1.h"
 #include "uart2.h"
 #include "uart1.h"
 #include "can1.h"
 #include "spi1.h"
-#include "clkref.h"
 
 
 

@@ -47,7 +47,7 @@
 // Configuration bits: selected in the GUI
 
 // CONFIG1
-#pragma config FEXTOSC = OFF    // External Oscillator Selection->Oscillator not enabled
+#pragma config FEXTOSC = ECH    // External Oscillator Selection->EC (external clock) above 8 MHz
 #pragma config RSTOSC = EXTOSC_4PLL    // Reset Oscillator Selection->EXTOSC with 4x PLL, with EXTOSC operating per FEXTOSC bits
 
 // CONFIG2

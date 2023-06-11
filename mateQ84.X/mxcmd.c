@@ -3,7 +3,7 @@
 static volatile uint8_t data = 0x00, dcount = 0, dstart = 0, rdstart = 0;
 static volatile uint16_t tbuf[FM_BUFFER], rbuf[FM_BUFFER];
 static uint16_t *p_tbuf = (uint16_t*) tbuf, *p_rbuf = (uint16_t*) rbuf;
-volatile bool ten_sec_flag = false;
+volatile bool ten_sec_flag = false, one_sec_flag = false;
 static volatile uint8_t pace = 0; // the charge controller doesn't like back to back bytes
 
 void FM_restart(void)
@@ -132,10 +132,12 @@ void onesec_io(void)
 {
 	RLED_Toggle();
 	MLED_SetLow();
+	one_sec_flag = true;
 }
 
 void tensec_io(void)
 {
+	DLED1_Toggle();
 	DLED_Toggle();
 	MLED_SetLow();
 	ten_sec_flag = true;

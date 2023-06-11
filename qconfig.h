@@ -50,9 +50,20 @@
 #define EADOGM_COLSPAN		16
 
 //#define USE_DMA
-#define DEBUG_DISP0
-#define DEBUG_DISP1
+//#define DEBUG_DISP0
+//#define DEBUG_DISP1
 #define NHD		// 4x20 SPI display
+
+/* spinner defines */
+#define MAX_SHAPES  6
+const char spin[MAX_SHAPES][20] = {
+	"||//--", // classic LCD version with no \ character
+	"||//--\\\\", // classic
+	"OOOOOO--__-", // eye blink
+	"vv<<^^>>", // point spinner
+	"..**x#x#XX||--", // warp portal
+	"..ooOOoo" // ball bouncer
+};
 
 struct spi_link_type { // internal SPI state table
 	uint8_t SPI_LCD : 1;
@@ -64,6 +75,8 @@ struct spi_link_type { // internal SPI state table
 	struct ringBufS_t *tx1b, *tx1a;
 	volatile int32_t int_count;
 };
+
+extern char spinners(uint8_t, const uint8_t);
 
 #ifdef	__cplusplus
 extern "C" {

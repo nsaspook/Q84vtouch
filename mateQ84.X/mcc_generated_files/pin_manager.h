@@ -229,25 +229,25 @@
 #define RLED_SetAnalogMode()      do { ANSELBbits.ANSELB2 = 1; } while(0)
 #define RLED_SetDigitalMode()     do { ANSELBbits.ANSELB2 = 0; } while(0)
 
-// get/set DLED aliases
-#define DLED_TRIS                 TRISBbits.TRISB3
-#define DLED_LAT                  LATBbits.LATB3
-#define DLED_PORT                 PORTBbits.RB3
-#define DLED_WPU                  WPUBbits.WPUB3
-#define DLED_OD                   ODCONBbits.ODCB3
-#define DLED_ANS                  ANSELBbits.ANSELB3
-#define DLED_SetHigh()            do { LATBbits.LATB3 = 1; } while(0)
-#define DLED_SetLow()             do { LATBbits.LATB3 = 0; } while(0)
-#define DLED_Toggle()             do { LATBbits.LATB3 = ~LATBbits.LATB3; } while(0)
-#define DLED_GetValue()           PORTBbits.RB3
-#define DLED_SetDigitalInput()    do { TRISBbits.TRISB3 = 1; } while(0)
-#define DLED_SetDigitalOutput()   do { TRISBbits.TRISB3 = 0; } while(0)
-#define DLED_SetPullup()          do { WPUBbits.WPUB3 = 1; } while(0)
-#define DLED_ResetPullup()        do { WPUBbits.WPUB3 = 0; } while(0)
-#define DLED_SetPushPull()        do { ODCONBbits.ODCB3 = 0; } while(0)
-#define DLED_SetOpenDrain()       do { ODCONBbits.ODCB3 = 1; } while(0)
-#define DLED_SetAnalogMode()      do { ANSELBbits.ANSELB3 = 1; } while(0)
-#define DLED_SetDigitalMode()     do { ANSELBbits.ANSELB3 = 0; } while(0)
+// get/set DLED1 aliases
+#define DLED1_TRIS                 TRISBbits.TRISB3
+#define DLED1_LAT                  LATBbits.LATB3
+#define DLED1_PORT                 PORTBbits.RB3
+#define DLED1_WPU                  WPUBbits.WPUB3
+#define DLED1_OD                   ODCONBbits.ODCB3
+#define DLED1_ANS                  ANSELBbits.ANSELB3
+#define DLED1_SetHigh()            do { LATBbits.LATB3 = 1; } while(0)
+#define DLED1_SetLow()             do { LATBbits.LATB3 = 0; } while(0)
+#define DLED1_Toggle()             do { LATBbits.LATB3 = ~LATBbits.LATB3; } while(0)
+#define DLED1_GetValue()           PORTBbits.RB3
+#define DLED1_SetDigitalInput()    do { TRISBbits.TRISB3 = 1; } while(0)
+#define DLED1_SetDigitalOutput()   do { TRISBbits.TRISB3 = 0; } while(0)
+#define DLED1_SetPullup()          do { WPUBbits.WPUB3 = 1; } while(0)
+#define DLED1_ResetPullup()        do { WPUBbits.WPUB3 = 0; } while(0)
+#define DLED1_SetPushPull()        do { ODCONBbits.ODCB3 = 0; } while(0)
+#define DLED1_SetOpenDrain()       do { ODCONBbits.ODCB3 = 1; } while(0)
+#define DLED1_SetAnalogMode()      do { ANSELBbits.ANSELB3 = 1; } while(0)
+#define DLED1_SetDigitalMode()     do { ANSELBbits.ANSELB3 = 0; } while(0)
 
 // get/set RB4 procedures
 #define RB4_SetHigh()            do { LATBbits.LATB4 = 1; } while(0)
@@ -392,6 +392,26 @@
 #define CS_SetOpenDrain()       do { ODCONDbits.ODCD3 = 1; } while(0)
 #define CS_SetAnalogMode()      do { ANSELDbits.ANSELD3 = 1; } while(0)
 #define CS_SetDigitalMode()     do { ANSELDbits.ANSELD3 = 0; } while(0)
+
+// get/set DLED aliases
+#define DLED_TRIS                 TRISDbits.TRISD4
+#define DLED_LAT                  LATDbits.LATD4
+#define DLED_PORT                 PORTDbits.RD4
+#define DLED_WPU                  WPUDbits.WPUD4
+#define DLED_OD                   ODCONDbits.ODCD4
+#define DLED_ANS                  ANSELDbits.ANSELD4
+#define DLED_SetHigh()            do { LATDbits.LATD4 = 1; } while(0)
+#define DLED_SetLow()             do { LATDbits.LATD4 = 0; } while(0)
+#define DLED_Toggle()             do { LATDbits.LATD4 = ~LATDbits.LATD4; } while(0)
+#define DLED_GetValue()           PORTDbits.RD4
+#define DLED_SetDigitalInput()    do { TRISDbits.TRISD4 = 1; } while(0)
+#define DLED_SetDigitalOutput()   do { TRISDbits.TRISD4 = 0; } while(0)
+#define DLED_SetPullup()          do { WPUDbits.WPUD4 = 1; } while(0)
+#define DLED_ResetPullup()        do { WPUDbits.WPUD4 = 0; } while(0)
+#define DLED_SetPushPull()        do { ODCONDbits.ODCD4 = 0; } while(0)
+#define DLED_SetOpenDrain()       do { ODCONDbits.ODCD4 = 1; } while(0)
+#define DLED_SetAnalogMode()      do { ANSELDbits.ANSELD4 = 1; } while(0)
+#define DLED_SetDigitalMode()     do { ANSELDbits.ANSELD4 = 0; } while(0)
 
 // get/set RD6 procedures
 #define RD6_SetHigh()            do { LATDbits.LATD6 = 1; } while(0)
