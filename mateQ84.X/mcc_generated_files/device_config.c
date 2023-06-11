@@ -52,9 +52,9 @@
 
 // CONFIG2
 #pragma config CLKOUTEN = ON    // Clock out Enable bit->CLKOUT function is enabled
-#pragma config PR1WAY = ON    // PRLOCKED One-Way Set Enable bit->PRLOCKED bit can be cleared and set only once
+#pragma config PR1WAY = OFF    // PRLOCKED One-Way Set Enable bit->PRLOCKED bit can be set and cleared repeatedly
 #pragma config CSWEN = ON    // Clock Switch Enable bit->Writing to NOSC and NDIV is allowed
-#pragma config JTAGEN = ON    // JTAG Enable bit->Enable JTAG Boundary Scan mode and pins
+#pragma config JTAGEN = OFF    // JTAG Enable bit->Disable JTAG Boundary Scan mode, JTAG pins revert to user functions
 #pragma config FCMEN = ON    // Fail-Safe Clock Monitor Enable bit->Fail-Safe Clock Monitor enabled
 #pragma config FCMENP = ON    // Fail-Safe Clock Monitor -Primary XTAL Enable bit->FSCM timer will set FSCMP bit and OSFIF interrupt on Primary XTAL failure
 #pragma config FCMENS = ON    // Fail-Safe Clock Monitor -Secondary XTAL Enable bit->FSCM timer will set FSCMS bit and OSFIF interrupt on Secondary XTAL failure

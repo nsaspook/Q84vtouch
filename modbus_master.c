@@ -2,20 +2,6 @@
 
 #define	ON	1
 #define	OFF	0
-#define	LEDON	0   // logic low lights led
-#define	LEDOFF	1
-#define MAX_BLINKS	10
-#define ERROR_BLINKS	MAX_BLINKS
-#define BLINK_SPACE	8
-
-#define CC_DEACT	61	// 1.00 normal 61
-#define CC_ACT		92	// 1.50
-#define CC_MPPT		122	// 2.00
-#define CC_EQUAL	150	// 2.50
-#define CC_BOOST	177	// 3.00
-#define CC_FLOAT	205	// 3.50
-#define CC_LIMIT	230	// 4.00
-#define CC_OFFLINE	255	// 4.40
 
 volatile uint8_t cc_stream_file, cc_buffer[MAX_DATA], cc_buffer_tx[MAX_DATA]; // RX and TX command buffers
 
@@ -71,7 +57,6 @@ em_passwd[] = {MADDR, WRITE_SINGLE_REGISTER, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}
 
 union MREG rvalue;
 EM_data em;
-
 
 static void half_dup_tx(bool);
 static void half_dup_rx(bool);
@@ -139,7 +124,7 @@ void my_modbus_rx_32(void)
 	/*
 	 * process received controller data stream
 	 */
-	m_data = Sread();
+	m_data = U5RXB;
 	cc_buffer[M.recv_count] = m_data;
 	if (++M.recv_count >= MAX_DATA) {
 		M.recv_count = 0; // reset buffer position
@@ -504,14 +489,6 @@ uint32_t get_500hz(uint8_t mode)
 	return tmp;
 }
 
-/*
- * set the number of blinks variable from mainline code
- */
-bool set_led_blink(uint8_t blinks)
-{
-	return true;
-}
-
 // switch RS transceiver to transmit mode and wait if not tx
 
 static void half_dup_tx(bool delay)
@@ -570,4 +547,17 @@ void timer_2ms_tick(void)
 static bool serial_trmt(void)
 {
 	return !(Strmt); // note, we invert the TRMT bit so it's true while transmitting
+}
+
+void mb_tx_test(C_data * client)
+{
+	if (TimerDone(TMR_MBTEST)) {
+		StartTimer(TMR_MBTEST, 500);
+		client->req_length = modbus_rtu_send_msg((void*) cc_buffer_tx, (const void *) modbus_em_passwd, sizeof(modbus_em_passwd));
+		for (int8_t i = 0; i < client->req_length; i++) {
+			if (UART5_is_tx_ready()) {
+				Swrite(cc_buffer_tx[i]);
+			}
+		}
+	}
 }

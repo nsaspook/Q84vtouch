@@ -96,8 +96,8 @@ void PMD_Initialize(void)
     PMD4 = 0x00;
     // CCP2MD CCP2 enabled; CCP1MD CCP1 enabled; PWM2MD PWM2 enabled; CCP3MD CCP3 enabled; PWM1MD PWM1 enabled; PWM4MD PWM4 enabled; PWM3MD PWM3 enabled; 
     PMD5 = 0x00;
-    // U5MD UART5 disabled; U4MD UART4 disabled; U3MD UART3 disabled; U2MD UART2 enabled; U1MD UART1 enabled; SPI2MD SPI2 disabled; SPI1MD SPI1 enabled; I2C1MD I2C1 disabled; 
-    PMD6 = 0xE5;
+    // U5MD UART5 enabled; U4MD UART4 disabled; U3MD UART3 disabled; U2MD UART2 enabled; U1MD UART1 enabled; SPI2MD SPI2 disabled; SPI1MD SPI1 enabled; I2C1MD I2C1 disabled; 
+    PMD6 = 0x65;
     // CLC5MD CLC5 enabled; CLC6MD CLC6 enabled; CLC3MD CLC3 enabled; CLC4MD CLC4 enabled; CLC7MD CLC7 enabled; CLC8MD CLC8 enabled; CLC1MD CLC1 enabled; CLC2MD CLC2 enabled; 
     PMD7 = 0x00;
     // DMA5MD DMA5 enabled; DMA6MD DMA6 enabled; DMA8MD DMA8 enabled; DMA7MD DMA7 enabled; DMA1MD DMA1 enabled; DMA2MD DMA2 enabled; DMA3MD DMA3 enabled; DMA4MD DMA4 enabled; 

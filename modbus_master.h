@@ -252,10 +252,10 @@ extern "C" {
 	uint32_t get_10hz(uint8_t);
 	uint32_t get_500hz(uint8_t);
 
-	bool set_led_blink(uint8_t);
-
 	void timer_500ms_tick(void);
 	void timer_2ms_tick(void);
+	
+	void mb_tx_test(C_data *);
 
 	extern volatile struct V_type V;
 	extern C_data C; // MODBUS client state data
