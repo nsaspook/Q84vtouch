@@ -38295,7 +38295,7 @@ unsigned char __t3rd16on(void);
 # 50 "mcc_generated_files/mcc.h" 2
 
 # 1 "mcc_generated_files/pin_manager.h" 1
-# 498 "mcc_generated_files/pin_manager.h"
+# 542 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
 # 51 "mcc_generated_files/mcc.h" 2
 
@@ -39379,6 +39379,59 @@ void UART1_SetOverrunErrorHandler(void (* interruptHandler)(void));
 void UART1_SetErrorHandler(void (* interruptHandler)(void));
 # 62 "mcc_generated_files/mcc.h" 2
 
+# 1 "mcc_generated_files/uart5.h" 1
+# 74 "mcc_generated_files/uart5.h"
+typedef union {
+    struct {
+        unsigned perr : 1;
+        unsigned ferr : 1;
+        unsigned oerr : 1;
+        unsigned reserved : 5;
+    };
+    uint8_t status;
+}uart5_status_t;
+
+
+
+
+extern volatile uint8_t uart5TxBufferRemaining;
+extern volatile uint8_t uart5RxCount;
+# 115 "mcc_generated_files/uart5.h"
+void UART5_Initialize(void);
+# 163 "mcc_generated_files/uart5.h"
+_Bool UART5_is_rx_ready(void);
+# 211 "mcc_generated_files/uart5.h"
+_Bool UART5_is_tx_ready(void);
+# 258 "mcc_generated_files/uart5.h"
+_Bool UART5_is_tx_done(void);
+# 306 "mcc_generated_files/uart5.h"
+uart5_status_t UART5_get_last_status(void);
+# 355 "mcc_generated_files/uart5.h"
+uint8_t UART5_Read(void);
+# 380 "mcc_generated_files/uart5.h"
+void UART5_Write(uint8_t txData);
+# 401 "mcc_generated_files/uart5.h"
+void UART5_Transmit_ISR(void);
+# 422 "mcc_generated_files/uart5.h"
+void UART5_Receive_ISR(void);
+# 443 "mcc_generated_files/uart5.h"
+void UART5_RxDataHandler(void);
+# 461 "mcc_generated_files/uart5.h"
+void UART5_SetFramingErrorHandler(void (* interruptHandler)(void));
+# 479 "mcc_generated_files/uart5.h"
+void UART5_SetOverrunErrorHandler(void (* interruptHandler)(void));
+# 497 "mcc_generated_files/uart5.h"
+void UART5_SetErrorHandler(void (* interruptHandler)(void));
+# 517 "mcc_generated_files/uart5.h"
+void (*UART5_RxInterruptHandler)(void);
+# 535 "mcc_generated_files/uart5.h"
+void (*UART5_TxInterruptHandler)(void);
+# 555 "mcc_generated_files/uart5.h"
+void UART5_SetRxInterruptHandler(void (* InterruptHandler)(void));
+# 573 "mcc_generated_files/uart5.h"
+void UART5_SetTxInterruptHandler(void (* InterruptHandler)(void));
+# 63 "mcc_generated_files/mcc.h" 2
+
 # 1 "mcc_generated_files/can1.h" 1
 # 56 "mcc_generated_files/can1.h"
 # 1 "mcc_generated_files/can_types.h" 1
@@ -39541,7 +39594,7 @@ void CAN1_SetRxBufferOverFlowInterruptHandler(void (*handler)(void));
 void CAN1_SetFIFO2nullHandler(void (*handler)(void));
 # 1324 "mcc_generated_files/can1.h"
 void CAN1_SetFIFO1nullHandler(void (*handler)(void));
-# 63 "mcc_generated_files/mcc.h" 2
+# 64 "mcc_generated_files/mcc.h" 2
 
 # 1 "mcc_generated_files/spi1.h" 1
 # 59 "mcc_generated_files/spi1.h"
@@ -39558,14 +39611,14 @@ void SPI1_WriteBlock(void *block, size_t blockSize);
 void SPI1_ReadBlock(void *block, size_t blockSize);
 void SPI1_WriteByte(uint8_t byte);
 uint8_t SPI1_ReadByte(void);
-# 64 "mcc_generated_files/mcc.h" 2
-# 79 "mcc_generated_files/mcc.h"
+# 65 "mcc_generated_files/mcc.h" 2
+# 80 "mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
-# 92 "mcc_generated_files/mcc.h"
+# 93 "mcc_generated_files/mcc.h"
 void OSCILLATOR_Initialize(void);
-# 105 "mcc_generated_files/mcc.h"
+# 106 "mcc_generated_files/mcc.h"
 void PMD_Initialize(void);
-# 117 "mcc_generated_files/mcc.h"
+# 118 "mcc_generated_files/mcc.h"
 void SystemArbiter_Initialize(void);
 # 47 "mcc_generated_files/mcc.c" 2
 
@@ -39582,8 +39635,9 @@ void SYSTEM_Initialize(void)
     TMR4_Initialize();
     TMR2_Initialize();
     TMR0_Initialize();
-    UART2_Initialize();
     UART1_Initialize();
+    UART2_Initialize();
+    UART5_Initialize();
     SPI1_Initialize();
     CAN1_Initialize();
     SystemArbiter_Initialize();

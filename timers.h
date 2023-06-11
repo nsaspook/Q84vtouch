@@ -10,12 +10,7 @@
 
 enum APP_TIMERS {
 	TMR_INTERNAL = 0, //Used in timers.c - do not remove or use elsewhere
-	TMR_ADC,
-	TMR_T2,
-	TMR_T3,
-	TMR_T4,
-	TMR_CAM,
-	TMR_DIS,
+	TMR_MBMASTER,
 	//
 	//(Add timers here as needed)
 	//
@@ -25,5 +20,8 @@ enum APP_TIMERS {
 void StartTimer(const uint8_t timer, const uint16_t count);
 bool TimerDone(const uint8_t timer);
 void WaitMs(const uint16_t numMilliseconds);
+void timer_ms_tick(uint32_t, uintptr_t);
+
+void delay_ms(uint16_t);
 
 #endif //TIMERS_H

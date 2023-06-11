@@ -38290,7 +38290,7 @@ unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 # 34 "/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.18.389/xc8/pic/include/xc.h" 2 3
 # 54 "mcc_generated_files/pin_manager.h" 2
-# 498 "mcc_generated_files/pin_manager.h"
+# 542 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
 # 49 "mcc_generated_files/pin_manager.c" 2
 
@@ -38308,7 +38308,7 @@ void PIN_MANAGER_Initialize(void)
     LATD = 0x9E;
     LATA = 0x00;
     LATB = 0x0E;
-    LATC = 0x00;
+    LATC = 0x04;
 
 
 
@@ -38316,14 +38316,14 @@ void PIN_MANAGER_Initialize(void)
     TRISE = 0x00;
     TRISA = 0xEF;
     TRISB = 0xE9;
-    TRISC = 0x97;
+    TRISC = 0x91;
     TRISD = 0xA1;
 
 
 
 
     ANSELD = 0x20;
-    ANSELC = 0x07;
+    ANSELC = 0x00;
     ANSELB = 0xE0;
     ANSELE = 0x00;
     ANSELA = 0xFF;
@@ -38365,8 +38365,10 @@ void PIN_MANAGER_Initialize(void)
     INLVLE = 0x0F;
 # 127 "mcc_generated_files/pin_manager.c"
     U2RXPPS = 0x18;
+    U5RXPPS = 0x10;
     SPI1SCKPPS = 0x13;
     RC3PPS = 0x31;
+    RC1PPS = 0x2C;
     CANRXPPS = 0x08;
     RB4PPS = 0x46;
     RC5PPS = 0x32;

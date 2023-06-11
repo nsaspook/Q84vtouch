@@ -11,6 +11,7 @@ mcc_generated_files/tmr2.h  \
 mcc_generated_files/tmr0.h  \
 mcc_generated_files/uart2.h  \
 mcc_generated_files/uart1.h  \
+mcc_generated_files/uart5.h  \
 mcc_generated_files/can1.h  \
 mcc_generated_files/can_types.h  \
 mcc_generated_files/spi1.h 

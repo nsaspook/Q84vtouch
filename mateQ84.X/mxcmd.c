@@ -92,6 +92,8 @@ void FM_io(void)
 		rbuf[rdstart] += U1RXB;
 		rdstart++;
 	}
+
+	timer_ms_tick(0, 0); // software timers update
 	MISC_SetLow();
 }
 

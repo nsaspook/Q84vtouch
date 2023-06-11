@@ -19,6 +19,7 @@ extern "C" {
 #include <string.h>
 #include "mcc_generated_files/mcc.h"
 #include "../eadog.h"
+#include "../timers.h"
 	
 #define VER	1
 

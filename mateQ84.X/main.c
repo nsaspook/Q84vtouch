@@ -189,6 +189,7 @@
 
 #include <xc.h>
 #include "mxcmd.h"
+#include "../timers.h"
 
 #define PACE	31000	// commands delay in count units
 #define CMD_LEN	8
@@ -216,6 +217,7 @@ volatile bool mx80_online = true;
 char buffer[64];
 char build_version[] = "V1.00 FM80 Q84";
 char *build_date = __DATE__, *build_time = __TIME__;
+volatile uint16_t tickCount[TMR_COUNT];
 
 mx_status_packed_t *status_packed = (void *) abuf;
 /*
@@ -342,7 +344,7 @@ void main(void)
 		}
 		if (one_sec_flag) {
 			one_sec_flag = false;
-			sprintf(buffer, "Energy Monitor  %c%c    ", spinners(5, 0), spinners(5, 0));
+			sprintf(buffer, "Energy Monitor  %c%c    ", spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
 			eaDogM_WriteStringAtPos(1, 0, buffer);
 		}
 	}
