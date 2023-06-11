@@ -285,7 +285,7 @@ void main(void)
 	TMR2_StartTimer();
 
 	init_display();
-	sprintf(buffer, "%s ", "          ");
+	sprintf(buffer, "%s ", "                    ");
 	eaDogM_WriteStringAtPos(0, 0, buffer);
 	sprintf(buffer, "%s ", build_version);
 	eaDogM_WriteStringAtPos(0, 0, buffer);
@@ -386,11 +386,11 @@ void state_init_cb(void)
 	if (abuf[2] == 0x03) {
 		printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: Found MX80 online\r\n", rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
 		mx80_online = true;
-		sprintf(buffer, "Found MX80 online    ");
+		sprintf(buffer, "Found MX80 online      ");
 		eaDogM_WriteStringAtPos(3, 0, buffer);
 	} else {
 		printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: MX80 Not Found online\r\n", rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
-		sprintf(buffer, "MX80 Not Found online");
+		sprintf(buffer, "MX80 Not Found online  ");
 		eaDogM_WriteStringAtPos(3, 0, buffer);
 		mx80_online = false;
 	}
@@ -468,9 +468,9 @@ void state_mx_status_cb(void)
 			 * log CSV values to the serial port for data storage and processing
 			 */
 			printf("^^^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%d\r\n", abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, cc_mode, rx_count++);
-			sprintf(buffer, "%d Watts %d.%01d Volts", panel_watts, volt_whole, volt_fract);
+			sprintf(buffer, "%d Watts %d.%01d Volts   ", panel_watts, volt_whole, volt_fract);
 			eaDogM_WriteStringAtPos(2, 0, buffer);
-			sprintf(buffer, "%d.%01d Amps %d.%01d Volts", abuf[3] - 128, abuf[1]&0x0f, vw, vf);
+			sprintf(buffer, "%d.%01d Amps %d.%01d Volts   ", abuf[3] - 128, abuf[1]&0x0f, vw, vf);
 			eaDogM_WriteStringAtPos(3, 0, buffer);
 		}
 	}

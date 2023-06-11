@@ -39933,7 +39933,7 @@ uint16_t pacing = 0, rx_count = 0, flush;
 volatile _Bool mx80_online = 1;
 char buffer[64];
 char build_version[] = "V1.00 FM80 Q84";
-char *build_date = "Jun 10 2023", *build_time = "16:39:18";
+char *build_date = "Jun 10 2023", *build_time = "18:00:19";
 
 mx_status_packed_t *status_packed = (void *) abuf;
 
@@ -40002,13 +40002,8 @@ void main(void)
  TMR2_SetInterruptHandler(tensec_io);
  TMR2_StartTimer();
 
-
- do { ANSELBbits.ANSELB3 = 0; } while(0);
- LATBbits.LATB3= 0;
-
-
  init_display();
- sprintf(buffer, "%s ", "          ");
+ sprintf(buffer, "%s ", "                    ");
  eaDogM_WriteStringAtPos(0, 0, buffer);
  sprintf(buffer, "%s ", build_version);
  eaDogM_WriteStringAtPos(0, 0, buffer);
@@ -40109,11 +40104,11 @@ void state_init_cb(void)
  if (abuf[2] == 0x03) {
   printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: Found MX80 online\r\n", rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
   mx80_online = 1;
-  sprintf(buffer, "Found MX80 online    ");
+  sprintf(buffer, "Found MX80 online      ");
   eaDogM_WriteStringAtPos(3, 0, buffer);
  } else {
   printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: MX80 Not Found online\r\n", rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
-  sprintf(buffer, "MX80 Not Found online");
+  sprintf(buffer, "MX80 Not Found online  ");
   eaDogM_WriteStringAtPos(3, 0, buffer);
   mx80_online = 0;
  }
@@ -40191,9 +40186,9 @@ void state_mx_status_cb(void)
 
 
    printf("^^^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%d\r\n", abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, cc_mode, rx_count++);
-   sprintf(buffer, "%d Watts %d.%01d Volts", panel_watts, volt_whole, volt_fract);
+   sprintf(buffer, "%d Watts %d.%01d Volts   ", panel_watts, volt_whole, volt_fract);
    eaDogM_WriteStringAtPos(2, 0, buffer);
-   sprintf(buffer, "%d.%01d Amps %d.%01d Volts", abuf[3] - 128, abuf[1]&0x0f, vw, vf);
+   sprintf(buffer, "%d.%01d Amps %d.%01d Volts   ", abuf[3] - 128, abuf[1]&0x0f, vw, vf);
    eaDogM_WriteStringAtPos(3, 0, buffer);
   }
  }

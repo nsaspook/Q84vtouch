@@ -60,6 +60,7 @@
 #include "tmr0.h"
 #include "uart2.h"
 #include "uart1.h"
+#include "uart5.h"
 #include "can1.h"
 #include "spi1.h"
 

@@ -58,8 +58,9 @@ void SYSTEM_Initialize(void)
     TMR4_Initialize();
     TMR2_Initialize();
     TMR0_Initialize();
-    UART2_Initialize();
     UART1_Initialize();
+    UART2_Initialize();
+    UART5_Initialize();
     SPI1_Initialize();
     CAN1_Initialize();
     SystemArbiter_Initialize();
