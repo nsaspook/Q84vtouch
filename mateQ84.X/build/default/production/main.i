@@ -40365,7 +40365,7 @@ uint16_t pacing = 0, rx_count = 0, flush;
 volatile _Bool mx80_online = 1;
 char buffer[64];
 char build_version[] = "V1.00 FM80 Q84";
-char *build_date = "Jun 11 2023", *build_time = "14:19:37";
+char *build_date = "Jun 12 2023", *build_time = "18:53:30";
 volatile uint16_t tickCount[TMR_COUNT];
 
 mx_status_packed_t *status_packed = (void *) abuf;
@@ -40637,6 +40637,8 @@ void state_mx_status_cb(void)
    eaDogM_WriteStringAtPos(2, 0, buffer);
    sprintf(buffer, "%d.%01d Amps %d.%01d Volts   ", abuf[3] - 128, abuf[1]&0x0f, vw, vf);
    eaDogM_WriteStringAtPos(3, 0, buffer);
+   sprintf(buffer, "%s   %c", build_version, state_name[cc_mode][0]);
+   eaDogM_WriteStringAtPos(0, 0, buffer);
   }
  }
  state = state_misc;

@@ -4629,7 +4629,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 "77
-[; ;main.c: 77: char *build_date = "Jun 11 2023", *build_time = "14:19:37";
+[; ;main.c: 77: char *build_date = "Jun 12 2023", *build_time = "18:53:30";
 [v _build_date `*uc ~T0 @X0 1 e ]
 [i _build_date
 :s 1C
@@ -5271,134 +5271,141 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 348:    eaDogM_WriteStringAtPos(3, 0, buffer);
 [e ( _eaDogM_WriteStringAtPos (3 , , -> -> 3 `i `uc -> -> 0 `i `uc &U _buffer ]
 "349
-[; ;main.c: 349:   }
+[; ;main.c: 349:    sprintf(buffer, "%s   %c", build_version, state_name[cc_mode][0]);
+[e ( _sprintf (1 , , (. , &U _buffer :s 20C &U _build_version -> *U + &U *U + &U _state_name * -> _cc_mode `ux -> * -> # *U &U *U &U _state_name `ui -> -> 12 `i `ui `ux * -> -> -> 0 `i `ui `ux -> -> # *U &U *U + &U _state_name * -> _cc_mode `ux -> * -> # *U &U *U &U _state_name `ui -> -> 12 `i `ui `ux `ui `ux `i ]
+"350
+[; ;main.c: 350:    eaDogM_WriteStringAtPos(0, 0, buffer);
+[e ( _eaDogM_WriteStringAtPos (3 , , -> -> 0 `i `uc -> -> 0 `i `uc &U _buffer ]
+"351
+[; ;main.c: 351:   }
 }
 [e :U 3290 ]
-"350
-[; ;main.c: 350:  }
+"352
+[; ;main.c: 352:  }
 }
 [e :U 3289 ]
-"351
-[; ;main.c: 351:  state = state_misc;
+"353
+[; ;main.c: 353:  state = state_misc;
 [e = _state . `E24068 6 ]
-"352
-[; ;main.c: 352: }
+"354
+[; ;main.c: 354: }
 [e :UE 3287 ]
 }
-"357
-[; ;main.c: 357: void state_misc_cb(void)
+"359
+[; ;main.c: 359: void state_misc_cb(void)
 [v _state_misc_cb `(v ~T0 @X0 1 ef ]
-"358
-[; ;main.c: 358: {
+"360
+[; ;main.c: 360: {
 {
 [e :U _state_misc_cb ]
 [f ]
-"359
-[; ;main.c: 359:  if (abuf[2] == 0x03) {
+"361
+[; ;main.c: 361:  if (abuf[2] == 0x03) {
 [e $ ! == -> *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 3 `i `ui 3292  ]
 {
-"360
-[; ;main.c: 360:   mx80_online = 1;
+"362
+[; ;main.c: 362:   mx80_online = 1;
 [e = _mx80_online -> -> 1 `i `a ]
-"361
-[; ;main.c: 361:  } else {
+"363
+[; ;main.c: 363:  } else {
 }
 [e $U 3293  ]
 [e :U 3292 ]
 {
-"362
-[; ;main.c: 362:   mx80_online = 0;
-[e = _mx80_online -> -> 0 `i `a ]
-"363
-[; ;main.c: 363:   state = state_init;
-[e = _state . `E24068 0 ]
 "364
-[; ;main.c: 364:   return;
-[e $UE 3291  ]
+[; ;main.c: 364:   mx80_online = 0;
+[e = _mx80_online -> -> 0 `i `a ]
 "365
-[; ;main.c: 365:  }
+[; ;main.c: 365:   state = state_init;
+[e = _state . `E24068 0 ]
+"366
+[; ;main.c: 366:   return;
+[e $UE 3291  ]
+"367
+[; ;main.c: 367:  }
 }
 [e :U 3293 ]
-"366
-[; ;main.c: 366:  if (!ten_sec_flag) {
+"368
+[; ;main.c: 368:  if (!ten_sec_flag) {
 [e $ ! ! != -> _ten_sec_flag `i -> 0 `i 3294  ]
 {
-"367
-[; ;main.c: 367:   state = state_misc;
+"369
+[; ;main.c: 369:   state = state_misc;
 [e = _state . `E24068 6 ]
-"368
-[; ;main.c: 368:  } else {
+"370
+[; ;main.c: 370:  } else {
 }
 [e $U 3295  ]
 [e :U 3294 ]
 {
-"369
-[; ;main.c: 369:   state = state_status;
+"371
+[; ;main.c: 371:   state = state_status;
 [e = _state . `E24068 1 ]
-"370
-[; ;main.c: 370:  }
+"372
+[; ;main.c: 372:  }
 }
 [e :U 3295 ]
-"371
-[; ;main.c: 371: }
+"373
+[; ;main.c: 373: }
 [e :UE 3291 ]
 }
-"374
-[; ;main.c: 374: char spinners(uint8_t shape, const uint8_t reset)
+"376
+[; ;main.c: 376: char spinners(uint8_t shape, const uint8_t reset)
 [v _spinners `(uc ~T0 @X0 1 ef2`uc`Cuc ]
-"375
-[; ;main.c: 375: {
+"377
+[; ;main.c: 377: {
 {
 [e :U _spinners ]
-"374
-[; ;main.c: 374: char spinners(uint8_t shape, const uint8_t reset)
+"376
+[; ;main.c: 376: char spinners(uint8_t shape, const uint8_t reset)
 [v _shape `uc ~T0 @X0 1 r1 ]
 [v _reset `Cuc ~T0 @X0 1 r2 ]
-"375
-[; ;main.c: 375: {
-[f ]
-"376
-[; ;main.c: 376:  static uint8_t s[6];
-[v F24150 `uc ~T0 @X0 -> 6 `i s s ]
 "377
-[; ;main.c: 377:  char c;
-[v _c `uc ~T0 @X0 1 a ]
+[; ;main.c: 377: {
+[f ]
+"378
+[; ;main.c: 378:  static uint8_t s[6];
+[v F24151 `uc ~T0 @X0 -> 6 `i s s ]
 "379
-[; ;main.c: 379:  if (shape > (6 - 1))
+[; ;main.c: 379:  char c;
+[v _c `uc ~T0 @X0 1 a ]
+"381
+[; ;main.c: 381:  if (shape > (6 - 1))
 [e $ ! > -> _shape `i - -> 6 `i -> 1 `i 3297  ]
-"380
-[; ;main.c: 380:   shape = 0;
+"382
+[; ;main.c: 382:   shape = 0;
 [e = _shape -> -> 0 `i `uc ]
 [e :U 3297 ]
-"381
-[; ;main.c: 381:  if (reset)
-[e $ ! != -> _reset `i -> 0 `i 3298  ]
-"382
-[; ;main.c: 382:   s[shape] = 0;
-[e = *U + &U F24150 * -> _shape `ux -> -> # *U &U F24150 `ui `ux -> -> 0 `i `uc ]
-[e :U 3298 ]
 "383
-[; ;main.c: 383:  c = spin[shape][s[shape]];
-[e = _c *U + &U *U + &U _spin * -> _shape `ux -> * -> # *U &U *U &U _spin `ui -> -> 20 `i `ui `ux * -> *U + &U F24150 * -> _shape `ux -> -> # *U &U F24150 `ui `ux `ux -> -> # *U &U *U + &U _spin * -> _shape `ux -> * -> # *U &U *U &U _spin `ui -> -> 20 `i `ui `ux `ui `ux ]
+[; ;main.c: 383:  if (reset)
+[e $ ! != -> _reset `i -> 0 `i 3298  ]
 "384
-[; ;main.c: 384:  if (++s[shape] >= strlen(spin[shape]))
-[e $ ! >= -> =+ *U + &U F24150 * -> _shape `ux -> -> # *U &U F24150 `ui `ux -> -> 1 `i `uc `ui ( _strlen (1 &U *U + &U _spin * -> _shape `ux -> * -> # *U &U *U &U _spin `ui -> -> 20 `i `ui `ux 3299  ]
+[; ;main.c: 384:   s[shape] = 0;
+[e = *U + &U F24151 * -> _shape `ux -> -> # *U &U F24151 `ui `ux -> -> 0 `i `uc ]
+[e :U 3298 ]
 "385
-[; ;main.c: 385:   s[shape] = 0;
-[e = *U + &U F24150 * -> _shape `ux -> -> # *U &U F24150 `ui `ux -> -> 0 `i `uc ]
-[e :U 3299 ]
+[; ;main.c: 385:  c = spin[shape][s[shape]];
+[e = _c *U + &U *U + &U _spin * -> _shape `ux -> * -> # *U &U *U &U _spin `ui -> -> 20 `i `ui `ux * -> *U + &U F24151 * -> _shape `ux -> -> # *U &U F24151 `ui `ux `ux -> -> # *U &U *U + &U _spin * -> _shape `ux -> * -> # *U &U *U &U _spin `ui -> -> 20 `i `ui `ux `ui `ux ]
 "386
-[; ;main.c: 386:  return c;
+[; ;main.c: 386:  if (++s[shape] >= strlen(spin[shape]))
+[e $ ! >= -> =+ *U + &U F24151 * -> _shape `ux -> -> # *U &U F24151 `ui `ux -> -> 1 `i `uc `ui ( _strlen (1 &U *U + &U _spin * -> _shape `ux -> * -> # *U &U *U &U _spin `ui -> -> 20 `i `ui `ux 3299  ]
+"387
+[; ;main.c: 387:   s[shape] = 0;
+[e = *U + &U F24151 * -> _shape `ux -> -> # *U &U F24151 `ui `ux -> -> 0 `i `uc ]
+[e :U 3299 ]
+"388
+[; ;main.c: 388:  return c;
 [e ) _c ]
 [e $UE 3296  ]
-"387
-[; ;main.c: 387: }
+"389
+[; ;main.c: 389: }
 [e :UE 3296 ]
 }
 [p f _printf 12615812 ]
 [p f _sprintf 11305092 ]
-[a 2C 49 52 58 49 57 58 51 56 0 ]
-[a 1C 74 117 110 32 49 49 32 50 48 50 51 0 ]
+[a 20C 37 115 32 32 32 37 99 0 ]
+[a 1C 74 117 110 32 49 50 32 50 48 50 51 0 ]
+[a 2C 49 56 58 53 51 58 51 48 0 ]
 [a 3C 37 115 32 0 ]
 [a 5C 37 115 32 0 ]
 [a 6C 37 115 32 0 ]

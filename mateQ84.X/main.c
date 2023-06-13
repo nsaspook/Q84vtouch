@@ -346,6 +346,8 @@ void state_mx_status_cb(void)
 			eaDogM_WriteStringAtPos(2, 0, buffer);
 			sprintf(buffer, "%d.%01d Amps %d.%01d Volts   ", abuf[3] - 128, abuf[1]&0x0f, vw, vf);
 			eaDogM_WriteStringAtPos(3, 0, buffer);
+			sprintf(buffer, "%s   %c", build_version, state_name[cc_mode][0]);
+			eaDogM_WriteStringAtPos(0, 0, buffer);
 		}
 	}
 	state = state_misc;
