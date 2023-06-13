@@ -1,0 +1,339 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"19 ../ringbufs.h
+[; ;../ringbufs.h: 19:  typedef struct ringBufS_t {
+[s S7 `uc -> 32 `i `uc 1 `uc 1 `uc 1 ]
+[n S7 ringBufS_t buf head tail count ]
+"29 /opt/microchip/xc8/v2.41/pic/include/c99/string.h
+[; ;/opt/microchip/xc8/v2.41/pic/include/c99/string.h: 29: void *memset (void *, int, size_t);
+[v _memset `(*v ~T0 @X0 0 ef3`*v`i`ui ]
+"27
+[; ;/opt/microchip/xc8/v2.41/pic/include/c99/string.h: 27: void *memcpy (void *restrict, const void *restrict, size_t);
+[v _memcpy `(*v ~T0 @X0 0 ef3`*v`*Cv`ui ]
+"7 ../ringbufs.c
+[; ;../ringbufs.c: 7: uint8_t modulo_inc(const uint8_t value, const uint8_t modulus)
+[v _modulo_inc `(uc ~T0 @X0 1 ef2`Cuc`Cuc ]
+"8
+[; ;../ringbufs.c: 8: {
+{
+[e :U _modulo_inc ]
+"7
+[; ;../ringbufs.c: 7: uint8_t modulo_inc(const uint8_t value, const uint8_t modulus)
+[v _value `Cuc ~T0 @X0 1 r1 ]
+[v _modulus `Cuc ~T0 @X0 1 r2 ]
+"8
+[; ;../ringbufs.c: 8: {
+[f ]
+"9
+[; ;../ringbufs.c: 9:  uint8_t my_value = value + 1;
+[v _my_value `uc ~T0 @X0 1 a ]
+[e = _my_value -> + -> _value `i -> 1 `i `uc ]
+"10
+[; ;../ringbufs.c: 10:  if (my_value >= modulus) {
+[e $ ! >= -> _my_value `i -> _modulus `i 9  ]
+{
+"11
+[; ;../ringbufs.c: 11:   my_value = 0;
+[e = _my_value -> -> 0 `i `uc ]
+"12
+[; ;../ringbufs.c: 12:  }
+}
+[e :U 9 ]
+"13
+[; ;../ringbufs.c: 13:  return my_value;
+[e ) _my_value ]
+[e $UE 8  ]
+"14
+[; ;../ringbufs.c: 14: }
+[e :UE 8 ]
+}
+"16
+[; ;../ringbufs.c: 16: uint8_t modulo_dec(const uint8_t value, const uint8_t modulus)
+[v _modulo_dec `(uc ~T0 @X0 1 ef2`Cuc`Cuc ]
+"17
+[; ;../ringbufs.c: 17: {
+{
+[e :U _modulo_dec ]
+"16
+[; ;../ringbufs.c: 16: uint8_t modulo_dec(const uint8_t value, const uint8_t modulus)
+[v _value `Cuc ~T0 @X0 1 r1 ]
+[v _modulus `Cuc ~T0 @X0 1 r2 ]
+"17
+[; ;../ringbufs.c: 17: {
+[f ]
+"18
+[; ;../ringbufs.c: 18:  uint8_t my_value = (0 == value) ? (modulus - 1) : (value - 1);
+[v _my_value `uc ~T0 @X0 1 a ]
+[e = _my_value -> ? == -> 0 `i -> _value `i : - -> _modulus `i -> 1 `i - -> _value `i -> 1 `i `uc ]
+"19
+[; ;../ringbufs.c: 19:  return my_value;
+[e ) _my_value ]
+[e $UE 10  ]
+"20
+[; ;../ringbufs.c: 20: }
+[e :UE 10 ]
+}
+"22
+[; ;../ringbufs.c: 22: void *ringBufS_init(volatile ringBufS_t *_this)
+[v _ringBufS_init `(*v ~T0 @X0 1 ef1`*VS7 ]
+"23
+[; ;../ringbufs.c: 23: {
+{
+[e :U _ringBufS_init ]
+"22
+[; ;../ringbufs.c: 22: void *ringBufS_init(volatile ringBufS_t *_this)
+[v __this `*VS7 ~T0 @X0 1 r1 ]
+"23
+[; ;../ringbufs.c: 23: {
+[f ]
+"32
+[; ;../ringbufs.c: 32:  return memset((void*) _this, 0, sizeof(*_this));
+[e ) ( _memset (3 , , -> __this `*v -> 0 `i -> # *U __this `ui ]
+[e $UE 11  ]
+"33
+[; ;../ringbufs.c: 33: }
+[e :UE 11 ]
+}
+"35
+[; ;../ringbufs.c: 35: int8_t ringBufS_empty(ringBufS_t *_this)
+[v _ringBufS_empty `(c ~T0 @X0 1 ef1`*S7 ]
+"36
+[; ;../ringbufs.c: 36: {
+{
+[e :U _ringBufS_empty ]
+"35
+[; ;../ringbufs.c: 35: int8_t ringBufS_empty(ringBufS_t *_this)
+[v __this `*S7 ~T0 @X0 1 r1 ]
+"36
+[; ;../ringbufs.c: 36: {
+[f ]
+"37
+[; ;../ringbufs.c: 37:  return(0 == _this->count);
+[e ) -> -> == -> 0 `i -> . *U __this 3 `i `i `c ]
+[e $UE 12  ]
+"38
+[; ;../ringbufs.c: 38: }
+[e :UE 12 ]
+}
+"40
+[; ;../ringbufs.c: 40: int8_t ringBufS_full(ringBufS_t *_this)
+[v _ringBufS_full `(c ~T0 @X0 1 ef1`*S7 ]
+"41
+[; ;../ringbufs.c: 41: {
+{
+[e :U _ringBufS_full ]
+"40
+[; ;../ringbufs.c: 40: int8_t ringBufS_full(ringBufS_t *_this)
+[v __this `*S7 ~T0 @X0 1 r1 ]
+"41
+[; ;../ringbufs.c: 41: {
+[f ]
+"42
+[; ;../ringbufs.c: 42:  return(_this->count >= 32);
+[e ) -> -> >= -> . *U __this 3 `i -> 32 `i `i `c ]
+[e $UE 13  ]
+"43
+[; ;../ringbufs.c: 43: }
+[e :UE 13 ]
+}
+"45
+[; ;../ringbufs.c: 45: uint8_t ringBufS_get(ringBufS_t *_this)
+[v _ringBufS_get `(uc ~T0 @X0 1 ef1`*S7 ]
+"46
+[; ;../ringbufs.c: 46: {
+{
+[e :U _ringBufS_get ]
+"45
+[; ;../ringbufs.c: 45: uint8_t ringBufS_get(ringBufS_t *_this)
+[v __this `*S7 ~T0 @X0 1 r1 ]
+"46
+[; ;../ringbufs.c: 46: {
+[f ]
+"47
+[; ;../ringbufs.c: 47:  uint8_t c;
+[v _c `uc ~T0 @X0 1 a ]
+"48
+[; ;../ringbufs.c: 48:  if (_this->count > 0) {
+[e $ ! > -> . *U __this 3 `i -> 0 `i 15  ]
+{
+"49
+[; ;../ringbufs.c: 49:   c = _this->buf[_this->tail];
+[e = _c *U + &U . *U __this 0 * -> . *U __this 2 `ux -> -> # *U &U . *U __this 0 `ui `ux ]
+"50
+[; ;../ringbufs.c: 50:   _this->tail = modulo_inc(_this->tail, 32);
+[e = . *U __this 2 ( _modulo_inc (2 , . *U __this 2 -> -> 32 `i `uc ]
+"51
+[; ;../ringbufs.c: 51:   --_this->count;
+[e =- . *U __this 3 -> -> 1 `i `uc ]
+"52
+[; ;../ringbufs.c: 52:  } else {
+}
+[e $U 16  ]
+[e :U 15 ]
+{
+"53
+[; ;../ringbufs.c: 53:   c = 0;
+[e = _c -> -> 0 `i `uc ]
+"54
+[; ;../ringbufs.c: 54:  }
+}
+[e :U 16 ]
+"55
+[; ;../ringbufs.c: 55:  return(c);
+[e ) _c ]
+[e $UE 14  ]
+"56
+[; ;../ringbufs.c: 56: }
+[e :UE 14 ]
+}
+"58
+[; ;../ringbufs.c: 58: void ringBufS_put(ringBufS_t *_this, const uint8_t c)
+[v _ringBufS_put `(v ~T0 @X0 1 ef2`*S7`Cuc ]
+"59
+[; ;../ringbufs.c: 59: {
+{
+[e :U _ringBufS_put ]
+"58
+[; ;../ringbufs.c: 58: void ringBufS_put(ringBufS_t *_this, const uint8_t c)
+[v __this `*S7 ~T0 @X0 1 r1 ]
+[v _c `Cuc ~T0 @X0 1 r2 ]
+"59
+[; ;../ringbufs.c: 59: {
+[f ]
+"60
+[; ;../ringbufs.c: 60:  if (_this->count < 32) {
+[e $ ! < -> . *U __this 3 `i -> 32 `i 18  ]
+{
+"61
+[; ;../ringbufs.c: 61:   _this->buf[_this->head] = c;
+[e = *U + &U . *U __this 0 * -> . *U __this 1 `ux -> -> # *U &U . *U __this 0 `ui `ux _c ]
+"62
+[; ;../ringbufs.c: 62:   _this->head = modulo_inc(_this->head, 32);
+[e = . *U __this 1 ( _modulo_inc (2 , . *U __this 1 -> -> 32 `i `uc ]
+"63
+[; ;../ringbufs.c: 63:   ++_this->count;
+[e =+ . *U __this 3 -> -> 1 `i `uc ]
+"64
+[; ;../ringbufs.c: 64:  }
+}
+[e :U 18 ]
+"65
+[; ;../ringbufs.c: 65: }
+[e :UE 17 ]
+}
+"67
+[; ;../ringbufs.c: 67: void ringBufS_put_dma(ringBufS_t *_this, const uint8_t c)
+[v _ringBufS_put_dma `(v ~T0 @X0 1 ef2`*S7`Cuc ]
+"68
+[; ;../ringbufs.c: 68: {
+{
+[e :U _ringBufS_put_dma ]
+"67
+[; ;../ringbufs.c: 67: void ringBufS_put_dma(ringBufS_t *_this, const uint8_t c)
+[v __this `*S7 ~T0 @X0 1 r1 ]
+[v _c `Cuc ~T0 @X0 1 r2 ]
+"68
+[; ;../ringbufs.c: 68: {
+[f ]
+"69
+[; ;../ringbufs.c: 69:  if (_this->count < 32) {
+[e $ ! < -> . *U __this 3 `i -> 32 `i 20  ]
+{
+"70
+[; ;../ringbufs.c: 70:   _this->buf[_this->head] = c;
+[e = *U + &U . *U __this 0 * -> . *U __this 1 `ux -> -> # *U &U . *U __this 0 `ui `ux _c ]
+"71
+[; ;../ringbufs.c: 71:   ++_this->head;
+[e =+ . *U __this 1 -> -> 1 `i `uc ]
+"72
+[; ;../ringbufs.c: 72:   ++_this->count;
+[e =+ . *U __this 3 -> -> 1 `i `uc ]
+"73
+[; ;../ringbufs.c: 73:  }
+}
+[e :U 20 ]
+"74
+[; ;../ringbufs.c: 74: }
+[e :UE 19 ]
+}
+"76
+[; ;../ringbufs.c: 76: void ringBufS_put_dma_cpy(ringBufS_t *_this, const char *ptr, const uint8_t len)
+[v _ringBufS_put_dma_cpy `(v ~T0 @X0 1 ef3`*S7`*Cuc`Cuc ]
+"77
+[; ;../ringbufs.c: 77: {
+{
+[e :U _ringBufS_put_dma_cpy ]
+"76
+[; ;../ringbufs.c: 76: void ringBufS_put_dma_cpy(ringBufS_t *_this, const char *ptr, const uint8_t len)
+[v __this `*S7 ~T0 @X0 1 r1 ]
+[v _ptr `*Cuc ~T0 @X0 1 r2 ]
+[v _len `Cuc ~T0 @X0 1 r3 ]
+"77
+[; ;../ringbufs.c: 77: {
+[f ]
+"78
+[; ;../ringbufs.c: 78:  if (_this->count < 32) {
+[e $ ! < -> . *U __this 3 `i -> 32 `i 22  ]
+{
+"79
+[; ;../ringbufs.c: 79:   memcpy(_this->buf, ptr, len);
+[e ( _memcpy (3 , , -> &U . *U __this 0 `*v -> _ptr `*Cv -> _len `ui ]
+"80
+[; ;../ringbufs.c: 80:   _this->head = len;
+[e = . *U __this 1 _len ]
+"81
+[; ;../ringbufs.c: 81:   _this->count = len;
+[e = . *U __this 3 _len ]
+"82
+[; ;../ringbufs.c: 82:  }
+}
+[e :U 22 ]
+"83
+[; ;../ringbufs.c: 83: }
+[e :UE 21 ]
+}
+"85
+[; ;../ringbufs.c: 85: void *ringBufS_flush(ringBufS_t *_this, const _Bool clearBuffer)
+[v _ringBufS_flush `(*v ~T0 @X0 1 ef2`*S7`Ca ]
+"86
+[; ;../ringbufs.c: 86: {
+{
+[e :U _ringBufS_flush ]
+"85
+[; ;../ringbufs.c: 85: void *ringBufS_flush(ringBufS_t *_this, const _Bool clearBuffer)
+[v __this `*S7 ~T0 @X0 1 r1 ]
+[v _clearBuffer `Ca ~T0 @X0 1 r2 ]
+"86
+[; ;../ringbufs.c: 86: {
+[f ]
+"87
+[; ;../ringbufs.c: 87:  void *tmp = ((void*)0);
+[v _tmp `*v ~T0 @X0 1 a ]
+[e = _tmp -> -> 0 `i `*v ]
+"89
+[; ;../ringbufs.c: 89:  _this->count = 0;
+[e = . *U __this 3 -> -> 0 `i `uc ]
+"90
+[; ;../ringbufs.c: 90:  _this->head = 0;
+[e = . *U __this 1 -> -> 0 `i `uc ]
+"91
+[; ;../ringbufs.c: 91:  _this->tail = 0;
+[e = . *U __this 2 -> -> 0 `i `uc ]
+"92
+[; ;../ringbufs.c: 92:  if (clearBuffer) {
+[e $ ! != -> _clearBuffer `i -> 0 `i 24  ]
+{
+"93
+[; ;../ringbufs.c: 93:   tmp = memset(_this->buf, 0, sizeof(_this->buf));
+[e = _tmp ( _memset (3 , , -> &U . *U __this 0 `*v -> 0 `i * -> # *U &U . *U __this 0 `ui -> -> 32 `i `ui ]
+"94
+[; ;../ringbufs.c: 94:  }
+}
+[e :U 24 ]
+"95
+[; ;../ringbufs.c: 95:  return tmp;
+[e ) _tmp ]
+[e $UE 23  ]
+"96
+[; ;../ringbufs.c: 96: }
+[e :UE 23 ]
+}

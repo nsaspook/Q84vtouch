@@ -1,0 +1,21 @@
+.ca/build/PRO_Comparison/production/_ext/1472/modbus_master.p1:  \
+../modbus_master.c  \
+../modbus_master.h  \
+../mateQ84.X/mcc_generated_files/mcc.h  \
+../mateQ84.X/mcc_generated_files/device_config.h  \
+../mateQ84.X/mcc_generated_files/pin_manager.h  \
+../mateQ84.X/mcc_generated_files/interrupt_manager.h  \
+../mateQ84.X/mcc_generated_files/adc.h  \
+../mateQ84.X/mcc_generated_files/tmr5.h  \
+../mateQ84.X/mcc_generated_files/tmr6.h  \
+../mateQ84.X/mcc_generated_files/dma1.h  \
+../mateQ84.X/mcc_generated_files/tmr4.h  \
+../mateQ84.X/mcc_generated_files/tmr2.h  \
+../mateQ84.X/mcc_generated_files/tmr0.h  \
+../mateQ84.X/mcc_generated_files/uart2.h  \
+../mateQ84.X/mcc_generated_files/uart1.h  \
+../mateQ84.X/mcc_generated_files/uart5.h  \
+../mateQ84.X/mcc_generated_files/can1.h  \
+../mateQ84.X/mcc_generated_files/can_types.h  \
+../mateQ84.X/mcc_generated_files/spi1.h  \
+../timers.h 

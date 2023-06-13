@@ -13,9 +13,9 @@
   Description:
     This header file provides implementations for driver APIs for all modules selected in the GUI.
     Generation Information :
-	Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.8
-	Device            :  PIC18F14Q41
-	Driver Version    :  2.00
+    Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.8
+    Device            :  PIC18F14Q41
+    Driver Version    :  2.00
  */
 
 /*
@@ -70,14 +70,20 @@ uint16_t abuf[FM_BUFFER];
 uint16_t volt_fract;
 uint16_t volt_whole, panel_watts, cc_mode;
 enum state_type state = state_init;
-uint16_t pacing = 0, rx_count = 0, flush;
-volatile bool mx80_online = true;
 char buffer[64];
-char build_version[] = "V1.00 FM80 Q84";
+char build_version[] = "V1.05 FM80 Q84";
 char *build_date = __DATE__, *build_time = __TIME__;
 volatile uint16_t tickCount[TMR_COUNT];
 
-mx_status_packed_t *status_packed = (void *) abuf;
+//mx_status_packed_t *status_packed = (void *) abuf;
+
+B_type B = {
+	.one_sec_flag = false,
+	.ten_sec_flag = false,
+	.pacing = 0,
+	.rx_count = 0,
+	.flush = 0,
+};
 /*
  * show fixed point fractions
  */
@@ -207,8 +213,8 @@ void main(void)
 			rec_mx_cmd(state_init_cb, REC_LEN);
 			break;
 		}
-		if (one_sec_flag) { // one second tasks
-			one_sec_flag = false;
+		if (B.one_sec_flag) { // one second tasks
+			B.one_sec_flag = false;
 		}
 		if (TimerDone(TMR_SPIN)) { // LCD status spinner for charger MODE
 			StartTimer(TMR_SPIN, SPINNER_SPEED);
@@ -235,9 +241,9 @@ void volt_f(uint16_t voltage)
 void send_mx_cmd(const uint16_t * cmd)
 {
 	if (FM_tx_empty()) {
-		if (pacing++ > PACE) {
+		if (B.pacing++ > PACE) {
 			FM_tx(cmd, CMD_LEN); // send 8 9-bits command data stream
-			pacing = 0;
+			B.pacing = 0;
 		}
 	}
 }
@@ -258,15 +264,15 @@ void rec_mx_cmd(void (* DataHandler)(void), uint8_t rec_len)
 void state_init_cb(void)
 {
 	if (abuf[2] == 0x03) {
-		printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: Found MX80 online\r\n", rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
-		mx80_online = true;
+		printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: Found MX80 online\r\n", B.rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
+		B.mx80_online = true;
 		sprintf(buffer, "Found MX80 online      ");
 		eaDogM_WriteStringAtPos(3, 0, buffer);
 	} else {
-		printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: MX80 Not Found online\r\n", rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
+		printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: MX80 Not Found online\r\n", B.rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
 		sprintf(buffer, "MX80 Not Found online  ");
 		eaDogM_WriteStringAtPos(3, 0, buffer);
-		mx80_online = false;
+		B.mx80_online = false;
 	}
 	state = state_status;
 }
@@ -335,13 +341,13 @@ void state_mx_status_cb(void)
 	printf("%5d: %3x %3x %3x %3x %3x  SDATA: MX80 Data mode %3x %3x %3x %3x %3x %3x %3x %3x %3x\r\n",
 		rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4], abuf[5], abuf[6], abuf[7], abuf[8], abuf[9], abuf[10], abuf[11], abuf[12], abuf[13]);
 #endif
-	if (ten_sec_flag) {
-		ten_sec_flag = false;
-		if (mx80_online) {
+	if (B.ten_sec_flag) {
+		B.ten_sec_flag = false;
+		if (B.mx80_online) {
 			/*
 			 * log CSV values to the serial port for data storage and processing
 			 */
-			printf("^^^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%d\r\n", abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, cc_mode, rx_count++);
+			printf("^^^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%d\r\n", abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, cc_mode, B.rx_count++);
 			sprintf(buffer, "%d Watts %d.%01d Volts   ", panel_watts, volt_whole, volt_fract);
 			eaDogM_WriteStringAtPos(2, 0, buffer);
 			sprintf(buffer, "%d.%01d Amps %d.%01d Volts   ", abuf[3] - 128, abuf[1]&0x0f, vw, vf);
@@ -359,13 +365,13 @@ void state_mx_status_cb(void)
 void state_misc_cb(void)
 {
 	if (abuf[2] == 0x03) {
-		mx80_online = true;
+		B.mx80_online = true;
 	} else {
-		mx80_online = false;
+		B.mx80_online = false;
 		state = state_init;
 		return;
 	}
-	if (!ten_sec_flag) {
+	if (!B.ten_sec_flag) {
 		state = state_misc;
 	} else {
 		state = state_status;

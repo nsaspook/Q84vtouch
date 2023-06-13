@@ -40109,49 +40109,55 @@ void delay_ms(uint16_t);
 
 
 
- const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
- const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
- const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};
- const uint16_t cmd_panelv[] = {0x100, 0x02, 0x01, 0xc6, 0x00, 0x00, 0x00, 0xc9};
- const uint16_t cmd_batteryv[] = {0x100, 0x02, 0x00, 0x08, 0x00, 0x00, 0x00, 0x0a};
- const uint16_t cmd_batterya[] = {0x100, 0x02, 0x01, 0xc7, 0x00, 0x00, 0x00, 0xca};
- const uint16_t cmd_watts[] = {0x100, 0x02, 0x01, 0x6a, 0x00, 0x00, 0x00, 0x6d};
- const uint16_t cmd_misc[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
+    const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
+    const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
+    const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};
+    const uint16_t cmd_panelv[] = {0x100, 0x02, 0x01, 0xc6, 0x00, 0x00, 0x00, 0xc9};
+    const uint16_t cmd_batteryv[] = {0x100, 0x02, 0x00, 0x08, 0x00, 0x00, 0x00, 0x0a};
+    const uint16_t cmd_batterya[] = {0x100, 0x02, 0x01, 0xc7, 0x00, 0x00, 0x00, 0xca};
+    const uint16_t cmd_watts[] = {0x100, 0x02, 0x01, 0x6a, 0x00, 0x00, 0x00, 0x6d};
+    const uint16_t cmd_misc[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
 
- enum status_type {
-  STATUS_SLEEPING = 0,
-  STATUS_FLOATING = 1,
-  STATUS_BULK = 2,
-  STATUS_ABSORB = 3,
-  STATUS_EQUALIZE = 4,
-  STATUS_LAST,
- };
+    enum status_type {
+        STATUS_SLEEPING = 0,
+        STATUS_FLOATING = 1,
+        STATUS_BULK = 2,
+        STATUS_ABSORB = 3,
+        STATUS_EQUALIZE = 4,
+        STATUS_LAST,
+    };
 
- const char state_name [][12] = {
-  "Sleeping",
-  "Floating",
-  "Bulk",
-  "Absorb",
-  "Equalize",
-  "Last",
- };
+    const char state_name [][12] = {
+        "Sleeping",
+        "Floating",
+        "Bulk",
+        "Absorb",
+        "Equalize",
+        "Last",
+    };
 
- typedef struct {
-  uint8_t a[16];
- } mx_status_packed_t;
+    typedef struct {
+        uint8_t a[16];
+    } mx_status_packed_t;
 
- extern void onesec_io(void);
- extern void tensec_io(void);
- extern void FM_io(void);
- extern uint8_t FM_tx(const uint16_t *, uint8_t);
- extern _Bool FM_tx_empty(void);
- extern uint8_t FM_rx(uint16_t *);
- extern _Bool FM_rx_ready(void);
- extern uint8_t FM_rx_count(void);
- extern void FM_restart(void);
- extern void wdtdelay(const uint32_t);
+    typedef struct B_type {
+        volatile _Bool ten_sec_flag, one_sec_flag;
+        uint16_t pacing, rx_count, flush;
+        volatile _Bool mx80_online;
+    } B_type;
 
- extern volatile _Bool ten_sec_flag, one_sec_flag;
+    extern void onesec_io(void);
+    extern void tensec_io(void);
+    extern void FM_io(void);
+    extern uint8_t FM_tx(const uint16_t *, uint8_t);
+    extern _Bool FM_tx_empty(void);
+    extern uint8_t FM_rx(uint16_t *);
+    extern _Bool FM_rx_ready(void);
+    extern uint8_t FM_rx_count(void);
+    extern void FM_restart(void);
+    extern void wdtdelay(const uint32_t);
+
+    extern B_type B;
 # 48 "main.c" 2
 
 
@@ -40361,14 +40367,20 @@ uint16_t abuf[32];
 uint16_t volt_fract;
 uint16_t volt_whole, panel_watts, cc_mode;
 enum state_type state = state_init;
-uint16_t pacing = 0, rx_count = 0, flush;
-volatile _Bool mx80_online = 1;
 char buffer[64];
-char build_version[] = "V1.00 FM80 Q84";
-char *build_date = "Jun 12 2023", *build_time = "18:53:30";
+char build_version[] = "V1.05 FM80 Q84";
+char *build_date = "Jun 13 2023", *build_time = "15:35:02";
 volatile uint16_t tickCount[TMR_COUNT];
 
-mx_status_packed_t *status_packed = (void *) abuf;
+
+
+B_type B = {
+ .one_sec_flag = 0,
+ .ten_sec_flag = 0,
+ .pacing = 0,
+ .rx_count = 0,
+ .flush = 0,
+};
 
 
 
@@ -40498,8 +40510,8 @@ void main(void)
    rec_mx_cmd(state_init_cb, 5);
    break;
   }
-  if (one_sec_flag) {
-   one_sec_flag = 0;
+  if (B.one_sec_flag) {
+   B.one_sec_flag = 0;
   }
   if (TimerDone(TMR_SPIN)) {
    StartTimer(TMR_SPIN, 200);
@@ -40526,9 +40538,9 @@ void volt_f(uint16_t voltage)
 void send_mx_cmd(const uint16_t * cmd)
 {
  if (FM_tx_empty()) {
-  if (pacing++ > 31000) {
+  if (B.pacing++ > 31000) {
    FM_tx(cmd, 8);
-   pacing = 0;
+   B.pacing = 0;
   }
  }
 }
@@ -40549,15 +40561,15 @@ void rec_mx_cmd(void (* DataHandler)(void), uint8_t rec_len)
 void state_init_cb(void)
 {
  if (abuf[2] == 0x03) {
-  printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: Found MX80 online\r\n", rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
-  mx80_online = 1;
+  printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: Found MX80 online\r\n", B.rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
+  B.mx80_online = 1;
   sprintf(buffer, "Found MX80 online      ");
   eaDogM_WriteStringAtPos(3, 0, buffer);
  } else {
-  printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: MX80 Not Found online\r\n", rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
+  printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: MX80 Not Found online\r\n", B.rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
   sprintf(buffer, "MX80 Not Found online  ");
   eaDogM_WriteStringAtPos(3, 0, buffer);
-  mx80_online = 0;
+  B.mx80_online = 0;
  }
  state = state_status;
 }
@@ -40626,13 +40638,13 @@ void state_mx_status_cb(void)
 
 
 
- if (ten_sec_flag) {
-  ten_sec_flag = 0;
-  if (mx80_online) {
+ if (B.ten_sec_flag) {
+  B.ten_sec_flag = 0;
+  if (B.mx80_online) {
 
 
 
-   printf("^^^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%d\r\n", abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, cc_mode, rx_count++);
+   printf("^^^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%d\r\n", abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, cc_mode, B.rx_count++);
    sprintf(buffer, "%d Watts %d.%01d Volts   ", panel_watts, volt_whole, volt_fract);
    eaDogM_WriteStringAtPos(2, 0, buffer);
    sprintf(buffer, "%d.%01d Amps %d.%01d Volts   ", abuf[3] - 128, abuf[1]&0x0f, vw, vf);
@@ -40650,13 +40662,13 @@ void state_mx_status_cb(void)
 void state_misc_cb(void)
 {
  if (abuf[2] == 0x03) {
-  mx80_online = 1;
+  B.mx80_online = 1;
  } else {
-  mx80_online = 0;
+  B.mx80_online = 0;
   state = state_init;
   return;
  }
- if (!ten_sec_flag) {
+ if (!B.ten_sec_flag) {
   state = state_misc;
  } else {
   state = state_status;
