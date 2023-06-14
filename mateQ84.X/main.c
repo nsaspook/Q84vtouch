@@ -75,8 +75,6 @@ char build_version[] = "V1.05 FM80 Q84";
 char *build_date = __DATE__, *build_time = __TIME__;
 volatile uint16_t tickCount[TMR_COUNT];
 
-//mx_status_packed_t *status_packed = (void *) abuf;
-
 B_type B = {
 	.one_sec_flag = false,
 	.ten_sec_flag = false,

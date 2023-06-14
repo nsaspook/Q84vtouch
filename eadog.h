@@ -26,6 +26,8 @@ extern "C" {
 #include "qconfig.h"
 #include "ringbufs.h"
 
+#define USEMCC_SPI
+	
 	typedef struct {
 		uint8_t con0;
 		uint8_t con1;
@@ -33,8 +35,6 @@ extern "C" {
 		uint8_t baud;
 		uint8_t operation;
 	} spi1_configuration_t;
-
-//	extern struct V_data V;
 
 #define LCD_CMD_MASK	0x01
 #define LCD_CMD_SET	0x100

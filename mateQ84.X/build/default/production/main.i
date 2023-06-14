@@ -40053,6 +40053,8 @@ extern char spinners(uint8_t, const uint8_t);
 # 27 "./../eadog.h" 2
 
 
+
+
  typedef struct {
   uint8_t con0;
   uint8_t con1;
@@ -40369,10 +40371,8 @@ uint16_t volt_whole, panel_watts, cc_mode;
 enum state_type state = state_init;
 char buffer[64];
 char build_version[] = "V1.05 FM80 Q84";
-char *build_date = "Jun 13 2023", *build_time = "15:35:02";
+char *build_date = "Jun 14 2023", *build_time = "16:49:18";
 volatile uint16_t tickCount[TMR_COUNT];
-
-
 
 B_type B = {
  .one_sec_flag = 0,

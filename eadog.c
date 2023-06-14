@@ -10,7 +10,7 @@ volatile struct spi_link_type spi_link = {
 struct ringBufS_t ring_buf1;
 
 static const spi1_configuration_t spi1_configuration[] = {
-	{ 0x2, 0x40, 0x0, 0x2, 0}
+	{ 0x2, 0x40, 0x0, 0xc7, 0}
 };
 
 static void send_lcd_cmd_long(uint8_t); // for display init only
@@ -30,6 +30,21 @@ bool init_display(void)
 	DB0_LAT = true;
 #endif
 #ifdef NHD
+#ifdef USEMCC_SPI
+	SPI1CON0bits.EN = 0;
+	//EN disabled; LSBF MSb first; MST bus slave; BMODE last byte; 
+	SPI1CON0 = 0x02;
+	//SMP Middle; CKE Idle to active; CKP Idle:High, Active:Low; FST disabled; SSP active high; SDIP active high; SDOP active high; 
+	SPI1CON1 = 0x20;
+	//SSET disabled; TXR not required for a transfer; RXR data is not stored in the FIFO; 
+	SPI1CON2 = 0x00;
+	//CLKSEL FOSC; 
+	SPI1CLK = 0x00;
+	//BAUD 199; 
+	SPI1BAUD = 0xC7;
+	TRISCbits.TRISC3 = 0;
+	SPI1CON0bits.EN = 1;
+#else
 	SPI1CON0bits.EN = 0;
 	// mode 3
 	SPI1CON1 = 0x20;
@@ -42,7 +57,7 @@ bool init_display(void)
 	// BMODE every byte; LSBF MSb first; EN enabled; MST bus master; 
 	SPI1CON0 = 0x83;
 	SPI1CON0bits.EN = 1;
-
+#endif
 	wdtdelay(350000); // > 400ms power up delay
 	send_lcd_cmd_long(0x46); // home cursor
 	send_lcd_cmd(0x41); // display on
