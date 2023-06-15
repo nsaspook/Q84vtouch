@@ -156,11 +156,11 @@ void main(void)
 	StartTimer(TMR_SPIN, SPINNER_SPEED);
 
 	init_display();
-	sprintf(buffer, "%s ", "                    ");
+	sprintf(buffer, "%s ", "                      ");
 	eaDogM_WriteStringAtPos(0, 0, buffer);
-	sprintf(buffer, "%s ", build_version);
+	sprintf(buffer, "%s   ", build_version);
 	eaDogM_WriteStringAtPos(0, 0, buffer);
-	sprintf(buffer, "%s ", build_date);
+	sprintf(buffer, "%s   ", build_date);
 	eaDogM_WriteStringAtPos(1, 0, buffer);
 	/* display build time and boot status codes 67 34 07, WDT reset 67 24 07 */
 	sprintf(buffer, "%s B:%X %X %X   ", build_time, STATUS, PCON0, PCON1);

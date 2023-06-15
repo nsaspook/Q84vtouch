@@ -40371,7 +40371,7 @@ uint16_t volt_whole, panel_watts, cc_mode;
 enum state_type state = state_init;
 char buffer[64];
 char build_version[] = "V1.05 FM80 Q84";
-char *build_date = "Jun 14 2023", *build_time = "16:49:18";
+char *build_date = "Jun 14 2023", *build_time = "18:51:02";
 volatile uint16_t tickCount[TMR_COUNT];
 
 B_type B = {
@@ -40455,11 +40455,11 @@ void main(void)
  StartTimer(TMR_SPIN, 200);
 
  init_display();
- sprintf(buffer, "%s ", "                    ");
+ sprintf(buffer, "%s ", "                      ");
  eaDogM_WriteStringAtPos(0, 0, buffer);
- sprintf(buffer, "%s ", build_version);
+ sprintf(buffer, "%s   ", build_version);
  eaDogM_WriteStringAtPos(0, 0, buffer);
- sprintf(buffer, "%s ", build_date);
+ sprintf(buffer, "%s   ", build_date);
  eaDogM_WriteStringAtPos(1, 0, buffer);
 
  sprintf(buffer, "%s B:%X %X %X   ", build_time, STATUS, PCON0, PCON1);
