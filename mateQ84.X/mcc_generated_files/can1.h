@@ -56,13 +56,18 @@
 #include "can_types.h"
 
 // Transmit FIFO's Custom Name
-#define CAN1_TX_FIFO1 FIFO1
+#define CAN1_TX_TXQ TXQ
 
 typedef enum 
 {
-    FIFO1 = 1
+    TXQ = 0
 } CAN1_TX_FIFO_CHANNELS;
 
+typedef enum
+{
+    FIFO1 = 1,
+    FIFO2 = 2
+} CAN1_RX_FIFO_CHANNELS;
 
 /**
   Section: CAN Module APIs
@@ -229,6 +234,46 @@ CAN_OP_MODES CAN1_OperationModeGet(void);
     </code>
 */
 bool CAN1_Receive(CAN_MSG_OBJ *rxCanMsg);
+
+/**
+  @Summary
+    Reads the message object from the specified CAN receive FIFO.
+
+  @Description
+    This routine reads a message object from the specified CAN receive FIFO.
+
+  @Preconditions
+    CAN1_Initialize() function should be called before calling this function. 
+
+  @Param
+    fifoChannel - CAN RX FIFO channel
+    rxCanMsg    - pointer to the message object
+
+  @Returns
+    true        - Receive successful
+    false       - Receive failure
+
+  @Example
+    <code>
+    volatile CAN_MSG_OBJ gMsg;
+    
+    void CustomFIFO1Handler(void)
+    {
+        CAN1_ReceiveFrom(FIFO1, &gMsg));
+    }
+
+    void main(void)
+    {
+        SYSTEM_Initialize();
+        CAN1_SetFIFO1FullHandler(&CustomFIFO1Handler);
+        
+        INTERRUPT_GlobalInterruptEnable();
+
+        while(1);
+    }
+    </code>
+*/
+bool CAN1_ReceiveFrom(const CAN1_RX_FIFO_CHANNELS fifoChannel, CAN_MSG_OBJ *rxCanMsg);
 
 /**
   @Summary
@@ -814,10 +859,10 @@ uint8_t CAN1_ReceivedMessageCountGet(void);
 
 /**
   @Summary
-    Sets the invalid message interrupt handler.
+    Sets the RX FIFO Not Empty interrupt handler.
 
   @Description
-    This routine sets the invalid message interrupt handler.
+    This routine sets the RX FIFO Not Empty interrupt handler for FIFO1.
 
   @Param
     Address of the callback routine.
@@ -825,431 +870,34 @@ uint8_t CAN1_ReceivedMessageCountGet(void);
   @Returns
     None
  
-  @Example 
+  @Example
     <code>
-    //Note: Example code here is not based on MCC UI configuration, 
-    //      this is a sample code to demonstrate CAN transmit APIs usage.
+    volatile CAN_MSG_OBJ gMsg;
     
-    volatile bool gInvalidMsgOccurred = false;
-    
-    void CAN1_InvalidMessage(void)
+    void CustomFIFO1Handler(void)
     {
-        gInvalidMsgOccurred = true;
-        //CAN Invalid Message application code
+        CAN1_ReceiveFrom(FIFO1, &gMsg);
     }
- 
-    void main(void) 
+
+    void main(void)
     {
-        CAN_MSG_OBJ msg;
-        uint8_t data[8] = {0x41,0x42,0x43,0x44,0x45,0x46,0x47,0x48};
-        
         SYSTEM_Initialize();
-        CAN1_SetInvalidMessageInterruptHandler(&CAN1_InvalidMessage);
-        CAN1_OperationModeSet(CAN_CONFIGURATION_MODE);
-
-        if(CAN_CONFIGURATION_MODE == CAN1_OperationModeGet())
-        {    
-            if(CAN_OP_MODE_REQUEST_SUCCESS == CAN1_OperationModeSet(CAN_NORMAL_FD_MODE))
-            {
-                msg.msgId = 0x1FFFF;
-                msg.field.formatType = CAN_FD_FORMAT;
-                msg.field.brs = CAN_NON_BRS_MODE;
-                msg.field.frameType = CAN_FRAME_DATA;
-                msg.field.idType = CAN_FRAME_EXT;
-                msg.field.dlc = DLC_8;
-                msg.data = data;
-
-                while(1)
-                {            
-                    if(CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(CAN1_TX_FIFO1) & CAN_TX_FIFO_AVAILABLE))
-                    {
-                        CAN1_Transmit(CAN1_TX_FIFO1, &msg);
-                    }
-                    
-                    if(gInvalidMsgOccurred == true)
-                    {
-                        break;
-                    }
-            }
-        }
+        CAN1_SetFIFO1NotEmptyHandler(&CustomFIFO1Handler);
         
+        INTERRUPT_GlobalInterruptEnable();
+
         while(1);
     }
     </code>
 */
-void CAN1_SetInvalidMessageInterruptHandler(void (*handler)(void));
+void CAN1_SetFIFO1NotEmptyHandler(void (*handler)(void));
 
 /**
   @Summary
-    Sets the CAN bus wake-Up activity interrupt handler.
+    Sets the RX FIFO Not Empty interrupt handler.
 
   @Description
-    This routine sets the CAN bus wake-Up activity interrupt handler.
-
-  @Param
-    Address of the callback routine.
-
-  @Returns
-    None
- 
-  @Example 
-    <code>
-    volatile bool gBusWakeUpOccurred = false;
-    
-    void CAN1_BusWakeUpActivity(void)
-    {
-        gBusWakeUpOccurred = true;
-        //CAN Bus WakeUp activity application code
-    }
- 
-    void main(void) 
-    {
-        SYSTEM_Initialize();
-        CAN1_SetBusWakeUpActivityInterruptHandler(&CAN1_BusWakeUpActivity);
-        CAN1_OperationModeSet(CAN_CONFIGURATION_MODE);
-        
-        if(CAN_CONFIGURATION_MODE == CAN1_OperationModeGet())
-        {
-            if(CAN_OP_MODE_REQUEST_SUCCESS == CAN1_OperationModeSet(CAN_NORMAL_FD_MODE))
-            {
-                CAN1_Sleep();
-                            
-                //Check CAN1 module is in CAN_DISABLE_MODE
-                if(CAN_DISABLE_MODE == CAN1_OperationModeGet())
-                {
-                    Sleep(); //Call sleep instruction
-                    
-                    while(1) 
-                    {
-                        if(gBusWakeUpOccurred == true)
-                        {
-                            break;
-                        }                        
-                    }
-                }
-            }
-        }
-        
-        while(1);
-    }
-    </code>
-*/
-void CAN1_SetBusWakeUpActivityInterruptHandler(void (*handler)(void));
-
-/**
-  @Summary
-    Sets the CAN bus error interrupt handler.
-
-  @Description
-    This routine sets the CAN bus error interrupt handler.
-
-  @Param
-    Address of the callback routine.
-
-  @Returns
-    None
- 
-  @Example 
-    <code>
-    //Note: Example code here is not based on MCC UI configuration, 
-    //      this is a sample code to demonstrate CAN transmit APIs usage.
-    
-    volatile bool gBusErrorOccurred = false;
-    
-    void CAN1_BusError(void)
-    {
-        gBusErrorOccurred = true;
-        //CAN Bus Error application code
-    }
- 
-    void main(void) 
-    {
-        CAN_MSG_OBJ msg;
-        uint8_t data[8] = {0x41,0x42,0x43,0x44,0x45,0x46,0x47,0x48};
-        
-        SYSTEM_Initialize();
-        CAN1_SetBusErrorInterruptHandler(&CAN1_BusError);
-        CAN1_OperationModeSet(CAN_CONFIGURATION_MODE);
-
-        if(CAN_CONFIGURATION_MODE == CAN1_OperationModeGet())
-        {    
-            if(CAN_OP_MODE_REQUEST_SUCCESS == CAN1_OperationModeSet(CAN_NORMAL_FD_MODE))
-            {
-                msg.msgId = 0x1FFFF;
-                msg.field.formatType = CAN_FD_FORMAT;
-                msg.field.brs = CAN_NON_BRS_MODE;
-                msg.field.frameType = CAN_FRAME_DATA;
-                msg.field.idType = CAN_FRAME_EXT;
-                msg.field.dlc = DLC_8;
-                msg.data = data;
-
-                while(1)
-                {            
-                    if(CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(CAN1_TX_FIFO1) & CAN_TX_FIFO_AVAILABLE))
-                    {
-                        CAN1_Transmit(CAN1_TX_FIFO1, &msg);
-                    }
-                    
-                    if(gBusErrorOccurred == true)
-                    {
-                        break;
-                    }
-                }
-            }
-        }
-        
-        while(1);
-    }
-    </code>
-*/
-void CAN1_SetBusErrorInterruptHandler(void (*handler)(void));
-
-/**
-  @Summary
-    Sets the CAN mode change interrupt handler.
-
-  @Description
-    This routine sets the CAN mode change interrupt handler.
-
-  @Param
-    Address of the callback routine.
-
-  @Returns
-    None
- 
-  @Example 
-    <code>
-    volatile bool gModeChangeOccurred = false;
-    
-    void CAN1_ModeChange(void)
-    {
-        gModeChangeOccurred = true;
-        //CAN Mode Change application code
-    }
- 
-    void main(void) 
-    {
-        CAN_MSG_OBJ msg;
-     
-        SYSTEM_Initialize();
-        CAN1_SetModeChangeInterruptHandler(&CAN1_ModeChange);
-        CAN1_OperationModeSet(CAN_CONFIGURATION_MODE);
-        
-        if(CAN_CONFIGURATION_MODE == CAN1_OperationModeGet())
-        {
-            if(CAN_OP_MODE_REQUEST_SUCCESS == CAN1_OperationModeSet(CAN_NORMAL_FD_MODE))
-            {
-                while(1) 
-                {
-                    if(gModeChangeOccurred == true)
-                    {
-                        break;
-                    }                    
-                }
-            }
-        }
-
-        while (1);
-    }
-    </code>
-*/
-void CAN1_SetModeChangeInterruptHandler(void (*handler)(void));
-
-/**
-  @Summary
-    Sets the CAN system error interrupt handler.
-
-  @Description
-    This routine sets the CAN system error interrupt handler.
-
-  @Param
-    Address of the callback routine.
-
-  @Returns
-    None
- 
-  @Example 
-    <code>
-    //Note: Example code here is not based on MCC UI configuration, 
-    //      this is a sample code to demonstrate CAN transmit APIs usage.
-    
-    volatile bool gSystemOccurred = false;
-    
-    void CAN1_SystemError(void)
-    {
-        gSystemOccurred = true;
-        //CAN System Error application code
-    }
- 
-    void main(void) 
-    {
-        CAN_MSG_OBJ msg;
-        uint8_t data[8] = {0x41,0x42,0x43,0x44,0x45,0x46,0x47,0x48};
-        
-        SYSTEM_Initialize();
-        CAN1_SetSystemErrorInterruptHandler(&CAN1_SystemError);
-        CAN1_OperationModeSet(CAN_CONFIGURATION_MODE);
-
-        if(CAN_CONFIGURATION_MODE == CAN1_OperationModeGet())
-        {    
-            if(CAN_OP_MODE_REQUEST_SUCCESS == CAN1_OperationModeSet(CAN_NORMAL_FD_MODE))
-            {
-                msg.msgId = 0x1FFFF;
-                msg.field.formatType = CAN_FD_FORMAT;
-                msg.field.brs = CAN_NON_BRS_MODE;
-                msg.field.frameType = CAN_FRAME_DATA;
-                msg.field.idType = CAN_FRAME_EXT;
-                msg.field.dlc = DLC_8;
-                msg.data = data;
-
-                while(1)
-                {            
-                    if(CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(CAN1_TX_FIFO1) & CAN_TX_FIFO_AVAILABLE))
-                    {
-                        CAN1_Transmit(CAN1_TX_FIFO1, &msg);
-                    }
-                    
-                    if(gSystemOccurred == true)
-                    {
-                        break;
-                    }
-                }
-                
-            }
-        }
-        
-        while(1);
-    }
-    </code>
-*/
-void CAN1_SetSystemErrorInterruptHandler(void (*handler)(void));
-
-/**
-  @Summary
-    Sets the CAN transmit attempt interrupt handler.
-
-  @Description
-    This routine sets the CAN transmit attempt interrupt handler.
-
-  @Param
-    Address of the callback routine.
-
-  @Returns
-    None
- 
-  @Example 
-    <code>
-    //Note: Example code here is not based on MCC UI configuration, 
-    //      this is a sample code to demonstrate CAN transmit APIs usage.
-    
-    volatile bool gTxAttemptOccurred = false;
-    
-    void CAN1_TxAttempt(void)
-    {
-        gTxAttemptOccurred = true;
-        //CAN Transmit Attempt application code
-    }
- 
-    void main(void) 
-    {
-        CAN_MSG_OBJ msg;
-        uint8_t data[8] = {0x41,0x42,0x43,0x44,0x45,0x46,0x47,0x48};
-        
-        SYSTEM_Initialize();
-        CAN1_SetTxAttemptInterruptHandler(&CAN1_TxAttempt);
-        CAN1_OperationModeSet(CAN_CONFIGURATION_MODE);
-
-        if(CAN_CONFIGURATION_MODE == CAN1_OperationModeGet())
-        {    
-            if(CAN_OP_MODE_REQUEST_SUCCESS == CAN1_OperationModeSet(CAN_NORMAL_FD_MODE))
-            {
-                msg.msgId = 0x1FFFF;
-                msg.field.formatType = CAN_FD_FORMAT;
-                msg.field.brs = CAN_NON_BRS_MODE;
-                msg.field.frameType = CAN_FRAME_DATA;
-                msg.field.idType = CAN_FRAME_EXT;
-                msg.field.dlc = DLC_8;
-                msg.data = data;
-
-                while(1)
-                {                               
-                    if(CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(CAN1_TX_FIFO1) & CAN_TX_FIFO_AVAILABLE))
-                    {
-                        CAN1_Transmit(CAN1_TX_FIFO1, &msg);
-                    }
-                    
-                    if(gTxAttemptOccurred == true)
-                    {
-                        break;
-                    }
-                }
-            }
-        }
-        
-        while(1);
-    }
-    </code>
-*/
-void CAN1_SetTxAttemptInterruptHandler(void (*handler)(void));
-
-/**
-  @Summary
-    Sets the CAN receive overflow interrupt handler.
-
-  @Description
-    This routine sets the CAN receive overflow interrupt handler.
-
-  @Param
-    Address of the callback routine.
-
-  @Returns
-    None
- 
-  @Example 
-    <code>
-    volatile bool gRxOverFlowOccurred = false;
-    
-    void CAN1_RxBufferOverFlow(void)
-    {
-        gRxOverFlowOccurred = true;
-        //CAN Receive Buffer OverFlow application code
-    }
- 
-    void main(void) 
-    {    
-        SYSTEM_Initialize();
-        CAN1_SetRxBufferOverFlowInterruptHandler(&CAN1_RxBufferOverFlow);
-        CAN1_OperationModeSet(CAN_CONFIGURATION_MODE);
-
-        if(CAN_CONFIGURATION_MODE == CAN1_OperationModeGet())
-        {    
-            if(CAN_OP_MODE_REQUEST_SUCCESS == CAN1_OperationModeSet(CAN_NORMAL_FD_MODE))
-            {
-                while(1) 
-                {
-                    if(gRxOverFlowOccurred == true)
-                    {
-                        gRxOverFlowOccurred = false;
-                        // User Application code
-                        break;
-                        
-                    }
-                }
-            }
-        }
-        
-        while(1);
-    }
-    </code>
-*/
-void CAN1_SetRxBufferOverFlowInterruptHandler(void (*handler)(void));
-
-/**
-  @Summary
-    Sets the Disable RX FIFO Interrupt interrupt handler.
-
-  @Description
-    This routine sets the Disable RX FIFO Interrupt interrupt handler for FIFO2.
+    This routine sets the RX FIFO Not Empty interrupt handler for FIFO2.
 
   @Param
     Address of the callback routine.
@@ -1269,7 +917,7 @@ void CAN1_SetRxBufferOverFlowInterruptHandler(void (*handler)(void));
     void main(void)
     {
         SYSTEM_Initialize();
-        CAN1_SetFIFO2nullHandler(&CustomFIFO2Handler);
+        CAN1_SetFIFO2NotEmptyHandler(&CustomFIFO2Handler);
         
         INTERRUPT_GlobalInterruptEnable();
 
@@ -1277,14 +925,14 @@ void CAN1_SetRxBufferOverFlowInterruptHandler(void (*handler)(void));
     }
     </code>
 */
-void CAN1_SetFIFO2nullHandler(void (*handler)(void));
+void CAN1_SetFIFO2NotEmptyHandler(void (*handler)(void));
 
 /**
   @Summary
-    Sets the Disable TX FIFO Interrupt interrupt handler.
+    Sets the Disable TXQ Interrupt interrupt handler.
 
   @Description
-    This routine sets the Disable TX FIFO Interrupt interrupt handler for FIFO1.
+    This routine sets the Disable TXQ Interrupt interrupt handler for TXQ.
 
   @Param
     Address of the callback routine.
@@ -1296,7 +944,7 @@ void CAN1_SetFIFO2nullHandler(void (*handler)(void));
     <code>
     volatile CAN_MSG_OBJ gMsg;
     
-    void CustomFIFO1Handler(void)
+    void CustomTXQHandler(void)
     {
         CAN1_Transmit(CAN1_TX_FIFO1, &gMsg);
     }
@@ -1313,7 +961,7 @@ void CAN1_SetFIFO2nullHandler(void (*handler)(void));
         gMsg.data = data;
         
         SYSTEM_Initialize();
-        CAN1_SetFIFO1nullHandler(&CustomFIFO1Handler);
+        CAN1_SetTXQnullHandler(&CustomTXQHandler);
         
         INTERRUPT_GlobalInterruptEnable();
 
@@ -1321,7 +969,7 @@ void CAN1_SetFIFO2nullHandler(void (*handler)(void));
     }
     </code>
 */
-void CAN1_SetFIFO1nullHandler(void (*handler)(void));
+void CAN1_SetTXQnullHandler(void (*handler)(void));
 
 
 

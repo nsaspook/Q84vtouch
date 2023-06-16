@@ -48,6 +48,7 @@
 #include "mxcmd.h"
 #include "../timers.h"
 #include "../modbus_master.h"
+#include "../canfd.h"
 
 #define PACE	31000	// commands delay in count units
 #define CMD_LEN	8

@@ -71,7 +71,7 @@ void  INTERRUPT_Initialize (void)
 
     // Assign peripheral interrupt priority vectors
     IPR1bits.ADIP = 1;
-    IPR0bits.CANIP = 1;
+    IPR4bits.CANRXIP = 1;
     IPR8bits.U2TXIP = 1;
     IPR8bits.U2RXIP = 1;
     IPR13bits.U5TXIP = 1;

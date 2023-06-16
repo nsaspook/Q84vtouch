@@ -22,4 +22,5 @@ mcc_generated_files/spi1.h  \
 ../qconfig.h  \
 ../ringbufs.h  \
 ../timers.h  \
-../modbus_master.h 
+../modbus_master.h  \
+../canfd.h 
