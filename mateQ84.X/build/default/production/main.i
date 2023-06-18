@@ -40373,7 +40373,7 @@ uint16_t volt_whole, panel_watts, cc_mode;
 enum state_type state = state_init;
 char buffer[64], can_buffer[64];
 char build_version[] = "V1.05 FM80 Q84";
-char *build_date = "Jun 17 2023", *build_time = "13:12:44";
+char *build_date = "Jun 17 2023", *build_time = "21:55:13";
 volatile uint16_t tickCount[TMR_COUNT];
 
 B_type B = {
