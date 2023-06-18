@@ -71,7 +71,7 @@ uint16_t abuf[FM_BUFFER];
 uint16_t volt_fract;
 uint16_t volt_whole, panel_watts, cc_mode;
 enum state_type state = state_init;
-char buffer[64];
+char buffer[64], can_buffer[64];
 char build_version[] = "V1.05 FM80 Q84";
 char *build_date = __DATE__, *build_time = __TIME__;
 volatile uint16_t tickCount[TMR_COUNT];
@@ -347,12 +347,14 @@ void state_mx_status_cb(void)
 			 * log CSV values to the serial port for data storage and processing
 			 */
 			printf("^^^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%d\r\n", abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, cc_mode, B.rx_count++);
+			sprintf(can_buffer, "^^^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%d\r\n", abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, cc_mode, B.rx_count);
 			sprintf(buffer, "%d Watts %d.%01d Volts   ", panel_watts, volt_whole, volt_fract);
 			eaDogM_WriteStringAtPos(2, 0, buffer);
 			sprintf(buffer, "%d.%01d Amps %d.%01d Volts   ", abuf[3] - 128, abuf[1]&0x0f, vw, vf);
 			eaDogM_WriteStringAtPos(3, 0, buffer);
 			sprintf(buffer, "%s   %c", build_version, state_name[cc_mode][0]);
 			eaDogM_WriteStringAtPos(0, 0, buffer);
+			can_fd_tx(); // send the logging packet via CANBUS
 		}
 	}
 	state = state_misc;
