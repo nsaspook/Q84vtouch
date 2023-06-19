@@ -40100,13 +40100,7 @@ void timer_ms_tick(uint32_t, uintptr_t);
 
 void delay_ms(uint16_t);
 # 23 "./mxcmd.h" 2
-
-
-
-
-
-
-
+# 32 "./mxcmd.h"
     const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
     const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
     const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};
@@ -40384,7 +40378,7 @@ uint16_t volt_whole, panel_watts, cc_mode;
 enum state_type state = state_init;
 char buffer[64], can_buffer[64];
 char build_version[] = "V1.05 FM80 Q84";
-char *build_date = "Jun 18 2023", *build_time = "19:53:30";
+char *build_date = "Jun 19 2023", *build_time = "07:43:19";
 volatile uint16_t tickCount[TMR_COUNT];
 
 B_type B = {

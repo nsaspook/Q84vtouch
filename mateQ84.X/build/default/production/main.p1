@@ -7,7 +7,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 73: enum state_type state = state_init;
 [c E24066 0 1 2 3 4 5 6 7 8 .. ]
 [n E24066 state_type state_init state_status state_panel state_batteryv state_batterya state_watts state_misc state_mx_status state_last  ]
-"71 ./../mateQ84.X/mxcmd.h
+"73 ./../mateQ84.X/mxcmd.h
 [s S3242 `Va 1 `Va 1 `us 1 `us 1 `us 1 `Va 1 `Vuc 1 `Vuc 1 ]
 [n S3242 B_type ten_sec_flag one_sec_flag pacing rx_count flush mx80_online canbus_online modbus_online ]
 [p mainexit ]
@@ -29,7 +29,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "877 ./mcc_generated_files/tmr4.h
 [; ;./mcc_generated_files/tmr4.h: 877:  void TMR4_SetInterruptHandler(void (* InterruptHandler)(void));
 [v _TMR4_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F23402 ]
-"80 ./../mateQ84.X/mxcmd.h
+"82 ./../mateQ84.X/mxcmd.h
 [v _FM_io `(v ~T0 @X0 0 ef ]
 "542 ./mcc_generated_files/tmr4.h
 [; ;./mcc_generated_files/tmr4.h: 542: void TMR4_StartTimer(void);
@@ -38,7 +38,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "293 ./mcc_generated_files/tmr0.h
 [; ;./mcc_generated_files/tmr0.h: 293:  void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
 [v _TMR0_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F23505 ]
-"78 ./../mateQ84.X/mxcmd.h
+"80 ./../mateQ84.X/mxcmd.h
 [v _onesec_io `(v ~T0 @X0 0 ef ]
 "129 ./mcc_generated_files/tmr0.h
 [; ;./mcc_generated_files/tmr0.h: 129: void TMR0_StartTimer(void);
@@ -47,7 +47,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "877 ./mcc_generated_files/tmr2.h
 [; ;./mcc_generated_files/tmr2.h: 877:  void TMR2_SetInterruptHandler(void (* InterruptHandler)(void));
 [v _TMR2_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F23490 ]
-"79 ./../mateQ84.X/mxcmd.h
+"81 ./../mateQ84.X/mxcmd.h
 [v _tensec_io `(v ~T0 @X0 0 ef ]
 "542 ./mcc_generated_files/tmr2.h
 [; ;./mcc_generated_files/tmr2.h: 542: void TMR2_StartTimer(void);
@@ -152,17 +152,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 "62 /opt/microchip/xc8/v2.41/pic/include/c99/stdlib.h
 [; ;/opt/microchip/xc8/v2.41/pic/include/c99/stdlib.h: 62: int abs (int);
 [v _abs `(i ~T0 @X0 0 ef1`i ]
-"82 ./../mateQ84.X/mxcmd.h
+"84 ./../mateQ84.X/mxcmd.h
 [v _FM_tx_empty `(a ~T0 @X0 0 ef ]
-"81
+"83
 [v _FM_tx `(uc ~T0 @X0 0 ef2`*Cus`uc ]
 [v F24128 `(v ~T0 @X0 0 tf ]
 [v F24130 `(v ~T0 @X0 0 tf ]
-"84
+"86
 [v _FM_rx_ready `(a ~T0 @X0 0 ef ]
-"85
+"87
 [v _FM_rx_count `(uc ~T0 @X0 0 ef ]
-"83
+"85
 [v _FM_rx `(uc ~T0 @X0 0 ef1`*us ]
 "107 /opt/microchip/xc8/v2.41/pic/include/c99/stdio.h
 [; ;/opt/microchip/xc8/v2.41/pic/include/c99/stdio.h: 107: int printf(const char *restrict, ...);
@@ -3858,7 +3858,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"30 ./../mateQ84.X/mxcmd.h
+"32 ./../mateQ84.X/mxcmd.h
 [v _cmd_id `Cus ~T0 @X0 -> 8 `i e ]
 [i _cmd_id
 :U ..
@@ -3872,7 +3872,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 2 `i `us
 ..
 ]
-"31
+"33
 [v _cmd_status `Cus ~T0 @X0 -> 8 `i e ]
 [i _cmd_status
 :U ..
@@ -3886,7 +3886,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 203 `i `us
 ..
 ]
-"32
+"34
 [v _cmd_mx_status `Cus ~T0 @X0 -> 8 `i e ]
 [i _cmd_mx_status
 :U ..
@@ -3900,7 +3900,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 5 `i `us
 ..
 ]
-"33
+"35
 [v _cmd_panelv `Cus ~T0 @X0 -> 8 `i e ]
 [i _cmd_panelv
 :U ..
@@ -3914,7 +3914,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 201 `i `us
 ..
 ]
-"34
+"36
 [v _cmd_batteryv `Cus ~T0 @X0 -> 8 `i e ]
 [i _cmd_batteryv
 :U ..
@@ -3928,7 +3928,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 10 `i `us
 ..
 ]
-"35
+"37
 [v _cmd_batterya `Cus ~T0 @X0 -> 8 `i e ]
 [i _cmd_batterya
 :U ..
@@ -3942,7 +3942,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 202 `i `us
 ..
 ]
-"36
+"38
 [v _cmd_watts `Cus ~T0 @X0 -> 8 `i e ]
 [i _cmd_watts
 :U ..
@@ -3956,7 +3956,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 109 `i `us
 ..
 ]
-"37
+"39
 [v _cmd_misc `Cus ~T0 @X0 -> 8 `i e ]
 [i _cmd_misc
 :U ..
@@ -3971,7 +3971,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 [v F23893 `Cuc ~T0 @X0 -> 12 `i t ]
-"48
+"50
 [v _state_name `F23893 ~T0 @X0 -> 6 `i e ]
 [i _state_name
 :U ..
@@ -4034,7 +4034,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 [v F23895 `Cuc ~T0 @X0 -> 12 `i t ]
-"57
+"59
 [v _canbus_name `F23895 ~T0 @X0 -> 2 `i e ]
 [i _canbus_name
 :U ..
@@ -4061,7 +4061,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 [v F23897 `Cuc ~T0 @X0 -> 12 `i t ]
-"62
+"64
 [v _modbus_name `F23897 ~T0 @X0 -> 2 `i e ]
 [i _modbus_name
 :U ..
@@ -4657,7 +4657,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 "76
-[; ;main.c: 76: char *build_date = "Jun 18 2023", *build_time = "19:53:30";
+[; ;main.c: 76: char *build_date = "Jun 19 2023", *build_time = "07:43:19";
 [v _build_date `*uc ~T0 @X0 1 e ]
 [i _build_date
 :s 1C
@@ -5455,8 +5455,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [p f _printf 12615812 ]
 [p f _sprintf 11305092 ]
 [a 21C 37 115 32 37 99 37 99 37 99 0 ]
-[a 1C 74 117 110 32 49 56 32 50 48 50 51 0 ]
-[a 2C 49 57 58 53 51 58 51 48 0 ]
+[a 1C 74 117 110 32 49 57 32 50 48 50 51 0 ]
+[a 2C 48 55 58 52 51 58 50 48 0 ]
 [a 3C 37 115 32 0 ]
 [a 8C 37 115 32 0 ]
 [a 10C 37 115 32 0 ]
