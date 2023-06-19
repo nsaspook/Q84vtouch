@@ -214,6 +214,9 @@ void main(void)
 		}
 		if (B.one_sec_flag) { // one second tasks
 			B.one_sec_flag = false;
+#ifdef	IO_TEST
+			can_fd_tx(); // send the logging packet via CANBUS
+#endif
 		}
 		if (TimerDone(TMR_SPIN)) { // LCD status spinner for charger MODE
 			StartTimer(TMR_SPIN, SPINNER_SPEED);

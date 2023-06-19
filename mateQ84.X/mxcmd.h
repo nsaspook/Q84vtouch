@@ -22,6 +22,8 @@ extern "C" {
 #include "../timers.h"
 
 #define VER	1
+	
+#define IO_TEST
 
 #define	FM_BUFFER	32
 #define BUFFER_SPACING	2
