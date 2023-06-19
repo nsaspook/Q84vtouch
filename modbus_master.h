@@ -45,10 +45,10 @@ extern "C" {
 #define MAX_DATA        128
 	//#define LOCAL_ECHO	1
 #define FASTQ			// MODBUS query speed
-#define TDELAY		2	// half-duplex delay
+#define TDELAY		6	// half-duplex delay
 #define RDELAY		300	// receive timeout
 #define CDELAY		40	// fast query delay
-#define QDELAY		1	// query delay
+#define QDELAY		3	// query delay
 #define TODELAY		4	// misc delay
 #define SPACING		50	// control loop cpu usage factor
 

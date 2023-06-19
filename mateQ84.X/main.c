@@ -82,6 +82,8 @@ B_type B = {
 	.pacing = 0,
 	.rx_count = 0,
 	.flush = 0,
+	.canbus_online = 0,
+	.modbus_online = 0,
 };
 /*
  * show fixed point fractions
@@ -214,6 +216,8 @@ void main(void)
 		}
 		if (B.one_sec_flag) { // one second tasks
 			B.one_sec_flag = false;
+			B.canbus_online = (!C1TXQCONHbits.TXREQ)&0x01;
+			B.modbus_online = C.data_ok;
 		}
 		if (TimerDone(TMR_SPIN)) { // LCD status spinner for charger MODE
 			StartTimer(TMR_SPIN, SPINNER_SPEED);
@@ -352,7 +356,7 @@ void state_mx_status_cb(void)
 			eaDogM_WriteStringAtPos(2, 0, buffer);
 			sprintf(buffer, "%d.%01d Amps %d.%01d Volts   ", abuf[3] - 128, abuf[1]&0x0f, vw, vf);
 			eaDogM_WriteStringAtPos(3, 0, buffer);
-			sprintf(buffer, "%s   %c", build_version, state_name[cc_mode][0]);
+			sprintf(buffer, "%s %c%c%c", build_version, state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
 			eaDogM_WriteStringAtPos(0, 0, buffer);
 			can_fd_tx(); // send the logging packet via CANBUS
 		}
