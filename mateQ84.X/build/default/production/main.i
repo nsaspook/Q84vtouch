@@ -40100,7 +40100,13 @@ void timer_ms_tick(uint32_t, uintptr_t);
 
 void delay_ms(uint16_t);
 # 23 "./mxcmd.h" 2
-# 32 "./mxcmd.h"
+
+
+
+
+
+
+
     const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
     const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
     const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};
@@ -40128,6 +40134,16 @@ void delay_ms(uint16_t);
         "Last",
     };
 
+        const char canbus_name [][12] = {
+        " Offline",
+        "CANBUS",
+    };
+
+        const char modbus_name [][12] = {
+        " Offline",
+        "MODBUS",
+    };
+
     typedef struct {
         uint8_t a[16];
     } mx_status_packed_t;
@@ -40136,6 +40152,7 @@ void delay_ms(uint16_t);
         volatile _Bool ten_sec_flag, one_sec_flag;
         uint16_t pacing, rx_count, flush;
         volatile _Bool mx80_online;
+ volatile uint8_t canbus_online, modbus_online;
     } B_type;
 
     extern void onesec_io(void);
@@ -40367,7 +40384,7 @@ uint16_t volt_whole, panel_watts, cc_mode;
 enum state_type state = state_init;
 char buffer[64], can_buffer[64];
 char build_version[] = "V1.05 FM80 Q84";
-char *build_date = "Jun 18 2023", *build_time = "16:23:41";
+char *build_date = "Jun 18 2023", *build_time = "19:53:30";
 volatile uint16_t tickCount[TMR_COUNT];
 
 B_type B = {
@@ -40376,6 +40393,8 @@ B_type B = {
  .pacing = 0,
  .rx_count = 0,
  .flush = 0,
+ .canbus_online = 0,
+ .modbus_online = 0,
 };
 
 
@@ -40508,9 +40527,8 @@ void main(void)
   }
   if (B.one_sec_flag) {
    B.one_sec_flag = 0;
-
-   can_fd_tx();
-
+   B.canbus_online = (!C1TXQCONHbits.TXREQ)&0x01;
+   B.modbus_online = C.data_ok;
   }
   if (TimerDone(TMR_SPIN)) {
    StartTimer(TMR_SPIN, 200);
@@ -40649,7 +40667,7 @@ void state_mx_status_cb(void)
    eaDogM_WriteStringAtPos(2, 0, buffer);
    sprintf(buffer, "%d.%01d Amps %d.%01d Volts   ", abuf[3] - 128, abuf[1]&0x0f, vw, vf);
    eaDogM_WriteStringAtPos(3, 0, buffer);
-   sprintf(buffer, "%s   %c", build_version, state_name[cc_mode][0]);
+   sprintf(buffer, "%s %c%c%c", build_version, state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
    eaDogM_WriteStringAtPos(0, 0, buffer);
    can_fd_tx();
   }

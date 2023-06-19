@@ -55,6 +55,16 @@ extern "C" {
         "Equalize",
         "Last",
     };
+    
+        const char canbus_name [][12] = {
+        " Offline",
+        "CANBUS",
+    };
+	
+        const char modbus_name [][12] = {
+        " Offline",
+        "MODBUS",
+    };
 
     typedef struct {
         uint8_t a[16]; // raw_ah(part2)
@@ -64,6 +74,7 @@ extern "C" {
         volatile bool ten_sec_flag, one_sec_flag;
         uint16_t pacing, rx_count, flush;
         volatile bool mx80_online;
+	volatile uint8_t canbus_online, modbus_online;
     } B_type;
 
     extern void onesec_io(void);
