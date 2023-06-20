@@ -376,6 +376,9 @@ int8_t master_controller_work(C_data * client)
 						em.wl1 = mb32_swap(em.wl1);
 						em.wl2 = mb32_swap(em.wl2);
 						em.wl3 = mb32_swap(em.wl3);
+//						em.val1 = mb32_swap(em.val1);
+//						em.val2 = mb32_swap(em.val2);
+//						em.val3 = mb32_swap(em.val3);
 						client->data_prev = client->data_count;
 						client->data_count++;
 					} else {

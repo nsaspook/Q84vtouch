@@ -72,7 +72,7 @@ uint16_t volt_fract;
 uint16_t volt_whole, panel_watts, cc_mode;
 enum state_type state = state_init;
 char buffer[64], can_buffer[64];
-char build_version[] = "V1.05 FM80 Q84";
+char build_version[] = "V1.10 FM80 Q84";
 char *build_date = __DATE__, *build_time = __TIME__;
 volatile uint16_t tickCount[TMR_COUNT];
 
@@ -221,12 +221,11 @@ void main(void)
 		}
 		if (TimerDone(TMR_SPIN)) { // LCD status spinner for charger MODE
 			StartTimer(TMR_SPIN, SPINNER_SPEED);
-			sprintf(buffer, "Energy Monitor  %c%c    ", spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
+			sprintf(buffer, "EMon  %4.1fVAC  %c%c    ", ((float) em.vl1l2)/10.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
 			eaDogM_WriteStringAtPos(1, 0, buffer);
 		}
 #ifdef MB_MASTER
 		master_controller_work(&C); // master MODBUS processing	
-		//		mb_tx_test(&C);
 #endif
 	}
 }
@@ -356,7 +355,7 @@ void state_mx_status_cb(void)
 			eaDogM_WriteStringAtPos(2, 0, buffer);
 			sprintf(buffer, "%d.%01d Amps %d.%01d Volts   ", abuf[3] - 128, abuf[1]&0x0f, vw, vf);
 			eaDogM_WriteStringAtPos(3, 0, buffer);
-			sprintf(buffer, "%s %c%c%c", build_version, state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
+			sprintf(buffer, "EMon %6.1fWAC  %c%c%c  ", ((float)em.wl1)/10.0f, state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
 			eaDogM_WriteStringAtPos(0, 0, buffer);
 			can_fd_tx(); // send the logging packet via CANBUS
 		}
