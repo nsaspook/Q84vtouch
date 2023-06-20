@@ -38,19 +38,20 @@ volatile struct V_type V = {
  * https://gavazzi.se/app/uploads/2022/03/em500-cp-v1r3-eng.pdf
  */
 const uint8_t
-// transmit frames
+// transmit frames for commands
 modbus_em_id[] = {MADDR, READ_HOLDING_REGISTERS, 0x00, 0x0b, 0x00, 0x01}, // Carlo Gavazzi Controls identification code
 modbus_em_version[] = {MADDR, READ_HOLDING_REGISTERS, 0x03, 0x02, 0x00, 0x01}, // Firmware version and revision code
-modbus_em_data[] = {MADDR, READ_HOLDING_REGISTERS, 0x00, 0x00, 0x00, 24},
+modbus_em_data[] = {MADDR, READ_HOLDING_REGISTERS, 0x00, 0x00, 0x00, 33}, // last number is 16-bit words wanted from the start register address
 modbus_em_config[] = {MADDR, WRITE_SINGLE_REGISTER, 0x10, 0x02, 0x00, 0x02}, // System configuration, Value 2 = ?2P? (2-phase with neutral)
 modbus_em_passwd[] = {MADDR, WRITE_SINGLE_REGISTER, 0x10, 0x00, 0x00, 0x00}, // Password configuration, set to no password = 0
-// receive frames
+// receive frames prototypes for received data checking
 em_id[] = {MADDR, READ_HOLDING_REGISTERS, 0x00, 0x00, 0x00, 0x00, 0x00},
 em_version[] = {MADDR, READ_HOLDING_REGISTERS, 0x00, 0x00, 0x00, 0x00, 0x00},
-em_data[] = {MADDR, READ_HOLDING_REGISTERS, 0x00, // number of 16-bit words returned
+em_data[] = {MADDR, READ_HOLDING_REGISTERS, 0x00, // number of 16-bit words returned, IN BYTES
 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 	0x00, 0x00}, // crc
 em_config[] = {MADDR, WRITE_SINGLE_REGISTER, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
 em_passwd[] = {MADDR, WRITE_SINGLE_REGISTER, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
@@ -124,7 +125,7 @@ void my_modbus_rx_32(void)
 	/*
 	 * process received controller data stream
 	 */
-	m_data = U5RXB;
+	m_data = U5RXB; // receiver data buffer
 	cc_buffer[M.recv_count] = m_data;
 	if (++M.recv_count >= MAX_DATA) {
 		M.recv_count = 0; // reset buffer position
@@ -169,7 +170,7 @@ static void log_crc_error(uint16_t c_crc, uint16_t c_crc_rec)
 }
 
 /*
- * reorder 16-bit word bytes for PIC32MK int32_t 
+ * reorder 16-bit word bytes for int32_t 
  * https://control.com/forums/threads/endianness-for-32-bit-data.48584/
  * https://ctlsys.com/support/common_modbus_protocol_misconceptions/
  * https://iotech.force.com/edgexpert/s/article/Byte-and-Word-Swapping-in-Modbus
@@ -326,6 +327,7 @@ int8_t master_controller_work(C_data * client)
 						client->mcmd = G_ID;
 						M.to_error++;
 						M.error++;
+						MM_ERROR_S;
 					}
 				}
 #endif
@@ -351,6 +353,7 @@ int8_t master_controller_work(C_data * client)
 						client->mcmd = G_ID;
 						M.to_error++;
 						M.error++;
+						MM_ERROR_S;
 					}
 				}
 #endif
@@ -376,14 +379,20 @@ int8_t master_controller_work(C_data * client)
 						em.wl1 = mb32_swap(em.wl1);
 						em.wl2 = mb32_swap(em.wl2);
 						em.wl3 = mb32_swap(em.wl3);
-//						em.val1 = mb32_swap(em.val1);
-//						em.val2 = mb32_swap(em.val2);
-//						em.val3 = mb32_swap(em.val3);
+						em.val1 = mb32_swap(em.val1);
+						em.val2 = mb32_swap(em.val2);
+						em.val3 = mb32_swap(em.val3);
+						em.varl1 = mb32_swap(em.varl1);
+						em.varl2 = mb32_swap(em.varl2);
+						em.varl3 = mb32_swap(em.varl3);
 						client->data_prev = client->data_count;
 						client->data_count++;
+						MM_ERROR_C;
 					} else {
+						MM_ERROR_C;
 						client->data_ok = false;
 						log_crc_error(c_crc, c_crc_rec);
+						MM_ERROR_S;
 					}
 					client->cstate = CLEAR;
 				} else {
@@ -393,6 +402,7 @@ int8_t master_controller_work(C_data * client)
 						client->mcmd = G_ID;
 						M.to_error++;
 						M.error++;
+						MM_ERROR_S;
 					}
 				}
 #endif
@@ -405,18 +415,21 @@ int8_t master_controller_work(C_data * client)
 					c_crc = crc16(cc_buffer, client->req_length - 2);
 					c_crc_rec = crc16_receive(client);
 					if (DBUG_R c_crc == c_crc_rec) {
-
+						MM_ERROR_C;
 						client->id_ok = true;
 					} else {
+						MM_ERROR_C;
 						client->id_ok = false;
 						client->config_ok = false;
 						client->passwd_ok = false;
 						client->data_ok = false;
 						log_crc_error(c_crc, c_crc_rec);
+						MM_ERROR_S;
 					}
 					client->cstate = CLEAR;
 				} else {
 					if (get_500hz(false) >= RDELAY) {
+						MM_ERROR_C;
 						client->cstate = CLEAR;
 						client->mcmd = G_ID;
 						M.to_error++;
@@ -425,6 +438,7 @@ int8_t master_controller_work(C_data * client)
 						client->config_ok = false;
 						client->passwd_ok = false;
 						client->data_ok = false;
+						MM_ERROR_S;
 					}
 				}
 #endif

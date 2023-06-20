@@ -50,7 +50,7 @@ extern "C" {
 #define CDELAY		40	// fast query delay
 #define QDELAY		3	// query delay
 #define TODELAY		4	// misc delay
-#define SPACING		50	// control loop cpu usage factor
+#define SPACING		40	// control loop cpu usage factor
 
 	/*
 	 * RS485 port defines
@@ -150,11 +150,16 @@ extern "C" {
 		uint32_t sends;
 	} M_data;
 
+	/*
+	 * maps the EM540 modbus registers to int32_t values
+	 */
 	typedef struct EM_data {
 		int32_t vl1n, vl2n, vl3n,
 		vl1l2, vl2l3, vl3l1,
 		al1, al2, al3,
-		wl1, wl2, wl3;
+		wl1, wl2, wl3,
+		val1, val2, val3,
+		varl1, varl2, varl3;
 	} EM_data;
 
 	// code from libmodbus: https://raw.githubusercontent.com/stephane/libmodbus/master/src/modbus-rtu.c
@@ -233,8 +238,8 @@ extern "C" {
 #define BOFF	0
 #define BON	255
 
-#define MM_ERROR_S	RLED_SetHigh()
-#define MM_ERROR_C	RLED_SetLow()
+#define MM_ERROR_S	MLED_SetHigh()
+#define MM_ERROR_C	MLED_SetLow()
 
 	uint16_t crc16(volatile uint8_t *, uint16_t);
 	uint16_t modbus_rtu_send_msg(void *, const void *, uint16_t);

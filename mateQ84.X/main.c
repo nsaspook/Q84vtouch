@@ -72,8 +72,7 @@ uint16_t volt_fract;
 uint16_t volt_whole, panel_watts, cc_mode;
 enum state_type state = state_init;
 char buffer[64], can_buffer[64];
-char build_version[] = "V1.10 FM80 Q84";
-char *build_date = __DATE__, *build_time = __TIME__;
+const char *build_date = __DATE__, *build_time = __TIME__;
 volatile uint16_t tickCount[TMR_COUNT];
 
 B_type B = {
@@ -159,7 +158,7 @@ void main(void)
 	StartTimer(TMR_SPIN, SPINNER_SPEED);
 
 	init_display();
-	sprintf(buffer, "%s ", "                      ");
+	sprintf(buffer, "%s ", "                        ");
 	eaDogM_WriteStringAtPos(0, 0, buffer);
 	sprintf(buffer, "%s   ", build_version);
 	eaDogM_WriteStringAtPos(0, 0, buffer);
@@ -221,7 +220,7 @@ void main(void)
 		}
 		if (TimerDone(TMR_SPIN)) { // LCD status spinner for charger MODE
 			StartTimer(TMR_SPIN, SPINNER_SPEED);
-			sprintf(buffer, "EMon  %4.1fVAC  %c%c    ", ((float) em.vl1l2)/10.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
+			sprintf(buffer, "EMon  %4.1fVAC   %c%c    ", ((float) em.vl1l2) / 10.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
 			eaDogM_WriteStringAtPos(1, 0, buffer);
 		}
 #ifdef MB_MASTER
@@ -349,13 +348,13 @@ void state_mx_status_cb(void)
 			/*
 			 * log CSV values to the serial port for data storage and processing
 			 */
-			printf("^^^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%d\r\n", abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, cc_mode, B.rx_count++);
-			sprintf(can_buffer, "^^^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%d\r\n", abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, cc_mode, B.rx_count);
+			printf("^^^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%.1f,%.1f,%.1f,%4.1f,%d\r\n", abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, B.rx_count++);
+			sprintf(can_buffer, "^^^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%.1f,%.1f,%.1f,%4.1f,%d\r\n", abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, B.rx_count);
 			sprintf(buffer, "%d Watts %d.%01d Volts   ", panel_watts, volt_whole, volt_fract);
 			eaDogM_WriteStringAtPos(2, 0, buffer);
 			sprintf(buffer, "%d.%01d Amps %d.%01d Volts   ", abuf[3] - 128, abuf[1]&0x0f, vw, vf);
 			eaDogM_WriteStringAtPos(3, 0, buffer);
-			sprintf(buffer, "EMon %6.1fWAC  %c%c%c  ", ((float)em.wl1)/10.0f, state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
+			sprintf(buffer, "%6.1fW %6.1fVA %c%c%c   ", ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
 			eaDogM_WriteStringAtPos(0, 0, buffer);
 			can_fd_tx(); // send the logging packet via CANBUS
 		}

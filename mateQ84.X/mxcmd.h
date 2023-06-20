@@ -22,6 +22,7 @@ extern "C" {
 #include "../timers.h"
 
 #define VER	1
+const char build_version[] = "V1.11 FM80 Q84";
 	
 #define IO_TEST
 
