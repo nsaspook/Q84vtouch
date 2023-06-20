@@ -15,7 +15,7 @@ extern "C" {
 #include "qconfig.h"
 #include "mateQ84.X/mxcmd.h"
 
-	extern char can_buffer[64];
+	extern char can_buffer[MAX_B_BUF];
 	void can_fd_tx(void);
 
 #ifdef	__cplusplus

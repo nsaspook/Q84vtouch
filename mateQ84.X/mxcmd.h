@@ -23,7 +23,8 @@ extern "C" {
 
 #define VER	1
 const char build_version[] = "V1.11 FM80 Q84";
-	
+
+#define MAX_B_BUF	96
 #define IO_TEST
 
 #define	FM_BUFFER	32

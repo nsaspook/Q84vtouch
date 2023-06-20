@@ -40103,13 +40103,7 @@ void delay_ms(uint16_t);
 
 
 const char build_version[] = "V1.11 FM80 Q84";
-
-
-
-
-
-
-
+# 34 "./mxcmd.h"
     const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
     const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
     const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};
@@ -40364,7 +40358,7 @@ const char build_version[] = "V1.11 FM80 Q84";
 
 # 1 "./../canfd.h" 1
 # 18 "./../canfd.h"
- extern char can_buffer[64];
+ extern char can_buffer[96];
  void can_fd_tx(void);
 # 51 "main.c" 2
 
@@ -40390,8 +40384,8 @@ uint16_t abuf[32];
 uint16_t volt_fract;
 uint16_t volt_whole, panel_watts, cc_mode;
 enum state_type state = state_init;
-char buffer[64], can_buffer[64];
-const char *build_date = "Jun 20 2023", *build_time = "11:18:02";
+char buffer[96], can_buffer[96];
+const char *build_date = "Jun 20 2023", *build_time = "11:34:06";
 volatile uint16_t tickCount[TMR_COUNT];
 
 B_type B = {
@@ -40477,19 +40471,19 @@ void main(void)
  StartTimer(TMR_SPIN, 200);
 
  init_display();
- sprintf(buffer, "%s ", "                        ");
+ snprintf(buffer, 96, "%s ", "                        ");
  eaDogM_WriteStringAtPos(0, 0, buffer);
- sprintf(buffer, "%s   ", build_version);
+ snprintf(buffer, 96, "%s   ", build_version);
  eaDogM_WriteStringAtPos(0, 0, buffer);
- sprintf(buffer, "%s   ", build_date);
+ snprintf(buffer, 96, "%s   ", build_date);
  eaDogM_WriteStringAtPos(1, 0, buffer);
 
- sprintf(buffer, "%s B:%X %X %X   ", build_time, STATUS, PCON0, PCON1);
+ snprintf(buffer, 96, "%s B:%X %X %X   ", build_time, STATUS, PCON0, PCON1);
  eaDogM_WriteStringAtPos(2, 0, buffer);
- sprintf(buffer, "%s ", "Start Up            ");
+ snprintf(buffer, 96, "%s ", "Start Up            ");
  eaDogM_WriteStringAtPos(3, 0, buffer);
  wdtdelay(1000000);
- sprintf(buffer, "%s ", "Polling MX80        ");
+ snprintf(buffer, 96, "%s ", "Polling MX80        ");
  eaDogM_WriteStringAtPos(2, 0, buffer);
 
  while (1) {
@@ -40539,7 +40533,7 @@ void main(void)
   }
   if (TimerDone(TMR_SPIN)) {
    StartTimer(TMR_SPIN, 200);
-   sprintf(buffer, "EMon  %4.1fVAC   %c%c    ", ((float) em.vl1l2) / 10.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
+   snprintf(buffer, 96, "EMon  %4.1fVAC   %c%c    ", ((float) em.vl1l2) / 10.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
    eaDogM_WriteStringAtPos(1, 0, buffer);
   }
 
@@ -40586,11 +40580,11 @@ void state_init_cb(void)
  if (abuf[2] == 0x03) {
   printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: Found MX80 online\r\n", B.rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
   B.mx80_online = 1;
-  sprintf(buffer, "Found MX80 online      ");
+  snprintf(buffer, 96, "Found MX80 online      ");
   eaDogM_WriteStringAtPos(3, 0, buffer);
  } else {
   printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: MX80 Not Found online\r\n", B.rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
-  sprintf(buffer, "MX80 Not Found online  ");
+  snprintf(buffer, 96, "MX80 Not Found online  ");
   eaDogM_WriteStringAtPos(3, 0, buffer);
   B.mx80_online = 0;
  }
@@ -40668,12 +40662,12 @@ void state_mx_status_cb(void)
 
 
    printf("^^^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%.1f,%.1f,%.1f,%4.1f,%d\r\n", abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, B.rx_count++);
-   sprintf(can_buffer, "^^^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%.1f,%.1f,%.1f,%4.1f,%d\r\n", abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, B.rx_count);
-   sprintf(buffer, "%d Watts %d.%01d Volts   ", panel_watts, volt_whole, volt_fract);
+   snprintf(can_buffer, 96, "^^^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%.1f,%.1f,%.1f,%4.1f,%d\r\n", abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, B.rx_count);
+   snprintf(buffer, 96, "%d Watts %d.%01d Volts   ", panel_watts, volt_whole, volt_fract);
    eaDogM_WriteStringAtPos(2, 0, buffer);
-   sprintf(buffer, "%d.%01d Amps %d.%01d Volts   ", abuf[3] - 128, abuf[1]&0x0f, vw, vf);
+   snprintf(buffer, 96, "%d.%01d Amps %d.%01d Volts   ", abuf[3] - 128, abuf[1]&0x0f, vw, vf);
    eaDogM_WriteStringAtPos(3, 0, buffer);
-   sprintf(buffer, "%6.1fW %6.1fVA %c%c%c   ", ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
+   snprintf(buffer, 96, "%6.1fW %6.1fVA %c%c%c   ", ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
    eaDogM_WriteStringAtPos(0, 0, buffer);
    can_fd_tx();
   }
