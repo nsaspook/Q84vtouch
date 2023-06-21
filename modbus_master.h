@@ -6,7 +6,7 @@
  */
 
 /*
- * Simple MODBUS data polling master for PIC32MK on USART6 using Harmony 3
+ * Simple MODBUS data polling master for PIC32MK on USART6 using MCC
  * the USART port uses interrupt driven buffered I/O
  * hard coded for data collection from a EM540 3-phase power monitor
  * https://www.gavazzionline.com/pdf/EM540_DS_ENG.pdf
@@ -24,9 +24,14 @@ extern "C" {
 #define MB_EM540
 #define SWMBMVER	0X0033	// master SW version
 #define MADDR		0x01 // modbus client address
+	/*
+	 * setup options on the EM540 from the factor defaults
+	 * 115200 baud, measurement mode C for bidirectional values
+	 */
 
 	/*
 	 * fake good received bytes from client
+	 * a null string when not debugging
 	 */
 #define	DBUG_R	//	true ||
 	/*
@@ -42,15 +47,19 @@ extern "C" {
 #include "mateQ84.X/mcc_generated_files/mcc.h"
 #include "timers.h"
 
+	/*
+	 * 5Hz data updates in FASTQ mode
+	 */
 #define MAX_DATA        128
 	//#define LOCAL_ECHO	1
-#define FASTQ			// MODBUS query speed
-#define TDELAY		6	// half-duplex delay
+#define FASTQ			// MODBUS query speed, define for faster sampling rates
+#define TDELAY		1	// half-duplex delay
 #define RDELAY		300	// receive timeout
-#define CDELAY		40	// fast query delay
-#define QDELAY		3	// query delay
+#define CDELAY		40	// fast query delay 100ms
+#define QDELAY		2	// slow query delay 1s
 #define TODELAY		4	// misc delay
 #define SPACING		40	// control loop cpu usage factor
+#define DUPL_DELAY	2	// extra duplex delay mode
 
 	/*
 	 * RS485 port defines
@@ -103,8 +112,6 @@ extern "C" {
 		volatile uint32_t pacing, pwm_update, pwm_stop, fault_count, fault_ticks, fault_source, modbus_rx, modbus_tx;
 		int32_t motor_speed;
 		volatile bool fault_active, dmt_sosc_flag;
-		volatile uart5_status_t mb_error;
-		volatile bool forward, rx;
 	};
 
 	union PWMDC {
@@ -122,22 +129,15 @@ extern "C" {
 		char bytes[4];
 	};
 
-	typedef struct C_data { // client state machine data
-		uint8_t mcmd;
-		comm_type cstate;
-		cmd_type modbus_command;
-		uint16_t req_length;
-		int8_t trace;
-		bool id_ok, passwd_ok, config_ok, data_ok;
-		uint32_t data_count, data_prev;
-	} C_data;
-
-	typedef struct M_data { // ISR used, mainly for non-atomic mod problems
+	typedef struct M_time_data { // ISR used, mainly for non-atomic mod problems
 		uint32_t clock_500hz;
 		uint32_t clock_10hz;
 		uint32_t clock_2hz;
 		uint8_t clock_blinks;
 		uint8_t num_blinks;
+	} M_time_data;
+
+	typedef struct M_data { // ISR used, mainly for non-atomic mod problems
 		uint8_t blink_lock : 1;
 		uint8_t config : 1;
 		uint8_t stable : 1;
@@ -148,7 +148,19 @@ extern "C" {
 		uint32_t crc_error;
 		uint32_t to_error;
 		uint32_t sends;
+		volatile bool rx;
 	} M_data;
+
+	typedef struct C_data { // client state machine data
+		uint8_t mcmd;
+		comm_type cstate;
+		cmd_type modbus_command;
+		uint16_t req_length;
+		int8_t trace;
+		bool id_ok, passwd_ok, config_ok, data_ok;
+		uint32_t data_count, data_prev;
+		volatile M_data M;
+	} C_data;
 
 	/*
 	 * maps the EM540 modbus registers to int32_t values
@@ -248,24 +260,25 @@ extern "C" {
 	uint8_t init_stream_params(void);
 	void init_mb_master_timers(void);
 	int8_t master_controller_work(C_data *);
-	int32_t mb32_swap(int32_t);
+	int32_t mb32_swap(const int32_t);
 
 	void clear_2hz(void);
 	void clear_10hz(void);
 	void clear_500hz(void);
-	uint32_t get_2hz(uint8_t);
-	uint32_t get_10hz(uint8_t);
-	uint32_t get_500hz(uint8_t);
+	uint32_t get_2hz(const uint8_t);
+	uint32_t get_10hz(const uint8_t);
+	uint32_t get_500hz(const uint8_t);
 
 	void timer_500ms_tick(void);
 	void timer_2ms_tick(void);
-	
+
 	void mb_tx_test(C_data *);
 
 	extern volatile struct V_type V;
 	extern C_data C; // MODBUS client state data
-	extern volatile M_data M;
-	extern EM_data em;
+	extern volatile M_data M; // MODBUS hardware state data
+	extern volatile M_time_data MT; // MODBUS sequence timers
+	extern EM_data em; // converted results data
 
 #ifdef	__cplusplus
 }

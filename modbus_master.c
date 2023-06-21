@@ -10,6 +10,12 @@ volatile M_data M = {
 	.power_on = true,
 };
 
+volatile M_time_data MT = {
+	.clock_10hz = 0,
+	.clock_2hz = 0,
+	.clock_500hz = 0,
+};
+
 C_data C = {
 	.mcmd = G_ID,
 	.cstate = CLEAR,
@@ -19,6 +25,8 @@ C_data C = {
 	.config_ok = false,
 	.id_ok = false,
 	.passwd_ok = false,
+	.M.blink_lock = false,
+	.M.power_on = true,
 };
 
 volatile struct V_type V = {
@@ -59,12 +67,12 @@ em_passwd[] = {MADDR, WRITE_SINGLE_REGISTER, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}
 union MREG rvalue;
 EM_data em;
 
-static void half_dup_tx(bool);
-static void half_dup_rx(bool);
+static void half_dup_tx(const bool);
+static void half_dup_rx(const bool);
 static bool serial_trmt(void);
 static uint16_t modbus_rtu_send_msg_crc(volatile uint8_t *, uint16_t);
 static uint16_t crc16_receive(C_data *);
-static void log_crc_error(uint16_t, uint16_t);
+static void log_crc_error(const uint16_t, const uint16_t);
 
 /*
  * add the required CRC bytes to a MODBUS message
@@ -121,7 +129,7 @@ void my_modbus_rx_32(void)
 {
 	static uint8_t m_data = 0;
 
-	V.rx = true;
+	M.rx = true;
 	/*
 	 * process received controller data stream
 	 */
@@ -161,7 +169,7 @@ static uint16_t crc16_receive(C_data * client)
 	return crc16r;
 }
 
-static void log_crc_error(uint16_t c_crc, uint16_t c_crc_rec)
+static void log_crc_error(const uint16_t c_crc, const uint16_t c_crc_rec)
 {
 	M.crc_calc = c_crc;
 	M.crc_data = c_crc_rec;
@@ -179,7 +187,7 @@ static void log_crc_error(uint16_t c_crc, uint16_t c_crc_rec)
  * Byte endianness with Word endianness?
  * Lions and Tigers and Bears!
  */
-int32_t mb32_swap(int32_t value)
+int32_t mb32_swap(const int32_t value)
 {
 	uint8_t i;
 	union MREG32 dvalue;
@@ -204,7 +212,7 @@ int8_t master_controller_work(C_data * client)
 {
 	static uint32_t spacing = 0;
 
-	if (spacing++ <SPACING && !V.rx) {
+	if (spacing++ <SPACING && !M.rx) {
 		return T_spacing;
 	}
 	spacing = 0;
@@ -288,7 +296,7 @@ int8_t master_controller_work(C_data * client)
 			clear_500hz(); // state machine execute background timer clear
 			client->trace = T_send_d;
 			M.sends++;
-			V.rx = false;
+			M.rx = false;
 		}
 		break;
 	case RECV:
@@ -457,20 +465,20 @@ int8_t master_controller_work(C_data * client)
  */
 void clear_2hz(void)
 {
-	M.clock_2hz = 0;
+	MT.clock_2hz = 0;
 }
 
 void clear_10hz(void)
 {
-	M.clock_10hz = 0;
+	MT.clock_10hz = 0;
 }
 
 void clear_500hz(void)
 {
-	M.clock_500hz = 0;
+	MT.clock_500hz = 0;
 }
 
-uint32_t get_2hz(uint8_t mode)
+uint32_t get_2hz(const uint8_t mode)
 {
 	static uint32_t tmp = 0;
 
@@ -478,11 +486,15 @@ uint32_t get_2hz(uint8_t mode)
 		return tmp;
 	}
 
-	tmp = M.clock_2hz;
+	tmp = MT.clock_2hz;
 	return tmp;
 }
 
-uint32_t get_10hz(uint8_t mode)
+/*
+ * fake timer, really 500Hz updates
+ * used for fast updates timing
+ */
+uint32_t get_10hz(const uint8_t mode)
 {
 	static uint32_t tmp = 0;
 
@@ -490,11 +502,11 @@ uint32_t get_10hz(uint8_t mode)
 		return tmp;
 	}
 
-	tmp = M.clock_10hz;
+	tmp = MT.clock_10hz;
 	return tmp;
 }
 
-uint32_t get_500hz(uint8_t mode)
+uint32_t get_500hz(const uint8_t mode)
 {
 	static uint32_t tmp = 0;
 
@@ -502,50 +514,50 @@ uint32_t get_500hz(uint8_t mode)
 		return tmp;
 	}
 
-	tmp = M.clock_500hz;
+	tmp = MT.clock_500hz;
 	return tmp;
 }
 
 // switch RS transceiver to transmit mode and wait if not tx
 
-static void half_dup_tx(bool delay)
+static void half_dup_tx(const bool delay)
 {
 	if (DERE_GetValue()) {
 		return;
 	}
 	DERE_SetHigh(); // enable modbus transmitter
 	if (delay) {
-		delay_ms(2); // busy waits
+		delay_ms(DUPL_DELAY); // busy waits
 	}
 }
 
 // switch RS transceiver to receive mode and wait if not rx
 
-static void half_dup_rx(bool delay)
+static void half_dup_rx(const bool delay)
 {
 	if (!DERE_GetValue()) {
 		return;
 	}
 	if (delay) {
-		delay_ms(2); // busy waits
+		delay_ms(DUPL_DELAY); // busy waits
 	}
 	DERE_SetLow(); // enable modbus receiver	
 }
 
-// ISR function for TMR8
+// ISR function for TMR5
 
 void timer_500ms_tick(void)
 {
-	M.clock_2hz++;
-	M.clock_blinks++;
+	MT.clock_2hz++;
+	MT.clock_blinks++;
 }
 
-// ISR function for TMR9
+// ISR function for TMR6
 
 void timer_2ms_tick(void)
 {
-	M.clock_500hz++;
-	M.clock_10hz++;
+	MT.clock_500hz++;
+	MT.clock_10hz++;
 }
 
 /*

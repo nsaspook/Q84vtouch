@@ -40102,73 +40102,73 @@ void delay_ms(uint16_t);
 # 23 "./mxcmd.h" 2
 
 
-const char build_version[] = "V1.11 FM80 Q84";
+ const char build_version[] = "V1.15 FM80 Q84";
 # 34 "./mxcmd.h"
-    const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
-    const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
-    const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};
-    const uint16_t cmd_panelv[] = {0x100, 0x02, 0x01, 0xc6, 0x00, 0x00, 0x00, 0xc9};
-    const uint16_t cmd_batteryv[] = {0x100, 0x02, 0x00, 0x08, 0x00, 0x00, 0x00, 0x0a};
-    const uint16_t cmd_batterya[] = {0x100, 0x02, 0x01, 0xc7, 0x00, 0x00, 0x00, 0xca};
-    const uint16_t cmd_watts[] = {0x100, 0x02, 0x01, 0x6a, 0x00, 0x00, 0x00, 0x6d};
-    const uint16_t cmd_misc[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
+ const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
+ const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
+ const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};
+ const uint16_t cmd_panelv[] = {0x100, 0x02, 0x01, 0xc6, 0x00, 0x00, 0x00, 0xc9};
+ const uint16_t cmd_batteryv[] = {0x100, 0x02, 0x00, 0x08, 0x00, 0x00, 0x00, 0x0a};
+ const uint16_t cmd_batterya[] = {0x100, 0x02, 0x01, 0xc7, 0x00, 0x00, 0x00, 0xca};
+ const uint16_t cmd_watts[] = {0x100, 0x02, 0x01, 0x6a, 0x00, 0x00, 0x00, 0x6d};
+ const uint16_t cmd_misc[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
 
-    enum status_type {
-        STATUS_SLEEPING = 0,
-        STATUS_FLOATING = 1,
-        STATUS_BULK = 2,
-        STATUS_ABSORB = 3,
-        STATUS_EQUALIZE = 4,
-        STATUS_LAST,
-    };
+ enum status_type {
+  STATUS_SLEEPING = 0,
+  STATUS_FLOATING = 1,
+  STATUS_BULK = 2,
+  STATUS_ABSORB = 3,
+  STATUS_EQUALIZE = 4,
+  STATUS_LAST,
+ };
 
-    const char state_name [][12] = {
-        "Sleeping",
-        "Floating",
-        "Bulk",
-        "Absorb",
-        "Equalize",
-        "Last",
-    };
+ const char state_name [][12] = {
+  "Sleeping",
+  "Floating",
+  "Bulk",
+  "Absorb",
+  "Equalize",
+  "Last",
+ };
 
-        const char canbus_name [][12] = {
-        " Offline",
-        "CANBUS",
-    };
+ const char canbus_name [][12] = {
+  " Offline",
+  "CANBUS",
+ };
 
-        const char modbus_name [][12] = {
-        " Offline",
-        "MODBUS",
-    };
+ const char modbus_name [][12] = {
+  " Offline",
+  "MODBUS",
+ };
 
-    typedef struct {
-        uint8_t a[16];
-    } mx_status_packed_t;
+ typedef struct {
+  uint8_t a[16];
+ } mx_status_packed_t;
 
-    typedef struct B_type {
-        volatile _Bool ten_sec_flag, one_sec_flag;
-        uint16_t pacing, rx_count, flush;
-        volatile _Bool mx80_online;
- volatile uint8_t canbus_online, modbus_online;
-    } B_type;
+ typedef struct B_type {
+  volatile _Bool ten_sec_flag, one_sec_flag;
+  uint16_t pacing, rx_count, flush;
+  volatile _Bool mx80_online;
+  volatile uint8_t canbus_online, modbus_online;
+ } B_type;
 
-    extern void onesec_io(void);
-    extern void tensec_io(void);
-    extern void FM_io(void);
-    extern uint8_t FM_tx(const uint16_t *, uint8_t);
-    extern _Bool FM_tx_empty(void);
-    extern uint8_t FM_rx(uint16_t *);
-    extern _Bool FM_rx_ready(void);
-    extern uint8_t FM_rx_count(void);
-    extern void FM_restart(void);
-    extern void wdtdelay(const uint32_t);
+ extern void onesec_io(void);
+ extern void tensec_io(void);
+ extern void FM_io(void);
+ extern uint8_t FM_tx(const uint16_t *, uint8_t);
+ extern _Bool FM_tx_empty(void);
+ extern uint8_t FM_rx(uint16_t *);
+ extern _Bool FM_rx_ready(void);
+ extern uint8_t FM_rx_count(void);
+ extern void FM_restart(void);
+ extern void wdtdelay(const uint32_t);
 
-    extern B_type B;
+ extern B_type B;
 # 48 "main.c" 2
 
 
 # 1 "./../modbus_master.h" 1
-# 67 "./../modbus_master.h"
+# 76 "./../modbus_master.h"
  typedef enum comm_type {
   CLEAR = 0,
   INIT,
@@ -40208,8 +40208,6 @@ const char build_version[] = "V1.11 FM80 Q84";
   volatile uint32_t pacing, pwm_update, pwm_stop, fault_count, fault_ticks, fault_source, modbus_rx, modbus_tx;
   int32_t motor_speed;
   volatile _Bool fault_active, dmt_sosc_flag;
-  volatile uart5_status_t mb_error;
-  volatile _Bool forward, rx;
  };
 
  union PWMDC {
@@ -40227,22 +40225,15 @@ const char build_version[] = "V1.11 FM80 Q84";
   char bytes[4];
  };
 
- typedef struct C_data {
-  uint8_t mcmd;
-  comm_type cstate;
-  cmd_type modbus_command;
-  uint16_t req_length;
-  int8_t trace;
-  _Bool id_ok, passwd_ok, config_ok, data_ok;
-  uint32_t data_count, data_prev;
- } C_data;
-
- typedef struct M_data {
+ typedef struct M_time_data {
   uint32_t clock_500hz;
   uint32_t clock_10hz;
   uint32_t clock_2hz;
   uint8_t clock_blinks;
   uint8_t num_blinks;
+ } M_time_data;
+
+ typedef struct M_data {
   uint8_t blink_lock : 1;
   uint8_t config : 1;
   uint8_t stable : 1;
@@ -40253,7 +40244,19 @@ const char build_version[] = "V1.11 FM80 Q84";
   uint32_t crc_error;
   uint32_t to_error;
   uint32_t sends;
+  volatile _Bool rx;
  } M_data;
+
+ typedef struct C_data {
+  uint8_t mcmd;
+  comm_type cstate;
+  cmd_type modbus_command;
+  uint16_t req_length;
+  int8_t trace;
+  _Bool id_ok, passwd_ok, config_ok, data_ok;
+  uint32_t data_count, data_prev;
+  volatile M_data M;
+ } C_data;
 
 
 
@@ -40328,7 +40331,7 @@ const char build_version[] = "V1.11 FM80 Q84";
   0x44, 0x84, 0x85, 0x45, 0x87, 0x47, 0x46, 0x86, 0x82, 0x42,
   0x43, 0x83, 0x41, 0x81, 0x80, 0x40
  };
-# 244 "./../modbus_master.h"
+# 256 "./../modbus_master.h"
  uint16_t crc16(volatile uint8_t *, uint16_t);
  uint16_t modbus_rtu_send_msg(void *, const void *, uint16_t);
 
@@ -40336,14 +40339,14 @@ const char build_version[] = "V1.11 FM80 Q84";
  uint8_t init_stream_params(void);
  void init_mb_master_timers(void);
  int8_t master_controller_work(C_data *);
- int32_t mb32_swap(int32_t);
+ int32_t mb32_swap(const int32_t);
 
  void clear_2hz(void);
  void clear_10hz(void);
  void clear_500hz(void);
- uint32_t get_2hz(uint8_t);
- uint32_t get_10hz(uint8_t);
- uint32_t get_500hz(uint8_t);
+ uint32_t get_2hz(const uint8_t);
+ uint32_t get_10hz(const uint8_t);
+ uint32_t get_500hz(const uint8_t);
 
  void timer_500ms_tick(void);
  void timer_2ms_tick(void);
@@ -40353,6 +40356,7 @@ const char build_version[] = "V1.11 FM80 Q84";
  extern volatile struct V_type V;
  extern C_data C;
  extern volatile M_data M;
+ extern volatile M_time_data MT;
  extern EM_data em;
 # 50 "main.c" 2
 
@@ -40385,7 +40389,7 @@ uint16_t volt_fract;
 uint16_t volt_whole, panel_watts, cc_mode;
 enum state_type state = state_init;
 char buffer[96], can_buffer[96];
-const char *build_date = "Jun 20 2023", *build_time = "11:34:06";
+const char *build_date = "Jun 21 2023", *build_time = "09:20:51";
 volatile uint16_t tickCount[TMR_COUNT];
 
 B_type B = {

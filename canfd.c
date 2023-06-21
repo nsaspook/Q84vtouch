@@ -3,7 +3,8 @@
 static void DefaultFIFO1NotEmptyHandler(void)
 {
 	CAN_MSG_OBJ EchoMessage; //create a message object for holding the data
-	while (1) {
+
+	while (true) {
 		if (CAN1_ReceivedMessageCountGet() > 0) //check for received message
 		{
 			if (true == CAN1_Receive(&EchoMessage)) //receive the message
@@ -22,7 +23,8 @@ static void DefaultFIFO2NotEmptyHandler(void)
 {
 	CAN_MSG_OBJ InternalMessage; //create a message object for holding data
 	uint8_t DataIndex = 0; //placeholder variable for calculations
-	while (1) {
+
+	while (true) {
 		if (CAN1_ReceivedMessageCountGet() > 0) //check for received message
 		{
 			if (true == CAN1_Receive(&InternalMessage)) //receive the message
@@ -32,7 +34,7 @@ static void DefaultFIFO2NotEmptyHandler(void)
 		}
 	}
 	DataIndex = InternalMessage.data[0] / 32; //calculate which data byte to use
-	LATA = InternalMessage.data[DataIndex]; //output the data byte to the LEDs
+	//	LATA = InternalMessage.data[DataIndex]; //output the data byte to the LEDs
 }
 
 void can_fd_tx(void)

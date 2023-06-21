@@ -54,7 +54,7 @@
 /**
   Section: Macro Declarations
 */
-#define UART5_TX_BUFFER_SIZE 32
+#define UART5_TX_BUFFER_SIZE 64
 #define UART5_RX_BUFFER_SIZE 8
 
 /**
@@ -112,11 +112,11 @@ void UART5_Initialize(void)
     // TXPOL not inverted; FLO off; RXPOL not inverted; RUNOVF RX input shifter stops all activity; STP Transmit 1Stop bit, receiver verifies first Stop bit; 
     U5CON2 = 0x00;
 
-    // BRGL 17; 
-    U5BRGL = 0x11;
+    // BRGL 86; 
+    U5BRGL = 0x56;
 
-    // BRGH 4; 
-    U5BRGH = 0x04;
+    // BRGH 0; 
+    U5BRGH = 0x00;
 
     // STPMD in middle of first Stop bit; TXWRE No error; 
     U5FIFO = 0x00;
