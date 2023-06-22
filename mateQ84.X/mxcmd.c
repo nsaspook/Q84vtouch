@@ -143,3 +143,29 @@ void tensec_io(void)
 	MLED_SetLow();
 	B.ten_sec_flag = true;
 }
+
+/*
+ * floating point low pass filter, 
+ * slow/fast select, use (-1) to zero buffer channel and return new
+ */
+float lp_filter(const float new, const uint8_t bn, const int8_t slow)
+{
+	static float smooth[LP_BUFFER_SIZE];
+	float lp_speed;
+
+	if (bn >= LP_BUFFER_SIZE) // buffer index check
+		return new;
+
+	if (slow == (-1)) { // reset smooth buffer and return original value
+		smooth[bn] = 0.0f;
+		return new;
+	}
+
+	if (slow) { // some random filter cutoffs beta values
+		lp_speed = 0.0333f;
+	} else {
+		lp_speed = 0.1f;
+	}
+	// exponentially weighted moving average
+	return smooth[bn] = smooth[bn] + ((new - smooth[bn]) * lp_speed);
+}

@@ -40034,6 +40034,8 @@ const char spin[6][20] = {
  "..ooOOoo"
 };
 
+
+
 struct spi_link_type {
  uint8_t SPI_LCD : 1;
  uint8_t SPI_AUX : 1;
@@ -40102,8 +40104,8 @@ void delay_ms(uint16_t);
 # 23 "./mxcmd.h" 2
 
 
- const char build_version[] = "V1.15 FM80 Q84";
-# 34 "./mxcmd.h"
+ const char build_version[] = "V1.18 FM80 Q84";
+# 35 "./mxcmd.h"
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
  const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};
@@ -40162,6 +40164,7 @@ void delay_ms(uint16_t);
  extern uint8_t FM_rx_count(void);
  extern void FM_restart(void);
  extern void wdtdelay(const uint32_t);
+ extern float lp_filter(const float, const uint8_t, const int8_t);
 
  extern B_type B;
 # 48 "main.c" 2
@@ -40270,6 +40273,18 @@ void delay_ms(uint16_t);
   varl1, varl2, varl3;
  } EM_data;
 
+ typedef enum filter_type {
+  F_ac = 0,
+  F_wac = 1,
+  F_wva = 2,
+  F_3 = 3,
+  F_4 = 4,
+  F_5 = 5,
+  F_6 = 6,
+  F_7 = 7,
+  F_8 = 8,
+ } filter_type;
+
 
 
 
@@ -40331,7 +40346,7 @@ void delay_ms(uint16_t);
   0x44, 0x84, 0x85, 0x45, 0x87, 0x47, 0x46, 0x86, 0x82, 0x42,
   0x43, 0x83, 0x41, 0x81, 0x80, 0x40
  };
-# 256 "./../modbus_master.h"
+# 268 "./../modbus_master.h"
  uint16_t crc16(volatile uint8_t *, uint16_t);
  uint16_t modbus_rtu_send_msg(void *, const void *, uint16_t);
 
@@ -40389,7 +40404,7 @@ uint16_t volt_fract;
 uint16_t volt_whole, panel_watts, cc_mode;
 enum state_type state = state_init;
 char buffer[96], can_buffer[96];
-const char *build_date = "Jun 21 2023", *build_time = "09:20:51";
+const char *build_date = "Jun 22 2023", *build_time = "10:30:04";
 volatile uint16_t tickCount[TMR_COUNT];
 
 B_type B = {
@@ -40536,9 +40551,24 @@ void main(void)
    B.modbus_online = C.data_ok;
   }
   if (TimerDone(TMR_SPIN)) {
-   StartTimer(TMR_SPIN, 200);
-   snprintf(buffer, 96, "EMon  %4.1fVAC   %c%c    ", ((float) em.vl1l2) / 10.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
-   eaDogM_WriteStringAtPos(1, 0, buffer);
+   {
+    static uint8_t s_update = 0;
+    static float ac = 0.0f;
+    static float wac = 0.0f;
+    static float wva = 0.0f;
+
+    if (s_update++ >= 15) {
+     ac = ((float) em.vl1l2) / 10.0f;
+     wac = ((float) em.wl1) / 10.0f;
+     wva = ((float) em.val1) / 10.0f;
+     s_update = 0;
+    }
+    StartTimer(TMR_SPIN, 200);
+    snprintf(buffer, 96, "EMon  %4.1fVAC   %c%c    ", lp_filter(ac, F_ac, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
+    eaDogM_WriteStringAtPos(1, 0, buffer);
+    snprintf(buffer, 96, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 1), lp_filter(wva, F_wva, 1), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
+    eaDogM_WriteStringAtPos(0, 0, buffer);
+   }
   }
 
   master_controller_work(&C);
@@ -40671,8 +40701,6 @@ void state_mx_status_cb(void)
    eaDogM_WriteStringAtPos(2, 0, buffer);
    snprintf(buffer, 96, "%d.%01d Amps %d.%01d Volts   ", abuf[3] - 128, abuf[1]&0x0f, vw, vf);
    eaDogM_WriteStringAtPos(3, 0, buffer);
-   snprintf(buffer, 96, "%6.1fW %6.1fVA %c%c%c   ", ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
-   eaDogM_WriteStringAtPos(0, 0, buffer);
    can_fd_tx();
   }
  }

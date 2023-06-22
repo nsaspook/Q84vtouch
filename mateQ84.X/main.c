@@ -219,9 +219,24 @@ void main(void)
 			B.modbus_online = C.data_ok;
 		}
 		if (TimerDone(TMR_SPIN)) { // LCD status spinner for charger MODE
-			StartTimer(TMR_SPIN, SPINNER_SPEED);
-			snprintf(buffer, MAX_B_BUF, "EMon  %4.1fVAC   %c%c    ", ((float) em.vl1l2) / 10.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
-			eaDogM_WriteStringAtPos(1, 0, buffer);
+			{
+				static uint8_t s_update = 0;
+				static float ac = 0.0f;
+				static float wac = 0.0f;
+				static float wva = 0.0f;
+
+				if (s_update++ >= SPIN_VAL_UPDATE) {
+					ac = ((float) em.vl1l2) / 10.0f;
+					wac = ((float) em.wl1) / 10.0f;
+					wva = ((float) em.val1) / 10.0f;
+					s_update = 0;
+				}
+				StartTimer(TMR_SPIN, SPINNER_SPEED);
+				snprintf(buffer, MAX_B_BUF, "EMon  %4.1fVAC   %c%c    ", lp_filter(ac, F_ac, false), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
+				eaDogM_WriteStringAtPos(1, 0, buffer);
+				snprintf(buffer, MAX_B_BUF, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, true), lp_filter(wva, F_wva, true), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
+				eaDogM_WriteStringAtPos(0, 0, buffer);
+			}
 		}
 #ifdef MB_MASTER
 		master_controller_work(&C); // master MODBUS processing	
@@ -354,8 +369,6 @@ void state_mx_status_cb(void)
 			eaDogM_WriteStringAtPos(2, 0, buffer);
 			snprintf(buffer, MAX_B_BUF, "%d.%01d Amps %d.%01d Volts   ", abuf[3] - 128, abuf[1]&0x0f, vw, vf);
 			eaDogM_WriteStringAtPos(3, 0, buffer);
-			snprintf(buffer, MAX_B_BUF, "%6.1fW %6.1fVA %c%c%c   ", ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
-			eaDogM_WriteStringAtPos(0, 0, buffer);
 			can_fd_tx(); // send the logging packet via CANBUS
 		}
 	}
@@ -396,6 +409,8 @@ char spinners(uint8_t shape, const uint8_t reset)
 		s[shape] = 0;
 	return c;
 }
+
+
 /**
  End of File
  */

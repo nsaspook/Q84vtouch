@@ -22,7 +22,7 @@ extern "C" {
 #include "../timers.h"
 
 #define VER	1
-	const char build_version[] = "V1.15 FM80 Q84";
+	const char build_version[] = "V1.18 FM80 Q84";
 
 #define MAX_B_BUF	96
 #define IO_TEST
@@ -30,6 +30,7 @@ extern "C" {
 #define	FM_BUFFER	32
 #define BUFFER_SPACING	2
 #define SPINNER_SPEED	200
+#define LP_BUFFER_SIZE	9
 
 	const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
 	const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
@@ -89,6 +90,7 @@ extern "C" {
 	extern uint8_t FM_rx_count(void);
 	extern void FM_restart(void);
 	extern void wdtdelay(const uint32_t);
+	extern float lp_filter(const float, const uint8_t, const int8_t);
 
 	extern B_type B;
 

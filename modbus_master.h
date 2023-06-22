@@ -174,6 +174,18 @@ extern "C" {
 		varl1, varl2, varl3;
 	} EM_data;
 
+	typedef enum filter_type {
+		F_ac = 0,
+		F_wac = 1,
+		F_wva = 2,
+		F_3 = 3,
+		F_4 = 4,
+		F_5 = 5,
+		F_6 = 6,
+		F_7 = 7,
+		F_8 = 8,
+	} filter_type;
+
 	// code from libmodbus: https://raw.githubusercontent.com/stephane/libmodbus/master/src/modbus-rtu.c
 
 	/* Table of CRC values for high-order byte */
