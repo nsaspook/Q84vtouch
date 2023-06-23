@@ -258,7 +258,7 @@ int8_t master_controller_work(C_data * client)
 			break;
 		case G_LAST: // end of command sequences
 			client->cstate = CLEAR;
-			client->mcmd = G_ID;
+			client->mcmd = G_ID; // what do we run next
 			break;
 		case G_ID: // operating mode request
 			client->trace = T_id;
@@ -297,14 +297,15 @@ int8_t master_controller_work(C_data * client)
 			client->trace = T_send_d;
 			M.sends++;
 			M.rx = false;
+			DB0_SetHigh();
 		}
 		break;
 	case RECV:
 		client->trace = T_recv;
-		if (serial_trmt()) { // check for serial UART transmit shift register and buffer empty
-			clear_500hz(); // clear timer until buffer empty
-		}
-		if (get_500hz(false) >= TDELAY) { // state machine execute timer test
+//		if (serial_trmt()) { // check for serial UART transmit shift register and buffer empty
+//			clear_500hz(); // clear timer until buffer empty
+//		}
+		if (get_500hz(false) >= TEDELAY) { // state machine execute timer test
 			uint16_t c_crc, c_crc_rec;
 
 			client->trace = T_recv_r;
@@ -326,13 +327,14 @@ int8_t master_controller_work(C_data * client)
 						client->passwd_ok = false;
 						log_crc_error(c_crc, c_crc_rec);
 					}
-					client->cstate = CLEAR;
-					client->mcmd = G_LAST;
+					client->cstate = CLEAR; // where do we go next
+					client->mcmd = G_LAST; // what do we run next
 				} else {
 					if (get_500hz(false) >= RDELAY) {
-						client->cstate = CLEAR;
+						DB0_SetLow();
+						client->cstate = CLEAR; // where do we go next
 						MM_ERROR_C;
-						client->mcmd = G_ID;
+						client->mcmd = G_ID; // what do we run next
 						M.to_error++;
 						M.error++;
 						MM_ERROR_S;
@@ -356,6 +358,7 @@ int8_t master_controller_work(C_data * client)
 					client->cstate = CLEAR;
 				} else {
 					if (get_500hz(false) >= RDELAY) {
+						DB0_SetLow();
 						client->cstate = CLEAR;
 						MM_ERROR_C;
 						client->mcmd = G_ID;
@@ -405,6 +408,7 @@ int8_t master_controller_work(C_data * client)
 					client->cstate = CLEAR;
 				} else {
 					if (get_500hz(false) >= RDELAY) {
+						DB0_SetLow();
 						client->cstate = CLEAR;
 						MM_ERROR_C;
 						client->mcmd = G_ID;
@@ -437,6 +441,7 @@ int8_t master_controller_work(C_data * client)
 					client->cstate = CLEAR;
 				} else {
 					if (get_500hz(false) >= RDELAY) {
+						DB0_SetLow();
 						MM_ERROR_C;
 						client->cstate = CLEAR;
 						client->mcmd = G_ID;
@@ -526,6 +531,7 @@ static void half_dup_tx(const bool delay)
 		return;
 	}
 	DERE_SetHigh(); // enable modbus transmitter
+
 	if (delay) {
 		delay_ms(DUPL_DELAY); // busy waits
 	}

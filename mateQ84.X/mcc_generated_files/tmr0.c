@@ -119,7 +119,7 @@ void TMR0_Reload(uint8_t periodVal)
    TMR0H = periodVal;
 }
 
-void __interrupt(irq(TMR0),base(8)) TMR0_ISR()
+void __interrupt(irq(TMR0),base(8),low_priority) TMR0_ISR()
 {
     // clear the TMR0 interrupt flag
     PIR3bits.TMR0IF = 0;

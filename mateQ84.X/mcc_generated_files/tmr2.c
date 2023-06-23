@@ -163,7 +163,7 @@ void TMR2_LoadPeriodRegister(uint8_t periodVal)
    TMR2_Period8BitSet(periodVal);
 }
 
-void __interrupt(irq(TMR2),base(8)) TMR2_ISR()
+void __interrupt(irq(TMR2),base(8),low_priority) TMR2_ISR()
 {
 
     // clear the TMR2 interrupt flag

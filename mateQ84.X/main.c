@@ -175,6 +175,10 @@ void main(void)
 
 	while (true) {
 		// Add your application code
+#ifdef MB_MASTER
+		master_controller_work(&C); // master MODBUS processing	
+#endif
+
 		switch (state) {
 		case state_init:
 			send_mx_cmd(cmd_id);
@@ -220,10 +224,11 @@ void main(void)
 		}
 		if (TimerDone(TMR_SPIN)) { // LCD status spinner for charger MODE
 			{
-				static uint8_t s_update = 0;
+				static uint8_t s_update = 0, e_update = 0;
 				static float ac = 0.0f;
 				static float wac = 0.0f;
 				static float wva = 0.0f;
+				static uint32_t error_save = 0;
 
 				if (s_update++ >= SPIN_VAL_UPDATE) {
 					ac = lp_filter(((float) em.vl1l2) / 10.0f, F_ac, false);
@@ -232,15 +237,25 @@ void main(void)
 					s_update = 0;
 				}
 				StartTimer(TMR_SPIN, SPINNER_SPEED);
-				snprintf(buffer, MAX_B_BUF, "EMon  %4.1fVAC   %c%c    ", lp_filter(ac, F_ac, false), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
-				eaDogM_WriteStringAtPos(1, 0, buffer);
-				snprintf(buffer, MAX_B_BUF, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, false), lp_filter(wva, F_wva, false), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
-				eaDogM_WriteStringAtPos(0, 0, buffer);
+				if (M.error > error_save) {
+					snprintf(buffer, MAX_B_BUF, "EMon  %4.1fVAC   %c%c    ", lp_filter(ac, F_ac, false), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
+					eaDogM_WriteStringAtPos(1, 0, buffer);
+					if (e_update == 0) {
+						snprintf(buffer, MAX_B_BUF, "C%u CRC%lu RC%u EC%u          ", C.modbus_command, M.crc_error, M.recv_count, C.req_length);
+						eaDogM_WriteStringAtPos(0, 0, buffer);
+					}
+					if (e_update++ >= 10) {
+						error_save = M.error;
+						e_update = 0;
+					}
+				} else {
+					snprintf(buffer, MAX_B_BUF, "EMon  %4.1fVAC   %c%c    ", lp_filter(ac, F_ac, false), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
+					eaDogM_WriteStringAtPos(1, 0, buffer);
+					snprintf(buffer, MAX_B_BUF, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, false), lp_filter(wva, F_wva, false), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
+					eaDogM_WriteStringAtPos(0, 0, buffer);
+				}
 			}
 		}
-#ifdef MB_MASTER
-		master_controller_work(&C); // master MODBUS processing	
-#endif
 	}
 }
 

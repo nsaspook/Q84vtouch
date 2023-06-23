@@ -38386,7 +38386,7 @@ void TMR0_Reload(uint8_t periodVal)
    TMR0H = periodVal;
 }
 
-void __attribute__((picinterrupt(("irq(TMR0),base(8)")))) TMR0_ISR()
+void __attribute__((picinterrupt(("irq(TMR0),base(8),low_priority")))) TMR0_ISR()
 {
 
     PIR3bits.TMR0IF = 0;

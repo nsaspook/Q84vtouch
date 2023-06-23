@@ -5,8 +5,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v F23625 `(v ~T0 @X0 0 tf ]
 "73 main.c
 [; ;main.c: 73: enum state_type state = state_init;
-[c E24090 0 1 2 3 4 5 6 7 8 .. ]
-[n E24090 state_type state_init state_status state_panel state_batteryv state_batterya state_watts state_misc state_mx_status state_last  ]
+[c E24091 0 1 2 3 4 5 6 7 8 .. ]
+[n E24091 state_type state_init state_status state_panel state_batteryv state_batterya state_watts state_misc state_mx_status state_last  ]
 "76 ./../mateQ84.X/mxcmd.h
 [s S3242 `Va 1 `Va 1 `us 1 `us 1 `us 1 `Va 1 `Vuc 1 `Vuc 1 ]
 [n S3242 B_type ten_sec_flag one_sec_flag pacing rx_count flush mx80_online canbus_online modbus_online ]
@@ -52,15 +52,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 "542 ./mcc_generated_files/tmr2.h
 [; ;./mcc_generated_files/tmr2.h: 542: void TMR2_StartTimer(void);
 [v _TMR2_StartTimer `(v ~T0 @X0 0 ef ]
-"274 ./../modbus_master.h
-[; ;./../modbus_master.h: 274:  void init_mb_master_timers(void);
+"276 ./../modbus_master.h
+[; ;./../modbus_master.h: 276:  void init_mb_master_timers(void);
 [v _init_mb_master_timers `(v ~T0 @X0 0 ef ]
 [v F23627 `(v ~T0 @X0 0 tf ]
 "555 ./mcc_generated_files/uart5.h
 [; ;./mcc_generated_files/uart5.h: 555: void UART5_SetRxInterruptHandler(void (* InterruptHandler)(void));
 [v _UART5_SetRxInterruptHandler `(v ~T0 @X0 0 ef1`*F23627 ]
-"272 ./../modbus_master.h
-[; ;./../modbus_master.h: 272:  void my_modbus_rx_32(void);
+"274 ./../modbus_master.h
+[; ;./../modbus_master.h: 274:  void my_modbus_rx_32(void);
 [v _my_modbus_rx_32 `(v ~T0 @X0 0 ef ]
 "22 ./../timers.h
 [; ;./../timers.h: 22: void StartTimer(const uint8_t timer, const uint16_t count);
@@ -85,13 +85,33 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _PCON0 `Vuc ~T0 @X0 0 e@1264 ]
 "4292
 [v _PCON1 `Vuc ~T0 @X0 0 e@1265 ]
+"179 main.c
+[; ;main.c: 179:   master_controller_work(&C);
+[c E23931 0 1 2 3 .. ]
+[n E23931 comm_type CLEAR INIT SEND RECV  ]
+[c E23937 0 1 2 3 4 .. ]
+[n E23937 cmd_type G_ID G_DATA G_CONFIG G_PASSWD G_LAST  ]
+"143 ./../modbus_master.h
+[; ;./../modbus_master.h: 143:  typedef struct M_data {
+[s S3248 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 `uc 1 `uc 1 `uc 1 `us 1 `us 1 `us 1 `ul 1 `ul 1 `ul 1 `Va 1 ]
+[n S3248 M_data blink_lock config stable boot_code power_on send_count recv_count pwm_volts error crc_data crc_calc crc_error to_error sends rx ]
+"157
+[; ;./../modbus_master.h: 157:  typedef struct C_data {
+[s S3249 `uc 1 `E23931 1 `E23937 1 `us 1 `c 1 `a 1 `a 1 `a 1 `a 1 `ul 1 `ul 1 `VS3248 1 ]
+[n S3249 C_data mcmd cstate modbus_command req_length trace id_ok passwd_ok config_ok data_ok data_count data_prev M ]
+"277
+[; ;./../modbus_master.h: 277:  int8_t master_controller_work(C_data *);
+[v _master_controller_work `(c ~T0 @X0 0 ef1`*S3249 ]
+"293
+[; ;./../modbus_master.h: 293:  extern C_data C;
+[v _C `S3249 ~T0 @X0 0 e ]
 "95 main.c
 [; ;main.c: 95: void send_mx_cmd(const uint16_t *);
 [v _send_mx_cmd `(v ~T0 @X0 0 ef1`*Cus ]
-[v F24117 `(v ~T0 @X0 0 tf ]
+[v F24118 `(v ~T0 @X0 0 tf ]
 "96
 [; ;main.c: 96: void rec_mx_cmd(void (* DataHandler)(void), uint8_t);
-[v _rec_mx_cmd `(v ~T0 @X0 0 ef2`*F24117`uc ]
+[v _rec_mx_cmd `(v ~T0 @X0 0 ef2`*F24118`uc ]
 "101
 [; ;main.c: 101: void state_init_cb(void);
 [v _state_init_cb `(v ~T0 @X0 0 ef ]
@@ -127,45 +147,28 @@ Version 4.0 HI-TECH Software Intermediate Code
 "13571
 [; ;/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.18.389/xc8/pic/include/proc/pic18f47q84.h: 13571: extern volatile C1TXQCONHbits_t C1TXQCONHbits __attribute__((address(0x151)));
 [v _C1TXQCONHbits `VS627 ~T0 @X0 0 e@337 ]
-"219 main.c
-[; ;main.c: 219:    B.modbus_online = C.data_ok;
-[c E23931 0 1 2 3 .. ]
-[n E23931 comm_type CLEAR INIT SEND RECV  ]
-[c E23937 0 1 2 3 4 .. ]
-[n E23937 cmd_type G_ID G_DATA G_CONFIG G_PASSWD G_LAST  ]
-"141 ./../modbus_master.h
-[; ;./../modbus_master.h: 141:  typedef struct M_data {
-[s S3248 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 `uc 1 `uc 1 `uc 1 `us 1 `us 1 `us 1 `ul 1 `ul 1 `ul 1 `Va 1 ]
-[n S3248 M_data blink_lock config stable boot_code power_on send_count recv_count pwm_volts error crc_data crc_calc crc_error to_error sends rx ]
-"155
-[; ;./../modbus_master.h: 155:  typedef struct C_data {
-[s S3249 `uc 1 `E23931 1 `E23937 1 `us 1 `c 1 `a 1 `a 1 `a 1 `a 1 `ul 1 `ul 1 `VS3248 1 ]
-[n S3249 C_data mcmd cstate modbus_command req_length trace id_ok passwd_ok config_ok data_ok data_count data_prev M ]
-"291
-[; ;./../modbus_master.h: 291:  extern C_data C;
-[v _C `S3249 ~T0 @X0 0 e ]
 "23 ./../timers.h
 [; ;./../timers.h: 23: _Bool TimerDone(const uint8_t timer);
 [v _TimerDone `(a ~T0 @X0 0 ef1`Cuc ]
 "93 ./../mateQ84.X/mxcmd.h
 [v _lp_filter `(f ~T0 @X0 0 ef3`Cf`Cuc`Cc ]
-"169 ./../modbus_master.h
-[; ;./../modbus_master.h: 169:  typedef struct EM_data {
+"171 ./../modbus_master.h
+[; ;./../modbus_master.h: 171:  typedef struct EM_data {
 [s S3250 `l 1 `l 1 `l 1 `l 1 `l 1 `l 1 `l 1 `l 1 `l 1 `l 1 `l 1 `l 1 `l 1 `l 1 `l 1 `l 1 `l 1 `l 1 ]
 [n S3250 EM_data vl1n vl2n vl3n vl1l2 vl2l3 vl3l1 al1 al2 al3 wl1 wl2 wl3 val1 val2 val3 varl1 varl2 varl3 ]
-"294
-[; ;./../modbus_master.h: 294:  extern EM_data em;
+"296
+[; ;./../modbus_master.h: 296:  extern EM_data em;
 [v _em `S3250 ~T0 @X0 0 e ]
-"229 main.c
-[; ;main.c: 229:      ac = lp_filter(((float) em.vl1l2) / 10.0f, F_ac, 0);
-[c E24043 0 1 2 3 4 5 6 7 8 .. ]
-[n E24043 filter_type F_ac F_wac F_wva F_3 F_4 F_5 F_6 F_7 F_8  ]
+"234 main.c
+[; ;main.c: 234:      ac = lp_filter(((float) em.vl1l2) / 10.0f, F_ac, 0);
+[c E24044 0 1 2 3 4 5 6 7 8 .. ]
+[n E24044 filter_type F_ac F_wac F_wva F_3 F_4 F_5 F_6 F_7 F_8  ]
+"294 ./../modbus_master.h
+[; ;./../modbus_master.h: 294:  extern volatile M_data M;
+[v _M `VS3248 ~T0 @X0 0 e ]
 "81 ./../qconfig.h
 [; ;./../qconfig.h: 81: extern char spinners(uint8_t, const uint8_t);
 [v _spinners `(uc ~T0 @X0 0 ef2`uc`Cuc ]
-"275 ./../modbus_master.h
-[; ;./../modbus_master.h: 275:  int8_t master_controller_work(C_data *);
-[v _master_controller_work `(c ~T0 @X0 0 ef1`*S3249 ]
 "62 /opt/microchip/xc8/v2.41/pic/include/c99/stdlib.h
 [; ;/opt/microchip/xc8/v2.41/pic/include/c99/stdlib.h: 62: int abs (int);
 [v _abs `(i ~T0 @X0 0 ef1`i ]
@@ -173,8 +176,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _FM_tx_empty `(a ~T0 @X0 0 ef ]
 "86
 [v _FM_tx `(uc ~T0 @X0 0 ef2`*Cus`uc ]
-[v F24158 `(v ~T0 @X0 0 tf ]
-[v F24160 `(v ~T0 @X0 0 tf ]
+[v F24161 `(v ~T0 @X0 0 tf ]
+[v F24163 `(v ~T0 @X0 0 tf ]
 "89
 [v _FM_rx_ready `(a ~T0 @X0 0 ef ]
 "90
@@ -184,8 +187,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "107 /opt/microchip/xc8/v2.41/pic/include/c99/stdio.h
 [; ;/opt/microchip/xc8/v2.41/pic/include/c99/stdio.h: 107: int printf(const char *restrict, ...);
 [v _printf `(i ~T0 @X0 0 ev`*Cuc ]
-"301 main.c
-[; ;main.c: 301:  if (abuf[2] != STATUS_SLEEPING) {
+"316 main.c
+[; ;main.c: 316:  if (abuf[2] != STATUS_SLEEPING) {
 [c E23886 0 1 2 3 4 5 .. ]
 [n E23886 status_type STATUS_SLEEPING STATUS_FLOATING STATUS_BULK STATUS_ABSORB STATUS_EQUALIZE STATUS_LAST  ]
 "19 ./../canfd.h
@@ -4125,8 +4128,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"193 ./../modbus_master.h
-[; ;./../modbus_master.h: 193:  static const uint8_t table_crc_hi[] = {
+"195 ./../modbus_master.h
+[; ;./../modbus_master.h: 195:  static const uint8_t table_crc_hi[] = {
 [v _table_crc_hi `Cuc ~T0 @X0 -> 256 `i s ]
 [i _table_crc_hi
 :U ..
@@ -4388,8 +4391,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 64 `i `uc
 ..
 ]
-"223
-[; ;./../modbus_master.h: 223:  static const uint8_t table_crc_lo[] = {
+"225
+[; ;./../modbus_master.h: 225:  static const uint8_t table_crc_lo[] = {
 [v _table_crc_lo `Cuc ~T0 @X0 -> 256 `i s ]
 [i _table_crc_lo
 :U ..
@@ -4664,16 +4667,16 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _cc_mode `us ~T0 @X0 1 e ]
 "73
 [; ;main.c: 73: enum state_type state = state_init;
-[v _state `E24090 ~T0 @X0 1 e ]
+[v _state `E24091 ~T0 @X0 1 e ]
 [i _state
-. `E24090 0
+. `E24091 0
 ]
 "74
 [; ;main.c: 74: char buffer[96], can_buffer[96];
 [v _buffer `uc ~T0 @X0 -> 96 `i e ]
 [v _can_buffer `uc ~T0 @X0 -> 96 `i e ]
 "75
-[; ;main.c: 75: const char *build_date = "Jun 23 2023", *build_time = "09:33:58";
+[; ;main.c: 75: const char *build_date = "Jun 23 2023", *build_time = "16:26:52";
 [v _build_date `*Cuc ~T0 @X0 1 e ]
 [i _build_date
 :s 1C
@@ -4834,710 +4837,770 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 176:  while (1) {
 [e :U 3257 ]
 {
-"178
-[; ;main.c: 178:   switch (state) {
+"179
+[; ;main.c: 179:   master_controller_work(&C);
+[e ( _master_controller_work (1 &U _C ]
+"182
+[; ;main.c: 182:   switch (state) {
 [e $U 3260  ]
 {
-"179
-[; ;main.c: 179:   case state_init:
-[e :U 3261 ]
-"180
-[; ;main.c: 180:    send_mx_cmd(cmd_id);
-[e ( _send_mx_cmd (1 &U _cmd_id ]
-"181
-[; ;main.c: 181:    rec_mx_cmd(state_init_cb, 5);
-[e ( _rec_mx_cmd (2 , &U _state_init_cb -> -> 5 `i `uc ]
-"182
-[; ;main.c: 182:    break;
-[e $U 3259  ]
 "183
-[; ;main.c: 183:   case state_status:
-[e :U 3262 ]
+[; ;main.c: 183:   case state_init:
+[e :U 3261 ]
 "184
-[; ;main.c: 184:    send_mx_cmd(cmd_status);
-[e ( _send_mx_cmd (1 &U _cmd_status ]
+[; ;main.c: 184:    send_mx_cmd(cmd_id);
+[e ( _send_mx_cmd (1 &U _cmd_id ]
 "185
-[; ;main.c: 185:    rec_mx_cmd(state_status_cb, 5);
-[e ( _rec_mx_cmd (2 , &U _state_status_cb -> -> 5 `i `uc ]
+[; ;main.c: 185:    rec_mx_cmd(state_init_cb, 5);
+[e ( _rec_mx_cmd (2 , &U _state_init_cb -> -> 5 `i `uc ]
 "186
 [; ;main.c: 186:    break;
 [e $U 3259  ]
 "187
-[; ;main.c: 187:   case state_panel:
-[e :U 3263 ]
+[; ;main.c: 187:   case state_status:
+[e :U 3262 ]
 "188
-[; ;main.c: 188:    send_mx_cmd(cmd_panelv);
-[e ( _send_mx_cmd (1 &U _cmd_panelv ]
+[; ;main.c: 188:    send_mx_cmd(cmd_status);
+[e ( _send_mx_cmd (1 &U _cmd_status ]
 "189
-[; ;main.c: 189:    rec_mx_cmd(state_panelv_cb, 5);
-[e ( _rec_mx_cmd (2 , &U _state_panelv_cb -> -> 5 `i `uc ]
+[; ;main.c: 189:    rec_mx_cmd(state_status_cb, 5);
+[e ( _rec_mx_cmd (2 , &U _state_status_cb -> -> 5 `i `uc ]
 "190
 [; ;main.c: 190:    break;
 [e $U 3259  ]
 "191
-[; ;main.c: 191:   case state_batteryv:
-[e :U 3264 ]
+[; ;main.c: 191:   case state_panel:
+[e :U 3263 ]
 "192
-[; ;main.c: 192:    send_mx_cmd(cmd_batteryv);
-[e ( _send_mx_cmd (1 &U _cmd_batteryv ]
+[; ;main.c: 192:    send_mx_cmd(cmd_panelv);
+[e ( _send_mx_cmd (1 &U _cmd_panelv ]
 "193
-[; ;main.c: 193:    rec_mx_cmd(state_batteryv_cb, 5);
-[e ( _rec_mx_cmd (2 , &U _state_batteryv_cb -> -> 5 `i `uc ]
+[; ;main.c: 193:    rec_mx_cmd(state_panelv_cb, 5);
+[e ( _rec_mx_cmd (2 , &U _state_panelv_cb -> -> 5 `i `uc ]
 "194
 [; ;main.c: 194:    break;
 [e $U 3259  ]
 "195
-[; ;main.c: 195:   case state_batterya:
-[e :U 3265 ]
+[; ;main.c: 195:   case state_batteryv:
+[e :U 3264 ]
 "196
-[; ;main.c: 196:    send_mx_cmd(cmd_batterya);
-[e ( _send_mx_cmd (1 &U _cmd_batterya ]
+[; ;main.c: 196:    send_mx_cmd(cmd_batteryv);
+[e ( _send_mx_cmd (1 &U _cmd_batteryv ]
 "197
-[; ;main.c: 197:    rec_mx_cmd(state_batterya_cb, 5);
-[e ( _rec_mx_cmd (2 , &U _state_batterya_cb -> -> 5 `i `uc ]
+[; ;main.c: 197:    rec_mx_cmd(state_batteryv_cb, 5);
+[e ( _rec_mx_cmd (2 , &U _state_batteryv_cb -> -> 5 `i `uc ]
 "198
 [; ;main.c: 198:    break;
 [e $U 3259  ]
 "199
-[; ;main.c: 199:   case state_watts:
-[e :U 3266 ]
+[; ;main.c: 199:   case state_batterya:
+[e :U 3265 ]
 "200
-[; ;main.c: 200:    send_mx_cmd(cmd_watts);
-[e ( _send_mx_cmd (1 &U _cmd_watts ]
+[; ;main.c: 200:    send_mx_cmd(cmd_batterya);
+[e ( _send_mx_cmd (1 &U _cmd_batterya ]
 "201
-[; ;main.c: 201:    rec_mx_cmd(state_watts_cb, 5);
-[e ( _rec_mx_cmd (2 , &U _state_watts_cb -> -> 5 `i `uc ]
+[; ;main.c: 201:    rec_mx_cmd(state_batterya_cb, 5);
+[e ( _rec_mx_cmd (2 , &U _state_batterya_cb -> -> 5 `i `uc ]
 "202
 [; ;main.c: 202:    break;
 [e $U 3259  ]
 "203
-[; ;main.c: 203:   case state_mx_status:
-[e :U 3267 ]
+[; ;main.c: 203:   case state_watts:
+[e :U 3266 ]
 "204
-[; ;main.c: 204:    send_mx_cmd(cmd_mx_status);
-[e ( _send_mx_cmd (1 &U _cmd_mx_status ]
+[; ;main.c: 204:    send_mx_cmd(cmd_watts);
+[e ( _send_mx_cmd (1 &U _cmd_watts ]
 "205
-[; ;main.c: 205:    rec_mx_cmd(state_mx_status_cb, 16);
-[e ( _rec_mx_cmd (2 , &U _state_mx_status_cb -> -> 16 `i `uc ]
+[; ;main.c: 205:    rec_mx_cmd(state_watts_cb, 5);
+[e ( _rec_mx_cmd (2 , &U _state_watts_cb -> -> 5 `i `uc ]
 "206
 [; ;main.c: 206:    break;
 [e $U 3259  ]
 "207
-[; ;main.c: 207:   case state_misc:
-[e :U 3268 ]
+[; ;main.c: 207:   case state_mx_status:
+[e :U 3267 ]
 "208
-[; ;main.c: 208:    send_mx_cmd(cmd_misc);
-[e ( _send_mx_cmd (1 &U _cmd_misc ]
+[; ;main.c: 208:    send_mx_cmd(cmd_mx_status);
+[e ( _send_mx_cmd (1 &U _cmd_mx_status ]
 "209
-[; ;main.c: 209:    rec_mx_cmd(state_misc_cb, 5);
-[e ( _rec_mx_cmd (2 , &U _state_misc_cb -> -> 5 `i `uc ]
+[; ;main.c: 209:    rec_mx_cmd(state_mx_status_cb, 16);
+[e ( _rec_mx_cmd (2 , &U _state_mx_status_cb -> -> 16 `i `uc ]
 "210
 [; ;main.c: 210:    break;
 [e $U 3259  ]
 "211
-[; ;main.c: 211:   default:
-[e :U 3269 ]
+[; ;main.c: 211:   case state_misc:
+[e :U 3268 ]
 "212
-[; ;main.c: 212:    send_mx_cmd(cmd_id);
-[e ( _send_mx_cmd (1 &U _cmd_id ]
+[; ;main.c: 212:    send_mx_cmd(cmd_misc);
+[e ( _send_mx_cmd (1 &U _cmd_misc ]
 "213
-[; ;main.c: 213:    rec_mx_cmd(state_init_cb, 5);
-[e ( _rec_mx_cmd (2 , &U _state_init_cb -> -> 5 `i `uc ]
+[; ;main.c: 213:    rec_mx_cmd(state_misc_cb, 5);
+[e ( _rec_mx_cmd (2 , &U _state_misc_cb -> -> 5 `i `uc ]
 "214
 [; ;main.c: 214:    break;
 [e $U 3259  ]
 "215
-[; ;main.c: 215:   }
+[; ;main.c: 215:   default:
+[e :U 3269 ]
+"216
+[; ;main.c: 216:    send_mx_cmd(cmd_id);
+[e ( _send_mx_cmd (1 &U _cmd_id ]
+"217
+[; ;main.c: 217:    rec_mx_cmd(state_init_cb, 5);
+[e ( _rec_mx_cmd (2 , &U _state_init_cb -> -> 5 `i `uc ]
+"218
+[; ;main.c: 218:    break;
+[e $U 3259  ]
+"219
+[; ;main.c: 219:   }
 }
 [e $U 3259  ]
 [e :U 3260 ]
-[e [\ -> _state `ui , $ -> . `E24090 0 `ui 3261
- , $ -> . `E24090 1 `ui 3262
- , $ -> . `E24090 2 `ui 3263
- , $ -> . `E24090 3 `ui 3264
- , $ -> . `E24090 4 `ui 3265
- , $ -> . `E24090 5 `ui 3266
- , $ -> . `E24090 7 `ui 3267
- , $ -> . `E24090 6 `ui 3268
+[e [\ -> _state `ui , $ -> . `E24091 0 `ui 3261
+ , $ -> . `E24091 1 `ui 3262
+ , $ -> . `E24091 2 `ui 3263
+ , $ -> . `E24091 3 `ui 3264
+ , $ -> . `E24091 4 `ui 3265
+ , $ -> . `E24091 5 `ui 3266
+ , $ -> . `E24091 7 `ui 3267
+ , $ -> . `E24091 6 `ui 3268
  3269 ]
 [e :U 3259 ]
-"216
-[; ;main.c: 216:   if (B.one_sec_flag) {
+"220
+[; ;main.c: 220:   if (B.one_sec_flag) {
 [e $ ! != -> . _B 1 `i -> 0 `i 3270  ]
 {
-"217
-[; ;main.c: 217:    B.one_sec_flag = 0;
+"221
+[; ;main.c: 221:    B.one_sec_flag = 0;
 [e = . _B 1 -> -> 0 `i `a ]
-"218
-[; ;main.c: 218:    B.canbus_online = (!C1TXQCONHbits.TXREQ)&0x01;
+"222
+[; ;main.c: 222:    B.canbus_online = (!C1TXQCONHbits.TXREQ)&0x01;
 [e = . _B 6 -> & -> ! != -> . . _C1TXQCONHbits 0 1 `i -> 0 `i `i -> 1 `i `uc ]
-"219
-[; ;main.c: 219:    B.modbus_online = C.data_ok;
+"223
+[; ;main.c: 223:    B.modbus_online = C.data_ok;
 [e = . _B 7 -> . _C 8 `uc ]
-"220
-[; ;main.c: 220:   }
+"224
+[; ;main.c: 224:   }
 }
 [e :U 3270 ]
-"221
-[; ;main.c: 221:   if (TimerDone(TMR_SPIN)) {
+"225
+[; ;main.c: 225:   if (TimerDone(TMR_SPIN)) {
 [e $ ! != -> ( _TimerDone (1 -> . `E23859 3 `uc `i -> 0 `i 3271  ]
 {
-"222
-[; ;main.c: 222:    {
+"226
+[; ;main.c: 226:    {
 {
-"223
-[; ;main.c: 223:     static uint8_t s_update = 0;
-[v F24146 `uc ~T0 @X0 1 s s_update ]
-[i F24146
+"227
+[; ;main.c: 227:     static uint8_t s_update = 0, e_update = 0;
+[v F24147 `uc ~T0 @X0 1 s s_update ]
+[i F24147
 -> -> 0 `i `uc
 ]
-"224
-[; ;main.c: 224:     static float ac = 0.0f;
-[v F24147 `f ~T0 @X0 1 s ac ]
-[i F24147
--> .0.0 `f
-]
-"225
-[; ;main.c: 225:     static float wac = 0.0f;
-[v F24148 `f ~T0 @X0 1 s wac ]
+[v F24148 `uc ~T0 @X0 1 s e_update ]
 [i F24148
--> .0.0 `f
+-> -> 0 `i `uc
 ]
-"226
-[; ;main.c: 226:     static float wva = 0.0f;
-[v F24149 `f ~T0 @X0 1 s wva ]
+"228
+[; ;main.c: 228:     static float ac = 0.0f;
+[v F24149 `f ~T0 @X0 1 s ac ]
 [i F24149
 -> .0.0 `f
 ]
-"228
-[; ;main.c: 228:     if (s_update++ >= 5) {
-[e $ ! >= -> ++ F24146 -> -> 1 `i `uc `i -> 5 `i 3272  ]
-{
 "229
-[; ;main.c: 229:      ac = lp_filter(((float) em.vl1l2) / 10.0f, F_ac, 0);
-[e = F24147 ( _lp_filter (3 , , / -> . _em 3 `f -> .10.0 `f -> . `E24043 0 `uc -> -> 0 `i `c ]
+[; ;main.c: 229:     static float wac = 0.0f;
+[v F24150 `f ~T0 @X0 1 s wac ]
+[i F24150
+-> .0.0 `f
+]
 "230
-[; ;main.c: 230:      wac = lp_filter(((float) em.wl1) / 10.0f, F_wac, 0);
-[e = F24148 ( _lp_filter (3 , , / -> . _em 9 `f -> .10.0 `f -> . `E24043 1 `uc -> -> 0 `i `c ]
+[; ;main.c: 230:     static float wva = 0.0f;
+[v F24151 `f ~T0 @X0 1 s wva ]
+[i F24151
+-> .0.0 `f
+]
 "231
-[; ;main.c: 231:      wva = lp_filter(((float) em.val1) / 10.0f, F_wva, 0);
-[e = F24149 ( _lp_filter (3 , , / -> . _em 12 `f -> .10.0 `f -> . `E24043 2 `uc -> -> 0 `i `c ]
-"232
-[; ;main.c: 232:      s_update = 0;
-[e = F24146 -> -> 0 `i `uc ]
+[; ;main.c: 231:     static uint32_t error_save = 0;
+[v F24152 `ul ~T0 @X0 1 s error_save ]
+[i F24152
+-> -> -> 0 `i `l `ul
+]
 "233
-[; ;main.c: 233:     }
+[; ;main.c: 233:     if (s_update++ >= 5) {
+[e $ ! >= -> ++ F24147 -> -> 1 `i `uc `i -> 5 `i 3272  ]
+{
+"234
+[; ;main.c: 234:      ac = lp_filter(((float) em.vl1l2) / 10.0f, F_ac, 0);
+[e = F24149 ( _lp_filter (3 , , / -> . _em 3 `f -> .10.0 `f -> . `E24044 0 `uc -> -> 0 `i `c ]
+"235
+[; ;main.c: 235:      wac = lp_filter(((float) em.wl1) / 10.0f, F_wac, 0);
+[e = F24150 ( _lp_filter (3 , , / -> . _em 9 `f -> .10.0 `f -> . `E24044 1 `uc -> -> 0 `i `c ]
+"236
+[; ;main.c: 236:      wva = lp_filter(((float) em.val1) / 10.0f, F_wva, 0);
+[e = F24151 ( _lp_filter (3 , , / -> . _em 12 `f -> .10.0 `f -> . `E24044 2 `uc -> -> 0 `i `c ]
+"237
+[; ;main.c: 237:      s_update = 0;
+[e = F24147 -> -> 0 `i `uc ]
+"238
+[; ;main.c: 238:     }
 }
 [e :U 3272 ]
-"234
-[; ;main.c: 234:     StartTimer(TMR_SPIN, 200);
-[e ( _StartTimer (2 , -> . `E23859 3 `uc -> -> 200 `i `us ]
-"235
-[; ;main.c: 235:     snprintf(buffer, 96, "EMon  %4.1fVAC   %c%c    ", lp_filter(ac, F_ac, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
-[e ( _snprintf (2 , , , (. , , &U _buffer -> -> 96 `i `ui :s 12C -> ( _lp_filter (3 , , F24147 -> . `E24043 0 `uc -> -> 0 `i `c `d -> ( _spinners (2 , -> - -> -> -> 5 `i `uc `i -> -> _cc_mode `uc `i `uc -> -> 0 `i `uc `i -> ( _spinners (2 , -> - -> -> -> 5 `i `uc `i -> -> _cc_mode `uc `i `uc -> -> 0 `i `uc `i ]
-"236
-[; ;main.c: 236:     eaDogM_WriteStringAtPos(1, 0, buffer);
-[e ( _eaDogM_WriteStringAtPos (3 , , -> -> 1 `i `uc -> -> 0 `i `uc &U _buffer ]
-"237
-[; ;main.c: 237:     snprintf(buffer, 96, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
-[e ( _snprintf (2 , , , , , (. , , &U _buffer -> -> 96 `i `ui :s 13C -> ( _lp_filter (3 , , F24148 -> . `E24043 1 `uc -> -> 0 `i `c `d -> ( _lp_filter (3 , , F24149 -> . `E24043 2 `uc -> -> 0 `i `c `d -> *U + &U *U + &U _state_name * -> _cc_mode `ux -> * -> # *U &U *U &U _state_name `ui -> -> 12 `i `ui `ux * -> -> -> 0 `i `ui `ux -> -> # *U &U *U + &U _state_name * -> _cc_mode `ux -> * -> # *U &U *U &U _state_name `ui -> -> 12 `i `ui `ux `ui `ux `i -> *U + &U *U + &U _canbus_name * -> . _B 6 `ux -> * -> # *U &U *U &U _canbus_name `ui -> -> 12 `i `ui `ux * -> -> -> 0 `i `ui `ux -> -> # *U &U *U + &U _canbus_name * -> . _B 6 `ux -> * -> # *U &U *U &U _canbus_name `ui -> -> 12 `i `ui `ux `ui `ux `i -> *U + &U *U + &U _modbus_name * -> . _B 7 `ux -> * -> # *U &U *U &U _modbus_name `ui -> -> 12 `i `ui `ux * -> -> -> 0 `i `ui `ux -> -> # *U &U *U + &U _modbus_name * -> . _B 7 `ux -> * -> # *U &U *U &U _modbus_name `ui -> -> 12 `i `ui `ux `ui `ux `i ]
-"238
-[; ;main.c: 238:     eaDogM_WriteStringAtPos(0, 0, buffer);
-[e ( _eaDogM_WriteStringAtPos (3 , , -> -> 0 `i `uc -> -> 0 `i `uc &U _buffer ]
 "239
-[; ;main.c: 239:    }
-}
+[; ;main.c: 239:     StartTimer(TMR_SPIN, 200);
+[e ( _StartTimer (2 , -> . `E23859 3 `uc -> -> 200 `i `us ]
 "240
-[; ;main.c: 240:   }
+[; ;main.c: 240:     if (M.error > error_save) {
+[e $ ! > -> . _M 8 `ul F24152 3273  ]
+{
+"241
+[; ;main.c: 241:      snprintf(buffer, 96, "EMon  %4.1fVAC   %c%c    ", lp_filter(ac, F_ac, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
+[e ( _snprintf (2 , , , (. , , &U _buffer -> -> 96 `i `ui :s 12C -> ( _lp_filter (3 , , F24149 -> . `E24044 0 `uc -> -> 0 `i `c `d -> ( _spinners (2 , -> - -> -> -> 5 `i `uc `i -> -> _cc_mode `uc `i `uc -> -> 0 `i `uc `i -> ( _spinners (2 , -> - -> -> -> 5 `i `uc `i -> -> _cc_mode `uc `i `uc -> -> 0 `i `uc `i ]
+"242
+[; ;main.c: 242:      eaDogM_WriteStringAtPos(1, 0, buffer);
+[e ( _eaDogM_WriteStringAtPos (3 , , -> -> 1 `i `uc -> -> 0 `i `uc &U _buffer ]
+"243
+[; ;main.c: 243:      if (e_update == 0) {
+[e $ ! == -> F24148 `i -> 0 `i 3274  ]
+{
+"244
+[; ;main.c: 244:       snprintf(buffer, 96, "C%u CRC%lu RC%u EC%u          ", C.modbus_command, M.crc_error, M.recv_count, C.req_length);
+[e ( _snprintf (2 , , , , (. , , &U _buffer -> -> 96 `i `ui :s 13C -> . _C 2 `ui . _M 11 -> . _M 6 `i -> . _C 3 `ui ]
+"245
+[; ;main.c: 245:       eaDogM_WriteStringAtPos(0, 0, buffer);
+[e ( _eaDogM_WriteStringAtPos (3 , , -> -> 0 `i `uc -> -> 0 `i `uc &U _buffer ]
+"246
+[; ;main.c: 246:      }
+}
+[e :U 3274 ]
+"247
+[; ;main.c: 247:      if (e_update++ >= 10) {
+[e $ ! >= -> ++ F24148 -> -> 1 `i `uc `i -> 10 `i 3275  ]
+{
+"248
+[; ;main.c: 248:       error_save = M.error;
+[e = F24152 -> . _M 8 `ul ]
+"249
+[; ;main.c: 249:       e_update = 0;
+[e = F24148 -> -> 0 `i `uc ]
+"250
+[; ;main.c: 250:      }
+}
+[e :U 3275 ]
+"251
+[; ;main.c: 251:     } else {
+}
+[e $U 3276  ]
+[e :U 3273 ]
+{
+"252
+[; ;main.c: 252:      snprintf(buffer, 96, "EMon  %4.1fVAC   %c%c    ", lp_filter(ac, F_ac, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
+[e ( _snprintf (2 , , , (. , , &U _buffer -> -> 96 `i `ui :s 14C -> ( _lp_filter (3 , , F24149 -> . `E24044 0 `uc -> -> 0 `i `c `d -> ( _spinners (2 , -> - -> -> -> 5 `i `uc `i -> -> _cc_mode `uc `i `uc -> -> 0 `i `uc `i -> ( _spinners (2 , -> - -> -> -> 5 `i `uc `i -> -> _cc_mode `uc `i `uc -> -> 0 `i `uc `i ]
+"253
+[; ;main.c: 253:      eaDogM_WriteStringAtPos(1, 0, buffer);
+[e ( _eaDogM_WriteStringAtPos (3 , , -> -> 1 `i `uc -> -> 0 `i `uc &U _buffer ]
+"254
+[; ;main.c: 254:      snprintf(buffer, 96, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
+[e ( _snprintf (2 , , , , , (. , , &U _buffer -> -> 96 `i `ui :s 15C -> ( _lp_filter (3 , , F24150 -> . `E24044 1 `uc -> -> 0 `i `c `d -> ( _lp_filter (3 , , F24151 -> . `E24044 2 `uc -> -> 0 `i `c `d -> *U + &U *U + &U _state_name * -> _cc_mode `ux -> * -> # *U &U *U &U _state_name `ui -> -> 12 `i `ui `ux * -> -> -> 0 `i `ui `ux -> -> # *U &U *U + &U _state_name * -> _cc_mode `ux -> * -> # *U &U *U &U _state_name `ui -> -> 12 `i `ui `ux `ui `ux `i -> *U + &U *U + &U _canbus_name * -> . _B 6 `ux -> * -> # *U &U *U &U _canbus_name `ui -> -> 12 `i `ui `ux * -> -> -> 0 `i `ui `ux -> -> # *U &U *U + &U _canbus_name * -> . _B 6 `ux -> * -> # *U &U *U &U _canbus_name `ui -> -> 12 `i `ui `ux `ui `ux `i -> *U + &U *U + &U _modbus_name * -> . _B 7 `ux -> * -> # *U &U *U &U _modbus_name `ui -> -> 12 `i `ui `ux * -> -> -> 0 `i `ui `ux -> -> # *U &U *U + &U _modbus_name * -> . _B 7 `ux -> * -> # *U &U *U &U _modbus_name `ui -> -> 12 `i `ui `ux `ui `ux `i ]
+"255
+[; ;main.c: 255:      eaDogM_WriteStringAtPos(0, 0, buffer);
+[e ( _eaDogM_WriteStringAtPos (3 , , -> -> 0 `i `uc -> -> 0 `i `uc &U _buffer ]
+"256
+[; ;main.c: 256:     }
+}
+[e :U 3276 ]
+"257
+[; ;main.c: 257:    }
+}
+"258
+[; ;main.c: 258:   }
 }
 [e :U 3271 ]
-"242
-[; ;main.c: 242:   master_controller_work(&C);
-[e ( _master_controller_work (1 &U _C ]
-"244
-[; ;main.c: 244:  }
+"259
+[; ;main.c: 259:  }
 }
 [e :U 3256 ]
 [e $U 3257  ]
 [e :U 3258 ]
-"245
-[; ;main.c: 245: }
+"260
+[; ;main.c: 260: }
 [e :UE 3255 ]
 }
-"251
-[; ;main.c: 251: void volt_f(uint16_t voltage)
+"266
+[; ;main.c: 266: void volt_f(uint16_t voltage)
 [v _volt_f `(v ~T0 @X0 1 ef1`us ]
-"252
-[; ;main.c: 252: {
+"267
+[; ;main.c: 267: {
 {
 [e :U _volt_f ]
-"251
-[; ;main.c: 251: void volt_f(uint16_t voltage)
+"266
+[; ;main.c: 266: void volt_f(uint16_t voltage)
 [v _voltage `us ~T0 @X0 1 r1 ]
-"252
-[; ;main.c: 252: {
+"267
+[; ;main.c: 267: {
 [f ]
-"253
-[; ;main.c: 253:  volt_fract = (uint16_t) abs(voltage % 10);
+"268
+[; ;main.c: 268:  volt_fract = (uint16_t) abs(voltage % 10);
 [e = _volt_fract -> ( _abs (1 -> % -> _voltage `ui -> -> 10 `i `ui `i `us ]
-"254
-[; ;main.c: 254:  volt_whole = voltage / 10;
+"269
+[; ;main.c: 269:  volt_whole = voltage / 10;
 [e = _volt_whole -> / -> _voltage `ui -> -> 10 `i `ui `us ]
-"255
-[; ;main.c: 255: }
-[e :UE 3273 ]
-}
-"257
-[; ;main.c: 257: void send_mx_cmd(const uint16_t * cmd)
-[v _send_mx_cmd `(v ~T0 @X0 1 ef1`*Cus ]
-"258
-[; ;main.c: 258: {
-{
-[e :U _send_mx_cmd ]
-"257
-[; ;main.c: 257: void send_mx_cmd(const uint16_t * cmd)
-[v _cmd `*Cus ~T0 @X0 1 r1 ]
-"258
-[; ;main.c: 258: {
-[f ]
-"259
-[; ;main.c: 259:  if (FM_tx_empty()) {
-[e $ ! != -> ( _FM_tx_empty ..  `i -> 0 `i 3275  ]
-{
-"260
-[; ;main.c: 260:   if (B.pacing++ > 31000) {
-[e $ ! > -> ++ . _B 2 -> -> 1 `i `us `ui -> -> 31000 `i `ui 3276  ]
-{
-"261
-[; ;main.c: 261:    FM_tx(cmd, 8);
-[e ( _FM_tx (2 , _cmd -> -> 8 `i `uc ]
-"262
-[; ;main.c: 262:    B.pacing = 0;
-[e = . _B 2 -> -> 0 `i `us ]
-"263
-[; ;main.c: 263:   }
-}
-[e :U 3276 ]
-"264
-[; ;main.c: 264:  }
-}
-[e :U 3275 ]
-"265
-[; ;main.c: 265: }
-[e :UE 3274 ]
-}
 "270
-[; ;main.c: 270: void rec_mx_cmd(void (* DataHandler)(void), uint8_t rec_len)
-[v _rec_mx_cmd `(v ~T0 @X0 1 ef2`*F24158`uc ]
-"271
-[; ;main.c: 271: {
-{
-[e :U _rec_mx_cmd ]
-"270
-[; ;main.c: 270: void rec_mx_cmd(void (* DataHandler)(void), uint8_t rec_len)
-[v _DataHandler `*F24160 ~T0 @X0 1 r1 ]
-[v _rec_len `uc ~T0 @X0 1 r2 ]
-"271
-[; ;main.c: 271: {
-[f ]
-"272
-[; ;main.c: 272:  if (FM_rx_ready()) {
-[e $ ! != -> ( _FM_rx_ready ..  `i -> 0 `i 3278  ]
-{
-"273
-[; ;main.c: 273:   if (FM_rx_count() >= rec_len) {
-[e $ ! >= -> ( _FM_rx_count ..  `i -> _rec_len `i 3279  ]
-{
-"274
-[; ;main.c: 274:    FM_rx(abuf);
-[e ( _FM_rx (1 &U _abuf ]
-"275
-[; ;main.c: 275:    DataHandler();
-[e ( *U _DataHandler ..  ]
-"276
-[; ;main.c: 276:   }
-}
-[e :U 3279 ]
-"277
-[; ;main.c: 277:  }
-}
-[e :U 3278 ]
-"278
-[; ;main.c: 278: }
+[; ;main.c: 270: }
 [e :UE 3277 ]
 }
-"280
-[; ;main.c: 280: void state_init_cb(void)
-[v _state_init_cb `(v ~T0 @X0 1 ef ]
-"281
-[; ;main.c: 281: {
+"272
+[; ;main.c: 272: void send_mx_cmd(const uint16_t * cmd)
+[v _send_mx_cmd `(v ~T0 @X0 1 ef1`*Cus ]
+"273
+[; ;main.c: 273: {
 {
-[e :U _state_init_cb ]
+[e :U _send_mx_cmd ]
+"272
+[; ;main.c: 272: void send_mx_cmd(const uint16_t * cmd)
+[v _cmd `*Cus ~T0 @X0 1 r1 ]
+"273
+[; ;main.c: 273: {
 [f ]
-"282
-[; ;main.c: 282:  if (abuf[2] == 0x03) {
-[e $ ! == -> *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 3 `i `ui 3281  ]
+"274
+[; ;main.c: 274:  if (FM_tx_empty()) {
+[e $ ! != -> ( _FM_tx_empty ..  `i -> 0 `i 3279  ]
 {
-"283
-[; ;main.c: 283:   printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: Found MX80 online\r\n", B.rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
-[e ( _printf , , , , , , (. :s 14C -> ++ . _B 3 -> -> 1 `i `us `ui -> *U + &U _abuf * -> -> -> 0 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> *U + &U _abuf * -> -> -> 3 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> *U + &U _abuf * -> -> -> 4 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui ]
-"284
-[; ;main.c: 284:   B.mx80_online = 1;
-[e = . _B 5 -> -> 1 `i `a ]
-"285
-[; ;main.c: 285:   snprintf(buffer, 96, "Found MX80 online      ");
-[e ( _snprintf (2 , , &U _buffer -> -> 96 `i `ui :s 15C ]
-"286
-[; ;main.c: 286:   eaDogM_WriteStringAtPos(3, 0, buffer);
-[e ( _eaDogM_WriteStringAtPos (3 , , -> -> 3 `i `uc -> -> 0 `i `uc &U _buffer ]
-"287
-[; ;main.c: 287:  } else {
+"275
+[; ;main.c: 275:   if (B.pacing++ > 31000) {
+[e $ ! > -> ++ . _B 2 -> -> 1 `i `us `ui -> -> 31000 `i `ui 3280  ]
+{
+"276
+[; ;main.c: 276:    FM_tx(cmd, 8);
+[e ( _FM_tx (2 , _cmd -> -> 8 `i `uc ]
+"277
+[; ;main.c: 277:    B.pacing = 0;
+[e = . _B 2 -> -> 0 `i `us ]
+"278
+[; ;main.c: 278:   }
 }
-[e $U 3282  ]
-[e :U 3281 ]
+[e :U 3280 ]
+"279
+[; ;main.c: 279:  }
+}
+[e :U 3279 ]
+"280
+[; ;main.c: 280: }
+[e :UE 3278 ]
+}
+"285
+[; ;main.c: 285: void rec_mx_cmd(void (* DataHandler)(void), uint8_t rec_len)
+[v _rec_mx_cmd `(v ~T0 @X0 1 ef2`*F24161`uc ]
+"286
+[; ;main.c: 286: {
+{
+[e :U _rec_mx_cmd ]
+"285
+[; ;main.c: 285: void rec_mx_cmd(void (* DataHandler)(void), uint8_t rec_len)
+[v _DataHandler `*F24163 ~T0 @X0 1 r1 ]
+[v _rec_len `uc ~T0 @X0 1 r2 ]
+"286
+[; ;main.c: 286: {
+[f ]
+"287
+[; ;main.c: 287:  if (FM_rx_ready()) {
+[e $ ! != -> ( _FM_rx_ready ..  `i -> 0 `i 3282  ]
 {
 "288
-[; ;main.c: 288:   printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: MX80 Not Found online\r\n", B.rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
-[e ( _printf , , , , , , (. :s 16C -> ++ . _B 3 -> -> 1 `i `us `ui -> *U + &U _abuf * -> -> -> 0 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> *U + &U _abuf * -> -> -> 3 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> *U + &U _abuf * -> -> -> 4 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui ]
+[; ;main.c: 288:   if (FM_rx_count() >= rec_len) {
+[e $ ! >= -> ( _FM_rx_count ..  `i -> _rec_len `i 3283  ]
+{
 "289
-[; ;main.c: 289:   snprintf(buffer, 96, "MX80 Not Found online  ");
-[e ( _snprintf (2 , , &U _buffer -> -> 96 `i `ui :s 17C ]
+[; ;main.c: 289:    FM_rx(abuf);
+[e ( _FM_rx (1 &U _abuf ]
 "290
-[; ;main.c: 290:   eaDogM_WriteStringAtPos(3, 0, buffer);
-[e ( _eaDogM_WriteStringAtPos (3 , , -> -> 3 `i `uc -> -> 0 `i `uc &U _buffer ]
+[; ;main.c: 290:    DataHandler();
+[e ( *U _DataHandler ..  ]
 "291
-[; ;main.c: 291:   B.mx80_online = 0;
-[e = . _B 5 -> -> 0 `i `a ]
+[; ;main.c: 291:   }
+}
+[e :U 3283 ]
 "292
 [; ;main.c: 292:  }
 }
 [e :U 3282 ]
 "293
-[; ;main.c: 293:  state = state_status;
-[e = _state . `E24090 1 ]
-"294
-[; ;main.c: 294: }
-[e :UE 3280 ]
+[; ;main.c: 293: }
+[e :UE 3281 ]
 }
+"295
+[; ;main.c: 295: void state_init_cb(void)
+[v _state_init_cb `(v ~T0 @X0 1 ef ]
 "296
-[; ;main.c: 296: void state_status_cb(void)
-[v _state_status_cb `(v ~T0 @X0 1 ef ]
+[; ;main.c: 296: {
+{
+[e :U _state_init_cb ]
+[f ]
 "297
-[; ;main.c: 297: {
+[; ;main.c: 297:  if (abuf[2] == 0x03) {
+[e $ ! == -> *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 3 `i `ui 3285  ]
+{
+"298
+[; ;main.c: 298:   printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: Found MX80 online\r\n", B.rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
+[e ( _printf , , , , , , (. :s 16C -> ++ . _B 3 -> -> 1 `i `us `ui -> *U + &U _abuf * -> -> -> 0 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> *U + &U _abuf * -> -> -> 3 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> *U + &U _abuf * -> -> -> 4 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui ]
+"299
+[; ;main.c: 299:   B.mx80_online = 1;
+[e = . _B 5 -> -> 1 `i `a ]
+"300
+[; ;main.c: 300:   snprintf(buffer, 96, "Found MX80 online      ");
+[e ( _snprintf (2 , , &U _buffer -> -> 96 `i `ui :s 17C ]
+"301
+[; ;main.c: 301:   eaDogM_WriteStringAtPos(3, 0, buffer);
+[e ( _eaDogM_WriteStringAtPos (3 , , -> -> 3 `i `uc -> -> 0 `i `uc &U _buffer ]
+"302
+[; ;main.c: 302:  } else {
+}
+[e $U 3286  ]
+[e :U 3285 ]
+{
+"303
+[; ;main.c: 303:   printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: MX80 Not Found online\r\n", B.rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
+[e ( _printf , , , , , , (. :s 18C -> ++ . _B 3 -> -> 1 `i `us `ui -> *U + &U _abuf * -> -> -> 0 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> *U + &U _abuf * -> -> -> 3 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> *U + &U _abuf * -> -> -> 4 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui ]
+"304
+[; ;main.c: 304:   snprintf(buffer, 96, "MX80 Not Found online  ");
+[e ( _snprintf (2 , , &U _buffer -> -> 96 `i `ui :s 19C ]
+"305
+[; ;main.c: 305:   eaDogM_WriteStringAtPos(3, 0, buffer);
+[e ( _eaDogM_WriteStringAtPos (3 , , -> -> 3 `i `uc -> -> 0 `i `uc &U _buffer ]
+"306
+[; ;main.c: 306:   B.mx80_online = 0;
+[e = . _B 5 -> -> 0 `i `a ]
+"307
+[; ;main.c: 307:  }
+}
+[e :U 3286 ]
+"308
+[; ;main.c: 308:  state = state_status;
+[e = _state . `E24091 1 ]
+"309
+[; ;main.c: 309: }
+[e :UE 3284 ]
+}
+"311
+[; ;main.c: 311: void state_status_cb(void)
+[v _state_status_cb `(v ~T0 @X0 1 ef ]
+"312
+[; ;main.c: 312: {
 {
 [e :U _state_status_cb ]
 [f ]
-"301
-[; ;main.c: 301:  if (abuf[2] != STATUS_SLEEPING) {
-[e $ ! != -> *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> . `E23886 0 `ui 3284  ]
+"316
+[; ;main.c: 316:  if (abuf[2] != STATUS_SLEEPING) {
+[e $ ! != -> *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> . `E23886 0 `ui 3288  ]
 {
-"302
-[; ;main.c: 302:   state = state_watts;
-[e = _state . `E24090 5 ]
-"303
-[; ;main.c: 303:  } else {
+"317
+[; ;main.c: 317:   state = state_watts;
+[e = _state . `E24091 5 ]
+"318
+[; ;main.c: 318:  } else {
 }
-[e $U 3285  ]
-[e :U 3284 ]
+[e $U 3289  ]
+[e :U 3288 ]
 {
-"304
-[; ;main.c: 304:   state = state_mx_status;
-[e = _state . `E24090 7 ]
-"305
-[; ;main.c: 305:  }
+"319
+[; ;main.c: 319:   state = state_mx_status;
+[e = _state . `E24091 7 ]
+"320
+[; ;main.c: 320:  }
 }
-[e :U 3285 ]
-"306
-[; ;main.c: 306:  cc_mode = abuf[2];
+[e :U 3289 ]
+"321
+[; ;main.c: 321:  cc_mode = abuf[2];
 [e = _cc_mode *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux ]
-"307
-[; ;main.c: 307: }
-[e :UE 3283 ]
+"322
+[; ;main.c: 322: }
+[e :UE 3287 ]
 }
-"309
-[; ;main.c: 309: void state_panelv_cb(void)
+"324
+[; ;main.c: 324: void state_panelv_cb(void)
 [v _state_panelv_cb `(v ~T0 @X0 1 ef ]
-"310
-[; ;main.c: 310: {
+"325
+[; ;main.c: 325: {
 {
 [e :U _state_panelv_cb ]
 [f ]
-"314
-[; ;main.c: 314:  state = state_batteryv;
-[e = _state . `E24090 3 ]
-"315
-[; ;main.c: 315: }
-[e :UE 3286 ]
+"329
+[; ;main.c: 329:  state = state_batteryv;
+[e = _state . `E24091 3 ]
+"330
+[; ;main.c: 330: }
+[e :UE 3290 ]
 }
-"317
-[; ;main.c: 317: void state_batteryv_cb(void)
+"332
+[; ;main.c: 332: void state_batteryv_cb(void)
 [v _state_batteryv_cb `(v ~T0 @X0 1 ef ]
-"318
-[; ;main.c: 318: {
+"333
+[; ;main.c: 333: {
 {
 [e :U _state_batteryv_cb ]
 [f ]
-"319
-[; ;main.c: 319:  volt_f((abuf[2] + (abuf[1] << 8)));
+"334
+[; ;main.c: 334:  volt_f((abuf[2] + (abuf[1] << 8)));
 [e ( _volt_f (1 -> + -> *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui << -> *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> 8 `i `us ]
-"323
-[; ;main.c: 323:  state = state_batterya;
-[e = _state . `E24090 4 ]
-"324
-[; ;main.c: 324: }
-[e :UE 3287 ]
+"338
+[; ;main.c: 338:  state = state_batterya;
+[e = _state . `E24091 4 ]
+"339
+[; ;main.c: 339: }
+[e :UE 3291 ]
 }
-"326
-[; ;main.c: 326: void state_batterya_cb(void)
+"341
+[; ;main.c: 341: void state_batterya_cb(void)
 [v _state_batterya_cb `(v ~T0 @X0 1 ef ]
-"327
-[; ;main.c: 327: {
+"342
+[; ;main.c: 342: {
 {
 [e :U _state_batterya_cb ]
 [f ]
-"328
-[; ;main.c: 328:  volt_f((abuf[2] + (abuf[1] << 8)));
+"343
+[; ;main.c: 343:  volt_f((abuf[2] + (abuf[1] << 8)));
 [e ( _volt_f (1 -> + -> *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui << -> *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> 8 `i `us ]
-"332
-[; ;main.c: 332:  state = state_watts;
-[e = _state . `E24090 5 ]
-"333
-[; ;main.c: 333: }
-[e :UE 3288 ]
+"347
+[; ;main.c: 347:  state = state_watts;
+[e = _state . `E24091 5 ]
+"348
+[; ;main.c: 348: }
+[e :UE 3292 ]
 }
-"335
-[; ;main.c: 335: void state_watts_cb(void)
+"350
+[; ;main.c: 350: void state_watts_cb(void)
 [v _state_watts_cb `(v ~T0 @X0 1 ef ]
-"336
-[; ;main.c: 336: {
+"351
+[; ;main.c: 351: {
 {
 [e :U _state_watts_cb ]
 [f ]
-"340
-[; ;main.c: 340:  panel_watts = (abuf[2] + (abuf[1] << 8));
+"355
+[; ;main.c: 355:  panel_watts = (abuf[2] + (abuf[1] << 8));
 [e = _panel_watts -> + -> *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui << -> *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> 8 `i `us ]
-"341
-[; ;main.c: 341:  state = state_mx_status;
-[e = _state . `E24090 7 ]
-"342
-[; ;main.c: 342: }
-[e :UE 3289 ]
+"356
+[; ;main.c: 356:  state = state_mx_status;
+[e = _state . `E24091 7 ]
+"357
+[; ;main.c: 357: }
+[e :UE 3293 ]
 }
-"344
-[; ;main.c: 344: void state_mx_status_cb(void)
+"359
+[; ;main.c: 359: void state_mx_status_cb(void)
 [v _state_mx_status_cb `(v ~T0 @X0 1 ef ]
-"345
-[; ;main.c: 345: {
+"360
+[; ;main.c: 360: {
 {
 [e :U _state_mx_status_cb ]
 [f ]
-"346
-[; ;main.c: 346:  uint16_t vf, vw;
+"361
+[; ;main.c: 361:  uint16_t vf, vw;
 [v _vf `us ~T0 @X0 1 a ]
 [v _vw `us ~T0 @X0 1 a ]
-"348
-[; ;main.c: 348:  volt_f((abuf[11] + (abuf[10] << 8)));
+"363
+[; ;main.c: 363:  volt_f((abuf[11] + (abuf[10] << 8)));
 [e ( _volt_f (1 -> + -> *U + &U _abuf * -> -> -> 11 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui << -> *U + &U _abuf * -> -> -> 10 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> 8 `i `us ]
-"349
-[; ;main.c: 349:  vw = volt_whole;
+"364
+[; ;main.c: 364:  vw = volt_whole;
 [e = _vw _volt_whole ]
-"350
-[; ;main.c: 350:  vf = volt_fract;
+"365
+[; ;main.c: 365:  vf = volt_fract;
 [e = _vf _volt_fract ]
-"351
-[; ;main.c: 351:  volt_f((abuf[13] + (abuf[12] << 8)));
-[e ( _volt_f (1 -> + -> *U + &U _abuf * -> -> -> 13 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui << -> *U + &U _abuf * -> -> -> 12 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> 8 `i `us ]
-"352
-[; ;main.c: 352:  if ((abuf[1] &0x0f) > 9) {
-[e $ ! > & -> *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 15 `i `ui -> -> 9 `i `ui 3291  ]
-{
-"353
-[; ;main.c: 353:   abuf[2]++;
-[e ++ *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux -> -> 1 `i `us ]
-"354
-[; ;main.c: 354:   abuf[1] = (abuf[1]&0x0f) - 10;
-[e = *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux -> - & -> *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 15 `i `ui -> -> 10 `i `ui `us ]
-"355
-[; ;main.c: 355:  }
-}
-[e :U 3291 ]
-"360
-[; ;main.c: 360:  if (B.ten_sec_flag) {
-[e $ ! != -> . _B 0 `i -> 0 `i 3292  ]
-{
-"361
-[; ;main.c: 361:   B.ten_sec_flag = 0;
-[e = . _B 0 -> -> 0 `i `a ]
-"362
-[; ;main.c: 362:   if (B.mx80_online) {
-[e $ ! != -> . _B 5 `i -> 0 `i 3293  ]
-{
 "366
-[; ;main.c: 366:    printf("^^^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%.1f,%.1f,%.1f,%4.1f,%d\r\n", abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, B.rx_count++);
-[e ( _printf , , , , , , , , , , , , , , (. :s 18C - -> *U + &U _abuf * -> -> -> 3 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 128 `i `ui & -> *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 15 `i `ui -> _vw `ui -> _vf `ui - -> *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 128 `i `ui -> _volt_whole `ui -> _volt_fract `ui -> _panel_watts `ui -> _cc_mode `ui -> / -> . _em 9 `f -> .10.0 `f `d -> / -> . _em 12 `f -> .10.0 `f `d -> / -> . _em 15 `f -> .10.0 `f `d -> / -> . _em 3 `f -> .10.0 `f `d -> ++ . _B 3 -> -> 1 `i `us `ui ]
+[; ;main.c: 366:  volt_f((abuf[13] + (abuf[12] << 8)));
+[e ( _volt_f (1 -> + -> *U + &U _abuf * -> -> -> 13 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui << -> *U + &U _abuf * -> -> -> 12 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> 8 `i `us ]
 "367
-[; ;main.c: 367:    snprintf(can_buffer, 96, "^^^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%.1f,%.1f,%.1f,%4.1f,%d\r\n", abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, B.rx_count);
-[e ( _snprintf (2 , , , , , , , , , , , , , , (. , , &U _can_buffer -> -> 96 `i `ui :s 19C - -> *U + &U _abuf * -> -> -> 3 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 128 `i `ui & -> *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 15 `i `ui -> _vw `ui -> _vf `ui - -> *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 128 `i `ui -> _volt_whole `ui -> _volt_fract `ui -> _panel_watts `ui -> _cc_mode `ui -> / -> . _em 9 `f -> .10.0 `f `d -> / -> . _em 12 `f -> .10.0 `f `d -> / -> . _em 15 `f -> .10.0 `f `d -> / -> . _em 3 `f -> .10.0 `f `d -> . _B 3 `ui ]
+[; ;main.c: 367:  if ((abuf[1] &0x0f) > 9) {
+[e $ ! > & -> *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 15 `i `ui -> -> 9 `i `ui 3295  ]
+{
 "368
-[; ;main.c: 368:    snprintf(buffer, 96, "%d Watts %d.%01d Volts   ", panel_watts, volt_whole, volt_fract);
-[e ( _snprintf (2 , , , (. , , &U _buffer -> -> 96 `i `ui :s 20C -> _panel_watts `ui -> _volt_whole `ui -> _volt_fract `ui ]
+[; ;main.c: 368:   abuf[2]++;
+[e ++ *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux -> -> 1 `i `us ]
 "369
-[; ;main.c: 369:    eaDogM_WriteStringAtPos(2, 0, buffer);
-[e ( _eaDogM_WriteStringAtPos (3 , , -> -> 2 `i `uc -> -> 0 `i `uc &U _buffer ]
+[; ;main.c: 369:   abuf[1] = (abuf[1]&0x0f) - 10;
+[e = *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux -> - & -> *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 15 `i `ui -> -> 10 `i `ui `us ]
 "370
-[; ;main.c: 370:    snprintf(buffer, 96, "%d.%01d Amps %d.%01d Volts   ", abuf[3] - 128, abuf[1]&0x0f, vw, vf);
-[e ( _snprintf (2 , , , , (. , , &U _buffer -> -> 96 `i `ui :s 21C - -> *U + &U _abuf * -> -> -> 3 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 128 `i `ui & -> *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 15 `i `ui -> _vw `ui -> _vf `ui ]
-"371
-[; ;main.c: 371:    eaDogM_WriteStringAtPos(3, 0, buffer);
-[e ( _eaDogM_WriteStringAtPos (3 , , -> -> 3 `i `uc -> -> 0 `i `uc &U _buffer ]
-"372
-[; ;main.c: 372:    can_fd_tx();
-[e ( _can_fd_tx ..  ]
-"373
-[; ;main.c: 373:   }
+[; ;main.c: 370:  }
 }
-[e :U 3293 ]
-"374
-[; ;main.c: 374:  }
-}
-[e :U 3292 ]
-"375
-[; ;main.c: 375:  state = state_misc;
-[e = _state . `E24090 6 ]
-"376
-[; ;main.c: 376: }
-[e :UE 3290 ]
-}
-"381
-[; ;main.c: 381: void state_misc_cb(void)
-[v _state_misc_cb `(v ~T0 @X0 1 ef ]
-"382
-[; ;main.c: 382: {
-{
-[e :U _state_misc_cb ]
-[f ]
-"383
-[; ;main.c: 383:  if (abuf[2] == 0x03) {
-[e $ ! == -> *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 3 `i `ui 3295  ]
-{
-"384
-[; ;main.c: 384:   B.mx80_online = 1;
-[e = . _B 5 -> -> 1 `i `a ]
-"385
-[; ;main.c: 385:  } else {
-}
-[e $U 3296  ]
 [e :U 3295 ]
+"375
+[; ;main.c: 375:  if (B.ten_sec_flag) {
+[e $ ! != -> . _B 0 `i -> 0 `i 3296  ]
 {
+"376
+[; ;main.c: 376:   B.ten_sec_flag = 0;
+[e = . _B 0 -> -> 0 `i `a ]
+"377
+[; ;main.c: 377:   if (B.mx80_online) {
+[e $ ! != -> . _B 5 `i -> 0 `i 3297  ]
+{
+"381
+[; ;main.c: 381:    printf("^^^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%.1f,%.1f,%.1f,%4.1f,%d\r\n", abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, B.rx_count++);
+[e ( _printf , , , , , , , , , , , , , , (. :s 20C - -> *U + &U _abuf * -> -> -> 3 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 128 `i `ui & -> *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 15 `i `ui -> _vw `ui -> _vf `ui - -> *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 128 `i `ui -> _volt_whole `ui -> _volt_fract `ui -> _panel_watts `ui -> _cc_mode `ui -> / -> . _em 9 `f -> .10.0 `f `d -> / -> . _em 12 `f -> .10.0 `f `d -> / -> . _em 15 `f -> .10.0 `f `d -> / -> . _em 3 `f -> .10.0 `f `d -> ++ . _B 3 -> -> 1 `i `us `ui ]
+"382
+[; ;main.c: 382:    snprintf(can_buffer, 96, "^^^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%.1f,%.1f,%.1f,%4.1f,%d\r\n", abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, B.rx_count);
+[e ( _snprintf (2 , , , , , , , , , , , , , , (. , , &U _can_buffer -> -> 96 `i `ui :s 21C - -> *U + &U _abuf * -> -> -> 3 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 128 `i `ui & -> *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 15 `i `ui -> _vw `ui -> _vf `ui - -> *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 128 `i `ui -> _volt_whole `ui -> _volt_fract `ui -> _panel_watts `ui -> _cc_mode `ui -> / -> . _em 9 `f -> .10.0 `f `d -> / -> . _em 12 `f -> .10.0 `f `d -> / -> . _em 15 `f -> .10.0 `f `d -> / -> . _em 3 `f -> .10.0 `f `d -> . _B 3 `ui ]
+"383
+[; ;main.c: 383:    snprintf(buffer, 96, "%d Watts %d.%01d Volts   ", panel_watts, volt_whole, volt_fract);
+[e ( _snprintf (2 , , , (. , , &U _buffer -> -> 96 `i `ui :s 22C -> _panel_watts `ui -> _volt_whole `ui -> _volt_fract `ui ]
+"384
+[; ;main.c: 384:    eaDogM_WriteStringAtPos(2, 0, buffer);
+[e ( _eaDogM_WriteStringAtPos (3 , , -> -> 2 `i `uc -> -> 0 `i `uc &U _buffer ]
+"385
+[; ;main.c: 385:    snprintf(buffer, 96, "%d.%01d Amps %d.%01d Volts   ", abuf[3] - 128, abuf[1]&0x0f, vw, vf);
+[e ( _snprintf (2 , , , , (. , , &U _buffer -> -> 96 `i `ui :s 23C - -> *U + &U _abuf * -> -> -> 3 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 128 `i `ui & -> *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 15 `i `ui -> _vw `ui -> _vf `ui ]
 "386
-[; ;main.c: 386:   B.mx80_online = 0;
-[e = . _B 5 -> -> 0 `i `a ]
+[; ;main.c: 386:    eaDogM_WriteStringAtPos(3, 0, buffer);
+[e ( _eaDogM_WriteStringAtPos (3 , , -> -> 3 `i `uc -> -> 0 `i `uc &U _buffer ]
 "387
-[; ;main.c: 387:   state = state_init;
-[e = _state . `E24090 0 ]
+[; ;main.c: 387:    can_fd_tx();
+[e ( _can_fd_tx ..  ]
 "388
-[; ;main.c: 388:   return;
-[e $UE 3294  ]
+[; ;main.c: 388:   }
+}
+[e :U 3297 ]
 "389
 [; ;main.c: 389:  }
 }
 [e :U 3296 ]
 "390
-[; ;main.c: 390:  if (!B.ten_sec_flag) {
-[e $ ! ! != -> . _B 0 `i -> 0 `i 3297  ]
-{
+[; ;main.c: 390:  state = state_misc;
+[e = _state . `E24091 6 ]
 "391
-[; ;main.c: 391:   state = state_misc;
-[e = _state . `E24090 6 ]
-"392
-[; ;main.c: 392:  } else {
-}
-[e $U 3298  ]
-[e :U 3297 ]
-{
-"393
-[; ;main.c: 393:   state = state_status;
-[e = _state . `E24090 1 ]
-"394
-[; ;main.c: 394:  }
-}
-[e :U 3298 ]
-"395
-[; ;main.c: 395: }
+[; ;main.c: 391: }
 [e :UE 3294 ]
 }
-"398
-[; ;main.c: 398: char spinners(uint8_t shape, const uint8_t reset)
-[v _spinners `(uc ~T0 @X0 1 ef2`uc`Cuc ]
-"399
-[; ;main.c: 399: {
+"396
+[; ;main.c: 396: void state_misc_cb(void)
+[v _state_misc_cb `(v ~T0 @X0 1 ef ]
+"397
+[; ;main.c: 397: {
 {
-[e :U _spinners ]
-"398
-[; ;main.c: 398: char spinners(uint8_t shape, const uint8_t reset)
-[v _shape `uc ~T0 @X0 1 r1 ]
-[v _reset `Cuc ~T0 @X0 1 r2 ]
-"399
-[; ;main.c: 399: {
+[e :U _state_misc_cb ]
 [f ]
+"398
+[; ;main.c: 398:  if (abuf[2] == 0x03) {
+[e $ ! == -> *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 3 `i `ui 3299  ]
+{
+"399
+[; ;main.c: 399:   B.mx80_online = 1;
+[e = . _B 5 -> -> 1 `i `a ]
 "400
-[; ;main.c: 400:  static uint8_t s[6];
-[v F24175 `uc ~T0 @X0 -> 6 `i s s ]
+[; ;main.c: 400:  } else {
+}
+[e $U 3300  ]
+[e :U 3299 ]
+{
 "401
-[; ;main.c: 401:  char c;
-[v _c `uc ~T0 @X0 1 a ]
+[; ;main.c: 401:   B.mx80_online = 0;
+[e = . _B 5 -> -> 0 `i `a ]
+"402
+[; ;main.c: 402:   state = state_init;
+[e = _state . `E24091 0 ]
 "403
-[; ;main.c: 403:  if (shape > (6 - 1))
-[e $ ! > -> _shape `i - -> 6 `i -> 1 `i 3300  ]
+[; ;main.c: 403:   return;
+[e $UE 3298  ]
 "404
-[; ;main.c: 404:   shape = 0;
-[e = _shape -> -> 0 `i `uc ]
+[; ;main.c: 404:  }
+}
 [e :U 3300 ]
 "405
-[; ;main.c: 405:  if (reset)
-[e $ ! != -> _reset `i -> 0 `i 3301  ]
+[; ;main.c: 405:  if (!B.ten_sec_flag) {
+[e $ ! ! != -> . _B 0 `i -> 0 `i 3301  ]
+{
 "406
-[; ;main.c: 406:   s[shape] = 0;
-[e = *U + &U F24175 * -> _shape `ux -> -> # *U &U F24175 `ui `ux -> -> 0 `i `uc ]
-[e :U 3301 ]
+[; ;main.c: 406:   state = state_misc;
+[e = _state . `E24091 6 ]
 "407
-[; ;main.c: 407:  c = spin[shape][s[shape]];
-[e = _c *U + &U *U + &U _spin * -> _shape `ux -> * -> # *U &U *U &U _spin `ui -> -> 20 `i `ui `ux * -> *U + &U F24175 * -> _shape `ux -> -> # *U &U F24175 `ui `ux `ux -> -> # *U &U *U + &U _spin * -> _shape `ux -> * -> # *U &U *U &U _spin `ui -> -> 20 `i `ui `ux `ui `ux ]
+[; ;main.c: 407:  } else {
+}
+[e $U 3302  ]
+[e :U 3301 ]
+{
 "408
-[; ;main.c: 408:  if (++s[shape] >= strlen(spin[shape]))
-[e $ ! >= -> =+ *U + &U F24175 * -> _shape `ux -> -> # *U &U F24175 `ui `ux -> -> 1 `i `uc `ui ( _strlen (1 &U *U + &U _spin * -> _shape `ux -> * -> # *U &U *U &U _spin `ui -> -> 20 `i `ui `ux 3302  ]
+[; ;main.c: 408:   state = state_status;
+[e = _state . `E24091 1 ]
 "409
-[; ;main.c: 409:   s[shape] = 0;
-[e = *U + &U F24175 * -> _shape `ux -> -> # *U &U F24175 `ui `ux -> -> 0 `i `uc ]
+[; ;main.c: 409:  }
+}
 [e :U 3302 ]
 "410
-[; ;main.c: 410:  return c;
+[; ;main.c: 410: }
+[e :UE 3298 ]
+}
+"413
+[; ;main.c: 413: char spinners(uint8_t shape, const uint8_t reset)
+[v _spinners `(uc ~T0 @X0 1 ef2`uc`Cuc ]
+"414
+[; ;main.c: 414: {
+{
+[e :U _spinners ]
+"413
+[; ;main.c: 413: char spinners(uint8_t shape, const uint8_t reset)
+[v _shape `uc ~T0 @X0 1 r1 ]
+[v _reset `Cuc ~T0 @X0 1 r2 ]
+"414
+[; ;main.c: 414: {
+[f ]
+"415
+[; ;main.c: 415:  static uint8_t s[6];
+[v F24178 `uc ~T0 @X0 -> 6 `i s s ]
+"416
+[; ;main.c: 416:  char c;
+[v _c `uc ~T0 @X0 1 a ]
+"418
+[; ;main.c: 418:  if (shape > (6 - 1))
+[e $ ! > -> _shape `i - -> 6 `i -> 1 `i 3304  ]
+"419
+[; ;main.c: 419:   shape = 0;
+[e = _shape -> -> 0 `i `uc ]
+[e :U 3304 ]
+"420
+[; ;main.c: 420:  if (reset)
+[e $ ! != -> _reset `i -> 0 `i 3305  ]
+"421
+[; ;main.c: 421:   s[shape] = 0;
+[e = *U + &U F24178 * -> _shape `ux -> -> # *U &U F24178 `ui `ux -> -> 0 `i `uc ]
+[e :U 3305 ]
+"422
+[; ;main.c: 422:  c = spin[shape][s[shape]];
+[e = _c *U + &U *U + &U _spin * -> _shape `ux -> * -> # *U &U *U &U _spin `ui -> -> 20 `i `ui `ux * -> *U + &U F24178 * -> _shape `ux -> -> # *U &U F24178 `ui `ux `ux -> -> # *U &U *U + &U _spin * -> _shape `ux -> * -> # *U &U *U &U _spin `ui -> -> 20 `i `ui `ux `ui `ux ]
+"423
+[; ;main.c: 423:  if (++s[shape] >= strlen(spin[shape]))
+[e $ ! >= -> =+ *U + &U F24178 * -> _shape `ux -> -> # *U &U F24178 `ui `ux -> -> 1 `i `uc `ui ( _strlen (1 &U *U + &U _spin * -> _shape `ux -> * -> # *U &U *U &U _spin `ui -> -> 20 `i `ui `ux 3306  ]
+"424
+[; ;main.c: 424:   s[shape] = 0;
+[e = *U + &U F24178 * -> _shape `ux -> -> # *U &U F24178 `ui `ux -> -> 0 `i `uc ]
+[e :U 3306 ]
+"425
+[; ;main.c: 425:  return c;
 [e ) _c ]
-[e $UE 3299  ]
-"411
-[; ;main.c: 411: }
-[e :UE 3299 ]
+[e $UE 3303  ]
+"426
+[; ;main.c: 426: }
+[e :UE 3303 ]
 }
 [p f _printf 12689540 ]
-[p f _snprintf 11378820 ]
-[a 2C 48 57 58 51 51 58 53 56 0 ]
+[p f _snprintf 11379860 ]
+[a 2C 49 54 58 50 54 58 53 51 0 ]
 [a 1C 74 117 110 32 50 51 32 50 48 50 51 0 ]
 [a 3C 37 115 32 0 ]
 [a 8C 37 115 32 0 ]
 [a 10C 37 115 32 0 ]
-[a 17C 77 88 56 48 32 78 111 116 32 70 111 117 110 100 32 111 110 108 105 110 101 32 32 0 ]
-[a 20C 37 100 32 87 97 116 116 115 32 37 100 46 37 48 49 100 32 86 111 108 116 115 32 32 32 0 ]
-[a 21C 37 100 46 37 48 49 100 32 65 109 112 115 32 37 100 46 37 48 49 100 32 86 111 108 116 115 32 32 32 0 ]
+[a 19C 77 88 56 48 32 78 111 116 32 70 111 117 110 100 32 111 110 108 105 110 101 32 32 0 ]
+[a 22C 37 100 32 87 97 116 116 115 32 37 100 46 37 48 49 100 32 86 111 108 116 115 32 32 32 0 ]
+[a 23C 37 100 46 37 48 49 100 32 65 109 112 115 32 37 100 46 37 48 49 100 32 86 111 108 116 115 32 32 32 0 ]
 [a 5C 37 115 32 32 32 0 ]
 [a 6C 37 115 32 32 32 0 ]
-[a 13C 37 54 46 49 102 87 32 37 54 46 49 102 86 65 32 37 99 37 99 37 99 32 32 32 0 ]
+[a 15C 37 54 46 49 102 87 32 37 54 46 49 102 86 65 32 37 99 37 99 37 99 32 32 32 0 ]
 [a 7C 37 115 32 66 58 37 88 32 37 88 32 37 88 32 32 32 0 ]
 [a 12C 69 77 111 110 32 32 37 52 46 49 102 86 65 67 32 32 32 37 99 37 99 32 32 32 32 0 ]
-[a 15C 70 111 117 110 100 32 77 88 56 48 32 111 110 108 105 110 101 32 32 32 32 32 32 0 ]
+[a 14C 69 77 111 110 32 32 37 52 46 49 102 86 65 67 32 32 32 37 99 37 99 32 32 32 32 0 ]
+[a 17C 70 111 117 110 100 32 77 88 56 48 32 111 110 108 105 110 101 32 32 32 32 32 32 0 ]
 [a 11C 80 111 108 108 105 110 103 32 77 88 56 48 32 32 32 32 32 32 32 32 0 ]
+[a 13C 67 37 117 32 67 82 67 37 108 117 32 82 67 37 117 32 69 67 37 117 32 32 32 32 32 32 32 32 32 32 0 ]
 [a 9C 83 116 97 114 116 32 85 112 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
 [a 4C 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
-[a 16C 13 10 13 10 37 53 100 32 37 51 120 32 37 51 120 32 37 51 120 32 37 51 120 32 37 51 120 32 32 32 73 78 73 84 58 32 77 88 56 48 32 78 111 116 32 70 111 117 110 100 32 111 110 108 105 110 101 13 10 0 ]
-[a 14C 13 10 13 10 37 53 100 32 37 51 120 32 37 51 120 32 37 51 120 32 37 51 120 32 37 51 120 32 32 32 73 78 73 84 58 32 70 111 117 110 100 32 77 88 56 48 32 111 110 108 105 110 101 13 10 0 ]
-[a 18C 94 94 94 44 37 100 46 37 48 49 100 44 37 100 46 37 48 49 100 44 37 100 44 37 100 46 37 48 49 100 44 37 100 44 37 100 44 37 46 49 102 44 37 46 49 102 44 37 46 49 102 44 37 52 46 49 102 44 37 100 13 10 0 ]
-[a 19C 94 94 94 44 37 100 46 37 48 49 100 44 37 100 46 37 48 49 100 44 37 100 44 37 100 46 37 48 49 100 44 37 100 44 37 100 44 37 46 49 102 44 37 46 49 102 44 37 46 49 102 44 37 52 46 49 102 44 37 100 13 10 0 ]
+[a 18C 13 10 13 10 37 53 100 32 37 51 120 32 37 51 120 32 37 51 120 32 37 51 120 32 37 51 120 32 32 32 73 78 73 84 58 32 77 88 56 48 32 78 111 116 32 70 111 117 110 100 32 111 110 108 105 110 101 13 10 0 ]
+[a 16C 13 10 13 10 37 53 100 32 37 51 120 32 37 51 120 32 37 51 120 32 37 51 120 32 37 51 120 32 32 32 73 78 73 84 58 32 70 111 117 110 100 32 77 88 56 48 32 111 110 108 105 110 101 13 10 0 ]
+[a 20C 94 94 94 44 37 100 46 37 48 49 100 44 37 100 46 37 48 49 100 44 37 100 44 37 100 46 37 48 49 100 44 37 100 44 37 100 44 37 46 49 102 44 37 46 49 102 44 37 46 49 102 44 37 52 46 49 102 44 37 100 13 10 0 ]
+[a 21C 94 94 94 44 37 100 46 37 48 49 100 44 37 100 46 37 48 49 100 44 37 100 44 37 100 46 37 48 49 100 44 37 100 44 37 100 44 37 46 49 102 44 37 46 49 102 44 37 46 49 102 44 37 52 46 49 102 44 37 100 13 10 0 ]

@@ -162,7 +162,7 @@ uint8_t TMR5_CheckGateValueStatus(void)
     return (T5GCONbits.T5GVAL);
 }
 
-void __interrupt(irq(TMR5),base(8)) TMR5_ISR()
+void __interrupt(irq(TMR5),base(8),low_priority) TMR5_ISR()
 {
 
     // Clear the TMR5 interrupt flag

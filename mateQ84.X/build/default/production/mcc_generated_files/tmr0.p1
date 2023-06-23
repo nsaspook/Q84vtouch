@@ -60,7 +60,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.18.389/xc8/pic/include/proc/pic18f47q84.h: 39387: extern volatile T0CON0bits_t T0CON0bits __attribute__((address(0x31A)));
 [v _T0CON0bits `VS1831 ~T0 @X0 0 e@794 ]
 [t ~ __interrupt . k ]
-[t T1 __interrupt irq ( TMR0 ) base ( 8 ) ]
+[t T1 __interrupt irq ( TMR0 ) base ( 8 ) low_priority ]
 [v F22631 `(v ~T0 @X0 0 tf ]
 [v F22633 `(v ~T0 @X0 0 tf ]
 [v F22635 `(v ~T0 @X0 0 tf ]
@@ -3773,7 +3773,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [v $root$_TMR0_ISR `(v ~T0 @X0 0 e ]
 "122
-[; ;mcc_generated_files/tmr0.c: 122: void __attribute__((picinterrupt(("irq(TMR0),base(8)")))) TMR0_ISR()
+[; ;mcc_generated_files/tmr0.c: 122: void __attribute__((picinterrupt(("irq(TMR0),base(8),low_priority")))) TMR0_ISR()
 [v _TMR0_ISR `(v ~T1 @X0 1 ef ]
 "123
 [; ;mcc_generated_files/tmr0.c: 123: {

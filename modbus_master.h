@@ -50,10 +50,11 @@ extern "C" {
 	/*
 	 * 5Hz data updates in FASTQ mode
 	 */
-#define MAX_DATA        128
+#define MAX_DATA        240
 	//#define LOCAL_ECHO	1
 #define FASTQ			// MODBUS query speed, define for faster sampling rates
-#define TDELAY		1	// half-duplex delay
+#define TDELAY		5	// half-duplex delay
+#define TEDELAY		1	// half-duplex delay
 #define RDELAY		100	// receive timeout
 #define CDELAY		40	// fast query delay 100ms
 #define QDELAY		2	// slow query delay 1s
@@ -136,6 +137,7 @@ extern "C" {
 		uint32_t clock_2hz;
 		uint8_t clock_blinks;
 		uint8_t num_blinks;
+		uint8_t auto_rx;
 	} M_time_data;
 
 	typedef struct M_data { // ISR used, mainly for non-atomic mod problems
