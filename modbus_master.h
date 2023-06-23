@@ -54,7 +54,7 @@ extern "C" {
 	//#define LOCAL_ECHO	1
 #define FASTQ			// MODBUS query speed, define for faster sampling rates
 #define TDELAY		1	// half-duplex delay
-#define RDELAY		300	// receive timeout
+#define RDELAY		100	// receive timeout
 #define CDELAY		40	// fast query delay 100ms
 #define QDELAY		2	// slow query delay 1s
 #define TODELAY		4	// misc delay
@@ -69,6 +69,7 @@ extern "C" {
 #define Strmt		UART5_is_tx_done
 #define Serror		UART5_get_last_status
 #define Sread		UART5_Read
+#define Srbuffer	U5RXB
 
 	/*
 	 * serial communications states

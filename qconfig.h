@@ -65,7 +65,7 @@ const char spin[MAX_SHAPES][20] = {
 	"..ooOOoo" // ball bouncer
 };
 
-#define SPIN_VAL_UPDATE	15
+#define SPIN_VAL_UPDATE	5
 
 struct spi_link_type { // internal SPI state table
 	uint8_t SPI_LCD : 1;

@@ -133,7 +133,7 @@ void my_modbus_rx_32(void)
 	/*
 	 * process received controller data stream
 	 */
-	m_data = U5RXB; // receiver data buffer
+	m_data = Srbuffer; // receiver data buffer
 	cc_buffer[M.recv_count] = m_data;
 	if (++M.recv_count >= MAX_DATA) {
 		M.recv_count = 0; // reset buffer position
@@ -578,6 +578,9 @@ static bool serial_trmt(void)
 	return !(Strmt); // note, we invert the TRMT bit so it's true while transmitting
 }
 
+/*
+ * serial port testing routine
+ */
 void mb_tx_test(C_data * client)
 {
 	if (TimerDone(TMR_MBTEST)) {

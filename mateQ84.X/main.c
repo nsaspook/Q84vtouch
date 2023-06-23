@@ -151,8 +151,8 @@ void main(void)
 	TMR2_StartTimer();
 
 #ifdef MB_MASTER
-	init_mb_master_timers();
-	UART5_SetRxInterruptHandler(my_modbus_rx_32);
+	init_mb_master_timers(); // pacing, spacing and timeouts
+	UART5_SetRxInterruptHandler(my_modbus_rx_32); // install custom serial receive ISR
 	StartTimer(TMR_MBTEST, 20);
 #endif
 	StartTimer(TMR_SPIN, SPINNER_SPEED);
@@ -226,15 +226,15 @@ void main(void)
 				static float wva = 0.0f;
 
 				if (s_update++ >= SPIN_VAL_UPDATE) {
-					ac = ((float) em.vl1l2) / 10.0f;
-					wac = ((float) em.wl1) / 10.0f;
-					wva = ((float) em.val1) / 10.0f;
+					ac = lp_filter(((float) em.vl1l2) / 10.0f, F_ac, false);
+					wac = lp_filter(((float) em.wl1) / 10.0f, F_wac, false);
+					wva = lp_filter(((float) em.val1) / 10.0f, F_wva, false);
 					s_update = 0;
 				}
 				StartTimer(TMR_SPIN, SPINNER_SPEED);
 				snprintf(buffer, MAX_B_BUF, "EMon  %4.1fVAC   %c%c    ", lp_filter(ac, F_ac, false), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
 				eaDogM_WriteStringAtPos(1, 0, buffer);
-				snprintf(buffer, MAX_B_BUF, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, true), lp_filter(wva, F_wva, true), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
+				snprintf(buffer, MAX_B_BUF, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, false), lp_filter(wva, F_wva, false), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
 				eaDogM_WriteStringAtPos(0, 0, buffer);
 			}
 		}
