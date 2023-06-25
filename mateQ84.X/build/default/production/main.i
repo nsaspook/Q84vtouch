@@ -40089,6 +40089,7 @@ enum APP_TIMERS {
  TMR_MBMASTER,
  TMR_MBTEST,
  TMR_SPIN,
+ TMR_DERE,
 
 
 
@@ -40104,7 +40105,7 @@ void delay_ms(uint16_t);
 # 23 "./mxcmd.h" 2
 
 
- const char build_version[] = "V1.18 FM80 Q84";
+ const char build_version[] = "V1.19 FM80 Q84";
 # 35 "./mxcmd.h"
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
@@ -40405,7 +40406,7 @@ uint16_t volt_fract;
 uint16_t volt_whole, panel_watts, cc_mode;
 enum state_type state = state_init;
 char buffer[96], can_buffer[96];
-const char *build_date = "Jun 23 2023", *build_time = "16:26:52";
+const char *build_date = "Jun 24 2023", *build_time = "23:56:42";
 volatile uint16_t tickCount[TMR_COUNT];
 
 B_type B = {

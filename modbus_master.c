@@ -297,14 +297,16 @@ int8_t master_controller_work(C_data * client)
 			client->trace = T_send_d;
 			M.sends++;
 			M.rx = false;
+			if (serial_trmt()) { // check for serial UART transmit shift register and buffer empty
+				clear_500hz(); // clear timer until buffer empty
+			}
+			delay_ms(5);
+			DERE_SetLow(); // enable modbus receiver
 			DB0_SetHigh();
 		}
 		break;
 	case RECV:
 		client->trace = T_recv;
-//		if (serial_trmt()) { // check for serial UART transmit shift register and buffer empty
-//			clear_500hz(); // clear timer until buffer empty
-//		}
 		if (get_500hz(false) >= TEDELAY) { // state machine execute timer test
 			uint16_t c_crc, c_crc_rec;
 
