@@ -181,7 +181,7 @@ extern "C" {
 		F_ac = 0,
 		F_wac = 1,
 		F_wva = 2,
-		F_3 = 3,
+		F_var = 3,
 		F_4 = 4,
 		F_5 = 5,
 		F_6 = 6,

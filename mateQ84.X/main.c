@@ -49,6 +49,7 @@
 #include "../timers.h"
 #include "../modbus_master.h"
 #include "../canfd.h"
+#include "../batmon.h"
 
 #define PACE	31000	// commands delay in count units
 #define CMD_LEN	8
@@ -69,7 +70,7 @@ enum state_type {
 
 uint16_t abuf[FM_BUFFER];
 uint16_t volt_fract;
-uint16_t volt_whole, panel_watts, cc_mode;
+uint16_t volt_whole, bat_amp_whole, panel_watts, cc_mode, vf, vw;
 enum state_type state = state_init;
 char buffer[MAX_B_BUF], can_buffer[MAX_B_BUF];
 const char *build_date = __DATE__, *build_time = __TIME__;
@@ -164,8 +165,12 @@ void main(void)
 	eaDogM_WriteStringAtPos(0, 0, buffer);
 	snprintf(buffer, MAX_B_BUF, "%s   ", build_date);
 	eaDogM_WriteStringAtPos(1, 0, buffer);
-	/* display build time and boot status codes 67 34 07, WDT reset 67 24 07 */
-	snprintf(buffer, MAX_B_BUF, "%s B:%X %X %X   ", build_time, STATUS, PCON0, PCON1);
+	if (initbm_data((void*) &EBD)) {
+		snprintf(buffer, MAX_B_BUF, "Battery data loaded   ");
+	} else {
+		/* display build time and boot status codes 67 34 07, WDT reset 67 24 07 */
+		snprintf(buffer, MAX_B_BUF, "%s B:%X %X %X   ", build_time, STATUS, PCON0, PCON1);
+	}
 	eaDogM_WriteStringAtPos(2, 0, buffer);
 	snprintf(buffer, MAX_B_BUF, "%s ", "Start Up            ");
 	eaDogM_WriteStringAtPos(3, 0, buffer);
@@ -249,7 +254,8 @@ void main(void)
 						e_update = 0;
 					}
 				} else {
-					snprintf(buffer, MAX_B_BUF, "EMon  %4.1fVAC   %c%c    ", lp_filter(ac, F_ac, false), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
+//					snprintf(buffer, MAX_B_BUF, "EMon  %4.1fVAC   %c%c    ", lp_filter(ac, F_ac, false), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
+					snprintf(buffer, MAX_B_BUF, "EMon  %6.1fWH   %c%c    ", EBD.bat_energy/360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
 					eaDogM_WriteStringAtPos(1, 0, buffer);
 					snprintf(buffer, MAX_B_BUF, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, false), lp_filter(wva, F_wva, false), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
 					eaDogM_WriteStringAtPos(0, 0, buffer);
@@ -358,8 +364,6 @@ void state_watts_cb(void)
 
 void state_mx_status_cb(void)
 {
-	uint16_t vf, vw;
-
 	volt_f((abuf[11] + (abuf[10] << 8)));
 	vw = volt_whole;
 	vf = volt_fract;
@@ -382,9 +386,22 @@ void state_mx_status_cb(void)
 			snprintf(can_buffer, MAX_B_BUF, "^^^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%.1f,%.1f,%.1f,%4.1f,%d\r\n", abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, B.rx_count);
 			snprintf(buffer, MAX_B_BUF, "%d Watts %d.%01d Volts   ", panel_watts, volt_whole, volt_fract);
 			eaDogM_WriteStringAtPos(2, 0, buffer);
-			snprintf(buffer, MAX_B_BUF, "%d.%01d Amps %d.%01d Volts   ", abuf[3] - 128, abuf[1]&0x0f, vw, vf);
+			bat_amp_whole = abuf[3] - 128;
+			snprintf(buffer, MAX_B_BUF, "%d.%01d Amps %d.%01d Volts   ", bat_amp_whole, abuf[1]&0x0f, vw, vf);
 			eaDogM_WriteStringAtPos(3, 0, buffer);
 			can_fd_tx(); // send the logging packet via CANBUS
+			get_bm_data(&EBD);
+			compute_bm_data(&EBD);
+			if (!EBD.loaded) // save a copy to EEPROM if it wasn't loaded at boot
+			{
+				EBD.loaded = true;
+				wr_bm_data((void*) &EBD);
+			}
+			if (EBD_update++ > BM_UPDATE) {
+				EBD.loaded = true;
+				wr_bm_data((void*) &EBD);
+				EBD_update = 0;
+			}
 		}
 	}
 	state = state_misc;

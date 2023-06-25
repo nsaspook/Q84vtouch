@@ -289,7 +289,7 @@ int8_t master_controller_work(C_data * client)
 	case SEND:
 		client->trace = T_send;
 		if (get_500hz(false) >= TDELAY) {
-			for (int8_t i = 0; i < client->req_length; i++) {
+			for (uint8_t i = 0; i < client->req_length; i++) {
 				Swrite(cc_buffer_tx[i]);
 			}
 			client->cstate = RECV;

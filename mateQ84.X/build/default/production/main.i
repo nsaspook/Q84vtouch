@@ -40047,6 +40047,7 @@ struct spi_link_type {
  volatile int32_t int_count;
 };
 
+extern uint16_t panel_watts, volt_whole, bat_amp_whole, cc_mode, vw;
 extern char spinners(uint8_t, const uint8_t);
 # 27 "./../eadog.h" 2
 
@@ -40279,7 +40280,7 @@ void delay_ms(uint16_t);
   F_ac = 0,
   F_wac = 1,
   F_wva = 2,
-  F_3 = 3,
+  F_var = 3,
   F_4 = 4,
   F_5 = 5,
   F_6 = 6,
@@ -40383,6 +40384,32 @@ void delay_ms(uint16_t);
  void can_fd_tx(void);
 # 51 "main.c" 2
 
+# 1 "./../batmon.h" 1
+# 25 "./../batmon.h"
+ typedef struct EB_data {
+  uint8_t checkmark;
+  uint8_t version;
+  _Bool loaded;
+  float FMw, FMpv, FMa, FMbv, ENw, ENva, ENvar, ENac;
+  float volt_whole, bat_amp_whole;
+  float bat_energy;
+  uint16_t cc_mode, bat_cycles, bat_mode;
+  uint32_t bat_time;
+  uint16_t crc;
+ } EB_data;
+
+ extern EB_data EBD, EBD_ptr;
+ extern uint16_t EBD_update;
+
+ _Bool initbm_data(uint8_t *);
+ void wr_bm_data(uint8_t *);
+ void get_bm_data(EB_data *);
+ void compute_bm_data(EB_data *);
+
+ void DATAEE_WriteByte(uint16_t, uint8_t);
+ uint8_t DATAEE_ReadByte(uint16_t);
+# 52 "main.c" 2
+
 
 
 
@@ -40403,10 +40430,10 @@ enum state_type {
 
 uint16_t abuf[32];
 uint16_t volt_fract;
-uint16_t volt_whole, panel_watts, cc_mode;
+uint16_t volt_whole, bat_amp_whole, panel_watts, cc_mode, vf, vw;
 enum state_type state = state_init;
 char buffer[96], can_buffer[96];
-const char *build_date = "Jun 24 2023", *build_time = "23:56:42";
+const char *build_date = "Jun 25 2023", *build_time = "14:41:12";
 volatile uint16_t tickCount[TMR_COUNT];
 
 B_type B = {
@@ -40498,8 +40525,12 @@ void main(void)
  eaDogM_WriteStringAtPos(0, 0, buffer);
  snprintf(buffer, 96, "%s   ", build_date);
  eaDogM_WriteStringAtPos(1, 0, buffer);
+ if (initbm_data((void*) &EBD)) {
+  snprintf(buffer, 96, "Battery data loaded   ");
+ } else {
 
- snprintf(buffer, 96, "%s B:%X %X %X   ", build_time, STATUS, PCON0, PCON1);
+  snprintf(buffer, 96, "%s B:%X %X %X   ", build_time, STATUS, PCON0, PCON1);
+ }
  eaDogM_WriteStringAtPos(2, 0, buffer);
  snprintf(buffer, 96, "%s ", "Start Up            ");
  eaDogM_WriteStringAtPos(3, 0, buffer);
@@ -40583,7 +40614,8 @@ void main(void)
       e_update = 0;
      }
     } else {
-     snprintf(buffer, 96, "EMon  %4.1fVAC   %c%c    ", lp_filter(ac, F_ac, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
+
+     snprintf(buffer, 96, "EMon  %6.1fWH   %c%c    ", EBD.bat_energy/360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
      eaDogM_WriteStringAtPos(1, 0, buffer);
      snprintf(buffer, 96, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
      eaDogM_WriteStringAtPos(0, 0, buffer);
@@ -40692,8 +40724,6 @@ void state_watts_cb(void)
 
 void state_mx_status_cb(void)
 {
- uint16_t vf, vw;
-
  volt_f((abuf[11] + (abuf[10] << 8)));
  vw = volt_whole;
  vf = volt_fract;
@@ -40716,9 +40746,22 @@ void state_mx_status_cb(void)
    snprintf(can_buffer, 96, "^^^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%.1f,%.1f,%.1f,%4.1f,%d\r\n", abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, B.rx_count);
    snprintf(buffer, 96, "%d Watts %d.%01d Volts   ", panel_watts, volt_whole, volt_fract);
    eaDogM_WriteStringAtPos(2, 0, buffer);
-   snprintf(buffer, 96, "%d.%01d Amps %d.%01d Volts   ", abuf[3] - 128, abuf[1]&0x0f, vw, vf);
+   bat_amp_whole = abuf[3] - 128;
+   snprintf(buffer, 96, "%d.%01d Amps %d.%01d Volts   ", bat_amp_whole, abuf[1]&0x0f, vw, vf);
    eaDogM_WriteStringAtPos(3, 0, buffer);
    can_fd_tx();
+   get_bm_data(&EBD);
+   compute_bm_data(&EBD);
+   if (!EBD.loaded)
+   {
+    EBD.loaded = 1;
+    wr_bm_data((void*) &EBD);
+   }
+   if (EBD_update++ > 3600) {
+    EBD.loaded = 1;
+    wr_bm_data((void*) &EBD);
+    EBD_update = 0;
+   }
   }
  }
  state = state_misc;
