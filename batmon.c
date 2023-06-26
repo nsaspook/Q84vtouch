@@ -14,6 +14,9 @@ EBD_ptr;
 
 uint16_t EBD_update = 0; // EEPROM write counter for BM_UPDATE
 
+/*
+ * load EEPROM data to energy if correctly formatted
+ */
 bool initbm_data(uint8_t * EB)
 {
 	if (DATAEE_ReadByte(0) != BM_CM) {
@@ -28,6 +31,9 @@ bool initbm_data(uint8_t * EB)
 	return true;
 }
 
+/*
+ * write energy array to EEPROM
+ */
 void wr_bm_data(uint8_t * EB)
 {
 	EB[0] = BM_CM;
@@ -40,6 +46,9 @@ void wr_bm_data(uint8_t * EB)
 	}
 }
 
+/*
+ * update energy values
+ */
 void get_bm_data(EB_data * EB)
 {
 	EB->ENac = (float) em.vl1l2 / 10.0f;
@@ -55,7 +64,15 @@ void get_bm_data(EB_data * EB)
 
 void compute_bm_data(EB_data * EB)
 {
-	EB->bat_energy = EB->bat_energy + (EB->FMw - EB->ENva);
+	float net_energy;
+
+	net_energy = EB->bat_energy + ((EB->FMw * INV_EFF_VAL) - EB->ENva); // inverter power conversion correction
+	if (net_energy > 0.001f) { // energy going to the battery
+		net_energy = net_energy*BAT_EFF_VAL;
+	} else {
+		// energy going to the inverter
+	}
+	EB->bat_energy = net_energy;
 	if (EB->bat_energy > BAT_ENERGY) {
 		EB->bat_energy = BAT_ENERGY;
 	}

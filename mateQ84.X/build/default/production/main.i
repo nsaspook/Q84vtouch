@@ -40385,7 +40385,7 @@ void delay_ms(uint16_t);
 # 51 "main.c" 2
 
 # 1 "./../batmon.h" 1
-# 31 "./../batmon.h"
+# 35 "./../batmon.h"
  typedef struct EB_data {
   uint8_t checkmark;
   uint8_t version;
@@ -40433,7 +40433,7 @@ uint16_t volt_fract;
 uint16_t volt_whole, bat_amp_whole, panel_watts, cc_mode, vf, vw;
 enum state_type state = state_init;
 char buffer[96], can_buffer[96];
-const char *build_date = "Jun 25 2023", *build_time = "20:24:02";
+const char *build_date = "Jun 26 2023", *build_time = "15:02:03";
 volatile uint16_t tickCount[TMR_COUNT];
 
 B_type B = {
