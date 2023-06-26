@@ -18,7 +18,13 @@ extern "C" {
 
 #define BM_CM	0x57
 #define BM_VER	1
-#define BAT_ENERGY	24.0*25.0*360 // nominal battery voltage and AH rating for 10 second updates
+#define BAT_ENERGY	25.6f*200.0f*360.0f // nominal battery voltage and AH rating for 10 second updates
+
+#define BAT_OVER_VOLT	30.0f
+#define BAT_OVER_RECON	28.4f
+#define BAT_UNDER_VOLT	23.2f
+#define BAT_LOW_DISC	21.6f
+#define BAT_LOW_RECON	24.8f
 	
 #define BM_UPDATE	3600	// seconds between EEPROM updates
 

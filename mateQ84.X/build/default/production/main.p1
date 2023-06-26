@@ -78,15 +78,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 "61 ./../eadog.h
 [; ;./../eadog.h: 61:  void eaDogM_WriteStringAtPos(uint8_t, uint8_t, char *);
 [v _eaDogM_WriteStringAtPos `(v ~T0 @X0 0 ef3`uc`uc`*uc ]
-"40 ./../batmon.h
-[; ;./../batmon.h: 40:  _Bool initbm_data(uint8_t *);
+"46 ./../batmon.h
+[; ;./../batmon.h: 46:  _Bool initbm_data(uint8_t *);
 [v _initbm_data `(a ~T0 @X0 0 ef1`*uc ]
-"25
-[; ;./../batmon.h: 25:  typedef struct EB_data {
+"31
+[; ;./../batmon.h: 31:  typedef struct EB_data {
 [s S3251 `uc 1 `uc 1 `a 1 `f 1 `f 1 `f 1 `f 1 `f 1 `f 1 `f 1 `f 1 `f 1 `f 1 `f 1 `us 1 `us 1 `us 1 `ul 1 `us 1 ]
 [n S3251 EB_data checkmark version loaded FMw FMpv FMa FMbv ENw ENva ENvar ENac volt_whole bat_amp_whole bat_energy cc_mode bat_cycles bat_mode bat_time crc ]
-"37
-[; ;./../batmon.h: 37:  extern EB_data EBD, EBD_ptr;
+"43
+[; ;./../batmon.h: 43:  extern EB_data EBD, EBD_ptr;
 [v _EBD `S3251 ~T0 @X0 0 e ]
 "3603 /root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.18.389/xc8/pic/include/proc/pic18f47q84.h
 [v _STATUS `Vuc ~T0 @X0 0 e@1240 ]
@@ -204,17 +204,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 "19 ./../canfd.h
 [; ;./../canfd.h: 19:  void can_fd_tx(void);
 [v _can_fd_tx `(v ~T0 @X0 0 ef ]
-"42 ./../batmon.h
-[; ;./../batmon.h: 42:  void get_bm_data(EB_data *);
+"48 ./../batmon.h
+[; ;./../batmon.h: 48:  void get_bm_data(EB_data *);
 [v _get_bm_data `(v ~T0 @X0 0 ef1`*S3251 ]
-"43
-[; ;./../batmon.h: 43:  void compute_bm_data(EB_data *);
+"49
+[; ;./../batmon.h: 49:  void compute_bm_data(EB_data *);
 [v _compute_bm_data `(v ~T0 @X0 0 ef1`*S3251 ]
-"41
-[; ;./../batmon.h: 41:  void wr_bm_data(uint8_t *);
+"47
+[; ;./../batmon.h: 47:  void wr_bm_data(uint8_t *);
 [v _wr_bm_data `(v ~T0 @X0 0 ef1`*uc ]
-"38
-[; ;./../batmon.h: 38:  extern uint16_t EBD_update;
+"44
+[; ;./../batmon.h: 44:  extern uint16_t EBD_update;
 [v _EBD_update `us ~T0 @X0 0 e ]
 "54 /opt/microchip/xc8/v2.41/pic/include/c99/string.h
 [; ;/opt/microchip/xc8/v2.41/pic/include/c99/string.h: 54: size_t strlen (const char *);
@@ -4701,7 +4701,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _buffer `uc ~T0 @X0 -> 96 `i e ]
 [v _can_buffer `uc ~T0 @X0 -> 96 `i e ]
 "76
-[; ;main.c: 76: const char *build_date = "Jun 25 2023", *build_time = "14:41:12";
+[; ;main.c: 76: const char *build_date = "Jun 25 2023", *build_time = "20:24:02";
 [v _build_date `*Cuc ~T0 @X0 1 e ]
 [i _build_date
 :s 1C
@@ -5135,7 +5135,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 3276 ]
 {
 "258
-[; ;main.c: 258:      snprintf(buffer, 96, "EMon  %6.1fWH   %c%c    ", EBD.bat_energy/360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
+[; ;main.c: 258:      snprintf(buffer, 96, "EMon  %6.1fWh   %c%c    ", EBD.bat_energy/360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
 [e ( _snprintf (2 , , , (. , , &U _buffer -> -> 96 `i `ui :s 15C -> / . _EBD 13 -> .360.0 `f `d -> ( _spinners (2 , -> - -> -> -> 5 `i `uc `i -> -> _cc_mode `uc `i `uc -> -> 0 `i `uc `i -> ( _spinners (2 , -> - -> -> -> 5 `i `uc `i -> -> _cc_mode `uc `i `uc -> -> 0 `i `uc `i ]
 "259
 [; ;main.c: 259:      eaDogM_WriteStringAtPos(1, 0, buffer);
@@ -5662,7 +5662,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [p f _printf 12689540 ]
 [p f _snprintf 11379860 ]
 [a 1C 74 117 110 32 50 53 32 50 48 50 51 0 ]
-[a 2C 49 52 58 52 49 58 49 51 0 ]
+[a 2C 50 48 58 50 52 58 48 50 0 ]
 [a 3C 37 115 32 0 ]
 [a 9C 37 115 32 0 ]
 [a 11C 37 115 32 0 ]
@@ -5674,7 +5674,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [a 7C 66 97 116 116 101 114 121 32 100 97 116 97 32 108 111 97 100 101 100 32 32 32 0 ]
 [a 16C 37 54 46 49 102 87 32 37 54 46 49 102 86 65 32 37 99 37 99 37 99 32 32 32 0 ]
 [a 8C 37 115 32 66 58 37 88 32 37 88 32 37 88 32 32 32 0 ]
-[a 15C 69 77 111 110 32 32 37 54 46 49 102 87 72 32 32 32 37 99 37 99 32 32 32 32 0 ]
+[a 15C 69 77 111 110 32 32 37 54 46 49 102 87 104 32 32 32 37 99 37 99 32 32 32 32 0 ]
 [a 13C 69 77 111 110 32 32 37 52 46 49 102 86 65 67 32 32 32 37 99 37 99 32 32 32 32 0 ]
 [a 18C 70 111 117 110 100 32 77 88 56 48 32 111 110 108 105 110 101 32 32 32 32 32 32 0 ]
 [a 12C 80 111 108 108 105 110 103 32 77 88 56 48 32 32 32 32 32 32 32 32 0 ]

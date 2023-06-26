@@ -42,10 +42,10 @@ void wr_bm_data(uint8_t * EB)
 
 void get_bm_data(EB_data * EB)
 {
-	EB->ENac = lp_filter(((float) em.vl1l2) / 10.0f, F_ac, false);
-	EB->ENva = lp_filter(((float) em.val1) / 10.0f, F_wva, false);
-	EB->ENw = lp_filter(((float) em.wl1) / 10.0f, F_wac, false);
-	EB->ENvar = lp_filter(((float) em.varl1) / 10.0f, F_var, false);
+	EB->ENac = (float) em.vl1l2 / 10.0f;
+	EB->ENva = (float) em.val1 / 10.0f;
+	EB->ENw = (float) em.wl1 / 10.0f;
+	EB->ENvar = (float) em.varl1 / 10.0f;
 	EB->FMw = (float) panel_watts;
 	EB->FMpv = (float) volt_whole;
 	EB->cc_mode = cc_mode;
