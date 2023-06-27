@@ -40433,7 +40433,7 @@ uint16_t volt_fract;
 uint16_t volt_whole, bat_amp_whole, panel_watts, cc_mode, vf, vw;
 enum state_type state = state_init;
 char buffer[96], can_buffer[96];
-const char *build_date = "Jun 27 2023", *build_time = "11:40:44";
+const char *build_date = "Jun 27 2023", *build_time = "16:06:09";
 volatile uint16_t tickCount[TMR_COUNT];
 
 B_type B = {

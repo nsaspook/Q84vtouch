@@ -339,7 +339,8 @@ int8_t master_controller_work(C_data * client)
 						client->mcmd = G_ID; // what do we run next
 						M.to_error++;
 						M.error++;
-						MM_ERROR_S;
+						if (client->data_ok)
+							MM_ERROR_S;
 					}
 				}
 #endif
@@ -366,7 +367,8 @@ int8_t master_controller_work(C_data * client)
 						client->mcmd = G_ID;
 						M.to_error++;
 						M.error++;
-						MM_ERROR_S;
+						if (client->data_ok)
+							MM_ERROR_S;
 					}
 				}
 #endif
@@ -405,7 +407,8 @@ int8_t master_controller_work(C_data * client)
 						MM_ERROR_C;
 						client->data_ok = false;
 						log_crc_error(c_crc, c_crc_rec);
-						MM_ERROR_S;
+						if (client->data_ok)
+							MM_ERROR_S;
 					}
 					client->cstate = CLEAR;
 				} else {
@@ -416,7 +419,8 @@ int8_t master_controller_work(C_data * client)
 						client->mcmd = G_ID;
 						M.to_error++;
 						M.error++;
-						MM_ERROR_S;
+						if (client->data_ok)
+							MM_ERROR_S;
 					}
 				}
 #endif
@@ -438,7 +442,8 @@ int8_t master_controller_work(C_data * client)
 						client->passwd_ok = false;
 						client->data_ok = false;
 						log_crc_error(c_crc, c_crc_rec);
-						MM_ERROR_S;
+						if (client->data_ok)
+							MM_ERROR_S;
 					}
 					client->cstate = CLEAR;
 				} else {
@@ -453,7 +458,8 @@ int8_t master_controller_work(C_data * client)
 						client->config_ok = false;
 						client->passwd_ok = false;
 						client->data_ok = false;
-						MM_ERROR_S;
+						if (client->data_ok)
+							MM_ERROR_S;
 					}
 				}
 #endif
