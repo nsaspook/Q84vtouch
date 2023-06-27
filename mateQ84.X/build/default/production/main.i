@@ -40106,7 +40106,7 @@ void delay_ms(uint16_t);
 # 23 "./mxcmd.h" 2
 
 
- const char build_version[] = "V1.19 FM80 Q84";
+ const char build_version[] = "V1.21 FM80 Q84";
 # 35 "./mxcmd.h"
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
@@ -40433,7 +40433,7 @@ uint16_t volt_fract;
 uint16_t volt_whole, bat_amp_whole, panel_watts, cc_mode, vf, vw;
 enum state_type state = state_init;
 char buffer[96], can_buffer[96];
-const char *build_date = "Jun 26 2023", *build_time = "15:02:03";
+const char *build_date = "Jun 26 2023", *build_time = "19:10:04";
 volatile uint16_t tickCount[TMR_COUNT];
 
 B_type B = {

@@ -26,8 +26,8 @@ extern "C" {
 #define BAT_LOW_DISC	21.6f
 #define BAT_LOW_RECON	24.8f
 	
-#define INV_EFF_VAL	1.1f  // DC watts to AC watt correction
-#define BAT_EFF_VAL	0.98f //  energy efficiency
+#define INV_EFF_VAL	1.0f  // DC watts to AC watt correction
+#define BAT_EFF_VAL	1.0f //  energy efficiency
 
 	
 #define BM_UPDATE	3600	// seconds between EEPROM updates
