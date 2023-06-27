@@ -68,13 +68,18 @@ void compute_bm_data(EB_data * EB)
 
 	net_energy = EB->bat_energy + (((EB->FMw * INV_EFF_VAL) - EB->ENva)); // inverter power conversion correction
 	if (net_energy > 0.001f) { // energy going to the battery
-		net_energy = net_energy*BAT_EFF_VAL;
 	} else {
-		// energy going to the inverter
+		net_energy = EB->bat_energy + (((EB->FMw * BAT_EFF_VAL) - EB->ENva)); // battery power conversion correction
 	}
+	/*
+	 * set battery energy limits
+	 */
 	EB->bat_energy = net_energy;
 	if (EB->bat_energy > BAT_ENERGY) {
 		EB->bat_energy = BAT_ENERGY;
+	}
+	if (EB->bat_energy <= 0.0f) {
+		EB->bat_energy = 0.0001f;
 	}
 }
 
