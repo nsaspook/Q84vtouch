@@ -68,6 +68,9 @@ void compute_bm_data(EB_data * EB)
 
 	net_energy = EB->bat_energy + (((EB->FMw * INV_EFF_VAL) - EB->ENva)); // inverter power conversion correction
 	if (net_energy > 0.001f) { // energy going to the battery
+		if (cc_mode == STATUS_SLEEPING) {
+			net_energy = EB->bat_energy; // ignore adding small panel energy when sleeping
+		}
 	} else {
 		net_energy = EB->bat_energy + ((EB->FMw - (EB->ENva * BAT_EFF_VAL))); // battery power conversion correction
 	}
