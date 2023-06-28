@@ -31,7 +31,8 @@ extern "C" {
 #define BAT_EFF_VAL	1.01f //  energy efficiency
 
 
-#define BM_UPDATE	3600	// seconds between EEPROM updates
+#define BM_UPDATE	3600	// seconds between EEPROM updates, sleeping
+#define BM_UPDATE_RUN	1800	// while running
 
 	typedef struct EB_data {
 		uint8_t checkmark;

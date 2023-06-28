@@ -379,6 +379,7 @@ void state_mx_status_cb(void)
 	if (B.ten_sec_flag) {
 		B.ten_sec_flag = false;
 		if (B.mx80_online) {
+			MM_ERROR_C;
 			/*
 			 * log CSV values to the serial port for data storage and processing
 			 */
@@ -398,11 +399,13 @@ void state_mx_status_cb(void)
 			{
 				EBD.loaded = true;
 				wr_bm_data((void*) &EBD);
+				MM_ERROR_S;
 			}
-			if (EBD_update++ > BM_UPDATE) {
+			if ((EBD_update++ >= BM_UPDATE) || ((EBD_update >= BM_UPDATE_RUN) && (cc_mode != STATUS_SLEEPING))) {
 				EBD.loaded = true;
 				wr_bm_data((void*) &EBD);
 				EBD_update = 0;
+				MM_ERROR_S;
 			}
 		}
 	}
