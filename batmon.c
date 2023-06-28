@@ -77,7 +77,7 @@ void compute_bm_data(EB_data * EB)
 	/*
 	 * set battery energy limits
 	 */
-	EB->bat_energy = net_energy;
+	EB->bat_energy = net_energy-IDLE_DRAIN;
 	if (EB->bat_energy > BAT_ENERGY) {
 		EB->bat_energy = BAT_ENERGY;
 	}
