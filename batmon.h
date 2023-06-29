@@ -28,7 +28,7 @@ extern "C" {
 #define IDLE_DRAIN	10.0f	// system operatonal losses in watts
 
 #define INV_EFF_VAL	1.08f  // DC watts to AC watt correction
-#define BAT_EFF_VAL	1.01f //  energy efficiency
+#define BAT_EFF_VAL	1.02f //  energy efficiency
 
 
 #define BM_UPDATE	3600	// seconds between EEPROM updates, sleeping

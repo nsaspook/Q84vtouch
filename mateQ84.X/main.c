@@ -70,7 +70,7 @@ enum state_type {
 
 uint16_t abuf[FM_BUFFER];
 uint16_t volt_fract;
-uint16_t volt_whole, bat_amp_whole, panel_watts, cc_mode, vf, vw;
+uint16_t volt_whole, bat_amp_whole, panel_watts, cc_mode = STATUS_LAST, vf, vw;
 enum state_type state = state_init;
 char buffer[MAX_B_BUF], can_buffer[MAX_B_BUF];
 const char *build_date = __DATE__, *build_time = __TIME__;
@@ -242,7 +242,7 @@ void main(void)
 					s_update = 0;
 				}
 				StartTimer(TMR_SPIN, SPINNER_SPEED);
-				if (M.error > error_save) {
+				if (C.data_ok && M.error > error_save) {
 					snprintf(buffer, MAX_B_BUF, "EMon  %4.1fVAC   %c%c    ", lp_filter(ac, F_ac, false), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
 					eaDogM_WriteStringAtPos(1, 0, buffer);
 					if (e_update == 0) {
@@ -290,10 +290,20 @@ void send_mx_cmd(const uint16_t * cmd)
  */
 void rec_mx_cmd(void (* DataHandler)(void), uint8_t rec_len)
 {
+	static uint16_t online_count = 0;
+
 	if (FM_rx_ready()) {
 		if (FM_rx_count() >= rec_len) {
+			online_count = 0;
 			FM_rx(abuf);
 			DataHandler(); // execute callback
+		} else {
+			if (online_count++ > ONLINE_TIMEOUT) {
+				online_count = 0;
+				B.mx80_online = false;
+				cc_mode = STATUS_LAST;
+				state = state_init;
+			}
 		}
 	}
 }
@@ -310,6 +320,7 @@ void state_init_cb(void)
 		snprintf(buffer, MAX_B_BUF, "MX80 Not Found online  ");
 		eaDogM_WriteStringAtPos(3, 0, buffer);
 		B.mx80_online = false;
+		cc_mode = STATUS_LAST;
 	}
 	state = state_status;
 }
@@ -421,6 +432,7 @@ void state_misc_cb(void)
 		B.mx80_online = true;
 	} else {
 		B.mx80_online = false;
+		cc_mode = STATUS_LAST;
 		state = state_init;
 		return;
 	}

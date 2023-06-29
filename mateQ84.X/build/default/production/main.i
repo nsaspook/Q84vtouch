@@ -40125,7 +40125,7 @@ void delay_ms(uint16_t);
 
 
  const char build_version[] = "V1.22 FM80 Q84";
-# 35 "./mxcmd.h"
+# 36 "./mxcmd.h"
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
  const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};
@@ -40150,7 +40150,7 @@ void delay_ms(uint16_t);
   "Bulk",
   "Absorb",
   "Equalize",
-  "Last",
+  " Last",
  };
 
  const char canbus_name [][12] = {
@@ -40448,10 +40448,10 @@ enum state_type {
 
 uint16_t abuf[32];
 uint16_t volt_fract;
-uint16_t volt_whole, bat_amp_whole, panel_watts, cc_mode, vf, vw;
+uint16_t volt_whole, bat_amp_whole, panel_watts, cc_mode = STATUS_LAST, vf, vw;
 enum state_type state = state_init;
 char buffer[96], can_buffer[96];
-const char *build_date = "Jun 28 2023", *build_time = "16:09:16";
+const char *build_date = "Jun 28 2023", *build_time = "20:48:16";
 volatile uint16_t tickCount[TMR_COUNT];
 
 B_type B = {
@@ -40620,7 +40620,7 @@ void main(void)
      s_update = 0;
     }
     StartTimer(TMR_SPIN, 200);
-    if (M.error > error_save) {
+    if (C.data_ok && M.error > error_save) {
      snprintf(buffer, 96, "EMon  %4.1fVAC   %c%c    ", lp_filter(ac, F_ac, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
      eaDogM_WriteStringAtPos(1, 0, buffer);
      if (e_update == 0) {
@@ -40668,10 +40668,20 @@ void send_mx_cmd(const uint16_t * cmd)
 
 void rec_mx_cmd(void (* DataHandler)(void), uint8_t rec_len)
 {
+ static uint16_t online_count = 0;
+
  if (FM_rx_ready()) {
   if (FM_rx_count() >= rec_len) {
+   online_count = 0;
    FM_rx(abuf);
    DataHandler();
+  } else {
+   if (online_count++ > 20000) {
+    online_count = 0;
+    B.mx80_online = 0;
+    cc_mode = STATUS_LAST;
+    state = state_init;
+   }
   }
  }
 }
@@ -40688,6 +40698,7 @@ void state_init_cb(void)
   snprintf(buffer, 96, "MX80 Not Found online  ");
   eaDogM_WriteStringAtPos(3, 0, buffer);
   B.mx80_online = 0;
+  cc_mode = STATUS_LAST;
  }
  state = state_status;
 }
@@ -40799,6 +40810,7 @@ void state_misc_cb(void)
   B.mx80_online = 1;
  } else {
   B.mx80_online = 0;
+  cc_mode = STATUS_LAST;
   state = state_init;
   return;
  }

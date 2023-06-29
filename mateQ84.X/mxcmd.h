@@ -31,6 +31,7 @@ extern "C" {
 #define BUFFER_SPACING	2
 #define SPINNER_SPEED	200
 #define LP_BUFFER_SIZE	9
+#define ONLINE_TIMEOUT	20000
 
 	const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
 	const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
@@ -56,7 +57,7 @@ extern "C" {
 		"Bulk",
 		"Absorb",
 		"Equalize",
-		"Last",
+		" Last",
 	};
 
 	const char canbus_name [][12] = {

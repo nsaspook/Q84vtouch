@@ -66,18 +66,14 @@ void compute_bm_data(EB_data * EB)
 {
 	float net_energy;
 
-	net_energy = EB->bat_energy + (((EB->FMw * INV_EFF_VAL) - EB->ENva)); // inverter power conversion correction
-	if (net_energy > 0.001f) { // energy going to the battery
-		if (cc_mode == STATUS_SLEEPING) {
-			net_energy = EB->bat_energy; // ignore adding small panel energy when sleeping
-		}
-	} else {
-		net_energy = EB->bat_energy + ((EB->FMw - (EB->ENva * BAT_EFF_VAL))); // battery power conversion correction
+	net_energy = EB->bat_energy + (((EB->FMw * INV_EFF_VAL) - (EB->ENva * BAT_EFF_VAL))); // inverter/battery power conversion correction
+	if (cc_mode == STATUS_SLEEPING) {
+		net_energy = EB->bat_energy - (EB->ENva * BAT_EFF_VAL); // ignore adding small panel energy when sleeping
 	}
 	/*
 	 * set battery energy limits
 	 */
-	EB->bat_energy = net_energy-IDLE_DRAIN;
+	EB->bat_energy = net_energy - IDLE_DRAIN;
 	if (EB->bat_energy > BAT_ENERGY) {
 		EB->bat_energy = BAT_ENERGY;
 	}
