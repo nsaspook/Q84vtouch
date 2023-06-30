@@ -40,6 +40,10 @@ void wr_bm_data(uint8_t * EB)
 	EBD.crc = 0;
 	EBD.crc = crc16(EB, sizeof(EBD) - 2); // exclude crc bytes
 	EBD.bat_time = ++EBD.bat_time;
+	
+	if ((EBD.bat_time) % BAT_CYCLES == 0) {
+		EBD.bat_cycles++;
+	}
 
 	for (uint16_t i = 0; i < sizeof(EBD); i++) {
 		DATAEE_WriteByte(i, EB[i]);

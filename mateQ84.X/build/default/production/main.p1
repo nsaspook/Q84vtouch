@@ -81,15 +81,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 "61 ./../eadog.h
 [; ;./../eadog.h: 61:  void eaDogM_WriteStringAtPos(uint8_t, uint8_t, char *);
 [v _eaDogM_WriteStringAtPos `(v ~T0 @X0 0 ef3`uc`uc`*uc ]
-"52 ./../batmon.h
-[; ;./../batmon.h: 52:  _Bool initbm_data(uint8_t *);
+"53 ./../batmon.h
+[; ;./../batmon.h: 53:  _Bool initbm_data(uint8_t *);
 [v _initbm_data `(a ~T0 @X0 0 ef1`*uc ]
-"37
-[; ;./../batmon.h: 37:  typedef struct EB_data {
+"38
+[; ;./../batmon.h: 38:  typedef struct EB_data {
 [s S3252 `uc 1 `uc 1 `a 1 `f 1 `f 1 `f 1 `f 1 `f 1 `f 1 `f 1 `f 1 `f 1 `f 1 `f 1 `us 1 `us 1 `us 1 `ul 1 `us 1 ]
 [n S3252 EB_data checkmark version loaded FMw FMpv FMa FMbv ENw ENva ENvar ENac volt_whole bat_amp_whole bat_energy cc_mode bat_cycles bat_mode bat_time crc ]
-"49
-[; ;./../batmon.h: 49:  extern EB_data EBD, EBD_ptr;
+"50
+[; ;./../batmon.h: 50:  extern EB_data EBD, EBD_ptr;
 [v _EBD `S3252 ~T0 @X0 0 e ]
 "3629 /root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.19.401/xc8/pic/include/proc/pic18f47q84.h
 [v _STATUS `Vuc ~T0 @X0 0 e@1240 ]
@@ -211,17 +211,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 "19 ./../canfd.h
 [; ;./../canfd.h: 19:  void can_fd_tx(void);
 [v _can_fd_tx `(v ~T0 @X0 0 ef ]
-"54 ./../batmon.h
-[; ;./../batmon.h: 54:  void get_bm_data(EB_data *);
+"55 ./../batmon.h
+[; ;./../batmon.h: 55:  void get_bm_data(EB_data *);
 [v _get_bm_data `(v ~T0 @X0 0 ef1`*S3252 ]
-"55
-[; ;./../batmon.h: 55:  void compute_bm_data(EB_data *);
+"56
+[; ;./../batmon.h: 56:  void compute_bm_data(EB_data *);
 [v _compute_bm_data `(v ~T0 @X0 0 ef1`*S3252 ]
-"53
-[; ;./../batmon.h: 53:  void wr_bm_data(uint8_t *);
+"54
+[; ;./../batmon.h: 54:  void wr_bm_data(uint8_t *);
 [v _wr_bm_data `(v ~T0 @X0 0 ef1`*uc ]
-"50
-[; ;./../batmon.h: 50:  extern uint16_t EBD_update;
+"51
+[; ;./../batmon.h: 51:  extern uint16_t EBD_update;
 [v _EBD_update `us ~T0 @X0 0 e ]
 "54 /opt/microchip/xc8/v2.41/pic/include/c99/string.h
 [; ;/opt/microchip/xc8/v2.41/pic/include/c99/string.h: 54: size_t strlen (const char *);
@@ -3915,7 +3915,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> 49 `c
 -> 46 `c
 -> 50 `c
--> 50 `c
+-> 51 `c
 -> 32 `c
 -> 70 `c
 -> 77 `c
@@ -4712,7 +4712,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _buffer `uc ~T0 @X0 -> 96 `i e ]
 [v _can_buffer `uc ~T0 @X0 -> 96 `i e ]
 "76
-[; ;main.c: 76: const char *build_date = "Jun 28 2023", *build_time = "20:48:16";
+[; ;main.c: 76: const char *build_date = "Jun 29 2023", *build_time = "14:26:40";
 [v _build_date `*Cuc ~T0 @X0 1 e ]
 [i _build_date
 :s 1C
@@ -5528,11 +5528,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e :U 3305 ]
 "397
-[; ;main.c: 397:    printf("^^^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%.1f,%.1f,%.1f,%4.1f,%.2f,%d\r\n"
-[e ( _printf , , , , , , , , , , , , , , , (. :s 21C - -> *U + &U _abuf * -> -> -> 3 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 128 `i `ui & -> *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 15 `i `ui -> _vw `ui -> _vf `ui - -> *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 128 `i `ui -> _volt_whole `ui -> _volt_fract `ui -> _panel_watts `ui -> _cc_mode `ui -> / -> . _em 9 `f -> .10.0 `f `d -> / -> . _em 12 `f -> .10.0 `f `d -> / -> . _em 15 `f -> .10.0 `f `d -> / -> . _em 3 `f -> .10.0 `f `d -> / . _EBD 13 -> .3600.0 `f `d -> ++ . _B 3 -> -> 1 `i `us `ui ]
+[; ;main.c: 397:    printf("^^^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%.1f,%.1f,%.1f,%4.1f,%.2f,%u,%u\r\n"
+[e ( _printf , , , , , , , , , , , , , , , , (. :s 21C - -> *U + &U _abuf * -> -> -> 3 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 128 `i `ui & -> *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 15 `i `ui -> _vw `ui -> _vf `ui - -> *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 128 `i `ui -> _volt_whole `ui -> _volt_fract `ui -> _panel_watts `ui -> _cc_mode `ui -> / -> . _em 9 `f -> .10.0 `f `d -> / -> . _em 12 `f -> .10.0 `f `d -> / -> . _em 15 `f -> .10.0 `f `d -> / -> . _em 3 `f -> .10.0 `f `d -> / . _EBD 13 -> .3600.0 `f `d -> . _EBD 15 `ui -> ++ . _B 3 -> -> 1 `i `us `ui ]
 "399
-[; ;main.c: 399:    snprintf(can_buffer, 96, "^^^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%.1f,%.1f,%.1f,%4.1f,%.2f,%d\r\n"
-[e ( _snprintf (2 , , , , , , , , , , , , , , , (. , , &U _can_buffer -> -> 96 `i `ui :s 22C - -> *U + &U _abuf * -> -> -> 3 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 128 `i `ui & -> *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 15 `i `ui -> _vw `ui -> _vf `ui - -> *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 128 `i `ui -> _volt_whole `ui -> _volt_fract `ui -> _panel_watts `ui -> _cc_mode `ui -> / -> . _em 9 `f -> .10.0 `f `d -> / -> . _em 12 `f -> .10.0 `f `d -> / -> . _em 15 `f -> .10.0 `f `d -> / -> . _em 3 `f -> .10.0 `f `d -> / . _EBD 13 -> .3600.0 `f `d -> . _B 3 `ui ]
+[; ;main.c: 399:    snprintf(can_buffer, 96, "^^^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%.1f,%.1f,%.1f,%4.1f,%.2f,%u,%u\r\n"
+[e ( _snprintf (2 , , , , , , , , , , , , , , , , (. , , &U _can_buffer -> -> 96 `i `ui :s 22C - -> *U + &U _abuf * -> -> -> 3 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 128 `i `ui & -> *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 15 `i `ui -> _vw `ui -> _vf `ui - -> *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 128 `i `ui -> _volt_whole `ui -> _volt_fract `ui -> _panel_watts `ui -> _cc_mode `ui -> / -> . _em 9 `f -> .10.0 `f `d -> / -> . _em 12 `f -> .10.0 `f `d -> / -> . _em 15 `f -> .10.0 `f `d -> / -> . _em 3 `f -> .10.0 `f `d -> / . _EBD 13 -> .3600.0 `f `d -> . _EBD 15 `ui -> . _B 3 `ui ]
 "401
 [; ;main.c: 401:    snprintf(buffer, 96, "%d Watts %d.%01d Volts   ", panel_watts, volt_whole, volt_fract);
 [e ( _snprintf (2 , , , (. , , &U _buffer -> -> 96 `i `ui :s 23C -> _panel_watts `ui -> _volt_whole `ui -> _volt_fract `ui ]
@@ -5732,10 +5732,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 460: }
 [e :UE 3320 ]
 }
-[p f _printf 12689540 ]
+[p f _printf 12690564 ]
 [p f _snprintf 11379860 ]
-[a 2C 50 48 58 52 56 58 49 54 0 ]
-[a 1C 74 117 110 32 50 56 32 50 48 50 51 0 ]
+[a 1C 74 117 110 32 50 57 32 50 48 50 51 0 ]
+[a 2C 49 52 58 50 54 58 52 49 0 ]
 [a 3C 37 115 32 0 ]
 [a 9C 37 115 32 0 ]
 [a 11C 37 115 32 0 ]
@@ -5754,7 +5754,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [a 14C 67 37 117 32 67 82 67 37 108 117 32 82 67 37 117 32 69 67 37 117 32 32 32 32 32 32 32 32 32 32 0 ]
 [a 10C 83 116 97 114 116 32 85 112 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
 [a 4C 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
+[a 21C 94 94 94 44 37 100 46 37 48 49 100 44 37 100 46 37 48 49 100 44 37 100 44 37 100 46 37 48 49 100 44 37 100 44 37 100 44 37 46 49 102 44 37 46 49 102 44 37 46 49 102 44 37 52 46 49 102 44 37 46 50 102 44 37 117 44 37 117 13 10 0 ]
+[a 22C 94 94 94 44 37 100 46 37 48 49 100 44 37 100 46 37 48 49 100 44 37 100 44 37 100 46 37 48 49 100 44 37 100 44 37 100 44 37 46 49 102 44 37 46 49 102 44 37 46 49 102 44 37 52 46 49 102 44 37 46 50 102 44 37 117 44 37 117 13 10 0 ]
 [a 19C 13 10 13 10 37 53 100 32 37 51 120 32 37 51 120 32 37 51 120 32 37 51 120 32 37 51 120 32 32 32 73 78 73 84 58 32 77 88 56 48 32 78 111 116 32 70 111 117 110 100 32 111 110 108 105 110 101 13 10 0 ]
 [a 17C 13 10 13 10 37 53 100 32 37 51 120 32 37 51 120 32 37 51 120 32 37 51 120 32 37 51 120 32 32 32 73 78 73 84 58 32 70 111 117 110 100 32 77 88 56 48 32 111 110 108 105 110 101 13 10 0 ]
-[a 21C 94 94 94 44 37 100 46 37 48 49 100 44 37 100 46 37 48 49 100 44 37 100 44 37 100 46 37 48 49 100 44 37 100 44 37 100 44 37 46 49 102 44 37 46 49 102 44 37 46 49 102 44 37 52 46 49 102 44 37 46 50 102 44 37 100 13 10 0 ]
-[a 22C 94 94 94 44 37 100 46 37 48 49 100 44 37 100 46 37 48 49 100 44 37 100 44 37 100 46 37 48 49 100 44 37 100 44 37 100 44 37 46 49 102 44 37 46 49 102 44 37 46 49 102 44 37 52 46 49 102 44 37 46 50 102 44 37 100 13 10 0 ]

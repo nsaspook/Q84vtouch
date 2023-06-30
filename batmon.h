@@ -30,9 +30,10 @@ extern "C" {
 #define INV_EFF_VAL	1.08f  // DC watts to AC watt correction
 #define BAT_EFF_VAL	1.02f //  energy efficiency
 
-
 #define BM_UPDATE	3600	// seconds between EEPROM updates, sleeping
 #define BM_UPDATE_RUN	1800	// while running
+	
+#define BAT_CYCLES	24
 
 	typedef struct EB_data {
 		uint8_t checkmark;
