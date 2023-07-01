@@ -333,7 +333,7 @@ void state_status_cb(void)
 	if (abuf[2] != STATUS_SLEEPING) {
 		state = state_watts;
 	} else {
-		state = state_mx_status;
+		state = state_watts;
 	}
 	cc_mode = abuf[2];
 }

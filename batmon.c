@@ -40,7 +40,7 @@ void wr_bm_data(uint8_t * EB)
 	EBD.crc = 0;
 	EBD.crc = crc16(EB, sizeof(EBD) - 2); // exclude crc bytes
 	EBD.bat_time = ++EBD.bat_time;
-	
+
 	if ((EBD.bat_time) % BAT_CYCLES == 0) {
 		EBD.bat_cycles++;
 	}
@@ -66,13 +66,22 @@ void get_bm_data(EB_data * EB)
 	EB->volt_whole = (float) vw;
 }
 
+/*
+ * track energy usage and storage of the system
+ */
 void compute_bm_data(EB_data * EB)
 {
-	float net_energy;
+	float net_energy, net_balance;
 
-	net_energy = EB->bat_energy + (((EB->FMw * INV_EFF_VAL) - (EB->ENva * BAT_EFF_VAL))); // inverter/battery power conversion correction
+	net_balance = EB->FMw - (EB->ENw * INV_EFF_VAL); // make the energy comparison DC watts equal
+	if (net_balance > 0.0001) { // more energy from panels than current load usage
+		net_balance = net_balance*BAT_EFF_VAL; // actual battery energy storage correction
+	} else {
+		net_balance = net_balance; // net drain, inverter correction already applied
+	}
+	net_energy = EB->bat_energy + net_balance; // inverter/battery power conversion correction
 	if (cc_mode == STATUS_SLEEPING) {
-		net_energy = EB->bat_energy - (EB->ENva * BAT_EFF_VAL); // ignore adding small panel energy when sleeping
+		net_energy = EB->bat_energy - (EB->ENw * INV_EFF_VAL); // ignore adding small panel energy when sleeping
 	}
 	/*
 	 * set battery energy limits

@@ -22,7 +22,7 @@ extern "C" {
 #include "../timers.h"
 
 #define VER	1
-	const char build_version[] = "V1.23 FM80 Q84";
+	const char build_version[] = "V1.24 FM80 Q84";
 
 #define MAX_B_BUF	96
 #define IO_TEST

@@ -40124,7 +40124,7 @@ void delay_ms(uint16_t);
 # 23 "./mxcmd.h" 2
 
 
- const char build_version[] = "V1.23 FM80 Q84";
+ const char build_version[] = "V1.24 FM80 Q84";
 # 36 "./mxcmd.h"
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
@@ -40451,7 +40451,7 @@ uint16_t volt_fract;
 uint16_t volt_whole, bat_amp_whole, panel_watts, cc_mode = STATUS_LAST, vf, vw;
 enum state_type state = state_init;
 char buffer[96], can_buffer[96];
-const char *build_date = "Jun 29 2023", *build_time = "14:26:40";
+const char *build_date = "Jul  1 2023", *build_time = "02:54:15";
 volatile uint16_t tickCount[TMR_COUNT];
 
 B_type B = {
@@ -40711,7 +40711,7 @@ void state_status_cb(void)
  if (abuf[2] != STATUS_SLEEPING) {
   state = state_watts;
  } else {
-  state = state_mx_status;
+  state = state_watts;
  }
  cc_mode = abuf[2];
 }
