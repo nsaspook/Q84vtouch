@@ -31,7 +31,11 @@ extern "C" {
 #define BUFFER_SPACING	2
 #define SPINNER_SPEED	200
 #define LP_BUFFER_SIZE	9
-#define ONLINE_TIMEOUT	20000
+#define ONLINE_TIMEOUT	30000
+
+#define FM80_ID		0x03
+#define FMxx_ID		abuf[2]
+#define FMxx_STATE	abuf[2]
 
 	const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
 	const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};

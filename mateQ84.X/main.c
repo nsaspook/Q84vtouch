@@ -68,10 +68,10 @@ enum state_type {
 	state_last,
 };
 
-uint16_t abuf[FM_BUFFER];
-uint16_t volt_fract;
-uint16_t volt_whole, bat_amp_whole, panel_watts, cc_mode = STATUS_LAST, vf, vw;
-enum state_type state = state_init;
+static uint16_t abuf[FM_BUFFER];
+volatile uint16_t cc_mode = STATUS_LAST;
+uint16_t volt_whole, bat_amp_whole, panel_watts, volt_fract, vf, vw;
+volatile enum state_type state = state_init;
 char buffer[MAX_B_BUF], can_buffer[MAX_B_BUF];
 const char *build_date = __DATE__, *build_time = __TIME__;
 volatile uint16_t tickCount[TMR_COUNT];
@@ -306,18 +306,27 @@ void rec_mx_cmd(void (* DataHandler)(void), uint8_t rec_len)
 			}
 		}
 	}
+	if (online_count++ > ONLINE_TIMEOUT) {
+		online_count = 0;
+		B.mx80_online = false;
+		cc_mode = STATUS_LAST;
+		state = state_watts;
+		FMxx_ID = 0x0;
+		DataHandler();
+	}
+
 }
 
 void state_init_cb(void)
 {
-	if (abuf[2] == 0x03) {
-		printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: Found MX80 online\r\n", B.rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
+	if (FMxx_ID == FM80_ID) {
+		printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: MX80 Online\r\n", B.rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
 		B.mx80_online = true;
-		snprintf(buffer, MAX_B_BUF, "Found MX80 online      ");
+		snprintf(buffer, MAX_B_BUF, "MX80 Online         ");
 		eaDogM_WriteStringAtPos(3, 0, buffer);
 	} else {
-		printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: MX80 Not Found online\r\n", B.rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
-		snprintf(buffer, MAX_B_BUF, "MX80 Not Found online  ");
+		printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: MX80 Offline\r\n", B.rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
+		snprintf(buffer, MAX_B_BUF, "MX80 Offline        ");
 		eaDogM_WriteStringAtPos(3, 0, buffer);
 		B.mx80_online = false;
 		cc_mode = STATUS_LAST;
@@ -330,7 +339,7 @@ void state_status_cb(void)
 #ifdef debug_data
 	printf("%5d: %3x %3x %3x %3x %3x STATUS: MX80 %s mode\r\n", rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4], state_name[abuf[2]]);
 #endif
-	if (abuf[2] != STATUS_SLEEPING) {
+	if (FMxx_STATE != STATUS_SLEEPING) {
 		state = state_watts;
 	} else {
 		state = state_watts;

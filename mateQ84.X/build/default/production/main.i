@@ -40065,7 +40065,8 @@ struct spi_link_type {
  volatile int32_t int_count;
 };
 
-extern uint16_t panel_watts, volt_whole, bat_amp_whole, cc_mode, vw;
+extern volatile uint16_t cc_mode;
+extern uint16_t panel_watts, volt_whole, bat_amp_whole, volt_fract, vw;
 extern char spinners(uint8_t, const uint8_t);
 # 27 "./../eadog.h" 2
 
@@ -40125,7 +40126,7 @@ void delay_ms(uint16_t);
 
 
  const char build_version[] = "V1.25 FM80 Q84";
-# 36 "./mxcmd.h"
+# 40 "./mxcmd.h"
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
  const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};
@@ -40446,12 +40447,12 @@ enum state_type {
  state_last,
 };
 
-uint16_t abuf[32];
-uint16_t volt_fract;
-uint16_t volt_whole, bat_amp_whole, panel_watts, cc_mode = STATUS_LAST, vf, vw;
-enum state_type state = state_init;
+static uint16_t abuf[32];
+volatile uint16_t cc_mode = STATUS_LAST;
+uint16_t volt_whole, bat_amp_whole, panel_watts, volt_fract, vf, vw;
+volatile enum state_type state = state_init;
 char buffer[96], can_buffer[96];
-const char *build_date = "Jul  1 2023", *build_time = "13:34:11";
+const char *build_date = "Jul  2 2023", *build_time = "16:43:23";
 volatile uint16_t tickCount[TMR_COUNT];
 
 B_type B = {
@@ -40676,7 +40677,7 @@ void rec_mx_cmd(void (* DataHandler)(void), uint8_t rec_len)
    FM_rx(abuf);
    DataHandler();
   } else {
-   if (online_count++ > 20000) {
+   if (online_count++ > 30000) {
     online_count = 0;
     B.mx80_online = 0;
     cc_mode = STATUS_LAST;
@@ -40684,18 +40685,27 @@ void rec_mx_cmd(void (* DataHandler)(void), uint8_t rec_len)
    }
   }
  }
+ if (online_count++ > 30000) {
+  online_count = 0;
+  B.mx80_online = 0;
+  cc_mode = STATUS_LAST;
+  state = state_watts;
+  abuf[2] = 0x0;
+  DataHandler();
+ }
+
 }
 
 void state_init_cb(void)
 {
  if (abuf[2] == 0x03) {
-  printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: Found MX80 online\r\n", B.rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
+  printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: MX80 Online\r\n", B.rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
   B.mx80_online = 1;
-  snprintf(buffer, 96, "Found MX80 online      ");
+  snprintf(buffer, 96, "MX80 Online         ");
   eaDogM_WriteStringAtPos(3, 0, buffer);
  } else {
-  printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: MX80 Not Found online\r\n", B.rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
-  snprintf(buffer, 96, "MX80 Not Found online  ");
+  printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: MX80 Offline\r\n", B.rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
+  snprintf(buffer, 96, "MX80 Offline        ");
   eaDogM_WriteStringAtPos(3, 0, buffer);
   B.mx80_online = 0;
   cc_mode = STATUS_LAST;

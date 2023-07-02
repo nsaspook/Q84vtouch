@@ -78,7 +78,8 @@ struct spi_link_type { // internal SPI state table
 	volatile int32_t int_count;
 };
 
-extern uint16_t panel_watts, volt_whole, bat_amp_whole, cc_mode, vw;
+extern volatile uint16_t cc_mode;
+extern uint16_t panel_watts, volt_whole, bat_amp_whole, volt_fract, vw;
 extern char spinners(uint8_t, const uint8_t);
 
 #ifdef	__cplusplus
