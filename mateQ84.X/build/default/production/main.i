@@ -40171,7 +40171,7 @@ void delay_ms(uint16_t);
  typedef struct B_type {
   volatile _Bool ten_sec_flag, one_sec_flag;
   uint16_t pacing, rx_count, flush;
-  volatile _Bool mx80_online;
+  volatile _Bool FM80_online;
   volatile uint8_t canbus_online, modbus_online;
  } B_type;
 
@@ -40287,7 +40287,7 @@ void delay_ms(uint16_t);
 
 
  typedef struct EM_data {
-  int32_t vl1n, vl2n, vl3n,
+  volatile int32_t vl1n, vl2n, vl3n,
   vl1l2, vl2l3, vl3l1,
   al1, al2, al3,
   wl1, wl2, wl3,
@@ -40398,9 +40398,13 @@ void delay_ms(uint16_t);
 # 50 "main.c" 2
 
 # 1 "./../canfd.h" 1
-# 18 "./../canfd.h"
+# 22 "./../canfd.h"
+ void Can1FIFO1NotEmptyHandler(void);
+ void Can1FIFO2NotEmptyHandler(void);
+
  extern char can_buffer[96];
  void can_fd_tx(void);
+ void can_fd_rx(void);
 # 51 "main.c" 2
 
 # 1 "./../batmon.h" 1
@@ -40452,7 +40456,7 @@ volatile uint16_t cc_mode = STATUS_LAST;
 uint16_t volt_whole, bat_amp_whole, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[96], can_buffer[96];
-const char *build_date = "Jul  2 2023", *build_time = "19:19:05";
+const char *build_date = "Jul  3 2023", *build_time = "13:45:16";
 volatile uint16_t tickCount[TMR_COUNT];
 
 B_type B = {
@@ -40554,8 +40558,11 @@ void main(void)
  snprintf(buffer, 96, "%s ", "Start Up            ");
  eaDogM_WriteStringAtPos(3, 0, buffer);
  wdtdelay(1000000);
- snprintf(buffer, 96, "%s ", "Polling MX80        ");
+ snprintf(buffer, 96, "%s ", "Polling FM80        ");
  eaDogM_WriteStringAtPos(2, 0, buffer);
+
+ CAN1_SetFIFO1NotEmptyHandler(Can1FIFO1NotEmptyHandler);
+ CAN1_SetFIFO2NotEmptyHandler(Can1FIFO2NotEmptyHandler);
 
  while (1) {
 
@@ -40605,6 +40612,7 @@ void main(void)
    B.one_sec_flag = 0;
    B.canbus_online = (!C1TXQCONHbits.TXREQ)&0x01;
    B.modbus_online = C.data_ok;
+   can_fd_rx();
   }
   if (TimerDone(TMR_SPIN)) {
    {
@@ -40679,15 +40687,15 @@ void rec_mx_cmd(void (* DataHandler)(void), uint8_t rec_len)
   } else {
    if (online_count++ > 30000) {
     online_count = 0;
-    B.mx80_online = 0;
+    B.FM80_online = 0;
     cc_mode = STATUS_LAST;
     state = state_init;
    }
   }
  }
- if ((B.mx80_online == 0) && online_count++ > 30000) {
+ if ((B.FM80_online == 0) && online_count++ > 30000) {
   online_count = 0;
-  B.mx80_online = 0;
+  B.FM80_online = 0;
   cc_mode = STATUS_LAST;
   state = state_watts;
   abuf[2] = 0x0;
@@ -40699,14 +40707,14 @@ void rec_mx_cmd(void (* DataHandler)(void), uint8_t rec_len)
 void state_init_cb(void)
 {
  if (abuf[2] == 0x03) {
-  printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: MX80 Online\r\n", B.rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
-  B.mx80_online = 1;
-  snprintf(buffer, 96, "MX80 Online         ");
+  printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: FM80 Online\r\n", B.rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
+  B.FM80_online = 1;
+  snprintf(buffer, 96, "FM80 Online         ");
   eaDogM_WriteStringAtPos(3, 0, buffer);
  } else {
-  snprintf(buffer, 96, "MX80 Offline        ");
+  snprintf(buffer, 96, "FM80 Offline        ");
   eaDogM_WriteStringAtPos(3, 0, buffer);
-  B.mx80_online = 0;
+  B.FM80_online = 0;
   cc_mode = STATUS_LAST;
  }
  state = state_status;
@@ -40776,7 +40784,7 @@ void state_mx_status_cb(void)
 
  if (B.ten_sec_flag) {
   B.ten_sec_flag = 0;
-  if (B.mx80_online) {
+  if (B.FM80_online) {
    do { LATBbits.LATB1 = 0; } while(0);
 
 
@@ -40816,9 +40824,9 @@ void state_mx_status_cb(void)
 void state_misc_cb(void)
 {
  if (abuf[2] == 0x03) {
-  B.mx80_online = 1;
+  B.FM80_online = 1;
  } else {
-  B.mx80_online = 0;
+  B.FM80_online = 0;
   cc_mode = STATUS_LAST;
   state = state_init;
   return;

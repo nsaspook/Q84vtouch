@@ -169,7 +169,7 @@ extern "C" {
 	 * maps the EM540 modbus registers to int32_t values
 	 */
 	typedef struct EM_data {
-		int32_t vl1n, vl2n, vl3n,
+		volatile int32_t vl1n, vl2n, vl3n,
 		vl1l2, vl2l3, vl3l1,
 		al1, al2, al3,
 		wl1, wl2, wl3,

@@ -91,13 +91,13 @@ B_type B = {
 void volt_f(uint16_t);
 
 /*
- * MX80 send/recv functions
+ * FM80 send/recv functions
  */
 void send_mx_cmd(const uint16_t *);
 void rec_mx_cmd(void (* DataHandler)(void), uint8_t);
 
 /*
- * callbacks to handle MX80 register data
+ * callbacks to handle FM80 register data
  */
 void state_init_cb(void);
 void state_status_cb(void);
@@ -175,8 +175,11 @@ void main(void)
 	snprintf(buffer, MAX_B_BUF, "%s ", "Start Up            ");
 	eaDogM_WriteStringAtPos(3, 0, buffer);
 	wdtdelay(1000000);
-	snprintf(buffer, MAX_B_BUF, "%s ", "Polling MX80        ");
+	snprintf(buffer, MAX_B_BUF, "%s ", "Polling FM80        ");
 	eaDogM_WriteStringAtPos(2, 0, buffer);
+
+	CAN1_SetFIFO1NotEmptyHandler(Can1FIFO1NotEmptyHandler);
+	CAN1_SetFIFO2NotEmptyHandler(Can1FIFO2NotEmptyHandler);
 
 	while (true) {
 		// Add your application code
@@ -226,6 +229,7 @@ void main(void)
 			B.one_sec_flag = false;
 			B.canbus_online = (!C1TXQCONHbits.TXREQ)&0x01;
 			B.modbus_online = C.data_ok;
+			can_fd_rx();
 		}
 		if (TimerDone(TMR_SPIN)) { // LCD status spinner for charger MODE
 			{
@@ -300,15 +304,15 @@ void rec_mx_cmd(void (* DataHandler)(void), uint8_t rec_len)
 		} else {
 			if (online_count++ > ONLINE_TIMEOUT) {
 				online_count = 0;
-				B.mx80_online = false;
+				B.FM80_online = false;
 				cc_mode = STATUS_LAST;
 				state = state_init;
 			}
 		}
 	}
-	if ((B.mx80_online == false) && online_count++ > ONLINE_TIMEOUT) {
+	if ((B.FM80_online == false) && online_count++ > ONLINE_TIMEOUT) {
 		online_count = 0;
-		B.mx80_online = false;
+		B.FM80_online = false;
 		cc_mode = STATUS_LAST;
 		state = state_watts;
 		FMxx_ID = 0x0;
@@ -320,14 +324,14 @@ void rec_mx_cmd(void (* DataHandler)(void), uint8_t rec_len)
 void state_init_cb(void)
 {
 	if (FMxx_ID == FM80_ID) {
-		printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: MX80 Online\r\n", B.rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
-		B.mx80_online = true;
-		snprintf(buffer, MAX_B_BUF, "MX80 Online         ");
+		printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: FM80 Online\r\n", B.rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
+		B.FM80_online = true;
+		snprintf(buffer, MAX_B_BUF, "FM80 Online         ");
 		eaDogM_WriteStringAtPos(3, 0, buffer);
 	} else {
-		snprintf(buffer, MAX_B_BUF, "MX80 Offline        ");
+		snprintf(buffer, MAX_B_BUF, "FM80 Offline        ");
 		eaDogM_WriteStringAtPos(3, 0, buffer);
-		B.mx80_online = false;
+		B.FM80_online = false;
 		cc_mode = STATUS_LAST;
 	}
 	state = state_status;
@@ -336,7 +340,7 @@ void state_init_cb(void)
 void state_status_cb(void)
 {
 #ifdef debug_data
-	printf("%5d: %3x %3x %3x %3x %3x STATUS: MX80 %s mode\r\n", rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4], state_name[abuf[2]]);
+	printf("%5d: %3x %3x %3x %3x %3x STATUS: FM80 %s mode\r\n", rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4], state_name[abuf[2]]);
 #endif
 	if (FMxx_STATE != STATUS_SLEEPING) {
 		state = state_watts;
@@ -392,12 +396,12 @@ void state_mx_status_cb(void)
 		abuf[1] = (abuf[1]&0x0f) - 10;
 	}
 #ifdef debug_data
-	printf("%5d: %3x %3x %3x %3x %3x  SDATA: MX80 Data mode %3x %3x %3x %3x %3x %3x %3x %3x %3x\r\n",
+	printf("%5d: %3x %3x %3x %3x %3x  SDATA: FM80 Data mode %3x %3x %3x %3x %3x %3x %3x %3x %3x\r\n",
 		rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4], abuf[5], abuf[6], abuf[7], abuf[8], abuf[9], abuf[10], abuf[11], abuf[12], abuf[13]);
 #endif
 	if (B.ten_sec_flag) {
 		B.ten_sec_flag = false;
-		if (B.mx80_online) {
+		if (B.FM80_online) {
 			MM_ERROR_C;
 			/*
 			 * log CSV values to the serial port for data storage and processing
@@ -437,9 +441,9 @@ void state_mx_status_cb(void)
 void state_misc_cb(void)
 {
 	if (abuf[2] == 0x03) {
-		B.mx80_online = true;
+		B.FM80_online = true;
 	} else {
-		B.mx80_online = false;
+		B.FM80_online = false;
 		cc_mode = STATUS_LAST;
 		state = state_init;
 		return;

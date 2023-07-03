@@ -44,7 +44,7 @@ extern "C" {
 	const uint16_t cmd_batteryv[] = {0x100, 0x02, 0x00, 0x08, 0x00, 0x00, 0x00, 0x0a};
 	const uint16_t cmd_batterya[] = {0x100, 0x02, 0x01, 0xc7, 0x00, 0x00, 0x00, 0xca};
 	const uint16_t cmd_watts[] = {0x100, 0x02, 0x01, 0x6a, 0x00, 0x00, 0x00, 0x6d};
-	const uint16_t cmd_misc[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02}; // example MX80 command ID request
+	const uint16_t cmd_misc[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02}; // example FM80 command ID request
 
 	enum status_type {
 		STATUS_SLEEPING = 0,
@@ -81,7 +81,7 @@ extern "C" {
 	typedef struct B_type {
 		volatile bool ten_sec_flag, one_sec_flag;
 		uint16_t pacing, rx_count, flush;
-		volatile bool mx80_online;
+		volatile bool FM80_online;
 		volatile uint8_t canbus_online, modbus_online;
 	} B_type;
 
