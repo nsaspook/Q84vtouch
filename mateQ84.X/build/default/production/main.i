@@ -40125,7 +40125,7 @@ void delay_ms(uint16_t);
 # 23 "./mxcmd.h" 2
 
 
- const char build_version[] = "V1.25 FM80 Q84";
+ const char build_version[] = "V1.26 FM80 Q84";
 # 40 "./mxcmd.h"
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
@@ -40452,7 +40452,7 @@ volatile uint16_t cc_mode = STATUS_LAST;
 uint16_t volt_whole, bat_amp_whole, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[96], can_buffer[96];
-const char *build_date = "Jul  2 2023", *build_time = "16:43:23";
+const char *build_date = "Jul  2 2023", *build_time = "19:19:05";
 volatile uint16_t tickCount[TMR_COUNT];
 
 B_type B = {
@@ -40685,7 +40685,7 @@ void rec_mx_cmd(void (* DataHandler)(void), uint8_t rec_len)
    }
   }
  }
- if (online_count++ > 30000) {
+ if ((B.mx80_online == 0) && online_count++ > 30000) {
   online_count = 0;
   B.mx80_online = 0;
   cc_mode = STATUS_LAST;
@@ -40704,7 +40704,6 @@ void state_init_cb(void)
   snprintf(buffer, 96, "MX80 Online         ");
   eaDogM_WriteStringAtPos(3, 0, buffer);
  } else {
-  printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: MX80 Offline\r\n", B.rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
   snprintf(buffer, 96, "MX80 Offline        ");
   eaDogM_WriteStringAtPos(3, 0, buffer);
   B.mx80_online = 0;

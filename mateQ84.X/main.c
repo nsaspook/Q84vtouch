@@ -306,7 +306,7 @@ void rec_mx_cmd(void (* DataHandler)(void), uint8_t rec_len)
 			}
 		}
 	}
-	if (online_count++ > ONLINE_TIMEOUT) {
+	if ((B.mx80_online == false) && online_count++ > ONLINE_TIMEOUT) {
 		online_count = 0;
 		B.mx80_online = false;
 		cc_mode = STATUS_LAST;
@@ -325,7 +325,6 @@ void state_init_cb(void)
 		snprintf(buffer, MAX_B_BUF, "MX80 Online         ");
 		eaDogM_WriteStringAtPos(3, 0, buffer);
 	} else {
-		printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: MX80 Offline\r\n", B.rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
 		snprintf(buffer, MAX_B_BUF, "MX80 Offline        ");
 		eaDogM_WriteStringAtPos(3, 0, buffer);
 		B.mx80_online = false;

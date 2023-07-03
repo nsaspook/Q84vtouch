@@ -25,7 +25,7 @@ extern "C" {
 #define BAT_UNDER_VOLT	23.2f
 #define BAT_LOW_DISC	21.6f
 #define BAT_LOW_RECON	24.8f
-#define IDLE_DRAIN	10.0f	// system operatonal losses in watts
+#define IDLE_DRAIN	10.0f	// system operational losses in watts
 
 #define INV_EFF_VAL	1.06f	// DC watts to AC watt inverter correction
 #define BAT_EFF_VAL	0.985f	//  battery storage energy efficiency
