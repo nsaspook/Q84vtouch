@@ -64,7 +64,6 @@ em_data[] = {MADDR, READ_HOLDING_REGISTERS, 0x00, // number of 16-bit words retu
 em_config[] = {MADDR, WRITE_SINGLE_REGISTER, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
 em_passwd[] = {MADDR, WRITE_SINGLE_REGISTER, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 
-union MREG rvalue;
 EM_data em;
 
 static void half_dup_tx(const bool);

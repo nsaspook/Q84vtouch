@@ -9,8 +9,7 @@ EB_data EBD = {
 	.bat_mode = 0,
 	.bat_time = 0,
 	.crc = 0,
-},
-EBD_ptr;
+};
 
 uint16_t EBD_update = 0; // EEPROM write counter for BM_UPDATE
 

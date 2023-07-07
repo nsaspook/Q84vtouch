@@ -178,15 +178,36 @@ void main(void)
 	snprintf(buffer, MAX_B_BUF, "%s ", "Polling FM80        ");
 	eaDogM_WriteStringAtPos(2, 0, buffer);
 
+	/*
+	 * interrupt handlers, both receive data from the FIFO
+	 */
 	CAN1_SetFIFO1NotEmptyHandler(Can1FIFO1NotEmptyHandler);
-	CAN1_SetFIFO2NotEmptyHandler(Can1FIFO2NotEmptyHandler);
+	CAN1_SetRxBufferOverFlowInterruptHandler(Can1FIFO1NotEmptyHandler);
+
+	/*
+	 * don't trust MMC for nothing
+	 */
+	CAN1_OperationModeSet(CAN_CONFIGURATION_MODE);
+	C1FIFOCON1Lbits.TFNRFNIE = 1; // not empty
+	//	C1FIFOCON1Lbits.TFHRFHIE = 1; // half full
+	//	C1FIFOCON1Lbits.TFERFFIE = 1; // full
+	/*
+	 * enable CAN receiver interrupts, again, to fix one of the many MMC bugs
+	 */
+	C1INTUbits.RXIE = 1; // The stupid MMC sets this back to off when setting the error interrupts
+	PIR4bits.CANRXIF = 0; // clear flags and set interrupt controller again, just to be sure
+	PIE4bits.CANRXIE = 1;
+#ifdef	USE_FD
+	CAN1_OperationModeSet(CAN_NORMAL_FD_MODE);
+#else
+	CAN1_OperationModeSet(CAN_NORMAL_2_0_MODE);
+#endif
 
 	while (true) {
 		// Add your application code
 #ifdef MB_MASTER
 		master_controller_work(&C); // master MODBUS processing	
 #endif
-
 		switch (state) {
 		case state_init:
 			send_mx_cmd(cmd_id);
@@ -225,11 +246,17 @@ void main(void)
 			rec_mx_cmd(state_init_cb, REC_LEN);
 			break;
 		}
+
 		if (B.one_sec_flag) { // one second tasks
 			B.one_sec_flag = false;
 			B.canbus_online = (!C1TXQCONHbits.TXREQ)&0x01;
 			B.modbus_online = C.data_ok;
-			can_fd_rx();
+#ifdef CAN_DEBUG
+			snprintf(buffer, MAX_B_BUF, "%X %X %X %X   %lu %lu       ", C1BDIAG0T, C1BDIAG0U, C1BDIAG0H, C1BDIAG0L, can_rec_count.rec_count, msg.msgId);
+			eaDogM_WriteStringAtPos(0, 0, buffer);
+			snprintf(buffer, MAX_B_BUF, "%X %X %X %X   %u %X        ", C1BDIAG1T, C1BDIAG1U, C1BDIAG1H, C1BDIAG1L, can_rec_count.rec_flag, msg.field.formatType);
+			eaDogM_WriteStringAtPos(1, 0, buffer);
+#endif
 		}
 		if (TimerDone(TMR_SPIN)) { // LCD status spinner for charger MODE
 			{
@@ -259,10 +286,17 @@ void main(void)
 					}
 				} else {
 					//					snprintf(buffer, MAX_B_BUF, "EMon  %4.1fVAC   %c%c    ", lp_filter(ac, F_ac, false), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
+#ifdef CAN_DEBUG
+					snprintf(buffer, MAX_B_BUF, "%X %X %X %X %X %X %X %X           ", C1INTL, C1INTH, C1INTU, C1INTT, C1TRECL, C1FLTOBJ0T, C1FLTCON0L, CAN1_OperationModeGet());
+					eaDogM_WriteStringAtPos(2, 0, buffer);
+					snprintf(buffer, MAX_B_BUF, "%X %X %X %X %X %X %X %X           ", C1FIFOCON1L, C1FIFOCON1H, C1FIFOCON1U, C1FIFOCON1T, C1FIFOSTA1L, C1FIFOSTA1H, C1FIFOSTA1U, C1FIFOSTA1T);
+					eaDogM_WriteStringAtPos(3, 0, buffer);
+#else
 					snprintf(buffer, MAX_B_BUF, "EMon  %6.1fWh   %c%c    ", EBD.bat_energy / 360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
 					eaDogM_WriteStringAtPos(1, 0, buffer);
 					snprintf(buffer, MAX_B_BUF, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, false), lp_filter(wva, F_wva, false), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
 					eaDogM_WriteStringAtPos(0, 0, buffer);
+#endif
 				}
 			}
 		}
