@@ -72,6 +72,9 @@ static bool serial_trmt(void);
 static uint16_t modbus_rtu_send_msg_crc(volatile uint8_t *, uint16_t);
 static uint16_t crc16_receive(C_data *);
 static void log_crc_error(const uint16_t, const uint16_t);
+static void UART1_DefaultFramingErrorHandler_mb(void);
+static void UART1_DefaultOverrunErrorHandler_mb(void);
+static void UART1_DefaultErrorHandler_mb(void);
 
 /*
  * add the required CRC bytes to a MODBUS message
@@ -605,4 +608,26 @@ void mb_tx_test(C_data * client)
 			}
 		}
 	}
+}
+
+static void UART1_DefaultFramingErrorHandler_mb(void)
+{
+	MM_ERROR_S;
+}
+
+static void UART1_DefaultOverrunErrorHandler_mb(void)
+{
+	MM_ERROR_S;
+}
+
+static void UART1_DefaultErrorHandler_mb(void)
+{
+	MM_ERROR_S;
+}
+
+void mb_setup(void)
+{
+	UART1_SetFramingErrorHandler(UART1_DefaultFramingErrorHandler_mb);
+	UART1_SetOverrunErrorHandler(UART1_DefaultOverrunErrorHandler_mb);
+	UART1_SetErrorHandler(UART1_DefaultErrorHandler_mb);
 }

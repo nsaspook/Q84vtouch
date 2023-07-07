@@ -217,39 +217,39 @@ static void CAN1_TX_FIFO_Configuration(void)
     // TXAT Unlimited number of retransmission attempts; TXPRI 1; 
     C1FIFOCON2U = 0x60;
     
-    // PLSIZE 64; FSIZE 1; 
-    C1FIFOCON2T = 0xE0;
+    // PLSIZE 64; FSIZE 4; 
+    C1FIFOCON2T = 0xE3;
     
 }
 
 static void CAN1_BitRateConfiguration(void)
 {
-    // SJW 19; 
-    C1NBTCFGL = 0x13;
+    // SJW 9; 
+    C1NBTCFGL = 0x09;
 
-    // TSEG2 19; 
-    C1NBTCFGH = 0x13;
+    // TSEG2 9; 
+    C1NBTCFGH = 0x09;
 
-    // TSEG1 58; 
-    C1NBTCFGU = 0x3A;
+    // TSEG1 28; 
+    C1NBTCFGU = 0x1C;
 
     // BRP 0; 
     C1NBTCFGT = 0x00;
 
-    // SJW 4; 
-    C1DBTCFGL = 0x04;
+    // SJW 1; 
+    C1DBTCFGL = 0x01;
 
-    // TSEG2 4; 
-    C1DBTCFGH = 0x04;
+    // TSEG2 1; 
+    C1DBTCFGH = 0x01;
 
-    // TSEG1 13; 
-    C1DBTCFGU = 0x0D;
+    // TSEG1 4; 
+    C1DBTCFGU = 0x04;
 
     // BRP 0; 
     C1DBTCFGT = 0x00;
 
-    // TDCO 14; 
-    C1TDCH = 0x0E;
+    // TDCO 5; 
+    C1TDCH = 0x05;
 
 	// TDCMOD Auto; 
 	C1TDCU = 0x02;

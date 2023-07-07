@@ -289,6 +289,8 @@ extern "C" {
 
 	void mb_tx_test(C_data *);
 
+	void mb_setup(void);
+
 	extern volatile struct V_type V;
 	extern C_data C; // MODBUS client state data
 	extern volatile M_data M; // MODBUS hardware state data

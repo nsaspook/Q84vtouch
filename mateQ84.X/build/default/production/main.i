@@ -9,6 +9,7 @@
 # 1 "main.c" 2
 # 43 "main.c"
 #pragma warning disable 520
+#pragma warning disable 1090
 #pragma warning disable 1498
 #pragma warning disable 2053
 
@@ -38310,7 +38311,7 @@ __attribute__((__unsupported__("The READTIMER" "3" "() macro is not available wi
 unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 # 34 "/opt/microchip/xc8/v2.41/pic/include/xc.h" 2 3
-# 47 "main.c" 2
+# 48 "main.c" 2
 
 # 1 "./mxcmd.h" 1
 # 15 "./mxcmd.h"
@@ -40203,7 +40204,7 @@ void delay_ms(uint16_t);
  extern float lp_filter(const float, const uint8_t, const int8_t);
 
  extern B_type B;
-# 48 "main.c" 2
+# 49 "main.c" 2
 
 
 # 1 "./../modbus_master.h" 1
@@ -40405,15 +40406,17 @@ void delay_ms(uint16_t);
 
  void mb_tx_test(C_data *);
 
+ void mb_setup(void);
+
  extern volatile struct V_type V;
  extern C_data C;
  extern volatile M_data M;
  extern volatile M_time_data MT;
  extern EM_data em;
-# 50 "main.c" 2
+# 51 "main.c" 2
 
 # 1 "./../canfd.h" 1
-# 25 "./../canfd.h"
+# 29 "./../canfd.h"
  typedef struct {
   uint32_t rec_count;
   _Bool rec_flag;
@@ -40423,12 +40426,11 @@ void delay_ms(uint16_t);
  extern CAN_MSG_OBJ msg;
 
  void Can1FIFO1NotEmptyHandler(void);
- void Can1FIFO2NotEmptyHandler(void);
 
  extern char can_buffer[96];
  void can_fd_tx(void);
- void can_fd_rx(void);
-# 51 "main.c" 2
+ void can_setup(void);
+# 52 "main.c" 2
 
 # 1 "./../batmon.h" 1
 # 38 "./../batmon.h"
@@ -40454,7 +40456,7 @@ void delay_ms(uint16_t);
 
  void DATAEE_WriteByte(uint16_t, uint8_t);
  uint8_t DATAEE_ReadByte(uint16_t);
-# 52 "main.c" 2
+# 53 "main.c" 2
 
 
 
@@ -40479,7 +40481,7 @@ volatile uint16_t cc_mode = STATUS_LAST;
 uint16_t volt_whole, bat_amp_whole, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[96], can_buffer[96];
-const char *build_date = "Jul  6 2023", *build_time = "23:27:07";
+const char *build_date = "Jul  7 2023", *build_time = "12:49:04";
 volatile uint16_t tickCount[TMR_COUNT];
 
 B_type B = {
@@ -40561,6 +40563,7 @@ void main(void)
  init_mb_master_timers();
  UART5_SetRxInterruptHandler(my_modbus_rx_32);
  StartTimer(TMR_MBTEST, 20);
+ void mb_setup();
 
  StartTimer(TMR_SPIN, 200);
 
@@ -40587,27 +40590,7 @@ void main(void)
 
 
 
- CAN1_SetFIFO1NotEmptyHandler(Can1FIFO1NotEmptyHandler);
- CAN1_SetRxBufferOverFlowInterruptHandler(Can1FIFO1NotEmptyHandler);
-
-
-
-
- CAN1_OperationModeSet(CAN_CONFIGURATION_MODE);
- C1FIFOCON1Lbits.TFNRFNIE = 1;
-
-
-
-
-
- C1INTUbits.RXIE = 1;
- PIR4bits.CANRXIF = 0;
- PIE4bits.CANRXIE = 1;
-
- CAN1_OperationModeSet(CAN_NORMAL_FD_MODE);
-
-
-
+ can_setup();
 
  while (1) {
 
@@ -40658,10 +40641,10 @@ void main(void)
    B.canbus_online = (!C1TXQCONHbits.TXREQ)&0x01;
    B.modbus_online = C.data_ok;
 
-   snprintf(buffer, 96, "%X %X %X %X   %lu %lu       ", C1BDIAG0T, C1BDIAG0U, C1BDIAG0H, C1BDIAG0L, can_rec_count.rec_count, msg.msgId);
-   eaDogM_WriteStringAtPos(0, 0, buffer);
-   snprintf(buffer, 96, "%X %X %X %X   %u %X        ", C1BDIAG1T, C1BDIAG1U, C1BDIAG1H, C1BDIAG1L, can_rec_count.rec_flag, msg.field.formatType);
-   eaDogM_WriteStringAtPos(1, 0, buffer);
+
+
+
+
 
   }
   if (TimerDone(TMR_SPIN)) {
@@ -40693,15 +40676,15 @@ void main(void)
     } else {
 
 
-     snprintf(buffer, 96, "%X %X %X %X %X %X %X %X           ", C1INTL, C1INTH, C1INTU, C1INTT, C1TRECL, C1FLTOBJ0T, C1FLTCON0L, CAN1_OperationModeGet());
-     eaDogM_WriteStringAtPos(2, 0, buffer);
-     snprintf(buffer, 96, "%X %X %X %X %X %X %X %X           ", C1FIFOCON1L, C1FIFOCON1H, C1FIFOCON1U, C1FIFOCON1T, C1FIFOSTA1L, C1FIFOSTA1H, C1FIFOSTA1U, C1FIFOSTA1T);
-     eaDogM_WriteStringAtPos(3, 0, buffer);
 
 
 
 
 
+     snprintf(buffer, 96, "EMon  %6.1fWh   %c%c    ", EBD.bat_energy / 360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
+     eaDogM_WriteStringAtPos(1, 0, buffer);
+     snprintf(buffer, 96, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
+     eaDogM_WriteStringAtPos(0, 0, buffer);
 
     }
    }

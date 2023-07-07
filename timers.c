@@ -1,5 +1,9 @@
 #include "timers.h"
 
+#pragma warning disable 520
+#pragma warning disable 1498
+#pragma warning disable 1090
+
 extern volatile uint16_t tickCount[TMR_COUNT];
 
 //**********************************************************************************************************************

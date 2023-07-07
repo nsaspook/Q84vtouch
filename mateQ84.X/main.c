@@ -41,6 +41,7 @@
     SOFTWARE.
  */
 #pragma warning disable 520
+#pragma warning disable 1090
 #pragma warning disable 1498
 #pragma warning disable 2053
 
@@ -155,6 +156,7 @@ void main(void)
 	init_mb_master_timers(); // pacing, spacing and timeouts
 	UART5_SetRxInterruptHandler(my_modbus_rx_32); // install custom serial receive ISR
 	StartTimer(TMR_MBTEST, 20);
+	void mb_setup(); // serial error handlers
 #endif
 	StartTimer(TMR_SPIN, SPINNER_SPEED);
 
@@ -179,29 +181,9 @@ void main(void)
 	eaDogM_WriteStringAtPos(2, 0, buffer);
 
 	/*
-	 * interrupt handlers, both receive data from the FIFO
+	 * complete and correct the MCC CANBUS configuration
 	 */
-	CAN1_SetFIFO1NotEmptyHandler(Can1FIFO1NotEmptyHandler);
-	CAN1_SetRxBufferOverFlowInterruptHandler(Can1FIFO1NotEmptyHandler);
-
-	/*
-	 * don't trust MMC for nothing
-	 */
-	CAN1_OperationModeSet(CAN_CONFIGURATION_MODE);
-	C1FIFOCON1Lbits.TFNRFNIE = 1; // not empty
-	//	C1FIFOCON1Lbits.TFHRFHIE = 1; // half full
-	//	C1FIFOCON1Lbits.TFERFFIE = 1; // full
-	/*
-	 * enable CAN receiver interrupts, again, to fix one of the many MMC bugs
-	 */
-	C1INTUbits.RXIE = 1; // The stupid MMC sets this back to off when setting the error interrupts
-	PIR4bits.CANRXIF = 0; // clear flags and set interrupt controller again, just to be sure
-	PIE4bits.CANRXIE = 1;
-#ifdef	USE_FD
-	CAN1_OperationModeSet(CAN_NORMAL_FD_MODE);
-#else
-	CAN1_OperationModeSet(CAN_NORMAL_2_0_MODE);
-#endif
+	can_setup();
 
 	while (true) {
 		// Add your application code

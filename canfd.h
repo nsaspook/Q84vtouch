@@ -19,11 +19,12 @@ extern "C" {
 #include "mateQ84.X/mxcmd.h"
 #include "modbus_master.h"
 
-#define CAN_DEBUG	// can status on LCD
+//#define CAN_DEBUG	// can status on LCD
 #define USE_FD	// select classic or FD
 
 #define	EMON_M	0x1	// FM80 host
-#define EMON_S	0x2	// remote display 
+#define EMON_SL	0x2	// remote display 
+#define EMON_SU	0x3	// remote display 
 
 	typedef struct {
 		uint32_t rec_count;
@@ -37,6 +38,7 @@ extern "C" {
 
 	extern char can_buffer[MAX_B_BUF];
 	void can_fd_tx(void);
+	void can_setup(void);
 
 #ifdef	__cplusplus
 }

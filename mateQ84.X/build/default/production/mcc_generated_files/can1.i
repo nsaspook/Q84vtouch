@@ -38696,38 +38696,38 @@ static void CAN1_TX_FIFO_Configuration(void)
     C1FIFOCON2U = 0x60;
 
 
-    C1FIFOCON2T = 0xE0;
+    C1FIFOCON2T = 0xE3;
 
 }
 
 static void CAN1_BitRateConfiguration(void)
 {
 
-    C1NBTCFGL = 0x13;
+    C1NBTCFGL = 0x09;
 
 
-    C1NBTCFGH = 0x13;
+    C1NBTCFGH = 0x09;
 
 
-    C1NBTCFGU = 0x3A;
+    C1NBTCFGU = 0x1C;
 
 
     C1NBTCFGT = 0x00;
 
 
-    C1DBTCFGL = 0x04;
+    C1DBTCFGL = 0x01;
 
 
-    C1DBTCFGH = 0x04;
+    C1DBTCFGH = 0x01;
 
 
-    C1DBTCFGU = 0x0D;
+    C1DBTCFGU = 0x04;
 
 
     C1DBTCFGT = 0x00;
 
 
-    C1TDCH = 0x0E;
+    C1TDCH = 0x05;
 
 
  C1TDCU = 0x02;
