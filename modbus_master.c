@@ -180,11 +180,11 @@ static void log_crc_error(const uint16_t c_crc, const uint16_t c_crc_rec)
 }
 
 /*
- * reorder 16-bit word bytes for int32_t 
+ * reorder 16-bit word bytes for int32_t
  * https://control.com/forums/threads/endianness-for-32-bit-data.48584/
  * https://ctlsys.com/support/common_modbus_protocol_misconceptions/
  * https://iotech.force.com/edgexpert/s/article/Byte-and-Word-Swapping-in-Modbus
- * 
+ *
  * "Little Endian" slaves or "Big Endian" slaves
  * Byte endianness with Word endianness?
  * Lions and Tigers and Bears!
@@ -276,7 +276,7 @@ int8_t master_controller_work(C_data * client)
 		/*
 		 * MODBUS master query speed
 		 */
-#ifdef	FASTQ 
+#ifdef	FASTQ
 		if (get_10hz(false) >= CDELAY) {
 #else
 		if (get_2hz(false) >= QDELAY) {
@@ -557,7 +557,7 @@ static void half_dup_rx(const bool delay)
 	if (delay) {
 		delay_ms(DUPL_DELAY); // busy waits
 	}
-	DERE_SetLow(); // enable modbus receiver	
+	DERE_SetLow(); // enable modbus receiver
 }
 
 // ISR function for TMR5
@@ -578,14 +578,14 @@ void timer_2ms_tick(void)
 
 /*
  * check if we are done with interrupt background buffered transmission of serial data with FIFO
- * 
+ *
  * TRMT: Transmit Shift Register is Empty bit (read-only)
  * 1 = Transmit shift register is empty and transmit buffer is empty (the last transmission has completed)
  * 0 = Transmit shift register is not empty, a transmission is in progress or queued in the transmit buffer
- * 
+ *
  * ? 8-level deep First-In-First-Out (FIFO) transmit data buffer, ? 8-level deep FIFO receive data buffer
  * Interrupt is generated and asserted while the transmit buffer is empty
- * 
+ *
  * so this will return 'true' after the buffer is empty 'interrupt' and after the last bit is on the wire
  */
 

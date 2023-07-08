@@ -19,25 +19,25 @@
  */
 
 /*
-    (c) 2018 Microchip Technology Inc. and its subsidiaries. 
-    
-    Subject to your compliance with these terms, you may use Microchip software and any 
-    derivatives exclusively with Microchip products. It is your responsibility to comply with third party 
-    license terms applicable to your use of third party software (including open source software) that 
+    (c) 2018 Microchip Technology Inc. and its subsidiaries.
+
+    Subject to your compliance with these terms, you may use Microchip software and any
+    derivatives exclusively with Microchip products. It is your responsibility to comply with third party
+    license terms applicable to your use of third party software (including open source software) that
     may accompany Microchip software.
-    
-    THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER 
-    EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY 
-    IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS 
+
+    THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER
+    EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY
+    IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS
     FOR A PARTICULAR PURPOSE.
-    
-    IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE, 
-    INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND 
-    WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP 
-    HAS BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE. TO 
-    THE FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL 
-    CLAIMS IN ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT 
-    OF FEES, IF ANY, THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS 
+
+    IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE,
+    INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND
+    WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP
+    HAS BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE. TO
+    THE FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL
+    CLAIMS IN ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT
+    OF FEES, IF ANY, THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS
     SOFTWARE.
  */
 #pragma warning disable 520
@@ -188,7 +188,7 @@ void main(void)
 	while (true) {
 		// Add your application code
 #ifdef MB_MASTER
-		master_controller_work(&C); // master MODBUS processing	
+		master_controller_work(&C); // master MODBUS processing
 #endif
 		switch (state) {
 		case state_init:
@@ -215,7 +215,7 @@ void main(void)
 			send_mx_cmd(cmd_watts);
 			rec_mx_cmd(state_watts_cb, REC_LEN);
 			break;
-		case state_mx_status: // wait for ten second flag in this state for logging 
+		case state_mx_status: // wait for ten second flag in this state for logging
 			send_mx_cmd(cmd_mx_status);
 			rec_mx_cmd(state_mx_status_cb, REC_STATUS_LEN);
 			break;
@@ -234,9 +234,9 @@ void main(void)
 			B.canbus_online = (!C1TXQCONHbits.TXREQ)&0x01;
 			B.modbus_online = C.data_ok;
 #ifdef CAN_DEBUG
-			snprintf(buffer, MAX_B_BUF, "%X %X %X %X   %lu %lu       ", C1BDIAG0T, C1BDIAG0U, C1BDIAG0H, C1BDIAG0L, can_rec_count.rec_count, msg.msgId);
+			snprintf(buffer, MAX_B_BUF, "%X %X %X %X   %lu %lu %lu      ", C1BDIAG0T, C1BDIAG0U, C1BDIAG0H, C1BDIAG0L, can_rec_count.rec_count, msg[0].msgId, msg[1].msgId);
 			eaDogM_WriteStringAtPos(0, 0, buffer);
-			snprintf(buffer, MAX_B_BUF, "%X %X %X %X   %u %X        ", C1BDIAG1T, C1BDIAG1U, C1BDIAG1H, C1BDIAG1L, can_rec_count.rec_flag, msg.field.formatType);
+			snprintf(buffer, MAX_B_BUF, "%X %X %X %X   %u %X        ", C1BDIAG1T, C1BDIAG1U, C1BDIAG1H, C1BDIAG1L, can_rec_count.rec_flag, msg[0].field.formatType);
 			eaDogM_WriteStringAtPos(1, 0, buffer);
 #endif
 		}
@@ -269,10 +269,19 @@ void main(void)
 				} else {
 					//					snprintf(buffer, MAX_B_BUF, "EMon  %4.1fVAC   %c%c    ", lp_filter(ac, F_ac, false), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
 #ifdef CAN_DEBUG
+#ifdef DATA_DEBUG
+					rxMsgData[0][44] = 0;
+					snprintf(buffer, MAX_B_BUF, "%s          ", &rxMsgData[0][4]);
+					eaDogM_WriteStringAtPos(2, 0, buffer);
+					rxMsgData[0][44] = 0;
+					snprintf(buffer, MAX_B_BUF, "%s          ", &rxMsgData[0][24]);
+					eaDogM_WriteStringAtPos(3, 0, buffer);
+#else
 					snprintf(buffer, MAX_B_BUF, "%X %X %X %X %X %X %X %X           ", C1INTL, C1INTH, C1INTU, C1INTT, C1TRECL, C1FLTOBJ0T, C1FLTCON0L, CAN1_OperationModeGet());
 					eaDogM_WriteStringAtPos(2, 0, buffer);
 					snprintf(buffer, MAX_B_BUF, "%X %X %X %X %X %X %X %X           ", C1FIFOCON1L, C1FIFOCON1H, C1FIFOCON1U, C1FIFOCON1T, C1FIFOSTA1L, C1FIFOSTA1H, C1FIFOSTA1U, C1FIFOSTA1T);
 					eaDogM_WriteStringAtPos(3, 0, buffer);
+#endif
 #else
 					snprintf(buffer, MAX_B_BUF, "EMon  %6.1fWh   %c%c    ", EBD.bat_energy / 360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
 					eaDogM_WriteStringAtPos(1, 0, buffer);

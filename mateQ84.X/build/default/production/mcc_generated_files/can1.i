@@ -38660,10 +38660,16 @@ static void CAN1_RX_FIFO_Configuration(void)
 static void CAN1_RX_FIFO_FilterMaskConfiguration(void)
 {
 
+
+
+
     C1FLTOBJ0L = 0x00;
     C1FLTOBJ0H = 0x00;
     C1FLTOBJ0U = 0x00;
     C1FLTOBJ0T = 0x40;
+
+
+
     C1MASK0L = 0xFF;
     C1MASK0H = 0xE7;
     C1MASK0U = 0xFF;

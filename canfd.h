@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   canfd.h
  * Author: root
  *
@@ -19,12 +19,13 @@ extern "C" {
 #include "mateQ84.X/mxcmd.h"
 #include "modbus_master.h"
 
-//#define CAN_DEBUG	// can status on LCD
+#define CAN_DEBUG	// can status on LCD
+#define DATA_DEBUG
 #define USE_FD	// select classic or FD
 
 #define	EMON_M	0x1	// FM80 host
-#define EMON_SL	0x2	// remote display 
-#define EMON_SU	0x3	// remote display 
+#define EMON_SL	0x2	// remote display lower data
+#define EMON_SU	0x3	// remote display upper data
 
 	typedef struct {
 		uint32_t rec_count;
@@ -32,7 +33,8 @@ extern "C" {
 	} can_rec_count_t;
 
 	extern volatile can_rec_count_t can_rec_count;
-	extern CAN_MSG_OBJ msg;
+	extern CAN_MSG_OBJ msg[2];
+	extern volatile uint8_t rxMsgData[2][64];
 
 	void Can1FIFO1NotEmptyHandler(void);
 

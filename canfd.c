@@ -1,6 +1,10 @@
 #include "canfd.h"
 
-CAN_MSG_OBJ msg;
+CAN_MSG_OBJ msg[2];
+volatile uint8_t rxMsgData[2][64] = {
+	"     no data   ",
+	" no_data   ",
+};
 
 volatile can_rec_count_t can_rec_count = {
 	.rec_count = 0,
@@ -13,12 +17,27 @@ volatile can_rec_count_t can_rec_count = {
 void Can1FIFO1NotEmptyHandler(void)
 {
 	uint8_t tries = 0;
+	static uint8_t half = 0;
+
 	while (true) {
-		if (CAN1_ReceiveFrom(FIFO1, &msg)) //receive the message
+		if (CAN1_ReceiveFrom(FIFO1, &msg[half])) //receive the message
 		{
+			memcpy((void *) &rxMsgData[half][0], msg[half].data, 64);
 			can_rec_count.rec_count++;
-			if (msg.msgId == EMON_SU) {
+			if (msg[half].msgId == EMON_SL) {
+				half = 1;
+#ifdef CAN_DEBUG
+				MLED_Toggle();
+#endif
+				break;
+			}
+			if (msg[half].msgId == EMON_SU) {
+				half = 0;
 				can_rec_count.rec_flag = true;
+#ifdef CAN_DEBUG
+				MLED_Toggle();
+#endif
+				break;
 			}
 #ifdef CAN_DEBUG
 			MLED_Toggle();
@@ -37,7 +56,7 @@ void can_fd_tx(void)
 #ifdef USE_FD
 	Transmission.field.brs = CAN_BRS_MODE; //Transmit the data bytes at data bit rate
 	Transmission.field.dlc = DLC_64; // 64 data bytes
-	Transmission.field.formatType = CAN_FD_FORMAT; //CAN FD frames 
+	Transmission.field.formatType = CAN_FD_FORMAT; //CAN FD frames
 	Transmission.field.frameType = CAN_FRAME_DATA; //Data frame
 	Transmission.field.idType = CAN_FRAME_EXT; //Standard ID
 	Transmission.msgId = EMON_SL; //ID of client
