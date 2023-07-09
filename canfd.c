@@ -1,7 +1,7 @@
 #include "canfd.h"
 
 CAN_MSG_OBJ msg[2];
-volatile uint8_t rxMsgData[2][64] = {
+volatile uint8_t rxMsgData[2][CANFD_BYTES] = {
 	"     no data   ",
 	" no_data   ",
 };
@@ -22,7 +22,7 @@ void Can1FIFO1NotEmptyHandler(void)
 	while (true) {
 		if (CAN1_ReceiveFrom(FIFO1, &msg[half])) //receive the message
 		{
-			memcpy((void *) &rxMsgData[half][0], msg[half].data, 64);
+			memcpy((void *) &rxMsgData[half][0], msg[half].data,CANFD_BYTES);
 			can_rec_count.rec_count++;
 			if (msg[half].msgId == EMON_SL) {
 				half = 1;
@@ -44,7 +44,7 @@ void Can1FIFO1NotEmptyHandler(void)
 #endif
 			break;
 		}
-		if (++tries >= 8) {
+		if (++tries >= CAN_RX_TRIES) {
 			break;
 		}
 	}
@@ -74,7 +74,7 @@ void can_fd_tx(void)
 		CAN1_Transmit(FIFO2, &Transmission); //transmit frame
 	}
 	Transmission.msgId = (EMON_SU); //ID of client
-	Transmission.data = (uint8_t*) can_buffer + 64; //transmit the data from the data bytes
+	Transmission.data = (uint8_t*) can_buffer + CANFD_BYTES; //transmit the data from the data bytes
 	if (CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(FIFO2) & CAN_TX_FIFO_AVAILABLE))//ensure that the TXQ has space for a message
 	{
 		CAN1_Transmit(FIFO2, &Transmission); //transmit frame

@@ -33,7 +33,7 @@ extern "C" {
 #define BM_UPDATE	3600	// seconds between EEPROM updates, sleeping
 #define BM_UPDATE_RUN	1800	// while running
 
-#define BAT_CYCLES	12
+#define BAT_CYCLES	8
 
 	typedef struct EB_data {
 		uint8_t checkmark;
