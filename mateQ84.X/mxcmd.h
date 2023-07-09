@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   mxcmd.h
  * Author: root
  *
@@ -22,7 +22,7 @@ extern "C" {
 #include "../timers.h"
 
 #define VER	1
-	const char build_version[] = "V1.23 FM80 Q84";
+	const char build_version[] = "V1.26 FM80 Q84";
 
 #define MAX_B_BUF	96
 #define IO_TEST
@@ -31,7 +31,11 @@ extern "C" {
 #define BUFFER_SPACING	2
 #define SPINNER_SPEED	200
 #define LP_BUFFER_SIZE	9
-#define ONLINE_TIMEOUT	20000
+#define ONLINE_TIMEOUT	30000
+
+#define FM80_ID		0x03
+#define FMxx_ID		abuf[2]
+#define FMxx_STATE	abuf[2]
 
 	const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
 	const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
@@ -40,7 +44,7 @@ extern "C" {
 	const uint16_t cmd_batteryv[] = {0x100, 0x02, 0x00, 0x08, 0x00, 0x00, 0x00, 0x0a};
 	const uint16_t cmd_batterya[] = {0x100, 0x02, 0x01, 0xc7, 0x00, 0x00, 0x00, 0xca};
 	const uint16_t cmd_watts[] = {0x100, 0x02, 0x01, 0x6a, 0x00, 0x00, 0x00, 0x6d};
-	const uint16_t cmd_misc[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02}; // example MX80 command ID request
+	const uint16_t cmd_misc[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02}; // example FM80 command ID request
 
 	enum status_type {
 		STATUS_SLEEPING = 0,
@@ -77,7 +81,7 @@ extern "C" {
 	typedef struct B_type {
 		volatile bool ten_sec_flag, one_sec_flag;
 		uint16_t pacing, rx_count, flush;
-		volatile bool mx80_online;
+		volatile bool FM80_online;
 		volatile uint8_t canbus_online, modbus_online;
 	} B_type;
 

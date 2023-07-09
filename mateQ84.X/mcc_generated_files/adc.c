@@ -166,8 +166,6 @@ void ADC_Initialize(void)
     //Clear ADC Context Threshold Interrupt Flag
     PIR2bits.ADCH1IF = 0;
     
-    //Set ADC interrupt enable bit
-    PIE1bits.ADIE = 1;
 
     //Configure interrupt handlers
     ADC_SetADIInterruptHandler(ADC_DefaultADI_ISR);

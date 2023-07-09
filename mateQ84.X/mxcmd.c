@@ -145,7 +145,7 @@ void tensec_io(void)
 }
 
 /*
- * floating point low pass filter, 
+ * floating point low pass filter,
  * slow/fast select, use (-1) to zero buffer channel and return new
  */
 float lp_filter(const float new, const uint8_t bn, const int8_t slow)

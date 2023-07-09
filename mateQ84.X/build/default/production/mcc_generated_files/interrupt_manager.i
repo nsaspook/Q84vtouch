@@ -39879,54 +39879,69 @@ typedef enum
 
 
 
+
 typedef enum
 {
-    TXQ = 0
+    TXQ = 0,
+    FIFO2 = 2
 } CAN1_TX_FIFO_CHANNELS;
 
 typedef enum
 {
-    FIFO1 = 1,
-    FIFO2 = 2
+    FIFO1 = 1
 } CAN1_RX_FIFO_CHANNELS;
-# 107 "mcc_generated_files/can1.h"
+# 108 "mcc_generated_files/can1.h"
 void CAN1_Initialize(void);
-# 148 "mcc_generated_files/can1.h"
+# 149 "mcc_generated_files/can1.h"
 CAN_OP_MODE_STATUS CAN1_OperationModeSet(const CAN_OP_MODES reqestMode);
-# 186 "mcc_generated_files/can1.h"
+# 187 "mcc_generated_files/can1.h"
 CAN_OP_MODES CAN1_OperationModeGet(void);
-# 236 "mcc_generated_files/can1.h"
+# 237 "mcc_generated_files/can1.h"
 _Bool CAN1_Receive(CAN_MSG_OBJ *rxCanMsg);
-# 276 "mcc_generated_files/can1.h"
+# 277 "mcc_generated_files/can1.h"
 _Bool CAN1_ReceiveFrom(const CAN1_RX_FIFO_CHANNELS fifoChannel, CAN_MSG_OBJ *rxCanMsg);
-# 335 "mcc_generated_files/can1.h"
+# 336 "mcc_generated_files/can1.h"
 CAN_TX_MSG_REQUEST_STATUS CAN1_Transmit(const CAN1_TX_FIFO_CHANNELS fifoChannel, CAN_MSG_OBJ *txCanMsg);
-# 391 "mcc_generated_files/can1.h"
+# 392 "mcc_generated_files/can1.h"
 _Bool CAN1_IsBusOff(void);
-# 449 "mcc_generated_files/can1.h"
+# 450 "mcc_generated_files/can1.h"
 _Bool CAN1_IsTxErrorPassive(void);
-# 508 "mcc_generated_files/can1.h"
+# 509 "mcc_generated_files/can1.h"
 _Bool CAN1_IsTxErrorWarning(void);
-# 567 "mcc_generated_files/can1.h"
+# 568 "mcc_generated_files/can1.h"
 _Bool CAN1_IsTxErrorActive(void);
-# 615 "mcc_generated_files/can1.h"
+# 616 "mcc_generated_files/can1.h"
 _Bool CAN1_IsRxErrorPassive(void);
-# 663 "mcc_generated_files/can1.h"
+# 664 "mcc_generated_files/can1.h"
 _Bool CAN1_IsRxErrorWarning(void);
-# 711 "mcc_generated_files/can1.h"
+# 712 "mcc_generated_files/can1.h"
 _Bool CAN1_IsRxErrorActive(void);
-# 762 "mcc_generated_files/can1.h"
+# 763 "mcc_generated_files/can1.h"
 void CAN1_Sleep(void);
-# 816 "mcc_generated_files/can1.h"
+# 817 "mcc_generated_files/can1.h"
 CAN_TX_FIFO_STATUS CAN1_TransmitFIFOStatusGet(const CAN1_TX_FIFO_CHANNELS fifoChannel);
-# 858 "mcc_generated_files/can1.h"
+# 859 "mcc_generated_files/can1.h"
 uint8_t CAN1_ReceivedMessageCountGet(void);
-# 893 "mcc_generated_files/can1.h"
+# 926 "mcc_generated_files/can1.h"
+void CAN1_SetInvalidMessageInterruptHandler(void (*handler)(void));
+# 983 "mcc_generated_files/can1.h"
+void CAN1_SetBusWakeUpActivityInterruptHandler(void (*handler)(void));
+# 1051 "mcc_generated_files/can1.h"
+void CAN1_SetBusErrorInterruptHandler(void (*handler)(void));
+# 1102 "mcc_generated_files/can1.h"
+void CAN1_SetModeChangeInterruptHandler(void (*handler)(void));
+# 1171 "mcc_generated_files/can1.h"
+void CAN1_SetSystemErrorInterruptHandler(void (*handler)(void));
+# 1239 "mcc_generated_files/can1.h"
+void CAN1_SetTxAttemptInterruptHandler(void (*handler)(void));
+# 1291 "mcc_generated_files/can1.h"
+void CAN1_SetRxBufferOverFlowInterruptHandler(void (*handler)(void));
+# 1326 "mcc_generated_files/can1.h"
 void CAN1_SetFIFO1NotEmptyHandler(void (*handler)(void));
-# 928 "mcc_generated_files/can1.h"
-void CAN1_SetFIFO2NotEmptyHandler(void (*handler)(void));
-# 972 "mcc_generated_files/can1.h"
+# 1370 "mcc_generated_files/can1.h"
 void CAN1_SetTXQnullHandler(void (*handler)(void));
+# 1414 "mcc_generated_files/can1.h"
+void CAN1_SetFIFO2nullHandler(void (*handler)(void));
 # 66 "mcc_generated_files/mcc.h" 2
 
 # 1 "mcc_generated_files/spi1.h" 1
@@ -39977,7 +39992,7 @@ void INTERRUPT_Initialize (void)
     GIE = state;
 
 
-    IPR1bits.ADIP = 1;
+    IPR0bits.CANIP = 1;
     IPR4bits.CANRXIP = 1;
     IPR8bits.U2TXIP = 1;
     IPR8bits.U2RXIP = 1;

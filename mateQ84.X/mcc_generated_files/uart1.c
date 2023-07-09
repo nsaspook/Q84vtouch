@@ -182,9 +182,6 @@ void UART1_SetAddresstoTransmit(uint8_t txAddress)
 }
 
 
-
-
-
 void UART1_DefaultFramingErrorHandler(void){}
 
 void UART1_DefaultOverrunErrorHandler(void){}

@@ -19,28 +19,29 @@
  */
 
 /*
-    (c) 2018 Microchip Technology Inc. and its subsidiaries. 
-    
-    Subject to your compliance with these terms, you may use Microchip software and any 
-    derivatives exclusively with Microchip products. It is your responsibility to comply with third party 
-    license terms applicable to your use of third party software (including open source software) that 
+    (c) 2018 Microchip Technology Inc. and its subsidiaries.
+
+    Subject to your compliance with these terms, you may use Microchip software and any
+    derivatives exclusively with Microchip products. It is your responsibility to comply with third party
+    license terms applicable to your use of third party software (including open source software) that
     may accompany Microchip software.
-    
-    THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER 
-    EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY 
-    IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS 
+
+    THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER
+    EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY
+    IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS
     FOR A PARTICULAR PURPOSE.
-    
-    IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE, 
-    INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND 
-    WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP 
-    HAS BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE. TO 
-    THE FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL 
-    CLAIMS IN ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT 
-    OF FEES, IF ANY, THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS 
+
+    IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE,
+    INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND
+    WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP
+    HAS BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE. TO
+    THE FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL
+    CLAIMS IN ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT
+    OF FEES, IF ANY, THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS
     SOFTWARE.
  */
 #pragma warning disable 520
+#pragma warning disable 1090
 #pragma warning disable 1498
 #pragma warning disable 2053
 
@@ -68,10 +69,10 @@ enum state_type {
 	state_last,
 };
 
-uint16_t abuf[FM_BUFFER];
-uint16_t volt_fract;
-uint16_t volt_whole, bat_amp_whole, panel_watts, cc_mode = STATUS_LAST, vf, vw;
-enum state_type state = state_init;
+static uint16_t abuf[FM_BUFFER];
+volatile uint16_t cc_mode = STATUS_LAST;
+uint16_t volt_whole, bat_amp_whole, panel_watts, volt_fract, vf, vw;
+volatile enum state_type state = state_init;
 char buffer[MAX_B_BUF], can_buffer[MAX_B_BUF];
 const char *build_date = __DATE__, *build_time = __TIME__;
 volatile uint16_t tickCount[TMR_COUNT];
@@ -91,13 +92,13 @@ B_type B = {
 void volt_f(uint16_t);
 
 /*
- * MX80 send/recv functions
+ * FM80 send/recv functions
  */
 void send_mx_cmd(const uint16_t *);
 void rec_mx_cmd(void (* DataHandler)(void), uint8_t);
 
 /*
- * callbacks to handle MX80 register data
+ * callbacks to handle FM80 register data
  */
 void state_init_cb(void);
 void state_status_cb(void);
@@ -155,6 +156,7 @@ void main(void)
 	init_mb_master_timers(); // pacing, spacing and timeouts
 	UART5_SetRxInterruptHandler(my_modbus_rx_32); // install custom serial receive ISR
 	StartTimer(TMR_MBTEST, 20);
+	void mb_setup(); // serial error handlers
 #endif
 	StartTimer(TMR_SPIN, SPINNER_SPEED);
 
@@ -175,15 +177,19 @@ void main(void)
 	snprintf(buffer, MAX_B_BUF, "%s ", "Start Up            ");
 	eaDogM_WriteStringAtPos(3, 0, buffer);
 	wdtdelay(1000000);
-	snprintf(buffer, MAX_B_BUF, "%s ", "Polling MX80        ");
+	snprintf(buffer, MAX_B_BUF, "%s ", "Polling FM80        ");
 	eaDogM_WriteStringAtPos(2, 0, buffer);
+
+	/*
+	 * complete and correct the MCC CANBUS configuration
+	 */
+	can_setup();
 
 	while (true) {
 		// Add your application code
 #ifdef MB_MASTER
-		master_controller_work(&C); // master MODBUS processing	
+		master_controller_work(&C); // master MODBUS processing
 #endif
-
 		switch (state) {
 		case state_init:
 			send_mx_cmd(cmd_id);
@@ -209,7 +215,7 @@ void main(void)
 			send_mx_cmd(cmd_watts);
 			rec_mx_cmd(state_watts_cb, REC_LEN);
 			break;
-		case state_mx_status: // wait for ten second flag in this state for logging 
+		case state_mx_status: // wait for ten second flag in this state for logging
 			send_mx_cmd(cmd_mx_status);
 			rec_mx_cmd(state_mx_status_cb, REC_STATUS_LEN);
 			break;
@@ -222,10 +228,17 @@ void main(void)
 			rec_mx_cmd(state_init_cb, REC_LEN);
 			break;
 		}
+
 		if (B.one_sec_flag) { // one second tasks
 			B.one_sec_flag = false;
 			B.canbus_online = (!C1TXQCONHbits.TXREQ)&0x01;
 			B.modbus_online = C.data_ok;
+#ifdef CAN_DEBUG
+			snprintf(buffer, MAX_B_BUF, "%X %X %X %X   %lu %lu %lu      ", C1BDIAG0T, C1BDIAG0U, C1BDIAG0H, C1BDIAG0L, can_rec_count.rec_count, msg[0].msgId, msg[1].msgId);
+			eaDogM_WriteStringAtPos(0, 0, buffer);
+			snprintf(buffer, MAX_B_BUF, "%X %X %X %X   %u %X        ", C1BDIAG1T, C1BDIAG1U, C1BDIAG1H, C1BDIAG1L, can_rec_count.rec_flag, msg[0].field.formatType);
+			eaDogM_WriteStringAtPos(1, 0, buffer);
+#endif
 		}
 		if (TimerDone(TMR_SPIN)) { // LCD status spinner for charger MODE
 			{
@@ -255,10 +268,26 @@ void main(void)
 					}
 				} else {
 					//					snprintf(buffer, MAX_B_BUF, "EMon  %4.1fVAC   %c%c    ", lp_filter(ac, F_ac, false), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
+#ifdef CAN_DEBUG
+#ifdef DATA_DEBUG
+					rxMsgData[0][44] = 0;
+					snprintf(buffer, MAX_B_BUF, "%s          ", &rxMsgData[0][4]);
+					eaDogM_WriteStringAtPos(2, 0, buffer);
+					rxMsgData[0][44] = 0;
+					snprintf(buffer, MAX_B_BUF, "%s          ", &rxMsgData[0][24]);
+					eaDogM_WriteStringAtPos(3, 0, buffer);
+#else
+					snprintf(buffer, MAX_B_BUF, "%X %X %X %X %X %X %X %X           ", C1INTL, C1INTH, C1INTU, C1INTT, C1TRECL, C1FLTOBJ0T, C1FLTCON0L, CAN1_OperationModeGet());
+					eaDogM_WriteStringAtPos(2, 0, buffer);
+					snprintf(buffer, MAX_B_BUF, "%X %X %X %X %X %X %X %X           ", C1FIFOCON1L, C1FIFOCON1H, C1FIFOCON1U, C1FIFOCON1T, C1FIFOSTA1L, C1FIFOSTA1H, C1FIFOSTA1U, C1FIFOSTA1T);
+					eaDogM_WriteStringAtPos(3, 0, buffer);
+#endif
+#else
 					snprintf(buffer, MAX_B_BUF, "EMon  %6.1fWh   %c%c    ", EBD.bat_energy / 360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
 					eaDogM_WriteStringAtPos(1, 0, buffer);
 					snprintf(buffer, MAX_B_BUF, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, false), lp_filter(wva, F_wva, false), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
 					eaDogM_WriteStringAtPos(0, 0, buffer);
+#endif
 				}
 			}
 		}
@@ -300,26 +329,34 @@ void rec_mx_cmd(void (* DataHandler)(void), uint8_t rec_len)
 		} else {
 			if (online_count++ > ONLINE_TIMEOUT) {
 				online_count = 0;
-				B.mx80_online = false;
+				B.FM80_online = false;
 				cc_mode = STATUS_LAST;
 				state = state_init;
 			}
 		}
 	}
+	if ((B.FM80_online == false) && online_count++ > ONLINE_TIMEOUT) {
+		online_count = 0;
+		B.FM80_online = false;
+		cc_mode = STATUS_LAST;
+		state = state_watts;
+		FMxx_ID = 0x0;
+		DataHandler();
+	}
+
 }
 
 void state_init_cb(void)
 {
-	if (abuf[2] == 0x03) {
-		printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: Found MX80 online\r\n", B.rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
-		B.mx80_online = true;
-		snprintf(buffer, MAX_B_BUF, "Found MX80 online      ");
+	if (FMxx_ID == FM80_ID) {
+		printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: FM80 Online\r\n", B.rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
+		B.FM80_online = true;
+		snprintf(buffer, MAX_B_BUF, "FM80 Online         ");
 		eaDogM_WriteStringAtPos(3, 0, buffer);
 	} else {
-		printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: MX80 Not Found online\r\n", B.rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
-		snprintf(buffer, MAX_B_BUF, "MX80 Not Found online  ");
+		snprintf(buffer, MAX_B_BUF, "FM80 Offline        ");
 		eaDogM_WriteStringAtPos(3, 0, buffer);
-		B.mx80_online = false;
+		B.FM80_online = false;
 		cc_mode = STATUS_LAST;
 	}
 	state = state_status;
@@ -328,12 +365,12 @@ void state_init_cb(void)
 void state_status_cb(void)
 {
 #ifdef debug_data
-	printf("%5d: %3x %3x %3x %3x %3x STATUS: MX80 %s mode\r\n", rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4], state_name[abuf[2]]);
+	printf("%5d: %3x %3x %3x %3x %3x STATUS: FM80 %s mode\r\n", rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4], state_name[abuf[2]]);
 #endif
-	if (abuf[2] != STATUS_SLEEPING) {
+	if (FMxx_STATE != STATUS_SLEEPING) {
 		state = state_watts;
 	} else {
-		state = state_mx_status;
+		state = state_watts;
 	}
 	cc_mode = abuf[2];
 }
@@ -384,12 +421,12 @@ void state_mx_status_cb(void)
 		abuf[1] = (abuf[1]&0x0f) - 10;
 	}
 #ifdef debug_data
-	printf("%5d: %3x %3x %3x %3x %3x  SDATA: MX80 Data mode %3x %3x %3x %3x %3x %3x %3x %3x %3x\r\n",
+	printf("%5d: %3x %3x %3x %3x %3x  SDATA: FM80 Data mode %3x %3x %3x %3x %3x %3x %3x %3x %3x\r\n",
 		rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4], abuf[5], abuf[6], abuf[7], abuf[8], abuf[9], abuf[10], abuf[11], abuf[12], abuf[13]);
 #endif
 	if (B.ten_sec_flag) {
 		B.ten_sec_flag = false;
-		if (B.mx80_online) {
+		if (B.FM80_online) {
 			MM_ERROR_C;
 			/*
 			 * log CSV values to the serial port for data storage and processing
@@ -429,9 +466,9 @@ void state_mx_status_cb(void)
 void state_misc_cb(void)
 {
 	if (abuf[2] == 0x03) {
-		B.mx80_online = true;
+		B.FM80_online = true;
 	} else {
-		B.mx80_online = false;
+		B.FM80_online = false;
 		cc_mode = STATUS_LAST;
 		state = state_init;
 		return;

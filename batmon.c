@@ -9,8 +9,7 @@ EB_data EBD = {
 	.bat_mode = 0,
 	.bat_time = 0,
 	.crc = 0,
-},
-EBD_ptr;
+};
 
 uint16_t EBD_update = 0; // EEPROM write counter for BM_UPDATE
 
@@ -40,7 +39,7 @@ void wr_bm_data(uint8_t * EB)
 	EBD.crc = 0;
 	EBD.crc = crc16(EB, sizeof(EBD) - 2); // exclude crc bytes
 	EBD.bat_time = ++EBD.bat_time;
-	
+
 	if ((EBD.bat_time) % BAT_CYCLES == 0) {
 		EBD.bat_cycles++;
 	}
@@ -66,22 +65,31 @@ void get_bm_data(EB_data * EB)
 	EB->volt_whole = (float) vw;
 }
 
+/*
+ * track energy usage and storage of the system
+ * with LiFePO4 battery chem this is simple, direct with no major secondary effects over the discharge/charge curve
+ * 
+ */
 void compute_bm_data(EB_data * EB)
 {
-	float net_energy;
+	float net_energy, net_balance;
 
-	net_energy = EB->bat_energy + (((EB->FMw * INV_EFF_VAL) - (EB->ENva * BAT_EFF_VAL))); // inverter/battery power conversion correction
-	if (cc_mode == STATUS_SLEEPING) {
-		net_energy = EB->bat_energy - (EB->ENva * BAT_EFF_VAL); // ignore adding small panel energy when sleeping
+	net_balance = EB->FMw - (EB->ENw * INV_EFF_VAL); // make the energy comparison AC -> DC watts equal using inverter losses
+	if (net_balance > 0.0001) { // more energy from panels than current load usage
+		net_balance = net_balance * BAT_EFF_VAL; // actual battery energy storage correction, energy in vs energy out losses
+	} else {
+		net_balance = net_balance; // net drain, inverter correction already applied: possible future second order corrections here
 	}
+	net_energy = EB->bat_energy + net_balance; // inverter/battery power conversion correction
 	/*
 	 * set battery energy limits
 	 */
-	EB->bat_energy = net_energy - IDLE_DRAIN;
-	if (EB->bat_energy > BAT_ENERGY) {
+	EB->bat_energy = net_energy - IDLE_DRAIN; // system electronic power drain
+
+	if (EB->bat_energy > BAT_ENERGY) { // limit up energy
 		EB->bat_energy = BAT_ENERGY;
 	}
-	if (EB->bat_energy <= 0.0f) {
+	if (EB->bat_energy <= 0.0f) { // limit down energy
 		EB->bat_energy = 0.0001f;
 	}
 }

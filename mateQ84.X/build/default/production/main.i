@@ -9,6 +9,7 @@
 # 1 "main.c" 2
 # 43 "main.c"
 #pragma warning disable 520
+#pragma warning disable 1090
 #pragma warning disable 1498
 #pragma warning disable 2053
 
@@ -38310,7 +38311,7 @@ __attribute__((__unsupported__("The READTIMER" "3" "() macro is not available wi
 unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 # 34 "/opt/microchip/xc8/v2.41/pic/include/xc.h" 2 3
-# 47 "main.c" 2
+# 48 "main.c" 2
 
 # 1 "./mxcmd.h" 1
 # 15 "./mxcmd.h"
@@ -39945,54 +39946,69 @@ typedef enum
 
 
 
+
 typedef enum
 {
-    TXQ = 0
+    TXQ = 0,
+    FIFO2 = 2
 } CAN1_TX_FIFO_CHANNELS;
 
 typedef enum
 {
-    FIFO1 = 1,
-    FIFO2 = 2
+    FIFO1 = 1
 } CAN1_RX_FIFO_CHANNELS;
-# 107 "./mcc_generated_files/can1.h"
+# 108 "./mcc_generated_files/can1.h"
 void CAN1_Initialize(void);
-# 148 "./mcc_generated_files/can1.h"
+# 149 "./mcc_generated_files/can1.h"
 CAN_OP_MODE_STATUS CAN1_OperationModeSet(const CAN_OP_MODES reqestMode);
-# 186 "./mcc_generated_files/can1.h"
+# 187 "./mcc_generated_files/can1.h"
 CAN_OP_MODES CAN1_OperationModeGet(void);
-# 236 "./mcc_generated_files/can1.h"
+# 237 "./mcc_generated_files/can1.h"
 _Bool CAN1_Receive(CAN_MSG_OBJ *rxCanMsg);
-# 276 "./mcc_generated_files/can1.h"
+# 277 "./mcc_generated_files/can1.h"
 _Bool CAN1_ReceiveFrom(const CAN1_RX_FIFO_CHANNELS fifoChannel, CAN_MSG_OBJ *rxCanMsg);
-# 335 "./mcc_generated_files/can1.h"
+# 336 "./mcc_generated_files/can1.h"
 CAN_TX_MSG_REQUEST_STATUS CAN1_Transmit(const CAN1_TX_FIFO_CHANNELS fifoChannel, CAN_MSG_OBJ *txCanMsg);
-# 391 "./mcc_generated_files/can1.h"
+# 392 "./mcc_generated_files/can1.h"
 _Bool CAN1_IsBusOff(void);
-# 449 "./mcc_generated_files/can1.h"
+# 450 "./mcc_generated_files/can1.h"
 _Bool CAN1_IsTxErrorPassive(void);
-# 508 "./mcc_generated_files/can1.h"
+# 509 "./mcc_generated_files/can1.h"
 _Bool CAN1_IsTxErrorWarning(void);
-# 567 "./mcc_generated_files/can1.h"
+# 568 "./mcc_generated_files/can1.h"
 _Bool CAN1_IsTxErrorActive(void);
-# 615 "./mcc_generated_files/can1.h"
+# 616 "./mcc_generated_files/can1.h"
 _Bool CAN1_IsRxErrorPassive(void);
-# 663 "./mcc_generated_files/can1.h"
+# 664 "./mcc_generated_files/can1.h"
 _Bool CAN1_IsRxErrorWarning(void);
-# 711 "./mcc_generated_files/can1.h"
+# 712 "./mcc_generated_files/can1.h"
 _Bool CAN1_IsRxErrorActive(void);
-# 762 "./mcc_generated_files/can1.h"
+# 763 "./mcc_generated_files/can1.h"
 void CAN1_Sleep(void);
-# 816 "./mcc_generated_files/can1.h"
+# 817 "./mcc_generated_files/can1.h"
 CAN_TX_FIFO_STATUS CAN1_TransmitFIFOStatusGet(const CAN1_TX_FIFO_CHANNELS fifoChannel);
-# 858 "./mcc_generated_files/can1.h"
+# 859 "./mcc_generated_files/can1.h"
 uint8_t CAN1_ReceivedMessageCountGet(void);
-# 893 "./mcc_generated_files/can1.h"
+# 926 "./mcc_generated_files/can1.h"
+void CAN1_SetInvalidMessageInterruptHandler(void (*handler)(void));
+# 983 "./mcc_generated_files/can1.h"
+void CAN1_SetBusWakeUpActivityInterruptHandler(void (*handler)(void));
+# 1051 "./mcc_generated_files/can1.h"
+void CAN1_SetBusErrorInterruptHandler(void (*handler)(void));
+# 1102 "./mcc_generated_files/can1.h"
+void CAN1_SetModeChangeInterruptHandler(void (*handler)(void));
+# 1171 "./mcc_generated_files/can1.h"
+void CAN1_SetSystemErrorInterruptHandler(void (*handler)(void));
+# 1239 "./mcc_generated_files/can1.h"
+void CAN1_SetTxAttemptInterruptHandler(void (*handler)(void));
+# 1291 "./mcc_generated_files/can1.h"
+void CAN1_SetRxBufferOverFlowInterruptHandler(void (*handler)(void));
+# 1326 "./mcc_generated_files/can1.h"
 void CAN1_SetFIFO1NotEmptyHandler(void (*handler)(void));
-# 928 "./mcc_generated_files/can1.h"
-void CAN1_SetFIFO2NotEmptyHandler(void (*handler)(void));
-# 972 "./mcc_generated_files/can1.h"
+# 1370 "./mcc_generated_files/can1.h"
 void CAN1_SetTXQnullHandler(void (*handler)(void));
+# 1414 "./mcc_generated_files/can1.h"
+void CAN1_SetFIFO2nullHandler(void (*handler)(void));
 # 66 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/spi1.h" 1
@@ -40065,7 +40081,8 @@ struct spi_link_type {
  volatile int32_t int_count;
 };
 
-extern uint16_t panel_watts, volt_whole, bat_amp_whole, cc_mode, vw;
+extern volatile uint16_t cc_mode;
+extern uint16_t panel_watts, volt_whole, bat_amp_whole, volt_fract, vw;
 extern char spinners(uint8_t, const uint8_t);
 # 27 "./../eadog.h" 2
 
@@ -40124,8 +40141,8 @@ void delay_ms(uint16_t);
 # 23 "./mxcmd.h" 2
 
 
- const char build_version[] = "V1.23 FM80 Q84";
-# 36 "./mxcmd.h"
+ const char build_version[] = "V1.26 FM80 Q84";
+# 40 "./mxcmd.h"
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
  const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};
@@ -40170,7 +40187,7 @@ void delay_ms(uint16_t);
  typedef struct B_type {
   volatile _Bool ten_sec_flag, one_sec_flag;
   uint16_t pacing, rx_count, flush;
-  volatile _Bool mx80_online;
+  volatile _Bool FM80_online;
   volatile uint8_t canbus_online, modbus_online;
  } B_type;
 
@@ -40187,7 +40204,7 @@ void delay_ms(uint16_t);
  extern float lp_filter(const float, const uint8_t, const int8_t);
 
  extern B_type B;
-# 48 "main.c" 2
+# 49 "main.c" 2
 
 
 # 1 "./../modbus_master.h" 1
@@ -40286,7 +40303,7 @@ void delay_ms(uint16_t);
 
 
  typedef struct EM_data {
-  int32_t vl1n, vl2n, vl3n,
+  volatile int32_t vl1n, vl2n, vl3n,
   vl1l2, vl2l3, vl3l1,
   al1, al2, al3,
   wl1, wl2, wl3,
@@ -40389,18 +40406,32 @@ void delay_ms(uint16_t);
 
  void mb_tx_test(C_data *);
 
+ void mb_setup(void);
+
  extern volatile struct V_type V;
  extern C_data C;
  extern volatile M_data M;
  extern volatile M_time_data MT;
  extern EM_data em;
-# 50 "main.c" 2
+# 51 "main.c" 2
 
 # 1 "./../canfd.h" 1
-# 18 "./../canfd.h"
+# 30 "./../canfd.h"
+ typedef struct {
+  uint32_t rec_count;
+  _Bool rec_flag;
+ } can_rec_count_t;
+
+ extern volatile can_rec_count_t can_rec_count;
+ extern CAN_MSG_OBJ msg[2];
+ extern volatile uint8_t rxMsgData[2][64];
+
+ void Can1FIFO1NotEmptyHandler(void);
+
  extern char can_buffer[96];
  void can_fd_tx(void);
-# 51 "main.c" 2
+ void can_setup(void);
+# 52 "main.c" 2
 
 # 1 "./../batmon.h" 1
 # 38 "./../batmon.h"
@@ -40426,7 +40457,7 @@ void delay_ms(uint16_t);
 
  void DATAEE_WriteByte(uint16_t, uint8_t);
  uint8_t DATAEE_ReadByte(uint16_t);
-# 52 "main.c" 2
+# 53 "main.c" 2
 
 
 
@@ -40446,12 +40477,12 @@ enum state_type {
  state_last,
 };
 
-uint16_t abuf[32];
-uint16_t volt_fract;
-uint16_t volt_whole, bat_amp_whole, panel_watts, cc_mode = STATUS_LAST, vf, vw;
-enum state_type state = state_init;
+static uint16_t abuf[32];
+volatile uint16_t cc_mode = STATUS_LAST;
+uint16_t volt_whole, bat_amp_whole, panel_watts, volt_fract, vf, vw;
+volatile enum state_type state = state_init;
 char buffer[96], can_buffer[96];
-const char *build_date = "Jun 29 2023", *build_time = "14:26:40";
+const char *build_date = "Jul  7 2023", *build_time = "17:03:16";
 volatile uint16_t tickCount[TMR_COUNT];
 
 B_type B = {
@@ -40533,6 +40564,7 @@ void main(void)
  init_mb_master_timers();
  UART5_SetRxInterruptHandler(my_modbus_rx_32);
  StartTimer(TMR_MBTEST, 20);
+ void mb_setup();
 
  StartTimer(TMR_SPIN, 200);
 
@@ -40553,14 +40585,18 @@ void main(void)
  snprintf(buffer, 96, "%s ", "Start Up            ");
  eaDogM_WriteStringAtPos(3, 0, buffer);
  wdtdelay(1000000);
- snprintf(buffer, 96, "%s ", "Polling MX80        ");
+ snprintf(buffer, 96, "%s ", "Polling FM80        ");
  eaDogM_WriteStringAtPos(2, 0, buffer);
+
+
+
+
+ can_setup();
 
  while (1) {
 
 
   master_controller_work(&C);
-
 
   switch (state) {
   case state_init:
@@ -40600,10 +40636,17 @@ void main(void)
    rec_mx_cmd(state_init_cb, 5);
    break;
   }
+
   if (B.one_sec_flag) {
    B.one_sec_flag = 0;
    B.canbus_online = (!C1TXQCONHbits.TXREQ)&0x01;
    B.modbus_online = C.data_ok;
+
+   snprintf(buffer, 96, "%X %X %X %X   %lu %lu %lu      ", C1BDIAG0T, C1BDIAG0U, C1BDIAG0H, C1BDIAG0L, can_rec_count.rec_count, msg[0].msgId, msg[1].msgId);
+   eaDogM_WriteStringAtPos(0, 0, buffer);
+   snprintf(buffer, 96, "%X %X %X %X   %u %X        ", C1BDIAG1T, C1BDIAG1U, C1BDIAG1H, C1BDIAG1L, can_rec_count.rec_flag, msg[0].field.formatType);
+   eaDogM_WriteStringAtPos(1, 0, buffer);
+
   }
   if (TimerDone(TMR_SPIN)) {
    {
@@ -40633,10 +40676,15 @@ void main(void)
      }
     } else {
 
-     snprintf(buffer, 96, "EMon  %6.1fWh   %c%c    ", EBD.bat_energy / 360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
-     eaDogM_WriteStringAtPos(1, 0, buffer);
-     snprintf(buffer, 96, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
-     eaDogM_WriteStringAtPos(0, 0, buffer);
+
+
+     rxMsgData[0][44] = 0;
+     snprintf(buffer, 96, "%s          ", &rxMsgData[0][4]);
+     eaDogM_WriteStringAtPos(2, 0, buffer);
+     rxMsgData[0][44] = 0;
+     snprintf(buffer, 96, "%s          ", &rxMsgData[0][24]);
+     eaDogM_WriteStringAtPos(3, 0, buffer);
+# 291 "main.c"
     }
    }
   }
@@ -40676,28 +40724,36 @@ void rec_mx_cmd(void (* DataHandler)(void), uint8_t rec_len)
    FM_rx(abuf);
    DataHandler();
   } else {
-   if (online_count++ > 20000) {
+   if (online_count++ > 30000) {
     online_count = 0;
-    B.mx80_online = 0;
+    B.FM80_online = 0;
     cc_mode = STATUS_LAST;
     state = state_init;
    }
   }
  }
+ if ((B.FM80_online == 0) && online_count++ > 30000) {
+  online_count = 0;
+  B.FM80_online = 0;
+  cc_mode = STATUS_LAST;
+  state = state_watts;
+  abuf[2] = 0x0;
+  DataHandler();
+ }
+
 }
 
 void state_init_cb(void)
 {
  if (abuf[2] == 0x03) {
-  printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: Found MX80 online\r\n", B.rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
-  B.mx80_online = 1;
-  snprintf(buffer, 96, "Found MX80 online      ");
+  printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: FM80 Online\r\n", B.rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
+  B.FM80_online = 1;
+  snprintf(buffer, 96, "FM80 Online         ");
   eaDogM_WriteStringAtPos(3, 0, buffer);
  } else {
-  printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: MX80 Not Found online\r\n", B.rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
-  snprintf(buffer, 96, "MX80 Not Found online  ");
+  snprintf(buffer, 96, "FM80 Offline        ");
   eaDogM_WriteStringAtPos(3, 0, buffer);
-  B.mx80_online = 0;
+  B.FM80_online = 0;
   cc_mode = STATUS_LAST;
  }
  state = state_status;
@@ -40711,7 +40767,7 @@ void state_status_cb(void)
  if (abuf[2] != STATUS_SLEEPING) {
   state = state_watts;
  } else {
-  state = state_mx_status;
+  state = state_watts;
  }
  cc_mode = abuf[2];
 }
@@ -40767,7 +40823,7 @@ void state_mx_status_cb(void)
 
  if (B.ten_sec_flag) {
   B.ten_sec_flag = 0;
-  if (B.mx80_online) {
+  if (B.FM80_online) {
    do { LATBbits.LATB1 = 0; } while(0);
 
 
@@ -40807,9 +40863,9 @@ void state_mx_status_cb(void)
 void state_misc_cb(void)
 {
  if (abuf[2] == 0x03) {
-  B.mx80_online = 1;
+  B.FM80_online = 1;
  } else {
-  B.mx80_online = 0;
+  B.FM80_online = 0;
   cc_mode = STATUS_LAST;
   state = state_init;
   return;

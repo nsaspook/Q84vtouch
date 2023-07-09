@@ -64,7 +64,6 @@ em_data[] = {MADDR, READ_HOLDING_REGISTERS, 0x00, // number of 16-bit words retu
 em_config[] = {MADDR, WRITE_SINGLE_REGISTER, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
 em_passwd[] = {MADDR, WRITE_SINGLE_REGISTER, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 
-union MREG rvalue;
 EM_data em;
 
 static void half_dup_tx(const bool);
@@ -73,6 +72,9 @@ static bool serial_trmt(void);
 static uint16_t modbus_rtu_send_msg_crc(volatile uint8_t *, uint16_t);
 static uint16_t crc16_receive(C_data *);
 static void log_crc_error(const uint16_t, const uint16_t);
+static void UART1_DefaultFramingErrorHandler_mb(void);
+static void UART1_DefaultOverrunErrorHandler_mb(void);
+static void UART1_DefaultErrorHandler_mb(void);
 
 /*
  * add the required CRC bytes to a MODBUS message
@@ -178,11 +180,11 @@ static void log_crc_error(const uint16_t c_crc, const uint16_t c_crc_rec)
 }
 
 /*
- * reorder 16-bit word bytes for int32_t 
+ * reorder 16-bit word bytes for int32_t
  * https://control.com/forums/threads/endianness-for-32-bit-data.48584/
  * https://ctlsys.com/support/common_modbus_protocol_misconceptions/
  * https://iotech.force.com/edgexpert/s/article/Byte-and-Word-Swapping-in-Modbus
- * 
+ *
  * "Little Endian" slaves or "Big Endian" slaves
  * Byte endianness with Word endianness?
  * Lions and Tigers and Bears!
@@ -274,7 +276,7 @@ int8_t master_controller_work(C_data * client)
 		/*
 		 * MODBUS master query speed
 		 */
-#ifdef	FASTQ 
+#ifdef	FASTQ
 		if (get_10hz(false) >= CDELAY) {
 #else
 		if (get_2hz(false) >= QDELAY) {
@@ -555,7 +557,7 @@ static void half_dup_rx(const bool delay)
 	if (delay) {
 		delay_ms(DUPL_DELAY); // busy waits
 	}
-	DERE_SetLow(); // enable modbus receiver	
+	DERE_SetLow(); // enable modbus receiver
 }
 
 // ISR function for TMR5
@@ -576,14 +578,14 @@ void timer_2ms_tick(void)
 
 /*
  * check if we are done with interrupt background buffered transmission of serial data with FIFO
- * 
+ *
  * TRMT: Transmit Shift Register is Empty bit (read-only)
  * 1 = Transmit shift register is empty and transmit buffer is empty (the last transmission has completed)
  * 0 = Transmit shift register is not empty, a transmission is in progress or queued in the transmit buffer
- * 
+ *
  * ? 8-level deep First-In-First-Out (FIFO) transmit data buffer, ? 8-level deep FIFO receive data buffer
  * Interrupt is generated and asserted while the transmit buffer is empty
- * 
+ *
  * so this will return 'true' after the buffer is empty 'interrupt' and after the last bit is on the wire
  */
 
@@ -606,4 +608,26 @@ void mb_tx_test(C_data * client)
 			}
 		}
 	}
+}
+
+static void UART1_DefaultFramingErrorHandler_mb(void)
+{
+	MM_ERROR_S;
+}
+
+static void UART1_DefaultOverrunErrorHandler_mb(void)
+{
+	MM_ERROR_S;
+}
+
+static void UART1_DefaultErrorHandler_mb(void)
+{
+	MM_ERROR_S;
+}
+
+void mb_setup(void)
+{
+	UART1_SetFramingErrorHandler(UART1_DefaultFramingErrorHandler_mb);
+	UART1_SetOverrunErrorHandler(UART1_DefaultOverrunErrorHandler_mb);
+	UART1_SetErrorHandler(UART1_DefaultErrorHandler_mb);
 }
