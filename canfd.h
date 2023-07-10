@@ -19,8 +19,9 @@ extern "C" {
 #include "mateQ84.X/mxcmd.h"
 #include "modbus_master.h"
 
-#define CAN_DEBUG	// can status on LCD
+//#define CAN_DEBUG	// can status on LCD
 #define DATA_DEBUG
+
 #define USE_FD	// select classic or FD
 #define CANFD_BYTES	64
 #define CAN_RX_TRIES	8
