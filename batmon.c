@@ -54,6 +54,7 @@ void wr_bm_data(uint8_t * EB)
  */
 void get_bm_data(EB_data * EB)
 {
+	uint8_t rxData = 0;
 	EB->ENac = (float) em.vl1l2 / 10.0f;
 	EB->ENva = (float) em.val1 / 10.0f;
 	EB->ENw = (float) em.wl1 / 10.0f;
@@ -63,6 +64,21 @@ void get_bm_data(EB_data * EB)
 	EB->cc_mode = cc_mode;
 	EB->bat_amp_whole = (float) bat_amp_whole;
 	EB->volt_whole = (float) vw;
+	/*
+	 * check for commands using the logging serial port
+	 * 'F' FULL,	reset battery energy to max and increase one battery charge cycle
+	 */
+	if (UART2_is_rx_ready()) {
+		rxData = UART2_Read();
+		switch (rxData) {
+		case 'F':
+			EB->bat_energy = BAT_ENERGY;
+			EBD.bat_cycles++;
+			break;
+		default:
+			break;
+		}
+	}
 }
 
 /*
