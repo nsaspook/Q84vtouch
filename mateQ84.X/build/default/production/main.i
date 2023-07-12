@@ -40628,7 +40628,7 @@ volatile uint16_t cc_mode = STATUS_LAST;
 uint16_t volt_whole, bat_amp_whole, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[96], can_buffer[96];
-const char *build_date = "Jul 11 2023", *build_time = "18:56:52";
+const char *build_date = "Jul 12 2023", *build_time = "10:49:45";
 volatile uint16_t tickCount[TMR_COUNT];
 
 B_type B = {
@@ -40738,6 +40738,7 @@ void main(void)
 
 
  can_setup();
+ can_fd_tx();
 
  while (1) {
 
@@ -40788,10 +40789,10 @@ void main(void)
    B.canbus_online = (!C1TXQCONHbits.TXREQ)&0x01;
    B.modbus_online = C.data_ok;
 
-
-
-
-
+   snprintf(buffer, 96, "%X %X %X %X   %lu %lu %lu      ", C1BDIAG0T, C1BDIAG0U, C1BDIAG0H, C1BDIAG0L, can_rec_count.rec_count, msg[0].msgId, msg[1].msgId);
+   eaDogM_WriteStringAtPos(0, 0, buffer);
+   snprintf(buffer, 96, "%X %X %X %X   %u %X        ", C1BDIAG1T, C1BDIAG1U, C1BDIAG1H, C1BDIAG1L, can_rec_count.rec_flag, msg[0].field.formatType);
+   eaDogM_WriteStringAtPos(1, 0, buffer);
 
   }
   if (TimerDone(TMR_SPIN)) {
@@ -40821,12 +40822,16 @@ void main(void)
       e_update = 0;
      }
     } else {
-# 432 "main.c"
-     snprintf(buffer, 96, "EMon  %6.1fWh   %c%c    ", EBD.bat_energy / 360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
-     eaDogM_WriteStringAtPos(1, 0, buffer);
-     snprintf(buffer, 96, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
-     eaDogM_WriteStringAtPos(0, 0, buffer);
 
+
+
+     rxMsgData[0][44] = 0;
+     snprintf(buffer, 96, "%s          ", &rxMsgData[0][4]);
+     eaDogM_WriteStringAtPos(2, 0, buffer);
+     rxMsgData[0][44] = 0;
+     snprintf(buffer, 96, "%s          ", &rxMsgData[0][24]);
+     eaDogM_WriteStringAtPos(3, 0, buffer);
+# 438 "main.c"
     }
    }
   }

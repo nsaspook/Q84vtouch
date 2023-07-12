@@ -330,7 +330,7 @@ void main(void)
 	 * complete and correct the MCC CANBUS configuration
 	 */
 	can_setup();
-//	can_fd_tx(); // send the testing packet via CANBUS
+	can_fd_tx(); // send the testing packet via CANBUS
 
 	while (true) {
 		// Add your application code
