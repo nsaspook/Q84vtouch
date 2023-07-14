@@ -34,6 +34,8 @@ extern "C" {
 #define BM_UPDATE_RUN	1800	// while running
 
 #define BAT_CYCLES	8
+	
+#define BAT_CHARGED_W	200.0f
 
 	typedef struct EB_data {
 		uint8_t checkmark;
