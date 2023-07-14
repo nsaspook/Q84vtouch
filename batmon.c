@@ -97,8 +97,10 @@ void compute_bm_data(EB_data * EB)
 		 * try to sync BMS charged condition to monitor charged condition and set full energy levels
 		 */
 		if ((cc_mode == STATUS_FLOATING) && (EB->FMw > BAT_CHARGED_W) && (EB->ENw > BAT_CHARGED_W)) {
-			B.FM80_charged = true;
-			EB->bat_energy = BAT_ENERGY;
+			if (!B.FM80_charged) {
+				B.FM80_charged = true;
+				EB->bat_energy = BAT_ENERGY;
+			}
 		}
 	} else {
 		net_balance = net_balance; // net drain, inverter correction already applied: possible future second order corrections here
