@@ -40580,7 +40580,7 @@ void delay_ms(uint16_t);
 # 198 "main.c" 2
 
 # 1 "./../batmon.h" 1
-# 40 "./../batmon.h"
+# 41 "./../batmon.h"
  typedef struct EB_data {
   uint8_t checkmark;
   uint8_t version;
@@ -40628,7 +40628,7 @@ volatile uint16_t cc_mode = STATUS_LAST;
 uint16_t volt_whole, bat_amp_whole, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[96], can_buffer[96];
-const char *build_date = "Jul 14 2023", *build_time = "10:36:49";
+const char *build_date = "Jul 14 2023", *build_time = "13:33:50";
 volatile uint16_t tickCount[TMR_COUNT];
 
 B_type B = {
@@ -40814,7 +40814,11 @@ void main(void)
      snprintf(buffer, 96, "EMon  %4.1fVAC   %c%c    ", lp_filter(ac, F_ac, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
      eaDogM_WriteStringAtPos(1, 0, buffer);
      if (e_update == 0) {
-      snprintf(buffer, 96, "C%u CRC%lu RC%u EC%u          ", C.modbus_command, M.crc_error, M.recv_count, C.req_length);
+
+
+
+      snprintf(buffer, 96, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
+
       eaDogM_WriteStringAtPos(0, 0, buffer);
      }
      if (e_update++ >= 10) {
@@ -40822,7 +40826,7 @@ void main(void)
       e_update = 0;
      }
     } else {
-# 433 "main.c"
+# 437 "main.c"
      snprintf(buffer, 96, "EMon  %6.1fWh   %c%c    ", EBD.bat_energy / 360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
      eaDogM_WriteStringAtPos(1, 0, buffer);
      snprintf(buffer, 96, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);

@@ -104,8 +104,13 @@ void compute_bm_data(EB_data * EB)
 		}
 	} else {
 		net_balance = net_balance; // net drain, inverter correction already applied: possible future second order corrections here
+		/*
+		 * reset possible battery energy sync function
+		 */
 		if (cc_mode != STATUS_FLOATING) {
-			B.FM80_charged = false;
+			if (B.FM80_charged && (EB->bat_energy < BAT_ENERGY_LOW)) {
+				B.FM80_charged = false;
+			}
 		}
 	}
 	net_energy = EB->bat_energy + net_balance; // inverter/battery power conversion correction
