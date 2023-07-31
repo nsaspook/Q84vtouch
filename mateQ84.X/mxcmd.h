@@ -22,7 +22,7 @@ extern "C" {
 #include "../timers.h"
 
 #define VER	1
-	const char build_version[] = "V1.30 FM80 Q84";
+	const char build_version[] = "V1.31 FM80 Q84";
 
 #define MAX_B_BUF	96
 #define IO_TEST
@@ -79,7 +79,7 @@ extern "C" {
 	} mx_status_packed_t;
 
 	typedef struct B_type {
-		volatile bool ten_sec_flag, one_sec_flag;
+		volatile bool ten_sec_flag, one_sec_flag, FM80_charged;
 		uint16_t pacing, rx_count, flush;
 		volatile bool FM80_online;
 		volatile uint8_t canbus_online, modbus_online;

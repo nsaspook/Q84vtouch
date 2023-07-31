@@ -93,8 +93,25 @@ void compute_bm_data(EB_data * EB)
 	net_balance = EB->FMw - (EB->ENw * INV_EFF_VAL); // make the energy comparison AC -> DC watts equal using inverter losses
 	if (net_balance > 0.0001) { // more energy from panels than current load usage
 		net_balance = net_balance * BAT_EFF_VAL; // actual battery energy storage correction, energy in vs energy out losses
+		/*
+		 * try to sync BMS charged condition to monitor charged condition and set full energy levels
+		 */
+		if ((cc_mode == STATUS_FLOATING) && (EB->FMw > BAT_CHARGED_W) && (EB->ENw > BAT_CHARGED_W)) {
+			if (!B.FM80_charged) {
+				B.FM80_charged = true;
+				EB->bat_energy = BAT_ENERGY;
+			}
+		}
 	} else {
 		net_balance = net_balance; // net drain, inverter correction already applied: possible future second order corrections here
+		/*
+		 * reset possible battery energy sync function
+		 */
+		if (cc_mode != STATUS_FLOATING) {
+			if (B.FM80_charged && (EB->bat_energy < BAT_ENERGY_LOW)) {
+				B.FM80_charged = false;
+			}
+		}
 	}
 	net_energy = EB->bat_energy + net_balance; // inverter/battery power conversion correction
 	/*

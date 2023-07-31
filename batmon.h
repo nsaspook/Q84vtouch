@@ -19,6 +19,7 @@ extern "C" {
 #define BM_CM	0x57
 #define BM_VER	1
 #define BAT_ENERGY	25.6f*200.0f*360.0f // nominal battery voltage and AH rating for 10 second updates
+#define BAT_ENERGY_LOW	BAT_ENERGY/0.5f
 
 #define BAT_OVER_VOLT	30.0f
 #define BAT_OVER_RECON	28.4f
@@ -34,6 +35,8 @@ extern "C" {
 #define BM_UPDATE_RUN	1800	// while running
 
 #define BAT_CYCLES	8
+	
+#define BAT_CHARGED_W	200.0f
 
 	typedef struct EB_data {
 		uint8_t checkmark;

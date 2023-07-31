@@ -381,9 +381,9 @@ void main(void)
 			B.canbus_online = (!C1TXQCONHbits.TXREQ)&0x01;
 			B.modbus_online = C.data_ok;
 #ifdef CAN_DEBUG
-			snprintf(buffer, MAX_B_BUF, "%X %X %X %X   %lu %lu %lu      ", C1BDIAG0T, C1BDIAG0U, C1BDIAG0H, C1BDIAG0L, can_rec_count.rec_count, msg[0].msgId, msg[1].msgId);
+			snprintf(buffer, MAX_B_BUF, "%X %X %X %X  %lu %lu %lu      ", C1BDIAG0T, C1BDIAG0U, C1BDIAG0H, C1BDIAG0L, can_rec_count.rec_count, msg[0].msgId, msg[1].msgId);
 			eaDogM_WriteStringAtPos(0, 0, buffer);
-			snprintf(buffer, MAX_B_BUF, "%X %X %X %X   %u %X        ", C1BDIAG1T, C1BDIAG1U, C1BDIAG1H, C1BDIAG1L, can_rec_count.rec_flag, msg[0].field.formatType);
+			snprintf(buffer, MAX_B_BUF, "%X %X %X %X  %u %X %u       ", C1BDIAG1T, C1BDIAG1U, C1BDIAG1H, C1BDIAG1L, can_rec_count.rec_flag, msg[0].field.formatType, EBD.bat_cycles);
 			eaDogM_WriteStringAtPos(1, 0, buffer);
 #endif
 		}
@@ -406,7 +406,11 @@ void main(void)
 					snprintf(buffer, MAX_B_BUF, "EMon  %4.1fVAC   %c%c    ", lp_filter(ac, F_ac, false), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
 					eaDogM_WriteStringAtPos(1, 0, buffer);
 					if (e_update == 0) {
+#ifdef SHOW_MODBUS_DEBUG
 						snprintf(buffer, MAX_B_BUF, "C%u CRC%lu RC%u EC%u          ", C.modbus_command, M.crc_error, M.recv_count, C.req_length);
+#else
+						snprintf(buffer, MAX_B_BUF, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, false), lp_filter(wva, F_wva, false), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
+#endif
 						eaDogM_WriteStringAtPos(0, 0, buffer);
 					}
 					if (e_update++ >= 10) {
