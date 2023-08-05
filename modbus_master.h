@@ -87,6 +87,7 @@ extern "C" {
 		G_DATA,
 		G_CONFIG, // keep sequence
 		G_PASSWD, // keep sequence
+		G_LIGHT,
 		G_LAST,
 	} cmd_type;
 
@@ -107,6 +108,7 @@ extern "C" {
 		T_misc2,
 		T_misc3,
 		T_spacing,
+		T_light,
 	} trace_type;
 
 	struct V_type {
@@ -160,7 +162,7 @@ extern "C" {
 		cmd_type modbus_command;
 		uint16_t req_length;
 		int8_t trace;
-		bool id_ok, passwd_ok, config_ok, data_ok;
+		bool id_ok, passwd_ok, config_ok, data_ok, light_ok;
 		uint32_t data_count, data_prev;
 		volatile M_data M;
 	} C_data;

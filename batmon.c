@@ -50,11 +50,14 @@ void wr_bm_data(uint8_t * EB)
 }
 
 /*
- * update energy values
+ * update energy values and
+ * READ commands from the logging serial port
+ * F top-off bank energy to MAX
  */
 void get_bm_data(EB_data * EB)
 {
 	uint8_t rxData = 0;
+	
 	EB->ENac = (float) em.vl1l2 / 10.0f;
 	EB->ENva = (float) em.val1 / 10.0f;
 	EB->ENw = (float) em.wl1 / 10.0f;

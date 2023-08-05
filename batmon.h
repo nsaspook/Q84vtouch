@@ -38,6 +38,7 @@ extern "C" {
 	
 #define BAT_CHARGED_W	200.0f
 
+	// EEPROM data storage structure
 	typedef struct EB_data {
 		uint8_t checkmark;
 		uint8_t version;

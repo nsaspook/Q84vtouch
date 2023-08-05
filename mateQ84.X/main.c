@@ -421,11 +421,11 @@ void main(void)
 					//					snprintf(buffer, MAX_B_BUF, "EMon  %4.1fVAC   %c%c    ", lp_filter(ac, F_ac, false), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
 #ifdef CAN_DEBUG
 #ifdef DATA_DEBUG
-					rxMsgData[0][44] = 0;
-					snprintf(buffer, MAX_B_BUF, "%s          ", &rxMsgData[0][4]);
+					rxMsgData[0][42] = 0;
+					snprintf(buffer, MAX_B_BUF, "%s          ", &rxMsgData[0][2]);
 					eaDogM_WriteStringAtPos(2, 0, buffer);
-					rxMsgData[0][44] = 0;
-					snprintf(buffer, MAX_B_BUF, "%s          ", &rxMsgData[0][24]);
+					rxMsgData[0][42] = 0;
+					snprintf(buffer, MAX_B_BUF, "%s          ", &rxMsgData[0][22]);
 					eaDogM_WriteStringAtPos(3, 0, buffer);
 #else
 					snprintf(buffer, MAX_B_BUF, "%X %X %X %X %X %X %X %X           ", C1INTL, C1INTH, C1INTU, C1INTT, C1TRECL, C1FLTOBJ0T, C1FLTCON0L, CAN1_OperationModeGet());
@@ -592,6 +592,9 @@ void state_mx_status_cb(void)
 			snprintf(buffer, MAX_B_BUF, "%d.%01d Amps %d.%01d Volts   ", bat_amp_whole, abuf[1]&0x0f, vw, vf);
 			eaDogM_WriteStringAtPos(3, 0, buffer);
 			can_fd_tx(); // send the logging packet via CANBUS
+			/*
+			 * update EEPROM energy history structure and check for serial commands on the logging port
+			 */
 			get_bm_data(&EBD);
 			compute_bm_data(&EBD); // calculate battery energy at 10 second update rate
 			if (!EBD.loaded) // save a copy to EEPROM if it wasn't loaded at boot

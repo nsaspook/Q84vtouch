@@ -50,6 +50,11 @@ void Can1FIFO1NotEmptyHandler(void)
 	}
 }
 
+/*
+ * send two 64 byte CAN packets with the ascii battery data in CSV format
+ * EMON_SL [0..63], EMON_SU [64..127] bytes of data
+ * ^ for ascii start of string, ~ for end of data string
+ */
 void can_fd_tx(void)
 {
 	CAN_MSG_OBJ Transmission; //create the CAN message object
