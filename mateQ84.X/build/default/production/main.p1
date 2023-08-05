@@ -57,15 +57,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 "542 ./mcc_generated_files/tmr2.h
 [; ;./mcc_generated_files/tmr2.h: 542: void TMR2_StartTimer(void);
 [v _TMR2_StartTimer `(v ~T0 @X0 0 ef ]
-"278 ./../modbus_master.h
-[; ;./../modbus_master.h: 278:  void init_mb_master_timers(void);
+"280 ./../modbus_master.h
+[; ;./../modbus_master.h: 280:  void init_mb_master_timers(void);
 [v _init_mb_master_timers `(v ~T0 @X0 0 ef ]
 [v F23926 `(v ~T0 @X0 0 tf ]
 "555 ./mcc_generated_files/uart5.h
 [; ;./mcc_generated_files/uart5.h: 555: void UART5_SetRxInterruptHandler(void (* InterruptHandler)(void));
 [v _UART5_SetRxInterruptHandler `(v ~T0 @X0 0 ef1`*F23926 ]
-"276 ./../modbus_master.h
-[; ;./../modbus_master.h: 276:  void my_modbus_rx_32(void);
+"278 ./../modbus_master.h
+[; ;./../modbus_master.h: 278:  void my_modbus_rx_32(void);
 [v _my_modbus_rx_32 `(v ~T0 @X0 0 ef ]
 "23 ./../timers.h
 [; ;./../timers.h: 23: void StartTimer(const uint8_t timer, const uint16_t count);
@@ -112,19 +112,19 @@ Version 4.0 HI-TECH Software Intermediate Code
 [n E24266 comm_type CLEAR INIT SEND RECV  ]
 [c E24272 0 1 2 3 4 5 .. ]
 [n E24272 cmd_type G_ID G_DATA G_CONFIG G_PASSWD G_LIGHT G_LAST  ]
-"145 ./../modbus_master.h
-[; ;./../modbus_master.h: 145:  typedef struct M_data {
+"147 ./../modbus_master.h
+[; ;./../modbus_master.h: 147:  typedef struct M_data {
 [s S3297 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 `uc 1 `uc 1 `uc 1 `us 1 `us 1 `us 1 `ul 1 `ul 1 `ul 1 `Va 1 ]
 [n S3297 M_data blink_lock config stable boot_code power_on send_count recv_count pwm_volts error crc_data crc_calc crc_error to_error sends rx ]
-"159
-[; ;./../modbus_master.h: 159:  typedef struct C_data {
+"161
+[; ;./../modbus_master.h: 161:  typedef struct C_data {
 [s S3298 `uc 1 `E24266 1 `E24272 1 `us 1 `c 1 `a 1 `a 1 `a 1 `a 1 `a 1 `ul 1 `ul 1 `VS3297 1 ]
 [n S3298 C_data mcmd cstate modbus_command req_length trace id_ok passwd_ok config_ok data_ok light_ok data_count data_prev M ]
-"279
-[; ;./../modbus_master.h: 279:  int8_t master_controller_work(C_data *);
+"281
+[; ;./../modbus_master.h: 281:  int8_t master_controller_work(C_data *);
 [v _master_controller_work `(c ~T0 @X0 0 ef1`*S3298 ]
-"297
-[; ;./../modbus_master.h: 297:  extern C_data C;
+"299
+[; ;./../modbus_master.h: 299:  extern C_data C;
 [v _C `S3298 ~T0 @X0 0 e ]
 "243 main.c
 [; ;main.c: 243: void send_mx_cmd(const uint16_t *);
@@ -173,19 +173,19 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _TimerDone `(a ~T0 @X0 0 ef1`Cuc ]
 "98 ./../mateQ84.X/mxcmd.h
 [v _lp_filter `(f ~T0 @X0 0 ef3`Cf`Cuc`Cc ]
-"173 ./../modbus_master.h
-[; ;./../modbus_master.h: 173:  typedef struct EM_data {
+"175 ./../modbus_master.h
+[; ;./../modbus_master.h: 175:  typedef struct EM_data {
 [s S3299 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 ]
 [n S3299 EM_data vl1n vl2n vl3n vl1l2 vl2l3 vl3l1 al1 al2 al3 wl1 wl2 wl3 val1 val2 val3 varl1 varl2 varl3 ]
-"300
-[; ;./../modbus_master.h: 300:  extern EM_data em;
+"302
+[; ;./../modbus_master.h: 302:  extern EM_data em;
 [v _em `S3299 ~T0 @X0 0 e ]
 "399 main.c
 [; ;main.c: 399:      ac = lp_filter(((float) em.vl1l2) / 10.0f, F_ac, 0);
 [c E24382 0 1 2 3 4 5 6 7 8 .. ]
 [n E24382 filter_type F_ac F_wac F_wva F_var F_4 F_5 F_6 F_7 F_8  ]
-"298 ./../modbus_master.h
-[; ;./../modbus_master.h: 298:  extern volatile M_data M;
+"300 ./../modbus_master.h
+[; ;./../modbus_master.h: 300:  extern volatile M_data M;
 [v _M `VS3297 ~T0 @X0 0 e ]
 "83 ./../qconfig.h
 [; ;./../qconfig.h: 83: extern char spinners(uint8_t, const uint8_t);
@@ -4081,7 +4081,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> 49 `c
 -> 46 `c
 -> 51 `c
--> 50 `c
+-> 51 `c
 -> 32 `c
 -> 70 `c
 -> 77 `c
@@ -4324,8 +4324,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"197 ./../modbus_master.h
-[; ;./../modbus_master.h: 197:  static const uint8_t table_crc_hi[] = {
+"199 ./../modbus_master.h
+[; ;./../modbus_master.h: 199:  static const uint8_t table_crc_hi[] = {
 [v _table_crc_hi `Cuc ~T0 @X0 -> 256 `i s ]
 [i _table_crc_hi
 :U ..
@@ -4587,8 +4587,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 64 `i `uc
 ..
 ]
-"227
-[; ;./../modbus_master.h: 227:  static const uint8_t table_crc_lo[] = {
+"229
+[; ;./../modbus_master.h: 229:  static const uint8_t table_crc_lo[] = {
 [v _table_crc_lo `Cuc ~T0 @X0 -> 256 `i s ]
 [i _table_crc_lo
 :U ..
@@ -4878,7 +4878,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _buffer `uc ~T0 @X0 -> 96 `i e ]
 [v _can_buffer `uc ~T0 @X0 -> 96 `i e ]
 "223
-[; ;main.c: 223: const char *build_date = "Aug  4 2023", *build_time = "16:52:21";
+[; ;main.c: 223: const char *build_date = "Aug  5 2023", *build_time = "14:11:43";
 [v _build_date `*Cuc ~T0 @X0 1 e ]
 [i _build_date
 :s 1C
@@ -5930,8 +5930,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [p f _printf 12690564 ]
 [p f _snprintf 11379844 ]
-[a 1C 65 117 103 32 32 52 32 50 48 50 51 0 ]
-[a 2C 49 54 58 53 50 58 50 49 0 ]
+[a 2C 49 52 58 49 49 58 52 51 0 ]
+[a 1C 65 117 103 32 32 53 32 50 48 50 51 0 ]
 [a 3C 37 115 32 0 ]
 [a 9C 37 115 32 0 ]
 [a 11C 37 115 32 0 ]

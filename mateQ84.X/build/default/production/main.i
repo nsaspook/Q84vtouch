@@ -40657,7 +40657,7 @@ void delay_ms(uint16_t);
 # 23 "./mxcmd.h" 2
 
 
- const char build_version[] = "V1.32 FM80 Q84";
+ const char build_version[] = "V1.33 FM80 Q84";
 # 40 "./mxcmd.h"
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
@@ -40724,7 +40724,7 @@ void delay_ms(uint16_t);
 
 
 # 1 "./../modbus_master.h" 1
-# 78 "./../modbus_master.h"
+# 80 "./../modbus_master.h"
  typedef enum comm_type {
   CLEAR = 0,
   INIT,
@@ -40902,7 +40902,7 @@ void delay_ms(uint16_t);
   0x44, 0x84, 0x85, 0x45, 0x87, 0x47, 0x46, 0x86, 0x82, 0x42,
   0x43, 0x83, 0x41, 0x81, 0x80, 0x40
  };
-# 273 "./../modbus_master.h"
+# 275 "./../modbus_master.h"
  uint16_t crc16(volatile uint8_t *, uint16_t);
  uint16_t modbus_rtu_send_msg(void *, const void *, uint16_t);
 
@@ -41000,7 +41000,7 @@ volatile uint16_t cc_mode = STATUS_LAST;
 uint16_t volt_whole, bat_amp_whole, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[96], can_buffer[96];
-const char *build_date = "Aug  4 2023", *build_time = "16:52:21";
+const char *build_date = "Aug  5 2023", *build_time = "14:11:43";
 volatile uint16_t tickCount[TMR_COUNT];
 
 B_type B = {

@@ -22,6 +22,8 @@ extern "C" {
 
 #define MB_MASTER
 #define MB_EM540
+#define MB_EM540_ID_H	0x06
+#define MB_EM540_ID_L	0xE0
 #define SWMBMVER	0X0033	// master SW version
 #define MADDR		0x01 // modbus client address
 	/*

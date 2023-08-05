@@ -401,25 +401,23 @@ int8_t master_controller_work(C_data * client)
 				if (DBUG_R((M.recv_count >= client->req_length) && (cc_buffer[0] == MADDR) && (cc_buffer[1] == READ_HOLDING_REGISTERS))) {
 					c_crc = crc16(cc_buffer, client->req_length - 2);
 					c_crc_rec = crc16_receive(client);
-					if (DBUG_R c_crc == c_crc_rec) {
+					if ((DBUG_R c_crc == c_crc_rec) && (cc_buffer[3]==MB_EM540_ID_H) && (cc_buffer[4]==MB_EM540_ID_L)) {
 						MM_ERROR_C;
 						client->id_ok = true;
 					} else {
-						MM_ERROR_C;
+						MM_ERROR_S;
 						client->id_ok = false;
 						client->config_ok = false;
 						client->passwd_ok = false;
 						client->data_ok = false;
 						client->light_ok = false;
 						log_crc_error(c_crc, c_crc_rec);
-						if (client->data_ok)
-							MM_ERROR_S;
 					}
 					client->cstate = CLEAR;
 				} else {
 					if (get_500hz(false) >= RDELAY) {
 						DB0_SetLow();
-						MM_ERROR_C;
+						MM_ERROR_S;
 						client->cstate = CLEAR;
 						client->mcmd = G_ID;
 						M.to_error++;
@@ -429,8 +427,6 @@ int8_t master_controller_work(C_data * client)
 						client->passwd_ok = false;
 						client->data_ok = false;
 						client->light_ok = false;
-						if (client->data_ok)
-							MM_ERROR_S;
 					}
 				}
 #endif
@@ -612,9 +608,11 @@ bool modbus_rec_check(C_data * client, bool* cstate, uint16_t rec_length)
 		c_crc_rec = crc16_receive(client);
 		if (DBUG_R c_crc == c_crc_rec) {
 			*cstate = true;
+			MM_ERROR_C;
 		} else {
 			*cstate = false;
 			log_crc_error(c_crc, c_crc_rec);
+			MM_ERROR_S;
 		}
 		client->cstate = CLEAR; // where do we go next
 		client->mcmd = G_LAST; // what do we run next
@@ -622,12 +620,12 @@ bool modbus_rec_check(C_data * client, bool* cstate, uint16_t rec_length)
 		if (get_500hz(false) >= RDELAY) {
 			DB0_SetLow();
 			client->cstate = CLEAR; // where do we go next
-			MM_ERROR_C;
+			MM_ERROR_S;
 			client->mcmd = G_ID; // what do we run next
 			M.to_error++;
 			M.error++;
 			if (client->data_ok) {
-				MM_ERROR_S;
+				MM_ERROR_C;
 			}
 		}
 	}
