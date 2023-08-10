@@ -316,7 +316,7 @@ int8_t master_controller_work(C_data * client)
 			if (serial_trmt()) { // check for serial UART transmit shift register and buffer empty
 				clear_500hz(); // clear timer until buffer empty
 			}
-			delay_ms(5);
+			delay_ms(TDELAY);
 			DERE_SetLow(); // enable modbus receiver
 			DB0_SetHigh();
 		}
@@ -401,7 +401,7 @@ int8_t master_controller_work(C_data * client)
 				if (DBUG_R((M.recv_count >= client->req_length) && (cc_buffer[0] == MADDR) && (cc_buffer[1] == READ_HOLDING_REGISTERS))) {
 					c_crc = crc16(cc_buffer, client->req_length - 2);
 					c_crc_rec = crc16_receive(client);
-					if ((DBUG_R c_crc == c_crc_rec) && (cc_buffer[3]==MB_EM540_ID_H) && (cc_buffer[4]==MB_EM540_ID_L)) {
+					if ((DBUG_R c_crc == c_crc_rec) && (cc_buffer[3] == MB_EM540_ID_H) && (cc_buffer[4] == MB_EM540_ID_L)) {
 						MM_ERROR_C;
 						client->id_ok = true;
 					} else {

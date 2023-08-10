@@ -55,7 +55,7 @@ extern "C" {
 #define MAX_DATA        240
 	//#define LOCAL_ECHO	1
 #define FASTQ			// MODBUS query speed, define for faster sampling rates
-#define TDELAY		5	// half-duplex delay
+#define TDELAY		2	// half-duplex delay
 #define TEDELAY		1	// half-duplex delay
 #define RDELAY		100	// receive timeout
 #define CDELAY		40	// fast query delay 100ms
