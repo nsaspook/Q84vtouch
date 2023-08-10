@@ -44,6 +44,7 @@
 #define CAN_MSG_ID_PING_X 0x80000003
 #define CAN_MSG_ID_PONG  0x3
 #define CAN_MSG_LEN 64
+#define CAN_FULL_BUFFER CAN_MSG_LEN+CAN_MSG_LEN+1
 #define CAN_MSG_COUNT 50
 #define CAN_MSG_WAIT 27
 
@@ -59,8 +60,10 @@ static canid_t can_id_pong = CAN_MSG_ID_PONG;
 static int has_pong_id = 0;
 static int is_can_fd = 1;
 static int bit_rate_switch = 1;
+static int print_hex = 0;
 static int msg_len = CAN_MSG_LEN;
 static int is_extended_frame_format = 1;
+uint8_t full_buffer[CAN_FULL_BUFFER];
 
 static void print_usage(char *prg)
 {
@@ -101,16 +104,32 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 {
 	int i;
 
-	printf("%04x: ", id);
+	if (print_hex) {
+		printf("%04x: ", id);
+	}
 	if (id & CAN_RTR_FLAG) {
 		printf("remote request");
 	} else {
-		printf("[%d]", dlc);
+		if (print_hex) {
+			printf("[%d]", dlc);
+		}
 		for (i = 0; i < dlc; i++) {
-			printf(" %02x", (uint8_t) (data[i] + inc_data));
+			if (print_hex) {
+				printf(" %02x", (uint8_t) (data[i] + inc_data));
+			}
+			if (id == CAN_MSG_ID_PING) {
+				full_buffer[i] = (uint8_t) (data[i] + inc_data);
+			} else {
+				full_buffer[i + CAN_MSG_LEN] = (uint8_t) (data[i] + inc_data);
+			}
+		}
+		if (id == CAN_MSG_ID_PING_X) {
+			printf("%s", full_buffer);
 		}
 	}
-	printf("\n");
+	if (print_hex) {
+		printf("\n");
+	}
 }
 
 static void print_compare(
