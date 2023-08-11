@@ -50,7 +50,7 @@ const uint8_t
 // transmit frames for commands
 modbus_em_id[] = {MADDR, READ_HOLDING_REGISTERS, 0x00, 0x0b, 0x00, 0x01}, // Carlo Gavazzi Controls identification code
 modbus_em_version[] = {MADDR, READ_HOLDING_REGISTERS, 0x03, 0x02, 0x00, 0x01}, // Firmware version and revision code
-modbus_em_data[] = {MADDR, READ_HOLDING_REGISTERS, 0x00, 0x00, 0x00, 33}, // last number is 16-bit words wanted from the start register address
+modbus_em_data[] = {MADDR, READ_HOLDING_REGISTERS, 0x00, 0x00, 0x00, 33 + 16}, // last number is 16-bit words wanted from the start register address
 modbus_em_config[] = {MADDR, WRITE_SINGLE_REGISTER, 0x10, 0x02, 0x00, 0x02}, // System configuration, Value 2 = ?2P? (2-phase with neutral)
 modbus_em_passwd[] = {MADDR, WRITE_SINGLE_REGISTER, 0x10, 0x00, 0x00, 0x00}, // Password configuration, set to no password = 0
 modbus_em_light[] = {MADDR, WRITE_SINGLE_REGISTER, 0x16, 0x04, 0x00, 0x01}, // back-light timeout, 1 min
@@ -62,6 +62,8 @@ em_data[] = {MADDR, READ_HOLDING_REGISTERS, 0x00, // number of 16-bit words retu
 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 	0x00, 0x00}, // crc
 em_config[] = {MADDR, WRITE_SINGLE_REGISTER, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
 em_passwd[] = {MADDR, WRITE_SINGLE_REGISTER, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
@@ -207,6 +209,19 @@ int32_t mb32_swap(const int32_t value)
 	i = dvalue.bytes[2];
 	dvalue.bytes[2] = dvalue.bytes[3];
 	dvalue.bytes[3] = i;
+	return dvalue.value;
+}
+
+int16_t mb16_swap(const int16_t value)
+{
+	uint8_t i;
+	union MREG dvalue;
+
+	// program it simple and easy to understand way, let the compiler optimize the expressions
+	dvalue.value = value;
+	i = dvalue.bytes[0];
+	dvalue.bytes[0] = dvalue.bytes[1];
+	dvalue.bytes[1] = i;
 	return dvalue.value;
 }
 
@@ -369,6 +384,8 @@ int8_t master_controller_work(C_data * client)
 						em.varl1 = mb32_swap(em.varl1);
 						em.varl2 = mb32_swap(em.varl2);
 						em.varl3 = mb32_swap(em.varl3);
+						em.pfl1 = mb16_swap(em.pfl1);
+						em.hz = mb16_swap(em.hz);
 						client->data_prev = client->data_count;
 						client->data_count++;
 						MM_ERROR_C;

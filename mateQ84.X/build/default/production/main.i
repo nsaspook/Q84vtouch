@@ -40826,7 +40826,10 @@ void delay_ms(uint16_t);
   al1, al2, al3,
   wl1, wl2, wl3,
   val1, val2, val3,
-  varl1, varl2, varl3;
+  varl1, varl2, varl3,
+  vnlsys, vllsys, wsys, vasys, varsys;
+  volatile int16_t pfl1,pfl2,pfl3,pfsys,
+  phaseseq,hz;
  } EM_data;
 
  typedef enum filter_type {
@@ -40902,7 +40905,7 @@ void delay_ms(uint16_t);
   0x44, 0x84, 0x85, 0x45, 0x87, 0x47, 0x46, 0x86, 0x82, 0x42,
   0x43, 0x83, 0x41, 0x81, 0x80, 0x40
  };
-# 275 "./../modbus_master.h"
+# 278 "./../modbus_master.h"
  uint16_t crc16(volatile uint8_t *, uint16_t);
  uint16_t modbus_rtu_send_msg(void *, const void *, uint16_t);
 
@@ -40911,6 +40914,7 @@ void delay_ms(uint16_t);
  void init_mb_master_timers(void);
  int8_t master_controller_work(C_data *);
  int32_t mb32_swap(const int32_t);
+ int16_t mb16_swap(const int16_t);
 
  void clear_2hz(void);
  void clear_10hz(void);
@@ -41000,7 +41004,7 @@ volatile uint16_t cc_mode = STATUS_LAST;
 uint16_t volt_whole, bat_amp_whole, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[96], can_buffer[96];
-const char *build_date = "Aug  9 2023", *build_time = "18:39:10";
+const char *build_date = "Aug 11 2023", *build_time = "16:16:45";
 volatile uint16_t tickCount[TMR_COUNT];
 
 B_type B = {
@@ -41347,10 +41351,10 @@ void state_mx_status_cb(void)
 
 
 
-   printf("^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%.1f,%.1f,%.1f,%4.1f,%.2f,%u,%u,~\r\n"
-    , abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, EBD.bat_energy / 3600.0f, EBD.bat_cycles, B.rx_count++);
-   snprintf(can_buffer, 96, "^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%.1f,%.1f,%.1f,%4.1f,%.2f,%u,%u,~\r\n"
-    , abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, EBD.bat_energy / 3600.0f, EBD.bat_cycles, B.rx_count);
+   printf("^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%.1f,%.1f,%.1f,%4.1f,%.2f,%u,%3.2f,%u,~\r\n"
+    , abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, EBD.bat_energy / 3600.0f, EBD.bat_cycles, ((float) em.pfl1) / 1000.0f, B.rx_count++);
+   snprintf(can_buffer, 96, "^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%.1f,%.1f,%.1f,%4.1f,%.2f,%u,%3.2f,%u,~\r\n"
+    , abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, EBD.bat_energy / 3600.0f, EBD.bat_cycles, ((float) em.pfl1) / 1000.0f, B.rx_count);
    snprintf(buffer, 96, "%d Watts %d.%01d Volts   ", panel_watts, volt_whole, volt_fract);
    eaDogM_WriteStringAtPos(2, 0, buffer);
    bat_amp_whole = abuf[3] - 128;

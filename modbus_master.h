@@ -178,7 +178,10 @@ extern "C" {
 		al1, al2, al3,
 		wl1, wl2, wl3,
 		val1, val2, val3,
-		varl1, varl2, varl3;
+		varl1, varl2, varl3, // extra stuff
+		vnlsys, vllsys, wsys, vasys, varsys;
+		volatile int16_t pfl1,pfl2,pfl3,pfsys,
+		phaseseq,hz;
 	} EM_data;
 
 	typedef enum filter_type {
@@ -280,6 +283,7 @@ extern "C" {
 	void init_mb_master_timers(void);
 	int8_t master_controller_work(C_data *);
 	int32_t mb32_swap(const int32_t);
+	int16_t mb16_swap(const int16_t);
 
 	void clear_2hz(void);
 	void clear_10hz(void);
