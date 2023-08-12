@@ -170,16 +170,16 @@ extern "C" {
 	} C_data;
 
 	/*
-	 * maps the EM540 modbus registers to int32_t values
+	 * maps the EM540 modbus registers to int32_t and uint16_t values
 	 */
-	typedef struct EM_data {
+	typedef __pack struct EM_data {
 		volatile int32_t vl1n, vl2n, vl3n,
 		vl1l2, vl2l3, vl3l1,
 		al1, al2, al3,
 		wl1, wl2, wl3,
 		val1, val2, val3,
 		varl1, varl2, varl3, // extra stuff
-		vnlsys, vllsys, wsys, vasys, varsys;
+		vlnsys, vllsys, wsys, vasys, varsys;
 		volatile int16_t pfl1,pfl2,pfl3,pfsys,
 		phaseseq,hz;
 	} EM_data;

@@ -174,12 +174,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "98 ./../mateQ84.X/mxcmd.h
 [v _lp_filter `(f ~T0 @X0 0 ef3`Cf`Cuc`Cc ]
 "175 ./../modbus_master.h
-[; ;./../modbus_master.h: 175:  typedef struct EM_data {
+[; ;./../modbus_master.h: 175:  typedef __pack struct EM_data {
 [s S3299 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vs 1 `Vs 1 `Vs 1 `Vs 1 `Vs 1 `Vs 1 ]
-[n S3299 EM_data vl1n vl2n vl3n vl1l2 vl2l3 vl3l1 al1 al2 al3 wl1 wl2 wl3 val1 val2 val3 varl1 varl2 varl3 vnlsys vllsys wsys vasys varsys pfl1 pfl2 pfl3 pfsys phaseseq hz ]
+[n S3299 EM_data vl1n vl2n vl3n vl1l2 vl2l3 vl3l1 al1 al2 al3 wl1 wl2 wl3 val1 val2 val3 varl1 varl2 varl3 vlnsys vllsys wsys vasys varsys pfl1 pfl2 pfl3 pfsys phaseseq hz ]
 "306
 [; ;./../modbus_master.h: 306:  extern EM_data em;
-[v _em `S3299 ~T0 @X0 0 e ]
+[v _em `QS3299 ~T0 @X0 0 e ]
 "399 main.c
 [; ;main.c: 399:      ac = lp_filter(((float) em.vl1l2) / 10.0f, F_ac, 0);
 [c E24393 0 1 2 3 4 5 6 7 8 .. ]
@@ -4080,8 +4080,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> 86 `c
 -> 49 `c
 -> 46 `c
--> 51 `c
--> 51 `c
+-> 52 `c
+-> 48 `c
 -> 32 `c
 -> 70 `c
 -> 77 `c
@@ -4878,7 +4878,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _buffer `uc ~T0 @X0 -> 96 `i e ]
 [v _can_buffer `uc ~T0 @X0 -> 96 `i e ]
 "223
-[; ;main.c: 223: const char *build_date = "Aug 11 2023", *build_time = "16:16:45";
+[; ;main.c: 223: const char *build_date = "Aug 11 2023", *build_time = "17:26:18";
 [v _build_date `*Cuc ~T0 @X0 1 e ]
 [i _build_date
 :s 1C
@@ -5724,11 +5724,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e :U 3355 ]
 "585
-[; ;main.c: 585:    printf("^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%.1f,%.1f,%.1f,%4.1f,%.2f,%u,%3.2f,%u,~\r\n"
-[e ( _printf , , , , , , , , , , , , , , , , , (. :s 20C - -> *U + &U _abuf * -> -> -> 3 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 128 `i `ui & -> *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 15 `i `ui -> _vw `ui -> _vf `ui - -> *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 128 `i `ui -> _volt_whole `ui -> _volt_fract `ui -> _panel_watts `ui -> _cc_mode `ui -> / -> . _em 9 `f -> .10.0 `f `d -> / -> . _em 12 `f -> .10.0 `f `d -> / -> . _em 15 `f -> .10.0 `f `d -> / -> . _em 3 `f -> .10.0 `f `d -> / . _EBD 13 -> .3600.0 `f `d -> . _EBD 15 `ui -> / -> . _em 23 `f -> .1000.0 `f `d -> ++ . _B 4 -> -> 1 `i `us `ui ]
+[; ;main.c: 585:    printf("^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%.1f,%.1f,%.1f,%4.1f,%.2f,%u,%3.2f,%3.2f,%u,~\r\n"
+[e ( _printf , , , , , , , , , , , , , , , , , , (. :s 20C - -> *U + &U _abuf * -> -> -> 3 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 128 `i `ui & -> *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 15 `i `ui -> _vw `ui -> _vf `ui - -> *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 128 `i `ui -> _volt_whole `ui -> _volt_fract `ui -> _panel_watts `ui -> _cc_mode `ui -> / -> . _em 9 `f -> .10.0 `f `d -> / -> . _em 12 `f -> .10.0 `f `d -> / -> . _em 15 `f -> .10.0 `f `d -> / -> . _em 3 `f -> .10.0 `f `d -> / . _EBD 13 -> .3600.0 `f `d -> . _EBD 15 `ui -> / -> . _em 23 `f -> .1000.0 `f `d -> / -> . _em 28 `f -> .10.0 `f `d -> ++ . _B 4 -> -> 1 `i `us `ui ]
 "587
-[; ;main.c: 587:    snprintf(can_buffer, 96, "^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%.1f,%.1f,%.1f,%4.1f,%.2f,%u,%3.2f,%u,~\r\n"
-[e ( _snprintf (2 , , , , , , , , , , , , , , , , , (. , , &U _can_buffer -> -> 96 `i `ui :s 21C - -> *U + &U _abuf * -> -> -> 3 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 128 `i `ui & -> *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 15 `i `ui -> _vw `ui -> _vf `ui - -> *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 128 `i `ui -> _volt_whole `ui -> _volt_fract `ui -> _panel_watts `ui -> _cc_mode `ui -> / -> . _em 9 `f -> .10.0 `f `d -> / -> . _em 12 `f -> .10.0 `f `d -> / -> . _em 15 `f -> .10.0 `f `d -> / -> . _em 3 `f -> .10.0 `f `d -> / . _EBD 13 -> .3600.0 `f `d -> . _EBD 15 `ui -> / -> . _em 23 `f -> .1000.0 `f `d -> . _B 4 `ui ]
+[; ;main.c: 587:    snprintf(can_buffer, 96, "^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%.1f,%.1f,%.1f,%4.1f,%.2f,%u,%3.2f,%3.2f,%u,~\r\n"
+[e ( _snprintf (2 , , , , , , , , , , , , , , , , , , (. , , &U _can_buffer -> -> 96 `i `ui :s 21C - -> *U + &U _abuf * -> -> -> 3 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 128 `i `ui & -> *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 15 `i `ui -> _vw `ui -> _vf `ui - -> *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 128 `i `ui -> _volt_whole `ui -> _volt_fract `ui -> _panel_watts `ui -> _cc_mode `ui -> / -> . _em 9 `f -> .10.0 `f `d -> / -> . _em 12 `f -> .10.0 `f `d -> / -> . _em 15 `f -> .10.0 `f `d -> / -> . _em 3 `f -> .10.0 `f `d -> / . _EBD 13 -> .3600.0 `f `d -> . _EBD 15 `ui -> / -> . _em 23 `f -> .1000.0 `f `d -> / -> . _em 28 `f -> .10.0 `f `d -> . _B 4 `ui ]
 "589
 [; ;main.c: 589:    snprintf(buffer, 96, "%d Watts %d.%01d Volts   ", panel_watts, volt_whole, volt_fract);
 [e ( _snprintf (2 , , , (. , , &U _buffer -> -> 96 `i `ui :s 22C -> _panel_watts `ui -> _volt_whole `ui -> _volt_fract `ui ]
@@ -5930,7 +5930,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [p f _printf 12690564 ]
 [p f _snprintf 11379844 ]
-[a 2C 49 54 58 49 54 58 52 54 0 ]
+[a 2C 49 55 58 50 54 58 49 57 0 ]
 [a 1C 65 117 103 32 49 49 32 50 48 50 51 0 ]
 [a 3C 37 115 32 0 ]
 [a 9C 37 115 32 0 ]
@@ -5950,6 +5950,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 [a 18C 70 77 56 48 32 79 110 108 105 110 101 32 32 32 32 32 32 32 32 32 0 ]
 [a 10C 83 116 97 114 116 32 85 112 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
 [a 4C 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
-[a 20C 94 44 37 100 46 37 48 49 100 44 37 100 46 37 48 49 100 44 37 100 44 37 100 46 37 48 49 100 44 37 100 44 37 100 44 37 46 49 102 44 37 46 49 102 44 37 46 49 102 44 37 52 46 49 102 44 37 46 50 102 44 37 117 44 37 51 46 50 102 44 37 117 44 126 13 10 0 ]
-[a 21C 94 44 37 100 46 37 48 49 100 44 37 100 46 37 48 49 100 44 37 100 44 37 100 46 37 48 49 100 44 37 100 44 37 100 44 37 46 49 102 44 37 46 49 102 44 37 46 49 102 44 37 52 46 49 102 44 37 46 50 102 44 37 117 44 37 51 46 50 102 44 37 117 44 126 13 10 0 ]
+[a 20C 94 44 37 100 46 37 48 49 100 44 37 100 46 37 48 49 100 44 37 100 44 37 100 46 37 48 49 100 44 37 100 44 37 100 44 37 46 49 102 44 37 46 49 102 44 37 46 49 102 44 37 52 46 49 102 44 37 46 50 102 44 37 117 44 37 51 46 50 102 44 37 51 46 50 102 44 37 117 44 126 13 10 0 ]
+[a 21C 94 44 37 100 46 37 48 49 100 44 37 100 46 37 48 49 100 44 37 100 44 37 100 46 37 48 49 100 44 37 100 44 37 100 44 37 46 49 102 44 37 46 49 102 44 37 46 49 102 44 37 52 46 49 102 44 37 46 50 102 44 37 117 44 37 51 46 50 102 44 37 51 46 50 102 44 37 117 44 126 13 10 0 ]
 [a 17C 13 10 13 10 37 53 100 32 37 51 120 32 37 51 120 32 37 51 120 32 37 51 120 32 37 51 120 32 32 32 73 78 73 84 58 32 70 77 56 48 32 79 110 108 105 110 101 13 10 0 ]
