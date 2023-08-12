@@ -74,6 +74,7 @@ void get_bm_data(EB_data * EB)
 	if (UART2_is_rx_ready()) {
 		rxData = UART2_Read();
 		switch (rxData) {
+		case 'f':
 		case 'F':
 			EB->bat_energy = BAT_ENERGY;
 			EBD.bat_cycles++;
