@@ -26,6 +26,8 @@ extern "C" {
 #define MB_EM540_ID_L	0xE0
 #define SWMBMVER	0X0033	// master SW version
 #define MADDR		0x01 // modbus client address
+#define EM_DATA_LEN1	52	// 16-bit words returned
+#define EM_DATA_LEN2	64	// 16-bit words returned
 	/*
 	 * setup options on the EM540 from the factor defaults
 	 * 115200 baud, measurement mode C for bidirectional values
@@ -86,7 +88,8 @@ extern "C" {
 
 	typedef enum cmd_type {
 		G_ID = 0,
-		G_DATA,
+		G_DATA1,
+		G_DATA2,
 		G_CONFIG, // keep sequence
 		G_PASSWD, // keep sequence
 		G_LIGHT,
@@ -135,6 +138,11 @@ extern "C" {
 		char bytes[4];
 	};
 
+	union MREG64 {
+		int64_t value;
+		char bytes[8];
+	};
+
 	typedef struct M_time_data { // ISR used, mainly for non-atomic mod problems
 		uint32_t clock_500hz;
 		uint32_t clock_10hz;
@@ -172,17 +180,30 @@ extern "C" {
 	/*
 	 * maps the EM540 modbus registers to int32_t and uint16_t values
 	 */
-	typedef __pack struct EM_data {
-		volatile int32_t vl1n, vl2n, vl3n,
+	typedef __pack struct EM_data1 {
+		volatile int32_t
+		vl1n, vl2n, vl3n,
 		vl1l2, vl2l3, vl3l1,
 		al1, al2, al3,
 		wl1, wl2, wl3,
 		val1, val2, val3,
 		varl1, varl2, varl3, // extra stuff
 		vlnsys, vllsys, wsys, vasys, varsys;
-		volatile int16_t pfl1,pfl2,pfl3,pfsys,
-		phaseseq,hz;
-	} EM_data;
+		volatile int16_t
+		pfl1, pfl2, pfl3, pfsys,
+		phaseseq, hz;
+	} EM_data1;
+
+	typedef __pack struct EM_data2 {
+		volatile int64_t
+		kwhpt, kvarhpt, kwhpp, kvarhpp,
+		kwhpl1, kwhpl2, kwhpl3,
+		kwhnt, kvarhnt, kwhnp, kvarhnp,
+		kvaht, kvahp;
+		volatile int32_t
+		rhm, rhmk, rhmp, rhmkp,
+		hz, rhlc;
+	} EM_data2;
 
 	typedef enum filter_type {
 		F_ac = 0,
@@ -303,7 +324,8 @@ extern "C" {
 	extern C_data C; // MODBUS client state data
 	extern volatile M_data M; // MODBUS hardware state data
 	extern volatile M_time_data MT; // MODBUS sequence timers
-	extern EM_data em; // converted results data
+	extern EM_data1 em; // converted results data
+	extern EM_data2 emt; // converted results data
 
 #ifdef	__cplusplus
 }

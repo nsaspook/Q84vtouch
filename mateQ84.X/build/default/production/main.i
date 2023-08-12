@@ -40724,7 +40724,7 @@ void delay_ms(uint16_t);
 
 
 # 1 "./../modbus_master.h" 1
-# 80 "./../modbus_master.h"
+# 82 "./../modbus_master.h"
  typedef enum comm_type {
   CLEAR = 0,
   INIT,
@@ -40734,7 +40734,8 @@ void delay_ms(uint16_t);
 
  typedef enum cmd_type {
   G_ID = 0,
-  G_DATA,
+  G_DATA1,
+  G_DATA2,
   G_CONFIG,
   G_PASSWD,
   G_LIGHT,
@@ -40820,17 +40821,30 @@ void delay_ms(uint16_t);
 
 
 
- typedef __pack struct EM_data {
-  volatile int32_t vl1n, vl2n, vl3n,
+ typedef __pack struct EM_data1 {
+  volatile int32_t
+  vl1n, vl2n, vl3n,
   vl1l2, vl2l3, vl3l1,
   al1, al2, al3,
   wl1, wl2, wl3,
   val1, val2, val3,
   varl1, varl2, varl3,
   vlnsys, vllsys, wsys, vasys, varsys;
-  volatile int16_t pfl1,pfl2,pfl3,pfsys,
-  phaseseq,hz;
- } EM_data;
+  volatile int16_t
+  pfl1, pfl2, pfl3, pfsys,
+  phaseseq, hz;
+ } EM_data1;
+
+ typedef __pack struct EM_data2 {
+  volatile int64_t
+  kwhpt, kvarhpt, kwhpp, kvarhpp,
+  kwhpl1, kwhpl2, kwhpl3,
+  kwhnt, kvarhnt, kwhnp, kvarhnp,
+  kvaht, kvahp;
+  volatile int32_t
+  rhm, rhmk, rhmp, rhmkp,
+  hz, rhlc;
+ } EM_data2;
 
  typedef enum filter_type {
   F_ac = 0,
@@ -40905,7 +40919,7 @@ void delay_ms(uint16_t);
   0x44, 0x84, 0x85, 0x45, 0x87, 0x47, 0x46, 0x86, 0x82, 0x42,
   0x43, 0x83, 0x41, 0x81, 0x80, 0x40
  };
-# 278 "./../modbus_master.h"
+# 294 "./../modbus_master.h"
  uint16_t crc16(volatile uint8_t *, uint16_t);
  uint16_t modbus_rtu_send_msg(void *, const void *, uint16_t);
 
@@ -40934,7 +40948,8 @@ void delay_ms(uint16_t);
  extern C_data C;
  extern volatile M_data M;
  extern volatile M_time_data MT;
- extern EM_data em;
+ extern EM_data1 em;
+ extern EM_data2 emt;
 # 197 "main.c" 2
 
 # 1 "./../canfd.h" 1
@@ -41004,7 +41019,7 @@ volatile uint16_t cc_mode = STATUS_LAST;
 uint16_t volt_whole, bat_amp_whole, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[96], can_buffer[96];
-const char *build_date = "Aug 11 2023", *build_time = "17:26:18";
+const char *build_date = "Aug 12 2023", *build_time = "16:07:16";
 volatile uint16_t tickCount[TMR_COUNT];
 
 B_type B = {
@@ -41351,10 +41366,10 @@ void state_mx_status_cb(void)
 
 
 
-   printf("^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%.1f,%.1f,%.1f,%4.1f,%.2f,%u,%3.2f,%3.2f,%u,~\r\n"
-    , abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, EBD.bat_energy / 3600.0f, EBD.bat_cycles, ((float) em.pfl1) / 1000.0f, ((float) em.hz) / 10.0f, B.rx_count++);
-   snprintf(can_buffer, 96, "^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%.1f,%.1f,%.1f,%4.1f,%.2f,%u,%3.2f,%3.2f,%u,~\r\n"
-    , abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, EBD.bat_energy / 3600.0f, EBD.bat_cycles, ((float) em.pfl1) / 1000.0f, ((float) em.hz) / 10.0f, B.rx_count);
+   printf("^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%.1f,%.1f,%.1f,%4.1f,%.2f,%u,%3.2f,%4.2f,%u,~\r\n"
+    , abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, EBD.bat_energy / 3600.0f, EBD.bat_cycles, ((float) em.pfl1) / 1000.0f, ((float) emt.hz) / 1000.0f, B.rx_count++);
+   snprintf(can_buffer, 96, "^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%.1f,%.1f,%.1f,%4.1f,%.2f,%u,%3.2f,%4.2f,%u,~\r\n"
+    , abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, EBD.bat_energy / 3600.0f, EBD.bat_cycles, ((float) em.pfl1) / 1000.0f, ((float) emt.hz) / 1000.0f, B.rx_count);
    snprintf(buffer, 96, "%d Watts %d.%01d Volts   ", panel_watts, volt_whole, volt_fract);
    eaDogM_WriteStringAtPos(2, 0, buffer);
    bat_amp_whole = abuf[3] - 128;
