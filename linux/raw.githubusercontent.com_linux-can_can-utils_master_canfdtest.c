@@ -18,6 +18,12 @@
  * Send feedback to <linux-can@vger.kernel.org>
  */
 
+/*
+ * Logging only version for EM540 data from the mateQ84 controller module
+ * presets have been defaulted for proper CANFD operation using the 
+ * PU2CANFD USB adapter with 64 byte payloads
+ */
+
 #include <errno.h>
 #include <getopt.h>
 #include <libgen.h>
