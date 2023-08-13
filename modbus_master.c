@@ -599,8 +599,9 @@ bool modbus_read_check(C_data * client, bool* cstate, uint16_t rec_length, void 
 			*cstate = false;
 			client->data_ok = false;
 			log_crc_error(c_crc, c_crc_rec);
-			if (client->data_ok)
+			if (client->data_ok) {
 				MM_ERROR_S;
+			}
 		}
 		client->cstate = CLEAR;
 	} else {
@@ -611,8 +612,9 @@ bool modbus_read_check(C_data * client, bool* cstate, uint16_t rec_length, void 
 			client->mcmd = G_ID;
 			M.to_error++;
 			M.error++;
-			if (client->data_ok)
+			if (client->data_ok) {
 				MM_ERROR_S;
+			}
 		}
 	}
 #endif
