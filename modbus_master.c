@@ -654,6 +654,7 @@ bool modbus_read_id_check(C_data * client, bool* cstate, uint16_t rec_length)
 			M.to_error++;
 			M.error++;
 			client->id_ok = false;
+			*cstate = false;
 			client->config_ok = false;
 			client->passwd_ok = false;
 			client->data_ok = false;
