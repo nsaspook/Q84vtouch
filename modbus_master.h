@@ -6,7 +6,7 @@
  */
 
 /*
- * Simple MODBUS data polling master for PIC32MK on USART6 using MCC
+ * Simple MODBUS data polling master for using MCC
  * the USART port uses interrupt driven buffered I/O
  * hard coded for data collection from a EM540 3-phase power monitor
  * https://www.gavazzionline.com/pdf/EM540_DS_ENG.pdf
