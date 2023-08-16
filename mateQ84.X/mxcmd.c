@@ -47,8 +47,10 @@ void FM_io(void)
 {
 	MISC_SetHigh(); // serial CPU usage signal
 
+
 	if (pace++ > BUFFER_SPACING) {
 		if (dcount-- > 0) {
+			IO_RB7_Toggle();
 			if (tbuf[dstart] > 0xff) { // Check for bit-9
 				U1P1L = (uint8_t) tbuf[dstart]; // send with bit-9 high, start of packet
 			} else {

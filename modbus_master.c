@@ -137,7 +137,8 @@ uint16_t crc16(volatile uint8_t *buffer, uint16_t buffer_length)
 void my_modbus_rx_32(void)
 {
 	static uint8_t m_data = 0;
-
+	
+	IO_RB7_Toggle();
 	M.rx = true;
 	/*
 	 * process received controller data stream
@@ -234,7 +235,6 @@ int8_t master_controller_work(C_data * client)
 {
 	static uint32_t spacing = 0;
 
-	IO_RD7_SetHigh(); // modbus timing
 	if (spacing++ <SPACING && !M.rx) {
 		return T_spacing;
 	}
@@ -328,6 +328,7 @@ int8_t master_controller_work(C_data * client)
 		client->trace = T_send;
 		if (get_500hz(false) >= TDELAY) {
 			for (uint8_t i = 0; i < client->req_length; i++) {
+				IO_RB7_Toggle();
 				Swrite(cc_buffer_tx[i]);
 			}
 			client->cstate = RECV;

@@ -106,6 +106,7 @@ void eaDogM_WriteString(char *strPtr)
 {
 	uint8_t len = (uint8_t) strlen(strPtr);
 
+	IO_RB7_Toggle();
 #ifdef DEBUG_DISP1
 	DB1_LAT = true;
 #endif
