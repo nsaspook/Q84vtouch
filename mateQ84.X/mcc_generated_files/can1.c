@@ -182,11 +182,8 @@ static void CAN1_RX_FIFO_Configuration(void)
 static void CAN1_RX_FIFO_FilterMaskConfiguration(void)
 {
     // FLTEN0 enabled; F0BP FIFO 1; 
-	/*
-	 * user mod SID to allow all id's to pass
-	 */
-    C1FLTOBJ0L = 0x00;
-    C1FLTOBJ0H = 0x00;
+    C1FLTOBJ0L = 0xFF;
+    C1FLTOBJ0H = 0x0F;
     C1FLTOBJ0U = 0x00;
     C1FLTOBJ0T = 0x40;
     /*
@@ -279,7 +276,7 @@ static void CAN1_ErrorNotificationInterruptEnable(void)
     C1INTH = 0x00;
     
     // TEFIE disabled; MODIE enabled; TBCIE disabled; RXIE enabled; TXIE disabled; 
-    C1INTU = 0x08;
+    C1INTU = 0x0A;
     
     // IVMIE enabled; WAKIE enabled; CERRIE enabled; SERRIE enabled; RXOVIE enabled; TXATIE enabled; 
     C1INTT = 0xFC;

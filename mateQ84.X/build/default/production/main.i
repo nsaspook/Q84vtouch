@@ -40657,7 +40657,7 @@ void delay_ms(uint16_t);
 # 23 "./mxcmd.h" 2
 
 
- const char build_version[64] = "V1.50 FM80 Q84";
+ const char build_version[64] = "V1.51 FM80 Q84";
 # 41 "./mxcmd.h"
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
@@ -41024,7 +41024,7 @@ volatile uint16_t cc_mode = STATUS_LAST;
 uint16_t volt_whole, bat_amp_whole, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[96], can_buffer[64*2], info_buffer[96];
-const char *build_date = "Aug 16 2023", *build_time = "11:23:31";
+const char *build_date = "Aug 16 2023", *build_time = "11:49:21";
 volatile uint16_t tickCount[TMR_COUNT];
 
 B_type B = {
@@ -41137,6 +41137,7 @@ void main(void)
  can_fd_tx();
 
  while (1) {
+  do { LATDbits.LATD5 = 1; } while(0);
 
 
   master_controller_work(&C);
@@ -41223,7 +41224,7 @@ void main(void)
       e_update = 0;
      }
     } else {
-# 438 "main.c"
+# 439 "main.c"
      snprintf(buffer, 96, "EMon  %6.1fWh   %c%c    ", EBD.bat_energy / 360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
      eaDogM_WriteStringAtPos(1, 0, buffer);
      snprintf(buffer, 96, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
@@ -41232,6 +41233,7 @@ void main(void)
     }
    }
   }
+  do { LATDbits.LATD5 = 0; } while(0);
  }
 }
 

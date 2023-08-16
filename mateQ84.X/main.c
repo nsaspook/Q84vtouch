@@ -333,6 +333,7 @@ void main(void)
 	can_fd_tx(); // send the testing packet via CANBUS
 
 	while (true) {
+		IO_RD5_SetHigh(); // main loop timing
 		// Add your application code
 #ifdef MB_MASTER
 		master_controller_work(&C); // master MODBUS processing
@@ -443,6 +444,7 @@ void main(void)
 				}
 			}
 		}
+		IO_RD5_SetLow();
 	}
 }
 

@@ -58,7 +58,7 @@ void Can1FIFO1NotEmptyHandler(void)
  */
 void can_fd_tx(void)
 {
-	IO_RB5_SetHigh();
+	IO_RB5_SetHigh(); // canbus timing
 	CAN_MSG_OBJ Transmission; //create the CAN message object
 #ifdef USE_FD
 	Transmission.field.brs = CAN_BRS_MODE; //Transmit the data bytes at data bit rate

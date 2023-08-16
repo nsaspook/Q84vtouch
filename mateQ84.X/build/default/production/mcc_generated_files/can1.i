@@ -39030,11 +39030,8 @@ static void CAN1_RX_FIFO_Configuration(void)
 static void CAN1_RX_FIFO_FilterMaskConfiguration(void)
 {
 
-
-
-
-    C1FLTOBJ0L = 0x00;
-    C1FLTOBJ0H = 0x00;
+    C1FLTOBJ0L = 0xFF;
+    C1FLTOBJ0H = 0x0F;
     C1FLTOBJ0U = 0x00;
     C1FLTOBJ0T = 0x40;
 
@@ -39127,7 +39124,7 @@ static void CAN1_ErrorNotificationInterruptEnable(void)
     C1INTH = 0x00;
 
 
-    C1INTU = 0x08;
+    C1INTU = 0x0A;
 
 
     C1INTT = 0xFC;

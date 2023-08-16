@@ -234,6 +234,7 @@ int8_t master_controller_work(C_data * client)
 {
 	static uint32_t spacing = 0;
 
+	IO_RD7_SetHigh(); // modbus timing
 	if (spacing++ <SPACING && !M.rx) {
 		return T_spacing;
 	}
@@ -379,6 +380,7 @@ int8_t master_controller_work(C_data * client)
 	default:
 		break;
 	}
+	IO_RD7_SetLow();
 	return client->trace;
 }
 
