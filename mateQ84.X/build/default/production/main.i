@@ -39052,7 +39052,7 @@ void *memccpy (void *restrict, const void *restrict, int, size_t);
 # 50 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/pin_manager.h" 1
-# 542 "./mcc_generated_files/pin_manager.h"
+# 642 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
 # 51 "./mcc_generated_files/mcc.h" 2
 
@@ -40657,7 +40657,7 @@ void delay_ms(uint16_t);
 # 23 "./mxcmd.h" 2
 
 
- const char build_version[] = "V1.50 FM80 Q84";
+ const char build_version[64] = "V1.50 FM80 Q84";
 # 41 "./mxcmd.h"
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
@@ -40958,7 +40958,7 @@ void delay_ms(uint16_t);
 # 197 "main.c" 2
 
 # 1 "./../canfd.h" 1
-# 34 "./../canfd.h"
+# 35 "./../canfd.h"
  typedef struct {
   uint32_t rec_count;
   _Bool rec_flag;
@@ -41024,7 +41024,7 @@ volatile uint16_t cc_mode = STATUS_LAST;
 uint16_t volt_whole, bat_amp_whole, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[96], can_buffer[64*2], info_buffer[96];
-const char *build_date = "Aug 15 2023", *build_time = "20:06:02";
+const char *build_date = "Aug 16 2023", *build_time = "11:23:31";
 volatile uint16_t tickCount[TMR_COUNT];
 
 B_type B = {

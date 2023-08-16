@@ -51,12 +51,14 @@ void Can1FIFO1NotEmptyHandler(void)
 }
 
 /*
- * send two 64 byte CAN packets with the ascii battery data in CSV format
+ * send 64 byte CAN packets with the ASCII battery data in CSV format
  * EMON_SL [0..63], EMON_SU [64..127] bytes of data
- * ^ for ascii start of string, ~ for end of data string
+ * ^ for ASCII start of string, ~ for end of data string
+ * also send aux error and config packets if flagged
  */
 void can_fd_tx(void)
 {
+	IO_RB5_SetHigh();
 	CAN_MSG_OBJ Transmission; //create the CAN message object
 #ifdef USE_FD
 	Transmission.field.brs = CAN_BRS_MODE; //Transmit the data bytes at data bit rate
@@ -64,8 +66,9 @@ void can_fd_tx(void)
 	Transmission.field.formatType = CAN_FD_FORMAT; //CAN FD frames
 	Transmission.field.frameType = CAN_FRAME_DATA; //Data frame
 	Transmission.field.idType = CAN_FRAME_EXT; //Standard ID
-	Transmission.msgId = EMON_SL; //ID of client
+	Transmission.msgId = EMON_SL; // packet type ID of client
 #else
+	return; // don't try to send classic packets
 	Transmission.field.brs = CAN_NON_BRS_MODE; //Transmit the data bytes at data bit rate
 	Transmission.field.dlc = DLC_8; // 8 data bytes
 	Transmission.field.formatType = CAN_2_0_FORMAT; // CAN operation mode
@@ -78,15 +81,22 @@ void can_fd_tx(void)
 	{
 		CAN1_Transmit(FIFO2, &Transmission); //transmit frame
 	}
-	Transmission.msgId = (EMON_SU); //ID of client
+	Transmission.msgId = (EMON_SU);
 	Transmission.data = (uint8_t*) can_buffer + CANFD_BYTES; //transmit the data from the data bytes
 	if (CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(FIFO2) & CAN_TX_FIFO_AVAILABLE))//ensure that the TXQ has space for a message
 	{
 		CAN1_Transmit(FIFO2, &Transmission); //transmit frame
 	}
 
-	Transmission.msgId = (EMON_ER); //ID of client
+	Transmission.msgId = (EMON_ER); // error packet type ID
 	Transmission.data = (uint8_t*) info_buffer; //transmit the data from the data bytes
+	if (CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(FIFO2) & CAN_TX_FIFO_AVAILABLE))//ensure that the TXQ has space for a message
+	{
+		CAN1_Transmit(FIFO2, &Transmission); //transmit frame
+	}
+
+	Transmission.msgId = (EMON_CO); // error packet type ID
+	Transmission.data = (uint8_t*) build_version; //transmit the data from the data bytes
 	if (CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(FIFO2) & CAN_TX_FIFO_AVAILABLE))//ensure that the TXQ has space for a message
 	{
 		CAN1_Transmit(FIFO2, &Transmission); //transmit frame
@@ -97,6 +107,7 @@ void can_fd_tx(void)
 		MLED_Toggle();
 	}
 #endif
+	IO_RB5_SetLow();
 }
 
 /*

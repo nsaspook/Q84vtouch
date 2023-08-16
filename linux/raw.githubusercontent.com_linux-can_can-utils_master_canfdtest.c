@@ -49,6 +49,7 @@
 #define CAN_MSG_ID_PING  0x80000002
 #define CAN_MSG_ID_PING_X 0x80000003
 #define EMON_ER   0x8000000F // error reporting
+#define EMON_CO   0x8000000C // config reporting
 #define CAN_MSG_ID_PONG  0x3
 #define CAN_MSG_LEN 64
 #define CAN_FULL_BUFFER CAN_MSG_LEN+CAN_MSG_LEN+1
@@ -285,7 +286,7 @@ static int check_frame(const struct canfd_frame *frame)
 	int err = 0;
 	int i;
 
-	if (frame->can_id != can_id_ping && frame->can_id != can_id_pingx && frame->can_id != EMON_ER) {
+	if (frame->can_id != can_id_ping && frame->can_id != can_id_pingx && frame->can_id != EMON_ER && frame->can_id != EMON_CO) {
 		printf("Unexpected Message ID 0x%04x!\n", frame->can_id);
 		err = -1;
 	}
