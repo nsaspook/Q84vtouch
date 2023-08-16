@@ -19,7 +19,7 @@ extern "C" {
 #include "mateQ84.X/mxcmd.h"
 #include "modbus_master.h"
 
-//  #define CAN_DEBUG	// can received data on LCD for remote mate board
+	//  #define CAN_DEBUG	// can received data on LCD for remote mate board
 #define DATA_DEBUG
 
 #define USE_FD	// select classic or FD
@@ -42,7 +42,7 @@ extern "C" {
 
 	void Can1FIFO1NotEmptyHandler(void);
 
-	extern char can_buffer[MAX_B_BUF];
+	extern char can_buffer[MAX_C_BUF], info_buffer[MAX_B_BUF];
 	void can_fd_tx(void);
 	void can_setup(void);
 
