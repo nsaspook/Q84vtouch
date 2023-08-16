@@ -19,7 +19,7 @@ extern "C" {
 #include "mateQ84.X/mxcmd.h"
 #include "modbus_master.h"
 
-//#define CAN_DEBUG	// can received data on LCD for remote mate board
+//  #define CAN_DEBUG	// can received data on LCD for remote mate board
 #define DATA_DEBUG
 
 #define USE_FD	// select classic or FD
@@ -29,6 +29,7 @@ extern "C" {
 #define	EMON_M	0x1	// FM80 host
 #define EMON_SL	0x2	// remote display lower data
 #define EMON_SU	0x3	// remote display upper data
+#define EMON_ER	0xF	// error reporting
 
 	typedef struct {
 		uint32_t rec_count;
