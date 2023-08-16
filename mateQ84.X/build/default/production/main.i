@@ -40958,7 +40958,7 @@ void delay_ms(uint16_t);
 # 197 "main.c" 2
 
 # 1 "./../canfd.h" 1
-# 33 "./../canfd.h"
+# 34 "./../canfd.h"
  typedef struct {
   uint32_t rec_count;
   _Bool rec_flag;
@@ -41024,7 +41024,7 @@ volatile uint16_t cc_mode = STATUS_LAST;
 uint16_t volt_whole, bat_amp_whole, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[96], can_buffer[96];
-const char *build_date = "Aug 14 2023", *build_time = "18:59:47";
+const char *build_date = "Aug 15 2023", *build_time = "11:20:29";
 volatile uint16_t tickCount[TMR_COUNT];
 
 B_type B = {
