@@ -79,7 +79,7 @@ static void UART1_DefaultFramingErrorHandler_mb(void);
 static void UART1_DefaultOverrunErrorHandler_mb(void);
 static void UART1_DefaultErrorHandler_mb(void);
 
-bool modbus_rec_check(C_data *, bool*, uint16_t);
+static bool modbus_rec_check(C_data *, bool*, uint16_t);
 
 /*
  * add the required CRC bytes to a MODBUS message
@@ -597,7 +597,7 @@ void mb_setup(void)
 	UART1_SetErrorHandler(UART1_DefaultErrorHandler_mb);
 }
 
-bool modbus_rec_check(C_data * client, bool* cstate, uint16_t rec_length)
+static bool modbus_rec_check(C_data * client, bool* cstate, uint16_t rec_length)
 {
 	uint16_t c_crc, c_crc_rec;
 
