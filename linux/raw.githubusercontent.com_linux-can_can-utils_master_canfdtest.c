@@ -48,6 +48,7 @@
 
 #define CAN_MSG_ID_PING  0x80000002
 #define CAN_MSG_ID_PING_X 0x80000003
+#define EMON_ER   0x8000000F // error reporting
 #define CAN_MSG_ID_PONG  0x3
 #define CAN_MSG_LEN 64
 #define CAN_FULL_BUFFER CAN_MSG_LEN+CAN_MSG_LEN+1
@@ -123,15 +124,23 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 			if (print_hex) {
 				printf(" %02x", (uint8_t) (data[i] + inc_data));
 			}
-			if (id == CAN_MSG_ID_PING) {
+			if (id == EMON_ER) {
 				full_buffer[i] = (uint8_t) (data[i] + inc_data);
 			} else {
-				full_buffer[i + CAN_MSG_LEN] = (uint8_t) (data[i] + inc_data);
+				if (id == CAN_MSG_ID_PING) {
+					full_buffer[i] = (uint8_t) (data[i] + inc_data);
+				} else {
+					full_buffer[i + CAN_MSG_LEN] = (uint8_t) (data[i] + inc_data);
+				}
 			}
 		}
 		if (id == CAN_MSG_ID_PING_X) {
-			printf("%s", full_buffer);
+			fprintf(stdout, "%s", full_buffer);
 		}
+		if (id == EMON_ER) {
+			fprintf(stderr, "%s", full_buffer);
+		}
+
 	}
 	if (print_hex) {
 		printf("\n");
@@ -276,7 +285,7 @@ static int check_frame(const struct canfd_frame *frame)
 	int err = 0;
 	int i;
 
-	if (frame->can_id != can_id_ping && frame->can_id != can_id_pingx) {
+	if (frame->can_id != can_id_ping && frame->can_id != can_id_pingx && frame->can_id != EMON_ER) {
 		printf("Unexpected Message ID 0x%04x!\n", frame->can_id);
 		err = -1;
 	}
