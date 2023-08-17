@@ -469,7 +469,7 @@ void send_mx_cmd(const uint16_t * cmd)
 }
 
 /*
- * process received data in abuf with callbacks
+ * process received data from the FM80 9n1 serial in abuf 16-bit buffer array with callbacks
  */
 void rec_mx_cmd(void (* DataHandler)(void), uint8_t rec_len)
 {

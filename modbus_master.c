@@ -138,7 +138,7 @@ void my_modbus_rx_32(void)
 {
 	static uint8_t m_data = 0;
 	
-	IO_RB7_Toggle();
+//	IO_RB6_Toggle();
 	M.rx = true;
 	/*
 	 * process received controller data stream
@@ -474,6 +474,7 @@ static void half_dup_rx(const bool delay)
 
 void timer_500ms_tick(void)
 {
+//	IO_RB6_Toggle();
 	MT.clock_2hz++;
 	MT.clock_blinks++;
 }
@@ -482,6 +483,7 @@ void timer_500ms_tick(void)
 
 void timer_2ms_tick(void)
 {
+//	IO_RB6_Toggle();
 	MT.clock_500hz++;
 	MT.clock_10hz++;
 }

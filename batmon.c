@@ -57,7 +57,7 @@ void wr_bm_data(uint8_t * EB)
 void get_bm_data(EB_data * EB)
 {
 	uint8_t rxData = 0;
-	
+
 	EB->ENac = (float) em.vl1l2 / 10.0f;
 	EB->ENva = (float) em.val1 / 10.0f;
 	EB->ENw = (float) em.wl1 / 10.0f;
@@ -77,6 +77,11 @@ void get_bm_data(EB_data * EB)
 		case 'f':
 		case 'F':
 			EB->bat_energy = BAT_ENERGY;
+			EBD.bat_cycles++;
+			break;
+		case 'e':
+		case 'E':
+			EB->bat_energy = 1;
 			EBD.bat_cycles++;
 			break;
 		default:

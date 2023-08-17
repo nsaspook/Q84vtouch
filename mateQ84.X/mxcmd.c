@@ -47,10 +47,9 @@ void FM_io(void)
 {
 	MISC_SetHigh(); // serial CPU usage signal
 
-
 	if (pace++ > BUFFER_SPACING) {
 		if (dcount-- > 0) {
-			IO_RB7_Toggle();
+			IO_RB6_Toggle(); // GPIO scope trace
 			if (tbuf[dstart] > 0xff) { // Check for bit-9
 				U1P1L = (uint8_t) tbuf[dstart]; // send with bit-9 high, start of packet
 			} else {
@@ -77,7 +76,9 @@ void FM_io(void)
 	 * read serial data if polled interrupt flag is set
 	 */
 	if (PIR4bits.U1RXIF) {
+		IO_RB6_Toggle(); // GPIO scope trace
 		if (U1ERRIRbits.FERIF) {
+			// do nothing, will clear auto
 		}
 
 		if (rdstart > FM_BUFFER - 1) { // overload buffer index
