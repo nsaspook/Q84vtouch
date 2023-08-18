@@ -39502,7 +39502,7 @@ void TMR6_DefaultInterruptHandler(void);
 
 # 1 "./mcc_generated_files/dma1.h" 1
 # 55 "./mcc_generated_files/dma1.h"
-uint8_t SrcVarName0[1];
+uint8_t SrcVarName0[2];
 
 
 
@@ -40635,7 +40635,7 @@ extern char spinners(uint8_t, const uint8_t);
  void spi_rec_done(void);
 # 22 "./mxcmd.h" 2
 # 1 "./../timers.h" 1
-# 11 "./../timers.h"
+# 12 "./../timers.h"
 enum APP_TIMERS {
  TMR_INTERNAL = 0,
  TMR_MBMASTER,
@@ -40657,7 +40657,7 @@ void delay_ms(uint16_t);
 # 23 "./mxcmd.h" 2
 
 
- const char build_version[64] = "V1.51 FM80 Q84";
+ const char build_version[64] = "V1.53 FM80 Q84";
 # 41 "./mxcmd.h"
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
@@ -40976,7 +40976,7 @@ void delay_ms(uint16_t);
 # 198 "main.c" 2
 
 # 1 "./../batmon.h" 1
-# 42 "./../batmon.h"
+# 43 "./../batmon.h"
  typedef struct EB_data {
   uint8_t checkmark;
   uint8_t version;
@@ -40988,6 +40988,12 @@ void delay_ms(uint16_t);
   uint32_t bat_time;
   uint16_t crc;
  } EB_data;
+
+
+
+
+ const char log_format[] = "^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%.1f,%.1f,%.1f,%4.1f,%.2f,%u,%5.3f,%5.3f,%u,~\r\n";
+
 
  extern EB_data EBD, EBD_ptr;
  extern uint16_t EBD_update;
@@ -41024,7 +41030,7 @@ volatile uint16_t cc_mode = STATUS_LAST;
 uint16_t volt_whole, bat_amp_whole, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[96], can_buffer[64*2], info_buffer[96];
-const char *build_date = "Aug 17 2023", *build_time = "13:54:13";
+const char *build_date = "Aug 18 2023", *build_time = "13:34:42";
 volatile uint16_t tickCount[TMR_COUNT];
 
 B_type B = {
@@ -41369,15 +41375,13 @@ void state_mx_status_cb(void)
 
  if (B.ten_sec_flag) {
   B.ten_sec_flag = 0;
-  if (B.FM80_online) {
+  if (B.FM80_online || B.modbus_online) {
    do { LATBbits.LATB1 = 0; } while(0);
 
 
 
-   printf("^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%.1f,%.1f,%.1f,%4.1f,%.2f,%u,%5.3f,%5.3f,%u,~\r\n"
-    , abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, EBD.bat_energy / 3600.0f, EBD.bat_cycles, ((float) em.pfl1) / 1000.0f, ((float) emt.hz) / 1000.0f, B.rx_count++);
-   snprintf(can_buffer, 64*2, "^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%.1f,%.1f,%.1f,%4.1f,%.2f,%u,%5.3f,%5.3f,%u,~\r\n"
-    , abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, EBD.bat_energy / 3600.0f, EBD.bat_cycles, ((float) em.pfl1) / 1000.0f, ((float) emt.hz) / 1000.0f, B.rx_count);
+   snprintf(can_buffer, 64*2, log_format, abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, EBD.bat_energy / 3600.0f, EBD.bat_cycles, ((float) em.pfl1) / 1000.0f, ((float) emt.hz) / 1000.0f, B.rx_count++);
+   printf("%s", can_buffer);
    snprintf(buffer, 96, "%d Watts %d.%01d Volts   ", panel_watts, volt_whole, volt_fract);
    eaDogM_WriteStringAtPos(2, 0, buffer);
    bat_amp_whole = abuf[3] - 128;

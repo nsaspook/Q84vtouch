@@ -39289,7 +39289,7 @@ void TMR6_DefaultInterruptHandler(void);
 
 # 1 "mcc_generated_files/dma1.h" 1
 # 55 "mcc_generated_files/dma1.h"
-uint8_t SrcVarName0[1];
+uint8_t SrcVarName0[2];
 
 
 

@@ -35,10 +35,11 @@ extern "C" {
 #define BM_UPDATE_RUN	1800	// while running
 
 #define BAT_CYCLES	8
-	
+
 #define BAT_CHARGED_W	200.0f
 
 	// EEPROM data storage structure
+
 	typedef struct EB_data {
 		uint8_t checkmark;
 		uint8_t version;
@@ -50,6 +51,12 @@ extern "C" {
 		uint32_t bat_time;
 		uint16_t crc;
 	} EB_data;
+
+	/*
+	 * logging data format for printf and variables
+	 */
+	const char log_format[] = "^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%.1f,%.1f,%.1f,%4.1f,%.2f,%u,%5.3f,%5.3f,%u,~\r\n";
+#define LOG_VARS	abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, EBD.bat_energy / 3600.0f, EBD.bat_cycles, ((float) em.pfl1) / 1000.0f, ((float) emt.hz) / 1000.0f, B.rx_count++
 
 	extern EB_data EBD, EBD_ptr;
 	extern uint16_t EBD_update;

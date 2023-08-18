@@ -45,7 +45,7 @@ uint8_t FM_tx(const uint16_t * data, uint8_t count)
  */
 void FM_io(void)
 {
-	MISC_SetHigh(); // serial CPU usage signal
+	MISC_SetHigh(); // serial CPU usage signal for I/O polling
 
 	if (pace++ > BUFFER_SPACING) {
 		if (dcount-- > 0) {
@@ -95,8 +95,9 @@ void FM_io(void)
 		rdstart++;
 	}
 
-	timer_ms_tick(0, 0); // software timers update
 	MISC_SetLow();
+	timer_ms_tick(0, 0); // software timers update
+
 }
 
 uint8_t FM_rx(uint16_t * data)

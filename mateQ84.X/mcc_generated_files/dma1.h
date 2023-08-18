@@ -52,7 +52,7 @@
 */
 #include <stdint.h>
 
-uint8_t SrcVarName0[1];
+uint8_t SrcVarName0[2];
 
 /**
  * @brief Initializes the DMA1 module

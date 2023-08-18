@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include "mateQ84.X/mcc_generated_files/mcc.h"
 
 //Software timers - use these to refer to timers rather than
 //integers.  Add more as needed.
