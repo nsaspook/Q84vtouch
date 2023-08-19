@@ -31,11 +31,15 @@ bool FM_tx_empty(void)
  */
 uint8_t FM_tx(const uint16_t * data, uint8_t count)
 {
+	RELAY_SetHigh();
+	RELAY_SetLow(); // tx trace signature
+	RELAY_SetHigh();
 	if (dcount == 0) {
-		memcpy((void *) tbuf, (const void *) data, (size_t) (count << 2)); // copy 16-bit values
+		memcpy((void *) tbuf, (const void *) data, (size_t) (count << 1)); // copy 16-bit values
 		dstart = 0;
 		dcount = count;
 	}
+	RELAY_SetLow();
 	return dstart;
 }
 
@@ -109,11 +113,9 @@ uint8_t FM_rx(uint16_t * data)
 	uint8_t count;
 
 	RELAY_SetHigh();
-//	INTERRUPT_GlobalInterruptHighDisable();
 	count = rdstart;
-	memcpy(data, (const void *) rbuf, (size_t) (count << 2)); // copy 16-bit values
+	memcpy(data, (const void *) rbuf, (size_t) (count << 1)); // copy 16-bit values
 	rdstart = 0;
-//	INTERRUPT_GlobalInterruptHighEnable();
 	RELAY_SetLow();
 	return count;
 }
@@ -131,9 +133,7 @@ uint8_t FM_rx_count(void)
 {
 	uint8_t count;
 
-//	INTERRUPT_GlobalInterruptHighDisable();
 	count = rdstart;
-//	INTERRUPT_GlobalInterruptHighEnable();
 	return count;
 }
 

@@ -479,7 +479,7 @@ void rec_mx_cmd(void (* DataHandler)(void), uint8_t rec_len)
 		if (FM_rx_count() >= rec_len) {
 			online_count = 0;
 			FM_rx(abuf);
-			DataHandler(); // execute callback
+			DataHandler(); // execute callback to process data in abuf
 		} else {
 			if (online_count++ > ONLINE_TIMEOUT) {
 				online_count = 0;
