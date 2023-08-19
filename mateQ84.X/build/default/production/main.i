@@ -40657,8 +40657,8 @@ void delay_ms(uint16_t);
 # 23 "./mxcmd.h" 2
 
 
- const char build_version[64] = "V1.55 FM80 Q84";
-# 45 "./mxcmd.h"
+ const char build_version[64] = "V1.56 FM80 Q84";
+# 46 "./mxcmd.h"
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
  const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};
@@ -40995,6 +40995,22 @@ void delay_ms(uint16_t);
  const char log_format[] = "^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%.1f,%.1f,%.1f,%4.1f,%.2f,%u,%5.3f,%5.3f,%u,~\r\n";
 
 
+
+ const uint32_t BVSOC_TABLE[12][2] = {
+  20000, 0,
+  24000, 5,
+  25000, 14,
+  25600, 17,
+  25800, 20,
+  26000, 30,
+  26200, 40,
+  26400, 70,
+  26600, 90,
+  26800, 99,
+  27200, 100,
+  29200, 100
+ };
+
  extern EB_data EBD, EBD_ptr;
  extern uint16_t EBD_update;
 
@@ -41005,6 +41021,8 @@ void delay_ms(uint16_t);
 
  void DATAEE_WriteByte(uint16_t, uint8_t);
  uint8_t DATAEE_ReadByte(uint16_t);
+
+ uint16_t Volts_to_SOC(const uint16_t, const uint16_t);
 # 199 "main.c" 2
 
 
@@ -41030,7 +41048,7 @@ volatile uint16_t cc_mode = STATUS_LAST;
 uint16_t volt_whole, bat_amp_whole, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[96], can_buffer[64*2], info_buffer[96];
-const char *build_date = "Aug 18 2023", *build_time = "18:21:08";
+const char *build_date = "Aug 19 2023", *build_time = "04:21:07";
 volatile uint16_t tickCount[TMR_COUNT];
 
 B_type B = {
@@ -41297,8 +41315,14 @@ void rec_mx_cmd(void (* DataHandler)(void), uint8_t rec_len)
 
 void state_init_cb(void)
 {
+ float Soc;
+
  if (abuf[2] == 0x03) {
   printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: FM80 Online\r\n", B.rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
+  if (!B.FM80_online) {
+   Soc = ((float) Volts_to_SOC(vw, vf) * 0.01f);
+   EBD.bat_energy = 25.6f*200.0f*360.0f*Soc;
+  }
   B.FM80_online = 1;
   snprintf(buffer, 96, "FM80 Online         ");
   eaDogM_WriteStringAtPos(3, 0, buffer);

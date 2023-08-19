@@ -502,8 +502,14 @@ void rec_mx_cmd(void (* DataHandler)(void), uint8_t rec_len)
 
 void state_init_cb(void)
 {
+	float Soc;
+	
 	if (FMxx_ID == FM80_ID) {
 		printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: FM80 Online\r\n", B.rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
+		if (!B.FM80_online) { // try to guess battery energy by looking at battery voltage
+			Soc = ((float) Volts_to_SOC(vw, vf) * 0.01f);
+			EBD.bat_energy = BAT_ENERGY*Soc;
+		}
 		B.FM80_online = true;
 		snprintf(buffer, MAX_B_BUF, "FM80 Online         ");
 		eaDogM_WriteStringAtPos(3, 0, buffer);

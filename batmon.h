@@ -58,6 +58,22 @@ extern "C" {
 	const char log_format[] = "^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%.1f,%.1f,%.1f,%4.1f,%.2f,%u,%5.3f,%5.3f,%u,~\r\n";
 #define LOG_VARS	abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, EBD.bat_energy / 3600.0f, EBD.bat_cycles, ((float) em.pfl1) / 1000.0f, ((float) emt.hz) / 1000.0f, B.rx_count++
 
+#define BVSOC_SLOTS     12      // Battery to SOC data table slots
+	const uint32_t BVSOC_TABLE[BVSOC_SLOTS][2] = {
+		20000, 0,
+		24000, 5,
+		25000, 14,
+		25600, 17,
+		25800, 20,
+		26000, 30,
+		26200, 40,
+		26400, 70,
+		26600, 90,
+		26800, 99,
+		27200, 100,
+		29200, 100 // charging voltage guess
+	};
+
 	extern EB_data EBD, EBD_ptr;
 	extern uint16_t EBD_update;
 
@@ -68,6 +84,8 @@ extern "C" {
 
 	void DATAEE_WriteByte(uint16_t, uint8_t);
 	uint8_t DATAEE_ReadByte(uint16_t);
+	
+	uint16_t Volts_to_SOC(const uint16_t, const uint16_t);
 
 #ifdef	__cplusplus
 }

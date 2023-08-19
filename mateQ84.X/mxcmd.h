@@ -22,10 +22,11 @@ extern "C" {
 #include "../timers.h"
 
 #define VER	1
-	const char build_version[64] = "V1.55 FM80 Q84";
+	const char build_version[64] = "V1.56 FM80 Q84";
 	/*
 	 * code changes
 	 * 1.55 remove critical section interrupt disables for FM80 serial
+	 * 1.56 add battery voltage to SoC for boot setting of battery energy
 	 */
 
 #define MAX_B_BUF	96

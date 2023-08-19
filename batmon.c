@@ -182,3 +182,22 @@ uint8_t DATAEE_ReadByte(uint16_t bAdd)
 
 	return NVMDATL;
 }
+
+/*
+ * static SOC table for LiFePO4
+ */
+uint16_t Volts_to_SOC(const uint16_t bvw, const uint16_t bvf)
+{
+	uint8_t slot;
+	uint16_t soc = 0;
+
+	/*
+	 * walk up the table
+	 */
+	for (slot = 0; slot < BVSOC_SLOTS; slot++) {
+		if ((bvw*1000 + bvf*100) > BVSOC_TABLE[slot][0]) {
+			soc = (uint16_t) BVSOC_TABLE[slot][1];
+		}
+	}
+	return soc;
+}
