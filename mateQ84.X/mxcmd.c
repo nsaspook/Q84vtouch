@@ -100,16 +100,20 @@ void FM_io(void)
 
 }
 
+/*
+ * disabled using critical section interrupts here and it was too long 500us
+ * and causing data errors
+ */
 uint8_t FM_rx(uint16_t * data)
 {
 	uint8_t count;
 
 	RELAY_SetHigh();
-	INTERRUPT_GlobalInterruptHighDisable();
+//	INTERRUPT_GlobalInterruptHighDisable();
 	count = rdstart;
 	memcpy(data, (const void *) rbuf, (size_t) (count << 2)); // copy 16-bit values
 	rdstart = 0;
-	INTERRUPT_GlobalInterruptHighEnable();
+//	INTERRUPT_GlobalInterruptHighEnable();
 	RELAY_SetLow();
 	return count;
 }
@@ -127,9 +131,9 @@ uint8_t FM_rx_count(void)
 {
 	uint8_t count;
 
-	INTERRUPT_GlobalInterruptHighDisable();
+//	INTERRUPT_GlobalInterruptHighDisable();
 	count = rdstart;
-	INTERRUPT_GlobalInterruptHighEnable();
+//	INTERRUPT_GlobalInterruptHighEnable();
 	return count;
 }
 
