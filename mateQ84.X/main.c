@@ -458,6 +458,9 @@ void volt_f(uint16_t voltage)
 	volt_whole = voltage / 10;
 }
 
+/*
+ * transmit the cmd data
+ */
 void send_mx_cmd(const uint16_t * cmd)
 {
 	if (FM_tx_empty()) {
@@ -503,7 +506,7 @@ void rec_mx_cmd(void (* DataHandler)(void), uint8_t rec_len)
 void state_init_cb(void)
 {
 	float Soc;
-	
+
 	if (FMxx_ID == FM80_ID) {
 		printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: FM80 Online\r\n", B.rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
 		if (!B.FM80_online) { // try to guess battery energy by looking at battery voltage

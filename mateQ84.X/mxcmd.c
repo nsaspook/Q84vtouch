@@ -1,7 +1,7 @@
 #include "mxcmd.h"
 
 static volatile uint8_t data = 0x00, dcount = 0, dstart = 0, rdstart = 0;
-static volatile uint16_t tbuf[FM_BUFFER], rbuf[FM_BUFFER];
+static volatile uint16_t tbuf[FM_BUFFER+1], rbuf[FM_BUFFER+1];
 static uint16_t *p_tbuf = (uint16_t*) tbuf, *p_rbuf = (uint16_t*) rbuf;
 static volatile uint8_t pace = 0; // the charge controller doesn't like back to back bytes
 

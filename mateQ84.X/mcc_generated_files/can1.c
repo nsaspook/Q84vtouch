@@ -168,8 +168,8 @@ static void CAN1_RX_FIFO_Configuration(void)
     // TXAT Unlimited number of retransmission attempts; TXPRI 1; 
     C1FIFOCON1U = 0x60;
     
-    // PLSIZE 64; FSIZE 4; 
-    C1FIFOCON1T = 0xE3;
+    // PLSIZE 64; FSIZE 8; 
+    C1FIFOCON1T = 0xE7;
     
     CAN1_SetFIFO1NotEmptyHandler(DefaultFIFO1NotEmptyHandler);
     
@@ -182,15 +182,12 @@ static void CAN1_RX_FIFO_Configuration(void)
 static void CAN1_RX_FIFO_FilterMaskConfiguration(void)
 {
     // FLTEN0 enabled; F0BP FIFO 1; 
-    C1FLTOBJ0L = 0xFF;
-    C1FLTOBJ0H = 0x0F;
+    C1FLTOBJ0L = 0x00;
+    C1FLTOBJ0H = 0x1C;
     C1FLTOBJ0U = 0x00;
     C1FLTOBJ0T = 0x40;
-    /*
-     * user mod
-     */
     C1MASK0L = 0xFF;
-    C1MASK0H = 0xE7;
+    C1MASK0H = 0xFF;
     C1MASK0U = 0xFF;
     C1MASK0T = 0x5F;
     C1FLTCON0L = 0x81; 
@@ -220,8 +217,8 @@ static void CAN1_TX_FIFO_Configuration(void)
     // TXAT Unlimited number of retransmission attempts; TXPRI 1; 
     C1FIFOCON2U = 0x60;
     
-    // PLSIZE 64; FSIZE 4; 
-    C1FIFOCON2T = 0xE3;
+    // PLSIZE 64; FSIZE 8; 
+    C1FIFOCON2T = 0xE7;
     
 }
 

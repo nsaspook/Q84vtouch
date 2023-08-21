@@ -3,7 +3,7 @@
 CAN_MSG_OBJ msg[2];
 volatile uint8_t rxMsgData[2][CANFD_BYTES] = {
 	"     no data   ",
-	" no_data   ",
+	" no_data       ",
 };
 
 volatile can_rec_count_t can_rec_count = {
@@ -20,28 +20,30 @@ void Can1FIFO1NotEmptyHandler(void)
 	static uint8_t half = 0;
 
 	while (true) {
+		can_rec_count.rec_count++;
 		if (CAN1_ReceiveFrom(FIFO1, &msg[half])) //receive the message
 		{
-			memcpy((void *) &rxMsgData[half][0], msg[half].data, CANFD_BYTES);
-			can_rec_count.rec_count++;
-			if (msg[half].msgId == EMON_SL) {
-				half = 1;
+			if ((msg[half].msgId & 0xf) == EMON_SL || (msg[half].msgId & 0xf) == EMON_SU) {
+				memcpy((void *) &rxMsgData[half][0], msg[half].data, CANFD_BYTES);
+				if ((msg[half].msgId & 0xf) == EMON_SL) {
+					half = 1;
+#ifdef CAN_DEBUG
+					MLED_Toggle();
+#endif
+					break;
+				}
+				if ((msg[half].msgId & 0xf) == EMON_SU) {
+					half = 0;
+					can_rec_count.rec_flag = true;
+#ifdef CAN_DEBUG
+					MLED_Toggle();
+#endif
+					break;
+				}
 #ifdef CAN_DEBUG
 				MLED_Toggle();
 #endif
-				break;
 			}
-			if (msg[half].msgId == EMON_SU) {
-				half = 0;
-				can_rec_count.rec_flag = true;
-#ifdef CAN_DEBUG
-				MLED_Toggle();
-#endif
-				break;
-			}
-#ifdef CAN_DEBUG
-			MLED_Toggle();
-#endif
 			break;
 		}
 		if (++tries >= CAN_RX_TRIES) {
@@ -116,15 +118,16 @@ void can_fd_tx(void)
 void can_setup(void)
 {
 	/*
+	 * don't trust MCC for nothing
+	 */
+	CAN1_OperationModeSet(CAN_CONFIGURATION_MODE);
+	/*
 	 * interrupt handlers, both receive data from the FIFO
 	 */
 	CAN1_SetFIFO1NotEmptyHandler(Can1FIFO1NotEmptyHandler);
 	CAN1_SetRxBufferOverFlowInterruptHandler(Can1FIFO1NotEmptyHandler);
 
-	/*
-	 * don't trust MCC for nothing
-	 */
-	CAN1_OperationModeSet(CAN_CONFIGURATION_MODE);
+
 	C1FIFOCON1Lbits.TFNRFNIE = 1; // not empty FIFO interrupt
 	/*
 	 * enable CAN receiver interrupts, again, to fix one of the many MCC bugs
