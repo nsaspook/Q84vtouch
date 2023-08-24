@@ -41048,7 +41048,7 @@ volatile uint16_t cc_mode = STATUS_LAST;
 uint16_t volt_whole, bat_amp_whole, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[96], can_buffer[64*2], info_buffer[96];
-const char *build_date = "Aug 20 2023", *build_time = "15:08:09";
+const char *build_date = "Aug 21 2023", *build_time = "09:02:44";
 volatile uint16_t tickCount[TMR_COUNT];
 
 B_type B = {
