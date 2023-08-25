@@ -127,6 +127,22 @@ void can_setup(void)
 	CAN1_SetFIFO1NotEmptyHandler(Can1FIFO1NotEmptyHandler);
 	CAN1_SetRxBufferOverFlowInterruptHandler(Can1FIFO1NotEmptyHandler);
 
+	/*
+	 * user mod filter and masking
+	 * SID to allow all system id's to pass
+	 */
+	C1FLTOBJ0L = 0x00;
+	C1FLTOBJ0H = 0x00;
+	C1FLTOBJ0U = 0x00;
+	C1FLTOBJ0T = 0x40;
+	/*
+	 * user MASK mod
+	 */
+	C1MASK0L = 0xFF;
+	C1MASK0H = 0x00;
+	C1MASK0U = 0xFF;
+	C1MASK0T = 0x5F;
+	C1FLTCON0L = 0x81;
 
 	C1FIFOCON1Lbits.TFNRFNIE = 1; // not empty FIFO interrupt
 	/*
