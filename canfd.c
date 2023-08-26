@@ -97,8 +97,9 @@ void can_fd_tx(void)
 		CAN1_Transmit(FIFO2, &Transmission); //transmit frame
 	}
 
-	Transmission.msgId = (EMON_CO); // error packet type ID
-	Transmission.data = (uint8_t*) build_version; //transmit the data from the data bytes
+	Transmission.msgId = (EMON_CO); // config packet type ID
+	sprintf(info_buffer, "%s %u", ems.serial, ems.year);
+	Transmission.data = (uint8_t*) info_buffer; //transmit the data from the data bytes
 	if (CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(FIFO2) & CAN_TX_FIFO_AVAILABLE))//ensure that the TXQ has space for a message
 	{
 		CAN1_Transmit(FIFO2, &Transmission); //transmit frame

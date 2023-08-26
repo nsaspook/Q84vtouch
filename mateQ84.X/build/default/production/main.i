@@ -40724,13 +40724,16 @@ void delay_ms(uint16_t);
 
 
 # 1 "./../modbus_master.h" 1
-# 82 "./../modbus_master.h"
+# 83 "./../modbus_master.h"
  typedef enum comm_type {
   CLEAR = 0,
   INIT,
   SEND,
   RECV,
  } comm_type;
+
+
+
 
  typedef enum cmd_type {
   G_ID = 0,
@@ -40739,6 +40742,7 @@ void delay_ms(uint16_t);
   G_CONFIG,
   G_PASSWD,
   G_LIGHT,
+  G_SERIAL,
   G_LAST,
  } cmd_type;
 
@@ -40749,6 +40753,7 @@ void delay_ms(uint16_t);
   T_config,
   T_data,
   T_id,
+  T_serial,
   T_init,
   T_init_d,
   T_send,
@@ -40818,7 +40823,7 @@ void delay_ms(uint16_t);
   cmd_type modbus_command;
   uint16_t req_length;
   int8_t trace;
-  _Bool id_ok, passwd_ok, config_ok, data_ok, light_ok;
+  _Bool id_ok, passwd_ok, config_ok, data_ok, light_ok, serial_ok;
   uint32_t data_count, data_prev;
   volatile M_data M;
  } C_data;
@@ -40850,6 +40855,11 @@ void delay_ms(uint16_t);
   rhm, rhmk, rhmp, rhmkp,
   hz, rhlc;
  } EM_data2;
+
+ typedef __pack struct EM_serial {
+  volatile char serial[14];
+  volatile uint16_t year;
+ } EM_serial;
 
  typedef enum filter_type {
   F_ac = 0,
@@ -40924,7 +40934,7 @@ void delay_ms(uint16_t);
   0x44, 0x84, 0x85, 0x45, 0x87, 0x47, 0x46, 0x86, 0x82, 0x42,
   0x43, 0x83, 0x41, 0x81, 0x80, 0x40
  };
-# 299 "./../modbus_master.h"
+# 310 "./../modbus_master.h"
  uint16_t crc16(volatile uint8_t *, uint16_t);
  uint16_t modbus_rtu_send_msg(void *, const void *, uint16_t);
 
@@ -40955,6 +40965,7 @@ void delay_ms(uint16_t);
  extern volatile M_time_data MT;
  extern EM_data1 em;
  extern EM_data2 emt;
+ extern EM_serial ems;
 # 197 "main.c" 2
 
 # 1 "./../canfd.h" 1
@@ -41048,7 +41059,7 @@ volatile uint16_t cc_mode = STATUS_LAST;
 uint16_t volt_whole, bat_amp_whole, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[96], can_buffer[64*2], info_buffer[96];
-const char *build_date = "Aug 25 2023", *build_time = "09:28:09";
+const char *build_date = "Aug 26 2023", *build_time = "10:17:22";
 volatile uint16_t tickCount[TMR_COUNT];
 
 B_type B = {

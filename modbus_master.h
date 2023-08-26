@@ -28,6 +28,7 @@ extern "C" {
 #define MADDR		0x01 // modbus client address
 #define EM_DATA_LEN1	52	// 16-bit words returned
 #define EM_DATA_LEN2	64	// 16-bit words returned
+#define SERIAL_DATA_LEN	8
 	/*
 	 * setup options on the EM540 from the factor defaults
 	 * 115200 baud, measurement mode C for bidirectional values
@@ -86,6 +87,9 @@ extern "C" {
 		RECV,
 	} comm_type;
 
+	/*
+	 * EM540 command states
+	 */
 	typedef enum cmd_type {
 		G_ID = 0,
 		G_DATA1,
@@ -93,6 +97,7 @@ extern "C" {
 		G_CONFIG, // keep sequence
 		G_PASSWD, // keep sequence
 		G_LIGHT,
+		G_SERIAL,
 		G_LAST,
 	} cmd_type;
 
@@ -103,6 +108,7 @@ extern "C" {
 		T_config,
 		T_data,
 		T_id,
+		T_serial,
 		T_init,
 		T_init_d,
 		T_send,
@@ -172,7 +178,7 @@ extern "C" {
 		cmd_type modbus_command;
 		uint16_t req_length;
 		int8_t trace;
-		bool id_ok, passwd_ok, config_ok, data_ok, light_ok;
+		bool id_ok, passwd_ok, config_ok, data_ok, light_ok, serial_ok;
 		uint32_t data_count, data_prev;
 		volatile M_data M;
 	} C_data;
@@ -204,6 +210,11 @@ extern "C" {
 		rhm, rhmk, rhmp, rhmkp,
 		hz, rhlc;
 	} EM_data2;
+
+	typedef __pack struct EM_serial {
+		volatile char serial[14];
+		volatile uint16_t year;
+	} EM_serial;
 
 	typedef enum filter_type {
 		F_ac = 0,
@@ -326,6 +337,7 @@ extern "C" {
 	extern volatile M_time_data MT; // MODBUS sequence timers
 	extern EM_data1 em; // converted results data
 	extern EM_data2 emt; // converted results data
+	extern EM_serial ems; // converted results data
 
 #ifdef	__cplusplus
 }

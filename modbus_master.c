@@ -52,6 +52,7 @@ modbus_em_id[] = {MADDR, READ_HOLDING_REGISTERS, 0x00, 0x0b, 0x00, 0x01}, // Car
 modbus_em_version[] = {MADDR, READ_HOLDING_REGISTERS, 0x03, 0x02, 0x00, 0x01}, // Firmware version and revision code
 modbus_em_data1[] = {MADDR, READ_HOLDING_REGISTERS, 0x00, 0x00, 0x00, EM_DATA_LEN1}, // last number is 16-bit words wanted from the start register address 0x0000
 modbus_em_data2[] = {MADDR, READ_HOLDING_REGISTERS, 0x05, 0x00, 0x00, EM_DATA_LEN2}, // last number is 16-bit words wanted from the start register address 0x0500
+modbus_em_serial[] = {MADDR, READ_HOLDING_REGISTERS, 0x50, 0x00, 0x00, SERIAL_DATA_LEN}, // last number is 16-bit words wanted from the start register address 0x5000
 modbus_em_config[] = {MADDR, WRITE_SINGLE_REGISTER, 0x10, 0x02, 0x00, 0x02}, // System configuration, Value 2 = ?2P? (2-phase with neutral)
 modbus_em_passwd[] = {MADDR, WRITE_SINGLE_REGISTER, 0x10, 0x00, 0x00, 0x00}, // Password configuration, set to no password = 0
 modbus_em_light[] = {MADDR, WRITE_SINGLE_REGISTER, 0x16, 0x04, 0x00, 0x01}, // back-light timeout, 1 min
@@ -60,12 +61,14 @@ em_id[] = {MADDR, READ_HOLDING_REGISTERS, 0x00, 0x00, 0x00, 0x00, 0x00},
 em_version[] = {MADDR, READ_HOLDING_REGISTERS, 0x00, 0x00, 0x00, 0x00, 0x00},
 em_data1[(EM_DATA_LEN1 * 2) + 5] = {MADDR, READ_HOLDING_REGISTERS, 0x00}, // number of 16-bit words returned, IN BYTES
 em_data2[(EM_DATA_LEN2 * 2) + 5] = {MADDR, READ_HOLDING_REGISTERS, 0x00}, // number of 16-bit words returned, IN BYTES
+em_serial[(SERIAL_DATA_LEN * 2) + 5] = {MADDR, READ_HOLDING_REGISTERS, 0x00}, // number of 16-bit words returned, IN BYTES
 em_config[] = {MADDR, WRITE_SINGLE_REGISTER, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
 em_passwd[] = {MADDR, WRITE_SINGLE_REGISTER, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
 em_light[] = {MADDR, WRITE_SINGLE_REGISTER, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 
 EM_data1 em;
 EM_data2 emt;
+EM_serial ems;
 
 static void half_dup_tx(const bool);
 static void half_dup_rx(const bool);
@@ -82,6 +85,7 @@ bool modbus_read_check(C_data *, bool*, uint16_t, void (* DataHandler)(void));
 bool modbus_read_id_check(C_data *, bool*, uint16_t);
 void em_data_handler(void);
 void emt_data_handler(void);
+void ems_data_handler(void);
 
 /*
  * add the required CRC bytes to a MODBUS message
@@ -137,8 +141,8 @@ uint16_t crc16(volatile uint8_t *buffer, uint16_t buffer_length)
 void my_modbus_rx_32(void)
 {
 	static uint8_t m_data = 0;
-	
-//	IO_RB6_Toggle();
+
+	//	IO_RB6_Toggle();
 	M.rx = true;
 	/*
 	 * process received controller data stream
@@ -257,6 +261,9 @@ int8_t master_controller_work(C_data * client)
 		if (client->modbus_command == G_LIGHT && client->light_ok) { // skip if we have valid data from client
 			client->modbus_command = client->mcmd++;
 		}
+		if (client->modbus_command == G_SERIAL && client->serial_ok) { // skip if we have valid data from client
+			client->modbus_command = client->mcmd++;
+		}
 		if (client->mcmd > G_LAST) {
 			client->mcmd = G_ID;
 		}
@@ -264,6 +271,12 @@ int8_t master_controller_work(C_data * client)
 		 * command specific tx buffer setup
 		 */
 		switch (client->modbus_command) {
+		case G_SERIAL: // write code request
+			client->trace = T_serial;
+#ifdef	MB_EM540
+			client->req_length = modbus_rtu_send_msg((void*) cc_buffer_tx, (const void *) modbus_em_serial, sizeof(modbus_em_serial));
+#endif
+			break;
 		case G_LIGHT: // write code request
 			client->trace = T_light;
 #ifdef	MB_EM540
@@ -371,6 +384,9 @@ int8_t master_controller_work(C_data * client)
 			case G_DATA2: // check for controller data2 codes
 				modbus_read_check(client, &client->data_ok, sizeof(em_data2), emt_data_handler);
 				break;
+			case G_SERIAL: // check for controller EM540 serial codes
+				modbus_read_check(client, &client->serial_ok, sizeof(em_serial), ems_data_handler);
+				break;
 			case G_ID: // check for client module type
 			default:
 				modbus_read_id_check(client, &client->id_ok, sizeof(em_id));
@@ -474,7 +490,7 @@ static void half_dup_rx(const bool delay)
 
 void timer_500ms_tick(void)
 {
-//	IO_RB6_Toggle();
+	//	IO_RB6_Toggle();
 	MT.clock_2hz++;
 	MT.clock_blinks++;
 }
@@ -483,7 +499,7 @@ void timer_500ms_tick(void)
 
 void timer_2ms_tick(void)
 {
-//	IO_RB6_Toggle();
+	//	IO_RB6_Toggle();
 	MT.clock_500hz++;
 	MT.clock_10hz++;
 }
@@ -702,4 +718,14 @@ void emt_data_handler(void)
 	 */
 	memcpy((void*) &emt, (void*) &cc_buffer[3], sizeof(emt));
 	emt.hz = mb32_swap(emt.hz);
+}
+
+void ems_data_handler(void)
+{
+	/*
+	 * move from receive buffer to data structure and munge the data into the correct local formats from MODBUS client
+	 */
+	memcpy((void*) &ems, (void*) &cc_buffer[3], sizeof(ems));
+	ems.serial[13] = 0; // terminate serial string data
+	ems.year = mb16_swap(ems.year);
 }
