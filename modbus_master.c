@@ -69,6 +69,7 @@ em_light[] = {MADDR, WRITE_SINGLE_REGISTER, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 EM_data1 em;
 EM_data2 emt;
 EM_serial ems;
+EM_version emv;
 
 static void half_dup_tx(const bool);
 static void half_dup_rx(const bool);
@@ -86,6 +87,7 @@ bool modbus_read_id_check(C_data *, bool*, uint16_t);
 void em_data_handler(void);
 void emt_data_handler(void);
 void ems_data_handler(void);
+void emv_data_handler(void);
 
 /*
  * add the required CRC bytes to a MODBUS message
@@ -261,6 +263,9 @@ int8_t master_controller_work(C_data * client)
 		if (client->modbus_command == G_LIGHT && client->light_ok) { // skip if we have valid data from client
 			client->modbus_command = client->mcmd++;
 		}
+		if (client->modbus_command == G_VERSION && client->version_ok) { // skip if we have valid data from client
+			client->modbus_command = client->mcmd++;
+		}
 		if (client->modbus_command == G_SERIAL && client->serial_ok) { // skip if we have valid data from client
 			client->modbus_command = client->mcmd++;
 		}
@@ -271,6 +276,12 @@ int8_t master_controller_work(C_data * client)
 		 * command specific tx buffer setup
 		 */
 		switch (client->modbus_command) {
+		case G_VERSION: // write code request
+			client->trace = T_version;
+#ifdef	MB_EM540
+			client->req_length = modbus_rtu_send_msg((void*) cc_buffer_tx, (const void *) modbus_em_version, sizeof(modbus_em_version));
+#endif
+			break;
 		case G_SERIAL: // write code request
 			client->trace = T_serial;
 #ifdef	MB_EM540
@@ -383,6 +394,9 @@ int8_t master_controller_work(C_data * client)
 				break;
 			case G_DATA2: // check for controller data2 codes
 				modbus_read_check(client, &client->data_ok, sizeof(em_data2), emt_data_handler);
+				break;
+			case G_VERSION: // check for controller EM540 firmware codes
+				modbus_read_check(client, &client->version_ok, sizeof(em_version), emv_data_handler);
 				break;
 			case G_SERIAL: // check for controller EM540 serial codes
 				modbus_read_check(client, &client->serial_ok, sizeof(em_serial), ems_data_handler);
@@ -663,6 +677,8 @@ bool modbus_read_id_check(C_data * client, bool* cstate, uint16_t rec_length)
 			client->passwd_ok = false;
 			client->data_ok = false;
 			client->light_ok = false;
+			client->version_ok = false;
+			client->serial_ok = false;
 			log_crc_error(c_crc, c_crc_rec);
 		}
 		client->cstate = CLEAR;
@@ -680,6 +696,8 @@ bool modbus_read_id_check(C_data * client, bool* cstate, uint16_t rec_length)
 			client->passwd_ok = false;
 			client->data_ok = false;
 			client->light_ok = false;
+			client->version_ok = false;
+			client->serial_ok = false;
 		}
 	}
 #endif
@@ -728,4 +746,13 @@ void ems_data_handler(void)
 	memcpy((void*) &ems, (void*) &cc_buffer[3], sizeof(ems));
 	ems.serial[13] = 0; // terminate serial string data
 	ems.year = mb16_swap(ems.year);
+}
+
+void emv_data_handler(void)
+{
+	/*
+	 * move from receive buffer to data structure and munge the data into the correct local formats from MODBUS client
+	 */
+	memcpy((void*) &emv, (void*) &cc_buffer[3], sizeof(emv));
+	emv.firmware = mb16_swap(emv.firmware);
 }

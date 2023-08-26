@@ -97,12 +97,14 @@ void can_fd_tx(void)
 		CAN1_Transmit(FIFO2, &Transmission); //transmit frame
 	}
 
-	Transmission.msgId = (EMON_CO); // config packet type ID
-	sprintf(info_buffer, "%s %u", ems.serial, ems.year);
-	Transmission.data = (uint8_t*) info_buffer; //transmit the data from the data bytes
-	if (CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(FIFO2) & CAN_TX_FIFO_AVAILABLE))//ensure that the TXQ has space for a message
-	{
-		CAN1_Transmit(FIFO2, &Transmission); //transmit frame
+	if (C.serial_ok && C.version_ok) {
+		Transmission.msgId = (EMON_CO); // config packet type ID
+		sprintf(info_buffer, "SN: %s %u FW: 0X%X", ems.serial, ems.year, emv.firmware);
+		Transmission.data = (uint8_t*) info_buffer; //transmit the data from the data bytes
+		if (CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(FIFO2) & CAN_TX_FIFO_AVAILABLE))//ensure that the TXQ has space for a message
+		{
+			CAN1_Transmit(FIFO2, &Transmission); //transmit frame
+		}
 	}
 
 #ifdef CAN_DEBUG

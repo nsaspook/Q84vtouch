@@ -97,6 +97,7 @@ extern "C" {
 		G_CONFIG, // keep sequence
 		G_PASSWD, // keep sequence
 		G_LIGHT,
+		G_VERSION,
 		G_SERIAL,
 		G_LAST,
 	} cmd_type;
@@ -109,6 +110,7 @@ extern "C" {
 		T_data,
 		T_id,
 		T_serial,
+		T_version,
 		T_init,
 		T_init_d,
 		T_send,
@@ -178,7 +180,7 @@ extern "C" {
 		cmd_type modbus_command;
 		uint16_t req_length;
 		int8_t trace;
-		bool id_ok, passwd_ok, config_ok, data_ok, light_ok, serial_ok;
+		bool id_ok, passwd_ok, config_ok, data_ok, light_ok, serial_ok, version_ok;
 		uint32_t data_count, data_prev;
 		volatile M_data M;
 	} C_data;
@@ -213,8 +215,12 @@ extern "C" {
 
 	typedef __pack struct EM_serial {
 		volatile char serial[14];
-		volatile uint16_t year;
+		volatile int16_t year;
 	} EM_serial;
+
+	typedef __pack struct EM_version {
+		volatile int16_t firmware;
+	} EM_version;
 
 	typedef enum filter_type {
 		F_ac = 0,
@@ -338,6 +344,7 @@ extern "C" {
 	extern EM_data1 em; // converted results data
 	extern EM_data2 emt; // converted results data
 	extern EM_serial ems; // converted results data
+	extern EM_version emv; // converted results data
 
 #ifdef	__cplusplus
 }
