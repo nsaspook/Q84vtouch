@@ -223,6 +223,11 @@ char buffer[MAX_B_BUF], can_buffer[MAX_C_BUF], info_buffer[MAX_B_BUF];
 const char *build_date = __DATE__, *build_time = __TIME__;
 volatile uint16_t tickCount[TMR_COUNT];
 
+#ifdef DATA_DEBUG
+bool show_can;
+uint8_t time_show_can;
+#endif
+
 B_type B = {
 	.one_sec_flag = false,
 	.ten_sec_flag = false,
@@ -423,12 +428,23 @@ void main(void)
 					//					snprintf(buffer, MAX_B_BUF, "EMon  %4.1fVAC   %c%c    ", lp_filter(ac, F_ac, false), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
 #ifdef CAN_DEBUG
 #ifdef DATA_DEBUG
-					rxMsgData[0][42] = 0;
-					snprintf(buffer, MAX_B_BUF, "%s          ", &rxMsgData[0][2]);
-					eaDogM_WriteStringAtPos(2, 0, buffer);
-					rxMsgData[0][42] = 0;
-					snprintf(buffer, MAX_B_BUF, "%s          ", &rxMsgData[0][22]);
-					eaDogM_WriteStringAtPos(3, 0, buffer);
+					if (show_can) {
+						rxMsgData[0][42] = 0;
+						snprintf(buffer, MAX_B_BUF, "%s          ", &rxMsgData[CAN_LOW_BUF][2]);
+						eaDogM_WriteStringAtPos(2, 0, buffer);
+						rxMsgData[0][42] = 0;
+						snprintf(buffer, MAX_B_BUF, "%s          ", &rxMsgData[CAN_LOW_BUF][22]);
+						eaDogM_WriteStringAtPos(3, 0, buffer);
+					} else {
+						snprintf(buffer, MAX_B_BUF, "%s          ", &rxMsgData[CAN_INFO_BUF][3]);
+						eaDogM_WriteStringAtPos(2, 0, buffer);
+						snprintf(buffer, MAX_B_BUF, "%s          ", &rxMsgData[CAN_INFO_BUF][22]);
+						eaDogM_WriteStringAtPos(3, 0, buffer);
+					}
+					if (time_show_can++ >= 64) {
+						show_can = !show_can;
+						time_show_can = 0;
+					}
 #else
 					snprintf(buffer, MAX_B_BUF, "%X %X %X %X %X %X %X %X           ", C1INTL, C1INTH, C1INTU, C1INTT, C1TRECL, C1FLTOBJ0T, C1FLTCON0L, CAN1_OperationModeGet());
 					eaDogM_WriteStringAtPos(2, 0, buffer);

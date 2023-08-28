@@ -19,12 +19,17 @@ extern "C" {
 #include "mateQ84.X/mxcmd.h"
 #include "modbus_master.h"
 
-//	  #define CAN_DEBUG	// can received data on LCD for remote mate board
+#define CAN_DEBUG	// can received data on LCD for remote mate board
 #define DATA_DEBUG
 
 #define USE_FD	// select classic or FD
 #define CANFD_BYTES	64
 #define CAN_RX_TRIES	8
+#define CAN_REC_BUFFERS	4
+#define CAN_LOW_BUF	0
+#define CAN_HIGH_BUF	1
+#define CAN_INFO_BUF	2
+#define CAN_ERROR_BUF	3
 
 #define	EMON_M	0x1	// FM80 host
 #define EMON_SL	0x2	// remote display lower data
@@ -39,7 +44,7 @@ extern "C" {
 
 	extern volatile can_rec_count_t can_rec_count;
 	extern CAN_MSG_OBJ msg[2];
-	extern volatile uint8_t rxMsgData[2][CANFD_BYTES];
+	extern volatile uint8_t rxMsgData[CAN_REC_BUFFERS][CANFD_BYTES];
 
 	void Can1FIFO1NotEmptyHandler(void);
 

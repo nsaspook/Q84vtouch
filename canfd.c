@@ -1,9 +1,11 @@
 #include "canfd.h"
 
 CAN_MSG_OBJ msg[2];
-volatile uint8_t rxMsgData[2][CANFD_BYTES] = {
+volatile uint8_t rxMsgData[CAN_REC_BUFFERS][CANFD_BYTES] = {
 	"     no data   ",
 	" no_data       ",
+	" no info1      ",
+	" no info2      ",
 };
 
 volatile can_rec_count_t can_rec_count = {
@@ -43,6 +45,12 @@ void Can1FIFO1NotEmptyHandler(void)
 #ifdef CAN_DEBUG
 				MLED_Toggle();
 #endif
+			}
+			if ((msg[half].msgId & 0xf) == EMON_CO) {
+				memcpy((void *) &rxMsgData[CAN_INFO_BUF][0], msg[half].data, CANFD_BYTES);
+			}
+			if ((msg[half].msgId & 0xf) == EMON_ER) {
+				memcpy((void *) &rxMsgData[CAN_ERROR_BUF][0], msg[half].data, CANFD_BYTES);
 			}
 			break;
 		}
