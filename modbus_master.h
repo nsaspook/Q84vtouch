@@ -42,7 +42,7 @@ extern "C" {
 	/*
 	 * Display MODBUS debugging info screen
 	 */
-	//#define MODBUS_DEBUG
+//#define SHOW_MODBUS_DEBUG
 
 #include <xc.h>
 #include <stdint.h>

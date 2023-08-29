@@ -2,10 +2,10 @@
 
 CAN_MSG_OBJ msg[2];
 volatile uint8_t rxMsgData[CAN_REC_BUFFERS][CANFD_BYTES] = {
-	"     no data   ",
-	" no_data       ",
-	" no info1      ",
-	" no info2      ",
+	"     no data        ",
+	" no_data            ",
+	" no info1           ",
+	" no info2           ",
 };
 
 volatile can_rec_count_t can_rec_count = {
