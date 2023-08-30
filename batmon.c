@@ -136,7 +136,7 @@ void compute_bm_data(EB_data * EB)
 	}
 }
 
-void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData)
+void DATAEE_WriteByte(const uint16_t bAdd, const uint8_t bData)
 {
 	uint8_t GIEBitValue = INTCON0bits.GIE;
 
@@ -169,7 +169,7 @@ void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData)
 	NVMCON1bits.NVMCMD = 0b000;
 }
 
-uint8_t DATAEE_ReadByte(uint16_t bAdd)
+uint8_t DATAEE_ReadByte(const uint16_t bAdd)
 {
 	//Set NVMADR with the target word address (0x380000 - 0x3803FF)
 	NVMADRU = 0x38;

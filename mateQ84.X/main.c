@@ -240,13 +240,13 @@ B_type B = {
 /*
  * show fixed point fractions
  */
-void volt_f(uint16_t);
+static void volt_f(const uint16_t);
 
 /*
  * FM80 send/recv functions
  */
-void send_mx_cmd(const uint16_t *);
-void rec_mx_cmd(void (* DataHandler)(void), uint8_t);
+static void send_mx_cmd(const uint16_t *);
+static void rec_mx_cmd(void (* DataHandler)(void), const uint8_t);
 
 /*
  * callbacks to handle FM80 register data
@@ -468,7 +468,7 @@ void main(void)
  * display  div 10 integer to fraction without FP
  * %d.%01d  volt_whole, volt_fract
  */
-void volt_f(uint16_t voltage)
+static void volt_f(const uint16_t voltage)
 {
 	volt_fract = (uint16_t) abs(voltage % 10);
 	volt_whole = voltage / 10;
@@ -477,7 +477,7 @@ void volt_f(uint16_t voltage)
 /*
  * transmit the cmd data
  */
-void send_mx_cmd(const uint16_t * cmd)
+static void send_mx_cmd(const uint16_t * cmd)
 {
 	if (FM_tx_empty()) {
 		if (B.pacing++ > PACE) {
@@ -490,7 +490,7 @@ void send_mx_cmd(const uint16_t * cmd)
 /*
  * process received data from the FM80 9n1 serial in abuf 16-bit buffer array with callbacks
  */
-void rec_mx_cmd(void (* DataHandler)(void), uint8_t rec_len)
+static void rec_mx_cmd(void (* DataHandler)(void), const uint8_t rec_len)
 {
 	static uint16_t online_count = 0;
 

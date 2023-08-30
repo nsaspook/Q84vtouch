@@ -82,8 +82,8 @@ extern "C" {
 	void get_bm_data(EB_data *);
 	void compute_bm_data(EB_data *);
 
-	void DATAEE_WriteByte(uint16_t, uint8_t);
-	uint8_t DATAEE_ReadByte(uint16_t);
+	void DATAEE_WriteByte(const uint16_t, const uint8_t);
+	uint8_t DATAEE_ReadByte(const uint16_t);
 	
 	uint16_t Volts_to_SOC(const uint16_t, const uint16_t);
 

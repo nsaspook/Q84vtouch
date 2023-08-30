@@ -40651,14 +40651,14 @@ enum APP_TIMERS {
 void StartTimer(const uint8_t timer, const uint16_t count);
 _Bool TimerDone(const uint8_t timer);
 void WaitMs(const uint16_t numMilliseconds);
-void timer_ms_tick(uint32_t, uintptr_t);
+void timer_ms_tick(const uint32_t, const uintptr_t);
 
-void delay_ms(uint16_t);
+void delay_ms(const uint16_t);
 # 23 "./mxcmd.h" 2
 
 
- const char build_version[64] = "V1.59 FM80 Q84";
-# 50 "./mxcmd.h"
+ const char build_version[64] = "V1.60 FM80 Q84";
+# 51 "./mxcmd.h"
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
  const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};
@@ -40710,7 +40710,7 @@ void delay_ms(uint16_t);
  extern void onesec_io(void);
  extern void tensec_io(void);
  extern void FM_io(void);
- extern uint8_t FM_tx(const uint16_t *, uint8_t);
+ extern uint8_t FM_tx(const uint16_t *, const uint8_t);
  extern _Bool FM_tx_empty(void);
  extern uint8_t FM_rx(uint16_t *);
  extern _Bool FM_rx_ready(void);
@@ -41037,8 +41037,8 @@ void delay_ms(uint16_t);
  void get_bm_data(EB_data *);
  void compute_bm_data(EB_data *);
 
- void DATAEE_WriteByte(uint16_t, uint8_t);
- uint8_t DATAEE_ReadByte(uint16_t);
+ void DATAEE_WriteByte(const uint16_t, const uint8_t);
+ uint8_t DATAEE_ReadByte(const uint16_t);
 
  uint16_t Volts_to_SOC(const uint16_t, const uint16_t);
 # 199 "main.c" 2
@@ -41066,7 +41066,7 @@ volatile uint16_t cc_mode = STATUS_LAST;
 uint16_t volt_whole, bat_amp_whole, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[96], can_buffer[64*2], info_buffer[96];
-const char *build_date = "Aug 28 2023", *build_time = "08:38:00";
+const char *build_date = "Aug 30 2023", *build_time = "11:24:17";
 volatile uint16_t tickCount[TMR_COUNT];
 
 
@@ -41086,13 +41086,13 @@ B_type B = {
 
 
 
-void volt_f(uint16_t);
+static void volt_f(const uint16_t);
 
 
 
 
-void send_mx_cmd(const uint16_t *);
-void rec_mx_cmd(void (* DataHandler)(void), uint8_t);
+static void send_mx_cmd(const uint16_t *);
+static void rec_mx_cmd(void (* DataHandler)(void), const uint8_t);
 
 
 
@@ -41288,7 +41288,7 @@ void main(void)
 
 
 
-void volt_f(uint16_t voltage)
+static void volt_f(const uint16_t voltage)
 {
  volt_fract = (uint16_t) abs(voltage % 10);
  volt_whole = voltage / 10;
@@ -41297,7 +41297,7 @@ void volt_f(uint16_t voltage)
 
 
 
-void send_mx_cmd(const uint16_t * cmd)
+static void send_mx_cmd(const uint16_t * cmd)
 {
  if (FM_tx_empty()) {
   if (B.pacing++ > 31000) {
@@ -41310,7 +41310,7 @@ void send_mx_cmd(const uint16_t * cmd)
 
 
 
-void rec_mx_cmd(void (* DataHandler)(void), uint8_t rec_len)
+static void rec_mx_cmd(void (* DataHandler)(void), const uint8_t rec_len)
 {
  static uint16_t online_count = 0;
 

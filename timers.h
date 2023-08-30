@@ -24,8 +24,8 @@ enum APP_TIMERS {
 void StartTimer(const uint8_t timer, const uint16_t count);
 bool TimerDone(const uint8_t timer);
 void WaitMs(const uint16_t numMilliseconds);
-void timer_ms_tick(uint32_t, uintptr_t);
+void timer_ms_tick(const uint32_t, const uintptr_t);
 
-void delay_ms(uint16_t);
+void delay_ms(const uint16_t);
 
 #endif //TIMERS_H

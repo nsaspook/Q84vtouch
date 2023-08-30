@@ -70,22 +70,12 @@ void can_fd_tx(void)
 {
 	IO_RB7_Toggle(); // canbus timing
 	CAN_MSG_OBJ Transmission; //create the CAN message object
-#ifdef USE_FD
 	Transmission.field.brs = CAN_BRS_MODE; //Transmit the data bytes at data bit rate
 	Transmission.field.dlc = DLC_64; // 64 data bytes
 	Transmission.field.formatType = CAN_FD_FORMAT; //CAN FD frames
 	Transmission.field.frameType = CAN_FRAME_DATA; //Data frame
 	Transmission.field.idType = CAN_FRAME_EXT; //Standard ID
 	Transmission.msgId = EMON_SL; // packet type ID of client
-#else
-	return; // don't try to send classic packets
-	Transmission.field.brs = CAN_NON_BRS_MODE; //Transmit the data bytes at data bit rate
-	Transmission.field.dlc = DLC_8; // 8 data bytes
-	Transmission.field.formatType = CAN_2_0_FORMAT; // CAN operation mode
-	Transmission.field.frameType = CAN_FRAME_DATA; //Data frame
-	Transmission.field.idType = CAN_FRAME_STD; //Standard ID
-	Transmission.msgId = (EMON_SL); //ID of client
-#endif
 	Transmission.data = (uint8_t*) can_buffer; //transmit the data from the data bytes
 	if (CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(FIFO2) & CAN_TX_FIFO_AVAILABLE))//ensure that the TXQ has space for a message
 	{
@@ -162,9 +152,5 @@ void can_setup(void)
 	C1INTUbits.RXIE = 1; // The stupid MCC sets this back to off when setting the error interrupts
 	PIR4bits.CANRXIF = 0; // clear flags and set interrupt controller again, just to be sure
 	PIE4bits.CANRXIE = 1;
-#ifdef	USE_FD
 	CAN1_OperationModeSet(CAN_NORMAL_FD_MODE);
-#else
-	CAN1_OperationModeSet(CAN_NORMAL_2_0_MODE);
-#endif
 }

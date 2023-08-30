@@ -29,7 +29,7 @@ bool FM_tx_empty(void)
 /*
  * after the tbuf has been loaded start the TX transfer
  */
-uint8_t FM_tx(const uint16_t * data, uint8_t count)
+uint8_t FM_tx(const uint16_t * data, const uint8_t count)
 {
 	RELAY_SetHigh();
 	RELAY_SetLow(); // tx trace signature

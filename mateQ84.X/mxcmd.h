@@ -22,7 +22,7 @@ extern "C" {
 #include "../timers.h"
 
 #define VER	1
-	const char build_version[64] = "V1.59 FM80 Q84";
+	const char build_version[64] = "V1.60 FM80 Q84";
 	/*
 	 * code changes
 	 * 1.55 remove critical section interrupt disables for FM80 serial
@@ -31,6 +31,7 @@ extern "C" {
 	 * 1.58 add filter and masking to the canbus setup function so we can
 	 * properly receive canbus packets 
 	 * 1.59 CAN receive packet buffering and display
+	 * 1.60 misc code cleanups
 	 */
 
 #define MAX_B_BUF	96
@@ -98,7 +99,7 @@ extern "C" {
 	extern void onesec_io(void);
 	extern void tensec_io(void);
 	extern void FM_io(void);
-	extern uint8_t FM_tx(const uint16_t *, uint8_t);
+	extern uint8_t FM_tx(const uint16_t *, const uint8_t);
 	extern bool FM_tx_empty(void);
 	extern uint8_t FM_rx(uint16_t *);
 	extern bool FM_rx_ready(void);

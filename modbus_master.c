@@ -81,13 +81,13 @@ static void UART1_DefaultFramingErrorHandler_mb(void);
 static void UART1_DefaultOverrunErrorHandler_mb(void);
 static void UART1_DefaultErrorHandler_mb(void);
 
-bool modbus_write_check(C_data *, bool*, uint16_t);
-bool modbus_read_check(C_data *, bool*, uint16_t, void (* DataHandler)(void));
-bool modbus_read_id_check(C_data *, bool*, uint16_t);
-void em_data_handler(void);
-void emt_data_handler(void);
-void ems_data_handler(void);
-void emv_data_handler(void);
+static bool modbus_write_check(C_data *, bool*, uint16_t);
+static bool modbus_read_check(C_data *, bool*, uint16_t, void (* DataHandler)(void));
+static bool modbus_read_id_check(C_data *, bool*, uint16_t);
+static void em_data_handler(void);
+static void emt_data_handler(void);
+static void ems_data_handler(void);
+static void emv_data_handler(void);
 
 /*
  * add the required CRC bytes to a MODBUS message
@@ -278,45 +278,31 @@ int8_t master_controller_work(C_data * client)
 		switch (client->modbus_command) {
 		case G_VERSION: // write code request
 			client->trace = T_version;
-#ifdef	MB_EM540
 			client->req_length = modbus_rtu_send_msg((void*) cc_buffer_tx, (const void *) modbus_em_version, sizeof(modbus_em_version));
-#endif
 			break;
 		case G_SERIAL: // write code request
 			client->trace = T_serial;
-#ifdef	MB_EM540
 			client->req_length = modbus_rtu_send_msg((void*) cc_buffer_tx, (const void *) modbus_em_serial, sizeof(modbus_em_serial));
-#endif
 			break;
 		case G_LIGHT: // write code request
 			client->trace = T_light;
-#ifdef	MB_EM540
 			client->req_length = modbus_rtu_send_msg((void*) cc_buffer_tx, (const void *) modbus_em_light, sizeof(modbus_em_light));
-#endif
 			break;
 		case G_PASSWD: // write code request
 			client->trace = T_passwd;
-#ifdef	MB_EM540
 			client->req_length = modbus_rtu_send_msg((void*) cc_buffer_tx, (const void *) modbus_em_passwd, sizeof(modbus_em_passwd));
-#endif
 			break;
 		case G_CONFIG: // write code request
 			client->trace = T_config;
-#ifdef	MB_EM540
 			client->req_length = modbus_rtu_send_msg((void*) cc_buffer_tx, (const void *) modbus_em_config, sizeof(modbus_em_config));
-#endif
 			break;
 		case G_DATA1: // read code request
 			client->trace = T_data;
-#ifdef	MB_EM540
 			client->req_length = modbus_rtu_send_msg((void*) cc_buffer_tx, (const void *) modbus_em_data1, sizeof(modbus_em_data1));
-#endif
 			break;
 		case G_DATA2: // read code request
 			client->trace = T_data;
-#ifdef	MB_EM540
 			client->req_length = modbus_rtu_send_msg((void*) cc_buffer_tx, (const void *) modbus_em_data2, sizeof(modbus_em_data2));
-#endif
 			break;
 		case G_LAST: // end of command sequences
 			client->cstate = CLEAR;
@@ -325,9 +311,7 @@ int8_t master_controller_work(C_data * client)
 		case G_ID: // operating mode request
 			client->trace = T_id;
 		default:
-#ifdef	MB_EM540
 			client->req_length = modbus_rtu_send_msg((void*) cc_buffer_tx, (const void *) modbus_em_id, sizeof(modbus_em_id));
-#endif
 			break;
 		}
 		break;
@@ -574,7 +558,7 @@ void mb_setup(void)
 	UART1_SetErrorHandler(UART1_DefaultErrorHandler_mb);
 }
 
-bool modbus_write_check(C_data * client, bool* cstate, uint16_t rec_length)
+static bool modbus_write_check(C_data * client, bool* cstate, const uint16_t rec_length)
 {
 	uint16_t c_crc, c_crc_rec;
 
@@ -610,7 +594,7 @@ bool modbus_write_check(C_data * client, bool* cstate, uint16_t rec_length)
 	return *cstate;
 }
 
-bool modbus_read_check(C_data * client, bool* cstate, uint16_t rec_length, void (* DataHandler)(void))
+static bool modbus_read_check(C_data * client, bool* cstate, const uint16_t rec_length, void (* DataHandler)(void))
 {
 	uint16_t c_crc, c_crc_rec;
 
@@ -656,7 +640,7 @@ bool modbus_read_check(C_data * client, bool* cstate, uint16_t rec_length, void 
 	return *cstate;
 }
 
-bool modbus_read_id_check(C_data * client, bool* cstate, uint16_t rec_length)
+static bool modbus_read_id_check(C_data * client, bool* cstate, const uint16_t rec_length)
 {
 	uint16_t c_crc, c_crc_rec;
 
@@ -704,7 +688,7 @@ bool modbus_read_id_check(C_data * client, bool* cstate, uint16_t rec_length)
 	return *cstate;
 }
 
-void em_data_handler(void)
+static void em_data_handler(void)
 {
 	/*
 	 * move from receive buffer to data structure and munge the data into the correct local formats from MODBUS client
@@ -729,7 +713,7 @@ void em_data_handler(void)
 	em.hz = mb16_swap(em.hz);
 }
 
-void emt_data_handler(void)
+static void emt_data_handler(void)
 {
 	/*
 	 * move from receive buffer to data structure and munge the data into the correct local formats from MODBUS client
@@ -738,7 +722,7 @@ void emt_data_handler(void)
 	emt.hz = mb32_swap(emt.hz);
 }
 
-void ems_data_handler(void)
+static void ems_data_handler(void)
 {
 	/*
 	 * move from receive buffer to data structure and munge the data into the correct local formats from MODBUS client
@@ -748,7 +732,7 @@ void ems_data_handler(void)
 	ems.year = mb16_swap(ems.year);
 }
 
-void emv_data_handler(void)
+static void emv_data_handler(void)
 {
 	/*
 	 * move from receive buffer to data structure and munge the data into the correct local formats from MODBUS client

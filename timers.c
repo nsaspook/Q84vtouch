@@ -38,7 +38,7 @@ void WaitMs(const uint16_t numMilliseconds)
 /*
  * timer #6
  */
-void timer_ms_tick(uint32_t status, uintptr_t context)
+void timer_ms_tick(const uint32_t status, const uintptr_t context)
 {
 	MISC_SetHigh();
 	//Decrement each software timer
@@ -58,7 +58,7 @@ void delay_us(uint32_t us)
 {
 }
 
-void delay_ms(uint16_t ms)
+void delay_ms(const uint16_t ms)
 {
 	WaitMs(ms);
 }
