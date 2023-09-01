@@ -205,8 +205,8 @@ static void CAN1_TX_FIFO_Configuration(void)
     // TXAT 3; TXPRI 2; 
     C1TXQCONU = 0x61;
 
-    // PLSIZE 64; FSIZE 1; 
-    C1TXQCONT = 0xE0;
+    // PLSIZE 64; FSIZE 2; 
+    C1TXQCONT = 0xE1;
 
     // TXEN enabled; RTREN disabled; RXTSEN disabled; TXATIE enabled; RXOVIE disabled; TFERFFIE disabled; TFHRFHIE disabled; TFNRFNIE disabled; 
     C1FIFOCON2L = 0x90;
@@ -214,11 +214,23 @@ static void CAN1_TX_FIFO_Configuration(void)
     // FRESET enabled; TXREQ disabled; UINC disabled; 
     C1FIFOCON2H = 0x04;
     
-    // TXAT Unlimited number of retransmission attempts; TXPRI 1; 
-    C1FIFOCON2U = 0x60;
+    // TXAT Unlimited number of retransmission attempts; TXPRI 4; 
+    C1FIFOCON2U = 0x63;
     
-    // PLSIZE 64; FSIZE 8; 
-    C1FIFOCON2T = 0xE7;
+    // PLSIZE 64; FSIZE 4; 
+    C1FIFOCON2T = 0xE3;
+    
+    // TXEN enabled; RTREN disabled; RXTSEN disabled; TXATIE enabled; RXOVIE disabled; TFERFFIE disabled; TFHRFHIE disabled; TFNRFNIE disabled; 
+    C1FIFOCON3L = 0x90;
+    
+    // FRESET enabled; TXREQ disabled; UINC disabled; 
+    C1FIFOCON3H = 0x04;
+    
+    // TXAT Unlimited number of retransmission attempts; TXPRI 3; 
+    C1FIFOCON3U = 0x62;
+    
+    // PLSIZE 64; FSIZE 4; 
+    C1FIFOCON3T = 0xE3;
     
 }
 
@@ -733,6 +745,10 @@ void __interrupt(irq(CAN),base(8)) CAN1_ISR(void)
         {
             C1FIFOSTA2Lbits.TXATIF = 0;
         }
+        if (1 == C1FIFOSTA3Lbits.TXATIF)
+        {
+            C1FIFOSTA3Lbits.TXATIF = 0;
+    }
     }
     
     if (1 == C1INTHbits.RXOVIF)

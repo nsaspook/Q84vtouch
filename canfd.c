@@ -77,31 +77,31 @@ void can_fd_tx(void)
 	Transmission.field.idType = CAN_FRAME_EXT; //Standard ID
 	Transmission.msgId = EMON_SL; // packet type ID of client
 	Transmission.data = (uint8_t*) can_buffer; //transmit the data from the data bytes
-	if (CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(FIFO2) & CAN_TX_FIFO_AVAILABLE))//ensure that the TXQ has space for a message
+	if (CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(FIFO2) & CAN_TX_FIFO_AVAILABLE))//ensure that the FIFO has space for a message
 	{
 		CAN1_Transmit(FIFO2, &Transmission); //transmit frame
 	}
 	Transmission.msgId = (EMON_SU);
 	Transmission.data = (uint8_t*) can_buffer + CANFD_BYTES; //transmit the data from the data bytes
-	if (CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(FIFO2) & CAN_TX_FIFO_AVAILABLE))//ensure that the TXQ has space for a message
+	if (CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(FIFO2) & CAN_TX_FIFO_AVAILABLE))//ensure that the FIFO has space for a message
 	{
 		CAN1_Transmit(FIFO2, &Transmission); //transmit frame
 	}
 
 	Transmission.msgId = (EMON_ER); // error packet type ID
 	Transmission.data = (uint8_t*) info_buffer; //transmit the data from the data bytes
-	if (CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(FIFO2) & CAN_TX_FIFO_AVAILABLE))//ensure that the TXQ has space for a message
+	if (CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(FIFO3) & CAN_TX_FIFO_AVAILABLE))//ensure that the FIFO has space for a message
 	{
-		CAN1_Transmit(FIFO2, &Transmission); //transmit frame
+		CAN1_Transmit(FIFO3, &Transmission); //transmit frame
 	}
 
 	if (C.serial_ok && C.version_ok) {
 		Transmission.msgId = (EMON_CO); // config packet type ID
 		sprintf(info_buffer, "SN: %s %u FW: 0X%X", ems.serial, ems.year, emv.firmware);
 		Transmission.data = (uint8_t*) info_buffer; //transmit the data from the data bytes
-		if (CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(FIFO2) & CAN_TX_FIFO_AVAILABLE))//ensure that the TXQ has space for a message
+		if (CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(FIFO3) & CAN_TX_FIFO_AVAILABLE))//ensure that the FIFO has space for a message
 		{
-			CAN1_Transmit(FIFO2, &Transmission); //transmit frame
+			CAN1_Transmit(FIFO3, &Transmission); //transmit frame
 		}
 	}
 

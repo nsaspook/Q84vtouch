@@ -270,3 +270,13 @@ void spi_rec_done(void)
 #ifdef USE_DMA
 #endif
 }
+
+/*
+ * auto scrolls up the string on the display
+ */
+char * eaDogM_Scroll_String(char *strPtr)
+{
+	static char str[21][5];
+	
+	return &str[0][4];
+}

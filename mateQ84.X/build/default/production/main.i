@@ -40463,68 +40463,72 @@ typedef enum
 
 
 
+
 typedef enum
 {
     TXQ = 0,
-    FIFO2 = 2
+    FIFO2 = 2,
+    FIFO3 = 3
 } CAN1_TX_FIFO_CHANNELS;
 
 typedef enum
 {
     FIFO1 = 1
 } CAN1_RX_FIFO_CHANNELS;
-# 108 "./mcc_generated_files/can1.h"
+# 110 "./mcc_generated_files/can1.h"
 void CAN1_Initialize(void);
-# 149 "./mcc_generated_files/can1.h"
+# 151 "./mcc_generated_files/can1.h"
 CAN_OP_MODE_STATUS CAN1_OperationModeSet(const CAN_OP_MODES reqestMode);
-# 187 "./mcc_generated_files/can1.h"
+# 189 "./mcc_generated_files/can1.h"
 CAN_OP_MODES CAN1_OperationModeGet(void);
-# 237 "./mcc_generated_files/can1.h"
+# 239 "./mcc_generated_files/can1.h"
 _Bool CAN1_Receive(CAN_MSG_OBJ *rxCanMsg);
-# 277 "./mcc_generated_files/can1.h"
+# 279 "./mcc_generated_files/can1.h"
 _Bool CAN1_ReceiveFrom(const CAN1_RX_FIFO_CHANNELS fifoChannel, CAN_MSG_OBJ *rxCanMsg);
-# 336 "./mcc_generated_files/can1.h"
+# 338 "./mcc_generated_files/can1.h"
 CAN_TX_MSG_REQUEST_STATUS CAN1_Transmit(const CAN1_TX_FIFO_CHANNELS fifoChannel, CAN_MSG_OBJ *txCanMsg);
-# 392 "./mcc_generated_files/can1.h"
+# 394 "./mcc_generated_files/can1.h"
 _Bool CAN1_IsBusOff(void);
-# 450 "./mcc_generated_files/can1.h"
+# 452 "./mcc_generated_files/can1.h"
 _Bool CAN1_IsTxErrorPassive(void);
-# 509 "./mcc_generated_files/can1.h"
+# 511 "./mcc_generated_files/can1.h"
 _Bool CAN1_IsTxErrorWarning(void);
-# 568 "./mcc_generated_files/can1.h"
+# 570 "./mcc_generated_files/can1.h"
 _Bool CAN1_IsTxErrorActive(void);
-# 616 "./mcc_generated_files/can1.h"
+# 618 "./mcc_generated_files/can1.h"
 _Bool CAN1_IsRxErrorPassive(void);
-# 664 "./mcc_generated_files/can1.h"
+# 666 "./mcc_generated_files/can1.h"
 _Bool CAN1_IsRxErrorWarning(void);
-# 712 "./mcc_generated_files/can1.h"
+# 714 "./mcc_generated_files/can1.h"
 _Bool CAN1_IsRxErrorActive(void);
-# 763 "./mcc_generated_files/can1.h"
+# 765 "./mcc_generated_files/can1.h"
 void CAN1_Sleep(void);
-# 817 "./mcc_generated_files/can1.h"
+# 819 "./mcc_generated_files/can1.h"
 CAN_TX_FIFO_STATUS CAN1_TransmitFIFOStatusGet(const CAN1_TX_FIFO_CHANNELS fifoChannel);
-# 859 "./mcc_generated_files/can1.h"
+# 861 "./mcc_generated_files/can1.h"
 uint8_t CAN1_ReceivedMessageCountGet(void);
-# 926 "./mcc_generated_files/can1.h"
+# 928 "./mcc_generated_files/can1.h"
 void CAN1_SetInvalidMessageInterruptHandler(void (*handler)(void));
-# 983 "./mcc_generated_files/can1.h"
+# 985 "./mcc_generated_files/can1.h"
 void CAN1_SetBusWakeUpActivityInterruptHandler(void (*handler)(void));
-# 1051 "./mcc_generated_files/can1.h"
+# 1053 "./mcc_generated_files/can1.h"
 void CAN1_SetBusErrorInterruptHandler(void (*handler)(void));
-# 1102 "./mcc_generated_files/can1.h"
+# 1104 "./mcc_generated_files/can1.h"
 void CAN1_SetModeChangeInterruptHandler(void (*handler)(void));
-# 1171 "./mcc_generated_files/can1.h"
+# 1173 "./mcc_generated_files/can1.h"
 void CAN1_SetSystemErrorInterruptHandler(void (*handler)(void));
-# 1239 "./mcc_generated_files/can1.h"
+# 1241 "./mcc_generated_files/can1.h"
 void CAN1_SetTxAttemptInterruptHandler(void (*handler)(void));
-# 1291 "./mcc_generated_files/can1.h"
+# 1293 "./mcc_generated_files/can1.h"
 void CAN1_SetRxBufferOverFlowInterruptHandler(void (*handler)(void));
-# 1326 "./mcc_generated_files/can1.h"
+# 1328 "./mcc_generated_files/can1.h"
 void CAN1_SetFIFO1NotEmptyHandler(void (*handler)(void));
-# 1370 "./mcc_generated_files/can1.h"
+# 1372 "./mcc_generated_files/can1.h"
 void CAN1_SetTXQnullHandler(void (*handler)(void));
-# 1414 "./mcc_generated_files/can1.h"
+# 1416 "./mcc_generated_files/can1.h"
 void CAN1_SetFIFO2nullHandler(void (*handler)(void));
+# 1460 "./mcc_generated_files/can1.h"
+void CAN1_SetFIFO3nullHandler(void (*handler)(void));
 # 66 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/spi1.h" 1
@@ -40630,6 +40634,8 @@ extern char spinners(uint8_t, const uint8_t);
  void eaDogM_WriteIntAtPos(uint8_t, uint8_t, uint8_t);
  void eaDogM_WriteByteToCGRAM(uint8_t, uint8_t);
 
+ char * eaDogM_Scroll_String(char *);
+
 
  void clear_lcd_done(void);
  void spi_rec_done(void);
@@ -40657,8 +40663,8 @@ void delay_ms(const uint16_t);
 # 23 "./mxcmd.h" 2
 
 
- const char build_version[64] = "V1.60 FM80 Q84";
-# 51 "./mxcmd.h"
+ const char build_version[64] = "V1.61 FM80 Q84";
+# 52 "./mxcmd.h"
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
  const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};
@@ -41066,7 +41072,7 @@ volatile uint16_t cc_mode = STATUS_LAST;
 uint16_t volt_whole, bat_amp_whole, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[96], can_buffer[64*2], info_buffer[96];
-const char *build_date = "Aug 30 2023", *build_time = "11:24:17";
+const char *build_date = "Aug 31 2023", *build_time = "18:30:05";
 volatile uint16_t tickCount[TMR_COUNT];
 
 
@@ -41233,10 +41239,10 @@ void main(void)
    B.canbus_online = (!C1TXQCONHbits.TXREQ)&0x01;
    B.modbus_online = C.data_ok;
 
-
-
-
-
+   snprintf(buffer, 96, "%X %X %X %X  %lu %lu %lu      ", C1BDIAG0T, C1BDIAG0U, C1BDIAG0H, C1BDIAG0L, can_rec_count.rec_count, msg[0].msgId, msg[1].msgId);
+   eaDogM_WriteStringAtPos(0, 0, buffer);
+   snprintf(buffer, 96, "%X %X %X %X  %u %X %u       ", C1BDIAG1T, C1BDIAG1U, C1BDIAG1H, C1BDIAG1L, can_rec_count.rec_flag, msg[0].field.formatType, EBD.bat_cycles);
+   eaDogM_WriteStringAtPos(1, 0, buffer);
 
   }
   if (TimerDone(TMR_SPIN)) {
@@ -41271,12 +41277,27 @@ void main(void)
       e_update = 0;
      }
     } else {
-# 455 "main.c"
-     snprintf(buffer, 96, "EMon  %6.1fWh   %c%c    ", EBD.bat_energy / 360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
-     eaDogM_WriteStringAtPos(1, 0, buffer);
-     snprintf(buffer, 96, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
-     eaDogM_WriteStringAtPos(0, 0, buffer);
 
+
+
+     if (show_can) {
+      rxMsgData[0][42] = 0;
+      snprintf(buffer, 96, "%s          ", &rxMsgData[0][2]);
+      eaDogM_WriteStringAtPos(2, 0, buffer);
+      rxMsgData[0][42] = 0;
+      snprintf(buffer, 96, "%s          ", &rxMsgData[0][22]);
+      eaDogM_WriteStringAtPos(3, 0, buffer);
+     } else {
+      snprintf(buffer, 96, "%s          ", &rxMsgData[2][3]);
+      eaDogM_WriteStringAtPos(2, 0, buffer);
+      snprintf(buffer, 96, "%s          ", &rxMsgData[2][22]);
+      eaDogM_WriteStringAtPos(3, 0, buffer);
+     }
+     if (time_show_can++ >= 64) {
+      show_can = !show_can;
+      time_show_can = 0;
+     }
+# 460 "main.c"
     }
    }
   }

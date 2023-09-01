@@ -19,7 +19,7 @@ extern "C" {
 #include "mateQ84.X/mxcmd.h"
 #include "modbus_master.h"
 
-//#define CAN_DEBUG	// can received data on LCD for remote mate board
+#define CAN_DEBUG	// can received data on LCD for remote mate board
 #define DATA_DEBUG
 
 #define USE_FD	// select classic or FD

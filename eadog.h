@@ -27,7 +27,7 @@ extern "C" {
 #include "ringbufs.h"
 
 #define USEMCC_SPI
-	
+
 	typedef struct {
 		uint8_t con0;
 		uint8_t con1;
@@ -61,6 +61,8 @@ extern "C" {
 	void eaDogM_WriteStringAtPos(uint8_t, uint8_t, char *);
 	void eaDogM_WriteIntAtPos(uint8_t, uint8_t, uint8_t);
 	void eaDogM_WriteByteToCGRAM(uint8_t, uint8_t);
+
+	char * eaDogM_Scroll_String(char *);
 
 	// DMA complete flag
 	void clear_lcd_done(void);
