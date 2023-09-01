@@ -7,11 +7,15 @@
 volatile struct spi_link_type spi_link = {
 	.LCD_DATA = false,
 };
-struct ringBufS_t ring_buf1;
+static struct ringBufS_t ring_buf1;
 
 static const spi1_configuration_t spi1_configuration[] = {
 	{0x83, 0x20, 0x3, 0x4, 0}
 };
+
+static char Sstr[5][21];
+static volatile bool scroll_lock = false;
+static volatile uint8_t scroll_line_pos = 4;
 
 static void send_lcd_cmd_long(uint8_t); // for display init only
 static void send_lcd_data(uint8_t);
@@ -175,6 +179,10 @@ void eaDogM_WriteStringAtPos(const uint8_t r, const uint8_t c, char *strPtr)
 {
 	uint8_t row;
 
+	if (scroll_lock) { // don't update LCD text when in scroll mode
+		return;
+	}
+
 	switch (r) {
 	case 1:
 		row = 0x40;
@@ -276,7 +284,31 @@ void spi_rec_done(void)
  */
 char * eaDogM_Scroll_String(char *strPtr)
 {
-	static char str[21][5];
-	
-	return &str[0][4];
+	scroll_lock = true;
+	memcpy((void *) &Sstr[4][0], &Sstr[0][0], 20); // move top line to old line buffer
+	memcpy((void *) &Sstr[0][0], &Sstr[1][0], 20);
+	memcpy((void *) &Sstr[1][0], &Sstr[2][0], 20);
+	memcpy((void *) &Sstr[2][0], &Sstr[3][0], 20);
+	memcpy((void *) &Sstr[3][0], strPtr, 20); // place new text on the bottom line
+	scroll_line_pos = 4;
+	return &Sstr[4][0];
+}
+
+void eaDogM_Scroll_Task(void)
+{
+	if (!scroll_lock) {
+		return;
+	}
+
+	if (scroll_line_pos == 0) {
+		scroll_lock = false;
+		scroll_line_pos = 4;
+		return;
+	}
+
+	scroll_lock = false;
+	--scroll_line_pos;
+	eaDogM_WriteStringAtPos(scroll_line_pos, 0, &Sstr[scroll_line_pos][0]);
+	scroll_lock = true;
+
 }

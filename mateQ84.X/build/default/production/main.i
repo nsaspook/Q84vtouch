@@ -40635,6 +40635,7 @@ extern char spinners(uint8_t, const uint8_t);
  void eaDogM_WriteByteToCGRAM(uint8_t, uint8_t);
 
  char * eaDogM_Scroll_String(char *);
+ void eaDogM_Scroll_Task(void);
 
 
  void clear_lcd_done(void);
@@ -41072,7 +41073,7 @@ volatile uint16_t cc_mode = STATUS_LAST;
 uint16_t volt_whole, bat_amp_whole, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[96], can_buffer[64*2], info_buffer[96];
-const char *build_date = "Aug 31 2023", *build_time = "18:30:05";
+const char *build_date = "Sep  1 2023", *build_time = "16:48:48";
 volatile uint16_t tickCount[TMR_COUNT];
 
 
@@ -41189,6 +41190,10 @@ void main(void)
  can_setup();
  can_fd_tx();
 
+ eaDogM_Scroll_String("Testing 1            ");
+
+ eaDogM_Scroll_String("Testing 3            ");
+
  while (1) {
   do { LATDbits.LATD5 = 1; } while(0);
 
@@ -41235,6 +41240,7 @@ void main(void)
   }
 
   if (B.one_sec_flag) {
+   eaDogM_Scroll_Task();
    B.one_sec_flag = 0;
    B.canbus_online = (!C1TXQCONHbits.TXREQ)&0x01;
    B.modbus_online = C.data_ok;
@@ -41297,7 +41303,7 @@ void main(void)
       show_can = !show_can;
       time_show_can = 0;
      }
-# 460 "main.c"
+# 465 "main.c"
     }
    }
   }

@@ -337,6 +337,10 @@ void main(void)
 	can_setup();
 	can_fd_tx(); // send the testing packet via CANBUS
 
+	eaDogM_Scroll_String("Testing 1            ");
+//	eaDogM_Scroll_String("Testing 2            ");
+	eaDogM_Scroll_String("Testing 3            ");
+//	eaDogM_Scroll_String("Testing 4            ");
 	while (true) {
 		IO_RD5_SetHigh(); // main loop timing
 		// Add your application code
@@ -383,6 +387,7 @@ void main(void)
 		}
 
 		if (B.one_sec_flag) { // one second tasks
+			eaDogM_Scroll_Task();
 			B.one_sec_flag = false;
 			B.canbus_online = (!C1TXQCONHbits.TXREQ)&0x01;
 			B.modbus_online = C.data_ok;

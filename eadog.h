@@ -63,6 +63,7 @@ extern "C" {
 	void eaDogM_WriteByteToCGRAM(uint8_t, uint8_t);
 
 	char * eaDogM_Scroll_String(char *);
+	void eaDogM_Scroll_Task(void);
 
 	// DMA complete flag
 	void clear_lcd_done(void);
