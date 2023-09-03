@@ -41079,7 +41079,7 @@ volatile uint16_t cc_mode = STATUS_LAST;
 uint16_t volt_whole, bat_amp_whole, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[96], can_buffer[64*2], info_buffer[96];
-const char *build_date = "Sep  2 2023", *build_time = "22:07:47";
+const char *build_date = "Sep  2 2023", *build_time = "22:32:30";
 volatile uint16_t tickCount[TMR_COUNT];
 
 
@@ -41200,9 +41200,13 @@ void main(void)
 
 
  for (uint8_t i = 0; i <= 8; i++) {
-  mui[i] = DeviceID_Read(0x2C0000 + (i*2));
+  mui[i] = DeviceID_Read(0x2C0000 + (i * 2));
  }
-
+ {
+  char s_buffer[21];
+  snprintf(s_buffer, 20, "0X%X%X%X%X%X%X%X%X         ", mui[0], mui[1], mui[2], mui[3], mui[4], mui[5], mui[6], mui[7]);
+  eaDogM_Scroll_String(s_buffer);
+ }
  while (1) {
   do { LATDbits.LATD5 = 1; } while(0);
 
@@ -41292,7 +41296,7 @@ void main(void)
       e_update = 0;
      }
     } else {
-# 463 "main.c"
+# 467 "main.c"
      snprintf(buffer, 96, "EMon  %6.1fWh   %c%c    ", EBD.bat_energy / 360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
      eaDogM_WriteStringAtPos(1, 0, buffer);
      snprintf(buffer, 96, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);

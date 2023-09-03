@@ -341,9 +341,13 @@ void main(void)
 	 * read and store the CPU_ID for PCB tracing
 	 */
 	for (uint8_t i = 0; i <= 8; i++) {
-		mui[i] = DeviceID_Read(DIA_MUI + (i*2)); // Read CPU ID from memory and store in array
+		mui[i] = DeviceID_Read(DIA_MUI + (i * 2)); // Read CPU ID from memory and store in array
 	}
-
+	{
+		char s_buffer[21];
+		snprintf(s_buffer, 20, "0X%X%X%X%X%X%X%X%X         ", mui[0], mui[1], mui[2], mui[3], mui[4], mui[5], mui[6], mui[7]);
+		eaDogM_Scroll_String(s_buffer);
+	}
 	while (true) {
 		IO_RD5_SetHigh(); // main loop timing
 		// Add your application code
