@@ -337,10 +337,13 @@ void main(void)
 	can_setup();
 	can_fd_tx(); // send the testing packet via CANBUS
 
-	eaDogM_Scroll_String("Testing 1            ");
-//	eaDogM_Scroll_String("Testing 2            ");
-	eaDogM_Scroll_String("Testing 3            ");
-//	eaDogM_Scroll_String("Testing 4            ");
+	/*
+	 * read and store the CPU_ID for PCB tracing
+	 */
+	for (uint8_t i = 0; i <= 8; i++) {
+		mui[i] = DeviceID_Read(DIA_MUI + (i*2)); // Read CPU ID from memory and store in array
+	}
+
 	while (true) {
 		IO_RD5_SetHigh(); // main loop timing
 		// Add your application code

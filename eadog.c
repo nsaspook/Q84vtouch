@@ -294,13 +294,16 @@ char * eaDogM_Scroll_String(char *strPtr)
 	return &Sstr[4][0];
 }
 
+/*
+ * mainline info scroll updater, should run a ~1 second ticks
+ */
 void eaDogM_Scroll_Task(void)
 {
 	if (!scroll_lock) {
 		return;
 	}
 
-	if (scroll_line_pos == 0) {
+	if (scroll_line_pos == 0) { // wait for last line display time period
 		scroll_lock = false;
 		scroll_line_pos = 4;
 		return;

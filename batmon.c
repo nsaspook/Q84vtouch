@@ -1,5 +1,7 @@
 #include "batmon.h"
 
+uint16_t mui[10];
+
 EB_data EBD = {
 	.checkmark = BM_CM,
 	.version = BM_VER,
@@ -57,6 +59,7 @@ void wr_bm_data(uint8_t * EB)
 void get_bm_data(EB_data * EB)
 {
 	uint8_t rxData = 0;
+	char s_buffer[21];
 
 	EB->ENac = (float) em.vl1l2 / 10.0f;
 	EB->ENva = (float) em.val1 / 10.0f;
@@ -83,6 +86,15 @@ void get_bm_data(EB_data * EB)
 		case 'E':
 			EB->bat_energy = 1;
 			EBD.bat_cycles++;
+			break;
+		case 'i':
+		case 'I':
+			snprintf(s_buffer, 20, "%s %u            ", ems.serial, ems.year);
+			eaDogM_Scroll_String(s_buffer);
+			snprintf(s_buffer, 20, "0X%X             ", emv.firmware);
+			eaDogM_Scroll_String(s_buffer);
+			snprintf(s_buffer, 20, "0X%X%X%X%X%X%X%X%X         ", mui[0], mui[1], mui[2], mui[3], mui[4], mui[5], mui[6], mui[7]);
+			eaDogM_Scroll_String(s_buffer);
 			break;
 		default:
 			break;
@@ -195,9 +207,39 @@ uint16_t Volts_to_SOC(const uint16_t bvw, const uint16_t bvf)
 	 * walk up the table
 	 */
 	for (slot = 0; slot < BVSOC_SLOTS; slot++) {
-		if ((bvw*1000 + bvf*100) > BVSOC_TABLE[slot][0]) {
+		if ((bvw * 1000 + bvf * 100) > BVSOC_TABLE[slot][0]) {
 			soc = (uint16_t) BVSOC_TABLE[slot][1];
 		}
 	}
 	return soc;
+}
+
+device_id_data_t DeviceID_Read(device_id_address_t address)
+{
+	device_id_data_t deviceID;
+
+	//Save the table pointer
+	uint32_t tablePointer = ((uint32_t) TBLPTRU << 16) | ((uint32_t) TBLPTRH << 8) | ((uint32_t) TBLPTRL);
+
+	//Load table pointer with Device ID address 
+	TBLPTRU = (uint8_t) (address >> 16);
+	TBLPTRH = (uint8_t) (address >> 8);
+	TBLPTRL = (uint8_t) address;
+
+	//Execute table read and increment table pointer 
+	asm("TBLRD*+");
+
+	deviceID = (device_id_data_t) TABLAT;
+
+	//Execute table read 
+	asm("TBLRD*");
+
+	deviceID |= (device_id_data_t) (TABLAT << 8);
+
+	//Restore the table pointer
+	TBLPTRU = (uint8_t) (tablePointer >> 16);
+	TBLPTRH = (uint8_t) (tablePointer >> 8);
+	TBLPTRL = (uint8_t) tablePointer;
+
+	return deviceID;
 }
