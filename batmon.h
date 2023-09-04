@@ -76,12 +76,10 @@ extern "C" {
 
 	typedef uint16_t device_id_data_t;
 	typedef uint24_t device_id_address_t;
-
 	device_id_data_t DeviceID_Read(device_id_address_t);
 
 	extern EB_data EBD, EBD_ptr;
 	extern uint16_t EBD_update;
-	extern uint16_t mui[10];
 
 	bool initbm_data(uint8_t *);
 	void wr_bm_data(uint8_t *);

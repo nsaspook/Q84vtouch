@@ -22,7 +22,7 @@ extern "C" {
 #include "../timers.h"
 
 #define VER	1
-	const char build_version[64] = "V1.61 FM80 Q84";
+	const char build_version[64] = "V1.62 FM80 Q84";
 	/*
 	 * code changes
 	 * 1.55 remove critical section interrupt disables for FM80 serial
@@ -33,6 +33,7 @@ extern "C" {
 	 * 1.59 CAN receive packet buffering and display
 	 * 1.60 misc code cleanups
 	 * 1.61 add FIFO for xmit
+	 * 1.62 add modules firmware/ID capture and display
 	 */
 
 #define MAX_B_BUF	96
@@ -57,6 +58,9 @@ extern "C" {
 	const uint16_t cmd_batterya[] = {0x100, 0x02, 0x01, 0xc7, 0x00, 0x00, 0x00, 0xca};
 	const uint16_t cmd_watts[] = {0x100, 0x02, 0x01, 0x6a, 0x00, 0x00, 0x00, 0x6d};
 	const uint16_t cmd_misc[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02}; // example FM80 command ID request
+	const uint16_t cmd_fwreva[] = {0x100, 0x02, 0x00, 0x02, 0x00, 0x00, 0x00, 0x04};
+	const uint16_t cmd_fwrevb[] = {0x100, 0x02, 0x00, 0x03, 0x00, 0x00, 0x00, 0x05};
+	const uint16_t cmd_fwrevc[] = {0x100, 0x02, 0x00, 0x04, 0x00, 0x00, 0x00, 0x06};
 
 	enum status_type {
 		STATUS_SLEEPING = 0,
@@ -95,6 +99,8 @@ extern "C" {
 		uint16_t pacing, rx_count, flush;
 		volatile bool FM80_online;
 		volatile uint8_t canbus_online, modbus_online;
+		uint16_t mui[10];
+		uint16_t fwrev[3];
 	} B_type;
 
 	extern void onesec_io(void);

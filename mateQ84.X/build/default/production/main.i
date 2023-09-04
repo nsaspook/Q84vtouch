@@ -40664,8 +40664,8 @@ void delay_ms(const uint16_t);
 # 23 "./mxcmd.h" 2
 
 
- const char build_version[64] = "V1.61 FM80 Q84";
-# 52 "./mxcmd.h"
+ const char build_version[64] = "V1.62 FM80 Q84";
+# 53 "./mxcmd.h"
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
  const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};
@@ -40674,6 +40674,9 @@ void delay_ms(const uint16_t);
  const uint16_t cmd_batterya[] = {0x100, 0x02, 0x01, 0xc7, 0x00, 0x00, 0x00, 0xca};
  const uint16_t cmd_watts[] = {0x100, 0x02, 0x01, 0x6a, 0x00, 0x00, 0x00, 0x6d};
  const uint16_t cmd_misc[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
+ const uint16_t cmd_fwreva[] = {0x100, 0x02, 0x00, 0x02, 0x00, 0x00, 0x00, 0x04};
+ const uint16_t cmd_fwrevb[] = {0x100, 0x02, 0x00, 0x03, 0x00, 0x00, 0x00, 0x05};
+ const uint16_t cmd_fwrevc[] = {0x100, 0x02, 0x00, 0x04, 0x00, 0x00, 0x00, 0x06};
 
  enum status_type {
   STATUS_SLEEPING = 0,
@@ -40712,6 +40715,8 @@ void delay_ms(const uint16_t);
   uint16_t pacing, rx_count, flush;
   volatile _Bool FM80_online;
   volatile uint8_t canbus_online, modbus_online;
+  uint16_t mui[10];
+  uint16_t fwrev[3];
  } B_type;
 
  extern void onesec_io(void);
@@ -41038,12 +41043,10 @@ void delay_ms(const uint16_t);
 
  typedef uint16_t device_id_data_t;
  typedef uint24_t device_id_address_t;
-
  device_id_data_t DeviceID_Read(device_id_address_t);
 
  extern EB_data EBD, EBD_ptr;
  extern uint16_t EBD_update;
- extern uint16_t mui[10];
 
  _Bool initbm_data(uint8_t *);
  void wr_bm_data(uint8_t *);
@@ -41069,6 +41072,7 @@ enum state_type {
  state_batteryv,
  state_batterya,
  state_watts,
+ state_fwrev,
  state_misc,
  state_mx_status,
  state_last,
@@ -41079,8 +41083,9 @@ volatile uint16_t cc_mode = STATUS_LAST;
 uint16_t volt_whole, bat_amp_whole, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[96], can_buffer[64*2], info_buffer[96];
-const char *build_date = "Sep  2 2023", *build_time = "22:32:30";
+const char *build_date = "Sep  3 2023", *build_time = "21:46:44";
 volatile uint16_t tickCount[TMR_COUNT];
+uint8_t fw_state = 0;
 
 
 _Bool show_can;
@@ -41118,6 +41123,7 @@ void state_batterya_cb(void);
 void state_watts_cb(void);
 void state_misc_cb(void);
 void state_mx_status_cb(void);
+static void state_fwrev_cb(void);
 
 
 
@@ -41200,11 +41206,11 @@ void main(void)
 
 
  for (uint8_t i = 0; i <= 8; i++) {
-  mui[i] = DeviceID_Read(0x2C0000 + (i * 2));
+  B.mui[i] = DeviceID_Read(0x2C0000 + (i * 2));
  }
  {
   char s_buffer[21];
-  snprintf(s_buffer, 20, "0X%X%X%X%X%X%X%X%X         ", mui[0], mui[1], mui[2], mui[3], mui[4], mui[5], mui[6], mui[7]);
+  snprintf(s_buffer, 20, "0X%X%X%X%X%X%X%X%X         ", B.mui[0], B.mui[1], B.mui[2], B.mui[3], B.mui[4], B.mui[5], B.mui[6], B.mui[7]);
   eaDogM_Scroll_String(s_buffer);
  }
  while (1) {
@@ -41241,6 +41247,29 @@ void main(void)
   case state_mx_status:
    send_mx_cmd(cmd_mx_status);
    rec_mx_cmd(state_mx_status_cb, 16);
+   break;
+  case state_fwrev:
+   switch (fw_state) {
+   case 0:
+    send_mx_cmd(cmd_fwreva);
+    rec_mx_cmd(state_fwrev_cb, 5);
+    fw_state++;
+    state = state_misc;
+    fw_state = 0;
+    break;
+   case 1: send_mx_cmd(cmd_fwrevb);
+    delay_ms(1);
+    rec_mx_cmd(state_fwrev_cb, 5);
+    fw_state++;
+    break;
+   case 2: send_mx_cmd(cmd_fwrevc);
+    delay_ms(1);
+    rec_mx_cmd(state_fwrev_cb, 5);
+   default:
+    state = state_misc;
+    fw_state = 0;
+    break;
+   }
    break;
   case state_misc:
    send_mx_cmd(cmd_misc);
@@ -41296,7 +41325,7 @@ void main(void)
       e_update = 0;
      }
     } else {
-# 467 "main.c"
+# 493 "main.c"
      snprintf(buffer, 96, "EMon  %6.1fWh   %c%c    ", EBD.bat_energy / 360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
      eaDogM_WriteStringAtPos(1, 0, buffer);
      snprintf(buffer, 96, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
@@ -41483,7 +41512,13 @@ void state_mx_status_cb(void)
    }
   }
  }
- state = state_misc;
+ state = state_fwrev;
+ fw_state = 0;
+}
+
+static void state_fwrev_cb(void)
+{
+ B.fwrev[fw_state] = abuf[2];
 }
 
 

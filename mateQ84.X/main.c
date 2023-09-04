@@ -210,6 +210,7 @@ enum state_type {
 	state_batteryv,
 	state_batterya,
 	state_watts,
+	state_fwrev,
 	state_misc,
 	state_mx_status,
 	state_last,
@@ -222,6 +223,7 @@ volatile enum state_type state = state_init;
 char buffer[MAX_B_BUF], can_buffer[MAX_C_BUF], info_buffer[MAX_B_BUF];
 const char *build_date = __DATE__, *build_time = __TIME__;
 volatile uint16_t tickCount[TMR_COUNT];
+uint8_t fw_state = 0;
 
 #ifdef DATA_DEBUG
 bool show_can;
@@ -259,6 +261,7 @@ void state_batterya_cb(void);
 void state_watts_cb(void);
 void state_misc_cb(void);
 void state_mx_status_cb(void);
+static void state_fwrev_cb(void);
 
 /*
  * busy loop delay with WDT reset
@@ -341,11 +344,11 @@ void main(void)
 	 * read and store the CPU_ID for PCB tracing
 	 */
 	for (uint8_t i = 0; i <= 8; i++) {
-		mui[i] = DeviceID_Read(DIA_MUI + (i * 2)); // Read CPU ID from memory and store in array
+		B.mui[i] = DeviceID_Read(DIA_MUI + (i * 2)); // Read CPU ID from memory and store in array
 	}
 	{
 		char s_buffer[21];
-		snprintf(s_buffer, 20, "0X%X%X%X%X%X%X%X%X         ", mui[0], mui[1], mui[2], mui[3], mui[4], mui[5], mui[6], mui[7]);
+		snprintf(s_buffer, 20, "0X%X%X%X%X%X%X%X%X         ", B.mui[0], B.mui[1], B.mui[2], B.mui[3], B.mui[4], B.mui[5], B.mui[6], B.mui[7]);
 		eaDogM_Scroll_String(s_buffer);
 	}
 	while (true) {
@@ -382,6 +385,29 @@ void main(void)
 		case state_mx_status: // wait for ten second flag in this state for logging
 			send_mx_cmd(cmd_mx_status);
 			rec_mx_cmd(state_mx_status_cb, REC_STATUS_LEN);
+			break;
+		case state_fwrev:
+			switch (fw_state) {
+			case 0:
+				send_mx_cmd(cmd_fwreva);
+				rec_mx_cmd(state_fwrev_cb, REC_LEN);
+				fw_state++;
+				state = state_misc;
+				fw_state = 0;
+				break;
+			case 1: send_mx_cmd(cmd_fwrevb);
+				delay_ms(1);
+				rec_mx_cmd(state_fwrev_cb, REC_LEN);
+				fw_state++;
+				break;
+			case 2: send_mx_cmd(cmd_fwrevc);
+				delay_ms(1);
+				rec_mx_cmd(state_fwrev_cb, REC_LEN);
+			default:
+				state = state_misc;
+				fw_state = 0;
+				break;
+			}
 			break;
 		case state_misc:
 			send_mx_cmd(cmd_misc);
@@ -603,10 +629,10 @@ void state_watts_cb(void)
 
 void state_mx_status_cb(void)
 {
-	volt_f((abuf[11] + (abuf[10] << 8)));
+	volt_f((abuf[11] + (abuf[10] << 8))); // set battery voltage here in volt_whole and volt_frac
 	vw = volt_whole;
 	vf = volt_fract;
-	volt_f((abuf[13] + (abuf[12] << 8)));
+	volt_f((abuf[13] + (abuf[12] << 8))); // set panel voltage here in volt_whole and volt_frac
 	if ((abuf[1] &0x0f) > 9) { // check for whole Amp
 		abuf[2]++; // add extra Amp for fractional overflow.
 		abuf[1] = (abuf[1]&0x0f) - 10;
@@ -650,7 +676,13 @@ void state_mx_status_cb(void)
 			}
 		}
 	}
-	state = state_misc;
+	state = state_fwrev;
+	fw_state = 0;
+}
+
+static void state_fwrev_cb(void)
+{
+	B.fwrev[fw_state] = abuf[2];
 }
 
 /*

@@ -1,7 +1,5 @@
 #include "batmon.h"
 
-uint16_t mui[10];
-
 EB_data EBD = {
 	.checkmark = BM_CM,
 	.version = BM_VER,
@@ -89,11 +87,13 @@ void get_bm_data(EB_data * EB)
 			break;
 		case 'i':
 		case 'I':
-			snprintf(s_buffer, 20, "%s %u            ", ems.serial, ems.year);
+			snprintf(s_buffer, 20, "%s %u              ", ems.serial, ems.year);
 			eaDogM_Scroll_String(s_buffer);
-			snprintf(s_buffer, 20, "0X%X             ", emv.firmware);
+			snprintf(s_buffer, 20, "0X%X               ", emv.firmware);
 			eaDogM_Scroll_String(s_buffer);
-			snprintf(s_buffer, 20, "0X%X%X%X%X%X%X%X%X         ", mui[0], mui[1], mui[2], mui[3], mui[4], mui[5], mui[6], mui[7]);
+			snprintf(s_buffer, 20, "0X%X%X%X%X%X%X%X%X         ", B.mui[0], B.mui[1], B.mui[2], B.mui[3], B.mui[4], B.mui[5], B.mui[6], B.mui[7]);
+			eaDogM_Scroll_String(s_buffer);
+			snprintf(s_buffer, 20, "FM80 FW %X.%X.%X                ", B.fwrev[0], B.fwrev[1], B.fwrev[2]);
 			eaDogM_Scroll_String(s_buffer);
 			break;
 		default:
