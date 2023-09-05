@@ -391,21 +391,13 @@ void main(void)
 			case 0:
 				send_mx_cmd(cmd_fwreva);
 				rec_mx_cmd(state_fwrev_cb, REC_LEN);
-				fw_state++;
-				state = state_misc;
-				fw_state = 0;
 				break;
 			case 1: send_mx_cmd(cmd_fwrevb);
-				delay_ms(1);
 				rec_mx_cmd(state_fwrev_cb, REC_LEN);
-				fw_state++;
 				break;
 			case 2: send_mx_cmd(cmd_fwrevc);
-				delay_ms(1);
 				rec_mx_cmd(state_fwrev_cb, REC_LEN);
 			default:
-				state = state_misc;
-				fw_state = 0;
 				break;
 			}
 			break;
@@ -683,6 +675,7 @@ void state_mx_status_cb(void)
 static void state_fwrev_cb(void)
 {
 	B.fwrev[fw_state] = abuf[2];
+	state = state_misc;
 }
 
 /*
