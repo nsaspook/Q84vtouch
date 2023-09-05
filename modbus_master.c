@@ -336,7 +336,6 @@ int8_t master_controller_work(C_data * client)
 		client->trace = T_send;
 		if (get_500hz(false) >= TDELAY) {
 			for (uint8_t i = 0; i < client->req_length; i++) {
-				IO_RB7_Toggle();
 				Swrite(cc_buffer_tx[i]);
 			}
 			client->cstate = RECV;

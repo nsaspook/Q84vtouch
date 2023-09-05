@@ -68,7 +68,7 @@ void Can1FIFO1NotEmptyHandler(void)
  */
 void can_fd_tx(void)
 {
-	IO_RB7_Toggle(); // canbus timing
+//	IO_RB7_Toggle(); // canbus timing
 	CAN_MSG_OBJ Transmission; //create the CAN message object
 	Transmission.field.brs = CAN_BRS_MODE; //Transmit the data bytes at data bit rate
 	Transmission.field.dlc = DLC_64; // 64 data bytes

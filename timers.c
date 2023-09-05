@@ -36,7 +36,7 @@ void WaitMs(const uint16_t numMilliseconds)
 } //(timer interrupt will wake part from idle)
 
 /*
- * timer #6
+ * runs in timer #4 interrupt from FM_io(void)
  */
 void timer_ms_tick(const uint32_t status, const uintptr_t context)
 {

@@ -392,12 +392,15 @@ void main(void)
 				send_mx_cmd(cmd_fwreva);
 				rec_mx_cmd(state_fwrev_cb, REC_LEN);
 				break;
-			case 1: send_mx_cmd(cmd_fwrevb);
+			case 1:
+				send_mx_cmd(cmd_fwrevb);
 				rec_mx_cmd(state_fwrev_cb, REC_LEN);
 				break;
-			case 2: send_mx_cmd(cmd_fwrevc);
+			case 2:
+				send_mx_cmd(cmd_fwrevc);
 				rec_mx_cmd(state_fwrev_cb, REC_LEN);
 			default:
+				fw_state = 0;
 				break;
 			}
 			break;
@@ -669,12 +672,11 @@ void state_mx_status_cb(void)
 		}
 	}
 	state = state_fwrev;
-	fw_state = 0;
 }
 
 static void state_fwrev_cb(void)
 {
-	B.fwrev[fw_state] = abuf[2];
+	B.fwrev[fw_state++] = abuf[2];
 	state = state_misc;
 }
 
