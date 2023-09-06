@@ -51,6 +51,8 @@ extern "C" {
 #define FMxx_ID		abuf[2]
 #define FMxx_STATE	abuf[2]
 
+#define AMP_WHOLE_ZERO	0
+
 	const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
 	const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
 	const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};
@@ -81,14 +83,19 @@ extern "C" {
 		" Last",
 	};
 
+	const char FM80_name [][12] = {
+		" Offline",
+		"FM80    ",
+	};
+
 	const char canbus_name [][12] = {
 		" Offline",
-		"CANBUS",
+		"CANBUS  ",
 	};
 
 	const char modbus_name [][12] = {
 		" Offline",
-		"MODBUS",
+		"MODBUS  ",
 	};
 
 	typedef struct {
