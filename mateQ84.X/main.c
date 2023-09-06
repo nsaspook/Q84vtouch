@@ -218,7 +218,7 @@ enum state_type {
 
 static uint16_t abuf[FM_BUFFER];
 volatile uint16_t cc_mode = STATUS_LAST;
-uint16_t volt_whole, bat_amp_whole, panel_watts, volt_fract, vf, vw;
+uint16_t volt_whole, bat_amp_whole = AMP_WHOLE_ZERO, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[MAX_B_BUF], can_buffer[MAX_C_BUF], info_buffer[MAX_B_BUF];
 const char *build_date = __DATE__, *build_time = __TIME__;
@@ -584,7 +584,9 @@ void state_status_cb(void)
 	} else {
 		state = state_watts;
 	}
-	cc_mode = abuf[2];
+	if (B.FM80_online) { // don't update when offline
+		cc_mode = abuf[2];
+	}
 }
 
 void state_panelv_cb(void)
@@ -632,6 +634,9 @@ void state_mx_status_cb(void)
 		abuf[2]++; // add extra Amp for fractional overflow.
 		abuf[1] = (abuf[1]&0x0f) - 10;
 	}
+	if (B.FM80_online) {  // don't update when offline
+		bat_amp_whole = abuf[3] - 128;
+	}
 #ifdef debug_data
 	printf("%5d: %3x %3x %3x %3x %3x  SDATA: FM80 Data mode %3x %3x %3x %3x %3x %3x %3x %3x %3x\r\n",
 		rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4], abuf[5], abuf[6], abuf[7], abuf[8], abuf[9], abuf[10], abuf[11], abuf[12], abuf[13]);
@@ -647,7 +652,9 @@ void state_mx_status_cb(void)
 			printf("%s", can_buffer); // log to USART
 			snprintf(buffer, MAX_B_BUF, "%d Watts %d.%01d Volts   ", panel_watts, volt_whole, volt_fract);
 			eaDogM_WriteStringAtPos(2, 0, buffer);
-			bat_amp_whole = abuf[3] - 128;
+			if (B.FM80_online) {
+				bat_amp_whole = abuf[3] - 128;
+			}
 			snprintf(buffer, MAX_B_BUF, "%d.%01d Amps %d.%01d Volts   ", bat_amp_whole, abuf[1]&0x0f, vw, vf);
 			eaDogM_WriteStringAtPos(3, 0, buffer);
 			can_fd_tx(); // send the logging packet via CANBUS
