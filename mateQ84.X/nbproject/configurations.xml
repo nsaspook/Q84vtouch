@@ -88,9 +88,9 @@
         <targetDevice>PIC18F47Q84</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>pk4hybrid</platformTool>
+        <platformTool>ICD5Tool</platformTool>
         <languageToolchain>XC8</languageToolchain>
-        <languageToolchainVersion>2.41</languageToolchainVersion>
+        <languageToolchainVersion>2.45</languageToolchainVersion>
         <platform>2</platform>
       </toolsSet>
       <packs>
@@ -496,7 +496,8 @@
         <property key="ToolFirmwareToolPack"
                   value="Press to select which tool pack to use"/>
         <property key="communication.activationmode" value="nohv"/>
-        <property key="communication.interface" value=""/>
+        <property key="communication.interface"
+                  value="${communication.interface.default}"/>
         <property key="communication.interface.jtag" value="2wire"/>
         <property key="communication.speed" value="${communication.speed.default}"/>
         <property key="debugoptions.debug-startup" value="Use system settings"/>
@@ -521,7 +522,7 @@
         <property key="memories.programmemory" value="true"/>
         <property key="memories.programmemory.ranges" value="0-1ffff"/>
         <property key="poweroptions.powerenable" value="true"/>
-        <property key="programmerToGoImageName" value="vtouch45k80_ptg"/>
+        <property key="programmerToGoImageName" value="mateQ84_ptg"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>
         <property key="programoptions.ledbrightness" value="5"/>
