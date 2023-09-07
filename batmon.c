@@ -96,6 +96,17 @@ void get_bm_data(EB_data * EB)
 			snprintf(s_buffer, 21, "FM80 FW %X.%X.%X                ", B.fwrev[0], B.fwrev[1], B.fwrev[2]);
 			eaDogM_Scroll_String(s_buffer);
 			break;
+		case 'l':
+		case 'L':
+			snprintf(s_buffer, 21, "Pwr %5.2fkWpk %5.2fkWh              ", (float) B.log.kilowatts_peak / 1000.0, (float) B.log.kilowatt_hours / 10.0);
+			eaDogM_Scroll_String(s_buffer);
+			snprintf(s_buffer, 21, "Chg F%imin A%imin                ", B.log.float_time, B.log.absorb_time);
+			eaDogM_Scroll_String(s_buffer);
+			snprintf(s_buffer, 21, "%iVpk %4.1fApk %iAh       ", B.log.volts_peak, (float) B.log.amps_peak / 10.0, B.log.amp_hours);
+			eaDogM_Scroll_String(s_buffer);
+			snprintf(s_buffer, 21, "Day %i: %4.1fV %4.1fV       ", B.log.day, (float) B.log.bat_max / 10.0, (float) B.log.bat_min / 10.0);
+			eaDogM_Scroll_String(s_buffer);
+			break;
 		default:
 			break;
 		}
