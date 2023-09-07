@@ -202,6 +202,7 @@
 #define CMD_LEN	8
 #define REC_LEN 5
 #define REC_STATUS_LEN	16
+#define REC_LOG_LEN	17
 
 enum state_type {
 	state_init,
@@ -211,13 +212,14 @@ enum state_type {
 	state_batterya,
 	state_watts,
 	state_fwrev,
+	state_mx_log,
 	state_misc,
 	state_mx_status,
 	state_last,
 };
 
-static uint16_t abuf[FM_BUFFER];
-volatile uint16_t cc_mode = STATUS_LAST;
+static uint16_t abuf[FM_BUFFER], cbuf[FM_BUFFER + 2];
+volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = AMP_WHOLE_ZERO, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[MAX_B_BUF], can_buffer[MAX_C_BUF], info_buffer[MAX_B_BUF];
@@ -239,6 +241,9 @@ B_type B = {
 	.canbus_online = 0,
 	.modbus_online = 0,
 };
+
+mx_logpage_t mx_log;
+
 /*
  * show fixed point fractions
  */
@@ -261,6 +266,7 @@ void state_batterya_cb(void);
 void state_watts_cb(void);
 void state_misc_cb(void);
 void state_mx_status_cb(void);
+void state_mx_log_cb(void);
 static void state_fwrev_cb(void);
 
 /*
@@ -404,6 +410,10 @@ void main(void)
 				break;
 			}
 			break;
+		case state_mx_log: // FM80 log data
+			send_mx_cmd(cmd_mx_log);
+			rec_mx_cmd(state_mx_log_cb, REC_LOG_LEN);
+			break;
 		case state_misc:
 			send_mx_cmd(cmd_misc);
 			rec_mx_cmd(state_misc_cb, REC_LEN);
@@ -530,7 +540,11 @@ static void rec_mx_cmd(void (* DataHandler)(void), const uint8_t rec_len)
 	if (FM_rx_ready()) {
 		if (FM_rx_count() >= rec_len) {
 			online_count = 0;
-			FM_rx(abuf);
+			if (rec_len == REC_LOG_LEN) {
+				FM_rx(cbuf);
+			} else {
+				FM_rx(abuf);
+			}
 			DataHandler(); // execute callback to process data in abuf
 		} else {
 			if (online_count++ > ONLINE_TIMEOUT) {
@@ -546,7 +560,7 @@ static void rec_mx_cmd(void (* DataHandler)(void), const uint8_t rec_len)
 		B.FM80_online = false;
 		cc_mode = STATUS_LAST;
 		state = state_watts;
-		FMxx_ID = 0x0;
+		mx_code = 0x0;
 		DataHandler();
 	}
 
@@ -556,7 +570,8 @@ void state_init_cb(void)
 {
 	float Soc;
 
-	if (FMxx_ID == FM80_ID) {
+	mx_code = abuf[2]&0xf;
+	if (mx_code == FM80_ID) {
 		printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: FM80 Online\r\n", B.rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
 		if (!B.FM80_online) { // try to guess battery energy by looking at battery voltage
 			Soc = ((float) Volts_to_SOC(vw, vf) * 0.01f);
@@ -585,7 +600,7 @@ void state_status_cb(void)
 		state = state_watts;
 	}
 	if (B.FM80_online) { // don't update when offline
-		cc_mode = abuf[2];
+		cc_mode = FMxx_STATE;
 	}
 }
 
@@ -621,6 +636,15 @@ void state_watts_cb(void)
 	printf("%5d: %3x %3x %3x %3x %3x   DATA: Panel Watts %iW\r\n", rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4], (abuf[2] + (abuf[1] << 8)));
 #endif
 	panel_watts = (abuf[2] + (abuf[1] << 8));
+	if (B.FM80_online) {
+		state = state_mx_log; // only get log data once state_init_cb has run
+	} else {
+		state = state_mx_status;
+	}
+}
+
+void state_mx_log_cb(void)
+{
 	state = state_mx_status;
 }
 
@@ -634,7 +658,7 @@ void state_mx_status_cb(void)
 		abuf[2]++; // add extra Amp for fractional overflow.
 		abuf[1] = (abuf[1]&0x0f) - 10;
 	}
-	if (B.FM80_online) {  // don't update when offline
+	if (B.FM80_online) { // don't update when offline
 		bat_amp_whole = abuf[3] - 128;
 	}
 #ifdef debug_data
@@ -692,8 +716,7 @@ static void state_fwrev_cb(void)
  */
 void state_misc_cb(void)
 {
-	if (abuf[2] == 0x03) {
-		B.FM80_online = true;
+	if (mx_code == FM80_ID) { // only set FM80 offline here
 	} else {
 		B.FM80_online = false;
 		cc_mode = STATUS_LAST;

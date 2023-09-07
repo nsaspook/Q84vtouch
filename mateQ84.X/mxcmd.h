@@ -22,7 +22,7 @@ extern "C" {
 #include "../timers.h"
 
 #define VER	1
-	const char build_version[64] = "V1.63 FM80 Q84";
+	const char build_version[] = "V1.65 FM80 Q84";
 	/*
 	 * code changes
 	 * 1.55 remove critical section interrupt disables for FM80 serial
@@ -35,6 +35,7 @@ extern "C" {
 	 * 1.61 add FIFO for xmit
 	 * 1.62 add modules firmware/ID capture and display
 	 * 1.63 FM80 FW fixes
+	 * 1.65 add FM80 log data reporting for the previous day
 	 */
 
 #define MAX_B_BUF	96
@@ -42,13 +43,12 @@ extern "C" {
 #define IO_TEST
 
 #define	FM_BUFFER	32
-#define BUFFER_SPACING	2
+#define BUFFER_SPACING	4
 #define SPINNER_SPEED	200
 #define LP_BUFFER_SIZE	9
 #define ONLINE_TIMEOUT	30000
 
 #define FM80_ID		0x03
-#define FMxx_ID		abuf[2]
 #define FMxx_STATE	abuf[2]
 
 #define AMP_WHOLE_ZERO	0
@@ -56,6 +56,7 @@ extern "C" {
 	const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
 	const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
 	const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};
+	const uint16_t cmd_mx_log[] = {0x100, 0x16, 0x00, 0x00, 0xff, 0xff, 0x02, 0x14}; // get yesterdays log
 	const uint16_t cmd_panelv[] = {0x100, 0x02, 0x01, 0xc6, 0x00, 0x00, 0x00, 0xc9};
 	const uint16_t cmd_batteryv[] = {0x100, 0x02, 0x00, 0x08, 0x00, 0x00, 0x00, 0x0a};
 	const uint16_t cmd_batterya[] = {0x100, 0x02, 0x01, 0xc7, 0x00, 0x00, 0x00, 0xca};
@@ -101,6 +102,23 @@ extern "C" {
 	typedef struct {
 		uint8_t a[16]; // raw_ah(part2)
 	} mx_status_packed_t;
+
+	typedef struct {
+		uint8_t a[16];
+	} mx_log_packed_t;
+
+	typedef struct {
+		int16_t day;
+		int16_t amp_hours;
+		int16_t kilowatt_hours;
+		int16_t volts_peak;
+		int16_t amps_peak;
+		int16_t kilowatts_peak;
+		int16_t bat_min;
+		int16_t bat_max;
+		int16_t absorb_time;
+		int16_t float_time;
+	} mx_logpage_t;
 
 	typedef struct B_type {
 		volatile bool ten_sec_flag, one_sec_flag, FM80_charged;

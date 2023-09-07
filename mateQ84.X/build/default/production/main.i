@@ -40664,11 +40664,12 @@ void delay_ms(const uint16_t);
 # 23 "./mxcmd.h" 2
 
 
- const char build_version[64] = "V1.63 FM80 Q84";
+ const char build_version[] = "V1.65 FM80 Q84";
 # 56 "./mxcmd.h"
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
  const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};
+ const uint16_t cmd_mx_log[] = {0x100, 0x16, 0x00, 0x00, 0xff, 0xff, 0x02, 0x14};
  const uint16_t cmd_panelv[] = {0x100, 0x02, 0x01, 0xc6, 0x00, 0x00, 0x00, 0xc9};
  const uint16_t cmd_batteryv[] = {0x100, 0x02, 0x00, 0x08, 0x00, 0x00, 0x00, 0x0a};
  const uint16_t cmd_batterya[] = {0x100, 0x02, 0x01, 0xc7, 0x00, 0x00, 0x00, 0xca};
@@ -40714,6 +40715,23 @@ void delay_ms(const uint16_t);
  typedef struct {
   uint8_t a[16];
  } mx_status_packed_t;
+
+ typedef struct {
+  uint8_t a[16];
+ } mx_log_packed_t;
+
+ typedef struct {
+  int16_t day;
+  int16_t amp_hours;
+  int16_t kilowatt_hours;
+  int16_t volts_peak;
+  int16_t amps_peak;
+  int16_t kilowatts_peak;
+  int16_t bat_min;
+  int16_t bat_max;
+  int16_t absorb_time;
+  int16_t float_time;
+ } mx_logpage_t;
 
  typedef struct B_type {
   volatile _Bool ten_sec_flag, one_sec_flag, FM80_charged;
@@ -41070,6 +41088,7 @@ void delay_ms(const uint16_t);
 
 
 
+
 enum state_type {
  state_init,
  state_status,
@@ -41078,17 +41097,18 @@ enum state_type {
  state_batterya,
  state_watts,
  state_fwrev,
+ state_mx_log,
  state_misc,
  state_mx_status,
  state_last,
 };
 
-static uint16_t abuf[32];
-volatile uint16_t cc_mode = STATUS_LAST;
+static uint16_t abuf[32], cbuf[32 + 2];
+volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[96], can_buffer[64*2], info_buffer[96];
-const char *build_date = "Sep  5 2023", *build_time = "20:16:54";
+const char *build_date = "Sep  7 2023", *build_time = "11:24:39";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
@@ -41106,6 +41126,9 @@ B_type B = {
  .canbus_online = 0,
  .modbus_online = 0,
 };
+
+mx_logpage_t mx_log;
+
 
 
 
@@ -41128,6 +41151,7 @@ void state_batterya_cb(void);
 void state_watts_cb(void);
 void state_misc_cb(void);
 void state_mx_status_cb(void);
+void state_mx_log_cb(void);
 static void state_fwrev_cb(void);
 
 
@@ -41271,6 +41295,10 @@ void main(void)
     break;
    }
    break;
+  case state_mx_log:
+   send_mx_cmd(cmd_mx_log);
+   rec_mx_cmd(state_mx_log_cb, 17);
+   break;
   case state_misc:
    send_mx_cmd(cmd_misc);
    rec_mx_cmd(state_misc_cb, 5);
@@ -41325,7 +41353,7 @@ void main(void)
       e_update = 0;
      }
     } else {
-# 488 "main.c"
+# 498 "main.c"
      snprintf(buffer, 96, "EMon  %6.1fWh   %c%c    ", EBD.bat_energy / 360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
      eaDogM_WriteStringAtPos(1, 0, buffer);
      snprintf(buffer, 96, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
@@ -41371,7 +41399,11 @@ static void rec_mx_cmd(void (* DataHandler)(void), const uint8_t rec_len)
  if (FM_rx_ready()) {
   if (FM_rx_count() >= rec_len) {
    online_count = 0;
-   FM_rx(abuf);
+   if (rec_len == 17) {
+    FM_rx(cbuf);
+   } else {
+    FM_rx(abuf);
+   }
    DataHandler();
   } else {
    if (online_count++ > 30000) {
@@ -41387,7 +41419,7 @@ static void rec_mx_cmd(void (* DataHandler)(void), const uint8_t rec_len)
   B.FM80_online = 0;
   cc_mode = STATUS_LAST;
   state = state_watts;
-  abuf[2] = 0x0;
+  mx_code = 0x0;
   DataHandler();
  }
 
@@ -41397,7 +41429,8 @@ void state_init_cb(void)
 {
  float Soc;
 
- if (abuf[2] == 0x03) {
+ mx_code = abuf[2]&0xf;
+ if (mx_code == 0x03) {
   printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: FM80 Online\r\n", B.rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
   if (!B.FM80_online) {
    Soc = ((float) Volts_to_SOC(vw, vf) * 0.01f);
@@ -41462,6 +41495,15 @@ void state_watts_cb(void)
 
 
  panel_watts = (abuf[2] + (abuf[1] << 8));
+ if (B.FM80_online) {
+  state = state_mx_log;
+ } else {
+  state = state_mx_status;
+ }
+}
+
+void state_mx_log_cb(void)
+{
  state = state_mx_status;
 }
 
@@ -41533,8 +41575,7 @@ static void state_fwrev_cb(void)
 
 void state_misc_cb(void)
 {
- if (abuf[2] == 0x03) {
-  B.FM80_online = 1;
+ if (mx_code == 0x03) {
  } else {
   B.FM80_online = 0;
   cc_mode = STATUS_LAST;
