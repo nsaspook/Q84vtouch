@@ -212,6 +212,8 @@ enum state_type {
 	state_batterya,
 	state_watts,
 	state_fwrev,
+	state_time,
+	state_date,
 	state_mx_log,
 	state_misc,
 	state_mx_status,
@@ -227,7 +229,7 @@ const char *build_date = __DATE__, *build_time = __TIME__;
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
-time_t can_timer = 1066668182; /* Mon Oct 20 16:43:02 2003 */
+time_t can_timer = 1694196350; /* default epoch time */
 struct tm *can_newtime;
 
 #ifdef DATA_DEBUG
@@ -272,6 +274,8 @@ void state_misc_cb(void);
 void state_mx_status_cb(void);
 void state_mx_log_cb(void);
 static void state_fwrev_cb(void);
+static void state_time_cb(void);
+static void state_date_cb(void);
 
 /*
  * busy loop delay with WDT reset
@@ -357,12 +361,16 @@ void main(void)
 		B.mui[i] = DeviceID_Read(DIA_MUI + (i * 2)); // Read CPU ID from memory and store in array
 	}
 	{
-		char s_buffer[21];
-		snprintf(s_buffer, 20, "0X%X%X%X%X%X%X%X%X         ", B.mui[0], B.mui[1], B.mui[2], B.mui[3], B.mui[4], B.mui[5], B.mui[6], B.mui[7]);
+		char s_buffer[22];
+		snprintf(s_buffer, 21, "0X%X%X%X%X%X%X%X%X         ", B.mui[0], B.mui[1], B.mui[2], B.mui[3], B.mui[4], B.mui[5], B.mui[6], B.mui[7]);
 		eaDogM_Scroll_String(s_buffer);
 		can_newtime = localtime(&can_timer);
-		snprintf(s_buffer, 20, "%s", asctime(can_newtime));
+#ifdef SDEBUG
+		snprintf(s_buffer, 21, "%s", asctime(can_newtime));
 		eaDogM_Scroll_String(s_buffer);
+		snprintf(s_buffer, 21, "CheckSum %X", calc_checksum((uint8_t *) & cmd_panelv[1], 10));
+		eaDogM_Scroll_String(s_buffer);
+#endif
 	}
 	while (true) {
 		IO_RD5_SetHigh(); // main loop timing
@@ -421,6 +429,14 @@ void main(void)
 			send_mx_cmd(cmd_mx_log);
 			rec_mx_cmd(state_mx_log_cb, REC_LOG_LEN);
 			break;
+		case state_time: // FM80 send time data
+			send_mx_cmd(cmd_time);
+			rec_mx_cmd(state_time_cb, REC_LEN);
+			break;
+		case state_date: // FM80 send date data
+			send_mx_cmd(cmd_date);
+			rec_mx_cmd(state_date_cb, REC_LEN);
+			break;
 		case state_misc:
 			send_mx_cmd(cmd_misc);
 			rec_mx_cmd(state_misc_cb, REC_LEN);
@@ -435,11 +451,16 @@ void main(void)
 			eaDogM_Scroll_Task();
 			B.one_sec_flag = false;
 			B.canbus_online = (!C1TXQCONHbits.TXREQ)&0x01;
+			if (!B.canbus_online) {
+				C.tm_ok = false;
+			}
 			B.modbus_online = C.data_ok;
 #ifdef CAN_DEBUG
 			snprintf(buffer, MAX_B_BUF, "%X %X %X %X  %lu %lu %lu      ", C1BDIAG0T, C1BDIAG0U, C1BDIAG0H, C1BDIAG0L, can_rec_count.rec_count, msg[0].msgId, msg[1].msgId);
 			eaDogM_WriteStringAtPos(0, 0, buffer);
-			snprintf(buffer, MAX_B_BUF, "%X %X %X %X  %u %X %u       ", C1BDIAG1T, C1BDIAG1U, C1BDIAG1H, C1BDIAG1L, can_rec_count.rec_flag, msg[0].field.formatType, EBD.bat_cycles);
+			//			snprintf(buffer, MAX_B_BUF, "%X %X %X %X  %u %X %u       ", C1BDIAG1T, C1BDIAG1U, C1BDIAG1H, C1BDIAG1L, can_rec_count.rec_flag, msg[0].field.formatType, EBD.bat_cycles);
+			can_newtime = localtime(&can_timer);
+			snprintf(buffer, 21, "%s", asctime(can_newtime));
 			eaDogM_WriteStringAtPos(1, 0, buffer);
 #endif
 		}
@@ -729,6 +750,33 @@ void state_mx_status_cb(void)
 static void state_fwrev_cb(void)
 {
 	B.fwrev[fw_state++] = abuf[2];
+	if (!C.tm_ok) {
+		state = state_misc;
+	} else {
+		C.tm_ok = false;
+		state = state_time;
+	}
+}
+
+static void state_time_cb(void)
+{
+	char s_buffer[22];
+
+	snprintf(s_buffer, 21, "Time CSum %X        ", calc_checksum((uint8_t *) & cmd_time[1], 10));
+#ifdef SDEBUG
+	eaDogM_Scroll_String(s_buffer);
+#endif
+	state = state_date;
+}
+
+static void state_date_cb(void)
+{
+	char s_buffer[22];
+
+	snprintf(s_buffer, 21, "Date CSum %X        ", calc_checksum((uint8_t *) & cmd_date[1], 10));
+#ifdef SDEBUG
+	eaDogM_Scroll_String(s_buffer);
+#endif
 	state = state_misc;
 }
 

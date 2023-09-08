@@ -13,6 +13,15 @@ volatile can_rec_count_t can_rec_count = {
 	.rec_flag = false,
 };
 
+union {
+	uint16_t Word;
+
+	struct {
+		uint8_t Byte1 : 8;
+		uint8_t Byte2 : 8;
+	} structBytes;
+} myVar;
+
 /*
  * process the FIFO data into msg structure
  */
@@ -20,7 +29,7 @@ void Can1FIFO1NotEmptyHandler(void)
 {
 	uint8_t tries = 0;
 	static uint8_t half = 0;
-	char s_buffer[21];
+	char s_buffer[22];
 
 	while (true) {
 		can_rec_count.rec_count++;
@@ -56,8 +65,29 @@ void Can1FIFO1NotEmptyHandler(void)
 			if ((msg[half].msgId & 0xf) == EMON_TM) {
 				memcpy((void *) &can_timer, msg[half].data, 4);
 				can_newtime = localtime(&can_timer);
-				snprintf(s_buffer, 20, "%s", asctime(can_newtime));
+				update_time(can_newtime, &EBD);
+				/*
+				 * update the FM80 time and data messages with a proper checksum
+				 */
+				myVar.Word = EBD.time;
+				cmd_time[5] = myVar.structBytes.Byte1;
+				cmd_time[4] = myVar.structBytes.Byte2;
+				myVar.Word = calc_checksum((uint8_t *) & cmd_time[1], 10);
+				cmd_time[7] = myVar.structBytes.Byte1;
+				cmd_time[6] = myVar.structBytes.Byte2;
+				myVar.Word = EBD.date;
+				cmd_date[5] = myVar.structBytes.Byte1;
+				cmd_date[4] = myVar.structBytes.Byte2;
+				myVar.Word = calc_checksum((uint8_t *) & cmd_date[1], 10);
+				cmd_date[7] = myVar.structBytes.Byte1;
+				cmd_date[6] = myVar.structBytes.Byte2;
+				snprintf(s_buffer, 21, "%s", asctime(can_newtime));
+#ifdef SDEBUG
 				eaDogM_Scroll_String(s_buffer);
+#endif
+				if (B.canbus_online && B.FM80_online) {
+					C.tm_ok = true; // FM80 time date data valid to send flag
+				}
 			}
 			break;
 		}

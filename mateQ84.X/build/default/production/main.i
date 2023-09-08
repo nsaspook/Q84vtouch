@@ -40675,7 +40675,7 @@ struct tm *getdate (const char *);
  void ringBufS_put_dma_cpy(ringBufS_t *, const char *, const uint8_t);
  void *ringBufS_flush(ringBufS_t *_this, const _Bool clearBuffer);
 # 40 "./../qconfig.h" 2
-# 60 "./../qconfig.h"
+# 61 "./../qconfig.h"
 const char spin[6][20] = {
  "||//--",
  "||//--\\\\",
@@ -40761,8 +40761,8 @@ void delay_ms(const uint16_t);
 # 23 "./mxcmd.h" 2
 
 
- const char build_version[] = "V1.65 FM80 Q84";
-# 56 "./mxcmd.h"
+ const char build_version[] = "V1.70 FM80 Q84";
+# 57 "./mxcmd.h"
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
  const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};
@@ -40775,6 +40775,8 @@ void delay_ms(const uint16_t);
  const uint16_t cmd_fwreva[] = {0x100, 0x02, 0x00, 0x02, 0x00, 0x00, 0x00, 0x04};
  const uint16_t cmd_fwrevb[] = {0x100, 0x02, 0x00, 0x03, 0x00, 0x00, 0x00, 0x05};
  const uint16_t cmd_fwrevc[] = {0x100, 0x02, 0x00, 0x04, 0x00, 0x00, 0x00, 0x06};
+ uint16_t cmd_time[] = {0x100, 0x03, 0x40, 0x04, 0x00, 0x00, 0x00, 0x00};
+ uint16_t cmd_date[] = {0x100, 0x03, 0x40, 0x05, 0x00, 0x00, 0x00, 0x00};
 
  enum status_type {
   STATUS_SLEEPING = 0,
@@ -40852,6 +40854,7 @@ void delay_ms(const uint16_t);
  extern void FM_restart(void);
  extern void wdtdelay(const uint32_t);
  extern float lp_filter(const float, const uint8_t, const int8_t);
+ extern uint16_t calc_checksum(uint8_t*, uint8_t);
 
  extern B_type B;
 # 195 "main.c" 2
@@ -40959,7 +40962,7 @@ void delay_ms(const uint16_t);
   cmd_type modbus_command;
   uint16_t req_length;
   int8_t trace;
-  _Bool id_ok, passwd_ok, config_ok, data_ok, light_ok, serial_ok, version_ok;
+  _Bool id_ok, passwd_ok, config_ok, data_ok, light_ok, serial_ok, version_ok, tm_ok;
   uint32_t data_count, data_prev;
   volatile M_data M;
  } C_data;
@@ -41110,25 +41113,7 @@ void delay_ms(const uint16_t);
 # 197 "main.c" 2
 
 # 1 "./../canfd.h" 1
-# 41 "./../canfd.h"
- typedef struct {
-  uint32_t rec_count;
-  _Bool rec_flag;
- } can_rec_count_t;
-
- extern volatile can_rec_count_t can_rec_count;
- extern CAN_MSG_OBJ msg[2];
- extern volatile uint8_t rxMsgData[4][64];
- extern time_t can_timer;
- extern struct tm *can_newtime;
-
- void Can1FIFO1NotEmptyHandler(void);
-
- extern char can_buffer[64*2], info_buffer[96];
- void can_fd_tx(void);
- void can_setup(void);
-# 198 "main.c" 2
-
+# 21 "./../canfd.h"
 # 1 "./../batmon.h" 1
 # 43 "./../batmon.h"
  typedef struct EB_data {
@@ -41138,7 +41123,7 @@ void delay_ms(const uint16_t);
   float FMw, FMpv, FMa, FMbv, ENw, ENva, ENvar, ENac;
   float volt_whole, bat_amp_whole;
   float bat_energy;
-  uint16_t cc_mode, bat_cycles, bat_mode;
+  uint16_t cc_mode, bat_cycles, bat_mode, time, date;
   uint32_t bat_time;
   uint16_t crc;
  } EB_data;
@@ -41176,20 +41161,32 @@ void delay_ms(const uint16_t);
  void wr_bm_data(uint8_t *);
  void get_bm_data(EB_data *);
  void compute_bm_data(EB_data *);
+ void update_time(struct tm *, EB_data *);
 
  void DATAEE_WriteByte(const uint16_t, const uint8_t);
  uint8_t DATAEE_ReadByte(const uint16_t);
 
  uint16_t Volts_to_SOC(const uint16_t, const uint16_t);
-# 199 "main.c" 2
+# 22 "./../canfd.h" 2
+# 42 "./../canfd.h"
+ typedef struct {
+  uint32_t rec_count;
+  _Bool rec_flag;
+ } can_rec_count_t;
 
+ extern volatile can_rec_count_t can_rec_count;
+ extern CAN_MSG_OBJ msg[2];
+ extern volatile uint8_t rxMsgData[4][64];
+ extern time_t can_timer;
+ extern struct tm *can_newtime;
 
+ void Can1FIFO1NotEmptyHandler(void);
 
-
-
-
-
-
+ extern char can_buffer[64*2], info_buffer[96];
+ void can_fd_tx(void);
+ void can_setup(void);
+# 198 "main.c" 2
+# 207 "main.c"
 enum state_type {
  state_init,
  state_status,
@@ -41198,6 +41195,8 @@ enum state_type {
  state_batterya,
  state_watts,
  state_fwrev,
+ state_time,
+ state_date,
  state_mx_log,
  state_misc,
  state_mx_status,
@@ -41209,11 +41208,11 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[96], can_buffer[64*2], info_buffer[96];
-const char *build_date = "Sep  7 2023", *build_time = "18:47:31";
+const char *build_date = "Sep  8 2023", *build_time = "11:30:26";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
-time_t can_timer = 1066668182;
+time_t can_timer = 1694196350;
 struct tm *can_newtime;
 
 
@@ -41258,6 +41257,8 @@ void state_misc_cb(void);
 void state_mx_status_cb(void);
 void state_mx_log_cb(void);
 static void state_fwrev_cb(void);
+static void state_time_cb(void);
+static void state_date_cb(void);
 
 
 
@@ -41343,12 +41344,16 @@ void main(void)
   B.mui[i] = DeviceID_Read(0x2C0000 + (i * 2));
  }
  {
-  char s_buffer[21];
-  snprintf(s_buffer, 20, "0X%X%X%X%X%X%X%X%X         ", B.mui[0], B.mui[1], B.mui[2], B.mui[3], B.mui[4], B.mui[5], B.mui[6], B.mui[7]);
+  char s_buffer[22];
+  snprintf(s_buffer, 21, "0X%X%X%X%X%X%X%X%X         ", B.mui[0], B.mui[1], B.mui[2], B.mui[3], B.mui[4], B.mui[5], B.mui[6], B.mui[7]);
   eaDogM_Scroll_String(s_buffer);
   can_newtime = localtime(&can_timer);
-  snprintf(s_buffer, 20, "%s", asctime(can_newtime));
-  eaDogM_Scroll_String(s_buffer);
+
+
+
+
+
+
  }
  while (1) {
   do { LATDbits.LATD5 = 1; } while(0);
@@ -41407,6 +41412,14 @@ void main(void)
    send_mx_cmd(cmd_mx_log);
    rec_mx_cmd(state_mx_log_cb, 17);
    break;
+  case state_time:
+   send_mx_cmd(cmd_time);
+   rec_mx_cmd(state_time_cb, 5);
+   break;
+  case state_date:
+   send_mx_cmd(cmd_date);
+   rec_mx_cmd(state_date_cb, 5);
+   break;
   case state_misc:
    send_mx_cmd(cmd_misc);
    rec_mx_cmd(state_misc_cb, 5);
@@ -41421,13 +41434,11 @@ void main(void)
    eaDogM_Scroll_Task();
    B.one_sec_flag = 0;
    B.canbus_online = (!C1TXQCONHbits.TXREQ)&0x01;
+   if (!B.canbus_online) {
+    C.tm_ok = 0;
+   }
    B.modbus_online = C.data_ok;
-
-
-
-
-
-
+# 466 "main.c"
   }
   if (TimerDone(TMR_SPIN)) {
    {
@@ -41461,7 +41472,7 @@ void main(void)
       e_update = 0;
      }
     } else {
-# 505 "main.c"
+# 526 "main.c"
      snprintf(buffer, 96, "EMon  %6.1fWh   %c%c    ", EBD.bat_energy / 360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
      eaDogM_WriteStringAtPos(1, 0, buffer);
      snprintf(buffer, 96, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
@@ -41689,6 +41700,33 @@ void state_mx_status_cb(void)
 static void state_fwrev_cb(void)
 {
  B.fwrev[fw_state++] = abuf[2];
+ if (!C.tm_ok) {
+  state = state_misc;
+ } else {
+  C.tm_ok = 0;
+  state = state_time;
+ }
+}
+
+static void state_time_cb(void)
+{
+ char s_buffer[22];
+
+ snprintf(s_buffer, 21, "Time CSum %X        ", calc_checksum((uint8_t *) & cmd_time[1], 10));
+
+
+
+ state = state_date;
+}
+
+static void state_date_cb(void)
+{
+ char s_buffer[22];
+
+ snprintf(s_buffer, 21, "Date CSum %X        ", calc_checksum((uint8_t *) & cmd_date[1], 10));
+
+
+
  state = state_misc;
 }
 

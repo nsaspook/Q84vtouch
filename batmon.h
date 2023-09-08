@@ -47,7 +47,7 @@ extern "C" {
 		float FMw, FMpv, FMa, FMbv, ENw, ENva, ENvar, ENac;
 		float volt_whole, bat_amp_whole;
 		float bat_energy;
-		uint16_t cc_mode, bat_cycles, bat_mode;
+		uint16_t cc_mode, bat_cycles, bat_mode, time, date;
 		uint32_t bat_time;
 		uint16_t crc;
 	} EB_data;
@@ -85,6 +85,7 @@ extern "C" {
 	void wr_bm_data(uint8_t *);
 	void get_bm_data(EB_data *);
 	void compute_bm_data(EB_data *);
+	void update_time(struct tm *, EB_data *);
 
 	void DATAEE_WriteByte(const uint16_t, const uint8_t);
 	uint8_t DATAEE_ReadByte(const uint16_t);

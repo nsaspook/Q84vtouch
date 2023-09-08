@@ -180,7 +180,7 @@ extern "C" {
 		cmd_type modbus_command;
 		uint16_t req_length;
 		int8_t trace;
-		bool id_ok, passwd_ok, config_ok, data_ok, light_ok, serial_ok, version_ok;
+		bool id_ok, passwd_ok, config_ok, data_ok, light_ok, serial_ok, version_ok, tm_ok;
 		uint32_t data_count, data_prev;
 		volatile M_data M;
 	} C_data;

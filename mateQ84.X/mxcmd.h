@@ -22,7 +22,7 @@ extern "C" {
 #include "../timers.h"
 
 #define VER	1
-	const char build_version[] = "V1.65 FM80 Q84";
+	const char build_version[] = "V1.70 FM80 Q84";
 	/*
 	 * code changes
 	 * 1.55 remove critical section interrupt disables for FM80 serial
@@ -36,6 +36,7 @@ extern "C" {
 	 * 1.62 add modules firmware/ID capture and display
 	 * 1.63 FM80 FW fixes
 	 * 1.65 add FM80 log data reporting for the previous day
+	 * 1.70 add date and time updates via CAN to FM80 from the network server
 	 */
 
 #define MAX_B_BUF	96
@@ -65,6 +66,8 @@ extern "C" {
 	const uint16_t cmd_fwreva[] = {0x100, 0x02, 0x00, 0x02, 0x00, 0x00, 0x00, 0x04};
 	const uint16_t cmd_fwrevb[] = {0x100, 0x02, 0x00, 0x03, 0x00, 0x00, 0x00, 0x05};
 	const uint16_t cmd_fwrevc[] = {0x100, 0x02, 0x00, 0x04, 0x00, 0x00, 0x00, 0x06};
+	uint16_t cmd_time[] = {0x100, 0x03, 0x40, 0x04, 0x00, 0x00, 0x00, 0x00};
+	uint16_t cmd_date[] = {0x100, 0x03, 0x40, 0x05, 0x00, 0x00, 0x00, 0x00};
 
 	enum status_type {
 		STATUS_SLEEPING = 0,
@@ -142,6 +145,7 @@ extern "C" {
 	extern void FM_restart(void);
 	extern void wdtdelay(const uint32_t);
 	extern float lp_filter(const float, const uint8_t, const int8_t);
+	extern uint16_t calc_checksum(uint8_t*, uint8_t);
 
 	extern B_type B;
 

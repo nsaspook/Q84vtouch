@@ -177,3 +177,12 @@ float lp_filter(const float new, const uint8_t bn, const int8_t slow)
 	// exponentially weighted moving average
 	return smooth[bn] = smooth[bn] + ((new - smooth[bn]) * lp_speed);
 }
+
+uint16_t calc_checksum(uint8_t* data, uint8_t len)
+{
+    uint16_t sum = 0;
+    for (int i = 0; i < len; i++) {
+        sum += data[i];
+    }
+    return sum;
+}
