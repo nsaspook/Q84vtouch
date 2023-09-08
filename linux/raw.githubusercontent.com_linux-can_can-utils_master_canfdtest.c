@@ -50,14 +50,16 @@
 #define CAN_MSG_ID_PING_X 0x80000003
 #define EMON_ER   0x8000000F // error reporting
 #define EMON_CO   0x8000000C // config reporting
+#define EMON_TM   0x8000000A // send time to mateQ84
 #define CAN_MSG_ID_PONG  0x3
 #define CAN_MSG_LEN 64
 #define CAN_FULL_BUFFER CAN_MSG_LEN+CAN_MSG_LEN+1
-#define CAN_MSG_COUNT 50
+#define CAN_MSG_COUNT 1
 #define CAN_MSG_WAIT 27
+#define CAN_TM_TIME 8
 
 static int running = 1;
-static int verbose;
+static int verbose = 2;
 static int sockfd;
 static int test_loops;
 static int exit_sig;
@@ -72,6 +74,8 @@ static int print_hex = 0;
 static int msg_len = CAN_MSG_LEN;
 static int is_extended_frame_format = 1;
 uint8_t full_buffer[CAN_FULL_BUFFER];
+
+long long current_timestamp(void);
 
 static void print_usage(char *prg)
 {
@@ -171,7 +175,7 @@ static int compare_frame(const struct canfd_frame *exp, const struct canfd_frame
 	int i, err = 0;
 	const canid_t expected_can_id = inc ? can_id_pong : can_id_ping;
 
-	if (rec->can_id != expected_can_id) {
+	if (0 && rec->can_id != expected_can_id) {
 		printf("Message ID mismatch!\n");
 		print_compare(expected_can_id, exp->data, exp->len,
 			rec->can_id, rec->data, rec->len, inc);
@@ -184,15 +188,6 @@ static int compare_frame(const struct canfd_frame *exp, const struct canfd_frame
 		running = 0;
 		err = -1;
 	} else {
-		for (i = 0; i < rec->len; i++) {
-			if (rec->data[i] != (uint8_t) (exp->data[i] + inc)) {
-				printf("Databyte %x mismatch!\n", i);
-				print_compare(expected_can_id, exp->data, exp->len,
-					rec->can_id, rec->data, rec->len, inc);
-				running = 0;
-				err = -1;
-			}
-		}
 	}
 	return err;
 }
@@ -365,6 +360,8 @@ static int can_echo_gen(void)
 	int send_pos = 0, recv_rx_pos = 0, recv_tx_pos = 0, unprocessed = 0, loops = 0;
 	int err = 0;
 	int i;
+	static int sec_30 = 0;
+	time_t t, timeofs;
 
 	tx_frames = calloc(inflight_count, sizeof(* tx_frames));
 	if (!tx_frames) {
@@ -381,14 +378,18 @@ static int can_echo_gen(void)
 		if (unprocessed < inflight_count) {
 			/* still send messages */
 			tx_frames[send_pos].len = msg_len;
-			tx_frames[send_pos].can_id = can_id_ping;
+			tx_frames[send_pos].can_id = EMON_TM;
+			t = time(NULL); // get gmt
+			timeofs = timegm(localtime(&t)); // convert to local TZ
+			memcpy(tx_frames[send_pos].data, &timeofs, sizeof(time_t));
 			recv_tx[send_pos] = 0;
 
-			for (i = 0; i < msg_len; i++)
-				tx_frames[send_pos].data[i] = counter + i;
-			if (send_frame(&tx_frames[send_pos])) {
-				err = -1;
-				goto out_free;
+			if (sec_30++ > CAN_TM_TIME) {
+				sec_30 = 0;
+				if (send_frame(&tx_frames[send_pos])) {
+					err = -1;
+					goto out_free;
+				}
 			}
 
 			send_pos++;
@@ -424,9 +425,9 @@ static int can_echo_gen(void)
 			}
 
 			if (!recv_tx[recv_rx_pos]) {
-				printf("RX before TX!\n");
-				print_frame(rx_frame.can_id, rx_frame.data, rx_frame.len, 0);
-				running = 0;
+				//				printf("RX before TX!\n");
+				//				print_frame(rx_frame.can_id, rx_frame.data, rx_frame.len, 0);
+				//				running = 0;
 			}
 			/* compare with expected */
 			err = compare_frame(&tx_frames[recv_rx_pos], &rx_frame, 1);
@@ -458,7 +459,7 @@ int main(int argc, char *argv[])
 	struct sockaddr_can addr;
 	char *intf_name;
 	int family = PF_CAN, type = SOCK_RAW, proto = CAN_RAW;
-	int echo_gen = 0;
+	int echo_gen = 1;
 	int opt, err;
 	int enable_socket_option = 1;
 	int filter = 0;
@@ -638,4 +639,13 @@ int main(int argc, char *argv[])
 	}
 
 	return err;
+}
+
+long long current_timestamp(void)
+{
+	struct timeval te;
+	gettimeofday(&te, NULL); // get current time
+	long long milliseconds = te.tv_sec * 1000LL + te.tv_usec / 1000; // calculate milliseconds
+	// printf("milliseconds: %lld\n", milliseconds);
+	return milliseconds;
 }

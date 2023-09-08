@@ -40560,6 +40560,103 @@ void SystemArbiter_Initialize(void);
 # 26 "./../eadog.h"
 # 1 "./../qconfig.h" 1
 # 38 "./../qconfig.h"
+# 1 "/opt/microchip/xc8/v2.41/pic/include/c99/time.h" 1 3
+# 33 "/opt/microchip/xc8/v2.41/pic/include/c99/time.h" 3
+# 1 "/opt/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 1 3
+# 76 "/opt/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 3
+typedef unsigned long time_t;
+# 293 "/opt/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 3
+typedef void * timer_t;
+
+
+
+
+typedef int clockid_t;
+
+
+
+
+typedef unsigned long clock_t;
+# 313 "/opt/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h" 3
+struct timespec { time_t tv_sec; long tv_nsec; };
+
+
+
+
+
+typedef int pid_t;
+# 34 "/opt/microchip/xc8/v2.41/pic/include/c99/time.h" 2 3
+
+
+
+
+
+
+struct tm {
+ int tm_sec;
+ int tm_min;
+ int tm_hour;
+ int tm_mday;
+ int tm_mon;
+ int tm_year;
+ int tm_wday;
+ int tm_yday;
+ int tm_isdst;
+ long __tm_gmtoff;
+ const char *__tm_zone;
+};
+
+clock_t clock (void);
+time_t time (time_t *);
+double difftime (time_t, time_t);
+time_t mktime (struct tm *);
+size_t strftime (char *restrict, size_t, const char *restrict, const struct tm *restrict);
+struct tm *gmtime (const time_t *);
+struct tm *localtime (const time_t *);
+char *asctime (const struct tm *);
+char *ctime (const time_t *);
+int timespec_get(struct timespec *, int);
+# 73 "/opt/microchip/xc8/v2.41/pic/include/c99/time.h" 3
+size_t strftime_l (char * restrict, size_t, const char * restrict, const struct tm * restrict, locale_t);
+
+struct tm *gmtime_r (const time_t *restrict, struct tm *restrict);
+struct tm *localtime_r (const time_t *restrict, struct tm *restrict);
+char *asctime_r (const struct tm *restrict, char *restrict);
+char *ctime_r (const time_t *, char *);
+
+void tzset (void);
+
+struct itimerspec {
+ struct timespec it_interval;
+ struct timespec it_value;
+};
+# 102 "/opt/microchip/xc8/v2.41/pic/include/c99/time.h" 3
+int nanosleep (const struct timespec *, struct timespec *);
+int clock_getres (clockid_t, struct timespec *);
+int clock_gettime (clockid_t, struct timespec *);
+int clock_settime (clockid_t, const struct timespec *);
+int clock_nanosleep (clockid_t, int, const struct timespec *, struct timespec *);
+int clock_getcpuclockid (pid_t, clockid_t *);
+
+struct sigevent;
+int timer_create (clockid_t, struct sigevent *restrict, timer_t *restrict);
+int timer_delete (timer_t);
+int timer_settime (timer_t, int, const struct itimerspec *restrict, struct itimerspec *restrict);
+int timer_gettime (timer_t, struct itimerspec *);
+int timer_getoverrun (timer_t);
+
+extern char *tzname[2];
+
+
+
+
+
+char *strptime (const char *restrict, const char *restrict, struct tm *restrict);
+extern int daylight;
+extern long timezone;
+extern int getdate_err;
+struct tm *getdate (const char *);
+# 39 "./../qconfig.h" 2
 # 1 "./../ringbufs.h" 1
 # 19 "./../ringbufs.h"
  typedef struct ringBufS_t {
@@ -40577,8 +40674,8 @@ void SystemArbiter_Initialize(void);
  void ringBufS_put_dma(ringBufS_t *_this, const uint8_t c);
  void ringBufS_put_dma_cpy(ringBufS_t *, const char *, const uint8_t);
  void *ringBufS_flush(ringBufS_t *_this, const _Bool clearBuffer);
-# 39 "./../qconfig.h" 2
-# 59 "./../qconfig.h"
+# 40 "./../qconfig.h" 2
+# 60 "./../qconfig.h"
 const char spin[6][20] = {
  "||//--",
  "||//--\\\\",
@@ -40669,8 +40766,7 @@ void delay_ms(const uint16_t);
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
  const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};
-
- const uint16_t cmd_mx_log[] = {0x100, 0x16, 0x00, 0x00, 0x00, 0x01, 0x00, 0x17};
+ uint16_t cmd_mx_log[] = {0x100, 0x16, 0x00, 0x00, 0x00, 0x01, 0x00, 0x17};
  const uint16_t cmd_panelv[] = {0x100, 0x02, 0x01, 0xc6, 0x00, 0x00, 0x00, 0xc9};
  const uint16_t cmd_batteryv[] = {0x100, 0x02, 0x00, 0x08, 0x00, 0x00, 0x00, 0x0a};
  const uint16_t cmd_batterya[] = {0x100, 0x02, 0x01, 0xc7, 0x00, 0x00, 0x00, 0xca};
@@ -40732,6 +40828,7 @@ void delay_ms(const uint16_t);
   int16_t bat_max;
   int16_t absorb_time;
   int16_t float_time;
+  uint8_t select;
  } mx_logpage_t;
 
  typedef struct B_type {
@@ -41013,7 +41110,7 @@ void delay_ms(const uint16_t);
 # 197 "main.c" 2
 
 # 1 "./../canfd.h" 1
-# 40 "./../canfd.h"
+# 41 "./../canfd.h"
  typedef struct {
   uint32_t rec_count;
   _Bool rec_flag;
@@ -41022,6 +41119,8 @@ void delay_ms(const uint16_t);
  extern volatile can_rec_count_t can_rec_count;
  extern CAN_MSG_OBJ msg[2];
  extern volatile uint8_t rxMsgData[4][64];
+ extern time_t can_timer;
+ extern struct tm *can_newtime;
 
  void Can1FIFO1NotEmptyHandler(void);
 
@@ -41110,9 +41209,12 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[96], can_buffer[64*2], info_buffer[96];
-const char *build_date = "Sep  7 2023", *build_time = "13:12:34";
+const char *build_date = "Sep  7 2023", *build_time = "18:47:31";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
+
+time_t can_timer = 1066668182;
+struct tm *can_newtime;
 
 
 _Bool show_can;
@@ -41127,6 +41229,7 @@ B_type B = {
  .flush = 0,
  .canbus_online = 0,
  .modbus_online = 0,
+ .log.select = 1,
 };
 
 mx_logpage_t mx_log;
@@ -41243,6 +41346,9 @@ void main(void)
   char s_buffer[21];
   snprintf(s_buffer, 20, "0X%X%X%X%X%X%X%X%X         ", B.mui[0], B.mui[1], B.mui[2], B.mui[3], B.mui[4], B.mui[5], B.mui[6], B.mui[7]);
   eaDogM_Scroll_String(s_buffer);
+  can_newtime = localtime(&can_timer);
+  snprintf(s_buffer, 20, "%s", asctime(can_newtime));
+  eaDogM_Scroll_String(s_buffer);
  }
  while (1) {
   do { LATDbits.LATD5 = 1; } while(0);
@@ -41355,7 +41461,7 @@ void main(void)
       e_update = 0;
      }
     } else {
-# 498 "main.c"
+# 505 "main.c"
      snprintf(buffer, 96, "EMon  %6.1fWh   %c%c    ", EBD.bat_energy / 360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
      eaDogM_WriteStringAtPos(1, 0, buffer);
      snprintf(buffer, 96, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
@@ -41516,6 +41622,10 @@ void state_mx_log_cb(void)
  B.log.amp_hours = (int16_t) (cbuf[9] | ((cbuf[10] & 0x3F) << 8));
  B.log.absorb_time = (int16_t) (cbuf[6] | ((cbuf[7] & 0x0F) << 8));
  B.log.float_time = (int16_t) (((cbuf[7] & 0xF0) >> 4) | (cbuf[8] << 4));
+
+ cmd_mx_log[5] = B.log.select;
+ cmd_mx_log[7] = 0x16 + B.log.select;
+
  state = state_mx_status;
 }
 

@@ -227,6 +227,9 @@ const char *build_date = __DATE__, *build_time = __TIME__;
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
+time_t can_timer = 1066668182; /* Mon Oct 20 16:43:02 2003 */
+struct tm *can_newtime;
+
 #ifdef DATA_DEBUG
 bool show_can;
 uint8_t time_show_can;
@@ -240,6 +243,7 @@ B_type B = {
 	.flush = 0,
 	.canbus_online = 0,
 	.modbus_online = 0,
+	.log.select = 1,
 };
 
 mx_logpage_t mx_log;
@@ -355,6 +359,9 @@ void main(void)
 	{
 		char s_buffer[21];
 		snprintf(s_buffer, 20, "0X%X%X%X%X%X%X%X%X         ", B.mui[0], B.mui[1], B.mui[2], B.mui[3], B.mui[4], B.mui[5], B.mui[6], B.mui[7]);
+		eaDogM_Scroll_String(s_buffer);
+		can_newtime = localtime(&can_timer);
+		snprintf(s_buffer, 20, "%s", asctime(can_newtime));
 		eaDogM_Scroll_String(s_buffer);
 	}
 	while (true) {
@@ -655,6 +662,10 @@ void state_mx_log_cb(void)
 	B.log.amp_hours = (int16_t) (cbuf[9] | ((cbuf[10] & 0x3F) << 8));
 	B.log.absorb_time = (int16_t) (cbuf[6] | ((cbuf[7] & 0x0F) << 8));
 	B.log.float_time = (int16_t) (((cbuf[7] & 0xF0) >> 4) | (cbuf[8] << 4));
+
+	cmd_mx_log[5] = B.log.select;
+	cmd_mx_log[7] = 0x16 + B.log.select; // update the checksum
+
 	state = state_mx_status;
 }
 

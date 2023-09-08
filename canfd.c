@@ -20,6 +20,7 @@ void Can1FIFO1NotEmptyHandler(void)
 {
 	uint8_t tries = 0;
 	static uint8_t half = 0;
+	char s_buffer[21];
 
 	while (true) {
 		can_rec_count.rec_count++;
@@ -52,6 +53,12 @@ void Can1FIFO1NotEmptyHandler(void)
 			if ((msg[half].msgId & 0xf) == EMON_ER) {
 				memcpy((void *) &rxMsgData[CAN_ERROR_BUF][0], msg[half].data, CANFD_BYTES);
 			}
+			if ((msg[half].msgId & 0xf) == EMON_TM) {
+				memcpy((void *) &can_timer, msg[half].data, 4);
+				can_newtime = localtime(&can_timer);
+				snprintf(s_buffer, 20, "%s", asctime(can_newtime));
+				eaDogM_Scroll_String(s_buffer);
+			}
 			break;
 		}
 		if (++tries >= CAN_RX_TRIES) {
@@ -68,7 +75,7 @@ void Can1FIFO1NotEmptyHandler(void)
  */
 void can_fd_tx(void)
 {
-//	IO_RB7_Toggle(); // canbus timing
+	//	IO_RB7_Toggle(); // canbus timing
 	CAN_MSG_OBJ Transmission; //create the CAN message object
 	Transmission.field.brs = CAN_BRS_MODE; //Transmit the data bytes at data bit rate
 	Transmission.field.dlc = DLC_64; // 64 data bytes
@@ -97,7 +104,7 @@ void can_fd_tx(void)
 
 	if (C.serial_ok && C.version_ok) {
 		Transmission.msgId = (EMON_CO); // config packet type ID
-		snprintf(info_buffer, MAX_B_BUF,"SN: %s %u FW: 0X%X", ems.serial, ems.year, emv.firmware);
+		snprintf(info_buffer, MAX_B_BUF, "SN: %s %u FW: 0X%X", ems.serial, ems.year, emv.firmware);
 		Transmission.data = (uint8_t*) info_buffer; //transmit the data from the data bytes
 		if (CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(FIFO3) & CAN_TX_FIFO_AVAILABLE))//ensure that the FIFO has space for a message
 		{

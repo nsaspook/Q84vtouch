@@ -35,6 +35,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <time.h>
 #include "ringbufs.h"
 
 #define EADOGM_CMD_CLR		1
