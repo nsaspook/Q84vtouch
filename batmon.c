@@ -75,6 +75,11 @@ void get_bm_data(EB_data * EB)
 	if (UART2_is_rx_ready()) {
 		rxData = UART2_Read();
 		switch (rxData) {
+		case 'D':
+		case 'd':
+			snprintf(s_buffer, 21, "%s", asctime(can_newtime));
+			eaDogM_Scroll_String(s_buffer);
+			break;
 		case 'f':
 		case 'F':
 			EB->bat_energy = BAT_ENERGY;
@@ -257,18 +262,19 @@ device_id_data_t DeviceID_Read(device_id_address_t address)
 	return deviceID;
 }
 
-    void update_time(struct tm * ts,EB_data * EB)
-    {
-        EB->time = (
-            (uint16_t)((ts->tm_hour & 0x1F) << 11) |
-            (uint16_t)((ts->tm_min & 0x3F) << 5) |
-            (uint16_t)((ts->tm_sec & 0x1F) >> 1)
-        );
-        EB->date = (
-            (uint16_t)(((ts->tm_year-2000) & 0x7F) << 9) |
-            (uint16_t)((ts->tm_mon & 0x0F) << 5) |
-            (uint16_t)(ts->tm_mday & 0x1F)
-        );
-//        write((uint16_t)CommonRegisters::Time, time);
-//        write((uint16_t)CommonRegisters::Date, date);
-    }
+/*
+ * pack UNIX tm time/date into FM80 compatible 16-bit values
+ */
+void update_time(struct tm * ts, EB_data * EB)
+{
+	EB->time = (
+		(uint16_t) ((ts->tm_hour & 0x1F) << 11) |
+		(uint16_t) ((ts->tm_min & 0x3F) << 5) |
+		(uint16_t) ((ts->tm_sec & 0x1F) >> 1)
+		);
+	EB->date = (
+		(uint16_t) (((ts->tm_year - 2000) & 0x7F) << 9) |
+		(uint16_t) ((ts->tm_mon & 0x0F) << 5) |
+		(uint16_t) (ts->tm_mday & 0x1F)
+		);
+}

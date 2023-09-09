@@ -714,6 +714,8 @@ void state_mx_status_cb(void)
 			/*
 			 * log CSV values to the comm ports for data storage and processing
 			 */
+			snprintf(buffer, 25, "%s", asctime(can_newtime));
+			buffer[26] = 0; // remove newline
 			snprintf(can_buffer, MAX_C_BUF, log_format, LOG_VARS);
 			printf("%s", can_buffer); // log to USART
 			snprintf(buffer, MAX_B_BUF, "%d Watts %d.%01d Volts   ", panel_watts, volt_whole, volt_fract);
@@ -763,8 +765,8 @@ static void state_time_cb(void)
 	char s_buffer[22];
 
 	IO_RB6_Toggle(); // GPIO scope trace
-	snprintf(s_buffer, 21, "Time CSum %X        ", calc_checksum((uint8_t *) & cmd_time[1], 10));
 #ifdef SDEBUG
+	snprintf(s_buffer, 21, "Time CSum %X        ", calc_checksum((uint8_t *) & cmd_time[1], 10));
 	eaDogM_Scroll_String(s_buffer);
 #endif
 	IO_RB6_Toggle(); // GPIO scope trace
@@ -775,12 +777,10 @@ static void state_date_cb(void)
 {
 	char s_buffer[22];
 
-	IO_RB6_Toggle(); // GPIO scope trace
-	snprintf(s_buffer, 21, "Date CSum %X        ", calc_checksum((uint8_t *) & cmd_date[1], 10));
 #ifdef SDEBUG
+	snprintf(s_buffer, 21, "Date CSum %X        ", calc_checksum((uint8_t *) & cmd_date[1], 10));
 	eaDogM_Scroll_String(s_buffer);
 #endif
-	IO_RB6_Toggle(); // GPIO scope trace
 	state = state_misc;
 }
 

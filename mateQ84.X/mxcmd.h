@@ -22,7 +22,7 @@ extern "C" {
 #include "../timers.h"
 
 #define VER	1
-	const char build_version[] = "V1.70 FM80 Q84";
+	const char build_version[] = "V1.71 FM80 Q84";
 	/*
 	 * code changes
 	 * 1.55 remove critical section interrupt disables for FM80 serial
@@ -37,6 +37,7 @@ extern "C" {
 	 * 1.63 FM80 FW fixes
 	 * 1.65 add FM80 log data reporting for the previous day
 	 * 1.70 add date and time updates via CAN to FM80 from the network server
+	 * 1.71 time server cleanup and display codes
 	 */
 
 #define MAX_B_BUF	96

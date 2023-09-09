@@ -40761,8 +40761,8 @@ void delay_ms(const uint16_t);
 # 23 "./mxcmd.h" 2
 
 
- const char build_version[] = "V1.70 FM80 Q84";
-# 57 "./mxcmd.h"
+ const char build_version[] = "V1.71 FM80 Q84";
+# 58 "./mxcmd.h"
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
  const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};
@@ -41124,14 +41124,14 @@ void delay_ms(const uint16_t);
   float volt_whole, bat_amp_whole;
   float bat_energy;
   uint16_t cc_mode, bat_cycles, bat_mode, time, date;
-  uint32_t bat_time;
+  uint32_t bat_time, fm80_time;
   uint16_t crc;
  } EB_data;
 
 
 
 
- const char log_format[] = "^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%.1f,%.1f,%.1f,%4.1f,%.2f,%u,%5.3f,%5.3f,%u,~\r\n";
+ const char log_format[] = "^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%.1f,%.1f,%.1f,%4.1f,%.2f,%u,%5.3f,%5.3f,%u,%s,~\r\n";
 
 
 
@@ -41156,6 +41156,7 @@ void delay_ms(const uint16_t);
 
  extern EB_data EBD, EBD_ptr;
  extern uint16_t EBD_update;
+ extern struct tm *can_newtime;
 
  _Bool initbm_data(uint8_t *);
  void wr_bm_data(uint8_t *);
@@ -41208,7 +41209,7 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[96], can_buffer[64*2], info_buffer[96];
-const char *build_date = "Sep  8 2023", *build_time = "17:47:29";
+const char *build_date = "Sep  9 2023", *build_time = "13:48:49";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
@@ -41664,7 +41665,9 @@ void state_mx_status_cb(void)
 
 
 
-   snprintf(can_buffer, 64*2, log_format, abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, EBD.bat_energy / 3600.0f, EBD.bat_cycles, ((float) em.pfl1) / 1000.0f, ((float) emt.hz) / 1000.0f, B.rx_count++);
+   snprintf(buffer, 25, "%s", asctime(can_newtime));
+   buffer[26] = 0;
+   snprintf(can_buffer, 64*2, log_format, abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, EBD.bat_energy / 3600.0f, EBD.bat_cycles, ((float) em.pfl1) / 1000.0f, ((float) emt.hz) / 1000.0f, B.rx_count++,buffer);
    printf("%s", can_buffer);
    snprintf(buffer, 96, "%d Watts %d.%01d Volts   ", panel_watts, volt_whole, volt_fract);
    eaDogM_WriteStringAtPos(2, 0, buffer);
@@ -41713,7 +41716,7 @@ static void state_time_cb(void)
  char s_buffer[22];
 
  do { LATBbits.LATB6 = ~LATBbits.LATB6; } while(0);
- snprintf(s_buffer, 21, "Time CSum %X        ", calc_checksum((uint8_t *) & cmd_time[1], 10));
+
 
 
 
@@ -41725,12 +41728,10 @@ static void state_date_cb(void)
 {
  char s_buffer[22];
 
- do { LATBbits.LATB6 = ~LATBbits.LATB6; } while(0);
- snprintf(s_buffer, 21, "Date CSum %X        ", calc_checksum((uint8_t *) & cmd_date[1], 10));
 
 
 
- do { LATBbits.LATB6 = ~LATBbits.LATB6; } while(0);
+
  state = state_misc;
 }
 

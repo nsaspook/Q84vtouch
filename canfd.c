@@ -63,7 +63,8 @@ void Can1FIFO1NotEmptyHandler(void)
 				memcpy((void *) &rxMsgData[CAN_ERROR_BUF][0], msg[half].data, CANFD_BYTES);
 			}
 			if ((msg[half].msgId & 0xf) == EMON_TM) {
-				memcpy((void *) &can_timer, msg[half].data, 4);
+				memcpy((void *) &can_timer, msg[half].data, 4); // load 32-bit linux time from canbus packet
+				EBD.fm80_time = can_timer; // save remote Unix time from canbus packets
 				can_newtime = localtime(&can_timer);
 				update_time(can_newtime, &EBD);
 				/*
@@ -81,8 +82,8 @@ void Can1FIFO1NotEmptyHandler(void)
 				myVar.Word = calc_checksum((uint8_t *) & cmd_date[1], 10);
 				cmd_date[7] = myVar.structBytes.Byte1;
 				cmd_date[6] = myVar.structBytes.Byte2;
-				snprintf(s_buffer, 21, "%s", asctime(can_newtime));
 #ifdef SDEBUG
+				snprintf(s_buffer, 21, "%s", asctime(can_newtime));
 				eaDogM_Scroll_String(s_buffer);
 #endif
 				if (B.canbus_online && B.FM80_online) {
