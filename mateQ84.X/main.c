@@ -762,10 +762,12 @@ static void state_time_cb(void)
 {
 	char s_buffer[22];
 
+	IO_RB6_Toggle(); // GPIO scope trace
 	snprintf(s_buffer, 21, "Time CSum %X        ", calc_checksum((uint8_t *) & cmd_time[1], 10));
 #ifdef SDEBUG
 	eaDogM_Scroll_String(s_buffer);
 #endif
+	IO_RB6_Toggle(); // GPIO scope trace
 	state = state_date;
 }
 
@@ -773,10 +775,12 @@ static void state_date_cb(void)
 {
 	char s_buffer[22];
 
+	IO_RB6_Toggle(); // GPIO scope trace
 	snprintf(s_buffer, 21, "Date CSum %X        ", calc_checksum((uint8_t *) & cmd_date[1], 10));
 #ifdef SDEBUG
 	eaDogM_Scroll_String(s_buffer);
 #endif
+	IO_RB6_Toggle(); // GPIO scope trace
 	state = state_misc;
 }
 

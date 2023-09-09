@@ -41208,7 +41208,7 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[96], can_buffer[64*2], info_buffer[96];
-const char *build_date = "Sep  8 2023", *build_time = "11:30:26";
+const char *build_date = "Sep  8 2023", *build_time = "17:47:29";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
@@ -41712,10 +41712,12 @@ static void state_time_cb(void)
 {
  char s_buffer[22];
 
+ do { LATBbits.LATB6 = ~LATBbits.LATB6; } while(0);
  snprintf(s_buffer, 21, "Time CSum %X        ", calc_checksum((uint8_t *) & cmd_time[1], 10));
 
 
 
+ do { LATBbits.LATB6 = ~LATBbits.LATB6; } while(0);
  state = state_date;
 }
 
@@ -41723,10 +41725,12 @@ static void state_date_cb(void)
 {
  char s_buffer[22];
 
+ do { LATBbits.LATB6 = ~LATBbits.LATB6; } while(0);
  snprintf(s_buffer, 21, "Date CSum %X        ", calc_checksum((uint8_t *) & cmd_date[1], 10));
 
 
 
+ do { LATBbits.LATB6 = ~LATBbits.LATB6; } while(0);
  state = state_misc;
 }
 

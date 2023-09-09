@@ -5204,7 +5204,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _can_buffer `uc ~T0 @X0 -> 128 `i e ]
 [v _info_buffer `uc ~T0 @X0 -> 96 `i e ]
 "228
-[; ;main.c: 228: const char *build_date = "Sep  8 2023", *build_time = "11:30:26";
+[; ;main.c: 228: const char *build_date = "Sep  8 2023", *build_time = "17:47:29";
 [v _build_date `*Cuc ~T0 @X0 1 e ]
 [i _build_date
 :s 1C
@@ -6552,150 +6552,178 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 763:  char s_buffer[22];
 [v _s_buffer `uc ~T0 @X0 -> 22 `i a ]
 "765
-[; ;main.c: 765:  snprintf(s_buffer, 21, "Time CSum %X        ", calc_checksum((uint8_t *) & cmd_time[1], 10));
+[; ;main.c: 765:  do { LATBbits.LATB6 = ~LATBbits.LATB6; } while(0);
+[e :U 3410 ]
+{
+[e = . . _LATBbits 0 6 -> ~ -> . . _LATBbits 0 6 `i `uc ]
+}
+[e :U 3409 ]
+"766
+[; ;main.c: 766:  snprintf(s_buffer, 21, "Time CSum %X        ", calc_checksum((uint8_t *) & cmd_time[1], 10));
 [e ( _snprintf (2 , (. , , &U _s_buffer -> -> 21 `i `ui :s 26C -> ( _calc_checksum (2 , -> &U *U + &U _cmd_time * -> -> -> 1 `i `ui `ux -> -> # *U &U _cmd_time `ui `ux `*uc -> -> 10 `i `uc `ui ]
-"769
-[; ;main.c: 769:  state = state_date;
-[e = _state . `E24739 8 ]
 "770
-[; ;main.c: 770: }
+[; ;main.c: 770:  do { LATBbits.LATB6 = ~LATBbits.LATB6; } while(0);
+[e :U 3413 ]
+{
+[e = . . _LATBbits 0 6 -> ~ -> . . _LATBbits 0 6 `i `uc ]
+}
+[e :U 3412 ]
+"771
+[; ;main.c: 771:  state = state_date;
+[e = _state . `E24739 8 ]
+"772
+[; ;main.c: 772: }
 [e :UE 3407 ]
 }
-"772
-[; ;main.c: 772: static void state_date_cb(void)
+"774
+[; ;main.c: 774: static void state_date_cb(void)
 [v _state_date_cb `(v ~T0 @X0 1 sf ]
-"773
-[; ;main.c: 773: {
+"775
+[; ;main.c: 775: {
 {
 [e :U _state_date_cb ]
 [f ]
-"774
-[; ;main.c: 774:  char s_buffer[22];
-[v _s_buffer `uc ~T0 @X0 -> 22 `i a ]
 "776
-[; ;main.c: 776:  snprintf(s_buffer, 21, "Date CSum %X        ", calc_checksum((uint8_t *) & cmd_date[1], 10));
-[e ( _snprintf (2 , (. , , &U _s_buffer -> -> 21 `i `ui :s 27C -> ( _calc_checksum (2 , -> &U *U + &U _cmd_date * -> -> -> 1 `i `ui `ux -> -> # *U &U _cmd_date `ui `ux `*uc -> -> 10 `i `uc `ui ]
-"780
-[; ;main.c: 780:  state = state_misc;
-[e = _state . `E24739 10 ]
-"781
-[; ;main.c: 781: }
-[e :UE 3408 ]
+[; ;main.c: 776:  char s_buffer[22];
+[v _s_buffer `uc ~T0 @X0 -> 22 `i a ]
+"778
+[; ;main.c: 778:  do { LATBbits.LATB6 = ~LATBbits.LATB6; } while(0);
+[e :U 3417 ]
+{
+[e = . . _LATBbits 0 6 -> ~ -> . . _LATBbits 0 6 `i `uc ]
 }
-"786
-[; ;main.c: 786: void state_misc_cb(void)
+[e :U 3416 ]
+"779
+[; ;main.c: 779:  snprintf(s_buffer, 21, "Date CSum %X        ", calc_checksum((uint8_t *) & cmd_date[1], 10));
+[e ( _snprintf (2 , (. , , &U _s_buffer -> -> 21 `i `ui :s 27C -> ( _calc_checksum (2 , -> &U *U + &U _cmd_date * -> -> -> 1 `i `ui `ux -> -> # *U &U _cmd_date `ui `ux `*uc -> -> 10 `i `uc `ui ]
+"783
+[; ;main.c: 783:  do { LATBbits.LATB6 = ~LATBbits.LATB6; } while(0);
+[e :U 3420 ]
+{
+[e = . . _LATBbits 0 6 -> ~ -> . . _LATBbits 0 6 `i `uc ]
+}
+[e :U 3419 ]
+"784
+[; ;main.c: 784:  state = state_misc;
+[e = _state . `E24739 10 ]
+"785
+[; ;main.c: 785: }
+[e :UE 3414 ]
+}
+"790
+[; ;main.c: 790: void state_misc_cb(void)
 [v _state_misc_cb `(v ~T0 @X0 1 ef ]
-"787
-[; ;main.c: 787: {
+"791
+[; ;main.c: 791: {
 {
 [e :U _state_misc_cb ]
 [f ]
-"788
-[; ;main.c: 788:  if (mx_code == 0x03) {
-[e $ ! == -> _mx_code `ui -> -> 3 `i `ui 3410  ]
-{
-"789
-[; ;main.c: 789:  } else {
-}
-[e $U 3411  ]
-[e :U 3410 ]
-{
-"790
-[; ;main.c: 790:   B.FM80_online = 0;
-[e = . _B 6 -> -> 0 `i `a ]
-"791
-[; ;main.c: 791:   cc_mode = STATUS_LAST;
-[e = _cc_mode -> . `E24385 5 `us ]
 "792
-[; ;main.c: 792:   state = state_init;
-[e = _state . `E24739 0 ]
+[; ;main.c: 792:  if (mx_code == 0x03) {
+[e $ ! == -> _mx_code `ui -> -> 3 `i `ui 3422  ]
+{
 "793
-[; ;main.c: 793:   return;
-[e $UE 3409  ]
+[; ;main.c: 793:  } else {
+}
+[e $U 3423  ]
+[e :U 3422 ]
+{
 "794
-[; ;main.c: 794:  }
-}
-[e :U 3411 ]
+[; ;main.c: 794:   B.FM80_online = 0;
+[e = . _B 6 -> -> 0 `i `a ]
 "795
-[; ;main.c: 795:  if (!B.ten_sec_flag) {
-[e $ ! ! != -> . _B 0 `i -> 0 `i 3412  ]
-{
+[; ;main.c: 795:   cc_mode = STATUS_LAST;
+[e = _cc_mode -> . `E24385 5 `us ]
 "796
-[; ;main.c: 796:   state = state_misc;
-[e = _state . `E24739 10 ]
+[; ;main.c: 796:   state = state_init;
+[e = _state . `E24739 0 ]
 "797
-[; ;main.c: 797:  } else {
-}
-[e $U 3413  ]
-[e :U 3412 ]
-{
+[; ;main.c: 797:   return;
+[e $UE 3421  ]
 "798
-[; ;main.c: 798:   state = state_status;
-[e = _state . `E24739 1 ]
+[; ;main.c: 798:  }
+}
+[e :U 3423 ]
 "799
-[; ;main.c: 799:  }
-}
-[e :U 3413 ]
+[; ;main.c: 799:  if (!B.ten_sec_flag) {
+[e $ ! ! != -> . _B 0 `i -> 0 `i 3424  ]
+{
 "800
-[; ;main.c: 800: }
-[e :UE 3409 ]
+[; ;main.c: 800:   state = state_misc;
+[e = _state . `E24739 10 ]
+"801
+[; ;main.c: 801:  } else {
 }
+[e $U 3425  ]
+[e :U 3424 ]
+{
+"802
+[; ;main.c: 802:   state = state_status;
+[e = _state . `E24739 1 ]
 "803
-[; ;main.c: 803: char spinners(uint8_t shape, const uint8_t reset)
-[v _spinners `(uc ~T0 @X0 1 ef2`uc`Cuc ]
+[; ;main.c: 803:  }
+}
+[e :U 3425 ]
 "804
-[; ;main.c: 804: {
+[; ;main.c: 804: }
+[e :UE 3421 ]
+}
+"807
+[; ;main.c: 807: char spinners(uint8_t shape, const uint8_t reset)
+[v _spinners `(uc ~T0 @X0 1 ef2`uc`Cuc ]
+"808
+[; ;main.c: 808: {
 {
 [e :U _spinners ]
-"803
-[; ;main.c: 803: char spinners(uint8_t shape, const uint8_t reset)
+"807
+[; ;main.c: 807: char spinners(uint8_t shape, const uint8_t reset)
 [v _shape `uc ~T0 @X0 1 r1 ]
 [v _reset `Cuc ~T0 @X0 1 r2 ]
-"804
-[; ;main.c: 804: {
-[f ]
-"805
-[; ;main.c: 805:  static uint8_t s[6];
-[v F24864 `uc ~T0 @X0 -> 6 `i s s ]
-"806
-[; ;main.c: 806:  char c;
-[v _c `uc ~T0 @X0 1 a ]
 "808
-[; ;main.c: 808:  if (shape > (6 - 1))
-[e $ ! > -> _shape `i - -> 6 `i -> 1 `i 3415  ]
+[; ;main.c: 808: {
+[f ]
 "809
-[; ;main.c: 809:   shape = 0;
-[e = _shape -> -> 0 `i `uc ]
-[e :U 3415 ]
+[; ;main.c: 809:  static uint8_t s[6];
+[v F24864 `uc ~T0 @X0 -> 6 `i s s ]
 "810
-[; ;main.c: 810:  if (reset)
-[e $ ! != -> _reset `i -> 0 `i 3416  ]
-"811
-[; ;main.c: 811:   s[shape] = 0;
-[e = *U + &U F24864 * -> _shape `ux -> -> # *U &U F24864 `ui `ux -> -> 0 `i `uc ]
-[e :U 3416 ]
+[; ;main.c: 810:  char c;
+[v _c `uc ~T0 @X0 1 a ]
 "812
-[; ;main.c: 812:  c = spin[shape][s[shape]];
-[e = _c *U + &U *U + &U _spin * -> _shape `ux -> * -> # *U &U *U &U _spin `ui -> -> 20 `i `ui `ux * -> *U + &U F24864 * -> _shape `ux -> -> # *U &U F24864 `ui `ux `ux -> -> # *U &U *U + &U _spin * -> _shape `ux -> * -> # *U &U *U &U _spin `ui -> -> 20 `i `ui `ux `ui `ux ]
+[; ;main.c: 812:  if (shape > (6 - 1))
+[e $ ! > -> _shape `i - -> 6 `i -> 1 `i 3427  ]
 "813
-[; ;main.c: 813:  if (++s[shape] >= strlen(spin[shape]))
-[e $ ! >= -> =+ *U + &U F24864 * -> _shape `ux -> -> # *U &U F24864 `ui `ux -> -> 1 `i `uc `ui ( _strlen (1 &U *U + &U _spin * -> _shape `ux -> * -> # *U &U *U &U _spin `ui -> -> 20 `i `ui `ux 3417  ]
+[; ;main.c: 813:   shape = 0;
+[e = _shape -> -> 0 `i `uc ]
+[e :U 3427 ]
 "814
-[; ;main.c: 814:   s[shape] = 0;
-[e = *U + &U F24864 * -> _shape `ux -> -> # *U &U F24864 `ui `ux -> -> 0 `i `uc ]
-[e :U 3417 ]
+[; ;main.c: 814:  if (reset)
+[e $ ! != -> _reset `i -> 0 `i 3428  ]
 "815
-[; ;main.c: 815:  return c;
-[e ) _c ]
-[e $UE 3414  ]
+[; ;main.c: 815:   s[shape] = 0;
+[e = *U + &U F24864 * -> _shape `ux -> -> # *U &U F24864 `ui `ux -> -> 0 `i `uc ]
+[e :U 3428 ]
 "816
-[; ;main.c: 816: }
-[e :UE 3414 ]
+[; ;main.c: 816:  c = spin[shape][s[shape]];
+[e = _c *U + &U *U + &U _spin * -> _shape `ux -> * -> # *U &U *U &U _spin `ui -> -> 20 `i `ui `ux * -> *U + &U F24864 * -> _shape `ux -> -> # *U &U F24864 `ui `ux `ux -> -> # *U &U *U + &U _spin * -> _shape `ux -> * -> # *U &U *U &U _spin `ui -> -> 20 `i `ui `ux `ui `ux ]
+"817
+[; ;main.c: 817:  if (++s[shape] >= strlen(spin[shape]))
+[e $ ! >= -> =+ *U + &U F24864 * -> _shape `ux -> -> # *U &U F24864 `ui `ux -> -> 1 `i `uc `ui ( _strlen (1 &U *U + &U _spin * -> _shape `ux -> * -> # *U &U *U &U _spin `ui -> -> 20 `i `ui `ux 3429  ]
+"818
+[; ;main.c: 818:   s[shape] = 0;
+[e = *U + &U F24864 * -> _shape `ux -> -> # *U &U F24864 `ui `ux -> -> 0 `i `uc ]
+[e :U 3429 ]
+"819
+[; ;main.c: 819:  return c;
+[e ) _c ]
+[e $UE 3426  ]
+"820
+[; ;main.c: 820: }
+[e :UE 3426 ]
 }
 [p f _printf 12877952 ]
 [p f _snprintf 3875520495 ]
 [a 22C 37 115 0 ]
-[a 2C 49 49 58 51 48 58 50 55 0 ]
+[a 2C 49 55 58 52 55 58 50 57 0 ]
 [a 1C 83 101 112 32 32 56 32 50 48 50 51 0 ]
 [a 3C 37 115 32 0 ]
 [a 9C 37 115 32 0 ]
