@@ -35,6 +35,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <time.h>
 #include "ringbufs.h"
 
 #define EADOGM_CMD_CLR		1
@@ -52,6 +53,7 @@
 //#define USE_DMA
 //#define DEBUG_DISP0
 //#define DEBUG_DISP1
+//#define SDEBUG		// scrolling text dubug messages
 #define NHD		// 4x20 SPI display
 
 /* spinner defines */

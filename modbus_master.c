@@ -28,6 +28,7 @@ C_data C = {
 	.light_ok = false,
 	.M.blink_lock = false,
 	.M.power_on = true,
+	.tm_ok = false,
 };
 
 volatile struct V_type V = {

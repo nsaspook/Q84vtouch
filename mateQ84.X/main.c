@@ -202,6 +202,7 @@
 #define CMD_LEN	8
 #define REC_LEN 5
 #define REC_STATUS_LEN	16
+#define REC_LOG_LEN	17
 
 enum state_type {
 	state_init,
@@ -211,19 +212,25 @@ enum state_type {
 	state_batterya,
 	state_watts,
 	state_fwrev,
+	state_time,
+	state_date,
+	state_mx_log,
 	state_misc,
 	state_mx_status,
 	state_last,
 };
 
-static uint16_t abuf[FM_BUFFER];
-volatile uint16_t cc_mode = STATUS_LAST;
+static uint16_t abuf[FM_BUFFER], cbuf[FM_BUFFER + 2];
+volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = AMP_WHOLE_ZERO, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[MAX_B_BUF], can_buffer[MAX_C_BUF], info_buffer[MAX_B_BUF];
 const char *build_date = __DATE__, *build_time = __TIME__;
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
+
+time_t can_timer = 1694196350; /* default epoch time */
+struct tm *can_newtime;
 
 #ifdef DATA_DEBUG
 bool show_can;
@@ -238,7 +245,11 @@ B_type B = {
 	.flush = 0,
 	.canbus_online = 0,
 	.modbus_online = 0,
+	.log.select = 1,
 };
+
+mx_logpage_t mx_log;
+
 /*
  * show fixed point fractions
  */
@@ -261,7 +272,10 @@ void state_batterya_cb(void);
 void state_watts_cb(void);
 void state_misc_cb(void);
 void state_mx_status_cb(void);
+void state_mx_log_cb(void);
 static void state_fwrev_cb(void);
+static void state_time_cb(void);
+static void state_date_cb(void);
 
 /*
  * busy loop delay with WDT reset
@@ -347,9 +361,16 @@ void main(void)
 		B.mui[i] = DeviceID_Read(DIA_MUI + (i * 2)); // Read CPU ID from memory and store in array
 	}
 	{
-		char s_buffer[21];
-		snprintf(s_buffer, 20, "0X%X%X%X%X%X%X%X%X         ", B.mui[0], B.mui[1], B.mui[2], B.mui[3], B.mui[4], B.mui[5], B.mui[6], B.mui[7]);
+		char s_buffer[22];
+		snprintf(s_buffer, 21, "0X%X%X%X%X%X%X%X%X         ", B.mui[0], B.mui[1], B.mui[2], B.mui[3], B.mui[4], B.mui[5], B.mui[6], B.mui[7]);
 		eaDogM_Scroll_String(s_buffer);
+		can_newtime = localtime(&can_timer);
+#ifdef SDEBUG
+		snprintf(s_buffer, 21, "%s", asctime(can_newtime));
+		eaDogM_Scroll_String(s_buffer);
+		snprintf(s_buffer, 21, "CheckSum %X", calc_checksum((uint8_t *) & cmd_panelv[1], 10));
+		eaDogM_Scroll_String(s_buffer);
+#endif
 	}
 	while (true) {
 		IO_RD5_SetHigh(); // main loop timing
@@ -404,6 +425,18 @@ void main(void)
 				break;
 			}
 			break;
+		case state_mx_log: // FM80 log data
+			send_mx_cmd(cmd_mx_log);
+			rec_mx_cmd(state_mx_log_cb, REC_LOG_LEN);
+			break;
+		case state_time: // FM80 send time data
+			send_mx_cmd(cmd_time);
+			rec_mx_cmd(state_time_cb, REC_LEN);
+			break;
+		case state_date: // FM80 send date data
+			send_mx_cmd(cmd_date);
+			rec_mx_cmd(state_date_cb, REC_LEN);
+			break;
 		case state_misc:
 			send_mx_cmd(cmd_misc);
 			rec_mx_cmd(state_misc_cb, REC_LEN);
@@ -418,11 +451,16 @@ void main(void)
 			eaDogM_Scroll_Task();
 			B.one_sec_flag = false;
 			B.canbus_online = (!C1TXQCONHbits.TXREQ)&0x01;
+			if (!B.canbus_online) {
+				C.tm_ok = false;
+			}
 			B.modbus_online = C.data_ok;
 #ifdef CAN_DEBUG
 			snprintf(buffer, MAX_B_BUF, "%X %X %X %X  %lu %lu %lu      ", C1BDIAG0T, C1BDIAG0U, C1BDIAG0H, C1BDIAG0L, can_rec_count.rec_count, msg[0].msgId, msg[1].msgId);
 			eaDogM_WriteStringAtPos(0, 0, buffer);
-			snprintf(buffer, MAX_B_BUF, "%X %X %X %X  %u %X %u       ", C1BDIAG1T, C1BDIAG1U, C1BDIAG1H, C1BDIAG1L, can_rec_count.rec_flag, msg[0].field.formatType, EBD.bat_cycles);
+			//			snprintf(buffer, MAX_B_BUF, "%X %X %X %X  %u %X %u       ", C1BDIAG1T, C1BDIAG1U, C1BDIAG1H, C1BDIAG1L, can_rec_count.rec_flag, msg[0].field.formatType, EBD.bat_cycles);
+			can_newtime = localtime(&can_timer);
+			snprintf(buffer, 21, "%s", asctime(can_newtime));
 			eaDogM_WriteStringAtPos(1, 0, buffer);
 #endif
 		}
@@ -530,7 +568,11 @@ static void rec_mx_cmd(void (* DataHandler)(void), const uint8_t rec_len)
 	if (FM_rx_ready()) {
 		if (FM_rx_count() >= rec_len) {
 			online_count = 0;
-			FM_rx(abuf);
+			if (rec_len == REC_LOG_LEN) {
+				FM_rx(cbuf);
+			} else {
+				FM_rx(abuf);
+			}
 			DataHandler(); // execute callback to process data in abuf
 		} else {
 			if (online_count++ > ONLINE_TIMEOUT) {
@@ -546,7 +588,7 @@ static void rec_mx_cmd(void (* DataHandler)(void), const uint8_t rec_len)
 		B.FM80_online = false;
 		cc_mode = STATUS_LAST;
 		state = state_watts;
-		FMxx_ID = 0x0;
+		mx_code = 0x0;
 		DataHandler();
 	}
 
@@ -556,7 +598,8 @@ void state_init_cb(void)
 {
 	float Soc;
 
-	if (FMxx_ID == FM80_ID) {
+	mx_code = abuf[2]&0xf;
+	if (mx_code == FM80_ID) {
 		printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: FM80 Online\r\n", B.rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
 		if (!B.FM80_online) { // try to guess battery energy by looking at battery voltage
 			Soc = ((float) Volts_to_SOC(vw, vf) * 0.01f);
@@ -585,7 +628,7 @@ void state_status_cb(void)
 		state = state_watts;
 	}
 	if (B.FM80_online) { // don't update when offline
-		cc_mode = abuf[2];
+		cc_mode = FMxx_STATE;
 	}
 }
 
@@ -621,6 +664,29 @@ void state_watts_cb(void)
 	printf("%5d: %3x %3x %3x %3x %3x   DATA: Panel Watts %iW\r\n", rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4], (abuf[2] + (abuf[1] << 8)));
 #endif
 	panel_watts = (abuf[2] + (abuf[1] << 8));
+	if (B.FM80_online) {
+		state = state_mx_log; // only get log data once state_init_cb has run
+	} else {
+		state = state_mx_status;
+	}
+}
+
+void state_mx_log_cb(void)
+{
+	B.log.volts_peak = (int16_t) cbuf[5];
+	B.log.day = (int16_t) cbuf[14];
+	B.log.kilowatt_hours = (int16_t) (((uint16_t) (cbuf[3] & 0xF0) >> 4) | (uint16_t) (cbuf[4] << 4));
+	B.log.kilowatts_peak = (int16_t) (((uint16_t) (cbuf[13] & 0xFC) >> 2) | (uint16_t) (cbuf[12] << 6));
+	B.log.bat_max = (int16_t) (((uint16_t) (cbuf[2] & 0xFC) >> 2) | (uint16_t) ((cbuf[3] & 0x0F) << 6));
+	B.log.bat_min = (int16_t) (((uint16_t) (cbuf[10] & 0xC0) >> 6) | (uint16_t) ((cbuf[11] << 2) | ((cbuf[12] & 0x03) << 10)));
+	B.log.amps_peak = (int16_t) (cbuf[1] | ((cbuf[2] & 0x03) << 8));
+	B.log.amp_hours = (int16_t) (cbuf[9] | ((cbuf[10] & 0x3F) << 8));
+	B.log.absorb_time = (int16_t) (cbuf[6] | ((cbuf[7] & 0x0F) << 8));
+	B.log.float_time = (int16_t) (((cbuf[7] & 0xF0) >> 4) | (cbuf[8] << 4));
+
+	cmd_mx_log[5] = B.log.select;
+	cmd_mx_log[7] = 0x16 + B.log.select; // update the checksum
+
 	state = state_mx_status;
 }
 
@@ -634,7 +700,7 @@ void state_mx_status_cb(void)
 		abuf[2]++; // add extra Amp for fractional overflow.
 		abuf[1] = (abuf[1]&0x0f) - 10;
 	}
-	if (B.FM80_online) {  // don't update when offline
+	if (B.FM80_online) { // don't update when offline
 		bat_amp_whole = abuf[3] - 128;
 	}
 #ifdef debug_data
@@ -648,6 +714,8 @@ void state_mx_status_cb(void)
 			/*
 			 * log CSV values to the comm ports for data storage and processing
 			 */
+			snprintf(buffer, 25, "%s", asctime(can_newtime));
+			buffer[26] = 0; // remove newline
 			snprintf(can_buffer, MAX_C_BUF, log_format, LOG_VARS);
 			printf("%s", can_buffer); // log to USART
 			snprintf(buffer, MAX_B_BUF, "%d Watts %d.%01d Volts   ", panel_watts, volt_whole, volt_fract);
@@ -684,6 +752,35 @@ void state_mx_status_cb(void)
 static void state_fwrev_cb(void)
 {
 	B.fwrev[fw_state++] = abuf[2];
+	if (!C.tm_ok) {
+		state = state_misc;
+	} else {
+		C.tm_ok = false;
+		state = state_time;
+	}
+}
+
+static void state_time_cb(void)
+{
+	char s_buffer[22];
+
+	IO_RB6_Toggle(); // GPIO scope trace
+#ifdef SDEBUG
+	snprintf(s_buffer, 21, "Time CSum %X        ", calc_checksum((uint8_t *) & cmd_time[1], 10));
+	eaDogM_Scroll_String(s_buffer);
+#endif
+	IO_RB6_Toggle(); // GPIO scope trace
+	state = state_date;
+}
+
+static void state_date_cb(void)
+{
+	char s_buffer[22];
+
+#ifdef SDEBUG
+	snprintf(s_buffer, 21, "Date CSum %X        ", calc_checksum((uint8_t *) & cmd_date[1], 10));
+	eaDogM_Scroll_String(s_buffer);
+#endif
 	state = state_misc;
 }
 
@@ -692,8 +789,7 @@ static void state_fwrev_cb(void)
  */
 void state_misc_cb(void)
 {
-	if (abuf[2] == 0x03) {
-		B.FM80_online = true;
+	if (mx_code == FM80_ID) { // only set FM80 offline here
 	} else {
 		B.FM80_online = false;
 		cc_mode = STATUS_LAST;

@@ -22,7 +22,7 @@ extern "C" {
 #include "../timers.h"
 
 #define VER	1
-	const char build_version[64] = "V1.63 FM80 Q84";
+	const char build_version[] = "V1.71 FM80 Q84";
 	/*
 	 * code changes
 	 * 1.55 remove critical section interrupt disables for FM80 serial
@@ -35,6 +35,9 @@ extern "C" {
 	 * 1.61 add FIFO for xmit
 	 * 1.62 add modules firmware/ID capture and display
 	 * 1.63 FM80 FW fixes
+	 * 1.65 add FM80 log data reporting for the previous day
+	 * 1.70 add date and time updates via CAN to FM80 from the network server
+	 * 1.71 time server cleanup and display codes
 	 */
 
 #define MAX_B_BUF	96
@@ -42,13 +45,12 @@ extern "C" {
 #define IO_TEST
 
 #define	FM_BUFFER	32
-#define BUFFER_SPACING	2
+#define BUFFER_SPACING	4
 #define SPINNER_SPEED	200
 #define LP_BUFFER_SIZE	9
 #define ONLINE_TIMEOUT	30000
 
 #define FM80_ID		0x03
-#define FMxx_ID		abuf[2]
 #define FMxx_STATE	abuf[2]
 
 #define AMP_WHOLE_ZERO	0
@@ -56,6 +58,7 @@ extern "C" {
 	const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
 	const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
 	const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};
+	uint16_t cmd_mx_log[] = {0x100, 0x16, 0x00, 0x00, 0x00, 0x01, 0x00, 0x17}; // get logs, start from day 1
 	const uint16_t cmd_panelv[] = {0x100, 0x02, 0x01, 0xc6, 0x00, 0x00, 0x00, 0xc9};
 	const uint16_t cmd_batteryv[] = {0x100, 0x02, 0x00, 0x08, 0x00, 0x00, 0x00, 0x0a};
 	const uint16_t cmd_batterya[] = {0x100, 0x02, 0x01, 0xc7, 0x00, 0x00, 0x00, 0xca};
@@ -64,6 +67,8 @@ extern "C" {
 	const uint16_t cmd_fwreva[] = {0x100, 0x02, 0x00, 0x02, 0x00, 0x00, 0x00, 0x04};
 	const uint16_t cmd_fwrevb[] = {0x100, 0x02, 0x00, 0x03, 0x00, 0x00, 0x00, 0x05};
 	const uint16_t cmd_fwrevc[] = {0x100, 0x02, 0x00, 0x04, 0x00, 0x00, 0x00, 0x06};
+	uint16_t cmd_time[] = {0x100, 0x03, 0x40, 0x04, 0x00, 0x00, 0x00, 0x00};
+	uint16_t cmd_date[] = {0x100, 0x03, 0x40, 0x05, 0x00, 0x00, 0x00, 0x00};
 
 	enum status_type {
 		STATUS_SLEEPING = 0,
@@ -102,6 +107,24 @@ extern "C" {
 		uint8_t a[16]; // raw_ah(part2)
 	} mx_status_packed_t;
 
+	typedef struct {
+		uint8_t a[16];
+	} mx_log_packed_t;
+
+	typedef struct {
+		int16_t day;
+		int16_t amp_hours;
+		int16_t kilowatt_hours;
+		int16_t volts_peak;
+		int16_t amps_peak;
+		int16_t kilowatts_peak;
+		int16_t bat_min;
+		int16_t bat_max;
+		int16_t absorb_time;
+		int16_t float_time;
+		uint8_t select;
+	} mx_logpage_t;
+
 	typedef struct B_type {
 		volatile bool ten_sec_flag, one_sec_flag, FM80_charged;
 		uint16_t pacing, rx_count, flush;
@@ -109,6 +132,7 @@ extern "C" {
 		volatile uint8_t canbus_online, modbus_online;
 		uint16_t mui[10];
 		uint16_t fwrev[3];
+		mx_logpage_t log;
 	} B_type;
 
 	extern void onesec_io(void);
@@ -122,6 +146,7 @@ extern "C" {
 	extern void FM_restart(void);
 	extern void wdtdelay(const uint32_t);
 	extern float lp_filter(const float, const uint8_t, const int8_t);
+	extern uint16_t calc_checksum(uint8_t*, uint8_t);
 
 	extern B_type B;
 

@@ -75,6 +75,11 @@ void get_bm_data(EB_data * EB)
 	if (UART2_is_rx_ready()) {
 		rxData = UART2_Read();
 		switch (rxData) {
+		case 'D':
+		case 'd':
+			snprintf(s_buffer, 21, "%s", asctime(can_newtime));
+			eaDogM_Scroll_String(s_buffer);
+			break;
 		case 'f':
 		case 'F':
 			EB->bat_energy = BAT_ENERGY;
@@ -94,6 +99,19 @@ void get_bm_data(EB_data * EB)
 			snprintf(s_buffer, 21, "0X%X%X%X%X%X%X%X%X         ", B.mui[0], B.mui[1], B.mui[2], B.mui[3], B.mui[4], B.mui[5], B.mui[6], B.mui[7]);
 			eaDogM_Scroll_String(s_buffer);
 			snprintf(s_buffer, 21, "FM80 FW %X.%X.%X                ", B.fwrev[0], B.fwrev[1], B.fwrev[2]);
+			eaDogM_Scroll_String(s_buffer);
+			break;
+		case 'L':
+			B.log.select = 0;
+		case 'l':
+			B.log.select++; // pull the next days log data
+			snprintf(s_buffer, 21, "Pwr %5.2fkWpk %5.2fkWh              ", (float) B.log.kilowatts_peak / 1000.0, (float) B.log.kilowatt_hours / 10.0);
+			eaDogM_Scroll_String(s_buffer);
+			snprintf(s_buffer, 21, "Chg F%imin A%imin                ", B.log.float_time, B.log.absorb_time);
+			eaDogM_Scroll_String(s_buffer);
+			snprintf(s_buffer, 21, "%iVpk %4.1fApk %iAh       ", B.log.volts_peak, (float) B.log.amps_peak / 10.0, B.log.amp_hours);
+			eaDogM_Scroll_String(s_buffer);
+			snprintf(s_buffer, 21, "Day %i: %4.1fV %4.1fV       ", B.log.day, (float) B.log.bat_max / 10.0, (float) B.log.bat_min / 10.0);
 			eaDogM_Scroll_String(s_buffer);
 			break;
 		default:
@@ -242,4 +260,21 @@ device_id_data_t DeviceID_Read(device_id_address_t address)
 	TBLPTRL = (uint8_t) tablePointer;
 
 	return deviceID;
+}
+
+/*
+ * pack UNIX tm time/date into FM80 compatible 16-bit values
+ */
+void update_time(struct tm * ts, EB_data * EB)
+{
+	EB->time = (
+		(uint16_t) ((ts->tm_hour & 0x1F) << 11) |
+		(uint16_t) ((ts->tm_min & 0x3F) << 5) |
+		(uint16_t) ((ts->tm_sec & 0x1F) >> 1)
+		);
+	EB->date = (
+		(uint16_t) (((ts->tm_year - 2000) & 0x7F) << 9) |
+		(uint16_t) ((ts->tm_mon & 0x0F) << 5) |
+		(uint16_t) (ts->tm_mday & 0x1F)
+		);
 }
