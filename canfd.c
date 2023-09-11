@@ -68,7 +68,7 @@ void Can1FIFO1NotEmptyHandler(void)
 				can_newtime = localtime(&can_timer);
 				update_time(can_newtime, &EBD);
 				/*
-				 * update the FM80 time and data messages with a proper checksum
+				 * update the FM80 time and data message values with a proper checksum
 				 */
 				myVar.Word = EBD.time;
 				cmd_time[5] = myVar.structBytes.Byte1;
