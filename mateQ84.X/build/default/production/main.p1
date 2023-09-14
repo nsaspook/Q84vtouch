@@ -1,24 +1,24 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[v F23864 `(v ~T0 @X0 0 tf ]
-[v F23866 `(v ~T0 @X0 0 tf ]
-[v F23941 `(v ~T0 @X0 0 tf ]
-[v F23943 `(v ~T0 @X0 0 tf ]
+[v F23845 `(v ~T0 @X0 0 tf ]
+[v F23847 `(v ~T0 @X0 0 tf ]
+[v F23922 `(v ~T0 @X0 0 tf ]
+[v F23924 `(v ~T0 @X0 0 tf ]
 "224 main.c
 [; ;main.c: 224: volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
-[c E24404 0 1 2 3 4 5 .. ]
-[n E24404 status_type STATUS_SLEEPING STATUS_FLOATING STATUS_BULK STATUS_ABSORB STATUS_EQUALIZE STATUS_LAST  ]
+[c E24385 0 1 2 3 4 5 .. ]
+[n E24385 status_type STATUS_SLEEPING STATUS_FLOATING STATUS_BULK STATUS_ABSORB STATUS_EQUALIZE STATUS_LAST  ]
 "226
 [; ;main.c: 226: volatile enum state_type state = state_init;
-[c E24760 0 1 2 3 4 5 6 7 8 9 10 11 12 .. ]
-[n E24760 state_type state_init state_status state_panel state_batteryv state_batterya state_watts state_fwrev state_time state_date state_mx_log state_misc state_mx_status state_last  ]
-"40 /opt/microchip/xc8/v2.45/pic/include/c99/time.h
-[; ;/opt/microchip/xc8/v2.45/pic/include/c99/time.h: 40: struct tm {
+[c E24741 0 1 2 3 4 5 6 7 8 9 10 11 12 .. ]
+[n E24741 state_type state_init state_status state_panel state_batteryv state_batterya state_watts state_fwrev state_time state_date state_mx_log state_misc state_mx_status state_last  ]
+"40 /opt/microchip/xc8/v2.41/pic/include/c99/time.h
+[; ;/opt/microchip/xc8/v2.41/pic/include/c99/time.h: 40: struct tm {
 [s S3288 `i 1 `i 1 `i 1 `i 1 `i 1 `i 1 `i 1 `i 1 `i 1 `l 1 `*Cuc 1 ]
 [n S3288 tm tm_sec tm_min tm_hour tm_mday tm_mon tm_year tm_wday tm_yday tm_isdst __tm_gmtoff __tm_zone ]
-"114 ./../mateQ84.X/mxcmd.h
+"115 ./../mateQ84.X/mxcmd.h
 [s S3296 `s 1 `s 1 `s 1 `s 1 `s 1 `s 1 `s 1 `s 1 `s 1 `s 1 `uc 1 ]
 [n S3296 . day amp_hours kilowatt_hours volts_peak amps_peak kilowatts_peak bat_min bat_max absorb_time float_time select ]
-"128
+"129
 [s S3297 `Va 1 `Va 1 `Va 1 `us 1 `us 1 `us 1 `Va 1 `Vuc 1 `Vuc 1 `us -> 10 `i `us -> 3 `i `S3296 1 ]
 [n S3297 B_type ten_sec_flag one_sec_flag FM80_charged pacing rx_count flush FM80_online canbus_online modbus_online mui fwrev log ]
 [p mainexit ]
@@ -37,29 +37,29 @@ Version 4.0 HI-TECH Software Intermediate Code
 [n S3181 . . . ]
 "4426
 [v _INTCON0bits `VS3181 ~T0 @X0 0 e@1238 ]
-[v F23720 `(v ~T0 @X0 0 tf ]
+[v F23701 `(v ~T0 @X0 0 tf ]
 "877 ./mcc_generated_files/tmr4.h
 [; ;./mcc_generated_files/tmr4.h: 877:  void TMR4_SetInterruptHandler(void (* InterruptHandler)(void));
-[v _TMR4_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F23720 ]
-"140 ./../mateQ84.X/mxcmd.h
+[v _TMR4_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F23701 ]
+"141 ./../mateQ84.X/mxcmd.h
 [v _FM_io `(v ~T0 @X0 0 ef ]
 "542 ./mcc_generated_files/tmr4.h
 [; ;./mcc_generated_files/tmr4.h: 542: void TMR4_StartTimer(void);
 [v _TMR4_StartTimer `(v ~T0 @X0 0 ef ]
-[v F23823 `(v ~T0 @X0 0 tf ]
+[v F23804 `(v ~T0 @X0 0 tf ]
 "293 ./mcc_generated_files/tmr0.h
 [; ;./mcc_generated_files/tmr0.h: 293:  void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
-[v _TMR0_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F23823 ]
-"138 ./../mateQ84.X/mxcmd.h
+[v _TMR0_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F23804 ]
+"139 ./../mateQ84.X/mxcmd.h
 [v _onesec_io `(v ~T0 @X0 0 ef ]
 "129 ./mcc_generated_files/tmr0.h
 [; ;./mcc_generated_files/tmr0.h: 129: void TMR0_StartTimer(void);
 [v _TMR0_StartTimer `(v ~T0 @X0 0 ef ]
-[v F23808 `(v ~T0 @X0 0 tf ]
+[v F23789 `(v ~T0 @X0 0 tf ]
 "877 ./mcc_generated_files/tmr2.h
 [; ;./mcc_generated_files/tmr2.h: 877:  void TMR2_SetInterruptHandler(void (* InterruptHandler)(void));
-[v _TMR2_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F23808 ]
-"139 ./../mateQ84.X/mxcmd.h
+[v _TMR2_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F23789 ]
+"140 ./../mateQ84.X/mxcmd.h
 [v _tensec_io `(v ~T0 @X0 0 ef ]
 "542 ./mcc_generated_files/tmr2.h
 [; ;./mcc_generated_files/tmr2.h: 542: void TMR2_StartTimer(void);
@@ -67,10 +67,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "321 ./../modbus_master.h
 [; ;./../modbus_master.h: 321:  void init_mb_master_timers(void);
 [v _init_mb_master_timers `(v ~T0 @X0 0 ef ]
-[v F23945 `(v ~T0 @X0 0 tf ]
+[v F23926 `(v ~T0 @X0 0 tf ]
 "555 ./mcc_generated_files/uart5.h
 [; ;./mcc_generated_files/uart5.h: 555: void UART5_SetRxInterruptHandler(void (* InterruptHandler)(void));
-[v _UART5_SetRxInterruptHandler `(v ~T0 @X0 0 ef1`*F23945 ]
+[v _UART5_SetRxInterruptHandler `(v ~T0 @X0 0 ef1`*F23926 ]
 "319 ./../modbus_master.h
 [; ;./../modbus_master.h: 319:  void my_modbus_rx_32(void);
 [v _my_modbus_rx_32 `(v ~T0 @X0 0 ef ]
@@ -79,13 +79,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _StartTimer `(v ~T0 @X0 0 ef2`Cuc`Cus ]
 "326 main.c
 [; ;main.c: 326:  StartTimer(TMR_MBTEST, 20);
-[c E24370 0 1 2 3 4 5 .. ]
-[n E24370 APP_TIMERS TMR_INTERNAL TMR_MBMASTER TMR_MBTEST TMR_SPIN TMR_DERE TMR_COUNT  ]
+[c E24351 0 1 2 3 4 5 .. ]
+[n E24351 APP_TIMERS TMR_INTERNAL TMR_MBMASTER TMR_MBTEST TMR_SPIN TMR_DERE TMR_COUNT  ]
 "49 ./../eadog.h
 [; ;./../eadog.h: 49:  _Bool init_display(void);
 [v _init_display `(a ~T0 @X0 0 ef ]
-"123 /opt/microchip/xc8/v2.45/pic/include/c99/stdio.h
-[; ;/opt/microchip/xc8/v2.45/pic/include/c99/stdio.h: 123: int snprintf(char *restrict, size_t, const char *restrict, ...);
+"113 /opt/microchip/xc8/v2.41/pic/include/c99/stdio.h
+[; ;/opt/microchip/xc8/v2.41/pic/include/c99/stdio.h: 113: int snprintf(char *restrict, size_t, const char *restrict, ...);
 [v _snprintf `(i ~T0 @X0 0 e2v`*uc`ui`*Cuc ]
 "61 ./../eadog.h
 [; ;./../eadog.h: 61:  void eaDogM_WriteStringAtPos(uint8_t, uint8_t, char *);
@@ -119,8 +119,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "65 ./../eadog.h
 [; ;./../eadog.h: 65:  char * eaDogM_Scroll_String(char *);
 [v _eaDogM_Scroll_String `(*uc ~T0 @X0 0 ef1`*uc ]
-"60 /opt/microchip/xc8/v2.45/pic/include/c99/time.h
-[; ;/opt/microchip/xc8/v2.45/pic/include/c99/time.h: 60: struct tm *localtime (const time_t *);
+"60 /opt/microchip/xc8/v2.41/pic/include/c99/time.h
+[; ;/opt/microchip/xc8/v2.41/pic/include/c99/time.h: 60: struct tm *localtime (const time_t *);
 [v _localtime `(*S3288 ~T0 @X0 0 ef1`*Cul ]
 "3752 /root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.21.411/xc8/pic/include/proc/pic18f47q84.h
 [; ;/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.21.411/xc8/pic/include/proc/pic18f47q84.h: 3752:         unsigned SDOP :1;
@@ -135,17 +135,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _LATDbits `VS3157 ~T0 @X0 0 e@1217 ]
 "379 main.c
 [; ;main.c: 379:   master_controller_work(&C);
-[c E24474 0 1 2 3 .. ]
-[n E24474 comm_type CLEAR INIT SEND RECV  ]
-[c E24480 0 1 2 3 4 5 6 7 8 .. ]
-[n E24480 cmd_type G_ID G_DATA1 G_DATA2 G_CONFIG G_PASSWD G_LIGHT G_VERSION G_SERIAL G_LAST  ]
+[c E24455 0 1 2 3 .. ]
+[n E24455 comm_type CLEAR INIT SEND RECV  ]
+[c E24461 0 1 2 3 4 5 6 7 8 .. ]
+[n E24461 cmd_type G_ID G_DATA1 G_DATA2 G_CONFIG G_PASSWD G_LIGHT G_VERSION G_SERIAL G_LAST  ]
 "163 ./../modbus_master.h
 [; ;./../modbus_master.h: 163:  typedef struct M_data {
 [s S3304 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 `uc 1 `uc 1 `uc 1 `us 1 `us 1 `us 1 `ul 1 `ul 1 `ul 1 `Va 1 ]
 [n S3304 M_data blink_lock config stable boot_code power_on send_count recv_count pwm_volts error crc_data crc_calc crc_error to_error sends rx ]
 "177
 [; ;./../modbus_master.h: 177:  typedef struct C_data {
-[s S3305 `uc 1 `E24474 1 `E24480 1 `us 1 `c 1 `a 1 `a 1 `a 1 `a 1 `a 1 `a 1 `a 1 `a 1 `ul 1 `ul 1 `VS3304 1 ]
+[s S3305 `uc 1 `E24455 1 `E24461 1 `us 1 `c 1 `a 1 `a 1 `a 1 `a 1 `a 1 `a 1 `a 1 `a 1 `ul 1 `ul 1 `VS3304 1 ]
 [n S3305 C_data mcmd cstate modbus_command req_length trace id_ok passwd_ok config_ok data_ok light_ok serial_ok version_ok tm_ok data_count data_prev M ]
 "322
 [; ;./../modbus_master.h: 322:  int8_t master_controller_work(C_data *);
@@ -156,10 +156,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "261 main.c
 [; ;main.c: 261: static void send_mx_cmd(const uint16_t *);
 [v _send_mx_cmd `(v ~T0 @X0 0 sf1`*Cus ]
-[v F24803 `(v ~T0 @X0 0 tf ]
+[v F24784 `(v ~T0 @X0 0 tf ]
 "262
 [; ;main.c: 262: static void rec_mx_cmd(void (* DataHandler)(void), const uint8_t);
-[v _rec_mx_cmd `(v ~T0 @X0 0 sf2`*F24803`Cuc ]
+[v _rec_mx_cmd `(v ~T0 @X0 0 sf2`*F24784`Cuc ]
 "267
 [; ;main.c: 267: void state_init_cb(void);
 [v _state_init_cb `(v ~T0 @X0 0 ef ]
@@ -213,7 +213,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "25 ./../timers.h
 [; ;./../timers.h: 25: _Bool TimerDone(const uint8_t timer);
 [v _TimerDone `(a ~T0 @X0 0 ef1`Cuc ]
-"148 ./../mateQ84.X/mxcmd.h
+"149 ./../mateQ84.X/mxcmd.h
 [v _lp_filter `(f ~T0 @X0 0 ef3`Cf`Cuc`Cc ]
 "191 ./../modbus_master.h
 [; ;./../modbus_master.h: 191:  typedef __pack struct EM_data1 {
@@ -224,31 +224,31 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _em `QS3306 ~T0 @X0 0 e ]
 "476 main.c
 [; ;main.c: 476:      ac = lp_filter(((float) em.vl1l2) / 10.0f, F_ac, 0);
-[c E24640 0 1 2 3 4 5 6 7 8 .. ]
-[n E24640 filter_type F_ac F_wac F_wva F_var F_4 F_5 F_6 F_7 F_8  ]
+[c E24621 0 1 2 3 4 5 6 7 8 .. ]
+[n E24621 filter_type F_ac F_wac F_wva F_var F_4 F_5 F_6 F_7 F_8  ]
 "342 ./../modbus_master.h
 [; ;./../modbus_master.h: 342:  extern volatile M_data M;
 [v _M `VS3304 ~T0 @X0 0 e ]
 "85 ./../qconfig.h
 [; ;./../qconfig.h: 85: extern char spinners(uint8_t, const uint8_t);
 [v _spinners `(uc ~T0 @X0 0 ef2`uc`Cuc ]
-"78 /opt/microchip/xc8/v2.45/pic/include/c99/stdlib.h
-[; ;/opt/microchip/xc8/v2.45/pic/include/c99/stdlib.h: 78: int abs (int);
+"62 /opt/microchip/xc8/v2.41/pic/include/c99/stdlib.h
+[; ;/opt/microchip/xc8/v2.41/pic/include/c99/stdlib.h: 62: int abs (int);
 [v _abs `(i ~T0 @X0 0 ef1`i ]
-"142 ./../mateQ84.X/mxcmd.h
+"143 ./../mateQ84.X/mxcmd.h
 [v _FM_tx_empty `(a ~T0 @X0 0 ef ]
-"141
+"142
 [v _FM_tx `(uc ~T0 @X0 0 ef2`*Cus`Cuc ]
-[v F24862 `(v ~T0 @X0 0 tf ]
-[v F24864 `(v ~T0 @X0 0 tf ]
-"144
-[v _FM_rx_ready `(a ~T0 @X0 0 ef ]
+[v F24843 `(v ~T0 @X0 0 tf ]
+[v F24845 `(v ~T0 @X0 0 tf ]
 "145
+[v _FM_rx_ready `(a ~T0 @X0 0 ef ]
+"146
 [v _FM_rx_count `(uc ~T0 @X0 0 ef ]
-"143
+"144
 [v _FM_rx `(uc ~T0 @X0 0 ef1`*us ]
-"117 /opt/microchip/xc8/v2.45/pic/include/c99/stdio.h
-[; ;/opt/microchip/xc8/v2.45/pic/include/c99/stdio.h: 117: int printf(const char *restrict, ...);
+"107 /opt/microchip/xc8/v2.41/pic/include/c99/stdio.h
+[; ;/opt/microchip/xc8/v2.41/pic/include/c99/stdio.h: 107: int printf(const char *restrict, ...);
 [v _printf `(i ~T0 @X0 0 ev`*Cuc ]
 "94 ./../batmon.h
 [; ;./../batmon.h: 94:  uint16_t Volts_to_SOC(const uint16_t, const uint16_t);
@@ -262,8 +262,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3639
 [; ;/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.21.411/xc8/pic/include/proc/pic18f47q84.h: 3639: extern volatile unsigned char SPI1TCNTL __attribute__((address(0x082)));
 [v _LATBbits `VS3153 ~T0 @X0 0 e@1215 ]
-"61 /opt/microchip/xc8/v2.45/pic/include/c99/time.h
-[; ;/opt/microchip/xc8/v2.45/pic/include/c99/time.h: 61: char *asctime (const struct tm *);
+"61 /opt/microchip/xc8/v2.41/pic/include/c99/time.h
+[; ;/opt/microchip/xc8/v2.41/pic/include/c99/time.h: 61: char *asctime (const struct tm *);
 [v _asctime `(*uc ~T0 @X0 0 ef1`*CS3288 ]
 "205 ./../modbus_master.h
 [; ;./../modbus_master.h: 205:  typedef __pack struct EM_data2 {
@@ -284,8 +284,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "82
 [; ;./../batmon.h: 82:  extern uint16_t EBD_update;
 [v _EBD_update `us ~T0 @X0 0 e ]
-"54 /opt/microchip/xc8/v2.45/pic/include/c99/string.h
-[; ;/opt/microchip/xc8/v2.45/pic/include/c99/string.h: 54: size_t strlen (const char *);
+"54 /opt/microchip/xc8/v2.41/pic/include/c99/string.h
+[; ;/opt/microchip/xc8/v2.41/pic/include/c99/string.h: 54: size_t strlen (const char *);
 [v _strlen `(ui ~T0 @X0 0 ef1`*Cuc ]
 "43 main.c
 [p n 520 ]
@@ -4037,20 +4037,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _SrcVarName0 `uc ~T0 @X0 -> 2 `i e ]
 "518 ./mcc_generated_files/uart2.h
 [; ;./mcc_generated_files/uart2.h: 518: void (*UART2_RxInterruptHandler)(void);
-[v _UART2_RxInterruptHandler `*F23864 ~T0 @X0 1 e ]
+[v _UART2_RxInterruptHandler `*F23845 ~T0 @X0 1 e ]
 "536
 [; ;./mcc_generated_files/uart2.h: 536: void (*UART2_TxInterruptHandler)(void);
-[v _UART2_TxInterruptHandler `*F23866 ~T0 @X0 1 e ]
+[v _UART2_TxInterruptHandler `*F23847 ~T0 @X0 1 e ]
 "517 ./mcc_generated_files/uart5.h
 [; ;./mcc_generated_files/uart5.h: 517: void (*UART5_RxInterruptHandler)(void);
-[v _UART5_RxInterruptHandler `*F23941 ~T0 @X0 1 e ]
+[v _UART5_RxInterruptHandler `*F23922 ~T0 @X0 1 e ]
 "535
 [; ;./mcc_generated_files/uart5.h: 535: void (*UART5_TxInterruptHandler)(void);
-[v _UART5_TxInterruptHandler `*F23943 ~T0 @X0 1 e ]
-[v F24305 `Cuc ~T0 @X0 -> 20 `i t ]
+[v _UART5_TxInterruptHandler `*F23924 ~T0 @X0 1 e ]
+[v F24286 `Cuc ~T0 @X0 -> 20 `i t ]
 "61 ./../qconfig.h
 [; ;./../qconfig.h: 61: const char spin[6][20] = {
-[v _spin `F24305 ~T0 @X0 -> 6 `i e ]
+[v _spin `F24286 ~T0 @X0 -> 6 `i e ]
 [i _spin
 :U ..
 :U ..
@@ -4136,7 +4136,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> 49 `c
 -> 46 `c
 -> 55 `c
--> 49 `c
+-> 50 `c
 -> 32 `c
 -> 70 `c
 -> 77 `c
@@ -4149,7 +4149,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> 0 `c
 ..
 ]
-"58
+"59
 [v _cmd_id `Cus ~T0 @X0 -> 8 `i e ]
 [i _cmd_id
 :U ..
@@ -4163,7 +4163,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 2 `i `us
 ..
 ]
-"59
+"60
 [v _cmd_status `Cus ~T0 @X0 -> 8 `i e ]
 [i _cmd_status
 :U ..
@@ -4177,7 +4177,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 203 `i `us
 ..
 ]
-"60
+"61
 [v _cmd_mx_status `Cus ~T0 @X0 -> 8 `i e ]
 [i _cmd_mx_status
 :U ..
@@ -4191,7 +4191,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 5 `i `us
 ..
 ]
-"61
+"62
 [v _cmd_mx_log `us ~T0 @X0 -> 8 `i e ]
 [i _cmd_mx_log
 :U ..
@@ -4205,7 +4205,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 23 `i `us
 ..
 ]
-"62
+"63
 [v _cmd_panelv `Cus ~T0 @X0 -> 8 `i e ]
 [i _cmd_panelv
 :U ..
@@ -4219,7 +4219,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 201 `i `us
 ..
 ]
-"63
+"64
 [v _cmd_batteryv `Cus ~T0 @X0 -> 8 `i e ]
 [i _cmd_batteryv
 :U ..
@@ -4233,7 +4233,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 10 `i `us
 ..
 ]
-"64
+"65
 [v _cmd_batterya `Cus ~T0 @X0 -> 8 `i e ]
 [i _cmd_batterya
 :U ..
@@ -4247,7 +4247,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 202 `i `us
 ..
 ]
-"65
+"66
 [v _cmd_watts `Cus ~T0 @X0 -> 8 `i e ]
 [i _cmd_watts
 :U ..
@@ -4261,7 +4261,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 109 `i `us
 ..
 ]
-"66
+"67
 [v _cmd_misc `Cus ~T0 @X0 -> 8 `i e ]
 [i _cmd_misc
 :U ..
@@ -4275,7 +4275,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 2 `i `us
 ..
 ]
-"67
+"68
 [v _cmd_fwreva `Cus ~T0 @X0 -> 8 `i e ]
 [i _cmd_fwreva
 :U ..
@@ -4289,7 +4289,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 4 `i `us
 ..
 ]
-"68
+"69
 [v _cmd_fwrevb `Cus ~T0 @X0 -> 8 `i e ]
 [i _cmd_fwrevb
 :U ..
@@ -4303,7 +4303,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 5 `i `us
 ..
 ]
-"69
+"70
 [v _cmd_fwrevc `Cus ~T0 @X0 -> 8 `i e ]
 [i _cmd_fwrevc
 :U ..
@@ -4317,7 +4317,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 6 `i `us
 ..
 ]
-"70
+"71
 [v _cmd_time `us ~T0 @X0 -> 8 `i e ]
 [i _cmd_time
 :U ..
@@ -4331,7 +4331,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `i `us
 ..
 ]
-"71
+"72
 [v _cmd_date `us ~T0 @X0 -> 8 `i e ]
 [i _cmd_date
 :U ..
@@ -4345,9 +4345,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `i `us
 ..
 ]
-[v F24412 `Cuc ~T0 @X0 -> 12 `i t ]
-"82
-[v _state_name `F24412 ~T0 @X0 -> 6 `i e ]
+[v F24393 `Cuc ~T0 @X0 -> 12 `i t ]
+"83
+[v _state_name `F24393 ~T0 @X0 -> 6 `i e ]
 [i _state_name
 :U ..
 :U ..
@@ -4409,9 +4409,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-[v F24414 `Cuc ~T0 @X0 -> 12 `i t ]
-"91
-[v _FM80_name `F24414 ~T0 @X0 -> 2 `i e ]
+[v F24395 `Cuc ~T0 @X0 -> 12 `i t ]
+"92
+[v _FM80_name `F24395 ~T0 @X0 -> 2 `i e ]
 [i _FM80_name
 :U ..
 :U ..
@@ -4438,9 +4438,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-[v F24416 `Cuc ~T0 @X0 -> 12 `i t ]
-"96
-[v _canbus_name `F24416 ~T0 @X0 -> 2 `i e ]
+[v F24397 `Cuc ~T0 @X0 -> 12 `i t ]
+"97
+[v _canbus_name `F24397 ~T0 @X0 -> 2 `i e ]
 [i _canbus_name
 :U ..
 :U ..
@@ -4467,9 +4467,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-[v F24418 `Cuc ~T0 @X0 -> 12 `i t ]
-"101
-[v _modbus_name `F24418 ~T0 @X0 -> 2 `i e ]
+[v F24399 `Cuc ~T0 @X0 -> 12 `i t ]
+"102
+[v _modbus_name `F24399 ~T0 @X0 -> 2 `i e ]
 [i _modbus_name
 :U ..
 :U ..
@@ -5115,10 +5115,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> 0 `c
 ..
 ]
-[v F24717 `Cul ~T0 @X0 -> 2 `i t ]
+[v F24698 `Cul ~T0 @X0 -> 2 `i t ]
 "62
 [; ;./../batmon.h: 62:  const uint32_t BVSOC_TABLE[12][2] = {
-[v _BVSOC_TABLE `F24717 ~T0 @X0 -> 12 `i e ]
+[v _BVSOC_TABLE `F24698 ~T0 @X0 -> 12 `i e ]
 [i _BVSOC_TABLE
 :U ..
 :U ..
@@ -5179,7 +5179,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 224: volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 [v _cc_mode `Vus ~T0 @X0 1 e ]
 [i _cc_mode
--> . `E24404 5 `us
+-> . `E24385 5 `us
 ]
 [v _mx_code `Vus ~T0 @X0 1 e ]
 [i _mx_code
@@ -5198,9 +5198,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _vw `us ~T0 @X0 1 e ]
 "226
 [; ;main.c: 226: volatile enum state_type state = state_init;
-[v _state `VE24760 ~T0 @X0 1 e ]
+[v _state `VE24741 ~T0 @X0 1 e ]
 [i _state
-. `E24760 0
+. `E24741 0
 ]
 "227
 [; ;main.c: 227: char buffer[96], can_buffer[64*2], info_buffer[96];
@@ -5208,7 +5208,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _can_buffer `uc ~T0 @X0 -> 128 `i e ]
 [v _info_buffer `uc ~T0 @X0 -> 96 `i e ]
 "228
-[; ;main.c: 228: const char *build_date = "Sep 10 2023", *build_time = "06:33:37";
+[; ;main.c: 228: const char *build_date = "Sep 14 2023", *build_time = "10:39:13";
 [v _build_date `*Cuc ~T0 @X0 1 e ]
 [i _build_date
 :s 1C
@@ -5376,10 +5376,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _UART5_SetRxInterruptHandler (1 &U _my_modbus_rx_32 ]
 "326
 [; ;main.c: 326:  StartTimer(TMR_MBTEST, 20);
-[e ( _StartTimer (2 , -> . `E24370 2 `uc -> -> 20 `i `us ]
+[e ( _StartTimer (2 , -> . `E24351 2 `uc -> -> 20 `i `us ]
 "329
 [; ;main.c: 329:  StartTimer(TMR_SPIN, 200);
-[e ( _StartTimer (2 , -> . `E24370 3 `uc -> -> 200 `i `us ]
+[e ( _StartTimer (2 , -> . `E24351 3 `uc -> -> 200 `i `us ]
 "331
 [; ;main.c: 331:  init_display();
 [e ( _init_display ..  ]
@@ -5711,18 +5711,18 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e $U 3328  ]
 [e :U 3329 ]
-[e [\ -> _state `ui , $ -> . `E24760 0 `ui 3330
- , $ -> . `E24760 1 `ui 3331
- , $ -> . `E24760 2 `ui 3332
- , $ -> . `E24760 3 `ui 3333
- , $ -> . `E24760 4 `ui 3334
- , $ -> . `E24760 5 `ui 3335
- , $ -> . `E24760 11 `ui 3336
- , $ -> . `E24760 6 `ui 3337
- , $ -> . `E24760 9 `ui 3344
- , $ -> . `E24760 7 `ui 3345
- , $ -> . `E24760 8 `ui 3346
- , $ -> . `E24760 10 `ui 3347
+[e [\ -> _state `ui , $ -> . `E24741 0 `ui 3330
+ , $ -> . `E24741 1 `ui 3331
+ , $ -> . `E24741 2 `ui 3332
+ , $ -> . `E24741 3 `ui 3333
+ , $ -> . `E24741 4 `ui 3334
+ , $ -> . `E24741 5 `ui 3335
+ , $ -> . `E24741 11 `ui 3336
+ , $ -> . `E24741 6 `ui 3337
+ , $ -> . `E24741 9 `ui 3344
+ , $ -> . `E24741 7 `ui 3345
+ , $ -> . `E24741 8 `ui 3346
+ , $ -> . `E24741 10 `ui 3347
  3348 ]
 [e :U 3328 ]
 "450
@@ -5758,75 +5758,75 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 3349 ]
 "467
 [; ;main.c: 467:   if (TimerDone(TMR_SPIN)) {
-[e $ ! != -> ( _TimerDone (1 -> . `E24370 3 `uc `i -> 0 `i 3351  ]
+[e $ ! != -> ( _TimerDone (1 -> . `E24351 3 `uc `i -> 0 `i 3351  ]
 {
 "468
 [; ;main.c: 468:    {
 {
 "469
 [; ;main.c: 469:     static uint8_t s_update = 0, e_update = 0;
-[v F24845 `uc ~T0 @X0 1 s s_update ]
-[i F24845
+[v F24826 `uc ~T0 @X0 1 s s_update ]
+[i F24826
 -> -> 0 `i `uc
 ]
-[v F24846 `uc ~T0 @X0 1 s e_update ]
-[i F24846
+[v F24827 `uc ~T0 @X0 1 s e_update ]
+[i F24827
 -> -> 0 `i `uc
 ]
 "470
 [; ;main.c: 470:     static float ac = 0.0f;
-[v F24847 `f ~T0 @X0 1 s ac ]
-[i F24847
+[v F24828 `f ~T0 @X0 1 s ac ]
+[i F24828
 -> .0.0 `f
 ]
 "471
 [; ;main.c: 471:     static float wac = 0.0f;
-[v F24848 `f ~T0 @X0 1 s wac ]
-[i F24848
+[v F24829 `f ~T0 @X0 1 s wac ]
+[i F24829
 -> .0.0 `f
 ]
 "472
 [; ;main.c: 472:     static float wva = 0.0f;
-[v F24849 `f ~T0 @X0 1 s wva ]
-[i F24849
+[v F24830 `f ~T0 @X0 1 s wva ]
+[i F24830
 -> .0.0 `f
 ]
 "473
 [; ;main.c: 473:     static uint32_t error_save = 0;
-[v F24850 `ul ~T0 @X0 1 s error_save ]
-[i F24850
+[v F24831 `ul ~T0 @X0 1 s error_save ]
+[i F24831
 -> -> -> 0 `i `l `ul
 ]
 "475
 [; ;main.c: 475:     if (s_update++ >= 5) {
-[e $ ! >= -> ++ F24845 -> -> 1 `i `uc `i -> 5 `i 3352  ]
+[e $ ! >= -> ++ F24826 -> -> 1 `i `uc `i -> 5 `i 3352  ]
 {
 "476
 [; ;main.c: 476:      ac = lp_filter(((float) em.vl1l2) / 10.0f, F_ac, 0);
-[e = F24847 ( _lp_filter (3 , , / -> . _em 3 `f -> .10.0 `f -> . `E24640 0 `uc -> -> 0 `i `c ]
+[e = F24828 ( _lp_filter (3 , , / -> . _em 3 `f -> .10.0 `f -> . `E24621 0 `uc -> -> 0 `i `c ]
 "477
 [; ;main.c: 477:      wac = lp_filter(((float) em.wl1) / 10.0f, F_wac, 0);
-[e = F24848 ( _lp_filter (3 , , / -> . _em 9 `f -> .10.0 `f -> . `E24640 1 `uc -> -> 0 `i `c ]
+[e = F24829 ( _lp_filter (3 , , / -> . _em 9 `f -> .10.0 `f -> . `E24621 1 `uc -> -> 0 `i `c ]
 "478
 [; ;main.c: 478:      wva = lp_filter(((float) em.val1) / 10.0f, F_wva, 0);
-[e = F24849 ( _lp_filter (3 , , / -> . _em 12 `f -> .10.0 `f -> . `E24640 2 `uc -> -> 0 `i `c ]
+[e = F24830 ( _lp_filter (3 , , / -> . _em 12 `f -> .10.0 `f -> . `E24621 2 `uc -> -> 0 `i `c ]
 "479
 [; ;main.c: 479:      s_update = 0;
-[e = F24845 -> -> 0 `i `uc ]
+[e = F24826 -> -> 0 `i `uc ]
 "480
 [; ;main.c: 480:     }
 }
 [e :U 3352 ]
 "481
 [; ;main.c: 481:     StartTimer(TMR_SPIN, 200);
-[e ( _StartTimer (2 , -> . `E24370 3 `uc -> -> 200 `i `us ]
+[e ( _StartTimer (2 , -> . `E24351 3 `uc -> -> 200 `i `us ]
 "482
 [; ;main.c: 482:     if (C.data_ok && M.error > error_save) {
-[e $ ! && != -> . _C 8 `i -> 0 `i > -> . _M 8 `ul F24850 3353  ]
+[e $ ! && != -> . _C 8 `i -> 0 `i > -> . _M 8 `ul F24831 3353  ]
 {
 "483
 [; ;main.c: 483:      snprintf(buffer, 96, "EMon  %4.1fVAC   %c%c    ", lp_filter(ac, F_ac, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
-[e ( _snprintf (2 , , , (. , , &U _buffer -> -> 96 `i `ui :s 14C -> ( _lp_filter (3 , , F24847 -> . `E24640 0 `uc -> -> 0 `i `c `d -> ( _spinners (2 , -> - -> -> -> 5 `i `uc `i -> -> _cc_mode `uc `i `uc -> -> 0 `i `uc `i -> ( _spinners (2 , -> - -> -> -> 5 `i `uc `i -> -> _cc_mode `uc `i `uc -> -> 0 `i `uc `i ]
+[e ( _snprintf (2 , , , (. , , &U _buffer -> -> 96 `i `ui :s 14C -> ( _lp_filter (3 , , F24828 -> . `E24621 0 `uc -> -> 0 `i `c `d -> ( _spinners (2 , -> - -> -> -> 5 `i `uc `i -> -> _cc_mode `uc `i `uc -> -> 0 `i `uc `i -> ( _spinners (2 , -> - -> -> -> 5 `i `uc `i -> -> _cc_mode `uc `i `uc -> -> 0 `i `uc `i ]
 "484
 [; ;main.c: 484:      eaDogM_WriteStringAtPos(1, 0, buffer);
 [e ( _eaDogM_WriteStringAtPos (3 , , -> -> 1 `i `uc -> -> 0 `i `uc &U _buffer ]
@@ -5835,11 +5835,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _snprintf (2 , , &U _info_buffer -> -> 96 `i `ui :s 15C ]
 "486
 [; ;main.c: 486:      if (e_update == 0) {
-[e $ ! == -> F24846 `i -> 0 `i 3354  ]
+[e $ ! == -> F24827 `i -> 0 `i 3354  ]
 {
 "490
 [; ;main.c: 490:       snprintf(buffer, 96, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
-[e ( _snprintf (2 , , , , , (. , , &U _buffer -> -> 96 `i `ui :s 16C -> ( _lp_filter (3 , , F24848 -> . `E24640 1 `uc -> -> 0 `i `c `d -> ( _lp_filter (3 , , F24849 -> . `E24640 2 `uc -> -> 0 `i `c `d -> *U + &U *U + &U _state_name * -> _cc_mode `ux -> * -> # *U &U *U &U _state_name `ui -> -> 12 `i `ui `ux * -> -> -> 0 `i `ui `ux -> -> # *U &U *U + &U _state_name * -> _cc_mode `ux -> * -> # *U &U *U &U _state_name `ui -> -> 12 `i `ui `ux `ui `ux `i -> *U + &U *U + &U _canbus_name * -> . _B 7 `ux -> * -> # *U &U *U &U _canbus_name `ui -> -> 12 `i `ui `ux * -> -> -> 0 `i `ui `ux -> -> # *U &U *U + &U _canbus_name * -> . _B 7 `ux -> * -> # *U &U *U &U _canbus_name `ui -> -> 12 `i `ui `ux `ui `ux `i -> *U + &U *U + &U _modbus_name * -> . _B 8 `ux -> * -> # *U &U *U &U _modbus_name `ui -> -> 12 `i `ui `ux * -> -> -> 0 `i `ui `ux -> -> # *U &U *U + &U _modbus_name * -> . _B 8 `ux -> * -> # *U &U *U &U _modbus_name `ui -> -> 12 `i `ui `ux `ui `ux `i ]
+[e ( _snprintf (2 , , , , , (. , , &U _buffer -> -> 96 `i `ui :s 16C -> ( _lp_filter (3 , , F24829 -> . `E24621 1 `uc -> -> 0 `i `c `d -> ( _lp_filter (3 , , F24830 -> . `E24621 2 `uc -> -> 0 `i `c `d -> *U + &U *U + &U _state_name * -> _cc_mode `ux -> * -> # *U &U *U &U _state_name `ui -> -> 12 `i `ui `ux * -> -> -> 0 `i `ui `ux -> -> # *U &U *U + &U _state_name * -> _cc_mode `ux -> * -> # *U &U *U &U _state_name `ui -> -> 12 `i `ui `ux `ui `ux `i -> *U + &U *U + &U _canbus_name * -> . _B 7 `ux -> * -> # *U &U *U &U _canbus_name `ui -> -> 12 `i `ui `ux * -> -> -> 0 `i `ui `ux -> -> # *U &U *U + &U _canbus_name * -> . _B 7 `ux -> * -> # *U &U *U &U _canbus_name `ui -> -> 12 `i `ui `ux `ui `ux `i -> *U + &U *U + &U _modbus_name * -> . _B 8 `ux -> * -> # *U &U *U &U _modbus_name `ui -> -> 12 `i `ui `ux * -> -> -> 0 `i `ui `ux -> -> # *U &U *U + &U _modbus_name * -> . _B 8 `ux -> * -> # *U &U *U &U _modbus_name `ui -> -> 12 `i `ui `ux `ui `ux `i ]
 "492
 [; ;main.c: 492:       eaDogM_WriteStringAtPos(0, 0, buffer);
 [e ( _eaDogM_WriteStringAtPos (3 , , -> -> 0 `i `uc -> -> 0 `i `uc &U _buffer ]
@@ -5849,14 +5849,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 3354 ]
 "494
 [; ;main.c: 494:      if (e_update++ >= 10) {
-[e $ ! >= -> ++ F24846 -> -> 1 `i `uc `i -> 10 `i 3355  ]
+[e $ ! >= -> ++ F24827 -> -> 1 `i `uc `i -> 10 `i 3355  ]
 {
 "495
 [; ;main.c: 495:       error_save = M.error;
-[e = F24850 -> . _M 8 `ul ]
+[e = F24831 -> . _M 8 `ul ]
 "496
 [; ;main.c: 496:       e_update = 0;
-[e = F24846 -> -> 0 `i `uc ]
+[e = F24827 -> -> 0 `i `uc ]
 "497
 [; ;main.c: 497:      }
 }
@@ -5875,7 +5875,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _eaDogM_WriteStringAtPos (3 , , -> -> 1 `i `uc -> -> 0 `i `uc &U _buffer ]
 "528
 [; ;main.c: 528:      snprintf(buffer, 96, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
-[e ( _snprintf (2 , , , , , (. , , &U _buffer -> -> 96 `i `ui :s 18C -> ( _lp_filter (3 , , F24848 -> . `E24640 1 `uc -> -> 0 `i `c `d -> ( _lp_filter (3 , , F24849 -> . `E24640 2 `uc -> -> 0 `i `c `d -> *U + &U *U + &U _state_name * -> _cc_mode `ux -> * -> # *U &U *U &U _state_name `ui -> -> 12 `i `ui `ux * -> -> -> 0 `i `ui `ux -> -> # *U &U *U + &U _state_name * -> _cc_mode `ux -> * -> # *U &U *U &U _state_name `ui -> -> 12 `i `ui `ux `ui `ux `i -> *U + &U *U + &U _canbus_name * -> . _B 7 `ux -> * -> # *U &U *U &U _canbus_name `ui -> -> 12 `i `ui `ux * -> -> -> 0 `i `ui `ux -> -> # *U &U *U + &U _canbus_name * -> . _B 7 `ux -> * -> # *U &U *U &U _canbus_name `ui -> -> 12 `i `ui `ux `ui `ux `i -> *U + &U *U + &U _modbus_name * -> . _B 8 `ux -> * -> # *U &U *U &U _modbus_name `ui -> -> 12 `i `ui `ux * -> -> -> 0 `i `ui `ux -> -> # *U &U *U + &U _modbus_name * -> . _B 8 `ux -> * -> # *U &U *U &U _modbus_name `ui -> -> 12 `i `ui `ux `ui `ux `i ]
+[e ( _snprintf (2 , , , , , (. , , &U _buffer -> -> 96 `i `ui :s 18C -> ( _lp_filter (3 , , F24829 -> . `E24621 1 `uc -> -> 0 `i `c `d -> ( _lp_filter (3 , , F24830 -> . `E24621 2 `uc -> -> 0 `i `c `d -> *U + &U *U + &U _state_name * -> _cc_mode `ux -> * -> # *U &U *U &U _state_name `ui -> -> 12 `i `ui `ux * -> -> -> 0 `i `ui `ux -> -> # *U &U *U + &U _state_name * -> _cc_mode `ux -> * -> # *U &U *U &U _state_name `ui -> -> 12 `i `ui `ux `ui `ux `i -> *U + &U *U + &U _canbus_name * -> . _B 7 `ux -> * -> # *U &U *U &U _canbus_name `ui -> -> 12 `i `ui `ux * -> -> -> 0 `i `ui `ux -> -> # *U &U *U + &U _canbus_name * -> . _B 7 `ux -> * -> # *U &U *U &U _canbus_name `ui -> -> 12 `i `ui `ux `ui `ux `i -> *U + &U *U + &U _modbus_name * -> . _B 8 `ux -> * -> # *U &U *U &U _modbus_name `ui -> -> 12 `i `ui `ux * -> -> -> 0 `i `ui `ux -> -> # *U &U *U + &U _modbus_name * -> . _B 8 `ux -> * -> # *U &U *U &U _modbus_name `ui -> -> 12 `i `ui `ux `ui `ux `i ]
 "529
 [; ;main.c: 529:      eaDogM_WriteStringAtPos(0, 0, buffer);
 [e ( _eaDogM_WriteStringAtPos (3 , , -> -> 0 `i `uc -> -> 0 `i `uc &U _buffer ]
@@ -5971,22 +5971,22 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 "564
 [; ;main.c: 564: static void rec_mx_cmd(void (* DataHandler)(void), const uint8_t rec_len)
-[v _rec_mx_cmd `(v ~T0 @X0 1 sf2`*F24862`Cuc ]
+[v _rec_mx_cmd `(v ~T0 @X0 1 sf2`*F24843`Cuc ]
 "565
 [; ;main.c: 565: {
 {
 [e :U _rec_mx_cmd ]
 "564
 [; ;main.c: 564: static void rec_mx_cmd(void (* DataHandler)(void), const uint8_t rec_len)
-[v _DataHandler `*F24864 ~T0 @X0 1 r1 ]
+[v _DataHandler `*F24845 ~T0 @X0 1 r1 ]
 [v _rec_len `Cuc ~T0 @X0 1 r2 ]
 "565
 [; ;main.c: 565: {
 [f ]
 "566
 [; ;main.c: 566:  static uint16_t online_count = 0;
-[v F24866 `us ~T0 @X0 1 s online_count ]
-[i F24866
+[v F24847 `us ~T0 @X0 1 s online_count ]
+[i F24847
 -> -> 0 `i `us
 ]
 "568
@@ -5999,7 +5999,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "570
 [; ;main.c: 570:    online_count = 0;
-[e = F24866 -> -> 0 `i `us ]
+[e = F24847 -> -> 0 `i `us ]
 "571
 [; ;main.c: 571:    if (rec_len == 17) {
 [e $ ! == -> _rec_len `i -> 17 `i 3367  ]
@@ -6031,20 +6031,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "578
 [; ;main.c: 578:    if (online_count++ > 30000) {
-[e $ ! > -> ++ F24866 -> -> 1 `i `us `ui -> -> 30000 `i `ui 3370  ]
+[e $ ! > -> ++ F24847 -> -> 1 `i `us `ui -> -> 30000 `i `ui 3370  ]
 {
 "579
 [; ;main.c: 579:     online_count = 0;
-[e = F24866 -> -> 0 `i `us ]
+[e = F24847 -> -> 0 `i `us ]
 "580
 [; ;main.c: 580:     B.FM80_online = 0;
 [e = . _B 6 -> -> 0 `i `a ]
 "581
 [; ;main.c: 581:     cc_mode = STATUS_LAST;
-[e = _cc_mode -> . `E24404 5 `us ]
+[e = _cc_mode -> . `E24385 5 `us ]
 "582
 [; ;main.c: 582:     state = state_init;
-[e = _state . `E24760 0 ]
+[e = _state . `E24741 0 ]
 "583
 [; ;main.c: 583:    }
 }
@@ -6059,20 +6059,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 3365 ]
 "586
 [; ;main.c: 586:  if ((B.FM80_online == 0) && online_count++ > 30000) {
-[e $ ! && == -> . _B 6 `i -> 0 `i > -> ++ F24866 -> -> 1 `i `us `ui -> -> 30000 `i `ui 3371  ]
+[e $ ! && == -> . _B 6 `i -> 0 `i > -> ++ F24847 -> -> 1 `i `us `ui -> -> 30000 `i `ui 3371  ]
 {
 "587
 [; ;main.c: 587:   online_count = 0;
-[e = F24866 -> -> 0 `i `us ]
+[e = F24847 -> -> 0 `i `us ]
 "588
 [; ;main.c: 588:   B.FM80_online = 0;
 [e = . _B 6 -> -> 0 `i `a ]
 "589
 [; ;main.c: 589:   cc_mode = STATUS_LAST;
-[e = _cc_mode -> . `E24404 5 `us ]
+[e = _cc_mode -> . `E24385 5 `us ]
 "590
 [; ;main.c: 590:   state = state_watts;
-[e = _state . `E24760 5 ]
+[e = _state . `E24741 5 ]
 "591
 [; ;main.c: 591:   mx_code = 0x0;
 [e = _mx_code -> -> 0 `i `us ]
@@ -6148,14 +6148,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . _B 6 -> -> 0 `i `a ]
 "615
 [; ;main.c: 615:   cc_mode = STATUS_LAST;
-[e = _cc_mode -> . `E24404 5 `us ]
+[e = _cc_mode -> . `E24385 5 `us ]
 "616
 [; ;main.c: 616:  }
 }
 [e :U 3375 ]
 "617
 [; ;main.c: 617:  state = state_status;
-[e = _state . `E24760 1 ]
+[e = _state . `E24741 1 ]
 "618
 [; ;main.c: 618: }
 [e :UE 3372 ]
@@ -6170,11 +6170,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "625
 [; ;main.c: 625:  if (abuf[2] != STATUS_SLEEPING) {
-[e $ ! != -> *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> . `E24404 0 `ui 3377  ]
+[e $ ! != -> *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> . `E24385 0 `ui 3377  ]
 {
 "626
 [; ;main.c: 626:   state = state_watts;
-[e = _state . `E24760 5 ]
+[e = _state . `E24741 5 ]
 "627
 [; ;main.c: 627:  } else {
 }
@@ -6183,7 +6183,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "628
 [; ;main.c: 628:   state = state_watts;
-[e = _state . `E24760 5 ]
+[e = _state . `E24741 5 ]
 "629
 [; ;main.c: 629:  }
 }
@@ -6213,7 +6213,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "640
 [; ;main.c: 640:  state = state_batteryv;
-[e = _state . `E24760 3 ]
+[e = _state . `E24741 3 ]
 "641
 [; ;main.c: 641: }
 [e :UE 3380 ]
@@ -6231,7 +6231,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _volt_f (1 -> + -> *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui << -> *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> 8 `i `us ]
 "649
 [; ;main.c: 649:  state = state_batterya;
-[e = _state . `E24760 4 ]
+[e = _state . `E24741 4 ]
 "650
 [; ;main.c: 650: }
 [e :UE 3381 ]
@@ -6249,7 +6249,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _volt_f (1 -> + -> *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui << -> *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> 8 `i `us ]
 "658
 [; ;main.c: 658:  state = state_watts;
-[e = _state . `E24760 5 ]
+[e = _state . `E24741 5 ]
 "659
 [; ;main.c: 659: }
 [e :UE 3382 ]
@@ -6271,7 +6271,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "668
 [; ;main.c: 668:   state = state_mx_log;
-[e = _state . `E24760 9 ]
+[e = _state . `E24741 9 ]
 "669
 [; ;main.c: 669:  } else {
 }
@@ -6280,7 +6280,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "670
 [; ;main.c: 670:   state = state_mx_status;
-[e = _state . `E24760 11 ]
+[e = _state . `E24741 11 ]
 "671
 [; ;main.c: 671:  }
 }
@@ -6335,7 +6335,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = *U + &U _cmd_mx_log * -> -> -> 7 `i `ui `ux -> -> # *U &U _cmd_mx_log `ui `ux -> + -> 22 `i -> . . _B 11 10 `i `us ]
 "690
 [; ;main.c: 690:  state = state_mx_status;
-[e = _state . `E24760 11 ]
+[e = _state . `E24741 11 ]
 "691
 [; ;main.c: 691: }
 [e :UE 3386 ]
@@ -6475,7 +6475,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 3396 ]
 "741
 [; ;main.c: 741:    if ((EBD_update++ >= 3600) || ((EBD_update >= 1800) && (cc_mode != STATUS_SLEEPING))) {
-[e $ ! || >= -> ++ _EBD_update -> -> 1 `i `us `ui -> -> 3600 `i `ui && >= -> _EBD_update `ui -> -> 1800 `i `ui != -> _cc_mode `ui -> . `E24404 0 `ui 3400  ]
+[e $ ! || >= -> ++ _EBD_update -> -> 1 `i `us `ui -> -> 3600 `i `ui && >= -> _EBD_update `ui -> -> 1800 `i `ui != -> _cc_mode `ui -> . `E24385 0 `ui 3400  ]
 {
 "742
 [; ;main.c: 742:     EBD.loaded = 1;
@@ -6507,7 +6507,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 3390 ]
 "749
 [; ;main.c: 749:  state = state_fwrev;
-[e = _state . `E24760 6 ]
+[e = _state . `E24741 6 ]
 "750
 [; ;main.c: 750: }
 [e :UE 3387 ]
@@ -6529,7 +6529,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "756
 [; ;main.c: 756:   state = state_misc;
-[e = _state . `E24760 10 ]
+[e = _state . `E24741 10 ]
 "757
 [; ;main.c: 757:  } else {
 }
@@ -6541,7 +6541,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . _C 12 -> -> 0 `i `a ]
 "759
 [; ;main.c: 759:   state = state_time;
-[e = _state . `E24760 7 ]
+[e = _state . `E24741 7 ]
 "760
 [; ;main.c: 760:  }
 }
@@ -6577,7 +6577,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 3412 ]
 "773
 [; ;main.c: 773:  state = state_date;
-[e = _state . `E24760 8 ]
+[e = _state . `E24741 8 ]
 "774
 [; ;main.c: 774: }
 [e :UE 3407 ]
@@ -6595,7 +6595,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _s_buffer `uc ~T0 @X0 -> 22 `i a ]
 "784
 [; ;main.c: 784:  state = state_misc;
-[e = _state . `E24760 10 ]
+[e = _state . `E24741 10 ]
 "785
 [; ;main.c: 785: }
 [e :UE 3414 ]
@@ -6623,10 +6623,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . _B 6 -> -> 0 `i `a ]
 "795
 [; ;main.c: 795:   cc_mode = STATUS_LAST;
-[e = _cc_mode -> . `E24404 5 `us ]
+[e = _cc_mode -> . `E24385 5 `us ]
 "796
 [; ;main.c: 796:   state = state_init;
-[e = _state . `E24760 0 ]
+[e = _state . `E24741 0 ]
 "797
 [; ;main.c: 797:   return;
 [e $UE 3415  ]
@@ -6640,7 +6640,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "800
 [; ;main.c: 800:   state = state_misc;
-[e = _state . `E24760 10 ]
+[e = _state . `E24741 10 ]
 "801
 [; ;main.c: 801:  } else {
 }
@@ -6649,7 +6649,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "802
 [; ;main.c: 802:   state = state_status;
-[e = _state . `E24760 1 ]
+[e = _state . `E24741 1 ]
 "803
 [; ;main.c: 803:  }
 }
@@ -6674,7 +6674,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "809
 [; ;main.c: 809:  static uint8_t s[6];
-[v F24885 `uc ~T0 @X0 -> 6 `i s s ]
+[v F24866 `uc ~T0 @X0 -> 6 `i s s ]
 "810
 [; ;main.c: 810:  char c;
 [v _c `uc ~T0 @X0 1 a ]
@@ -6690,17 +6690,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ ! != -> _reset `i -> 0 `i 3422  ]
 "815
 [; ;main.c: 815:   s[shape] = 0;
-[e = *U + &U F24885 * -> _shape `ux -> -> # *U &U F24885 `ui `ux -> -> 0 `i `uc ]
+[e = *U + &U F24866 * -> _shape `ux -> -> # *U &U F24866 `ui `ux -> -> 0 `i `uc ]
 [e :U 3422 ]
 "816
 [; ;main.c: 816:  c = spin[shape][s[shape]];
-[e = _c *U + &U *U + &U _spin * -> _shape `ux -> * -> # *U &U *U &U _spin `ui -> -> 20 `i `ui `ux * -> *U + &U F24885 * -> _shape `ux -> -> # *U &U F24885 `ui `ux `ux -> -> # *U &U *U + &U _spin * -> _shape `ux -> * -> # *U &U *U &U _spin `ui -> -> 20 `i `ui `ux `ui `ux ]
+[e = _c *U + &U *U + &U _spin * -> _shape `ux -> * -> # *U &U *U &U _spin `ui -> -> 20 `i `ui `ux * -> *U + &U F24866 * -> _shape `ux -> -> # *U &U F24866 `ui `ux `ux -> -> # *U &U *U + &U _spin * -> _shape `ux -> * -> # *U &U *U &U _spin `ui -> -> 20 `i `ui `ux `ui `ux ]
 "817
 [; ;main.c: 817:  if (++s[shape] >= strlen(spin[shape]))
-[e $ ! >= -> =+ *U + &U F24885 * -> _shape `ux -> -> # *U &U F24885 `ui `ux -> -> 1 `i `uc `ui ( _strlen (1 &U *U + &U _spin * -> _shape `ux -> * -> # *U &U *U &U _spin `ui -> -> 20 `i `ui `ux 3423  ]
+[e $ ! >= -> =+ *U + &U F24866 * -> _shape `ux -> -> # *U &U F24866 `ui `ux -> -> 1 `i `uc `ui ( _strlen (1 &U *U + &U _spin * -> _shape `ux -> * -> # *U &U *U &U _spin `ui -> -> 20 `i `ui `ux 3423  ]
 "818
 [; ;main.c: 818:   s[shape] = 0;
-[e = *U + &U F24885 * -> _shape `ux -> -> # *U &U F24885 `ui `ux -> -> 0 `i `uc ]
+[e = *U + &U F24866 * -> _shape `ux -> -> # *U &U F24866 `ui `ux -> -> 0 `i `uc ]
 [e :U 3423 ]
 "819
 [; ;main.c: 819:  return c;
@@ -6714,8 +6714,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [p f _snprintf 3875536879 ]
 [a 22C 37 115 0 ]
 [a 23C 37 115 0 ]
-[a 2C 48 54 58 51 51 58 51 56 0 ]
-[a 1C 83 101 112 32 49 48 32 50 48 50 51 0 ]
+[a 1C 83 101 112 32 49 52 32 50 48 50 51 0 ]
+[a 2C 49 48 58 51 57 58 49 51 0 ]
 [a 3C 37 115 32 0 ]
 [a 9C 37 115 32 0 ]
 [a 11C 37 115 32 0 ]
