@@ -38,8 +38,8 @@
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 *******************************************************************************/
 
-#ifndef _PLIB_QEI2_H
-#define _PLIB_QEI2_H
+#ifndef PLIB_QEI2_H
+#define PLIB_QEI2_H
 
 #include <stddef.h>
 #include <stdbool.h>
@@ -100,4 +100,4 @@ void QEI2_CallbackRegister(QEI_CALLBACK callback, uintptr_t context);
 #endif
 
 // DOM-IGNORE-END
-#endif // _PLIB_QEI2_H
+#endif // PLIB_QEI2_H

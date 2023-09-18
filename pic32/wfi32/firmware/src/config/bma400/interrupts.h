@@ -57,6 +57,22 @@
 // *****************************************************************************
 // *****************************************************************************
 
+void CORE_TIMER_InterruptHandler( void );
+void EXTERNAL_2_InterruptHandler( void );
+void TIMER_5_InterruptHandler( void );
+void RTCC_InterruptHandler( void );
+void SPI1_RX_InterruptHandler( void );
+void SPI1_TX_InterruptHandler( void );
+void SPI2_RX_InterruptHandler( void );
+void SPI2_TX_InterruptHandler( void );
+void DMA0_InterruptHandler( void );
+void DMA1_InterruptHandler( void );
+void DMA2_InterruptHandler( void );
+void TIMER_6_InterruptHandler( void );
+void CAN1_InterruptHandler( void );
+void QEI2_InterruptHandler( void );
+void DMA7_InterruptHandler( void );
+
 
 
 #endif // INTERRUPTS_H

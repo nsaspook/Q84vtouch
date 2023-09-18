@@ -277,6 +277,28 @@ int host_sm(void)
 	StartTimer(TMR_HOST, host_canfd_update);
 	StartTimer(TMR_REPLY, host_xmit_wait);
 
+	/* Place CAN module in configuration mode */
+	CFD1CONbits.REQOP = 4;
+	while (CFD1CONbits.OPMOD != 4);
+	// disable filters for configuration
+	CFD1FLTCON0bits.FLTEN0 = 0;
+	CFD1TDCbits.TDCMOD = 2;
+	CFD1FLTCON0bits.F0BP = 2; // message stored in FIFO2
+	CFD1FLTCON0bits.F1BP = 2; // message stored in FIFO2
+	// extended identifier address
+	CFD1FLTOBJ0bits.EXIDE = 1;
+	CFD1FLTOBJ1bits.EXIDE = 1;
+	// match mask to address type
+	CFD1MASK0bits.MIDE = 1;
+	CFD1MASK1bits.MIDE = 1;
+	CAN1_MessageAcceptanceFilterMaskSet(0,0x1fffffff); // generate mask from ID
+	CAN1_MessageAcceptanceFilterSet(0, 0xf);
+	// enable filters after configuration
+	CFD1FLTCON0bits.FLTEN0 = 1;
+	/* Place the CAN module in Normal mode */
+	CFD1CONbits.REQOP = 0;
+	while (CFD1CONbits.OPMOD != 0);
+
 	while (true) {
 
 		/* Maintain state machines of all polled MPLAB Harmony modules. */

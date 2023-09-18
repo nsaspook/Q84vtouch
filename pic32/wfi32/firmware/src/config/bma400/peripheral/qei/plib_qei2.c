@@ -39,6 +39,7 @@
 *******************************************************************************/
 #include "device.h"
 #include "plib_qei2.h"
+#include "interrupts.h"
 
 // *****************************************************************************
 
@@ -47,7 +48,7 @@
 // *****************************************************************************
 // *****************************************************************************
 
-QEI_CH_OBJECT qei2Obj;
+volatile static QEI_CH_OBJECT qei2Obj;
 
 void QEI2_Initialize (void)
 {
@@ -93,13 +94,13 @@ void QEI2_Initialize (void)
 void QEI2_Start(void)
 {
     /* Enable QEI channel */
-    QEI2CON |= _QEI2CON_QEIEN_MASK;
+    QEI2CON |= (uint32_t)_QEI2CON_QEIEN_MASK;
 }
 
 void QEI2_Stop(void)
 {
     /* Disable QEI channel */
-    QEI2CON &= ~_QEI2CON_QEIEN_MASK;
+    QEI2CON &= ~(uint32_t)_QEI2CON_QEIEN_MASK;
 }
 
 uint32_t QEI2_PulseIntervalGet(void)
@@ -130,12 +131,14 @@ void QEI2_CallbackRegister(QEI_CALLBACK callback, uintptr_t context)
     qei2Obj.context = context;
 }
 
-void QEI2_InterruptHandler(void)
+void __attribute__((used)) QEI2_InterruptHandler(void)
 {
-    QEI_STATUS status = (QEI_STATUS)(QEI2STAT & QEI_STATUS_MASK);
+    /* Additional local variable to prevent MISRA C violations (Rule 13.x) */
+    uintptr_t context = qei2Obj.context;
+    QEI_STATUS status = (QEI2STAT & (uint32_t)QEI_STATUS_MASK);
     IFS5CLR = _IFS5_QEI2IF_MASK;
     if( (qei2Obj.callback != NULL))
     {
-        qei2Obj.callback(status, qei2Obj.context);
+        qei2Obj.callback(status, context);
     }
 }

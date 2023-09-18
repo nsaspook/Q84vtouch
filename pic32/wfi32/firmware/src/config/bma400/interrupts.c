@@ -48,9 +48,9 @@
 // Section: Included Files
 // *****************************************************************************
 // *****************************************************************************
-
 #include "interrupts.h"
 #include "definitions.h"
+
 
 
 // *****************************************************************************
@@ -60,24 +60,34 @@
 // *****************************************************************************
 
 
-void CORE_TIMER_InterruptHandler( void );
-void EXTERNAL_2_InterruptHandler( void );
-void TIMER_5_InterruptHandler( void );
-void RTCC_InterruptHandler( void );
-void SPI1_RX_InterruptHandler( void );
-void SPI1_TX_InterruptHandler( void );
-void SPI2_RX_InterruptHandler( void );
-void SPI2_TX_InterruptHandler( void );
-void DMA0_InterruptHandler( void );
-void DMA1_InterruptHandler( void );
-void DMA2_InterruptHandler( void );
-void TIMER_6_InterruptHandler( void );
-void QEI2_InterruptHandler( void );
-void DMA7_InterruptHandler( void );
-
-
-
 /* All the handlers are defined here.  Each will call its PLIB-specific function. */
+// *****************************************************************************
+// *****************************************************************************
+// Section: System Interrupt Vector declarations
+// *****************************************************************************
+// *****************************************************************************
+void CORE_TIMER_Handler (void);
+void EXTERNAL_2_Handler (void);
+void TIMER_5_Handler (void);
+void RTCC_Handler (void);
+void SPI1_RX_Handler (void);
+void SPI1_TX_Handler (void);
+void SPI2_RX_Handler (void);
+void SPI2_TX_Handler (void);
+void DMA0_Handler (void);
+void DMA1_Handler (void);
+void DMA2_Handler (void);
+void TIMER_6_Handler (void);
+void CAN1_Handler (void);
+void QEI2_Handler (void);
+void DMA7_Handler (void);
+
+
+// *****************************************************************************
+// *****************************************************************************
+// Section: System Interrupt Vector definitions
+// *****************************************************************************
+// *****************************************************************************
 void __ISR(_CORE_TIMER_VECTOR, ipl1SRS) CORE_TIMER_Handler (void)
 {
     CORE_TIMER_InterruptHandler();
@@ -136,6 +146,11 @@ void __ISR(_DMA2_VECTOR, ipl2SRS) DMA2_Handler (void)
 void __ISR(_TIMER_6_VECTOR, ipl3SRS) TIMER_6_Handler (void)
 {
     TIMER_6_InterruptHandler();
+}
+
+void __ISR(_CAN1_VECTOR, ipl1SRS) CAN1_Handler (void)
+{
+    CAN1_InterruptHandler();
 }
 
 void __ISR(_QEI2_VECTOR, ipl1SRS) QEI2_Handler (void)

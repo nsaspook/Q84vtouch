@@ -195,9 +195,9 @@ int main(void)
 	//	setup the reset and command pins for the Ethernet adapter
 #endif
 
-#ifdef HOST_BOARD
+//#ifdef HOST_BOARD
 	host_sm();
-#endif
+//#endif
 
 	/*
 	 * start core-timer for delay_us

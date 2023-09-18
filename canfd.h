@@ -36,6 +36,7 @@ extern "C" {
 #define EMON_SL	0x2	// remote display lower data
 #define EMON_SU	0x3	// remote display upper data
 #define EMON_TM	0xA	// remote time from time server
+#define EMON_DS	0xB	// remote display server
 #define EMON_ER	0xF	// error reporting
 #define EMON_CO	0xC	// configuration reporting
 
