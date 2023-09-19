@@ -203,6 +203,7 @@ void eaDogM_WriteStringAtPos(const uint8_t r, const uint8_t c, char *strPtr)
 	send_lcd_cmd(0x45);
 	send_lcd_data(row + c);
 	wait_lcd_done();
+	can_fd_lcd_mirror(r, strPtr);
 	eaDogM_WriteString(strPtr);
 }
 

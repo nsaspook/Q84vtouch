@@ -68,6 +68,7 @@ extern "C" {
 	// DMA complete flag
 	void clear_lcd_done(void);
 	void spi_rec_done(void);
+	extern 	void can_fd_lcd_mirror(const uint8_t, char *);
 
 #define eaDogM_Cls()             eaDogM_WriteCommand(EADOGM_CMD_CLR)
 #define eaDogM_CursorOn()        eaDogM_WriteCommand(EADOGM_CMD_CURSOR_ON)

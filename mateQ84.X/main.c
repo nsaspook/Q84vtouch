@@ -457,11 +457,10 @@ void main(void)
 			B.modbus_online = C.data_ok;
 #ifdef CAN_DEBUG
 			snprintf(buffer, MAX_B_BUF, "%X %X %X %X  %lu %lu %lu      ", C1BDIAG0T, C1BDIAG0U, C1BDIAG0H, C1BDIAG0L, can_rec_count.rec_count, msg[0].msgId, msg[1].msgId);
-			eaDogM_WriteStringAtPos(0, 0, buffer);
-			//			snprintf(buffer, MAX_B_BUF, "%X %X %X %X  %u %X %u       ", C1BDIAG1T, C1BDIAG1U, C1BDIAG1H, C1BDIAG1L, can_rec_count.rec_flag, msg[0].field.formatType, EBD.bat_cycles);
+			//			eaDogM_WriteStringAtPos(0, 0, buffer);
 			can_newtime = localtime(&can_timer);
 			snprintf(buffer, 21, "%s", asctime(can_newtime));
-			eaDogM_WriteStringAtPos(1, 0, buffer);
+			//			eaDogM_WriteStringAtPos(1, 0, buffer);
 #endif
 		}
 		if (TimerDone(TMR_SPIN)) { // LCD status spinner for charger MODE
@@ -499,6 +498,8 @@ void main(void)
 					//					snprintf(buffer, MAX_B_BUF, "EMon  %4.1fVAC   %c%c    ", lp_filter(ac, F_ac, false), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
 #ifdef CAN_DEBUG
 #ifdef DATA_DEBUG
+#ifdef LCD_MIRROR
+#else
 					if (show_can) {
 						rxMsgData[0][42] = 0;
 						snprintf(buffer, MAX_B_BUF, "%s          ", &rxMsgData[CAN_LOW_BUF][2]);
@@ -516,6 +517,7 @@ void main(void)
 						show_can = !show_can;
 						time_show_can = 0;
 					}
+#endif
 #else
 					snprintf(buffer, MAX_B_BUF, "%X %X %X %X %X %X %X %X           ", C1INTL, C1INTH, C1INTU, C1INTT, C1TRECL, C1FLTOBJ0T, C1FLTCON0L, CAN1_OperationModeGet());
 					eaDogM_WriteStringAtPos(2, 0, buffer);
@@ -597,6 +599,7 @@ static void rec_mx_cmd(void (* DataHandler)(void), const uint8_t rec_len)
 void state_init_cb(void)
 {
 	float Soc;
+	static uint8_t off_delay = 0;
 
 	mx_code = abuf[2]&0xf;
 	if (mx_code == FM80_ID) {
@@ -606,13 +609,20 @@ void state_init_cb(void)
 			EBD.bat_energy = BAT_ENERGY*Soc;
 		}
 		B.FM80_online = true;
+		off_delay = 0;
 		snprintf(buffer, MAX_B_BUF, "FM80 Online         ");
+#ifndef LCD_MIRROR
 		eaDogM_WriteStringAtPos(3, 0, buffer);
+#endif
 	} else {
 		snprintf(buffer, MAX_B_BUF, "FM80 Offline        ");
+#ifndef LCD_MIRROR
 		eaDogM_WriteStringAtPos(3, 0, buffer);
-		B.FM80_online = false;
-		cc_mode = STATUS_LAST;
+#endif
+		if (off_delay++ > 3) {
+			B.FM80_online = false;
+			cc_mode = STATUS_LAST;
+		}
 	}
 	state = state_status;
 }

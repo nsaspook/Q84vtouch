@@ -82,14 +82,28 @@ void Can1FIFO1NotEmptyHandler(void)
 				myVar.Word = calc_checksum((uint8_t *) & cmd_date[1], 10);
 				cmd_date[7] = myVar.structBytes.Byte1;
 				cmd_date[6] = myVar.structBytes.Byte2;
-#ifdef SDEBUG
-				snprintf(s_buffer, 21, "%s", asctime(can_newtime));
-				eaDogM_Scroll_String(s_buffer);
-#endif
 				if (B.canbus_online && B.FM80_online) {
 					C.tm_ok = true; // FM80 time date data valid to send flag
 				}
 			}
+#ifdef CAN_DEBUG
+			if ((msg[half].msgId & 0xf) == EMON_MR) {
+				memcpy((void *) s_buffer, msg[half].data, 22); // load LCD mirror packet
+				eaDogM_WriteStringAtPos(0, 0, s_buffer);
+			}
+			if ((msg[half].msgId & 0xf) == EMON_MR + 1) {
+				memcpy((void *) s_buffer, msg[half].data, 22); // load LCD mirror packet
+				eaDogM_WriteStringAtPos(1, 0, s_buffer);
+			}
+			if ((msg[half].msgId & 0xf) == EMON_MR + 2) {
+				memcpy((void *) s_buffer, msg[half].data, 22); // load LCD mirror packet
+				eaDogM_WriteStringAtPos(2, 0, s_buffer);
+			}
+			if ((msg[half].msgId & 0xf) == EMON_MR + 3) {
+				memcpy((void *) s_buffer, msg[half].data, 22); // load LCD mirror packet
+				eaDogM_WriteStringAtPos(3, 0, s_buffer);
+			}
+#endif
 			break;
 		}
 		if (++tries >= CAN_RX_TRIES) {
@@ -191,4 +205,27 @@ void can_setup(void)
 	PIR4bits.CANRXIF = 0; // clear flags and set interrupt controller again, just to be sure
 	PIE4bits.CANRXIE = 1;
 	CAN1_OperationModeSet(CAN_NORMAL_FD_MODE);
+}
+
+void can_fd_lcd_mirror(const uint8_t r, char *strPtr)
+{
+	CAN_MSG_OBJ Transmission; //create the CAN message object
+	Transmission.field.brs = CAN_BRS_MODE; //Transmit the data bytes at data bit rate
+	Transmission.field.dlc = DLC_64; // 64 data bytes
+	Transmission.field.formatType = CAN_FD_FORMAT; // CAN FD frames
+	Transmission.field.frameType = CAN_FRAME_DATA; // Data frame
+	Transmission.field.idType = CAN_FRAME_EXT; // EXT ID
+	Transmission.msgId = EMON_MR + r; // packet type ID of client
+	Transmission.data = (uint8_t*) strPtr; //transmit the data from the data bytes
+	if (CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(FIFO3) & CAN_TX_FIFO_AVAILABLE))//ensure that the FIFO has space for a message
+	{
+		CAN1_Transmit(FIFO3, &Transmission); //transmit frame
+	}
+
+#ifdef CAN_DEBUG
+	if (CAN1_IsRxErrorActive()) {
+		MLED_Toggle();
+	}
+#endif
+	IO_RB5_SetLow();
 }

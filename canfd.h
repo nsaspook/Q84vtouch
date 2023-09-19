@@ -20,8 +20,12 @@ extern "C" {
 #include "modbus_master.h"
 #include "batmon.h"
 
-//	#define CAN_DEBUG	// can received data on LCD for remote mate board
+//#define CAN_DEBUG	// can received data on LCD for remote mate board
 #define DATA_DEBUG
+	
+#ifdef CAN_DEBUG
+#define LCD_MIRROR
+#endif
 
 #define USE_FD	// select classic or FD
 #define CANFD_BYTES	64
@@ -35,6 +39,7 @@ extern "C" {
 #define	EMON_M	0x1	// FM80 host
 #define EMON_SL	0x2	// remote display lower data
 #define EMON_SU	0x3	// remote display upper data
+#define EMON_MR	0x4	// LCD mirror data [0..3]]
 #define EMON_TM	0xA	// remote time from time server
 #define EMON_DS	0xB	// remote display server
 #define EMON_ER	0xF	// error reporting
@@ -56,6 +61,7 @@ extern "C" {
 	extern char can_buffer[MAX_C_BUF], info_buffer[MAX_B_BUF];
 	void can_fd_tx(void);
 	void can_setup(void);
+	void can_fd_lcd_mirror(const uint8_t, char *);
 
 #ifdef	__cplusplus
 }

@@ -40737,6 +40737,7 @@ extern char spinners(uint8_t, const uint8_t);
 
  void clear_lcd_done(void);
  void spi_rec_done(void);
+ extern void can_fd_lcd_mirror(const uint8_t, char *);
 # 22 "./mxcmd.h" 2
 # 1 "./../timers.h" 1
 # 12 "./../timers.h"
@@ -40761,8 +40762,8 @@ void delay_ms(const uint16_t);
 # 23 "./mxcmd.h" 2
 
 
- const char build_version[] = "V1.72 FM80 Q84";
-# 59 "./mxcmd.h"
+ const char build_version[] = "V1.73 FM80 Q84";
+# 60 "./mxcmd.h"
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
  const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};
@@ -41169,7 +41170,7 @@ void delay_ms(const uint16_t);
 
  uint16_t Volts_to_SOC(const uint16_t, const uint16_t);
 # 22 "./../canfd.h" 2
-# 42 "./../canfd.h"
+# 48 "./../canfd.h"
  typedef struct {
   uint32_t rec_count;
   _Bool rec_flag;
@@ -41186,6 +41187,7 @@ void delay_ms(const uint16_t);
  extern char can_buffer[64*2], info_buffer[96];
  void can_fd_tx(void);
  void can_setup(void);
+ void can_fd_lcd_mirror(const uint8_t, char *);
 # 198 "main.c" 2
 # 207 "main.c"
 enum state_type {
@@ -41209,7 +41211,7 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[96], can_buffer[64*2], info_buffer[96];
-const char *build_date = "Sep 14 2023", *build_time = "10:39:13";
+const char *build_date = "Sep 18 2023", *build_time = "20:11:35";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
@@ -41439,7 +41441,13 @@ void main(void)
     C.tm_ok = 0;
    }
    B.modbus_online = C.data_ok;
-# 466 "main.c"
+
+
+
+
+
+
+
   }
   if (TimerDone(TMR_SPIN)) {
    {
@@ -41473,7 +41481,7 @@ void main(void)
       e_update = 0;
      }
     } else {
-# 526 "main.c"
+# 528 "main.c"
      snprintf(buffer, 96, "EMon  %6.1fWh   %c%c    ", EBD.bat_energy / 360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
      eaDogM_WriteStringAtPos(1, 0, buffer);
      snprintf(buffer, 96, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
@@ -41548,6 +41556,7 @@ static void rec_mx_cmd(void (* DataHandler)(void), const uint8_t rec_len)
 void state_init_cb(void)
 {
  float Soc;
+ static uint8_t off_delay = 0;
 
  mx_code = abuf[2]&0xf;
  if (mx_code == 0x03) {
@@ -41557,13 +41566,20 @@ void state_init_cb(void)
    EBD.bat_energy = 25.6f*200.0f*360.0f*Soc;
   }
   B.FM80_online = 1;
+  off_delay = 0;
   snprintf(buffer, 96, "FM80 Online         ");
+
   eaDogM_WriteStringAtPos(3, 0, buffer);
+
  } else {
   snprintf(buffer, 96, "FM80 Offline        ");
+
   eaDogM_WriteStringAtPos(3, 0, buffer);
-  B.FM80_online = 0;
-  cc_mode = STATUS_LAST;
+
+  if (off_delay++ > 3) {
+   B.FM80_online = 0;
+   cc_mode = STATUS_LAST;
+  }
  }
  state = state_status;
 }
