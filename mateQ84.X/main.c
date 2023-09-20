@@ -577,11 +577,13 @@ static void rec_mx_cmd(void (* DataHandler)(void), const uint8_t rec_len)
 			} else {
 				FM_rx(abuf);
 			}
+			B.FM80_io = false;
 			DataHandler(); // execute callback to process data in abuf
 		} else {
 			if (online_count++ > ONLINE_TIMEOUT) {
 				online_count = 0;
 				B.FM80_online = false;
+				B.FM80_io = false;
 				cc_mode = STATUS_LAST;
 				state = state_init;
 			}
@@ -590,6 +592,7 @@ static void rec_mx_cmd(void (* DataHandler)(void), const uint8_t rec_len)
 	if ((B.FM80_online == false) && online_count++ > ONLINE_TIMEOUT) {
 		online_count = 0;
 		B.FM80_online = false;
+		B.FM80_io = false;
 		cc_mode = STATUS_LAST;
 		state = state_watts;
 		mx_code = 0x0;

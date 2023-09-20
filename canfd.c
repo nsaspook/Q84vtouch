@@ -41,7 +41,7 @@ void Can1FIFO1NotEmptyHandler(void)
 				if ((msg[half].msgId & 0xf) == EMON_SL) {
 					half = 1;
 #ifdef CAN_DEBUG
-//					MLED_Toggle();
+					//					MLED_Toggle();
 #endif
 					break;
 				}
@@ -49,12 +49,12 @@ void Can1FIFO1NotEmptyHandler(void)
 					half = 0;
 					can_rec_count.rec_flag = true;
 #ifdef CAN_DEBUG
-//					MLED_Toggle();
+					//					MLED_Toggle();
 #endif
 					break;
 				}
 #ifdef CAN_DEBUG
-//				MLED_Toggle();
+				//				MLED_Toggle();
 #endif
 			}
 			if ((msg[half].msgId & 0xf) == EMON_CO) {
@@ -166,7 +166,7 @@ void can_fd_tx(void)
 
 #ifdef CAN_DEBUG
 	if (CAN1_IsRxErrorActive()) {
-//		MLED_Toggle();
+		//		MLED_Toggle();
 	}
 #endif
 	IO_RB5_SetLow();
@@ -216,22 +216,24 @@ void can_setup(void)
 
 void can_fd_lcd_mirror(const uint8_t r, char *strPtr)
 {
-	CAN_MSG_OBJ Transmission; //create the CAN message object
-	Transmission.field.brs = CAN_BRS_MODE; //Transmit the data bytes at data bit rate
-	Transmission.field.dlc = DLC_64; // 64 data bytes
-	Transmission.field.formatType = CAN_FD_FORMAT; // CAN FD frames
-	Transmission.field.frameType = CAN_FRAME_DATA; // Data frame
-	Transmission.field.idType = CAN_FRAME_EXT; // EXT ID
-	Transmission.msgId = EMON_MR + r; // packet type ID of client
-	Transmission.data = (uint8_t*) strPtr; //transmit the data from the data bytes
-	if (CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(FIFO3) & CAN_TX_FIFO_AVAILABLE))//ensure that the FIFO has space for a message
-	{
-		CAN1_Transmit(FIFO3, &Transmission); //transmit frame
+	if (!B.FM80_io) {
+		CAN_MSG_OBJ Transmission; //create the CAN message object
+		Transmission.field.brs = CAN_BRS_MODE; //Transmit the data bytes at data bit rate
+		Transmission.field.dlc = DLC_64; // 64 data bytes
+		Transmission.field.formatType = CAN_FD_FORMAT; // CAN FD frames
+		Transmission.field.frameType = CAN_FRAME_DATA; // Data frame
+		Transmission.field.idType = CAN_FRAME_EXT; // EXT ID
+		Transmission.msgId = EMON_MR + r; // packet type ID of client
+		Transmission.data = (uint8_t*) strPtr; //transmit the data from the data bytes
+		if (CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(FIFO3) & CAN_TX_FIFO_AVAILABLE))//ensure that the FIFO has space for a message
+		{
+			CAN1_Transmit(FIFO3, &Transmission); //transmit frame
+		}
 	}
 
 #ifdef CAN_DEBUG
 	if (CAN1_IsRxErrorActive()) {
-//		MLED_Toggle();
+		//		MLED_Toggle();
 	}
 #endif
 	IO_RB5_SetLow();

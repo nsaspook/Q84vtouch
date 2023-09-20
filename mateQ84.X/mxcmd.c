@@ -1,7 +1,7 @@
 #include "mxcmd.h"
 
 static volatile uint8_t data = 0x00, dcount = 0, dstart = 0, rdstart = 0;
-static volatile uint16_t tbuf[FM_BUFFER+1], rbuf[FM_BUFFER+1];
+static volatile uint16_t tbuf[FM_BUFFER + 1], rbuf[FM_BUFFER + 1];
 static uint16_t *p_tbuf = (uint16_t*) tbuf, *p_rbuf = (uint16_t*) rbuf;
 static volatile uint8_t pace = 0; // the charge controller doesn't like back to back bytes
 
@@ -38,6 +38,7 @@ uint8_t FM_tx(const uint16_t * data, const uint8_t count)
 		memcpy((void *) tbuf, (const void *) data, (size_t) (count << 1)); // copy 16-bit values
 		dstart = 0;
 		dcount = count;
+		B.FM80_io = true;
 	}
 	RELAY_SetLow();
 	return dstart;
@@ -179,9 +180,9 @@ float lp_filter(const float new, const uint8_t bn, const int8_t slow)
 
 uint16_t calc_checksum(uint8_t* data, uint8_t len)
 {
-    uint16_t sum = 0;
-    for (int i = 0; i < len; i++) {
-        sum += data[i];
-    }
-    return sum;
+	uint16_t sum = 0;
+	for (int i = 0; i < len; i++) {
+		sum += data[i];
+	}
+	return sum;
 }
