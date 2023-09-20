@@ -20,7 +20,7 @@ extern "C" {
 #include "modbus_master.h"
 #include "batmon.h"
 
-//#define CAN_DEBUG	// can received data on LCD for remote mate board
+#define CAN_DEBUG	// can received data on LCD for remote mate board
 #define DATA_DEBUG
 	
 #ifdef CAN_DEBUG
@@ -51,7 +51,7 @@ extern "C" {
 	} can_rec_count_t;
 
 	extern volatile can_rec_count_t can_rec_count;
-	extern CAN_MSG_OBJ msg[2];
+	extern CAN_MSG_OBJ msg[3];
 	extern volatile uint8_t rxMsgData[CAN_REC_BUFFERS][CANFD_BYTES];
 	extern time_t can_timer;
 	extern struct tm *can_newtime;

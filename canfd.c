@@ -1,6 +1,6 @@
 #include "canfd.h"
 
-CAN_MSG_OBJ msg[2];
+CAN_MSG_OBJ msg[3];
 volatile uint8_t rxMsgData[CAN_REC_BUFFERS][CANFD_BYTES] = {
 	"     no data        ",
 	" no_data            ",
@@ -35,6 +35,7 @@ void Can1FIFO1NotEmptyHandler(void)
 		can_rec_count.rec_count++;
 		if (CAN1_ReceiveFrom(FIFO1, &msg[half])) //receive the message
 		{
+			memcpy(&msg[2], &msg[half], sizeof(CAN_MSG_OBJ));
 			if ((msg[half].msgId & 0xf) == EMON_SL || (msg[half].msgId & 0xf) == EMON_SU) {
 				memcpy((void *) &rxMsgData[half][0], msg[half].data, CANFD_BYTES);
 				if ((msg[half].msgId & 0xf) == EMON_SL) {
@@ -58,9 +59,11 @@ void Can1FIFO1NotEmptyHandler(void)
 			}
 			if ((msg[half].msgId & 0xf) == EMON_CO) {
 				memcpy((void *) &rxMsgData[CAN_INFO_BUF][0], msg[half].data, CANFD_BYTES);
+				break;
 			}
 			if ((msg[half].msgId & 0xf) == EMON_ER) {
 				memcpy((void *) &rxMsgData[CAN_ERROR_BUF][0], msg[half].data, CANFD_BYTES);
+				break;
 			}
 			if ((msg[half].msgId & 0xf) == EMON_TM) {
 				memcpy((void *) &can_timer, msg[half].data, 4); // load 32-bit linux time from canbus packet
@@ -85,26 +88,34 @@ void Can1FIFO1NotEmptyHandler(void)
 				if (B.canbus_online && B.FM80_online) {
 					C.tm_ok = true; // FM80 time date data valid to send flag
 				}
+				break;
 			}
 #ifdef CAN_DEBUG
-			if ((msg[half].msgId & 0xf) == EMON_MR) {
-				memcpy((void *) s_buffer, msg[half].data, 22); // load LCD mirror packet
+			if ((msg[2].msgId & 0xf) == EMON_MR) {
+				memcpy((void *) s_buffer, msg[2].data, 22); // load LCD mirror packet
+//				sprintf(s_buffer, "Fred Brooks0        ");
 				eaDogM_WriteStringAtPos(0, 0, s_buffer);
+				break;
 			}
-			if ((msg[half].msgId & 0xf) == EMON_MR + 1) {
-				memcpy((void *) s_buffer, msg[half].data, 22); // load LCD mirror packet
+			if ((msg[2].msgId & 0xf) == EMON_MR + 1) {
+				memcpy((void *) s_buffer, msg[2].data, 22); // load LCD mirror packet
+//				sprintf(s_buffer, "Fred Brooks1        ");
 				eaDogM_WriteStringAtPos(1, 0, s_buffer);
+				break;
 			}
-			if ((msg[half].msgId & 0xf) == EMON_MR + 2) {
-				memcpy((void *) s_buffer, msg[half].data, 22); // load LCD mirror packet
+			if ((msg[2].msgId & 0xf) == EMON_MR + 2) {
+				memcpy((void *) s_buffer, msg[2].data, 22); // load LCD mirror packet
+//				sprintf(s_buffer, "Fred Brooks2        ");
 				eaDogM_WriteStringAtPos(2, 0, s_buffer);
+				break;
 			}
-			if ((msg[half].msgId & 0xf) == EMON_MR + 3) {
-				memcpy((void *) s_buffer, msg[half].data, 22); // load LCD mirror packet
+			if ((msg[2].msgId & 0xf) == EMON_MR + 3) {
+				memcpy((void *) s_buffer, msg[2].data, 22); // load LCD mirror packet
+				sprintf(s_buffer, "Fred Brooks3        ");
 				eaDogM_WriteStringAtPos(3, 0, s_buffer);
+				break;
 			}
 #endif
-			break;
 		}
 		if (++tries >= CAN_RX_TRIES) {
 			break;
