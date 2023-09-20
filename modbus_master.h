@@ -60,7 +60,7 @@ extern "C" {
 #define FASTQ			// MODBUS query speed, define for faster sampling rates
 #define TDELAY		2	// half-duplex delay
 #define TEDELAY		1	// half-duplex delay
-#define RDELAY		100	// receive timeout
+#define RDELAY		200	// receive timeout
 #define CDELAY		40	// fast query delay 100ms
 #define QDELAY		2	// slow query delay 1s
 #define TODELAY		4	// misc delay
@@ -310,8 +310,8 @@ extern "C" {
 #define BOFF	0
 #define BON	255
 
-#define MM_ERROR_S	MLED_SetHigh()
-#define MM_ERROR_C	MLED_SetLow()
+#define MM_ERROR_S	MLED_SetHigh() // RED LED
+#define MM_ERROR_C	MLED_SetLow()  // RED LED
 
 	uint16_t crc16(volatile uint8_t *, uint16_t);
 	uint16_t modbus_rtu_send_msg(void *, const void *, uint16_t);

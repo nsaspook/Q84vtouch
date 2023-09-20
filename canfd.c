@@ -41,7 +41,7 @@ void Can1FIFO1NotEmptyHandler(void)
 				if ((msg[half].msgId & 0xf) == EMON_SL) {
 					half = 1;
 #ifdef CAN_DEBUG
-					MLED_Toggle();
+//					MLED_Toggle();
 #endif
 					break;
 				}
@@ -49,12 +49,12 @@ void Can1FIFO1NotEmptyHandler(void)
 					half = 0;
 					can_rec_count.rec_flag = true;
 #ifdef CAN_DEBUG
-					MLED_Toggle();
+//					MLED_Toggle();
 #endif
 					break;
 				}
 #ifdef CAN_DEBUG
-				MLED_Toggle();
+//				MLED_Toggle();
 #endif
 			}
 			if ((msg[half].msgId & 0xf) == EMON_CO) {
@@ -93,25 +93,21 @@ void Can1FIFO1NotEmptyHandler(void)
 #ifdef CAN_DEBUG
 			if ((msg[2].msgId & 0xf) == EMON_MR) {
 				memcpy((void *) s_buffer, msg[2].data, 22); // load LCD mirror packet
-//				sprintf(s_buffer, "Fred Brooks0        ");
 				eaDogM_WriteStringAtPos(0, 0, s_buffer);
 				break;
 			}
 			if ((msg[2].msgId & 0xf) == EMON_MR + 1) {
 				memcpy((void *) s_buffer, msg[2].data, 22); // load LCD mirror packet
-//				sprintf(s_buffer, "Fred Brooks1        ");
 				eaDogM_WriteStringAtPos(1, 0, s_buffer);
 				break;
 			}
 			if ((msg[2].msgId & 0xf) == EMON_MR + 2) {
 				memcpy((void *) s_buffer, msg[2].data, 22); // load LCD mirror packet
-//				sprintf(s_buffer, "Fred Brooks2        ");
 				eaDogM_WriteStringAtPos(2, 0, s_buffer);
 				break;
 			}
 			if ((msg[2].msgId & 0xf) == EMON_MR + 3) {
 				memcpy((void *) s_buffer, msg[2].data, 22); // load LCD mirror packet
-				sprintf(s_buffer, "Fred Brooks3        ");
 				eaDogM_WriteStringAtPos(3, 0, s_buffer);
 				break;
 			}
@@ -170,7 +166,7 @@ void can_fd_tx(void)
 
 #ifdef CAN_DEBUG
 	if (CAN1_IsRxErrorActive()) {
-		MLED_Toggle();
+//		MLED_Toggle();
 	}
 #endif
 	IO_RB5_SetLow();
@@ -235,7 +231,7 @@ void can_fd_lcd_mirror(const uint8_t r, char *strPtr)
 
 #ifdef CAN_DEBUG
 	if (CAN1_IsRxErrorActive()) {
-		MLED_Toggle();
+//		MLED_Toggle();
 	}
 #endif
 	IO_RB5_SetLow();

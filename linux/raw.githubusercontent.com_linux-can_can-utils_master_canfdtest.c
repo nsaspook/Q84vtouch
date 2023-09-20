@@ -56,7 +56,7 @@
 #define CAN_FULL_BUFFER CAN_MSG_LEN+CAN_MSG_LEN+1
 #define CAN_MSG_COUNT 1
 #define CAN_MSG_WAIT 27
-#define CAN_TM_TIME 8
+#define CAN_TM_TIME 30
 
 static int running = 1;
 static int verbose = 2;
@@ -74,6 +74,7 @@ static int print_hex = 0;
 static int msg_len = CAN_MSG_LEN;
 static int is_extended_frame_format = 1;
 uint8_t full_buffer[CAN_FULL_BUFFER];
+int sec_30;
 
 long long current_timestamp(void);
 
@@ -360,7 +361,6 @@ static int can_echo_gen(void)
 	int send_pos = 0, recv_rx_pos = 0, recv_tx_pos = 0, unprocessed = 0, loops = 0;
 	int err = 0;
 	int i;
-	static int sec_30 = 0;
 	time_t t, timeofs;
 
 	tx_frames = calloc(inflight_count, sizeof(* tx_frames));
@@ -384,8 +384,8 @@ static int can_echo_gen(void)
 			memcpy(tx_frames[send_pos].data, &timeofs, sizeof(time_t));
 			recv_tx[send_pos] = 0;
 
-			if (sec_30++ > CAN_TM_TIME) {
-				sec_30 = 0;
+			if (t >= (sec_30 + CAN_TM_TIME)) {
+				sec_30 = time(NULL);
 				if (send_frame(&tx_frames[send_pos])) {
 					err = -1;
 					goto out_free;
@@ -467,6 +467,8 @@ int main(int argc, char *argv[])
 	signal(SIGTERM, signal_handler);
 	signal(SIGHUP, signal_handler);
 	signal(SIGINT, signal_handler);
+
+	sec_30 = time(NULL);
 
 	while ((opt = getopt(argc, argv, "bdef:gi:l:o:s:vx?")) != -1) {
 		switch (opt) {

@@ -465,11 +465,13 @@ void main(void)
 		}
 		if (TimerDone(TMR_SPIN)) { // LCD status spinner for charger MODE
 			{
+#define E_UPDATE	10
+#define E_SAVE		3
 				static uint8_t s_update = 0, e_update = 0;
 				static float ac = 0.0f;
 				static float wac = 0.0f;
 				static float wva = 0.0f;
-				static uint32_t error_save = 0;
+				static uint32_t error_save = E_SAVE;
 
 				if (s_update++ >= SPIN_VAL_UPDATE) {
 					ac = lp_filter(((float) em.vl1l2) / 10.0f, F_ac, false);
@@ -478,7 +480,7 @@ void main(void)
 					s_update = 0;
 				}
 				StartTimer(TMR_SPIN, SPINNER_SPEED);
-				if (C.data_ok && M.error > error_save) {
+				if (C.data_ok && (M.error > error_save)) {
 					snprintf(buffer, MAX_B_BUF, "EMon  %4.1fVAC   %c%c    ", lp_filter(ac, F_ac, false), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
 					eaDogM_WriteStringAtPos(1, 0, buffer);
 					snprintf(info_buffer, MAX_B_BUF, " error logged \r\n");
@@ -490,12 +492,12 @@ void main(void)
 #endif
 						eaDogM_WriteStringAtPos(0, 0, buffer);
 					}
-					if (e_update++ >= 10) {
-						error_save = M.error;
+					if (e_update++ >= E_UPDATE) {
+						error_save = M.error + E_SAVE;
 						e_update = 0;
 					}
 				} else {
-					//					snprintf(buffer, MAX_B_BUF, "EMon  %4.1fVAC   %c%c    ", lp_filter(ac, F_ac, false), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
+					M.error = 0;
 #ifdef CAN_DEBUG
 #ifdef DATA_DEBUG
 #ifdef LCD_MIRROR

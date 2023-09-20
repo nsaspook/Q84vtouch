@@ -573,7 +573,7 @@ static bool modbus_write_check(C_data * client, bool* cstate, const uint16_t rec
 		} else {
 			*cstate = false;
 			log_crc_error(c_crc, c_crc_rec);
-			MM_ERROR_S;
+//			MM_ERROR_S;
 		}
 		client->cstate = CLEAR; // where do we go next
 		client->mcmd = G_LAST; // what do we run next
@@ -581,7 +581,7 @@ static bool modbus_write_check(C_data * client, bool* cstate, const uint16_t rec
 		if (get_500hz(false) >= RDELAY) {
 			DB0_SetLow();
 			client->cstate = CLEAR; // where do we go next
-			MM_ERROR_S;
+//			MM_ERROR_S;
 			client->mcmd = G_ID; // what do we run next
 			M.to_error++;
 			M.error++;
@@ -619,7 +619,7 @@ static bool modbus_read_check(C_data * client, bool* cstate, const uint16_t rec_
 			client->data_ok = false;
 			log_crc_error(c_crc, c_crc_rec);
 			if (client->data_ok) {
-				MM_ERROR_S;
+//				MM_ERROR_S;
 			}
 		}
 		client->cstate = CLEAR;
@@ -632,7 +632,7 @@ static bool modbus_read_check(C_data * client, bool* cstate, const uint16_t rec_
 			M.to_error++;
 			M.error++;
 			if (client->data_ok) {
-				MM_ERROR_S;
+//				MM_ERROR_S;
 			}
 		}
 	}
@@ -669,7 +669,6 @@ static bool modbus_read_id_check(C_data * client, bool* cstate, const uint16_t r
 	} else {
 		if (get_500hz(false) >= RDELAY) {
 			DB0_SetLow();
-			MM_ERROR_S;
 			client->cstate = CLEAR;
 			client->mcmd = G_ID;
 			M.to_error++;
