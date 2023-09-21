@@ -1,6 +1,6 @@
 #include "canfd.h"
 
-CAN_MSG_OBJ msg[3];
+CAN_MSG_OBJ msg[CANFD_NBUF];
 volatile uint8_t rxMsgData[CAN_REC_BUFFERS][CANFD_BYTES] = {
 	"     no data        ",
 	" no_data            ",
@@ -13,6 +13,9 @@ volatile can_rec_count_t can_rec_count = {
 	.rec_flag = false,
 };
 
+/*
+ * 16-bit word to 2 bytes
+ */
 union {
 	uint16_t Word;
 
@@ -29,33 +32,24 @@ void Can1FIFO1NotEmptyHandler(void)
 {
 	uint8_t tries = 0;
 	static uint8_t half = 0;
-	char s_buffer[22];
+	char s_buffer[LCD_BUF_SIZ];
 
 	while (true) {
 		can_rec_count.rec_count++;
 		if (CAN1_ReceiveFrom(FIFO1, &msg[half])) //receive the message
 		{
-			memcpy(&msg[2], &msg[half], sizeof(CAN_MSG_OBJ));
+			memcpy(&msg[MIRR0R_BUF], &msg[half], sizeof(CAN_MSG_OBJ));
 			if ((msg[half].msgId & 0xf) == EMON_SL || (msg[half].msgId & 0xf) == EMON_SU) {
 				memcpy((void *) &rxMsgData[half][0], msg[half].data, CANFD_BYTES);
 				if ((msg[half].msgId & 0xf) == EMON_SL) {
 					half = 1;
-#ifdef CAN_DEBUG
-					//					MLED_Toggle();
-#endif
 					break;
 				}
 				if ((msg[half].msgId & 0xf) == EMON_SU) {
 					half = 0;
 					can_rec_count.rec_flag = true;
-#ifdef CAN_DEBUG
-					//					MLED_Toggle();
-#endif
 					break;
 				}
-#ifdef CAN_DEBUG
-				//				MLED_Toggle();
-#endif
 			}
 			if ((msg[half].msgId & 0xf) == EMON_CO) {
 				memcpy((void *) &rxMsgData[CAN_INFO_BUF][0], msg[half].data, CANFD_BYTES);
@@ -66,7 +60,7 @@ void Can1FIFO1NotEmptyHandler(void)
 				break;
 			}
 			if ((msg[half].msgId & 0xf) == EMON_TM) {
-				memcpy((void *) &can_timer, msg[half].data, 4); // load 32-bit linux time from canbus packet
+				memcpy((void *) &can_timer, msg[half].data, sizeof(time_t)); // load 32-bit linux time from canbus packet
 				EBD.fm80_time = can_timer; // save remote Unix time from canbus packets
 				can_newtime = localtime(&can_timer);
 				update_time(can_newtime, &EBD);
@@ -74,15 +68,15 @@ void Can1FIFO1NotEmptyHandler(void)
 				 * update the FM80 time and data message values with a proper checksum
 				 */
 				myVar.Word = EBD.time;
-				cmd_time[5] = myVar.structBytes.Byte1;
+				cmd_time[5] = myVar.structBytes.Byte1; // store time
 				cmd_time[4] = myVar.structBytes.Byte2;
-				myVar.Word = calc_checksum((uint8_t *) & cmd_time[1], 10);
-				cmd_time[7] = myVar.structBytes.Byte1;
+				myVar.Word = calc_checksum((uint8_t *) & cmd_time[1], CMD_CRC_LEN);
+				cmd_time[7] = myVar.structBytes.Byte1; // store crc
 				cmd_time[6] = myVar.structBytes.Byte2;
 				myVar.Word = EBD.date;
 				cmd_date[5] = myVar.structBytes.Byte1;
 				cmd_date[4] = myVar.structBytes.Byte2;
-				myVar.Word = calc_checksum((uint8_t *) & cmd_date[1], 10);
+				myVar.Word = calc_checksum((uint8_t *) & cmd_date[1], CMD_CRC_LEN);
 				cmd_date[7] = myVar.structBytes.Byte1;
 				cmd_date[6] = myVar.structBytes.Byte2;
 				if (B.canbus_online && B.FM80_online) {
@@ -91,24 +85,24 @@ void Can1FIFO1NotEmptyHandler(void)
 				break;
 			}
 #ifdef CAN_DEBUG
-			if ((msg[2].msgId & 0xf) == EMON_MR) {
-				memcpy((void *) s_buffer, msg[2].data, 22); // load LCD mirror packet
-				eaDogM_WriteStringAtPos(0, 0, s_buffer);
+			if ((msg[MIRR0R_BUF].msgId & 0xf) == EMON_MR + LCD0) {
+				memcpy((void *) s_buffer, msg[MIRR0R_BUF].data, LCD_BUF_SIZ); // load LCD mirror packet
+				eaDogM_WriteStringAtPos(LCD0, 0, s_buffer);
 				break;
 			}
-			if ((msg[2].msgId & 0xf) == EMON_MR + 1) {
-				memcpy((void *) s_buffer, msg[2].data, 22); // load LCD mirror packet
-				eaDogM_WriteStringAtPos(1, 0, s_buffer);
+			if ((msg[MIRR0R_BUF].msgId & 0xf) == EMON_MR + LCD1) {
+				memcpy((void *) s_buffer, msg[MIRR0R_BUF].data, LCD_BUF_SIZ); // load LCD mirror packet
+				eaDogM_WriteStringAtPos(LCD1, 0, s_buffer);
 				break;
 			}
-			if ((msg[2].msgId & 0xf) == EMON_MR + 2) {
-				memcpy((void *) s_buffer, msg[2].data, 22); // load LCD mirror packet
-				eaDogM_WriteStringAtPos(2, 0, s_buffer);
+			if ((msg[MIRR0R_BUF].msgId & 0xf) == EMON_MR + LCD2) {
+				memcpy((void *) s_buffer, msg[MIRR0R_BUF].data, LCD_BUF_SIZ); // load LCD mirror packet
+				eaDogM_WriteStringAtPos(LCD2, 0, s_buffer);
 				break;
 			}
-			if ((msg[2].msgId & 0xf) == EMON_MR + 3) {
-				memcpy((void *) s_buffer, msg[2].data, 22); // load LCD mirror packet
-				eaDogM_WriteStringAtPos(3, 0, s_buffer);
+			if ((msg[MIRR0R_BUF].msgId & 0xf) == EMON_MR + LCD3) {
+				memcpy((void *) s_buffer, msg[MIRR0R_BUF].data, LCD_BUF_SIZ); // load LCD mirror packet
+				eaDogM_WriteStringAtPos(LCD3, 0, s_buffer);
 				break;
 			}
 #endif
@@ -163,10 +157,8 @@ void can_fd_tx(void)
 			CAN1_Transmit(FIFO3, &Transmission); //transmit frame
 		}
 	}
-
 #ifdef CAN_DEBUG
 	if (CAN1_IsRxErrorActive()) {
-		//		MLED_Toggle();
 	}
 #endif
 	IO_RB5_SetLow();
@@ -230,10 +222,8 @@ void can_fd_lcd_mirror(const uint8_t r, char *strPtr)
 			CAN1_Transmit(FIFO3, &Transmission); //transmit frame
 		}
 	}
-
 #ifdef CAN_DEBUG
 	if (CAN1_IsRxErrorActive()) {
-		//		MLED_Toggle();
 	}
 #endif
 	IO_RB5_SetLow();

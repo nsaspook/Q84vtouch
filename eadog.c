@@ -183,16 +183,16 @@ void eaDogM_WriteStringAtPos(const uint8_t r, const uint8_t c, char *strPtr)
 	}
 
 	switch (r) {
-	case 1:
+	case LCD1:
 		row = 0x40;
 		break;
-	case 2:
+	case LCD2:
 		row = 0x14;
 		break;
-	case 3:
+	case LCD3:
 		row = 0x54;
 		break;
-	case 0:
+	case LCD0:
 		row = 0x00;
 		break;
 	default:

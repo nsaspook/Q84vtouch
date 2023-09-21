@@ -38,7 +38,7 @@ uint8_t FM_tx(const uint16_t * data, const uint8_t count)
 		memcpy((void *) tbuf, (const void *) data, (size_t) (count << 1)); // copy 16-bit values
 		dstart = 0;
 		dcount = count;
-		B.FM80_io = true;
+		B.FM80_io = true; // start the CANBUS lockup until the RX transaction is complete
 	}
 	RELAY_SetLow();
 	return dstart;
@@ -178,7 +178,7 @@ float lp_filter(const float new, const uint8_t bn, const int8_t slow)
 	return smooth[bn] = smooth[bn] + ((new - smooth[bn]) * lp_speed);
 }
 
-uint16_t calc_checksum(uint8_t* data, uint8_t len)
+uint16_t calc_checksum(uint8_t* data, const uint8_t len)
 {
 	uint16_t sum = 0;
 	for (int i = 0; i < len; i++) {

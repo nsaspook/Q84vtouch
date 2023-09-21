@@ -22,7 +22,7 @@ extern "C" {
 #include "../timers.h"
 
 #define VER	1
-	const char build_version[] = "V1.74 FM80 Q84";
+	const char build_version[] = "V1.75 FM80 Q84";
 	/*
 	 * code changes
 	 * 1.55 remove critical section interrupt disables for FM80 serial
@@ -41,6 +41,7 @@ extern "C" {
 	 * 1.72 add day log functions from the serial port
 	 * 1.73 add LCD data mirror data via CANBUS
 	 * 1.74 clean up error indicator and data routines
+	 * 1.75 lockout CANBUS during FM80 serial receive functions
 	 */
 
 #define MAX_B_BUF	96
@@ -57,6 +58,8 @@ extern "C" {
 #define FMxx_STATE	abuf[2]
 
 #define AMP_WHOLE_ZERO	0
+	
+#define CMD_CRC_LEN	10
 
 	const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
 	const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
@@ -149,7 +152,7 @@ extern "C" {
 	extern void FM_restart(void);
 	extern void wdtdelay(const uint32_t);
 	extern float lp_filter(const float, const uint8_t, const int8_t);
-	extern uint16_t calc_checksum(uint8_t*, uint8_t);
+	extern uint16_t calc_checksum(uint8_t*, const uint8_t);
 
 	extern B_type B;
 

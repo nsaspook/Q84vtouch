@@ -44,6 +44,11 @@ extern "C" {
 #define NHD_BL_LOW	2
 #define NHD_BL_MED	5
 #define NHD_BL_HIGH	8
+	
+#define LCD0		0
+#define LCD1		1
+#define LCD2		2
+#define LCD3		3
 
 	void wdtdelay(uint32_t);
 	bool init_display(void);

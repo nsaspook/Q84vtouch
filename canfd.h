@@ -22,13 +22,14 @@ extern "C" {
 
 //#define CAN_DEBUG	// can received data on LCD for remote mate board
 #define DATA_DEBUG
-	
+
 #ifdef CAN_DEBUG
 #define LCD_MIRROR
 #endif
 
 #define USE_FD	// select classic or FD
 #define CANFD_BYTES	64
+#define CANFD_NBUF	3
 #define CAN_RX_TRIES	8
 #define CAN_REC_BUFFERS	4
 #define CAN_LOW_BUF	0
@@ -44,6 +45,9 @@ extern "C" {
 #define EMON_DS	0xB	// remote display server
 #define EMON_ER	0xF	// error reporting
 #define EMON_CO	0xC	// configuration reporting
+
+#define MIRR0R_BUF	CANFD_NBUF-1 // LCD mirror CANBUS buffer
+#define LCD_BUF_SIZ	22
 
 	typedef struct {
 		uint32_t rec_count;
