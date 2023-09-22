@@ -40338,7 +40338,7 @@ void CAN1_SetRxBufferOverFlowInterruptHandler(void (*handler)(void));
 # 1328 "mcc_generated_files/can1.h"
 void CAN1_SetFIFO1NotEmptyHandler(void (*handler)(void));
 # 1372 "mcc_generated_files/can1.h"
-void CAN1_SetTXQnullHandler(void (*handler)(void));
+void CAN1_SetTXQNotFullHandler(void (*handler)(void));
 # 1416 "mcc_generated_files/can1.h"
 void CAN1_SetFIFO2nullHandler(void (*handler)(void));
 # 1460 "mcc_generated_files/can1.h"

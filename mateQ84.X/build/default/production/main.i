@@ -40552,7 +40552,7 @@ void CAN1_SetRxBufferOverFlowInterruptHandler(void (*handler)(void));
 # 1328 "./mcc_generated_files/can1.h"
 void CAN1_SetFIFO1NotEmptyHandler(void (*handler)(void));
 # 1372 "./mcc_generated_files/can1.h"
-void CAN1_SetTXQnullHandler(void (*handler)(void));
+void CAN1_SetTXQNotFullHandler(void (*handler)(void));
 # 1416 "./mcc_generated_files/can1.h"
 void CAN1_SetFIFO2nullHandler(void (*handler)(void));
 # 1460 "./mcc_generated_files/can1.h"
@@ -41192,6 +41192,7 @@ void delay_ms(const uint16_t);
  extern time_t can_timer;
  extern struct tm *can_newtime;
 
+ void TXQNotFullHandler(void);
  void Can1FIFO1NotEmptyHandler(void);
 
  extern char can_buffer[64*2], info_buffer[96];
@@ -41221,7 +41222,7 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[96] = "Boot Init Display   ", can_buffer[64*2], info_buffer[96];
-const char *build_date = "Sep 21 2023", *build_time = "17:44:00";
+const char *build_date = "Sep 21 2023", *build_time = "19:35:51";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
@@ -41296,6 +41297,11 @@ void main(void)
 
 
 
+ can_setup();
+
+
+
+
 
 
  (INTCON0bits.GIEH = 1);
@@ -41344,10 +41350,6 @@ void main(void)
  snprintf(buffer, 96, "%s ", "Polling FM80        ");
  eaDogM_WriteStringAtPos(2, 0, buffer);
 
-
-
-
- can_setup();
  can_fd_tx();
 
 
@@ -41494,7 +41496,7 @@ void main(void)
      }
     } else {
      M.error = 0;
-# 530 "main.c"
+# 531 "main.c"
      snprintf(buffer, 96, "EMon  %6.1fWh   %c%c    ", EBD.bat_energy / 360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
      eaDogM_WriteStringAtPos(1, 0, buffer);
      snprintf(buffer, 96, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);

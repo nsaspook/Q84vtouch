@@ -20,7 +20,7 @@ extern "C" {
 #include "modbus_master.h"
 #include "batmon.h"
 
-//#define CAN_DEBUG	// can received data on LCD for remote mate board
+	//#define CAN_DEBUG	// can received data on LCD for remote mate board
 #define DATA_DEBUG
 
 #ifdef CAN_DEBUG
@@ -60,6 +60,7 @@ extern "C" {
 	extern time_t can_timer;
 	extern struct tm *can_newtime;
 
+	void TXQNotFullHandler(void);
 	void Can1FIFO1NotEmptyHandler(void);
 
 	extern char can_buffer[MAX_C_BUF], info_buffer[MAX_B_BUF];

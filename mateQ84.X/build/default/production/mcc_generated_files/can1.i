@@ -38913,7 +38913,7 @@ void CAN1_SetRxBufferOverFlowInterruptHandler(void (*handler)(void));
 # 1328 "mcc_generated_files/can1.h"
 void CAN1_SetFIFO1NotEmptyHandler(void (*handler)(void));
 # 1372 "mcc_generated_files/can1.h"
-void CAN1_SetTXQnullHandler(void (*handler)(void));
+void CAN1_SetTXQNotFullHandler(void (*handler)(void));
 # 1416 "mcc_generated_files/can1.h"
 void CAN1_SetFIFO2nullHandler(void (*handler)(void));
 # 1460 "mcc_generated_files/can1.h"
@@ -38958,6 +38958,7 @@ static struct CAN1_RX_FIFO rxFifos[] =
 static volatile struct CAN_FIFOREG * const FIFO = (struct CAN_FIFOREG *)&C1TXQCONL;
 static const uint8_t DLC_BYTES[] = {0U, 1U, 2U, 3U, 4U, 5U, 6U, 7U, 8U, 12U, 16U, 20U, 24U, 32U, 48U, 64U};
 
+static void (*CAN1_TXQNotFullHandler)(void);
 static void (*CAN1_FIFO1NotEmptyHandler)(void);
 static void (*CAN1_InvalidMessageHandler)(void);
 static void (*CAN1_BusWakeUpActivityHandler)(void);
@@ -38966,6 +38967,10 @@ static void (*CAN1_ModeChangeHandler)(void);
 static void (*CAN1_SystemErrorHandler)(void);
 static void (*CAN1_TxAttemptHandler)(void);
 static void (*CAN1_RxBufferOverflowHandler)(void);
+
+static void DefaultTXQNotFullHandler(void)
+{
+}
 
 static void DefaultFIFO1NotEmptyHandler(void)
 {
@@ -39049,7 +39054,7 @@ static void CAN1_RX_FIFO_FilterMaskConfiguration(void)
 static void CAN1_TX_FIFO_Configuration(void)
 {
 
-    C1TXQCONL = 0x10;
+    C1TXQCONL = 0x11;
 
 
  C1TXQCONH = 0x04;
@@ -39058,7 +39063,7 @@ static void CAN1_TX_FIFO_Configuration(void)
     C1TXQCONU = 0x61;
 
 
-    C1TXQCONT = 0xE0;
+    C1TXQCONT = 0xE9;
 
 
     C1FIFOCON2L = 0x90;
@@ -39070,7 +39075,7 @@ static void CAN1_TX_FIFO_Configuration(void)
     C1FIFOCON2U = 0x63;
 
 
-    C1FIFOCON2T = 0xE7;
+    C1FIFOCON2T = 0xE3;
 
 
     C1FIFOCON3L = 0x90;
@@ -39082,8 +39087,14 @@ static void CAN1_TX_FIFO_Configuration(void)
     C1FIFOCON3U = 0x62;
 
 
-    C1FIFOCON3T = 0xE7;
+    C1FIFOCON3T = 0xE3;
 
+    CAN1_SetTXQNotFullHandler(DefaultTXQNotFullHandler);
+
+    C1INTUbits.TXIE = 1;
+
+    PIR4bits.CANTXIF = 0;
+    PIE4bits.CANTXIE = 1;
 }
 
 static void CAN1_BitRateConfiguration(void)
@@ -39137,7 +39148,7 @@ static void CAN1_ErrorNotificationInterruptEnable(void)
     C1INTH = 0x00;
 
 
-    C1INTU = 0x0A;
+    C1INTU = 0x0B;
 
 
     C1INTT = 0xFC;
@@ -39600,7 +39611,7 @@ void __attribute__((picinterrupt(("irq(CAN),base(8)")))) CAN1_ISR(void)
         if (1 == C1FIFOSTA3Lbits.TXATIF)
         {
             C1FIFOSTA3Lbits.TXATIF = 0;
-    }
+        }
     }
 
     if (1 == C1INTHbits.RXOVIF)
@@ -39620,12 +39631,27 @@ void CAN1_SetFIFO1NotEmptyHandler(void (*handler)(void))
     CAN1_FIFO1NotEmptyHandler = handler;
 }
 
+void CAN1_SetTXQNotFullHandler(void (*handler)(void))
+{
+    CAN1_TXQNotFullHandler = handler;
+}
+
 
 void __attribute__((picinterrupt(("irq(CANRX),base(8)")))) CAN1_RXI_ISR(void)
 {
     if (1 == C1FIFOSTA1Lbits.TFNRFNIF)
     {
         CAN1_FIFO1NotEmptyHandler();
+
+    }
+
+}
+
+void __attribute__((picinterrupt(("irq(CANTX),base(8)")))) CAN1_TXI_ISR(void)
+{
+    if (1 == C1TXQSTALbits.TXQNIF)
+    {
+        CAN1_TXQNotFullHandler();
 
     }
 

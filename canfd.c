@@ -179,6 +179,7 @@ void can_setup(void)
 	 */
 	CAN1_SetFIFO1NotEmptyHandler(Can1FIFO1NotEmptyHandler);
 	CAN1_SetRxBufferOverFlowInterruptHandler(Can1FIFO1NotEmptyHandler);
+	CAN1_SetTXQNotFullHandler(TXQNotFullHandler);
 
 	/*
 	 * user mod filter and masking
@@ -218,9 +219,9 @@ void can_fd_lcd_mirror(const uint8_t r, char *strPtr)
 		Transmission.field.idType = CAN_FRAME_EXT; // EXT ID
 		Transmission.msgId = EMON_MR + r; // packet type ID of client
 		Transmission.data = (uint8_t*) strPtr; //transmit the data from the data bytes
-		if (CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(FIFO3) & CAN_TX_FIFO_AVAILABLE))//ensure that the FIFO has space for a message
+		if (CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(TXQ) & CAN_TX_FIFO_AVAILABLE))//ensure that the FIFO has space for a message
 		{
-			CAN1_Transmit(FIFO3, &Transmission); //transmit frame
+			CAN1_Transmit(TXQ, &Transmission); //transmit frame
 		}
 	}
 #ifdef CAN_DEBUG
@@ -228,4 +229,9 @@ void can_fd_lcd_mirror(const uint8_t r, char *strPtr)
 	}
 #endif
 	IO_RB5_SetLow();
+}
+
+void TXQNotFullHandler(void)
+{
+	C1INTUbits.TXIE = 0;
 }

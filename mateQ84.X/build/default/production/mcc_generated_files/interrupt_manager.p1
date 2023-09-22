@@ -3808,49 +3808,52 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;mcc_generated_files/interrupt_manager.c: 76:     IPR0bits.CANIP = 1;
 [e = . . _IPR0bits 0 6 -> -> 1 `i `uc ]
 "77
-[; ;mcc_generated_files/interrupt_manager.c: 77:     IPR4bits.CANRXIP = 1;
-[e = . . _IPR4bits 0 4 -> -> 1 `i `uc ]
+[; ;mcc_generated_files/interrupt_manager.c: 77:     IPR4bits.CANTXIP = 1;
+[e = . . _IPR4bits 0 5 -> -> 1 `i `uc ]
 "78
-[; ;mcc_generated_files/interrupt_manager.c: 78:     IPR8bits.U2TXIP = 1;
-[e = . . _IPR8bits 0 1 -> -> 1 `i `uc ]
+[; ;mcc_generated_files/interrupt_manager.c: 78:     IPR4bits.CANRXIP = 1;
+[e = . . _IPR4bits 0 4 -> -> 1 `i `uc ]
 "79
-[; ;mcc_generated_files/interrupt_manager.c: 79:     IPR8bits.U2RXIP = 1;
-[e = . . _IPR8bits 0 0 -> -> 1 `i `uc ]
+[; ;mcc_generated_files/interrupt_manager.c: 79:     IPR8bits.U2TXIP = 1;
+[e = . . _IPR8bits 0 1 -> -> 1 `i `uc ]
 "80
-[; ;mcc_generated_files/interrupt_manager.c: 80:     IPR13bits.U5TXIP = 1;
-[e = . . _IPR13bits 0 1 -> -> 1 `i `uc ]
+[; ;mcc_generated_files/interrupt_manager.c: 80:     IPR8bits.U2RXIP = 1;
+[e = . . _IPR8bits 0 0 -> -> 1 `i `uc ]
 "81
-[; ;mcc_generated_files/interrupt_manager.c: 81:     IPR13bits.U5RXIP = 1;
-[e = . . _IPR13bits 0 0 -> -> 1 `i `uc ]
+[; ;mcc_generated_files/interrupt_manager.c: 81:     IPR13bits.U5TXIP = 1;
+[e = . . _IPR13bits 0 1 -> -> 1 `i `uc ]
 "82
-[; ;mcc_generated_files/interrupt_manager.c: 82:     IPR3bits.TMR0IP = 0;
-[e = . . _IPR3bits 0 7 -> -> 0 `i `uc ]
+[; ;mcc_generated_files/interrupt_manager.c: 82:     IPR13bits.U5RXIP = 1;
+[e = . . _IPR13bits 0 0 -> -> 1 `i `uc ]
 "83
-[; ;mcc_generated_files/interrupt_manager.c: 83:     IPR15bits.TMR6IP = 0;
-[e = . . _IPR15bits 0 3 -> -> 0 `i `uc ]
+[; ;mcc_generated_files/interrupt_manager.c: 83:     IPR3bits.TMR0IP = 0;
+[e = . . _IPR3bits 0 7 -> -> 0 `i `uc ]
 "84
-[; ;mcc_generated_files/interrupt_manager.c: 84:     IPR8bits.TMR5IP = 0;
-[e = . . _IPR8bits 0 4 -> -> 0 `i `uc ]
+[; ;mcc_generated_files/interrupt_manager.c: 84:     IPR15bits.TMR6IP = 0;
+[e = . . _IPR15bits 0 3 -> -> 0 `i `uc ]
 "85
-[; ;mcc_generated_files/interrupt_manager.c: 85:     IPR11bits.TMR4IP = 1;
-[e = . . _IPR11bits 0 3 -> -> 1 `i `uc ]
+[; ;mcc_generated_files/interrupt_manager.c: 85:     IPR8bits.TMR5IP = 0;
+[e = . . _IPR8bits 0 4 -> -> 0 `i `uc ]
 "86
-[; ;mcc_generated_files/interrupt_manager.c: 86:     IPR3bits.TMR2IP = 0;
-[e = . . _IPR3bits 0 3 -> -> 0 `i `uc ]
+[; ;mcc_generated_files/interrupt_manager.c: 86:     IPR11bits.TMR4IP = 1;
+[e = . . _IPR11bits 0 3 -> -> 1 `i `uc ]
 "87
-[; ;mcc_generated_files/interrupt_manager.c: 87: }
+[; ;mcc_generated_files/interrupt_manager.c: 87:     IPR3bits.TMR2IP = 0;
+[e = . . _IPR3bits 0 3 -> -> 0 `i `uc ]
+"88
+[; ;mcc_generated_files/interrupt_manager.c: 88: }
 [e :UE 3286 ]
 }
 [v $root$_Default_ISR `(v ~T0 @X0 0 e ]
-"89
-[; ;mcc_generated_files/interrupt_manager.c: 89: void __attribute__((picinterrupt(("irq(default),base(8)")))) Default_ISR()
-[v _Default_ISR `(v ~T1 @X0 1 ef ]
 "90
-[; ;mcc_generated_files/interrupt_manager.c: 90: {
+[; ;mcc_generated_files/interrupt_manager.c: 90: void __attribute__((picinterrupt(("irq(default),base(8)")))) Default_ISR()
+[v _Default_ISR `(v ~T1 @X0 1 ef ]
+"91
+[; ;mcc_generated_files/interrupt_manager.c: 91: {
 {
 [e :U _Default_ISR ]
 [f ]
-"91
-[; ;mcc_generated_files/interrupt_manager.c: 91: }
+"92
+[; ;mcc_generated_files/interrupt_manager.c: 92: }
 [e :UE 3287 ]
 }

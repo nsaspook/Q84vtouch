@@ -106,6 +106,7 @@ static struct CAN1_RX_FIFO rxFifos[] =
 static volatile struct CAN_FIFOREG * const FIFO = (struct CAN_FIFOREG *)&C1TXQCONL;
 static const uint8_t DLC_BYTES[] = {0U, 1U, 2U, 3U, 4U, 5U, 6U, 7U, 8U, 12U, 16U, 20U, 24U, 32U, 48U, 64U};
 
+static void (*CAN1_TXQNotFullHandler)(void);
 static void (*CAN1_FIFO1NotEmptyHandler)(void);
 static void (*CAN1_InvalidMessageHandler)(void);
 static void (*CAN1_BusWakeUpActivityHandler)(void);
@@ -114,6 +115,10 @@ static void (*CAN1_ModeChangeHandler)(void);
 static void (*CAN1_SystemErrorHandler)(void);
 static void (*CAN1_TxAttemptHandler)(void);
 static void (*CAN1_RxBufferOverflowHandler)(void);
+
+static void DefaultTXQNotFullHandler(void)
+{
+}
 
 static void DefaultFIFO1NotEmptyHandler(void)
 {
@@ -196,8 +201,8 @@ static void CAN1_RX_FIFO_FilterMaskConfiguration(void)
 
 static void CAN1_TX_FIFO_Configuration(void)
 {
-    // TXATIE enabled; TXQEIE disabled; TXQNIE disabled; 
-    C1TXQCONL = 0x10;
+    // TXATIE enabled; TXQEIE disabled; TXQNIE enabled; 
+    C1TXQCONL = 0x11;
 
 	// FRESET enabled; UINC disabled; 
 	C1TXQCONH = 0x04;
@@ -205,8 +210,8 @@ static void CAN1_TX_FIFO_Configuration(void)
     // TXAT 3; TXPRI 2; 
     C1TXQCONU = 0x61;
 
-    // PLSIZE 64; FSIZE 1; 
-    C1TXQCONT = 0xE0;
+    // PLSIZE 64; FSIZE 10; 
+    C1TXQCONT = 0xE9;
 
     // TXEN enabled; RTREN disabled; RXTSEN disabled; TXATIE enabled; RXOVIE disabled; TFERFFIE disabled; TFHRFHIE disabled; TFNRFNIE disabled; 
     C1FIFOCON2L = 0x90;
@@ -217,8 +222,8 @@ static void CAN1_TX_FIFO_Configuration(void)
     // TXAT Unlimited number of retransmission attempts; TXPRI 4; 
     C1FIFOCON2U = 0x63;
     
-    // PLSIZE 64; FSIZE 8; 
-    C1FIFOCON2T = 0xE7;
+    // PLSIZE 64; FSIZE 4; 
+    C1FIFOCON2T = 0xE3;
     
     // TXEN enabled; RTREN disabled; RXTSEN disabled; TXATIE enabled; RXOVIE disabled; TFERFFIE disabled; TFHRFHIE disabled; TFNRFNIE disabled; 
     C1FIFOCON3L = 0x90;
@@ -229,9 +234,15 @@ static void CAN1_TX_FIFO_Configuration(void)
     // TXAT Unlimited number of retransmission attempts; TXPRI 3; 
     C1FIFOCON3U = 0x62;
     
-    // PLSIZE 64; FSIZE 8; 
-    C1FIFOCON3T = 0xE7;
+    // PLSIZE 64; FSIZE 4; 
+    C1FIFOCON3T = 0xE3;
     
+    CAN1_SetTXQNotFullHandler(DefaultTXQNotFullHandler);
+    
+    C1INTUbits.TXIE = 1;
+    
+    PIR4bits.CANTXIF = 0;
+    PIE4bits.CANTXIE = 1;
 }
 
 static void CAN1_BitRateConfiguration(void)
@@ -284,8 +295,8 @@ static void CAN1_ErrorNotificationInterruptEnable(void)
     // IVMIF disabled; WAKIF disabled; CERRIF disabled; SERRIF disabled; 
     C1INTH = 0x00;
     
-    // TEFIE disabled; MODIE enabled; TBCIE disabled; RXIE enabled; TXIE disabled; 
-    C1INTU = 0x0A;
+    // TEFIE disabled; MODIE enabled; TBCIE disabled; RXIE enabled; TXIE enabled; 
+    C1INTU = 0x0B;
     
     // IVMIE enabled; WAKIE enabled; CERRIE enabled; SERRIE enabled; RXOVIE enabled; TXATIE enabled; 
     C1INTT = 0xFC;
@@ -748,7 +759,7 @@ void __interrupt(irq(CAN),base(8)) CAN1_ISR(void)
         if (1 == C1FIFOSTA3Lbits.TXATIF)
         {
             C1FIFOSTA3Lbits.TXATIF = 0;
-    }
+        }
     }
     
     if (1 == C1INTHbits.RXOVIF)
@@ -768,6 +779,11 @@ void CAN1_SetFIFO1NotEmptyHandler(void (*handler)(void))
     CAN1_FIFO1NotEmptyHandler = handler;
 }
 
+void CAN1_SetTXQNotFullHandler(void (*handler)(void))
+{
+    CAN1_TXQNotFullHandler = handler;
+}
+
 
 void __interrupt(irq(CANRX),base(8)) CAN1_RXI_ISR(void)
 {
@@ -779,3 +795,12 @@ void __interrupt(irq(CANRX),base(8)) CAN1_RXI_ISR(void)
     
 }
 
+void __interrupt(irq(CANTX),base(8)) CAN1_TXI_ISR(void)
+{
+    if (1 == C1TXQSTALbits.TXQNIF)
+    {
+        CAN1_TXQNotFullHandler();
+        // flag readonly
+    }
+    
+}

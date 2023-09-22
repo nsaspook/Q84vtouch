@@ -1329,10 +1329,10 @@ void CAN1_SetFIFO1NotEmptyHandler(void (*handler)(void));
 
 /**
   @Summary
-    Sets the Disable TXQ Interrupt interrupt handler.
+    Sets the TXQ Not Full interrupt handler.
 
   @Description
-    This routine sets the Disable TXQ Interrupt interrupt handler for TXQ.
+    This routine sets the TXQ Not Full interrupt handler for TXQ.
 
   @Param
     Address of the callback routine.
@@ -1361,7 +1361,7 @@ void CAN1_SetFIFO1NotEmptyHandler(void (*handler)(void));
         gMsg.data = data;
         
         SYSTEM_Initialize();
-        CAN1_SetTXQnullHandler(&CustomTXQHandler);
+        CAN1_SetTXQNotFullHandler(&CustomTXQHandler);
         
         INTERRUPT_GlobalInterruptEnable();
 
@@ -1369,7 +1369,7 @@ void CAN1_SetFIFO1NotEmptyHandler(void (*handler)(void));
     }
     </code>
 */
-void CAN1_SetTXQnullHandler(void (*handler)(void));
+void CAN1_SetTXQNotFullHandler(void (*handler)(void));
 
 /**
   @Summary

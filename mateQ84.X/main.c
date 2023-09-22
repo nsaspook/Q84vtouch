@@ -297,6 +297,11 @@ void main(void)
 	// Initialize the device
 	SYSTEM_Initialize();
 
+	/*
+	 * complete and correct the MCC CANBUS configuration
+	 */
+	can_setup();
+
 	// If using interrupts in PIC18 High/Low Priority Mode you need to enable the Global High and Low Interrupts
 	// If using interrupts in PIC Mid-Range Compatibility Mode you need to enable the Global Interrupts
 	// Use the following macros to:
@@ -348,10 +353,6 @@ void main(void)
 	snprintf(buffer, MAX_B_BUF, "%s ", "Polling FM80        ");
 	eaDogM_WriteStringAtPos(2, 0, buffer);
 
-	/*
-	 * complete and correct the MCC CANBUS configuration
-	 */
-	can_setup();
 	can_fd_tx(); // send the testing packet via CANBUS
 
 	/*
