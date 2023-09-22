@@ -20,7 +20,6 @@ mcc_generated_files/can_types.h  \
 mcc_generated_files/spi1.h  \
 ../eadog.h  \
 ../qconfig.h  \
-../ringbufs.h  \
 ../timers.h  \
 ../modbus_master.h  \
 ../canfd.h  \

@@ -24,9 +24,9 @@
 extern "C" {
 #endif
 #include "qconfig.h"
-#include "ringbufs.h"
 
 #define USEMCC_SPI
+#define USE_LCD_DMA
 
 	typedef struct {
 		uint8_t con0;

@@ -39289,7 +39289,7 @@ void TMR6_DefaultInterruptHandler(void);
 
 # 1 "mcc_generated_files/dma1.h" 1
 # 55 "mcc_generated_files/dma1.h"
-uint8_t SrcVarName0[2];
+uint8_t lcd_dma_buf[32];
 
 
 
@@ -39389,6 +39389,34 @@ void DMA1_StopTransfer(void);
 
 
 void DMA1_SetDMAPriority(uint8_t priority);
+
+
+
+
+
+
+void DMA1_SetSCNTIInterruptHandler(void (* InterruptHandler)(void));
+
+
+
+
+
+
+
+void DMA1_SetAIInterruptHandler(void (* InterruptHandler)(void));
+
+
+
+
+
+
+void DMA1_SetORIInterruptHandler(void (* InterruptHandler)(void));
+
+
+
+
+
+void DMA1_DefaultInterruptHandler(void);
 # 59 "mcc_generated_files/mcc.h" 2
 
 # 1 "mcc_generated_files/tmr4.h" 1
@@ -40366,6 +40394,9 @@ void INTERRUPT_Initialize (void)
     GIE = state;
 
 
+    IPR2bits.DMA1AIP = 1;
+    IPR2bits.DMA1SCNTIP = 1;
+    IPR2bits.DMA1ORIP = 1;
     IPR0bits.CANIP = 1;
     IPR4bits.CANRXIP = 1;
     IPR8bits.U2TXIP = 1;

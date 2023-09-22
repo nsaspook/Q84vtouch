@@ -1,25 +1,24 @@
 #include <string.h>
 #include "qconfig.h"
 #include "eadog.h"
-#include "ringbufs.h"
 #include "mateQ84.X/mcc_generated_files/mcc.h"
 
 volatile struct spi_link_type spi_link = {
 	.LCD_DATA = false,
 };
-static struct ringBufS_t ring_buf1;
 
 static const spi1_configuration_t spi1_configuration[] = {
 	{0x83, 0x20, 0x3, 0x4, 0}
 };
 
 static char Sstr[5][21];
-static volatile bool scroll_lock = false;
+static volatile bool scroll_lock = false, powerup = true;
 static volatile uint8_t scroll_line_pos = 4;
 
 static void send_lcd_cmd_long(uint8_t); // for display init only
 static void send_lcd_data(uint8_t);
 static void send_lcd_cmd(uint8_t);
+static void spi_byte(void);
 
 /*
  * Init the NHD-0420D3Z-NSW-BBW-V3 in 8-bit serial mode
@@ -27,13 +26,17 @@ static void send_lcd_cmd(uint8_t);
  */
 bool init_display(void)
 {
-	spi_link.tx1a = &ring_buf1;
-	ringBufS_init(spi_link.tx1a);
+	spi_link.txbuf = lcd_dma_buf;
 
+#ifdef USE_LCD_DMA
+	DMA1_SetSCNTIInterruptHandler(clear_lcd_done);
+	DMA1_SetORIInterruptHandler(spi_byte);
+	DMA1_SetDMAPriority(2);
+#endif
 #ifdef DEBUG_DISP0
 	DB0_LAT = true;
 #endif
-#ifdef NHD
+#ifdef NHD  // uses MODE 3 on the Q84
 #ifdef USEMCC_SPI
 #else
 	SPI1CON0bits.EN = 0;
@@ -49,7 +52,10 @@ bool init_display(void)
 	SPI1CON0 = 0x83;
 	SPI1CON0bits.EN = 1;
 #endif
-	wdtdelay(350000); // > 400ms power up delay
+	if (powerup) {
+		wdtdelay(350000); // > 400ms power up delay
+	}
+#ifndef USE_LCD_DMA
 	send_lcd_cmd_long(0x46); // home cursor
 	send_lcd_cmd(0x41); // display on
 	wdtdelay(80);
@@ -57,18 +63,31 @@ bool init_display(void)
 	send_lcd_data(NHD_BL_LOW);
 	wdtdelay(80);
 	send_lcd_cmd_long(0x51); // clear screen
-#ifdef USE_DMA
+#endif
+
+#ifdef USE_LCD_DMA
+	SPI1INTFbits.SPI1TXUIF = 0;
+	DMASELECT = 0; // use DMA1
+	DMAnCON0bits.EN = 0;
 	SPI1CON0bits.EN = 0;
 	SPI1CON2 = 0x02; //  Received data is not stored in the FIFO
 	SPI1CON0bits.EN = 1;
-#endif
-#endif
-	SPI1INTFbits.SPI1TXUIF = 0;
-	DMA1_StopTransfer();
+	DMAnCON1bits.DMODE = 0;
+	DMAnCON1bits.DSTP = 0;
+	DMAnCON1bits.SMODE = 1;
+	DMAnCON1bits.SMR = 0;
+	DMAnCON1bits.SSTP = 1;
+	DMAnSSA = (uint24_t) spi_link.txbuf;
+	DMAnCON0bits.DGO = 0;
+	DMAnCON0bits.EN = 1; /* enable DMA */
 	SPI1INTFbits.SPI1TXUIF = 1;
+#endif
+#endif
+	DMA1_StopTransfer();
 #ifdef DEBUG_DISP0
 	DB0_LAT = false;
 #endif
+	powerup = false; // only of the first display init call
 	return true;
 }
 
@@ -110,32 +129,22 @@ void eaDogM_WriteString(char *strPtr)
 {
 	uint8_t len = (uint8_t) strlen(strPtr);
 
-#ifdef DEBUG_DISP1
-	DB1_LAT = true;
-#endif
 	wait_lcd_done();
 	wait_lcd_set();
-	/* reset buffer for DMA */
-	ringBufS_flush(spi_link.tx1a, false);
 	CS_SetLow(); /* SPI select display */
 	if (len > (uint8_t) max_strlen) {
 		len = max_strlen;
 	}
-	ringBufS_put_dma_cpy(spi_link.tx1a, strPtr, len);
-#ifdef USE_DMA // DEBUG
-	DMA1_SetSourceAddress((uint24_t) spi_link.tx1a);
+	memcpy(spi_link.txbuf, strPtr, len);
+#ifdef USE_LCD_DMA
+	DMAnCON0bits.EN = 0; /* disable DMA to change source count */
 	DMA1_SetSourceSize(len);
 	DMA1_SetDestinationSize(1);
+	DMAnCON0bits.EN = 1; /* enable DMA */
 #else
-	SPI1_ExchangeBlock(spi_link.tx1a, len);
+	SPI1_ExchangeBlock(spi_link.txbuf, len);
 #endif
-#ifndef USE_DMA
 	start_lcd(); // start DMA transfer
-	wait_lcd_done();
-#endif
-#ifdef DEBUG_DISP1
-	DB1_LAT = false;
-#endif
 }
 
 /*
@@ -143,11 +152,8 @@ void eaDogM_WriteString(char *strPtr)
  */
 void send_lcd_cmd_dma(const uint8_t strPtr)
 {
-	wait_lcd_done();
 	send_lcd_data_dma(NHD_CMD); //prefix
-	wait_lcd_done();
 	send_lcd_data_dma(strPtr); // cmd code
-	wait_lcd_done();
 }
 
 /*
@@ -155,23 +161,16 @@ void send_lcd_cmd_dma(const uint8_t strPtr)
  */
 void send_lcd_data_dma(const uint8_t strPtr)
 {
-#ifdef DEBUG_DISP0
-	DB0_LAT = true;
-#endif
+	wdtdelay(10);
+	wait_lcd_done();
 	wait_lcd_set();
-	/* reset buffer for DMA */
-	ringBufS_flush(spi_link.tx1a, false);
 	CS_SetLow(); /* SPI select display */
-	ringBufS_put_dma(spi_link.tx1a, strPtr); // don't use printf to send zeros
-#ifdef USE_DMA
-	DMA1_SetSourceAddress((uint24_t) spi_link.tx1a);
+	spi_link.txbuf[0] = strPtr;
+	DMAnCON0bits.EN = 0; /* disable DMA to change source count */
 	DMA1_SetSourceSize(1);
 	DMA1_SetDestinationSize(1);
-#endif
+	DMAnCON0bits.EN = 1; /* enable DMA */
 	start_lcd(); // start DMA transfer
-#ifdef DEBUG_DISP0
-	DB0_LAT = false;
-#endif
 }
 
 void eaDogM_WriteStringAtPos(const uint8_t r, const uint8_t c, char *strPtr)
@@ -200,9 +199,14 @@ void eaDogM_WriteStringAtPos(const uint8_t r, const uint8_t c, char *strPtr)
 		break;
 	}
 
+#ifdef USE_LCD_DMA
+	send_lcd_cmd_dma(0x45);
+	send_lcd_data_dma(row + c);
+	wdtdelay(100);
+#else
 	send_lcd_cmd(0x45);
 	send_lcd_data(row + c);
-	wait_lcd_done();
+#endif
 	can_fd_lcd_mirror(r, strPtr);
 	eaDogM_WriteString(strPtr);
 }
@@ -232,12 +236,20 @@ void eaDogM_WriteByteToCGRAM(uint8_t ndx, uint8_t data)
 
 void eaDogM_WriteCommand(const uint8_t cmd)
 {
+#ifdef USE_LCD_DMA
+	send_lcd_cmd_dma(cmd);
+#else
 	send_lcd_cmd(cmd);
+#endif
 }
 
 void eaDogM_WriteChr(const int8_t value)
 {
+#ifdef USE_LCD_DMA
+	send_lcd_data_dma((uint8_t) value);
+#else
 	send_lcd_data((uint8_t) value);
+#endif
 }
 
 /*
@@ -245,8 +257,8 @@ void eaDogM_WriteChr(const int8_t value)
  */
 void start_lcd(void)
 {
-#ifdef USE_DMA
-	DMA1_StartTransfer();
+#ifdef USE_LCD_DMA
+	DMA1_StartTransferWithTrigger();
 #endif
 }
 
@@ -262,9 +274,11 @@ bool wait_lcd_check(void)
 
 void wait_lcd_done(void)
 {
-#ifdef USE_DMA
-	while ((bool) spi_link.LCD_DATA) {
-	};
+#ifdef USE_LCD_DMA
+	while (spi_link.LCD_DATA);
+	while (!SPI1STATUSbits.TXBE);
+	MLED_SetLow();
+	wdtdelay(1);
 #endif
 }
 
@@ -275,8 +289,14 @@ void clear_lcd_done(void)
 
 void spi_rec_done(void)
 {
-#ifdef USE_DMA
+#ifdef USE_LCD_DMA
 #endif
+}
+
+static void spi_byte(void)
+{
+	MLED_Toggle();
+	wdtdelay(1);
 }
 
 /*

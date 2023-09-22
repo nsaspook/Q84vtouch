@@ -38861,7 +38861,7 @@ typedef struct {
 
 
 static const spi1_configuration_t spi1_configuration[] = {
-    { 0x83, 0x20, 0x3, 0x4, 0 }
+    { 0x83, 0x20, 0x3, 0x96, 0 }
 };
 
 void SPI1_Initialize(void)
@@ -38873,9 +38873,9 @@ void SPI1_Initialize(void)
 
     SPI1CON2 = 0x03;
 
-    SPI1CLK = 0x02;
+    SPI1CLK = 0x01;
 
-    SPI1BAUD = 0x04;
+    SPI1BAUD = 0x96;
     TRISCbits.TRISC3 = 0;
 }
 

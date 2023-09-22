@@ -1,8 +1,8 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[v F23677 `(v ~T0 @X0 0 tf ]
-[v F23679 `(v ~T0 @X0 0 tf ]
-[v F23754 `(v ~T0 @X0 0 tf ]
-[v F23756 `(v ~T0 @X0 0 tf ]
+[v F23690 `(v ~T0 @X0 0 tf ]
+[v F23692 `(v ~T0 @X0 0 tf ]
+[v F23767 `(v ~T0 @X0 0 tf ]
+[v F23769 `(v ~T0 @X0 0 tf ]
 "4412 /root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.21.411/xc8/pic/include/proc/pic18f47q84.h
 [; ;/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.21.411/xc8/pic/include/proc/pic18f47q84.h: 4412: } SPI2RXBbits_t;
 [s S3182 :1 `uc 1 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -41,6 +41,21 @@ Version 4.0 HI-TECH Software Intermediate Code
 "64718
 [; ;/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.21.411/xc8/pic/include/proc/pic18f47q84.h: 64718: extern volatile unsigned char IVTBASEL __attribute__((address(0x45D)));
 [v _IVTBASEL `Vuc ~T0 @X0 0 e@1117 ]
+"48339
+[; ;/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.21.411/xc8/pic/include/proc/pic18f47q84.h: 48339:     struct {
+[s S2270 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S2270 . ADTIP ADCH2IP ADCH3IP ADCH4IP DMA1SCNTIP DMA1DCNTIP DMA1ORIP DMA1AIP ]
+"48349
+[; ;/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.21.411/xc8/pic/include/proc/pic18f47q84.h: 48349:     struct {
+[s S2271 :1 `uc 1 ]
+[n S2271 . ADCH1IP ]
+"48338
+[; ;/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.21.411/xc8/pic/include/proc/pic18f47q84.h: 48338: typedef union {
+[u S2269 `S2270 1 `S2271 1 ]
+[n S2269 . . . ]
+"48353
+[; ;/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.21.411/xc8/pic/include/proc/pic18f47q84.h: 48353: extern volatile IPR2bits_t IPR2bits __attribute__((address(0x364)));
+[v _IPR2bits `VS2269 ~T0 @X0 0 e@868 ]
 "48215
 [; ;/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.21.411/xc8/pic/include/proc/pic18f47q84.h: 48215:     struct {
 [s S2266 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -3718,20 +3733,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.21.411/xc8/pic/include/proc/pic18f47q84.h: 71204: __asm("TOSU equ 04FFh");
 [; <" TOSU equ 04FFh ;# ">
 "55 mcc_generated_files/dma1.h
-[; ;mcc_generated_files/dma1.h: 55: uint8_t SrcVarName0[2];
-[v _SrcVarName0 `uc ~T0 @X0 -> 2 `i e ]
+[; ;mcc_generated_files/dma1.h: 55: uint8_t lcd_dma_buf[32];
+[v _lcd_dma_buf `uc ~T0 @X0 -> 32 `i e ]
 "518 mcc_generated_files/uart2.h
 [; ;mcc_generated_files/uart2.h: 518: void (*UART2_RxInterruptHandler)(void);
-[v _UART2_RxInterruptHandler `*F23677 ~T0 @X0 1 e ]
+[v _UART2_RxInterruptHandler `*F23690 ~T0 @X0 1 e ]
 "536
 [; ;mcc_generated_files/uart2.h: 536: void (*UART2_TxInterruptHandler)(void);
-[v _UART2_TxInterruptHandler `*F23679 ~T0 @X0 1 e ]
+[v _UART2_TxInterruptHandler `*F23692 ~T0 @X0 1 e ]
 "517 mcc_generated_files/uart5.h
 [; ;mcc_generated_files/uart5.h: 517: void (*UART5_RxInterruptHandler)(void);
-[v _UART5_RxInterruptHandler `*F23754 ~T0 @X0 1 e ]
+[v _UART5_RxInterruptHandler `*F23767 ~T0 @X0 1 e ]
 "535
 [; ;mcc_generated_files/uart5.h: 535: void (*UART5_TxInterruptHandler)(void);
-[v _UART5_TxInterruptHandler `*F23756 ~T0 @X0 1 e ]
+[v _UART5_TxInterruptHandler `*F23769 ~T0 @X0 1 e ]
 "52 mcc_generated_files/interrupt_manager.c
 [; ;mcc_generated_files/interrupt_manager.c: 52: void INTERRUPT_Initialize (void)
 [v _INTERRUPT_Initialize `(v ~T0 @X0 1 ef ]
@@ -3781,52 +3796,61 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;mcc_generated_files/interrupt_manager.c: 70:     GIE = state;
 [e = _GIE _state ]
 "73
-[; ;mcc_generated_files/interrupt_manager.c: 73:     IPR0bits.CANIP = 1;
-[e = . . _IPR0bits 0 6 -> -> 1 `i `uc ]
+[; ;mcc_generated_files/interrupt_manager.c: 73:     IPR2bits.DMA1AIP = 1;
+[e = . . _IPR2bits 0 7 -> -> 1 `i `uc ]
 "74
-[; ;mcc_generated_files/interrupt_manager.c: 74:     IPR4bits.CANRXIP = 1;
-[e = . . _IPR4bits 0 4 -> -> 1 `i `uc ]
+[; ;mcc_generated_files/interrupt_manager.c: 74:     IPR2bits.DMA1SCNTIP = 1;
+[e = . . _IPR2bits 0 4 -> -> 1 `i `uc ]
 "75
-[; ;mcc_generated_files/interrupt_manager.c: 75:     IPR8bits.U2TXIP = 1;
-[e = . . _IPR8bits 0 1 -> -> 1 `i `uc ]
+[; ;mcc_generated_files/interrupt_manager.c: 75:     IPR2bits.DMA1ORIP = 1;
+[e = . . _IPR2bits 0 6 -> -> 1 `i `uc ]
 "76
-[; ;mcc_generated_files/interrupt_manager.c: 76:     IPR8bits.U2RXIP = 1;
-[e = . . _IPR8bits 0 0 -> -> 1 `i `uc ]
+[; ;mcc_generated_files/interrupt_manager.c: 76:     IPR0bits.CANIP = 1;
+[e = . . _IPR0bits 0 6 -> -> 1 `i `uc ]
 "77
-[; ;mcc_generated_files/interrupt_manager.c: 77:     IPR13bits.U5TXIP = 1;
-[e = . . _IPR13bits 0 1 -> -> 1 `i `uc ]
+[; ;mcc_generated_files/interrupt_manager.c: 77:     IPR4bits.CANRXIP = 1;
+[e = . . _IPR4bits 0 4 -> -> 1 `i `uc ]
 "78
-[; ;mcc_generated_files/interrupt_manager.c: 78:     IPR13bits.U5RXIP = 1;
-[e = . . _IPR13bits 0 0 -> -> 1 `i `uc ]
+[; ;mcc_generated_files/interrupt_manager.c: 78:     IPR8bits.U2TXIP = 1;
+[e = . . _IPR8bits 0 1 -> -> 1 `i `uc ]
 "79
-[; ;mcc_generated_files/interrupt_manager.c: 79:     IPR3bits.TMR0IP = 0;
-[e = . . _IPR3bits 0 7 -> -> 0 `i `uc ]
+[; ;mcc_generated_files/interrupt_manager.c: 79:     IPR8bits.U2RXIP = 1;
+[e = . . _IPR8bits 0 0 -> -> 1 `i `uc ]
 "80
-[; ;mcc_generated_files/interrupt_manager.c: 80:     IPR15bits.TMR6IP = 0;
-[e = . . _IPR15bits 0 3 -> -> 0 `i `uc ]
+[; ;mcc_generated_files/interrupt_manager.c: 80:     IPR13bits.U5TXIP = 1;
+[e = . . _IPR13bits 0 1 -> -> 1 `i `uc ]
 "81
-[; ;mcc_generated_files/interrupt_manager.c: 81:     IPR8bits.TMR5IP = 0;
-[e = . . _IPR8bits 0 4 -> -> 0 `i `uc ]
+[; ;mcc_generated_files/interrupt_manager.c: 81:     IPR13bits.U5RXIP = 1;
+[e = . . _IPR13bits 0 0 -> -> 1 `i `uc ]
 "82
-[; ;mcc_generated_files/interrupt_manager.c: 82:     IPR11bits.TMR4IP = 1;
-[e = . . _IPR11bits 0 3 -> -> 1 `i `uc ]
+[; ;mcc_generated_files/interrupt_manager.c: 82:     IPR3bits.TMR0IP = 0;
+[e = . . _IPR3bits 0 7 -> -> 0 `i `uc ]
 "83
-[; ;mcc_generated_files/interrupt_manager.c: 83:     IPR3bits.TMR2IP = 0;
-[e = . . _IPR3bits 0 3 -> -> 0 `i `uc ]
+[; ;mcc_generated_files/interrupt_manager.c: 83:     IPR15bits.TMR6IP = 0;
+[e = . . _IPR15bits 0 3 -> -> 0 `i `uc ]
 "84
-[; ;mcc_generated_files/interrupt_manager.c: 84: }
+[; ;mcc_generated_files/interrupt_manager.c: 84:     IPR8bits.TMR5IP = 0;
+[e = . . _IPR8bits 0 4 -> -> 0 `i `uc ]
+"85
+[; ;mcc_generated_files/interrupt_manager.c: 85:     IPR11bits.TMR4IP = 1;
+[e = . . _IPR11bits 0 3 -> -> 1 `i `uc ]
+"86
+[; ;mcc_generated_files/interrupt_manager.c: 86:     IPR3bits.TMR2IP = 0;
+[e = . . _IPR3bits 0 3 -> -> 0 `i `uc ]
+"87
+[; ;mcc_generated_files/interrupt_manager.c: 87: }
 [e :UE 3286 ]
 }
 [v $root$_Default_ISR `(v ~T0 @X0 0 e ]
-"86
-[; ;mcc_generated_files/interrupt_manager.c: 86: void __attribute__((picinterrupt(("irq(default),base(8)")))) Default_ISR()
+"89
+[; ;mcc_generated_files/interrupt_manager.c: 89: void __attribute__((picinterrupt(("irq(default),base(8)")))) Default_ISR()
 [v _Default_ISR `(v ~T1 @X0 1 ef ]
-"87
-[; ;mcc_generated_files/interrupt_manager.c: 87: {
+"90
+[; ;mcc_generated_files/interrupt_manager.c: 90: {
 {
 [e :U _Default_ISR ]
 [f ]
-"88
-[; ;mcc_generated_files/interrupt_manager.c: 88: }
+"91
+[; ;mcc_generated_files/interrupt_manager.c: 91: }
 [e :UE 3287 ]
 }

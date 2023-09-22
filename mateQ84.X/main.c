@@ -224,7 +224,7 @@ static uint16_t abuf[FM_BUFFER], cbuf[FM_BUFFER + 2];
 volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = AMP_WHOLE_ZERO, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
-char buffer[MAX_B_BUF], can_buffer[MAX_C_BUF], info_buffer[MAX_B_BUF];
+char buffer[MAX_B_BUF] = "Boot Init Display   ", can_buffer[MAX_C_BUF], info_buffer[MAX_B_BUF];
 const char *build_date = __DATE__, *build_time = __TIME__;
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
@@ -329,8 +329,8 @@ void main(void)
 	StartTimer(TMR_SPIN, SPINNER_SPEED);
 
 	init_display();
-	snprintf(buffer, MAX_B_BUF, "%s ", "                        ");
-	eaDogM_WriteStringAtPos(0, 0, buffer);
+	//	snprintf(buffer, MAX_B_BUF, "%s ", "                        ");
+	//	eaDogM_WriteStringAtPos(0, 0, buffer);
 	snprintf(buffer, MAX_B_BUF, "%s   ", build_version);
 	eaDogM_WriteStringAtPos(0, 0, buffer);
 	snprintf(buffer, MAX_B_BUF, "%s   ", build_date);
@@ -777,10 +777,9 @@ static void state_fwrev_cb(void)
 
 static void state_time_cb(void)
 {
-	char s_buffer[22];
-
 	IO_RB6_Toggle(); // GPIO scope trace
 #ifdef SDEBUG
+	char s_buffer[22];
 	snprintf(s_buffer, 21, "Time CSum %X        ", calc_checksum((uint8_t *) & cmd_time[1], 10));
 	eaDogM_Scroll_String(s_buffer);
 #endif
@@ -790,9 +789,8 @@ static void state_time_cb(void)
 
 static void state_date_cb(void)
 {
-	char s_buffer[22];
-
 #ifdef SDEBUG
+	char s_buffer[22];
 	snprintf(s_buffer, 21, "Date CSum %X        ", calc_checksum((uint8_t *) & cmd_date[1], 10));
 	eaDogM_Scroll_String(s_buffer);
 #endif

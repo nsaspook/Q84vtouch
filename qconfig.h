@@ -36,7 +36,6 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <time.h>
-#include "ringbufs.h"
 
 #define EADOGM_CMD_CLR		1
 #define EADOGM_CMD_CURSOR_ON	0b00001111
@@ -50,7 +49,6 @@
 #define EADOGM_CMD_SET_TABLE2   0b00101010
 #define EADOGM_COLSPAN		16
 
-//#define USE_DMA
 //#define DEBUG_DISP0
 //#define DEBUG_DISP1
 //#define SDEBUG		// scrolling text dubug messages
@@ -76,7 +74,7 @@ struct spi_link_type { // internal SPI state table
 	volatile uint8_t LCD_DATA : 1;
 	uint16_t delay;
 	uint8_t config;
-	struct ringBufS_t *tx1b, *tx1a;
+	uint8_t * txbuf;
 	volatile int32_t int_count;
 };
 

@@ -39058,7 +39058,7 @@ static void CAN1_TX_FIFO_Configuration(void)
     C1TXQCONU = 0x61;
 
 
-    C1TXQCONT = 0xE1;
+    C1TXQCONT = 0xE0;
 
 
     C1FIFOCON2L = 0x90;
@@ -39070,7 +39070,7 @@ static void CAN1_TX_FIFO_Configuration(void)
     C1FIFOCON2U = 0x63;
 
 
-    C1FIFOCON2T = 0xE3;
+    C1FIFOCON2T = 0xE7;
 
 
     C1FIFOCON3L = 0x90;
@@ -39082,7 +39082,7 @@ static void CAN1_TX_FIFO_Configuration(void)
     C1FIFOCON3U = 0x62;
 
 
-    C1FIFOCON3T = 0xE3;
+    C1FIFOCON3T = 0xE7;
 
 }
 

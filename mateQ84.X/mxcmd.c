@@ -91,7 +91,7 @@ void FM_io(void)
 		}
 		if (U1ERRIRbits.PERIF) {
 			rdstart = 0; // restart receive buffer when we see a 9-th bit high
-			rbuf[rdstart] = 0x0100; // start of packet
+			rbuf[rdstart] = 0x0100; // start of packet, bit 9 set
 		} else {
 			rbuf[rdstart] = 0x00;
 		}

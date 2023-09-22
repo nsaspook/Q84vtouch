@@ -31,8 +31,10 @@ union {
 void Can1FIFO1NotEmptyHandler(void)
 {
 	uint8_t tries = 0;
-	static uint8_t half = 0;
+	static uint8_t half = CAN_LOW_BUF;
+#ifdef CAN_DEBUG	
 	char s_buffer[LCD_BUF_SIZ];
+#endif
 
 	while (true) {
 		can_rec_count.rec_count++;
@@ -42,11 +44,11 @@ void Can1FIFO1NotEmptyHandler(void)
 			if ((msg[half].msgId & 0xf) == EMON_SL || (msg[half].msgId & 0xf) == EMON_SU) {
 				memcpy((void *) &rxMsgData[half][0], msg[half].data, CANFD_BYTES);
 				if ((msg[half].msgId & 0xf) == EMON_SL) {
-					half = 1;
+					half = CAN_HIGH_BUF;
 					break;
 				}
 				if ((msg[half].msgId & 0xf) == EMON_SU) {
-					half = 0;
+					half = CAN_LOW_BUF;
 					can_rec_count.rec_flag = true;
 					break;
 				}
@@ -121,7 +123,6 @@ void Can1FIFO1NotEmptyHandler(void)
  */
 void can_fd_tx(void)
 {
-	//	IO_RB7_Toggle(); // canbus timing
 	CAN_MSG_OBJ Transmission; //create the CAN message object
 	Transmission.field.brs = CAN_BRS_MODE; //Transmit the data bytes at data bit rate
 	Transmission.field.dlc = DLC_64; // 64 data bytes

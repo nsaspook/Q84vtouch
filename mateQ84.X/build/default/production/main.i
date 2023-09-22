@@ -39502,7 +39502,7 @@ void TMR6_DefaultInterruptHandler(void);
 
 # 1 "./mcc_generated_files/dma1.h" 1
 # 55 "./mcc_generated_files/dma1.h"
-uint8_t SrcVarName0[2];
+uint8_t lcd_dma_buf[32];
 
 
 
@@ -39602,6 +39602,34 @@ void DMA1_StopTransfer(void);
 
 
 void DMA1_SetDMAPriority(uint8_t priority);
+
+
+
+
+
+
+void DMA1_SetSCNTIInterruptHandler(void (* InterruptHandler)(void));
+
+
+
+
+
+
+
+void DMA1_SetAIInterruptHandler(void (* InterruptHandler)(void));
+
+
+
+
+
+
+void DMA1_SetORIInterruptHandler(void (* InterruptHandler)(void));
+
+
+
+
+
+void DMA1_DefaultInterruptHandler(void);
 # 59 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/tmr4.h" 1
@@ -40657,25 +40685,7 @@ extern long timezone;
 extern int getdate_err;
 struct tm *getdate (const char *);
 # 39 "./../qconfig.h" 2
-# 1 "./../ringbufs.h" 1
-# 19 "./../ringbufs.h"
- typedef struct ringBufS_t {
-  uint8_t buf[32];
-  uint8_t head;
-  uint8_t tail;
-  uint8_t count;
- } ringBufS_t;
-
- void *ringBufS_init(volatile ringBufS_t *_this);
- int8_t ringBufS_empty(ringBufS_t *_this);
- int8_t ringBufS_full(ringBufS_t *_this);
- uint8_t ringBufS_get(ringBufS_t *_this);
- void ringBufS_put(ringBufS_t *_this, const uint8_t c);
- void ringBufS_put_dma(ringBufS_t *_this, const uint8_t c);
- void ringBufS_put_dma_cpy(ringBufS_t *, const char *, const uint8_t);
- void *ringBufS_flush(ringBufS_t *_this, const _Bool clearBuffer);
-# 40 "./../qconfig.h" 2
-# 61 "./../qconfig.h"
+# 59 "./../qconfig.h"
 const char spin[6][20] = {
  "||//--",
  "||//--\\\\",
@@ -40694,7 +40704,7 @@ struct spi_link_type {
  volatile uint8_t LCD_DATA : 1;
  uint16_t delay;
  uint8_t config;
- struct ringBufS_t *tx1b, *tx1a;
+ uint8_t * txbuf;
  volatile int32_t int_count;
 };
 
@@ -40762,8 +40772,8 @@ void delay_ms(const uint16_t);
 # 23 "./mxcmd.h" 2
 
 
- const char build_version[] = "V1.75 FM80 Q84";
-# 64 "./mxcmd.h"
+ const char build_version[] = "V1.80 FM80 Q84";
+# 65 "./mxcmd.h"
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
  const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};
@@ -41210,8 +41220,8 @@ static uint16_t abuf[32], cbuf[32 + 2];
 volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
-char buffer[96], can_buffer[64*2], info_buffer[96];
-const char *build_date = "Sep 20 2023", *build_time = "18:35:03";
+char buffer[96] = "Boot Init Display   ", can_buffer[64*2], info_buffer[96];
+const char *build_date = "Sep 21 2023", *build_time = "17:44:00";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
@@ -41315,8 +41325,8 @@ void main(void)
  StartTimer(TMR_SPIN, 200);
 
  init_display();
- snprintf(buffer, 96, "%s ", "                        ");
- eaDogM_WriteStringAtPos(0, 0, buffer);
+
+
  snprintf(buffer, 96, "%s   ", build_version);
  eaDogM_WriteStringAtPos(0, 0, buffer);
  snprintf(buffer, 96, "%s   ", build_date);
@@ -41735,9 +41745,8 @@ static void state_fwrev_cb(void)
 
 static void state_time_cb(void)
 {
- char s_buffer[22];
-
  do { LATBbits.LATB6 = ~LATBbits.LATB6; } while(0);
+
 
 
 
@@ -41748,7 +41757,6 @@ static void state_time_cb(void)
 
 static void state_date_cb(void)
 {
- char s_buffer[22];
 
 
 
