@@ -37,6 +37,8 @@
 #include <stdlib.h>
 #include <time.h>
 
+//#define CAN_REMOTE	// can received data on LCD for remote mate board
+
 #define EADOGM_CMD_CLR		1
 #define EADOGM_CMD_CURSOR_ON	0b00001111
 #define EADOGM_CMD_CURSOR_OFF   0b00001100

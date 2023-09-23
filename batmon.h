@@ -16,9 +16,14 @@ extern "C" {
 #include "modbus_master.h"
 #include "mateQ84.X/mxcmd.h"
 
+	
+#define TEN_SEC_HOUR	360.0f
+#define BAT_VOLT	25.6f
+#define BAT_AH		200.0f
+
 #define BM_CM	0x57
 #define BM_VER	1
-#define BAT_ENERGY	25.6f*200.0f*360.0f // nominal battery voltage and AH rating for 10 second updates
+#define BAT_ENERGY	BAT_VOLT*BAT_AH*TEN_SEC_HOUR // nominal battery voltage and AH rating for 10 second updates
 #define BAT_ENERGY_LOW	BAT_ENERGY/0.5f
 
 #define BAT_OVER_VOLT	30.0f
@@ -38,6 +43,8 @@ extern "C" {
 
 #define BAT_CHARGED_W	200.0f
 
+#define BAT_DAY_COUNT	3
+
 	// EEPROM data storage structure
 
 	typedef struct EB_data {
@@ -55,8 +62,8 @@ extern "C" {
 	/*
 	 * logging data format for printf and variables
 	 */
-	const char log_format[] = "^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%.1f,%.1f,%.1f,%4.1f,%.2f,%u,%5.3f,%5.3f,%u,%s,~\r\n";
-#define LOG_VARS	abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, EBD.bat_energy / 3600.0f, EBD.bat_cycles, ((float) em.pfl1) / 1000.0f, ((float) emt.hz) / 1000.0f, B.rx_count++,buffer
+	const char log_format[] = "^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%.1f,%d,%.1f,%.1f,%.1f,%4.1f,%.2f,%u,%5.3f,%5.3f,%u,%s,~\r\n";
+#define LOG_VARS	abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, pv_Wh_daily, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, EBD.bat_energy / 3600.0f, EBD.bat_cycles, ((float) em.pfl1) / 1000.0f, ((float) emt.hz) / 1000.0f, B.rx_count++,buffer
 
 #define BVSOC_SLOTS     12      // Battery to SOC data table slots
 	const uint32_t BVSOC_TABLE[BVSOC_SLOTS][2] = {
@@ -81,6 +88,9 @@ extern "C" {
 	extern EB_data EBD, EBD_ptr;
 	extern uint16_t EBD_update;
 	extern struct tm *can_newtime;
+	extern float pv_Wh_daily, pv_Wh_daily_prev;
+	extern void run_night_to_day(void);
+	extern void run_day_to_night(void);
 
 	bool initbm_data(uint8_t *);
 	void wr_bm_data(uint8_t *);

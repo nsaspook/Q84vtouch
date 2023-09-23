@@ -11,32 +11,30 @@ static const spi1_configuration_t spi1_configuration[] = {
 	{0x83, 0x20, 0x3, 0x4, 0}
 };
 
-static char Sstr[5][21];
+static char Sstr[NSB][LSB];
 static volatile bool scroll_lock = false, powerup = true;
 static volatile uint8_t scroll_line_pos = 4;
 
-static void send_lcd_cmd_long(uint8_t); // for display init only
-static void send_lcd_data(uint8_t);
-static void send_lcd_cmd(uint8_t);
+static void send_lcd_cmd_long(const uint8_t); // for display init only
+static void send_lcd_data(const uint8_t);
+static void send_lcd_cmd(const uint8_t);
 static void spi_byte(void);
 
 /*
  * Init the NHD-0420D3Z-NSW-BBW-V3 in 8-bit serial mode
- * channel 1 DMA
+ * channel 1 DMA if configured
  */
 bool init_display(void)
 {
-	spi_link.txbuf = lcd_dma_buf;
+	spi_link.txbuf = lcd_dma_buf; // use MCC DMA buffer variable
+	memset(Sstr,' ',NSB*LSB); // clear scroll buffer of junk
 
 #ifdef USE_LCD_DMA
 	DMA1_SetSCNTIInterruptHandler(clear_lcd_done);
 	DMA1_SetORIInterruptHandler(spi_byte);
 	DMA1_SetDMAPriority(2);
 #endif
-#ifdef DEBUG_DISP0
-	DB0_LAT = true;
-#endif
-#ifdef NHD  // uses MODE 3 on the Q84
+#ifdef NHD  // uses MODE 3 on the Q84, https://newhavendisplay.com/content/specs/NHD-0420D3Z-NSW-BBW-V3.pdf
 #ifdef USEMCC_SPI
 #else
 	SPI1CON0bits.EN = 0;
@@ -161,13 +159,30 @@ void send_lcd_cmd_dma(const uint8_t strPtr)
  */
 void send_lcd_data_dma(const uint8_t strPtr)
 {
-	wdtdelay(10);
 	wait_lcd_done();
 	wait_lcd_set();
 	CS_SetLow(); /* SPI select display */
 	spi_link.txbuf[0] = strPtr;
 	DMAnCON0bits.EN = 0; /* disable DMA to change source count */
 	DMA1_SetSourceSize(1);
+	DMA1_SetDestinationSize(1);
+	DMAnCON0bits.EN = 1; /* enable DMA */
+	start_lcd(); // start DMA transfer
+}
+
+/*
+ * send three byte command string via DMA
+ */
+void send_lcd_pos_dma(const uint8_t strPtr)
+{
+	wait_lcd_done();
+	wait_lcd_set();
+	CS_SetLow(); /* SPI select display */
+	spi_link.txbuf[0] = NHD_CMD;
+	spi_link.txbuf[1] = NHD_POS;
+	spi_link.txbuf[2] = strPtr;
+	DMAnCON0bits.EN = 0; /* disable DMA to change source count */
+	DMA1_SetSourceSize(3);
 	DMA1_SetDestinationSize(1);
 	DMAnCON0bits.EN = 1; /* enable DMA */
 	start_lcd(); // start DMA transfer
@@ -200,9 +215,7 @@ void eaDogM_WriteStringAtPos(const uint8_t r, const uint8_t c, char *strPtr)
 	}
 
 #ifdef USE_LCD_DMA
-	send_lcd_cmd_dma(0x45);
-	send_lcd_data_dma(row + c);
-	wdtdelay(100);
+	send_lcd_pos_dma(row + c);
 #else
 	send_lcd_cmd(0x45);
 	send_lcd_data(row + c);
@@ -211,7 +224,7 @@ void eaDogM_WriteStringAtPos(const uint8_t r, const uint8_t c, char *strPtr)
 	eaDogM_WriteString(strPtr);
 }
 
-void eaDogM_WriteIntAtPos(uint8_t r, uint8_t c, uint8_t i)
+void eaDogM_WriteIntAtPos(const uint8_t r, const uint8_t c, const uint8_t i)
 {
 
 }
@@ -226,7 +239,7 @@ void eaDogM_ClearRow(const uint8_t r)
 
 }
 
-void eaDogM_WriteByteToCGRAM(uint8_t ndx, uint8_t data)
+void eaDogM_WriteByteToCGRAM(const uint8_t ndx, const uint8_t data)
 {
 
 }

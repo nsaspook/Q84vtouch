@@ -20,10 +20,9 @@ extern "C" {
 #include "modbus_master.h"
 #include "batmon.h"
 
-	//#define CAN_DEBUG	// can received data on LCD for remote mate board
 #define DATA_DEBUG
 
-#ifdef CAN_DEBUG
+#ifdef CAN_REMOTE
 #define LCD_MIRROR
 #endif
 

@@ -246,6 +246,9 @@ B_type B = {
 	.canbus_online = 0,
 	.modbus_online = 0,
 	.log.select = 1,
+	.pv_high = false,
+	.pv_prev = STATUS_SLEEPING,
+	.pv_update = false,
 };
 
 mx_logpage_t mx_log;
@@ -456,7 +459,7 @@ void main(void)
 				C.tm_ok = false;
 			}
 			B.modbus_online = C.data_ok;
-#ifdef CAN_DEBUG
+#ifdef CAN_REMOTE
 			snprintf(buffer, MAX_B_BUF, "%X %X %X %X  %lu %lu %lu      ", C1BDIAG0T, C1BDIAG0U, C1BDIAG0H, C1BDIAG0L, can_rec_count.rec_count, msg[0].msgId, msg[1].msgId);
 			//			eaDogM_WriteStringAtPos(0, 0, buffer);
 			can_newtime = localtime(&can_timer);
@@ -499,7 +502,7 @@ void main(void)
 					}
 				} else {
 					M.error = 0;
-#ifdef CAN_DEBUG
+#ifdef CAN_REMOTE
 #ifdef DATA_DEBUG
 #ifdef LCD_MIRROR
 #else
@@ -635,17 +638,42 @@ void state_init_cb(void)
 
 void state_status_cb(void)
 {
+	static uint16_t day_clocks = 0;
+	static uint8_t status_prev = STATUS_SLEEPING;
+
 #ifdef debug_data
 	printf("%5d: %3x %3x %3x %3x %3x STATUS: FM80 %s mode\r\n", rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4], state_name[abuf[2]]);
 #endif
+
+	/*
+	 * check for the start and end of a solar production day
+	 * sets update flag if day state changes and has day change charge controllers
+	 * status in pv_prev variable
+	 */
 	if (FMxx_STATE != STATUS_SLEEPING) {
-		state = state_watts;
+		if (++day_clocks > BAT_DAY_COUNT) {
+			day_clocks = 0;
+			if (B.pv_prev == STATUS_SLEEPING) { // check sun on PV and trigger a daily energy update
+				B.pv_update = true;
+				B.pv_prev = FMxx_STATE;
+			}
+			B.pv_high = true;
+		}
 	} else {
-		state = state_watts;
+		if (++day_clocks > BAT_DAY_COUNT) {
+			day_clocks = 0;
+			if (B.pv_prev != STATUS_SLEEPING) { // check for night and update day totals
+				B.pv_update = true;
+				B.pv_prev = FMxx_STATE;
+			}
+			B.pv_high = false;
+		}
+
 	}
 	if (B.FM80_online) { // don't update when offline
 		cc_mode = FMxx_STATE;
 	}
+	state = state_watts;
 }
 
 void state_panelv_cb(void)
@@ -833,7 +861,27 @@ char spinners(uint8_t shape, const uint8_t reset)
 	return c;
 }
 
+void run_day_to_night(void)
+{
+	char s_buffer[22];
 
+	snprintf(s_buffer, 21, "DN %.1fWh PV        ", pv_Wh_daily);
+	eaDogM_Scroll_String(s_buffer);
+	eaDogM_Scroll_String(s_buffer);
+	eaDogM_Scroll_String(s_buffer);
+	eaDogM_Scroll_String(s_buffer);
+}
+
+void run_night_to_day(void)
+{
+	char s_buffer[22];
+
+	snprintf(s_buffer, 21, "ND %.1fWh PV        ", pv_Wh_daily_prev);
+	eaDogM_Scroll_String(s_buffer);
+	eaDogM_Scroll_String(s_buffer);
+	eaDogM_Scroll_String(s_buffer);
+	eaDogM_Scroll_String(s_buffer);
+}
 /**
  End of File
  */

@@ -26,7 +26,9 @@ extern "C" {
 #include "qconfig.h"
 
 #define USEMCC_SPI
+#ifndef CAN_REMOTE
 #define USE_LCD_DMA
+#endif
 
 	typedef struct {
 		uint8_t con0;
@@ -40,32 +42,37 @@ extern "C" {
 #define LCD_CMD_SET	0x100
 #define LCD_CLEAR_HOME	0x04
 #define NHD_CMD		0xFE
+#define NHD_POS		0x45
 #define NHD_BL_OFF	1
 #define NHD_BL_LOW	2
 #define NHD_BL_MED	5
 #define NHD_BL_HIGH	8
-	
+
 #define LCD0		0
 #define LCD1		1
 #define LCD2		2
 #define LCD3		3
+	
+#define NSB		5
+#define LSB		21
 
-	void wdtdelay(uint32_t);
+	extern void wdtdelay(const uint32_t);
 	bool init_display(void);
-	void send_lcd_data_dma(uint8_t);
-	void send_lcd_cmd_dma(uint8_t);
+	void send_lcd_data_dma(const uint8_t);
+	void send_lcd_cmd_dma(const uint8_t);
+	void send_lcd_pos_dma(const uint8_t);
 	void start_lcd(void);
 	void wait_lcd_set(void);
 	bool wait_lcd_check(void);
 	void wait_lcd_done(void);
-	void eaDogM_WriteChr(int8_t);
-	void eaDogM_WriteCommand(uint8_t);
-	void eaDogM_SetPos(uint8_t, uint8_t);
-	void eaDogM_ClearRow(uint8_t);
+	void eaDogM_WriteChr(const int8_t);
+	void eaDogM_WriteCommand(const uint8_t);
+	void eaDogM_SetPos(const uint8_t, const uint8_t);
+	void eaDogM_ClearRow(const uint8_t);
 	void eaDogM_WriteString(char *);
-	void eaDogM_WriteStringAtPos(uint8_t, uint8_t, char *);
-	void eaDogM_WriteIntAtPos(uint8_t, uint8_t, uint8_t);
-	void eaDogM_WriteByteToCGRAM(uint8_t, uint8_t);
+	void eaDogM_WriteStringAtPos(const uint8_t, const uint8_t, char *);
+	void eaDogM_WriteIntAtPos(const uint8_t, const uint8_t, const uint8_t);
+	void eaDogM_WriteByteToCGRAM(const uint8_t, const uint8_t);
 
 	char * eaDogM_Scroll_String(char *);
 	void eaDogM_Scroll_Task(void);
@@ -73,7 +80,7 @@ extern "C" {
 	// DMA complete flag
 	void clear_lcd_done(void);
 	void spi_rec_done(void);
-	extern 	void can_fd_lcd_mirror(const uint8_t, char *);
+	extern void can_fd_lcd_mirror(const uint8_t, char *);
 
 #define eaDogM_Cls()             eaDogM_WriteCommand(EADOGM_CMD_CLR)
 #define eaDogM_CursorOn()        eaDogM_WriteCommand(EADOGM_CMD_CURSOR_ON)

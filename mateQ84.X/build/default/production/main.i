@@ -40685,7 +40685,7 @@ extern long timezone;
 extern int getdate_err;
 struct tm *getdate (const char *);
 # 39 "./../qconfig.h" 2
-# 59 "./../qconfig.h"
+# 61 "./../qconfig.h"
 const char spin[6][20] = {
  "||//--",
  "||//--\\\\",
@@ -40716,6 +40716,8 @@ extern char spinners(uint8_t, const uint8_t);
 
 
 
+
+
  typedef struct {
   uint8_t con0;
   uint8_t con1;
@@ -40723,23 +40725,24 @@ extern char spinners(uint8_t, const uint8_t);
   uint8_t baud;
   uint8_t operation;
  } spi1_configuration_t;
-# 53 "./../eadog.h"
- void wdtdelay(uint32_t);
+# 59 "./../eadog.h"
+ extern void wdtdelay(const uint32_t);
  _Bool init_display(void);
- void send_lcd_data_dma(uint8_t);
- void send_lcd_cmd_dma(uint8_t);
+ void send_lcd_data_dma(const uint8_t);
+ void send_lcd_cmd_dma(const uint8_t);
+ void send_lcd_pos_dma(const uint8_t);
  void start_lcd(void);
  void wait_lcd_set(void);
  _Bool wait_lcd_check(void);
  void wait_lcd_done(void);
- void eaDogM_WriteChr(int8_t);
- void eaDogM_WriteCommand(uint8_t);
- void eaDogM_SetPos(uint8_t, uint8_t);
- void eaDogM_ClearRow(uint8_t);
+ void eaDogM_WriteChr(const int8_t);
+ void eaDogM_WriteCommand(const uint8_t);
+ void eaDogM_SetPos(const uint8_t, const uint8_t);
+ void eaDogM_ClearRow(const uint8_t);
  void eaDogM_WriteString(char *);
- void eaDogM_WriteStringAtPos(uint8_t, uint8_t, char *);
- void eaDogM_WriteIntAtPos(uint8_t, uint8_t, uint8_t);
- void eaDogM_WriteByteToCGRAM(uint8_t, uint8_t);
+ void eaDogM_WriteStringAtPos(const uint8_t, const uint8_t, char *);
+ void eaDogM_WriteIntAtPos(const uint8_t, const uint8_t, const uint8_t);
+ void eaDogM_WriteByteToCGRAM(const uint8_t, const uint8_t);
 
  char * eaDogM_Scroll_String(char *);
  void eaDogM_Scroll_Task(void);
@@ -40772,8 +40775,8 @@ void delay_ms(const uint16_t);
 # 23 "./mxcmd.h" 2
 
 
- const char build_version[] = "V1.80 FM80 Q84";
-# 65 "./mxcmd.h"
+ const char build_version[] = "V1.81 FM80 Q84";
+# 66 "./mxcmd.h"
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
  const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};
@@ -40845,8 +40848,8 @@ void delay_ms(const uint16_t);
  } mx_logpage_t;
 
  typedef struct B_type {
-  volatile _Bool ten_sec_flag, one_sec_flag, FM80_charged;
-  uint16_t pacing, rx_count, flush;
+  volatile _Bool ten_sec_flag, one_sec_flag, FM80_charged, pv_high, pv_update;
+  uint16_t pacing, rx_count, flush, pv_prev;
   volatile _Bool FM80_online, FM80_io;
   volatile uint8_t canbus_online, modbus_online;
   uint16_t mui[10];
@@ -41126,7 +41129,7 @@ void delay_ms(const uint16_t);
 # 1 "./../canfd.h" 1
 # 21 "./../canfd.h"
 # 1 "./../batmon.h" 1
-# 43 "./../batmon.h"
+# 50 "./../batmon.h"
  typedef struct EB_data {
   uint8_t checkmark;
   uint8_t version;
@@ -41142,7 +41145,7 @@ void delay_ms(const uint16_t);
 
 
 
- const char log_format[] = "^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%d,%.1f,%.1f,%.1f,%4.1f,%.2f,%u,%5.3f,%5.3f,%u,%s,~\r\n";
+ const char log_format[] = "^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%.1f,%d,%.1f,%.1f,%.1f,%4.1f,%.2f,%u,%5.3f,%5.3f,%u,%s,~\r\n";
 
 
 
@@ -41168,6 +41171,9 @@ void delay_ms(const uint16_t);
  extern EB_data EBD, EBD_ptr;
  extern uint16_t EBD_update;
  extern struct tm *can_newtime;
+ extern float pv_Wh_daily, pv_Wh_daily_prev;
+ extern void run_night_to_day(void);
+ extern void run_day_to_night(void);
 
  _Bool initbm_data(uint8_t *);
  void wr_bm_data(uint8_t *);
@@ -41180,7 +41186,7 @@ void delay_ms(const uint16_t);
 
  uint16_t Volts_to_SOC(const uint16_t, const uint16_t);
 # 22 "./../canfd.h" 2
-# 52 "./../canfd.h"
+# 51 "./../canfd.h"
  typedef struct {
   uint32_t rec_count;
   _Bool rec_flag;
@@ -41222,7 +41228,7 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[96] = "Boot Init Display   ", can_buffer[64*2], info_buffer[96];
-const char *build_date = "Sep 21 2023", *build_time = "19:35:51";
+const char *build_date = "Sep 23 2023", *build_time = "10:18:36";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
@@ -41243,6 +41249,9 @@ B_type B = {
  .canbus_online = 0,
  .modbus_online = 0,
  .log.select = 1,
+ .pv_high = 0,
+ .pv_prev = STATUS_SLEEPING,
+ .pv_update = 0,
 };
 
 mx_logpage_t mx_log;
@@ -41496,7 +41505,7 @@ void main(void)
      }
     } else {
      M.error = 0;
-# 531 "main.c"
+# 534 "main.c"
      snprintf(buffer, 96, "EMon  %6.1fWh   %c%c    ", EBD.bat_energy / 360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
      eaDogM_WriteStringAtPos(1, 0, buffer);
      snprintf(buffer, 96, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
@@ -41604,17 +41613,33 @@ void state_init_cb(void)
 
 void state_status_cb(void)
 {
-
-
-
+ static uint16_t day_clocks = 0;
+ static uint8_t status_prev = STATUS_SLEEPING;
+# 653 "main.c"
  if (abuf[2] != STATUS_SLEEPING) {
-  state = state_watts;
+  if (++day_clocks > 3) {
+   day_clocks = 0;
+   if (B.pv_prev == STATUS_SLEEPING) {
+    B.pv_update = 1;
+    B.pv_prev = abuf[2];
+   }
+   B.pv_high = 1;
+  }
  } else {
-  state = state_watts;
+  if (++day_clocks > 3) {
+   day_clocks = 0;
+   if (B.pv_prev != STATUS_SLEEPING) {
+    B.pv_update = 1;
+    B.pv_prev = abuf[2];
+   }
+   B.pv_high = 0;
+  }
+
  }
  if (B.FM80_online) {
   cc_mode = abuf[2];
  }
+ state = state_watts;
 }
 
 void state_panelv_cb(void)
@@ -41701,7 +41726,7 @@ void state_mx_status_cb(void)
 
    snprintf(buffer, 25, "%s", asctime(can_newtime));
    buffer[26] = 0;
-   snprintf(can_buffer, 64*2, log_format, abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, EBD.bat_energy / 3600.0f, EBD.bat_cycles, ((float) em.pfl1) / 1000.0f, ((float) emt.hz) / 1000.0f, B.rx_count++,buffer);
+   snprintf(can_buffer, 64*2, log_format, abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, pv_Wh_daily, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, EBD.bat_energy / 3600.0f, EBD.bat_cycles, ((float) em.pfl1) / 1000.0f, ((float) emt.hz) / 1000.0f, B.rx_count++,buffer);
    printf("%s", can_buffer);
    snprintf(buffer, 96, "%d Watts %d.%01d Volts   ", panel_watts, volt_whole, volt_fract);
    eaDogM_WriteStringAtPos(2, 0, buffer);
@@ -41800,4 +41825,26 @@ char spinners(uint8_t shape, const uint8_t reset)
  if (++s[shape] >= strlen(spin[shape]))
   s[shape] = 0;
  return c;
+}
+
+void run_day_to_night(void)
+{
+ char s_buffer[22];
+
+ snprintf(s_buffer, 21, "DN %.1fWh PV        ", pv_Wh_daily);
+ eaDogM_Scroll_String(s_buffer);
+ eaDogM_Scroll_String(s_buffer);
+ eaDogM_Scroll_String(s_buffer);
+ eaDogM_Scroll_String(s_buffer);
+}
+
+void run_night_to_day(void)
+{
+ char s_buffer[22];
+
+ snprintf(s_buffer, 21, "ND %.1fWh PV        ", pv_Wh_daily_prev);
+ eaDogM_Scroll_String(s_buffer);
+ eaDogM_Scroll_String(s_buffer);
+ eaDogM_Scroll_String(s_buffer);
+ eaDogM_Scroll_String(s_buffer);
 }

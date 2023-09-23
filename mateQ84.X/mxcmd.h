@@ -22,7 +22,7 @@ extern "C" {
 #include "../timers.h"
 
 #define VER	1
-	const char build_version[] = "V1.80 FM80 Q84";
+	const char build_version[] = "V1.81 FM80 Q84";
 	/*
 	 * code changes
 	 * 1.55 remove critical section interrupt disables for FM80 serial
@@ -43,6 +43,7 @@ extern "C" {
 	 * 1.74 clean up error indicator and data routines
 	 * 1.75 lockout CANBUS during FM80 serial receive functions
 	 * 1.80 fix LCD DMA transfers using SPI, still needs a bit of work during startup
+	 * 1.81 fix scroll buffer junk and add running PV Wh energy total for the day
 	 */
 
 #define MAX_B_BUF	96
@@ -59,7 +60,7 @@ extern "C" {
 #define FMxx_STATE	abuf[2]
 
 #define AMP_WHOLE_ZERO	0
-	
+
 #define CMD_CRC_LEN	10
 
 	const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
@@ -133,8 +134,8 @@ extern "C" {
 	} mx_logpage_t;
 
 	typedef struct B_type {
-		volatile bool ten_sec_flag, one_sec_flag, FM80_charged;
-		uint16_t pacing, rx_count, flush;
+		volatile bool ten_sec_flag, one_sec_flag, FM80_charged, pv_high, pv_update;
+		uint16_t pacing, rx_count, flush, pv_prev;
 		volatile bool FM80_online, FM80_io;
 		volatile uint8_t canbus_online, modbus_online;
 		uint16_t mui[10];

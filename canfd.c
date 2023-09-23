@@ -32,7 +32,7 @@ void Can1FIFO1NotEmptyHandler(void)
 {
 	uint8_t tries = 0;
 	static uint8_t half = CAN_LOW_BUF;
-#ifdef CAN_DEBUG	
+#ifdef CAN_REMOTE	
 	char s_buffer[LCD_BUF_SIZ];
 #endif
 
@@ -86,7 +86,7 @@ void Can1FIFO1NotEmptyHandler(void)
 				}
 				break;
 			}
-#ifdef CAN_DEBUG
+#ifdef CAN_REMOTE
 			if ((msg[MIRR0R_BUF].msgId & 0xf) == EMON_MR + LCD0) {
 				memcpy((void *) s_buffer, msg[MIRR0R_BUF].data, LCD_BUF_SIZ); // load LCD mirror packet
 				eaDogM_WriteStringAtPos(LCD0, 0, s_buffer);
@@ -158,7 +158,7 @@ void can_fd_tx(void)
 			CAN1_Transmit(FIFO3, &Transmission); //transmit frame
 		}
 	}
-#ifdef CAN_DEBUG
+#ifdef CAN_REMOTE
 	if (CAN1_IsRxErrorActive()) {
 	}
 #endif
@@ -224,7 +224,7 @@ void can_fd_lcd_mirror(const uint8_t r, char *strPtr)
 			CAN1_Transmit(TXQ, &Transmission); //transmit frame
 		}
 	}
-#ifdef CAN_DEBUG
+#ifdef CAN_REMOTE
 	if (CAN1_IsRxErrorActive()) {
 	}
 #endif
