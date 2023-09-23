@@ -41,12 +41,18 @@ extern "C" {
 #define LCD_CMD_MASK	0x01
 #define LCD_CMD_SET	0x100
 #define LCD_CLEAR_HOME	0x04
+#define LCD_CMD_ON	0x41
+#define LCD_CMD_HOME	0x46
+#define LCD_CMD_CLR	0x51
+#define LCD_CMD_CONT	0x52
+#define LCD_CMD_BRI	0x53
 #define NHD_CMD		0xFE
 #define NHD_POS		0x45
 #define NHD_BL_OFF	1
 #define NHD_BL_LOW	2
 #define NHD_BL_MED	5
 #define NHD_BL_HIGH	8
+#define NHD_CONT	43
 
 #define LCD0		0
 #define LCD1		1

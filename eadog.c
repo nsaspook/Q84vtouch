@@ -27,7 +27,7 @@ static void spi_byte(void);
 bool init_display(void)
 {
 	spi_link.txbuf = lcd_dma_buf; // use MCC DMA buffer variable
-	memset(Sstr,' ',NSB*LSB); // clear scroll buffer of junk
+	memset(Sstr, ' ', NSB * LSB); // clear scroll buffer of junk
 
 #ifdef USE_LCD_DMA
 	DMA1_SetSCNTIInterruptHandler(clear_lcd_done);
@@ -53,15 +53,6 @@ bool init_display(void)
 	if (powerup) {
 		wdtdelay(350000); // > 400ms power up delay
 	}
-#ifndef USE_LCD_DMA
-	send_lcd_cmd_long(0x46); // home cursor
-	send_lcd_cmd(0x41); // display on
-	wdtdelay(80);
-	send_lcd_cmd(0x53); // set back-light level
-	send_lcd_data(NHD_BL_LOW);
-	wdtdelay(80);
-	send_lcd_cmd_long(0x51); // clear screen
-#endif
 
 #ifdef USE_LCD_DMA
 	SPI1INTFbits.SPI1TXUIF = 0;
@@ -79,11 +70,23 @@ bool init_display(void)
 	DMAnCON0bits.DGO = 0;
 	DMAnCON0bits.EN = 1; /* enable DMA */
 	SPI1INTFbits.SPI1TXUIF = 1;
-#endif
-#endif
+	send_lcd_cmd_dma(LCD_CMD_BRI); // set back-light level
+	send_lcd_data_dma(NHD_BL_LOW);
+	send_lcd_cmd_dma(LCD_CMD_CONT); // set display contrast
+	send_lcd_data_dma(NHD_CONT);
+	send_lcd_cmd_dma(LCD_CMD_ON); // display on
+	send_lcd_cmd_dma(LCD_CMD_CLR); // clear screen
+	wdtdelay(800);
 	DMA1_StopTransfer();
-#ifdef DEBUG_DISP0
-	DB0_LAT = false;
+#else
+	send_lcd_cmd_long(LCD_CMD_HOME); // home cursor
+	send_lcd_cmd(LCD_CMD_ON); // display on
+	wdtdelay(80);
+	send_lcd_cmd(NHD_BL_MED); // set back-light level
+	send_lcd_data(NHD_BL_LOW);
+	wdtdelay(80);
+	send_lcd_cmd_long(LCD_CMD_CLR); // clear screen
+#endif
 #endif
 	powerup = false; // only of the first display init call
 	return true;

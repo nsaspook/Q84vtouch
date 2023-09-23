@@ -40725,7 +40725,7 @@ extern char spinners(uint8_t, const uint8_t);
   uint8_t baud;
   uint8_t operation;
  } spi1_configuration_t;
-# 59 "./../eadog.h"
+# 65 "./../eadog.h"
  extern void wdtdelay(const uint32_t);
  _Bool init_display(void);
  void send_lcd_data_dma(const uint8_t);
@@ -41228,7 +41228,7 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[96] = "Boot Init Display   ", can_buffer[64*2], info_buffer[96];
-const char *build_date = "Sep 23 2023", *build_time = "10:18:36";
+const char *build_date = "Sep 23 2023", *build_time = "10:56:32";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
