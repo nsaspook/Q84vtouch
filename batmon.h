@@ -16,34 +16,34 @@ extern "C" {
 #include "modbus_master.h"
 #include "mateQ84.X/mxcmd.h"
 
-	
 #define TEN_SEC_HOUR	360.0f
-#define BAT_VOLT	25.6f
-#define BAT_AH		200.0f
-
 #define BM_CM	0x57
 #define BM_VER	1
+#define BM_UPDATE	3600	// seconds between EEPROM updates, sleeping
+#define BM_UPDATE_RUN	1800	// while running
+
+	/*
+	 * Energy Battery Bank 
+	 * 24V LiFePO4 Battery Parameters
+	 */
+#define BAT_VOLT	25.6f
+#define BAT_AH		200.0f	
 #define BAT_ENERGY	BAT_VOLT*BAT_AH*TEN_SEC_HOUR // nominal battery voltage and AH rating for 10 second updates
 #define BAT_ENERGY_LOW	BAT_ENERGY/0.5f
-
 #define BAT_OVER_VOLT	30.0f
 #define BAT_OVER_RECON	28.4f
 #define BAT_UNDER_VOLT	23.2f
 #define BAT_LOW_DISC	21.6f
 #define BAT_LOW_RECON	24.8f
-#define IDLE_DRAIN	10.0f	// system operational losses in watts
-
-#define INV_EFF_VAL	1.06f	// DC watts to AC watt inverter correction
 #define BAT_EFF_VAL	0.985f	//  battery storage energy efficiency
-
-#define BM_UPDATE	3600	// seconds between EEPROM updates, sleeping
-#define BM_UPDATE_RUN	1800	// while running
-
 #define BAT_CYCLES	8
-
-#define BAT_CHARGED_W	200.0f
-
-#define BAT_DAY_COUNT	3
+#define BAT_CHARGED_W	BAT_AH
+#define BAT_DAY_COUNT	3	// number of reports before updates
+	/*
+	 * System correction factors
+	 */
+#define IDLE_DRAIN	10.0f	// system operational drain losses in Wh
+#define INV_EFF_VAL	1.06f	// DC watts to AC watt inverter correction
 
 	// EEPROM data storage structure
 
@@ -62,10 +62,10 @@ extern "C" {
 	/*
 	 * logging data format for printf and variables
 	 */
-	const char log_format[] = "^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%.1f,%d,%.1f,%.1f,%.1f,%4.1f,%.2f,%u,%5.3f,%5.3f,%u,%s,~\r\n";
-#define LOG_VARS	abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, pv_Wh_daily, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, EBD.bat_energy / 3600.0f, EBD.bat_cycles, ((float) em.pfl1) / 1000.0f, ((float) emt.hz) / 1000.0f, B.rx_count++,buffer
+	const char log_format[] = "^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%.1f,%.1f,%d,%.1f,%.1f,%.1f,%4.1f,%.2f,%u,%5.3f,%5.3f,%u,%s,~\r\n";
+#define LOG_VARS	abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, pv_Wh_daily, ac_Wh_daily, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, EBD.bat_energy / 3600.0f, EBD.bat_cycles, ((float) em.pfl1) / 1000.0f, ((float) emt.hz) / 1000.0f, B.rx_count++,buffer
 
-#define BVSOC_SLOTS     12      // Battery to SOC data table slots
+#define BVSOC_SLOTS     12      // 24V LiFePO4 Battery to SOC data table slots
 	const uint32_t BVSOC_TABLE[BVSOC_SLOTS][2] = {
 		20000, 0,
 		24000, 5,
@@ -88,7 +88,7 @@ extern "C" {
 	extern EB_data EBD, EBD_ptr;
 	extern uint16_t EBD_update;
 	extern struct tm *can_newtime;
-	extern float pv_Wh_daily, pv_Wh_daily_prev;
+	extern float pv_Wh_daily, pv_Wh_daily_prev, ac_Wh_daily, ac_Wh_daily_prev;
 	extern void run_night_to_day(void);
 	extern void run_day_to_night(void);
 

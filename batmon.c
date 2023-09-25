@@ -12,7 +12,8 @@ EB_data EBD = {
 };
 
 uint16_t EBD_update = 0; // EEPROM write counter for BM_UPDATE
-float pv_Wh_daily = 0.0f, pv_Wh_daily_prev = 0.0f;
+float pv_Wh_daily = 0.0f, pv_Wh_daily_prev = 0.0f, ac_Wh_daily = 0.0f, ac_Wh_daily_prev = 0.0f;
+;
 
 /*
  * load EEPROM data to energy if correctly formatted
@@ -149,6 +150,7 @@ void compute_bm_data(EB_data * EB)
 	float net_energy, net_balance;
 
 	pv_Wh_daily += (EB->FMw / TEN_SEC_HOUR); // integrate Wh for 10 second updates 
+	ac_Wh_daily += (EB->ENw / TEN_SEC_HOUR);
 
 	net_balance = EB->FMw - (EB->ENw * INV_EFF_VAL); // make the energy comparison AC -> DC watts equal using inverter losses
 	if (net_balance > 0.0001) { // more energy from panels than current load usage
@@ -192,7 +194,9 @@ void compute_bm_data(EB_data * EB)
 			run_day_to_night();
 		} else { // night to day update
 			pv_Wh_daily_prev = pv_Wh_daily;
+			ac_Wh_daily_prev = ac_Wh_daily;
 			pv_Wh_daily = 0.0f;
+			ac_Wh_daily = 0.0f;
 			run_night_to_day();
 		}
 	}

@@ -867,6 +867,7 @@ void run_day_to_night(void)
 
 	snprintf(s_buffer, 21, "DN %.1fWh PV        ", pv_Wh_daily);
 	eaDogM_Scroll_String(s_buffer);
+	snprintf(s_buffer, 21, "DN %.1fWh AC        ", ac_Wh_daily);
 	eaDogM_Scroll_String(s_buffer);
 	eaDogM_Scroll_String(s_buffer);
 	eaDogM_Scroll_String(s_buffer);
@@ -878,6 +879,7 @@ void run_night_to_day(void)
 
 	snprintf(s_buffer, 21, "ND %.1fWh PV        ", pv_Wh_daily_prev);
 	eaDogM_Scroll_String(s_buffer);
+	snprintf(s_buffer, 21, "ND %.1fWh AC        ", ac_Wh_daily_prev);
 	eaDogM_Scroll_String(s_buffer);
 	eaDogM_Scroll_String(s_buffer);
 	eaDogM_Scroll_String(s_buffer);
