@@ -38,7 +38,7 @@ extern "C" {
 #define BAT_EFF_VAL	0.985f	//  battery storage energy efficiency
 #define BAT_CYCLES	8
 #define BAT_CHARGED_W	BAT_AH
-#define BAT_DAY_COUNT	3	// number of reports before updates
+#define BAT_DAY_COUNT	30	// number of reports before updates
 	/*
 	 * System correction factors
 	 */
