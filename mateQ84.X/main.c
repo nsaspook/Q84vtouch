@@ -198,11 +198,11 @@
 #include "../canfd.h"
 #include "../batmon.h"
 
-#define PACE	31000	// commands delay in count units
-#define CMD_LEN	8
-#define REC_LEN 5
+#define PACE            31000	// commands delay in count units
+#define CMD_LEN         8
+#define REC_LEN         5
 #define REC_STATUS_LEN	16
-#define REC_LOG_LEN	17
+#define REC_LOG_LEN     17
 
 enum state_type {
 	state_init,
@@ -337,8 +337,6 @@ void main(void)
 	StartTimer(TMR_SPIN, SPINNER_SPEED);
 
 	init_display();
-	//	snprintf(buffer, MAX_B_BUF, "%s ", "                        ");
-	//	eaDogM_WriteStringAtPos(0, 0, buffer);
 	snprintf(buffer, MAX_B_BUF, "%s   ", build_version);
 	eaDogM_WriteStringAtPos(0, 0, buffer);
 	snprintf(buffer, MAX_B_BUF, "%s   ", build_date);
@@ -806,13 +804,11 @@ static void state_fwrev_cb(void)
 
 static void state_time_cb(void)
 {
-	IO_RB6_Toggle(); // GPIO scope trace
 #ifdef SDEBUG
 	char s_buffer[22];
 	snprintf(s_buffer, 21, "Time CSum %X        ", calc_checksum((uint8_t *) & cmd_time[1], 10));
 	eaDogM_Scroll_String(s_buffer);
 #endif
-	IO_RB6_Toggle(); // GPIO scope trace
 	state = state_date;
 }
 

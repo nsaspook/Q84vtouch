@@ -30,13 +30,25 @@ extern "C" {
 #define USE_LCD_DMA
 #endif
 
-	typedef struct {
-		uint8_t con0;
-		uint8_t con1;
-		uint8_t con2;
-		uint8_t baud;
-		uint8_t operation;
-	} spi1_configuration_t;
+    typedef struct {
+        uint8_t con0;
+        uint8_t con1;
+        uint8_t con2;
+        uint8_t baud;
+        uint8_t operation;
+    } spi1_configuration_t;
+
+#define EADOGM_CMD_CLR          1
+#define EADOGM_CMD_CURSOR_ON	0b00001111
+#define EADOGM_CMD_CURSOR_OFF   0b00001100
+#define EADOGM_CMD_DISPLAY_ON   0b00001100
+#define EADOGM_CMD_DISPLAY_OFF  0b00001000
+#define EADOGM_CMD_DDRAM_ADDR   0b10000000
+#define EADOGM_CMD_CGRAM_ADDR   0b01000000
+#define EADOGM_CMD_SELECT_R0    0b00011000
+#define EADOGM_CMD_SELECT_R1    0b00010000
+#define EADOGM_CMD_SET_TABLE2   0b00101010
+#define EADOGM_COLSPAN          16
 
 #define LCD_CMD_MASK	0x01
 #define LCD_CMD_SET	0x100
@@ -58,35 +70,35 @@ extern "C" {
 #define LCD1		1
 #define LCD2		2
 #define LCD3		3
-	
+
 #define NSB		5
 #define LSB		21
 
-	extern void wdtdelay(const uint32_t);
-	bool init_display(void);
-	void send_lcd_data_dma(const uint8_t);
-	void send_lcd_cmd_dma(const uint8_t);
-	void send_lcd_pos_dma(const uint8_t);
-	void start_lcd(void);
-	void wait_lcd_set(void);
-	bool wait_lcd_check(void);
-	void wait_lcd_done(void);
-	void eaDogM_WriteChr(const int8_t);
-	void eaDogM_WriteCommand(const uint8_t);
-	void eaDogM_SetPos(const uint8_t, const uint8_t);
-	void eaDogM_ClearRow(const uint8_t);
-	void eaDogM_WriteString(char *);
-	void eaDogM_WriteStringAtPos(const uint8_t, const uint8_t, char *);
-	void eaDogM_WriteIntAtPos(const uint8_t, const uint8_t, const uint8_t);
-	void eaDogM_WriteByteToCGRAM(const uint8_t, const uint8_t);
+    extern void wdtdelay(const uint32_t);
+    bool init_display(void);
+    void send_lcd_data_dma(const uint8_t);
+    void send_lcd_cmd_dma(const uint8_t);
+    void send_lcd_pos_dma(const uint8_t);
+    void start_lcd(void);
+    void wait_lcd_set(void);
+    bool wait_lcd_check(void);
+    void wait_lcd_done(void);
+    void eaDogM_WriteChr(const int8_t);
+    void eaDogM_WriteCommand(const uint8_t);
+    void eaDogM_SetPos(const uint8_t, const uint8_t);
+    void eaDogM_ClearRow(const uint8_t);
+    void eaDogM_WriteString(char *);
+    void eaDogM_WriteStringAtPos(const uint8_t, const uint8_t, char *);
+    void eaDogM_WriteIntAtPos(const uint8_t, const uint8_t, const uint8_t);
+    void eaDogM_WriteByteToCGRAM(const uint8_t, const uint8_t);
 
-	char * eaDogM_Scroll_String(char *);
-	void eaDogM_Scroll_Task(void);
+    char * eaDogM_Scroll_String(char *);
+    void eaDogM_Scroll_Task(void);
 
-	// DMA complete flag
-	void clear_lcd_done(void);
-	void spi_rec_done(void);
-	extern void can_fd_lcd_mirror(const uint8_t, char *);
+    // DMA complete flag
+    void clear_lcd_done(void);
+    void spi_rec_done(void);
+    extern void can_fd_lcd_mirror(const uint8_t, char *);
 
 #define eaDogM_Cls()             eaDogM_WriteCommand(EADOGM_CMD_CLR)
 #define eaDogM_CursorOn()        eaDogM_WriteCommand(EADOGM_CMD_CURSOR_ON)
@@ -94,9 +106,9 @@ extern "C" {
 #define eaDogM_DisplayOn()       eaDogM_WriteCommand(EADOGM_CMD_DISPLAY_ON)
 #define eaDogM_DisplayOff()      eaDogM_WriteCommand(EADOGM_CMD_DISPLAY_OFF)
 
-	/*
-	 * characters per line on the display
-	 */
+    /*
+     * characters per line on the display
+     */
 #define max_strlen	20
 
 #ifdef	__cplusplus

@@ -6,40 +6,40 @@
 volatile uint8_t cc_stream_file, cc_buffer[MAX_DATA], cc_buffer_tx[MAX_DATA]; // RX and TX command buffers
 
 volatile M_data M = {
-	.blink_lock = false,
-	.power_on = true,
+    .blink_lock = false,
+    .power_on = true,
 };
 
 volatile M_time_data MT = {
-	.clock_10hz = 0,
-	.clock_2hz = 0,
-	.clock_500hz = 0,
+    .clock_10hz = 0,
+    .clock_2hz = 0,
+    .clock_500hz = 0,
 };
 
 C_data C = {
-	.mcmd = G_ID,
-	.cstate = CLEAR,
-	.modbus_command = G_ID,
-	.req_length = 0,
-	.trace = 0,
-	.config_ok = false,
-	.id_ok = false,
-	.passwd_ok = false,
-	.light_ok = false,
-	.M.blink_lock = false,
-	.M.power_on = true,
-	.tm_ok = false,
+    .mcmd = G_ID,
+    .cstate = CLEAR,
+    .modbus_command = G_ID,
+    .req_length = 0,
+    .trace = 0,
+    .config_ok = false,
+    .id_ok = false,
+    .passwd_ok = false,
+    .light_ok = false,
+    .M.blink_lock = false,
+    .M.power_on = true,
+    .tm_ok = false,
 };
 
 volatile struct V_type V = {
-	.StartTime = 1,
-	.TimeUsed = 1,
-	.pacing = 1,
-	.pwm_update = true,
-	.pwm_stop = true,
-	.fault_active = false,
-	.fault_count = 0,
-	.dmt_sosc_flag = false,
+    .StartTime = 1,
+    .TimeUsed = 1,
+    .pacing = 1,
+    .pwm_update = true,
+    .pwm_stop = true,
+    .fault_active = false,
+    .fault_count = 0,
+    .dmt_sosc_flag = false,
 };
 
 /*
@@ -93,105 +93,97 @@ static void emv_data_handler(void);
 /*
  * add the required CRC bytes to a MODBUS message
  */
-static uint16_t modbus_rtu_send_msg_crc(volatile uint8_t *req, uint16_t req_length)
-{
-	uint16_t crc;
+static uint16_t modbus_rtu_send_msg_crc(volatile uint8_t *req, uint16_t req_length) {
+    uint16_t crc;
 
-	crc = crc16(req, req_length);
-	req[req_length++] = crc >> (uint16_t) 8;
-	req[req_length++] = crc & 0x00FF;
+    crc = crc16(req, req_length);
+    req[req_length++] = crc >> (uint16_t) 8;
+    req[req_length++] = crc & 0x00FF;
 
-	return req_length;
+    return req_length;
 }
 
 /*
  * constructs a properly formatted RTU message with CRC from a program memory array to the data memory array buffer
  */
-uint16_t modbus_rtu_send_msg(void *cc_buffer, const void *modbus_cc_mode, uint16_t req_length)
-{
-	memcpy((void*) cc_buffer, (const void *) modbus_cc_mode, req_length);
-	/*
-	 * add the CRC and increase message size by two bytes for the CRC16
-	 */
-	return modbus_rtu_send_msg_crc((volatile uint8_t *) cc_buffer, req_length);
+uint16_t modbus_rtu_send_msg(void *cc_buffer, const void *modbus_cc_mode, uint16_t req_length) {
+    memcpy((void*) cc_buffer, (const void *) modbus_cc_mode, req_length);
+    /*
+     * add the CRC and increase message size by two bytes for the CRC16
+     */
+    return modbus_rtu_send_msg_crc((volatile uint8_t *) cc_buffer, req_length);
 }
 
 /*
  * calculate a CRC16 from the data buffer
  */
-uint16_t crc16(volatile uint8_t *buffer, uint16_t buffer_length)
-{
-	uint8_t crc_hi = 0xFF; /* high CRC byte initialized */
-	uint8_t crc_lo = 0xFF; /* low CRC byte initialized */
-	uint8_t i; /* will index into CRC lookup */
-	uint16_t crc16t;
+uint16_t crc16(volatile uint8_t *buffer, uint16_t buffer_length) {
+    uint8_t crc_hi = 0xFF; /* high CRC byte initialized */
+    uint8_t crc_lo = 0xFF; /* low CRC byte initialized */
+    uint8_t i; /* will index into CRC lookup */
+    uint16_t crc16t;
 
-	/* pass through message buffer */
-	while (buffer_length--) {
-		i = crc_hi ^ *buffer++; /* calculate the CRC  */
-		crc_hi = crc_lo ^ table_crc_hi[i];
-		crc_lo = table_crc_lo[i];
-	}
+    /* pass through message buffer */
+    while (buffer_length--) {
+        i = crc_hi ^ *buffer++; /* calculate the CRC  */
+        crc_hi = crc_lo ^ table_crc_hi[i];
+        crc_lo = table_crc_lo[i];
+    }
 
-	crc16t = (uint16_t) crc_hi << (uint16_t) 8 | (uint16_t) crc_lo;
-	return crc16t;
+    crc16t = (uint16_t) crc_hi << (uint16_t) 8 | (uint16_t) crc_lo;
+    return crc16t;
 }
 
 /*
  * callback for UART received character from MODBUS client
  * for each RX byte received on the RS485 serial port
  */
-void my_modbus_rx_32(void)
-{
-	static uint8_t m_data = 0;
+void my_modbus_rx_32(void) {
+    static uint8_t m_data = 0;
 
-	//	IO_RB6_Toggle();
-	M.rx = true;
-	/*
-	 * process received controller data stream
-	 */
-	m_data = Srbuffer; // receiver data buffer
-	cc_buffer[M.recv_count] = m_data;
-	if (++M.recv_count >= MAX_DATA) {
-		M.recv_count = 0; // reset buffer position
-	}
+    IO_RB6_Toggle();
+    M.rx = true;
+    /*
+     * process received controller data stream
+     */
+    m_data = Srbuffer; // receiver data buffer
+    cc_buffer[M.recv_count] = m_data;
+    if (++M.recv_count >= MAX_DATA) {
+        M.recv_count = 0; // reset buffer position
+    }
 }
 
-uint8_t init_stream_params(void)
-{
-	M.config = false;
-	return 0;
+uint8_t init_stream_params(void) {
+    M.config = false;
+    return 0;
 }
 
 /*
  * state machine hardware timers interrupt ISR functions setup
  */
-void init_mb_master_timers(void)
-{
-	TMR5_SetInterruptHandler(timer_500ms_tick);
-	TMR5_StartTimer();
-	TMR6_SetInterruptHandler(timer_2ms_tick);
-	TMR6_StartTimer();
+void init_mb_master_timers(void) {
+    TMR5_SetInterruptHandler(timer_500ms_tick);
+    TMR5_StartTimer();
+    TMR6_SetInterruptHandler(timer_2ms_tick);
+    TMR6_StartTimer();
 }
 
 /*
  * helper functions
  * received CRC16 bytes from client
  */
-static uint16_t crc16_receive(C_data * client)
-{
-	uint16_t crc16r;
+static uint16_t crc16_receive(C_data * client) {
+    uint16_t crc16r;
 
-	crc16r = ((uint16_t) cc_buffer[client->req_length - 2] << (uint16_t) 8) | ((uint16_t) cc_buffer[client->req_length - 1] & 0x00ff);
-	return crc16r;
+    crc16r = ((uint16_t) cc_buffer[client->req_length - 2] << (uint16_t) 8) | ((uint16_t) cc_buffer[client->req_length - 1] & 0x00ff);
+    return crc16r;
 }
 
-static void log_crc_error(const uint16_t c_crc, const uint16_t c_crc_rec)
-{
-	M.crc_calc = c_crc;
-	M.crc_data = c_crc_rec;
-	M.crc_error++;
-	M.error++;
+static void log_crc_error(const uint16_t c_crc, const uint16_t c_crc_rec) {
+    M.crc_calc = c_crc;
+    M.crc_data = c_crc_rec;
+    M.crc_error++;
+    M.error++;
 }
 
 /*
@@ -204,33 +196,31 @@ static void log_crc_error(const uint16_t c_crc, const uint16_t c_crc_rec)
  * Byte endianness with Word endianness?
  * Lions and Tigers and Bears!
  */
-int32_t mb32_swap(const int32_t value)
-{
-	uint8_t i;
-	union MREG32 dvalue;
+int32_t mb32_swap(const int32_t value) {
+    uint8_t i;
+    union MREG32 dvalue;
 
-	// program it simple and easy to understand way, let the compiler optimize the expressions
-	dvalue.value = value;
-	i = dvalue.bytes[0];
-	dvalue.bytes[0] = dvalue.bytes[1];
-	dvalue.bytes[1] = i;
-	i = dvalue.bytes[2];
-	dvalue.bytes[2] = dvalue.bytes[3];
-	dvalue.bytes[3] = i;
-	return dvalue.value;
+    // program it simple and easy to understand way, let the compiler optimize the expressions
+    dvalue.value = value;
+    i = dvalue.bytes[0];
+    dvalue.bytes[0] = dvalue.bytes[1];
+    dvalue.bytes[1] = i;
+    i = dvalue.bytes[2];
+    dvalue.bytes[2] = dvalue.bytes[3];
+    dvalue.bytes[3] = i;
+    return dvalue.value;
 }
 
-int16_t mb16_swap(const int16_t value)
-{
-	uint8_t i;
-	union MREG dvalue;
+int16_t mb16_swap(const int16_t value) {
+    uint8_t i;
+    union MREG dvalue;
 
-	// program it simple and easy to understand way, let the compiler optimize the expressions
-	dvalue.value = value;
-	i = dvalue.bytes[0];
-	dvalue.bytes[0] = dvalue.bytes[1];
-	dvalue.bytes[1] = i;
-	return dvalue.value;
+    // program it simple and easy to understand way, let the compiler optimize the expressions
+    dvalue.value = value;
+    i = dvalue.bytes[0];
+    dvalue.bytes[0] = dvalue.bytes[1];
+    dvalue.bytes[1] = i;
+    return dvalue.value;
 }
 
 /*
@@ -238,267 +228,256 @@ int16_t mb16_swap(const int16_t value)
  * this needs to run in the main programming loop
  * to handle RS485 serial I/O exchanges
  */
-int8_t master_controller_work(C_data * client)
-{
-	static uint32_t spacing = 0;
+int8_t master_controller_work(C_data * client) {
+    static uint32_t spacing = 0;
 
-	if (spacing++ <SPACING && !M.rx) {
-		return T_spacing;
-	}
-	spacing = 0;
+    if (spacing++ <SPACING && !M.rx) {
+        return T_spacing;
+    }
+    spacing = 0;
 
-	client->trace = T_begin;
-	switch (client->cstate) {
-	case CLEAR:
-		client->trace = T_clear;
-		clear_2hz();
-		clear_10hz();
-		client->cstate = INIT;
-		client->modbus_command = client->mcmd++; // sequence modbus commands to client
-		if (client->modbus_command == G_CONFIG && client->config_ok) { // skip if we have valid data from client
-			client->modbus_command = client->mcmd++;
-		}
-		if (client->modbus_command == G_PASSWD && client->passwd_ok) { // skip if we have valid data from client
-			client->modbus_command = client->mcmd++;
-		}
-		if (client->modbus_command == G_LIGHT && client->light_ok) { // skip if we have valid data from client
-			client->modbus_command = client->mcmd++;
-		}
-		if (client->modbus_command == G_VERSION && client->version_ok) { // skip if we have valid data from client
-			client->modbus_command = client->mcmd++;
-		}
-		if (client->modbus_command == G_SERIAL && client->serial_ok) { // skip if we have valid data from client
-			client->modbus_command = client->mcmd++;
-		}
-		if (client->mcmd > G_LAST) {
-			client->mcmd = G_ID;
-		}
-		/*
-		 * command specific tx buffer setup
-		 */
-		switch (client->modbus_command) {
-		case G_VERSION: // write code request
-			client->trace = T_version;
-			client->req_length = modbus_rtu_send_msg((void*) cc_buffer_tx, (const void *) modbus_em_version, sizeof(modbus_em_version));
-			break;
-		case G_SERIAL: // write code request
-			client->trace = T_serial;
-			client->req_length = modbus_rtu_send_msg((void*) cc_buffer_tx, (const void *) modbus_em_serial, sizeof(modbus_em_serial));
-			break;
-		case G_LIGHT: // write code request
-			client->trace = T_light;
-			client->req_length = modbus_rtu_send_msg((void*) cc_buffer_tx, (const void *) modbus_em_light, sizeof(modbus_em_light));
-			break;
-		case G_PASSWD: // write code request
-			client->trace = T_passwd;
-			client->req_length = modbus_rtu_send_msg((void*) cc_buffer_tx, (const void *) modbus_em_passwd, sizeof(modbus_em_passwd));
-			break;
-		case G_CONFIG: // write code request
-			client->trace = T_config;
-			client->req_length = modbus_rtu_send_msg((void*) cc_buffer_tx, (const void *) modbus_em_config, sizeof(modbus_em_config));
-			break;
-		case G_DATA1: // read code request
-			client->trace = T_data;
-			client->req_length = modbus_rtu_send_msg((void*) cc_buffer_tx, (const void *) modbus_em_data1, sizeof(modbus_em_data1));
-			break;
-		case G_DATA2: // read code request
-			client->trace = T_data;
-			client->req_length = modbus_rtu_send_msg((void*) cc_buffer_tx, (const void *) modbus_em_data2, sizeof(modbus_em_data2));
-			break;
-		case G_LAST: // end of command sequences
-			client->cstate = CLEAR;
-			client->mcmd = G_ID; // what do we run next
-			break;
-		case G_ID: // operating mode request
-			client->trace = T_id;
-		default:
-			client->req_length = modbus_rtu_send_msg((void*) cc_buffer_tx, (const void *) modbus_em_id, sizeof(modbus_em_id));
-			break;
-		}
-		break;
-	case INIT:
-		client->trace = T_init;
-		/*
-		 * MODBUS master query speed
-		 */
+    client->trace = T_begin;
+    switch (client->cstate) {
+        case CLEAR:
+            client->trace = T_clear;
+            clear_2hz();
+            clear_10hz();
+            client->cstate = INIT;
+            client->modbus_command = client->mcmd++; // sequence modbus commands to client
+            if (client->modbus_command == G_CONFIG && client->config_ok) { // skip if we have valid data from client
+                client->modbus_command = client->mcmd++;
+            }
+            if (client->modbus_command == G_PASSWD && client->passwd_ok) { // skip if we have valid data from client
+                client->modbus_command = client->mcmd++;
+            }
+            if (client->modbus_command == G_LIGHT && client->light_ok) { // skip if we have valid data from client
+                client->modbus_command = client->mcmd++;
+            }
+            if (client->modbus_command == G_VERSION && client->version_ok) { // skip if we have valid data from client
+                client->modbus_command = client->mcmd++;
+            }
+            if (client->modbus_command == G_SERIAL && client->serial_ok) { // skip if we have valid data from client
+                client->modbus_command = client->mcmd++;
+            }
+            if (client->mcmd > G_LAST) {
+                client->mcmd = G_ID;
+            }
+            /*
+             * command specific tx buffer setup
+             */
+            switch (client->modbus_command) {
+                case G_VERSION: // write code request
+                    client->trace = T_version;
+                    client->req_length = modbus_rtu_send_msg((void*) cc_buffer_tx, (const void *) modbus_em_version, sizeof (modbus_em_version));
+                    break;
+                case G_SERIAL: // write code request
+                    client->trace = T_serial;
+                    client->req_length = modbus_rtu_send_msg((void*) cc_buffer_tx, (const void *) modbus_em_serial, sizeof (modbus_em_serial));
+                    break;
+                case G_LIGHT: // write code request
+                    client->trace = T_light;
+                    client->req_length = modbus_rtu_send_msg((void*) cc_buffer_tx, (const void *) modbus_em_light, sizeof (modbus_em_light));
+                    break;
+                case G_PASSWD: // write code request
+                    client->trace = T_passwd;
+                    client->req_length = modbus_rtu_send_msg((void*) cc_buffer_tx, (const void *) modbus_em_passwd, sizeof (modbus_em_passwd));
+                    break;
+                case G_CONFIG: // write code request
+                    client->trace = T_config;
+                    client->req_length = modbus_rtu_send_msg((void*) cc_buffer_tx, (const void *) modbus_em_config, sizeof (modbus_em_config));
+                    break;
+                case G_DATA1: // read code request
+                    client->trace = T_data;
+                    client->req_length = modbus_rtu_send_msg((void*) cc_buffer_tx, (const void *) modbus_em_data1, sizeof (modbus_em_data1));
+                    break;
+                case G_DATA2: // read code request
+                    client->trace = T_data;
+                    client->req_length = modbus_rtu_send_msg((void*) cc_buffer_tx, (const void *) modbus_em_data2, sizeof (modbus_em_data2));
+                    break;
+                case G_LAST: // end of command sequences
+                    client->cstate = CLEAR;
+                    client->mcmd = G_ID; // what do we run next
+                    break;
+                case G_ID: // operating mode request
+                    client->trace = T_id;
+                default:
+                    client->req_length = modbus_rtu_send_msg((void*) cc_buffer_tx, (const void *) modbus_em_id, sizeof (modbus_em_id));
+                    break;
+            }
+            break;
+        case INIT:
+            client->trace = T_init;
+            /*
+             * MODBUS master query speed
+             */
 #ifdef	FASTQ
-		if (get_10hz(false) >= CDELAY) {
+            if (get_10hz(false) >= CDELAY) {
 #else
-		if (get_2hz(false) >= QDELAY) {
+            if (get_2hz(false) >= QDELAY) {
 #endif
-			half_dup_tx(false); // no delays here
-			M.recv_count = 0;
-			client->cstate = SEND;
-			clear_500hz();
-			client->trace = T_init_d;
-		}
-		break;
-	case SEND:
-		client->trace = T_send;
-		if (get_500hz(false) >= TDELAY) {
-			for (uint8_t i = 0; i < client->req_length; i++) {
-				Swrite(cc_buffer_tx[i]);
-			}
-			client->cstate = RECV;
-			clear_500hz(); // state machine execute background timer clear
-			client->trace = T_send_d;
-			M.sends++;
-			M.rx = false;
-			if (serial_trmt()) { // check for serial UART transmit shift register and buffer empty
-				clear_500hz(); // clear timer until buffer empty
-			}
-			delay_ms(TDELAY);
-			DERE_SetLow(); // enable modbus receiver
-			DB0_SetHigh();
-		}
-		break;
-	case RECV:
-		client->trace = T_recv;
-		if (get_500hz(false) >= TEDELAY) { // state machine execute timer test
+                half_dup_tx(false); // no delays here
+                M.recv_count = 0;
+                client->cstate = SEND;
+                clear_500hz();
+                client->trace = T_init_d;
+            }
+            break;
+        case SEND:
+            client->trace = T_send;
+            if (get_500hz(false) >= TDELAY) {
+                for (uint8_t i = 0; i < client->req_length; i++) {
+                    Swrite(cc_buffer_tx[i]);
+                }
+                client->cstate = RECV;
+                clear_500hz(); // state machine execute background timer clear
+                client->trace = T_send_d;
+                M.sends++;
+                M.rx = false;
+                if (serial_trmt()) { // check for serial UART transmit shift register and buffer empty
+                    clear_500hz(); // clear timer until buffer empty
+                }
+                delay_ms(TDELAY);
+                DERE_SetLow(); // enable modbus receiver
+                DB0_SetHigh();
+            }
+            break;
+        case RECV:
+            client->trace = T_recv;
+            if (get_500hz(false) >= TEDELAY) { // state machine execute timer test
 
-			client->trace = T_recv_r;
-			half_dup_rx(false); // no delays here
+                client->trace = T_recv_r;
+                half_dup_rx(false); // no delays here
 
-			/*
-			 * check received response data for size and format for each command sent
-			 */
-			switch (client->modbus_command) {
-			case G_LIGHT: // check for controller back-light codes
-				modbus_write_check(client, &client->light_ok, sizeof(em_light));
-				break;
-			case G_PASSWD: // check for controller password codes
-				modbus_write_check(client, &client->passwd_ok, sizeof(em_passwd));
-				break;
-			case G_CONFIG: // check for controller configuration codes
-				modbus_write_check(client, &client->config_ok, sizeof(em_config));
-				break;
-			case G_DATA1: // check for controller data1 codes
-				modbus_read_check(client, &client->data_ok, sizeof(em_data1), em_data_handler);
-				break;
-			case G_DATA2: // check for controller data2 codes
-				modbus_read_check(client, &client->data_ok, sizeof(em_data2), emt_data_handler);
-				break;
-			case G_VERSION: // check for controller EM540 firmware codes
-				modbus_read_check(client, &client->version_ok, sizeof(em_version), emv_data_handler);
-				break;
-			case G_SERIAL: // check for controller EM540 serial codes
-				modbus_read_check(client, &client->serial_ok, sizeof(em_serial), ems_data_handler);
-				break;
-			case G_ID: // check for client module type
-			default:
-				modbus_read_id_check(client, &client->id_ok, sizeof(em_id));
-				break;
-			}
-		}
-		break;
-	default:
-		break;
-	}
-	IO_RD7_SetLow();
-	return client->trace;
+                /*
+                 * check received response data for size and format for each command sent
+                 */
+                switch (client->modbus_command) {
+                    case G_LIGHT: // check for controller back-light codes
+                        modbus_write_check(client, &client->light_ok, sizeof (em_light));
+                        break;
+                    case G_PASSWD: // check for controller password codes
+                        modbus_write_check(client, &client->passwd_ok, sizeof (em_passwd));
+                        break;
+                    case G_CONFIG: // check for controller configuration codes
+                        modbus_write_check(client, &client->config_ok, sizeof (em_config));
+                        break;
+                    case G_DATA1: // check for controller data1 codes
+                        modbus_read_check(client, &client->data_ok, sizeof (em_data1), em_data_handler);
+                        break;
+                    case G_DATA2: // check for controller data2 codes
+                        modbus_read_check(client, &client->data_ok, sizeof (em_data2), emt_data_handler);
+                        break;
+                    case G_VERSION: // check for controller EM540 firmware codes
+                        modbus_read_check(client, &client->version_ok, sizeof (em_version), emv_data_handler);
+                        break;
+                    case G_SERIAL: // check for controller EM540 serial codes
+                        modbus_read_check(client, &client->serial_ok, sizeof (em_serial), ems_data_handler);
+                        break;
+                    case G_ID: // check for client module type
+                    default:
+                        modbus_read_id_check(client, &client->id_ok, sizeof (em_id));
+                        break;
+                }
+            }
+            break;
+        default:
+            break;
+    }
+    IO_RD7_SetLow();
+    return client->trace;
 }
 
 /*
  * state machine no busy wait timers
  */
-void clear_2hz(void)
-{
-	MT.clock_2hz = 0;
+void clear_2hz(void) {
+    MT.clock_2hz = 0;
 }
 
-void clear_10hz(void)
-{
-	MT.clock_10hz = 0;
+void clear_10hz(void) {
+    MT.clock_10hz = 0;
 }
 
-void clear_500hz(void)
-{
-	MT.clock_500hz = 0;
+void clear_500hz(void) {
+    MT.clock_500hz = 0;
 }
 
-uint32_t get_2hz(const uint8_t mode)
-{
-	static uint32_t tmp = 0;
+uint32_t get_2hz(const uint8_t mode) {
+    static uint32_t tmp = 0;
 
-	if (mode) {
-		return tmp;
-	}
+    if (mode) {
+        return tmp;
+    }
 
-	tmp = MT.clock_2hz;
-	return tmp;
+    tmp = MT.clock_2hz;
+    return tmp;
 }
 
 /*
  * fake timer, really 500Hz updates
  * used for fast updates timing
  */
-uint32_t get_10hz(const uint8_t mode)
-{
-	static uint32_t tmp = 0;
+uint32_t get_10hz(const uint8_t mode) {
+    static uint32_t tmp = 0;
 
-	if (mode) {
-		return tmp;
-	}
+    if (mode) {
+        return tmp;
+    }
 
-	tmp = MT.clock_10hz;
-	return tmp;
+    tmp = MT.clock_10hz;
+    return tmp;
 }
 
-uint32_t get_500hz(const uint8_t mode)
-{
-	static uint32_t tmp = 0;
+uint32_t get_500hz(const uint8_t mode) {
+    static uint32_t tmp = 0;
 
-	if (mode) {
-		return tmp;
-	}
+    if (mode) {
+        return tmp;
+    }
 
-	tmp = MT.clock_500hz;
-	return tmp;
+    tmp = MT.clock_500hz;
+    return tmp;
 }
 
 // switch RS transceiver to transmit mode and wait if not tx
 
-static void half_dup_tx(const bool delay)
-{
-	if (DERE_GetValue()) {
-		return;
-	}
-	DERE_SetHigh(); // enable modbus transmitter
+static void half_dup_tx(const bool delay) {
+    if (DERE_GetValue()) {
+        return;
+    }
+    DERE_SetHigh(); // enable modbus transmitter
 
-	if (delay) {
-		delay_ms(DUPL_DELAY); // busy waits
-	}
+    if (delay) {
+        delay_ms(DUPL_DELAY); // busy waits
+    }
 }
 
 // switch RS transceiver to receive mode and wait if not rx
 
-static void half_dup_rx(const bool delay)
-{
-	if (!DERE_GetValue()) {
-		return;
-	}
-	if (delay) {
-		delay_ms(DUPL_DELAY); // busy waits
-	}
-	DERE_SetLow(); // enable modbus receiver
+static void half_dup_rx(const bool delay) {
+    if (!DERE_GetValue()) {
+        return;
+    }
+    if (delay) {
+        delay_ms(DUPL_DELAY); // busy waits
+    }
+    DERE_SetLow(); // enable modbus receiver
 }
 
 // ISR function for TMR5
 
-void timer_500ms_tick(void)
-{
-	//	IO_RB6_Toggle();
-	MT.clock_2hz++;
-	MT.clock_blinks++;
+void timer_500ms_tick(void) {
+    IO_RB6_Toggle();
+    MT.clock_2hz++;
+    MT.clock_blinks++;
 }
 
 // ISR function for TMR6
 
-void timer_2ms_tick(void)
-{
-	//	IO_RB6_Toggle();
-	MT.clock_500hz++;
-	MT.clock_10hz++;
+void timer_2ms_tick(void) {
+    IO_RB6_Toggle();
+    MT.clock_500hz++;
+    MT.clock_10hz++;
 }
 
 /*
@@ -514,223 +493,213 @@ void timer_2ms_tick(void)
  * so this will return 'true' after the buffer is empty 'interrupt' and after the last bit is on the wire
  */
 
-static bool serial_trmt(void)
-{
-	return !(Strmt); // note, we invert the TRMT bit so it's true while transmitting
+static bool serial_trmt(void) {
+    return !(Strmt); // note, we invert the TRMT bit so it's true while transmitting
 }
 
 /*
  * serial port testing routine
  */
-void mb_tx_test(C_data * client)
-{
-	if (TimerDone(TMR_MBTEST)) {
-		StartTimer(TMR_MBTEST, 500);
-		client->req_length = modbus_rtu_send_msg((void*) cc_buffer_tx, (const void *) modbus_em_passwd, sizeof(modbus_em_passwd));
-		for (int8_t i = 0; i < client->req_length; i++) {
-			if (UART5_is_tx_ready()) {
-				Swrite(cc_buffer_tx[i]);
-			}
-		}
-	}
+void mb_tx_test(C_data * client) {
+    if (TimerDone(TMR_MBTEST)) {
+        StartTimer(TMR_MBTEST, 500);
+        client->req_length = modbus_rtu_send_msg((void*) cc_buffer_tx, (const void *) modbus_em_passwd, sizeof (modbus_em_passwd));
+        for (int8_t i = 0; i < client->req_length; i++) {
+            if (UART5_is_tx_ready()) {
+                Swrite(cc_buffer_tx[i]);
+            }
+        }
+    }
 }
 
-static void UART1_DefaultFramingErrorHandler_mb(void)
-{
-	MM_ERROR_S;
+static void UART1_DefaultFramingErrorHandler_mb(void) {
+    IO_RB6_Toggle(); // GPIO interrupt scope trace
+    MM_ERROR_S;
 }
 
-static void UART1_DefaultOverrunErrorHandler_mb(void)
-{
-	MM_ERROR_S;
+static void UART1_DefaultOverrunErrorHandler_mb(void) {
+    IO_RB6_Toggle(); // GPIO interrupt scope trace
+    MM_ERROR_S;
 }
 
-static void UART1_DefaultErrorHandler_mb(void)
-{
-	MM_ERROR_S;
+static void UART1_DefaultErrorHandler_mb(void) {
+    IO_RB6_Toggle(); // GPIO interrupt scope trace
+    MM_ERROR_S;
 }
 
-void mb_setup(void)
-{
-	UART1_SetFramingErrorHandler(UART1_DefaultFramingErrorHandler_mb);
-	UART1_SetOverrunErrorHandler(UART1_DefaultOverrunErrorHandler_mb);
-	UART1_SetErrorHandler(UART1_DefaultErrorHandler_mb);
+void mb_setup(void) {
+    UART1_SetFramingErrorHandler(UART1_DefaultFramingErrorHandler_mb);
+    UART1_SetOverrunErrorHandler(UART1_DefaultOverrunErrorHandler_mb);
+    UART1_SetErrorHandler(UART1_DefaultErrorHandler_mb);
 }
 
-static bool modbus_write_check(C_data * client, bool* cstate, const uint16_t rec_length)
-{
-	uint16_t c_crc, c_crc_rec;
+static bool modbus_write_check(C_data * client, bool* cstate, const uint16_t rec_length) {
+    uint16_t c_crc, c_crc_rec;
 
 #ifdef	MB_EM540
-	client->req_length = rec_length;
-	if (DBUG_R((M.recv_count >= client->req_length) && (cc_buffer[0] == MADDR) && (cc_buffer[1] == WRITE_SINGLE_REGISTER))) {
-		c_crc = crc16(cc_buffer, client->req_length - 2);
-		c_crc_rec = crc16_receive(client);
-		if (DBUG_R c_crc == c_crc_rec) {
-			*cstate = true;
-			MM_ERROR_C;
-		} else {
-			*cstate = false;
-			log_crc_error(c_crc, c_crc_rec);
-		}
-		client->cstate = CLEAR; // where do we go next
-		client->mcmd = G_LAST; // what do we run next
-	} else {
-		if (get_500hz(false) >= RDELAY) {
-			DB0_SetLow();
-			client->cstate = CLEAR; // where do we go next
-			client->mcmd = G_ID; // what do we run next
-			M.to_error++;
-			M.error++;
-			if (client->data_ok) {
-				MM_ERROR_C;
-			}
-		}
-	}
+    client->req_length = rec_length;
+    if (DBUG_R((M.recv_count >= client->req_length) && (cc_buffer[0] == MADDR) && (cc_buffer[1] == WRITE_SINGLE_REGISTER))) {
+        c_crc = crc16(cc_buffer, client->req_length - 2);
+        c_crc_rec = crc16_receive(client);
+        if (DBUG_R c_crc == c_crc_rec) {
+            *cstate = true;
+            MM_ERROR_C;
+        } else {
+            *cstate = false;
+            log_crc_error(c_crc, c_crc_rec);
+        }
+        client->cstate = CLEAR; // where do we go next
+        client->mcmd = G_LAST; // what do we run next
+    } else {
+        if (get_500hz(false) >= RDELAY) {
+            DB0_SetLow();
+            client->cstate = CLEAR; // where do we go next
+            client->mcmd = G_ID; // what do we run next
+            M.to_error++;
+            M.error++;
+            if (client->data_ok) {
+                MM_ERROR_C;
+            }
+        }
+    }
 #endif
-	return *cstate;
+    return *cstate;
 }
 
-static bool modbus_read_check(C_data * client, bool* cstate, const uint16_t rec_length, void (* DataHandler)(void))
-{
-	uint16_t c_crc, c_crc_rec;
+static bool modbus_read_check(C_data * client, bool* cstate, const uint16_t rec_length, void (* DataHandler)(void)) {
+    uint16_t c_crc, c_crc_rec;
 
 #ifdef	MB_EM540
-	client->req_length = rec_length;
-	if (DBUG_R((M.recv_count >= client->req_length) && (cc_buffer[0] == MADDR) && (cc_buffer[1] == READ_HOLDING_REGISTERS))) {
-		c_crc = crc16(cc_buffer, client->req_length - 2);
-		c_crc_rec = crc16_receive(client);
-		if (DBUG_R c_crc == c_crc_rec) {
-			client->data_ok = true;
-			*cstate = true;
-			/*
-			 * move from receive buffer to data structure and munge the data into the correct local 32-bit format from MODBUS client
-			 */
-			DataHandler();
-			client->data_prev = client->data_count;
-			client->data_count++;
-			MM_ERROR_C;
-		} else {
-			MM_ERROR_C;
-			*cstate = false;
-			client->data_ok = false;
-			log_crc_error(c_crc, c_crc_rec);
-			if (client->data_ok) {
-			}
-		}
-		client->cstate = CLEAR;
-	} else {
-		if (get_500hz(false) >= RDELAY) {
-			DB0_SetLow();
-			client->cstate = CLEAR;
-			MM_ERROR_C;
-			client->mcmd = G_ID;
-			M.to_error++;
-			M.error++;
-			if (client->data_ok) {
-			}
-		}
-	}
+    client->req_length = rec_length;
+    if (DBUG_R((M.recv_count >= client->req_length) && (cc_buffer[0] == MADDR) && (cc_buffer[1] == READ_HOLDING_REGISTERS))) {
+        c_crc = crc16(cc_buffer, client->req_length - 2);
+        c_crc_rec = crc16_receive(client);
+        if (DBUG_R c_crc == c_crc_rec) {
+            client->data_ok = true;
+            *cstate = true;
+            /*
+             * move from receive buffer to data structure and munge the data into the correct local 32-bit format from MODBUS client
+             */
+            DataHandler();
+            client->data_prev = client->data_count;
+            client->data_count++;
+            MM_ERROR_C;
+        } else {
+            MM_ERROR_C;
+            *cstate = false;
+            client->data_ok = false;
+            log_crc_error(c_crc, c_crc_rec);
+            if (client->data_ok) {
+            }
+        }
+        client->cstate = CLEAR;
+    } else {
+        if (get_500hz(false) >= RDELAY) {
+            DB0_SetLow();
+            client->cstate = CLEAR;
+            MM_ERROR_C;
+            client->mcmd = G_ID;
+            M.to_error++;
+            M.error++;
+            if (client->data_ok) {
+            }
+        }
+    }
 #endif
-	return *cstate;
+    return *cstate;
 }
 
-static bool modbus_read_id_check(C_data * client, bool* cstate, const uint16_t rec_length)
-{
-	uint16_t c_crc, c_crc_rec;
+static bool modbus_read_id_check(C_data * client, bool* cstate, const uint16_t rec_length) {
+    uint16_t c_crc, c_crc_rec;
 
 #ifdef	MB_EM540
-	client->req_length = rec_length;
-	if (DBUG_R((M.recv_count >= client->req_length) && (cc_buffer[0] == MADDR) && (cc_buffer[1] == READ_HOLDING_REGISTERS))) {
-		c_crc = crc16(cc_buffer, client->req_length - 2);
-		c_crc_rec = crc16_receive(client);
-		if ((DBUG_R c_crc == c_crc_rec) && (cc_buffer[3] == MB_EM540_ID_H) && (cc_buffer[4] == MB_EM540_ID_L)) {
-			MM_ERROR_C;
-			client->id_ok = true;
-			*cstate = true;
-		} else {
-			MM_ERROR_S;
-			*cstate = false;
-			client->id_ok = false;
-			client->config_ok = false;
-			client->passwd_ok = false;
-			client->data_ok = false;
-			client->light_ok = false;
-			client->version_ok = false;
-			client->serial_ok = false;
-			log_crc_error(c_crc, c_crc_rec);
-		}
-		client->cstate = CLEAR;
-	} else {
-		if (get_500hz(false) >= RDELAY) {
-			DB0_SetLow();
-			client->cstate = CLEAR;
-			client->mcmd = G_ID;
-			M.to_error++;
-			M.error++;
-			client->id_ok = false;
-			*cstate = false;
-			client->config_ok = false;
-			client->passwd_ok = false;
-			client->data_ok = false;
-			client->light_ok = false;
-			client->version_ok = false;
-			client->serial_ok = false;
-		}
-	}
+    client->req_length = rec_length;
+    if (DBUG_R((M.recv_count >= client->req_length) && (cc_buffer[0] == MADDR) && (cc_buffer[1] == READ_HOLDING_REGISTERS))) {
+        c_crc = crc16(cc_buffer, client->req_length - 2);
+        c_crc_rec = crc16_receive(client);
+        if ((DBUG_R c_crc == c_crc_rec) && (cc_buffer[3] == MB_EM540_ID_H) && (cc_buffer[4] == MB_EM540_ID_L)) {
+            MM_ERROR_C;
+            client->id_ok = true;
+            *cstate = true;
+        } else {
+            MM_ERROR_S;
+            *cstate = false;
+            client->id_ok = false;
+            client->config_ok = false;
+            client->passwd_ok = false;
+            client->data_ok = false;
+            client->light_ok = false;
+            client->version_ok = false;
+            client->serial_ok = false;
+            log_crc_error(c_crc, c_crc_rec);
+        }
+        client->cstate = CLEAR;
+    } else {
+        if (get_500hz(false) >= RDELAY) {
+            DB0_SetLow();
+            client->cstate = CLEAR;
+            client->mcmd = G_ID;
+            M.to_error++;
+            M.error++;
+            client->id_ok = false;
+            *cstate = false;
+            client->config_ok = false;
+            client->passwd_ok = false;
+            client->data_ok = false;
+            client->light_ok = false;
+            client->version_ok = false;
+            client->serial_ok = false;
+        }
+    }
 #endif
-	return *cstate;
+    return *cstate;
 }
 
-static void em_data_handler(void)
-{
-	/*
-	 * move from receive buffer to data structure and munge the data into the correct local formats from MODBUS client
-	 */
-	memcpy((void*) &em, (void*) &cc_buffer[3], sizeof(em));
-	em.vl1l2 = mb32_swap(em.vl1l2);
-	em.vl2l3 = mb32_swap(em.vl2l3);
-	em.vl3l1 = mb32_swap(em.vl3l1);
-	em.al1 = mb32_swap(em.al1);
-	em.al2 = mb32_swap(em.al2);
-	em.al3 = mb32_swap(em.al3);
-	em.wl1 = mb32_swap(em.wl1);
-	em.wl2 = mb32_swap(em.wl2);
-	em.wl3 = mb32_swap(em.wl3);
-	em.val1 = mb32_swap(em.val1);
-	em.val2 = mb32_swap(em.val2);
-	em.val3 = mb32_swap(em.val3);
-	em.varl1 = mb32_swap(em.varl1);
-	em.varl2 = mb32_swap(em.varl2);
-	em.varl3 = mb32_swap(em.varl3);
-	em.pfl1 = mb16_swap(em.pfl1);
-	em.hz = mb16_swap(em.hz);
+static void em_data_handler(void) {
+    /*
+     * move from receive buffer to data structure and munge the data into the correct local formats from MODBUS client
+     */
+    memcpy((void*) &em, (void*) &cc_buffer[3], sizeof (em));
+    em.vl1l2 = mb32_swap(em.vl1l2);
+    em.vl2l3 = mb32_swap(em.vl2l3);
+    em.vl3l1 = mb32_swap(em.vl3l1);
+    em.al1 = mb32_swap(em.al1);
+    em.al2 = mb32_swap(em.al2);
+    em.al3 = mb32_swap(em.al3);
+    em.wl1 = mb32_swap(em.wl1);
+    em.wl2 = mb32_swap(em.wl2);
+    em.wl3 = mb32_swap(em.wl3);
+    em.val1 = mb32_swap(em.val1);
+    em.val2 = mb32_swap(em.val2);
+    em.val3 = mb32_swap(em.val3);
+    em.varl1 = mb32_swap(em.varl1);
+    em.varl2 = mb32_swap(em.varl2);
+    em.varl3 = mb32_swap(em.varl3);
+    em.pfl1 = mb16_swap(em.pfl1);
+    em.hz = mb16_swap(em.hz);
 }
 
-static void emt_data_handler(void)
-{
-	/*
-	 * move from receive buffer to data structure and munge the data into the correct local formats from MODBUS client
-	 */
-	memcpy((void*) &emt, (void*) &cc_buffer[3], sizeof(emt));
-	emt.hz = mb32_swap(emt.hz);
+static void emt_data_handler(void) {
+    /*
+     * move from receive buffer to data structure and munge the data into the correct local formats from MODBUS client
+     */
+    memcpy((void*) &emt, (void*) &cc_buffer[3], sizeof (emt));
+    emt.hz = mb32_swap(emt.hz);
 }
 
-static void ems_data_handler(void)
-{
-	/*
-	 * move from receive buffer to data structure and munge the data into the correct local formats from MODBUS client
-	 */
-	memcpy((void*) &ems, (void*) &cc_buffer[3], sizeof(ems));
-	ems.serial[13] = 0; // terminate serial string data
-	ems.year = mb16_swap(ems.year);
+static void ems_data_handler(void) {
+    /*
+     * move from receive buffer to data structure and munge the data into the correct local formats from MODBUS client
+     */
+    memcpy((void*) &ems, (void*) &cc_buffer[3], sizeof (ems));
+    ems.serial[13] = 0; // terminate serial string data
+    ems.year = mb16_swap(ems.year);
 }
 
-static void emv_data_handler(void)
-{
-	/*
-	 * move from receive buffer to data structure and munge the data into the correct local formats from MODBUS client
-	 */
-	memcpy((void*) &emv, (void*) &cc_buffer[3], sizeof(emv));
-	emv.firmware = mb16_swap(emv.firmware);
+static void emv_data_handler(void) {
+    /*
+     * move from receive buffer to data structure and munge the data into the correct local formats from MODBUS client
+     */
+    memcpy((void*) &emv, (void*) &cc_buffer[3], sizeof (emv));
+    emv.firmware = mb16_swap(emv.firmware);
 }

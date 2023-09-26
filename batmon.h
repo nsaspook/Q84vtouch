@@ -17,17 +17,17 @@ extern "C" {
 #include "mateQ84.X/mxcmd.h"
 
 #define TEN_SEC_HOUR	360.0f
-#define BM_CM	0x57
-#define BM_VER	1
-#define BM_UPDATE	3600	// seconds between EEPROM updates, sleeping
+#define BM_CM           0x57
+#define BM_VER          1
+#define BM_UPDATE       3600	// seconds between EEPROM updates, sleeping
 #define BM_UPDATE_RUN	1800	// while running
 
 	/*
 	 * Energy Battery Bank 
 	 * 24V LiFePO4 Battery Parameters
 	 */
-#define BAT_VOLT	25.6f
-#define BAT_AH		200.0f	
+#define BAT_VOLT        25.6f
+#define BAT_AH          200.0f	
 #define BAT_ENERGY	BAT_VOLT*BAT_AH*TEN_SEC_HOUR // nominal battery voltage and AH rating for 10 second updates
 #define BAT_ENERGY_LOW	BAT_ENERGY/0.5f
 #define BAT_OVER_VOLT	30.0f
@@ -35,15 +35,15 @@ extern "C" {
 #define BAT_UNDER_VOLT	23.2f
 #define BAT_LOW_DISC	21.6f
 #define BAT_LOW_RECON	24.8f
-#define BAT_EFF_VAL	0.985f	//  battery storage energy efficiency
-#define BAT_CYCLES	8
+#define BAT_EFF_VAL     0.985f	//  battery storage energy efficiency
+#define BAT_CYCLES      8
 #define BAT_CHARGED_W	BAT_AH
 #define BAT_DAY_COUNT	30	// number of reports before updates
 	/*
 	 * System correction factors
 	 */
-#define IDLE_DRAIN	10.0f	// system operational drain losses in Wh
-#define INV_EFF_VAL	1.06f	// DC watts to AC watt inverter correction
+#define IDLE_DRAIN      10.0f	// system operational drain losses in Wh
+#define INV_EFF_VAL     1.06f	// DC watts to AC watt inverter correction
 
 	// EEPROM data storage structure
 

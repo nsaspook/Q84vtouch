@@ -27,11 +27,11 @@ extern "C" {
 #endif
 
 #define USE_FD	// select classic or FD
-#define CANFD_BYTES	64
-#define CANFD_NBUF	3
+#define CANFD_BYTES     64
+#define CANFD_NBUF      3
 #define CAN_RX_TRIES	8
 #define CAN_REC_BUFFERS	4
-#define CAN_LOW_BUF	0
+#define CAN_LOW_BUF     0
 #define CAN_HIGH_BUF	1
 #define CAN_INFO_BUF	2
 #define CAN_ERROR_BUF	3
