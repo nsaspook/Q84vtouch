@@ -5031,8 +5031,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 "67 ./../batmon.h
-[; ;./../batmon.h: 67:  const char log_format[] = "^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%.1f,%.1f,%.2f,%d,%.1f,%.1f,%.1f,%4.1f,%.2f,%u,%5.3f,%5.3f,%u,%s,~\r\n";
-[v _log_format `Cuc ~T0 @X0 -> 101 `i e ]
+[; ;./../batmon.h: 67:  const char log_format[] = "^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%.1f,%.1f,%.2f,%.2f,%d,%.1f,%.1f,%.1f,%4.1f,%.2f,%u,%5.3f,%5.3f,%u,%s,~\r\n";
+[v _log_format `Cuc ~T0 @X0 -> 106 `i e ]
 [i _log_format
 :U ..
 -> 94 `c
@@ -5075,6 +5075,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> 37 `c
 -> 46 `c
 -> 49 `c
+-> 102 `c
+-> 44 `c
+-> 37 `c
+-> 46 `c
+-> 50 `c
 -> 102 `c
 -> 44 `c
 -> 37 `c
@@ -5256,7 +5261,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _can_buffer `uc ~T0 @X0 -> 128 `i e ]
 [v _info_buffer `uc ~T0 @X0 -> 96 `i e ]
 "228
-[; ;main.c: 228: const char *build_date = "Sep 29 2023", *build_time = "11:08:33";
+[; ;main.c: 228: const char *build_date = "Sep 29 2023", *build_time = "12:34:54";
 [v _build_date `*Cuc ~T0 @X0 1 e ]
 [i _build_date
 :s 1C
@@ -6571,8 +6576,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 768:    buffer[26] = 0;
 [e = *U + &U _buffer * -> -> -> 26 `i `ui `ux -> -> # *U &U _buffer `ui `ux -> -> 0 `i `uc ]
 "769
-[; ;main.c: 769:    snprintf(can_buffer, 64*2, log_format, abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, pv_Wh_daily, ac_Wh_daily, B.run_time, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, EBD.bat_energy / 3600.0f, EBD.bat_cycles, ((float) em.pfl1) / 1000.0f, ((float) emt.hz) / 1000.0f, B.rx_count++,buffer);
-[e ( _snprintf (2 , , , , , , , , , , , , , , , , , , , , , , (. , , &U _can_buffer -> * -> 64 `i -> 2 `i `ui &U _log_format - -> *U + &U _abuf * -> -> -> 3 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 128 `i `ui & -> *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 15 `i `ui -> _vw `ui -> _vf `ui - -> *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 128 `i `ui -> _volt_whole `ui -> _volt_fract `ui -> _panel_watts `ui -> _pv_Wh_daily `d -> _ac_Wh_daily `d -> . _B 15 `d -> _cc_mode `ui -> / -> . _em 9 `f -> .10.0 `f `d -> / -> . _em 12 `f -> .10.0 `f `d -> / -> . _em 15 `f -> .10.0 `f `d -> / -> . _em 3 `f -> .10.0 `f `d -> / . _EBD 14 -> .3600.0 `f `d -> . _EBD 16 `ui -> / -> . _em 23 `f -> .1000.0 `f `d -> / -> . _emt 17 `f -> .1000.0 `f `d -> ++ . _B 6 -> -> 1 `i `Vus `ui &U _buffer ]
+[; ;main.c: 769:    snprintf(can_buffer, 64*2, log_format, abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, pv_Wh_daily, ac_Wh_daily, B.run_time, B.net_balance, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, EBD.bat_energy / 3600.0f, EBD.bat_cycles, ((float) em.pfl1) / 1000.0f, ((float) emt.hz) / 1000.0f, B.rx_count++,buffer);
+[e ( _snprintf (2 , , , , , , , , , , , , , , , , , , , , , , , (. , , &U _can_buffer -> * -> 64 `i -> 2 `i `ui &U _log_format - -> *U + &U _abuf * -> -> -> 3 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 128 `i `ui & -> *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 15 `i `ui -> _vw `ui -> _vf `ui - -> *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 128 `i `ui -> _volt_whole `ui -> _volt_fract `ui -> _panel_watts `ui -> _pv_Wh_daily `d -> _ac_Wh_daily `d -> . _B 15 `d -> . _B 16 `d -> _cc_mode `ui -> / -> . _em 9 `f -> .10.0 `f `d -> / -> . _em 12 `f -> .10.0 `f `d -> / -> . _em 15 `f -> .10.0 `f `d -> / -> . _em 3 `f -> .10.0 `f `d -> / . _EBD 14 -> .3600.0 `f `d -> . _EBD 16 `ui -> / -> . _em 23 `f -> .1000.0 `f `d -> / -> . _emt 17 `f -> .1000.0 `f `d -> ++ . _B 6 -> -> 1 `i `Vus `ui &U _buffer ]
 "770
 [; ;main.c: 770:    printf("%s", can_buffer);
 [e ( _printf , (. :s 21C &U _can_buffer ]
@@ -6999,7 +7004,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [p f _snprintf 3875536879 ]
 [a 20C 37 115 0 ]
 [a 21C 37 115 0 ]
-[a 2C 49 49 58 48 56 58 51 52 0 ]
+[a 2C 49 50 58 51 52 58 53 52 0 ]
 [a 1C 83 101 112 32 50 57 32 50 48 50 51 0 ]
 [a 7C 37 115 32 0 ]
 [a 9C 37 115 32 0 ]

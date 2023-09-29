@@ -41516,7 +41516,7 @@ void delay_ms(const uint16_t);
 
 
 
- const char log_format[] = "^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%.1f,%.1f,%.2f,%d,%.1f,%.1f,%.1f,%4.1f,%.2f,%u,%5.3f,%5.3f,%u,%s,~\r\n";
+ const char log_format[] = "^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%.1f,%.1f,%.2f,%.2f,%d,%.1f,%.1f,%.1f,%4.1f,%.2f,%u,%5.3f,%5.3f,%u,%s,~\r\n";
 
 
 
@@ -41599,7 +41599,7 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[96] = "Boot Init Display   ", can_buffer[64*2], info_buffer[96];
-const char *build_date = "Sep 29 2023", *build_time = "11:08:33";
+const char *build_date = "Sep 29 2023", *build_time = "12:34:54";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
@@ -42101,7 +42101,7 @@ void state_mx_status_cb(void)
 
    snprintf(buffer, 25, "%s", asctime(can_newtime));
    buffer[26] = 0;
-   snprintf(can_buffer, 64*2, log_format, abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, pv_Wh_daily, ac_Wh_daily, B.run_time, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, EBD.bat_energy / 3600.0f, EBD.bat_cycles, ((float) em.pfl1) / 1000.0f, ((float) emt.hz) / 1000.0f, B.rx_count++,buffer);
+   snprintf(can_buffer, 64*2, log_format, abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, pv_Wh_daily, ac_Wh_daily, B.run_time, B.net_balance, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, EBD.bat_energy / 3600.0f, EBD.bat_cycles, ((float) em.pfl1) / 1000.0f, ((float) emt.hz) / 1000.0f, B.rx_count++,buffer);
    printf("%s", can_buffer);
    if (B.FM80_online) {
     bat_amp_whole = abuf[3] - 128;

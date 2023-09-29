@@ -78,7 +78,7 @@ void get_bm_data(EB_data * EB)
 	if (UART2_is_rx_ready()) {
 		rxData = UART2_Read();
 		switch (rxData) {
-		case 'A':
+		case 'A': // alternative data display for rows 2 and 3
 			B.alt_display = MAX_ALT_DIS;
 		case 'a':
 			B.alt_display++;
@@ -144,6 +144,11 @@ void get_bm_data(EB_data * EB)
 				printf("%s^\r\n", s_buffer);
 			}
 			break;
+		case 'W': // Write current state to EEPROM data
+		case 'w':
+			wr_bm_data((void*) &EBD);
+			MM_ERROR_S;
+			break;
 		default:
 			break;
 		}
@@ -170,6 +175,9 @@ void compute_bm_data(EB_data * EB)
 		if (B.run_time > 300.0f) {
 			B.run_time = 300.0f;
 		}
+		if (B.run_time < 0.0001f) {
+			B.run_time = 0.0001f;
+		}
 		/*
 		 * try to sync BMS charged condition to monitor charged condition and set full energy levels
 		 */
@@ -183,6 +191,9 @@ void compute_bm_data(EB_data * EB)
 		net_balance = net_balance; // net drain, inverter correction already applied: possible future second order corrections here
 		B.net_balance = net_balance;
 		B.run_time = (EB->bat_energy / 360.0f) / fabs(net_balance);
+		if (B.run_time > 300.0f) {
+			B.run_time = 300.0f;
+		}
 		if (B.run_time < 0.0001f) {
 			B.run_time = 0.0001f;
 		}
