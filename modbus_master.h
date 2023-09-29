@@ -227,7 +227,7 @@ extern "C" {
 		F_wac = 1,
 		F_wva = 2,
 		F_var = 3,
-		F_4 = 4,
+		F_run = 4,
 		F_5 = 5,
 		F_6 = 6,
 		F_7 = 7,

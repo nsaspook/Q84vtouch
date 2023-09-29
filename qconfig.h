@@ -36,6 +36,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <time.h>
+#include <math.h>
 
 //#define CAN_REMOTE	// can received data on LCD for remote mate board
 

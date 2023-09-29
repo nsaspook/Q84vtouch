@@ -16,9 +16,10 @@ extern "C" {
 #include "modbus_master.h"
 #include "mateQ84.X/mxcmd.h"
 
+#define CHK_DAY_TIME	90
 #define TEN_SEC_HOUR	360.0f
-#define BM_CM           0x57
-#define BM_VER          1
+#define BM_EEPROM_VER   1
+#define BM_CM           0x57+BM_EEPROM_VER
 #define BM_UPDATE       3600	// seconds between EEPROM updates, sleeping
 #define BM_UPDATE_RUN	1800	// while running
 
@@ -45,11 +46,12 @@ extern "C" {
 #define IDLE_DRAIN      10.0f	// system operational drain losses in Wh
 #define INV_EFF_VAL     1.06f	// DC watts to AC watt inverter correction
 
+#define MAX_ALT_DIS	3
 	// EEPROM data storage structure
 
 	typedef struct EB_data {
 		uint8_t checkmark;
-		uint8_t version;
+		uint8_t version, alt_display;
 		bool loaded;
 		float FMw, FMpv, FMa, FMbv, ENw, ENva, ENvar, ENac;
 		float volt_whole, bat_amp_whole;
@@ -62,8 +64,8 @@ extern "C" {
 	/*
 	 * logging data format for printf and variables
 	 */
-	const char log_format[] = "^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%.1f,%.1f,%d,%.1f,%.1f,%.1f,%4.1f,%.2f,%u,%5.3f,%5.3f,%u,%s,~\r\n";
-#define LOG_VARS	abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, pv_Wh_daily, ac_Wh_daily, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, EBD.bat_energy / 3600.0f, EBD.bat_cycles, ((float) em.pfl1) / 1000.0f, ((float) emt.hz) / 1000.0f, B.rx_count++,buffer
+	const char log_format[] = "^,%d.%01d,%d.%01d,%d,%d.%01d,%d,%.1f,%.1f,%.2f,%d,%.1f,%.1f,%.1f,%4.1f,%.2f,%u,%5.3f,%5.3f,%u,%s,~\r\n";
+#define LOG_VARS	abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, pv_Wh_daily, ac_Wh_daily, B.run_time, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, EBD.bat_energy / 3600.0f, EBD.bat_cycles, ((float) em.pfl1) / 1000.0f, ((float) emt.hz) / 1000.0f, B.rx_count++,buffer
 
 #define BVSOC_SLOTS     12      // 24V LiFePO4 Battery to SOC data table slots
 	const uint32_t BVSOC_TABLE[BVSOC_SLOTS][2] = {

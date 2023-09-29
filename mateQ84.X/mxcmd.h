@@ -22,7 +22,7 @@ extern "C" {
 #include "../timers.h"
 
 #define VER	1
-	const char build_version[] = "V1.81 FM80 Q84";
+	const char build_version[] = "V1.85 FM80 Q84";
 	/*
 	 * code changes
 	 * 1.55 remove critical section interrupt disables for FM80 serial
@@ -44,6 +44,8 @@ extern "C" {
 	 * 1.75 lockout CANBUS during FM80 serial receive functions
 	 * 1.80 fix LCD DMA transfers using SPI, still needs a bit of work during startup
 	 * 1.81 fix scroll buffer junk and add running PV Wh energy total for the day
+	 * 1.82 day/night switching glitches
+	 * 1.85 run time accounting and logging
 	 */
 
 #define MAX_B_BUF	96
@@ -135,9 +137,10 @@ extern "C" {
 
 	typedef struct B_type {
 		volatile bool ten_sec_flag, one_sec_flag, FM80_charged, pv_high, pv_update;
-		uint16_t pacing, rx_count, flush, pv_prev;
+		volatile uint16_t pacing, rx_count, flush, pv_prev, day_check;
 		volatile bool FM80_online, FM80_io;
-		volatile uint8_t canbus_online, modbus_online;
+		volatile uint8_t canbus_online, modbus_online,alt_display;
+		float run_time, net_balance;
 		uint16_t mui[10];
 		uint16_t fwrev[3];
 		mx_logpage_t log;

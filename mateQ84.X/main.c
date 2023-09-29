@@ -342,6 +342,7 @@ void main(void)
 	snprintf(buffer, MAX_B_BUF, "%s   ", build_date);
 	eaDogM_WriteStringAtPos(1, 0, buffer);
 	if (initbm_data((void*) &EBD)) {
+		B.alt_display = EBD.alt_display;
 		snprintf(buffer, MAX_B_BUF, "Battery data loaded   ");
 	} else {
 		/* display build time and boot status codes 67 34 07, WDT reset 67 24 07 */
@@ -648,6 +649,13 @@ void state_status_cb(void)
 	 * sets update flag if day state changes and has day change charge controllers
 	 * status in pv_prev variable
 	 */
+
+	/* clear event counter timer 10s ticks */
+	if (B.day_check++ > CHK_DAY_TIME) {
+		B.day_check = 0;
+		day_clocks = 0;
+	}
+
 	if (FMxx_STATE != STATUS_SLEEPING) {
 		if (++day_clocks > BAT_DAY_COUNT) {
 			day_clocks = 0;
@@ -760,13 +768,38 @@ void state_mx_status_cb(void)
 			buffer[26] = 0; // remove newline
 			snprintf(can_buffer, MAX_C_BUF, log_format, LOG_VARS);
 			printf("%s", can_buffer); // log to USART
-			snprintf(buffer, MAX_B_BUF, "%d Watts %d.%01d Volts   ", panel_watts, volt_whole, volt_fract);
-			eaDogM_WriteStringAtPos(2, 0, buffer);
 			if (B.FM80_online) {
 				bat_amp_whole = abuf[3] - 128;
 			}
-			snprintf(buffer, MAX_B_BUF, "%d.%01d Amps %d.%01d Volts   ", bat_amp_whole, abuf[1]&0x0f, vw, vf);
-			eaDogM_WriteStringAtPos(3, 0, buffer);
+
+			switch (B.alt_display) {
+			case 3:
+				snprintf(buffer, MAX_B_BUF, "%4.2fHours              ", lp_filter(B.run_time, F_run, false));
+				eaDogM_WriteStringAtPos(2, 0, buffer);
+				snprintf(buffer, MAX_B_BUF, "ALT 3                   ");
+				eaDogM_WriteStringAtPos(3, 0, buffer);
+				break;
+			case 2:
+				snprintf(buffer, MAX_B_BUF, "%4.2fBE %4.2fLW         ", EBD.bat_energy / 360.0f, (float) em.wl1 / 10.0f);
+				eaDogM_WriteStringAtPos(2, 0, buffer);
+				snprintf(buffer, MAX_B_BUF, "ALT 2                   ");
+				eaDogM_WriteStringAtPos(3, 0, buffer);
+				break;
+			case 1:
+				snprintf(buffer, MAX_B_BUF, "%4.2fHr %4.2fBW           ", B.run_time, B.net_balance);
+				eaDogM_WriteStringAtPos(2, 0, buffer);
+				snprintf(buffer, MAX_B_BUF, "%d.%01d Amps %d.%01d Volts   ", bat_amp_whole, abuf[1]&0x0f, vw, vf);
+				eaDogM_WriteStringAtPos(3, 0, buffer);
+				break;
+			case 0:
+			default:
+				snprintf(buffer, MAX_B_BUF, "%d Watts %d.%01d Volts   ", panel_watts, volt_whole, volt_fract);
+				eaDogM_WriteStringAtPos(2, 0, buffer);
+				snprintf(buffer, MAX_B_BUF, "%d.%01d Amps %d.%01d Volts   ", bat_amp_whole, abuf[1]&0x0f, vw, vf);
+				eaDogM_WriteStringAtPos(3, 0, buffer);
+				break;
+			}
+
 			can_fd_tx(); // send the logging packet via CANBUS
 			snprintf(info_buffer, MAX_B_BUF, " Data OK\r\n");
 			/*

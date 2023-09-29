@@ -2,13 +2,14 @@
 
 EB_data EBD = {
 	.checkmark = BM_CM,
-	.version = BM_VER,
+	.version = BM_EEPROM_VER,
 	.loaded = false,
 	.bat_cycles = 0,
 	.bat_energy = BAT_ENERGY,
 	.bat_mode = 0,
 	.bat_time = 0,
 	.crc = 0,
+	.alt_display = 0,
 };
 
 uint16_t EBD_update = 0; // EEPROM write counter for BM_UPDATE
@@ -77,6 +78,15 @@ void get_bm_data(EB_data * EB)
 	if (UART2_is_rx_ready()) {
 		rxData = UART2_Read();
 		switch (rxData) {
+		case 'A':
+			B.alt_display = MAX_ALT_DIS;
+		case 'a':
+			B.alt_display++;
+			if (B.alt_display > MAX_ALT_DIS) {
+				B.alt_display = 0;
+			}
+			EBD.alt_display = B.alt_display;
+			break;
 		case 'D':
 		case 'd':
 			snprintf(s_buffer, 21, "%s", asctime(can_newtime));
@@ -153,8 +163,13 @@ void compute_bm_data(EB_data * EB)
 	ac_Wh_daily += (EB->ENw / TEN_SEC_HOUR);
 
 	net_balance = EB->FMw - (EB->ENw * INV_EFF_VAL); // make the energy comparison AC -> DC watts equal using inverter losses
-	if (net_balance > 0.0001) { // more energy from panels than current load usage
+	if (net_balance > 0.0001f) { // more energy from panels than current load usage
 		net_balance = net_balance * BAT_EFF_VAL; // actual battery energy storage correction, energy in vs energy out losses
+		B.net_balance = net_balance;
+		B.run_time = (EB->bat_energy / 360.0f) / IDLE_DRAIN;
+		if (B.run_time > 300.0f) {
+			B.run_time = 300.0f;
+		}
 		/*
 		 * try to sync BMS charged condition to monitor charged condition and set full energy levels
 		 */
@@ -166,6 +181,11 @@ void compute_bm_data(EB_data * EB)
 		}
 	} else {
 		net_balance = net_balance; // net drain, inverter correction already applied: possible future second order corrections here
+		B.net_balance = net_balance;
+		B.run_time = (EB->bat_energy / 360.0f) / fabs(net_balance);
+		if (B.run_time < 0.0001f) {
+			B.run_time = 0.0001f;
+		}
 		/*
 		 * reset possible battery energy sync function
 		 */
@@ -184,7 +204,7 @@ void compute_bm_data(EB_data * EB)
 	if (EB->bat_energy > BAT_ENERGY) { // limit up energy
 		EB->bat_energy = BAT_ENERGY;
 	}
-	if (EB->bat_energy <= 0.0f) { // limit down energy
+	if (EB->bat_energy <= 0.0001f) { // limit down energy
 		EB->bat_energy = 0.0001f;
 	}
 
@@ -195,8 +215,8 @@ void compute_bm_data(EB_data * EB)
 		} else { // night to day update
 			pv_Wh_daily_prev = pv_Wh_daily;
 			ac_Wh_daily_prev = ac_Wh_daily;
-			pv_Wh_daily = 0.0f;
-			ac_Wh_daily = 0.0f;
+			pv_Wh_daily = 0.0001f;
+			ac_Wh_daily = 0.0001f;
 			run_night_to_day();
 		}
 	}
