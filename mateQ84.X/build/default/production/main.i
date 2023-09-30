@@ -41055,7 +41055,7 @@ double y0(double);
 double y1(double);
 double yn(int, double);
 # 40 "./../qconfig.h" 2
-# 50 "./../qconfig.h"
+# 57 "./../qconfig.h"
 const char spin[6][20] = {
  "||//--",
  "||//--\\\\",
@@ -41246,7 +41246,7 @@ void delay_ms(const uint16_t);
 
 
 # 1 "./../modbus_master.h" 1
-# 83 "./../modbus_master.h"
+# 90 "./../modbus_master.h"
  typedef enum comm_type {
   CLEAR = 0,
   INIT,
@@ -41462,7 +41462,7 @@ void delay_ms(const uint16_t);
   0x44, 0x84, 0x85, 0x45, 0x87, 0x47, 0x46, 0x86, 0x82, 0x42,
   0x43, 0x83, 0x41, 0x81, 0x80, 0x40
  };
-# 316 "./../modbus_master.h"
+# 323 "./../modbus_master.h"
  uint16_t crc16(volatile uint8_t *, uint16_t);
  uint16_t modbus_rtu_send_msg(void *, const void *, uint16_t);
 
@@ -41599,7 +41599,7 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[96] = "Boot Init Display   ", can_buffer[64*2], info_buffer[96];
-const char *build_date = "Sep 29 2023", *build_time = "12:34:54";
+const char *build_date = "Sep 30 2023", *build_time = "02:17:46";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
@@ -41750,7 +41750,9 @@ void main(void)
 
  }
  while (1) {
-  do { LATDbits.LATD5 = 1; } while(0);
+
+
+
 
 
   master_controller_work(&C);
@@ -41875,7 +41877,7 @@ void main(void)
      }
     } else {
      M.error = 0;
-# 533 "main.c"
+# 535 "main.c"
      snprintf(buffer, 96, "EMon  %6.1fWh   %c%c    ", EBD.bat_energy / 360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
      eaDogM_WriteStringAtPos(1, 0, buffer);
      snprintf(buffer, 96, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
@@ -41884,7 +41886,9 @@ void main(void)
     }
    }
   }
-  do { LATDbits.LATD5 = 0; } while(0);
+
+
+
  }
 }
 
@@ -41985,7 +41989,7 @@ void state_status_cb(void)
 {
  static uint16_t day_clocks = 0;
  static uint8_t status_prev = STATUS_SLEEPING;
-# 654 "main.c"
+# 658 "main.c"
  if (B.day_check++ > 90) {
   B.day_check = 0;
   day_clocks = 0;

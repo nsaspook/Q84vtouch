@@ -141,7 +141,7 @@ uint16_t crc16(volatile uint8_t *buffer, uint16_t buffer_length) {
 void my_modbus_rx_32(void) {
     static uint8_t m_data = 0;
 
-    IO_RB6_Toggle();
+    INT_TRACE;
     M.rx = true;
     /*
      * process received controller data stream
@@ -324,7 +324,7 @@ int8_t master_controller_work(C_data * client) {
             break;
         case SEND:
             client->trace = T_send;
-            if (get_500hz(false) >= TDELAY) {
+            if (get_500hz(false) >= TEDELAY) {
                 for (uint8_t i = 0; i < client->req_length; i++) {
                     Swrite(cc_buffer_tx[i]);
                 }
@@ -467,7 +467,7 @@ static void half_dup_rx(const bool delay) {
 // ISR function for TMR5
 
 void timer_500ms_tick(void) {
-    IO_RB6_Toggle();
+    INT_TRACE;
     MT.clock_2hz++;
     MT.clock_blinks++;
 }
@@ -475,7 +475,7 @@ void timer_500ms_tick(void) {
 // ISR function for TMR6
 
 void timer_2ms_tick(void) {
-    IO_RB6_Toggle();
+    INT_TRACE;
     MT.clock_500hz++;
     MT.clock_10hz++;
 }
@@ -513,17 +513,17 @@ void mb_tx_test(C_data * client) {
 }
 
 static void UART1_DefaultFramingErrorHandler_mb(void) {
-    IO_RB6_Toggle(); // GPIO interrupt scope trace
+    INT_TRACE; // GPIO interrupt scope trace
     MM_ERROR_S;
 }
 
 static void UART1_DefaultOverrunErrorHandler_mb(void) {
-    IO_RB6_Toggle(); // GPIO interrupt scope trace
+    INT_TRACE; // GPIO interrupt scope trace
     MM_ERROR_S;
 }
 
 static void UART1_DefaultErrorHandler_mb(void) {
-    IO_RB6_Toggle(); // GPIO interrupt scope trace
+    INT_TRACE; // GPIO interrupt scope trace
     MM_ERROR_S;
 }
 

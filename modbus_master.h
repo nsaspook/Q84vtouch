@@ -42,7 +42,7 @@ extern "C" {
 	/*
 	 * Display MODBUS debugging info screen
 	 */
-//#define SHOW_MODBUS_DEBUG
+	//#define SHOW_MODBUS_DEBUG
 
 #include <xc.h>
 #include <stdint.h>
@@ -52,6 +52,13 @@ extern "C" {
 #include "mateQ84.X/mcc_generated_files/mcc.h"
 #include "timers.h"
 
+//#define TRACE
+
+#ifdef TRACE
+#define INT_TRACE	IO_RB6_Toggle()
+#else
+#define INT_TRACE	""
+#endif
 	/*
 	 * 5Hz data updates in FASTQ mode
 	 */

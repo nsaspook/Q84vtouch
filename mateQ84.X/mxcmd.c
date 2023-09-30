@@ -46,7 +46,7 @@ uint8_t FM_tx(const uint16_t * data, const uint8_t count) {
  * polls the required UART registers for 9-bit send and receive into 16-bit arrays
  */
 void FM_io(void) {
-    IO_RB6_Toggle(); // GPIO interrupt scope trace
+    INT_TRACE; // GPIO interrupt scope trace
     MISC_SetHigh(); // serial CPU usage signal for I/O polling
 
     if (pace++ > BUFFER_SPACING) {
@@ -132,14 +132,14 @@ uint8_t FM_rx_count(void) {
 }
 
 void onesec_io(void) {
-    IO_RB6_Toggle(); // GPIO interrupt scope trace
+    INT_TRACE; // GPIO interrupt scope trace
     RLED_Toggle();
     MLED_SetLow();
     B.one_sec_flag = true;
 }
 
 void tensec_io(void) {
-    IO_RB6_Toggle(); // GPIO interrupt scope trace
+    INT_TRACE; // GPIO interrupt scope trace
     DLED1_Toggle();
     DLED_Toggle();
     MLED_SetLow();

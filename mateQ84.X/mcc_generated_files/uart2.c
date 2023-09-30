@@ -52,6 +52,13 @@
 #include "interrupt_manager.h"
 
 #define IO_RB6_Toggle()             do { LATBbits.LATB6 = ~LATBbits.LATB6; } while(0)
+//#define TRACE
+
+#ifdef TRACE
+#define INT_TRACE	IO_RB6_Toggle()
+#else
+#define INT_TRACE	""
+#endif
 
 /**
   Section: Macro Declarations
@@ -230,7 +237,7 @@ void putch(char txData)
 
 void __interrupt(irq(U2TX), base(8)) UART2_tx_vect_isr()
 {
-	IO_RB6_Toggle(); // GPIO interrupt scope trace
+	INT_TRACE; // GPIO interrupt scope trace
 	if (UART2_TxInterruptHandler) {
 		UART2_TxInterruptHandler();
 	}
@@ -238,7 +245,7 @@ void __interrupt(irq(U2TX), base(8)) UART2_tx_vect_isr()
 
 void __interrupt(irq(U2RX), base(8)) UART2_rx_vect_isr()
 {
-	IO_RB6_Toggle(); // GPIO interrupt scope trace
+	INT_TRACE; // GPIO interrupt scope trace
 	if (UART2_RxInterruptHandler) {
 		UART2_RxInterruptHandler();
 	}

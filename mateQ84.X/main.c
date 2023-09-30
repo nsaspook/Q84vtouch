@@ -376,7 +376,9 @@ void main(void)
 #endif
 	}
 	while (true) {
+#ifdef TRACE
 		IO_RD5_SetHigh(); // main loop timing
+#endif
 		// Add your application code
 #ifdef MB_MASTER
 		master_controller_work(&C); // master MODBUS processing
@@ -538,7 +540,9 @@ void main(void)
 				}
 			}
 		}
+#ifdef TRACE
 		IO_RD5_SetLow();
+#endif
 	}
 }
 

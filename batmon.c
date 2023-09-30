@@ -87,22 +87,22 @@ void get_bm_data(EB_data * EB)
 			}
 			EBD.alt_display = B.alt_display;
 			break;
-		case 'D':
+		case 'D': // display time
 		case 'd':
 			snprintf(s_buffer, 21, "%s", asctime(can_newtime));
 			eaDogM_Scroll_String(s_buffer);
 			break;
-		case 'f':
+		case 'f': // set energy to Full
 		case 'F':
 			EB->bat_energy = BAT_ENERGY;
 			EBD.bat_cycles++;
 			break;
-		case 'e':
+		case 'e': // set energy to Empty
 		case 'E':
 			EB->bat_energy = 1;
 			EBD.bat_cycles++;
 			break;
-		case 'i':
+		case 'i': // start Info scroll on display
 		case 'I':
 			snprintf(s_buffer, 21, "%s %u                  ", ems.serial, ems.year);
 			eaDogM_Scroll_String(s_buffer);
@@ -113,10 +113,10 @@ void get_bm_data(EB_data * EB)
 			snprintf(s_buffer, 21, "FM80 FW %X.%X.%X                ", B.fwrev[0], B.fwrev[1], B.fwrev[2]);
 			eaDogM_Scroll_String(s_buffer);
 			break;
-		case 'R': // reset command states
+		case 'R': // reset log data command state
 		case 'r':
 			B.log.select = 0;
-		case 'L':
+		case 'L':// send day log date t logging serial port
 		case 'l':
 			B.log.select++; // pull the next days log data
 			snprintf(s_buffer, 21, "Pwr %5.2fkWpk %5.2fkWh              ", (float) B.log.kilowatts_peak / 1000.0, (float) B.log.kilowatt_hours / 10.0);

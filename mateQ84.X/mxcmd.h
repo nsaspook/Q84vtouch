@@ -51,7 +51,7 @@ extern "C" {
 #define MAX_B_BUF	96
 #define MAX_C_BUF	CANFD_BYTES*2
 #define IO_TEST
-
+	
 #define	FM_BUFFER	32
 #define BUFFER_SPACING	4
 #define SPINNER_SPEED	200

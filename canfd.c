@@ -32,7 +32,7 @@ void Can1FIFO1NotEmptyHandler(void) {
     uint8_t tries = 0;
     static uint8_t half = CAN_LOW_BUF;
 
-    IO_RB6_Toggle(); // GPIO interrupt scope trace
+    INT_TRACE; // GPIO interrupt scope trace
 #ifdef CAN_REMOTE	
     char s_buffer[LCD_BUF_SIZ];
 #endif
@@ -234,6 +234,6 @@ void can_fd_lcd_mirror(const uint8_t r, char *strPtr) {
 }
 
 void TXQNotFullHandler(void) {
-    IO_RB6_Toggle(); // GPIO interrupt scope trace
+    INT_TRACE; // GPIO interrupt scope trace
     C1INTUbits.TXIE = 0;
 }

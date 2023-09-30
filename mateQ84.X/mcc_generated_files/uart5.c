@@ -52,6 +52,13 @@
 #include "interrupt_manager.h"
 
 #define IO_RB6_Toggle()             do { LATBbits.LATB6 = ~LATBbits.LATB6; } while(0)
+//#define TRACE
+
+#ifdef TRACE
+#define INT_TRACE	IO_RB6_Toggle()
+#else
+#define INT_TRACE	""
+#endif
 
 /**
   Section: Macro Declarations
@@ -211,7 +218,7 @@ void UART5_Write(uint8_t txData)
 
 void __interrupt(irq(U5TX), base(8)) UART5_tx_vect_isr()
 {
-	IO_RB6_Toggle(); // GPIO interrupt scope trace
+	INT_TRACE; // GPIO interrupt scope trace
 	if (UART5_TxInterruptHandler) {
 		UART5_TxInterruptHandler();
 	}
@@ -219,7 +226,7 @@ void __interrupt(irq(U5TX), base(8)) UART5_tx_vect_isr()
 
 void __interrupt(irq(U5RX), base(8)) UART5_rx_vect_isr()
 {
-	IO_RB6_Toggle(); // GPIO interrupt scope trace
+	INT_TRACE; // GPIO interrupt scope trace
 	if (UART5_RxInterruptHandler) {
 		UART5_RxInterruptHandler();
 	}

@@ -282,7 +282,7 @@ void wait_lcd_done(void) {
  * in DMA mode this is a ISR that runs when the source count is complete
  */
 void clear_lcd_done(void) {
-    IO_RB6_Toggle(); // GPIO interrupt scope trace
+    INT_TRACE; // GPIO interrupt scope trace
     spi_link.LCD_DATA = false;
 }
 
@@ -295,7 +295,7 @@ void spi_rec_done(void) {
  * SPI buffer overrun ISR
  */
 static void spi_byte(void) {
-    IO_RB6_Toggle(); // GPIO interrupt scope trace
+    INT_TRACE; // GPIO interrupt scope trace
     MLED_Toggle();
 }
 
