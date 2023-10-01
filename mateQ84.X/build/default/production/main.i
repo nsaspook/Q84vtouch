@@ -41500,7 +41500,7 @@ void delay_ms(const uint16_t);
 # 1 "./../canfd.h" 1
 # 21 "./../canfd.h"
 # 1 "./../batmon.h" 1
-# 52 "./../batmon.h"
+# 53 "./../batmon.h"
  typedef struct EB_data {
   uint8_t checkmark;
   uint8_t version, alt_display;
@@ -41572,7 +41572,7 @@ void delay_ms(const uint16_t);
  void TXQNotFullHandler(void);
  void Can1FIFO1NotEmptyHandler(void);
 
- extern char can_buffer[64*2], info_buffer[96];
+ extern char can_buffer[64*2], info_buffer[255];
  void can_fd_tx(void);
  void can_setup(void);
  void can_fd_lcd_mirror(const uint8_t, char *);
@@ -41598,8 +41598,8 @@ static uint16_t abuf[32], cbuf[32 + 2];
 volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
-char buffer[96] = "Boot Init Display   ", can_buffer[64*2], info_buffer[96];
-const char *build_date = "Sep 30 2023", *build_time = "02:17:46";
+char buffer[255] = "Boot Init Display   ", can_buffer[64*2], info_buffer[255];
+const char *build_date = "Sep 30 2023", *build_time = "14:48:01";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
@@ -41711,22 +41711,22 @@ void main(void)
  StartTimer(TMR_SPIN, 200);
 
  init_display();
- snprintf(buffer, 96, "%s   ", build_version);
+ snprintf(buffer, 255, "%s   ", build_version);
  eaDogM_WriteStringAtPos(0, 0, buffer);
- snprintf(buffer, 96, "%s   ", build_date);
+ snprintf(buffer, 255, "%s   ", build_date);
  eaDogM_WriteStringAtPos(1, 0, buffer);
  if (initbm_data((void*) &EBD)) {
   B.alt_display = EBD.alt_display;
-  snprintf(buffer, 96, "Battery data loaded   ");
+  snprintf(buffer, 255, "Battery data loaded   ");
  } else {
 
-  snprintf(buffer, 96, "%s B:%X %X %X   ", build_time, STATUS, PCON0, PCON1);
+  snprintf(buffer, 255, "%s B:%X %X %X   ", build_time, STATUS, PCON0, PCON1);
  }
  eaDogM_WriteStringAtPos(2, 0, buffer);
- snprintf(buffer, 96, "%s ", "Start Up            ");
+ snprintf(buffer, 255, "%s ", "Start Up            ");
  eaDogM_WriteStringAtPos(3, 0, buffer);
  wdtdelay(1000000);
- snprintf(buffer, 96, "%s ", "Polling FM80        ");
+ snprintf(buffer, 255, "%s ", "Polling FM80        ");
  eaDogM_WriteStringAtPos(2, 0, buffer);
 
  can_fd_tx();
@@ -41751,7 +41751,7 @@ void main(void)
  }
  while (1) {
 
-
+  do { LATDbits.LATD5 = 1; } while(0);
 
 
 
@@ -41860,14 +41860,14 @@ void main(void)
     }
     StartTimer(TMR_SPIN, 200);
     if (C.data_ok && (M.error > error_save)) {
-     snprintf(buffer, 96, "EMon  %4.1fVAC   %c%c    ", lp_filter(ac, F_ac, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
+     snprintf(buffer, 255, "EMon  %4.1fVAC   %c%c    ", lp_filter(ac, F_ac, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
      eaDogM_WriteStringAtPos(1, 0, buffer);
-     snprintf(info_buffer, 96, " error logged \r\n");
+     snprintf(info_buffer, 255, " error logged \r\n");
      if (e_update == 0) {
 
 
 
-      snprintf(buffer, 96, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
+      snprintf(buffer, 255, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
 
       eaDogM_WriteStringAtPos(0, 0, buffer);
      }
@@ -41878,16 +41878,16 @@ void main(void)
     } else {
      M.error = 0;
 # 535 "main.c"
-     snprintf(buffer, 96, "EMon  %6.1fWh   %c%c    ", EBD.bat_energy / 360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
+     snprintf(buffer, 255, "EMon  %6.1fWh   %c%c    ", EBD.bat_energy / 360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
      eaDogM_WriteStringAtPos(1, 0, buffer);
-     snprintf(buffer, 96, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
+     snprintf(buffer, 255, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
      eaDogM_WriteStringAtPos(0, 0, buffer);
 
     }
    }
   }
 
-
+  do { LATDbits.LATD5 = 0; } while(0);
 
  }
 }
@@ -41968,12 +41968,12 @@ void state_init_cb(void)
   }
   B.FM80_online = 1;
   off_delay = 0;
-  snprintf(buffer, 96, "FM80 Online         ");
+  snprintf(buffer, 255, "FM80 Online         ");
 
   eaDogM_WriteStringAtPos(3, 0, buffer);
 
  } else {
-  snprintf(buffer, 96, "FM80 Offline        ");
+  snprintf(buffer, 255, "FM80 Offline        ");
 
   eaDogM_WriteStringAtPos(3, 0, buffer);
 
@@ -42113,34 +42113,34 @@ void state_mx_status_cb(void)
 
    switch (B.alt_display) {
    case 3:
-    snprintf(buffer, 96, "%4.2fHours              ", lp_filter(B.run_time, F_run, 0));
+    snprintf(buffer, 255, "%4.2fHours              ", lp_filter(B.run_time, F_run, 0));
     eaDogM_WriteStringAtPos(2, 0, buffer);
-    snprintf(buffer, 96, "ALT 3                   ");
+    snprintf(buffer, 255, "ALT 3                   ");
     eaDogM_WriteStringAtPos(3, 0, buffer);
     break;
    case 2:
-    snprintf(buffer, 96, "%4.2fBE %4.2fLW         ", EBD.bat_energy / 360.0f, (float) em.wl1 / 10.0f);
+    snprintf(buffer, 255, "%4.2fBE %4.2fLW         ", EBD.bat_energy / 360.0f, (float) em.wl1 / 10.0f);
     eaDogM_WriteStringAtPos(2, 0, buffer);
-    snprintf(buffer, 96, "ALT 2                   ");
+    snprintf(buffer, 255, "ALT 2                   ");
     eaDogM_WriteStringAtPos(3, 0, buffer);
     break;
    case 1:
-    snprintf(buffer, 96, "%4.2fHr %4.2fBW           ", B.run_time, B.net_balance);
+    snprintf(buffer, 255, "%4.2fHr %4.2fBW           ", B.run_time, B.net_balance);
     eaDogM_WriteStringAtPos(2, 0, buffer);
-    snprintf(buffer, 96, "%d.%01d Amps %d.%01d Volts   ", bat_amp_whole, abuf[1]&0x0f, vw, vf);
+    snprintf(buffer, 255, "%d.%01d Amps %d.%01d Volts   ", bat_amp_whole, abuf[1]&0x0f, vw, vf);
     eaDogM_WriteStringAtPos(3, 0, buffer);
     break;
    case 0:
    default:
-    snprintf(buffer, 96, "%d Watts %d.%01d Volts   ", panel_watts, volt_whole, volt_fract);
+    snprintf(buffer, 255, "%d Watts %d.%01d Volts   ", panel_watts, volt_whole, volt_fract);
     eaDogM_WriteStringAtPos(2, 0, buffer);
-    snprintf(buffer, 96, "%d.%01d Amps %d.%01d Volts   ", bat_amp_whole, abuf[1]&0x0f, vw, vf);
+    snprintf(buffer, 255, "%d.%01d Amps %d.%01d Volts   ", bat_amp_whole, abuf[1]&0x0f, vw, vf);
     eaDogM_WriteStringAtPos(3, 0, buffer);
     break;
    }
 
    can_fd_tx();
-   snprintf(info_buffer, 96, " Data OK\r\n");
+   snprintf(info_buffer, 255, " Data OK\r\n");
 
 
 

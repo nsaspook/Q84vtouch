@@ -48,7 +48,7 @@ extern "C" {
 	 * 1.85 run time accounting and logging
 	 */
 
-#define MAX_B_BUF	96
+#define MAX_B_BUF	255
 #define MAX_C_BUF	CANFD_BYTES*2
 #define IO_TEST
 	

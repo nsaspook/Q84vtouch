@@ -171,9 +171,9 @@ void compute_bm_data(EB_data * EB)
 	if (net_balance > 0.0001f) { // more energy from panels than current load usage
 		net_balance = net_balance * BAT_EFF_VAL; // actual battery energy storage correction, energy in vs energy out losses
 		B.net_balance = net_balance;
-		B.run_time = (EB->bat_energy / 360.0f) / IDLE_DRAIN;
-		if (B.run_time > 300.0f) {
-			B.run_time = 300.0f;
+		B.run_time = (EB->bat_energy / TEN_SEC_HOUR) / IDLE_DRAIN;
+		if (B.run_time > BAT_RUN_MAX) {
+			B.run_time = BAT_RUN_MAX;
 		}
 		if (B.run_time < 0.0001f) {
 			B.run_time = 0.0001f;
@@ -190,9 +190,9 @@ void compute_bm_data(EB_data * EB)
 	} else {
 		net_balance = net_balance; // net drain, inverter correction already applied: possible future second order corrections here
 		B.net_balance = net_balance;
-		B.run_time = (EB->bat_energy / 360.0f) / fabs(net_balance);
-		if (B.run_time > 300.0f) {
-			B.run_time = 300.0f;
+		B.run_time = (EB->bat_energy / TEN_SEC_HOUR) / fabs(net_balance);
+		if (B.run_time > BAT_RUN_MAX) {
+			B.run_time = BAT_RUN_MAX;
 		}
 		if (B.run_time < 0.0001f) {
 			B.run_time = 0.0001f;

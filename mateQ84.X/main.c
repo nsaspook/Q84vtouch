@@ -532,7 +532,7 @@ void main(void)
 					eaDogM_WriteStringAtPos(3, 0, buffer);
 #endif
 #else
-					snprintf(buffer, MAX_B_BUF, "EMon  %6.1fWh   %c%c    ", EBD.bat_energy / 360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
+					snprintf(buffer, MAX_B_BUF, "EMon  %6.1fWh   %c%c    ", EBD.bat_energy / TEN_SEC_HOUR, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
 					eaDogM_WriteStringAtPos(1, 0, buffer);
 					snprintf(buffer, MAX_B_BUF, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, false), lp_filter(wva, F_wva, false), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
 					eaDogM_WriteStringAtPos(0, 0, buffer);
@@ -784,7 +784,7 @@ void state_mx_status_cb(void)
 				eaDogM_WriteStringAtPos(3, 0, buffer);
 				break;
 			case 2:
-				snprintf(buffer, MAX_B_BUF, "%4.2fBE %4.2fLW         ", EBD.bat_energy / 360.0f, (float) em.wl1 / 10.0f);
+				snprintf(buffer, MAX_B_BUF, "%4.2fBE %4.2fLW         ", EBD.bat_energy / TEN_SEC_HOUR, (float) em.wl1 / 10.0f);
 				eaDogM_WriteStringAtPos(2, 0, buffer);
 				snprintf(buffer, MAX_B_BUF, "ALT 2                   ");
 				eaDogM_WriteStringAtPos(3, 0, buffer);

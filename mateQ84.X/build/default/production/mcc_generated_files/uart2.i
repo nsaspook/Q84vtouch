@@ -39054,7 +39054,7 @@ void putch(char txData)
 
 void __attribute__((picinterrupt(("irq(U2TX), base(8)")))) UART2_tx_vect_isr()
 {
- "";
+ do { LATBbits.LATB6 = ~LATBbits.LATB6; } while(0);
  if (UART2_TxInterruptHandler) {
   UART2_TxInterruptHandler();
  }
@@ -39062,7 +39062,7 @@ void __attribute__((picinterrupt(("irq(U2TX), base(8)")))) UART2_tx_vect_isr()
 
 void __attribute__((picinterrupt(("irq(U2RX), base(8)")))) UART2_rx_vect_isr()
 {
- "";
+ do { LATBbits.LATB6 = ~LATBbits.LATB6; } while(0);
  if (UART2_RxInterruptHandler) {
   UART2_RxInterruptHandler();
  }

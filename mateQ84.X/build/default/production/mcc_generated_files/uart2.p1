@@ -121,6 +121,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _U2TXB `Vuc ~T0 @X0 0 e@694 ]
 [t ~ __interrupt . k ]
 [t T1 __interrupt irq ( U2TX ) base ( 8 ) ]
+"3628
+[s S3154 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S3154 . LATB0 LATB1 LATB2 LATB3 LATB4 LATB5 LATB6 LATB7 ]
+"3627
+[u S3153 `S3154 1 ]
+[n S3153 . . ]
+"3639
+[; ;/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.22.413/xc8/pic/include/proc/pic18f47q84.h: 3639: extern volatile unsigned char SPI1TCNTL __attribute__((address(0x082)));
+[v _LATBbits `VS3153 ~T0 @X0 0 e@1215 ]
 [v F23306 `(v ~T0 @X0 0 tf ]
 [t T2 __interrupt irq ( U2RX ) base ( 8 ) ]
 [v F23308 `(v ~T0 @X0 0 tf ]
@@ -4135,11 +4144,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _UART2_tx_vect_isr ]
 [f ]
 "240
-[; ;mcc_generated_files/uart2.c: 240:  "";
-[e :s 1C ]
+[; ;mcc_generated_files/uart2.c: 240:  do { LATBbits.LATB6 = ~LATBbits.LATB6; } while(0);
+[e :U 3301 ]
+{
+[e = . . _LATBbits 0 6 -> ~ -> . . _LATBbits 0 6 `i `uc ]
+}
+[e :U 3300 ]
 "241
 [; ;mcc_generated_files/uart2.c: 241:  if (UART2_TxInterruptHandler) {
-[e $ ! != _UART2_TxInterruptHandler -> -> 0 `i `*F23306 3299  ]
+[e $ ! != _UART2_TxInterruptHandler -> -> 0 `i `*F23306 3302  ]
 {
 "242
 [; ;mcc_generated_files/uart2.c: 242:   UART2_TxInterruptHandler();
@@ -4147,7 +4160,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "243
 [; ;mcc_generated_files/uart2.c: 243:  }
 }
-[e :U 3299 ]
+[e :U 3302 ]
 "244
 [; ;mcc_generated_files/uart2.c: 244: }
 [e :UE 3298 ]
@@ -4162,11 +4175,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _UART2_rx_vect_isr ]
 [f ]
 "248
-[; ;mcc_generated_files/uart2.c: 248:  "";
-[e :s 2C ]
+[; ;mcc_generated_files/uart2.c: 248:  do { LATBbits.LATB6 = ~LATBbits.LATB6; } while(0);
+[e :U 3306 ]
+{
+[e = . . _LATBbits 0 6 -> ~ -> . . _LATBbits 0 6 `i `uc ]
+}
+[e :U 3305 ]
 "249
 [; ;mcc_generated_files/uart2.c: 249:  if (UART2_RxInterruptHandler) {
-[e $ ! != _UART2_RxInterruptHandler -> -> 0 `i `*F23308 3301  ]
+[e $ ! != _UART2_RxInterruptHandler -> -> 0 `i `*F23308 3307  ]
 {
 "250
 [; ;mcc_generated_files/uart2.c: 250:   UART2_RxInterruptHandler();
@@ -4174,10 +4191,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "251
 [; ;mcc_generated_files/uart2.c: 251:  }
 }
-[e :U 3301 ]
+[e :U 3307 ]
 "252
 [; ;mcc_generated_files/uart2.c: 252: }
-[e :UE 3300 ]
+[e :UE 3303 ]
 }
 "254
 [; ;mcc_generated_files/uart2.c: 254: void UART2_Transmit_ISR(void)
@@ -4189,14 +4206,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "257
 [; ;mcc_generated_files/uart2.c: 257:  if (sizeof(uart2TxBuffer) > uart2TxBufferRemaining) {
-[e $ ! > -> # _uart2TxBuffer `ui -> _uart2TxBufferRemaining `ui 3303  ]
+[e $ ! > -> # _uart2TxBuffer `ui -> _uart2TxBufferRemaining `ui 3309  ]
 {
 "258
 [; ;mcc_generated_files/uart2.c: 258:   U2TXB = uart2TxBuffer[uart2TxTail++];
 [e = _U2TXB *U + &U _uart2TxBuffer * -> ++ _uart2TxTail -> -> 1 `i `Vuc `ux -> -> # *U &U _uart2TxBuffer `ui `ux ]
 "259
 [; ;mcc_generated_files/uart2.c: 259:   if (sizeof(uart2TxBuffer) <= uart2TxTail) {
-[e $ ! <= -> # _uart2TxBuffer `ui -> _uart2TxTail `ui 3304  ]
+[e $ ! <= -> # _uart2TxBuffer `ui -> _uart2TxTail `ui 3310  ]
 {
 "260
 [; ;mcc_generated_files/uart2.c: 260:    uart2TxTail = 0;
@@ -4204,15 +4221,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 "261
 [; ;mcc_generated_files/uart2.c: 261:   }
 }
-[e :U 3304 ]
+[e :U 3310 ]
 "262
 [; ;mcc_generated_files/uart2.c: 262:   uart2TxBufferRemaining++;
 [e ++ _uart2TxBufferRemaining -> -> 1 `i `Vuc ]
 "263
 [; ;mcc_generated_files/uart2.c: 263:  } else {
 }
-[e $U 3305  ]
-[e :U 3303 ]
+[e $U 3311  ]
+[e :U 3309 ]
 {
 "264
 [; ;mcc_generated_files/uart2.c: 264:   PIE8bits.U2TXIE = 0;
@@ -4220,10 +4237,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "265
 [; ;mcc_generated_files/uart2.c: 265:  }
 }
-[e :U 3305 ]
+[e :U 3311 ]
 "268
 [; ;mcc_generated_files/uart2.c: 268: }
-[e :UE 3302 ]
+[e :UE 3308 ]
 }
 "270
 [; ;mcc_generated_files/uart2.c: 270: void UART2_Receive_ISR(void)
@@ -4238,7 +4255,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . *U + &U _uart2RxStatusBuffer * -> _uart2RxHead `ux -> -> # *U &U _uart2RxStatusBuffer `ui `ux 1 -> -> 0 `i `uc ]
 "275
 [; ;mcc_generated_files/uart2.c: 275:  if (U2ERRIRbits.FERIF) {
-[e $ ! != -> . . _U2ERRIRbits 0 3 `i -> 0 `i 3307  ]
+[e $ ! != -> . . _U2ERRIRbits 0 3 `i -> 0 `i 3313  ]
 {
 "276
 [; ;mcc_generated_files/uart2.c: 276:   uart2RxStatusBuffer[uart2RxHead].ferr = 1;
@@ -4249,10 +4266,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "278
 [; ;mcc_generated_files/uart2.c: 278:  }
 }
-[e :U 3307 ]
+[e :U 3313 ]
 "280
 [; ;mcc_generated_files/uart2.c: 280:  if (U2ERRIRbits.RXFOIF) {
-[e $ ! != -> . . _U2ERRIRbits 0 1 `i -> 0 `i 3308  ]
+[e $ ! != -> . . _U2ERRIRbits 0 1 `i -> 0 `i 3314  ]
 {
 "281
 [; ;mcc_generated_files/uart2.c: 281:   uart2RxStatusBuffer[uart2RxHead].oerr = 1;
@@ -4263,10 +4280,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "283
 [; ;mcc_generated_files/uart2.c: 283:  }
 }
-[e :U 3308 ]
+[e :U 3314 ]
 "285
 [; ;mcc_generated_files/uart2.c: 285:  if (uart2RxStatusBuffer[uart2RxHead].status) {
-[e $ ! != -> . *U + &U _uart2RxStatusBuffer * -> _uart2RxHead `ux -> -> # *U &U _uart2RxStatusBuffer `ui `ux 1 `i -> 0 `i 3309  ]
+[e $ ! != -> . *U + &U _uart2RxStatusBuffer * -> _uart2RxHead `ux -> -> # *U &U _uart2RxStatusBuffer `ui `ux 1 `i -> 0 `i 3315  ]
 {
 "286
 [; ;mcc_generated_files/uart2.c: 286:   UART2_ErrorHandler();
@@ -4274,8 +4291,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "287
 [; ;mcc_generated_files/uart2.c: 287:  } else {
 }
-[e $U 3310  ]
-[e :U 3309 ]
+[e $U 3316  ]
+[e :U 3315 ]
 {
 "288
 [; ;mcc_generated_files/uart2.c: 288:   UART2_RxDataHandler();
@@ -4283,10 +4300,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "289
 [; ;mcc_generated_files/uart2.c: 289:  }
 }
-[e :U 3310 ]
+[e :U 3316 ]
 "292
 [; ;mcc_generated_files/uart2.c: 292: }
-[e :UE 3306 ]
+[e :UE 3312 ]
 }
 "294
 [; ;mcc_generated_files/uart2.c: 294: void UART2_RxDataHandler(void)
@@ -4301,7 +4318,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = *U + &U _uart2RxBuffer * -> ++ _uart2RxHead -> -> 1 `i `Vuc `ux -> -> # *U &U _uart2RxBuffer `ui `ux _U2RXB ]
 "298
 [; ;mcc_generated_files/uart2.c: 298:  if (sizeof(uart2RxBuffer) <= uart2RxHead) {
-[e $ ! <= -> # _uart2RxBuffer `ui -> _uart2RxHead `ui 3312  ]
+[e $ ! <= -> # _uart2RxBuffer `ui -> _uart2RxHead `ui 3318  ]
 {
 "299
 [; ;mcc_generated_files/uart2.c: 299:   uart2RxHead = 0;
@@ -4309,13 +4326,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 "300
 [; ;mcc_generated_files/uart2.c: 300:  }
 }
-[e :U 3312 ]
+[e :U 3318 ]
 "301
 [; ;mcc_generated_files/uart2.c: 301:  uart2RxCount++;
 [e ++ _uart2RxCount -> -> 1 `i `Vuc ]
 "302
 [; ;mcc_generated_files/uart2.c: 302: }
-[e :UE 3311 ]
+[e :UE 3317 ]
 }
 "304
 [; ;mcc_generated_files/uart2.c: 304: void UART2_DefaultFramingErrorHandler(void)
@@ -4327,7 +4344,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "306
 [; ;mcc_generated_files/uart2.c: 306: }
-[e :UE 3313 ]
+[e :UE 3319 ]
 }
 "308
 [; ;mcc_generated_files/uart2.c: 308: void UART2_DefaultOverrunErrorHandler(void)
@@ -4339,7 +4356,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "310
 [; ;mcc_generated_files/uart2.c: 310: }
-[e :UE 3314 ]
+[e :UE 3320 ]
 }
 "312
 [; ;mcc_generated_files/uart2.c: 312: void UART2_DefaultErrorHandler(void)
@@ -4354,7 +4371,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _UART2_RxDataHandler ..  ]
 "315
 [; ;mcc_generated_files/uart2.c: 315: }
-[e :UE 3315 ]
+[e :UE 3321 ]
 }
 "317
 [; ;mcc_generated_files/uart2.c: 317: void UART2_SetFramingErrorHandler(void (* interruptHandler)(void))
@@ -4374,7 +4391,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _UART2_FramingErrorHandler _interruptHandler ]
 "320
 [; ;mcc_generated_files/uart2.c: 320: }
-[e :UE 3316 ]
+[e :UE 3322 ]
 }
 "322
 [; ;mcc_generated_files/uart2.c: 322: void UART2_SetOverrunErrorHandler(void (* interruptHandler)(void))
@@ -4394,7 +4411,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _UART2_OverrunErrorHandler _interruptHandler ]
 "325
 [; ;mcc_generated_files/uart2.c: 325: }
-[e :UE 3317 ]
+[e :UE 3323 ]
 }
 "327
 [; ;mcc_generated_files/uart2.c: 327: void UART2_SetErrorHandler(void (* interruptHandler)(void))
@@ -4414,7 +4431,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _UART2_ErrorHandler _interruptHandler ]
 "330
 [; ;mcc_generated_files/uart2.c: 330: }
-[e :UE 3318 ]
+[e :UE 3324 ]
 }
 "332
 [; ;mcc_generated_files/uart2.c: 332: void UART2_SetRxInterruptHandler(void (* InterruptHandler)(void))
@@ -4434,7 +4451,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _UART2_RxInterruptHandler _InterruptHandler ]
 "335
 [; ;mcc_generated_files/uart2.c: 335: }
-[e :UE 3319 ]
+[e :UE 3325 ]
 }
 "337
 [; ;mcc_generated_files/uart2.c: 337: void UART2_SetTxInterruptHandler(void (* InterruptHandler)(void))
@@ -4454,7 +4471,5 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _UART2_TxInterruptHandler _InterruptHandler ]
 "340
 [; ;mcc_generated_files/uart2.c: 340: }
-[e :UE 3320 ]
+[e :UE 3326 ]
 }
-[a 1C 0 ]
-[a 2C 0 ]

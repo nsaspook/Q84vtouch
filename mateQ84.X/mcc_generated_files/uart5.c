@@ -52,7 +52,7 @@
 #include "interrupt_manager.h"
 
 #define IO_RB6_Toggle()             do { LATBbits.LATB6 = ~LATBbits.LATB6; } while(0)
-//#define TRACE
+#define TRACE
 
 #ifdef TRACE
 #define INT_TRACE	IO_RB6_Toggle()

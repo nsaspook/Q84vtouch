@@ -40,6 +40,7 @@ extern "C" {
 #define BAT_CYCLES      8
 #define BAT_CHARGED_W	BAT_AH
 #define BAT_DAY_COUNT	30	// number of reports before updates
+#define BAT_RUN_MAX	280.0f  // max displayed run time at current load
 	/*
 	 * System correction factors
 	 */

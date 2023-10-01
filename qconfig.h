@@ -39,7 +39,7 @@
 #include <math.h>
 
 //#define CAN_REMOTE	// can received data on LCD for remote mate board
-//#define TRACE
+#define TRACE
 
 #ifdef TRACE
 #define INT_TRACE	IO_RB6_Toggle()
