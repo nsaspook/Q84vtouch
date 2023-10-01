@@ -224,7 +224,7 @@ static uint16_t abuf[FM_BUFFER], cbuf[FM_BUFFER + 2];
 volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = AMP_WHOLE_ZERO, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
-char buffer[MAX_B_BUF] = "Boot Init Display   ", can_buffer[MAX_C_BUF], info_buffer[MAX_B_BUF];
+char buffer[MAX_B_BUF] = "Boot Init Display   ", can_buffer[MAX_C_BUF], info_buffer[MAX_B_BUF], log_buffer[MAX_B_BUF];
 const char *build_date = __DATE__, *build_time = __TIME__;
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
@@ -663,6 +663,7 @@ void state_status_cb(void)
 	if (FMxx_STATE != STATUS_SLEEPING) {
 		if (++day_clocks > BAT_DAY_COUNT) {
 			day_clocks = 0;
+			B.day_check = 0;
 			if (B.pv_prev == STATUS_SLEEPING) { // check sun on PV and trigger a daily energy update
 				B.pv_update = true;
 				B.pv_prev = FMxx_STATE;
@@ -672,6 +673,7 @@ void state_status_cb(void)
 	} else {
 		if (++day_clocks > BAT_DAY_COUNT) {
 			day_clocks = 0;
+			B.day_check = 0;
 			if (B.pv_prev != STATUS_SLEEPING) { // check for night and update day totals
 				B.pv_update = true;
 				B.pv_prev = FMxx_STATE;
@@ -768,10 +770,10 @@ void state_mx_status_cb(void)
 			/*
 			 * log CSV values to the comm ports for data storage and processing
 			 */
-			snprintf(buffer, 25, "%s", asctime(can_newtime));
+			snprintf(buffer, 25, "%s", asctime(can_newtime)); // the log_buffer uses this string in LOG_VARS
 			buffer[26] = 0; // remove newline
-			snprintf(can_buffer, MAX_C_BUF, log_format, LOG_VARS);
-			printf("%s", can_buffer); // log to USART
+			snprintf(log_buffer, MAX_B_BUF, log_format, LOG_VARS);
+			printf("%s", log_buffer); // log to USART
 			if (B.FM80_online) {
 				bat_amp_whole = abuf[3] - 128;
 			}

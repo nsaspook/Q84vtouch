@@ -16,7 +16,7 @@ extern "C" {
 #include "modbus_master.h"
 #include "mateQ84.X/mxcmd.h"
 
-#define CHK_DAY_TIME	90
+#define CHK_DAY_TIME	120
 #define TEN_SEC_HOUR	360.0f
 #define BM_EEPROM_VER   1
 #define BM_CM           0x57+BM_EEPROM_VER
@@ -39,7 +39,7 @@ extern "C" {
 #define BAT_EFF_VAL     0.985f	//  battery storage energy efficiency
 #define BAT_CYCLES      8
 #define BAT_CHARGED_W	BAT_AH
-#define BAT_DAY_COUNT	30	// number of reports before updates
+#define BAT_DAY_COUNT	45	// number of reports before updates
 #define BAT_RUN_MAX	280.0f  // max displayed run time at current load
 	/*
 	 * System correction factors

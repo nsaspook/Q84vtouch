@@ -22,7 +22,7 @@ extern "C" {
 #include "../timers.h"
 
 #define VER	1
-	const char build_version[] = "V1.85 FM80 Q84";
+	const char build_version[] = "V1.86 FM80 Q84";
 	/*
 	 * code changes
 	 * 1.55 remove critical section interrupt disables for FM80 serial
@@ -46,6 +46,7 @@ extern "C" {
 	 * 1.81 fix scroll buffer junk and add running PV Wh energy total for the day
 	 * 1.82 day/night switching glitches
 	 * 1.85 run time accounting and logging
+	 * 1.86 fix more logging buffer length issues
 	 */
 
 #define MAX_B_BUF	255
