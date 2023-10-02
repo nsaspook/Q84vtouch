@@ -14,21 +14,30 @@ EB_data EBD = {
 
 uint16_t EBD_update = 0; // EEPROM write counter for BM_UPDATE
 float pv_Wh_daily = 0.0f, pv_Wh_daily_prev = 0.0f, ac_Wh_daily = 0.0f, ac_Wh_daily_prev = 0.0f;
-;
+
+/*
+ * get the pointer to the system EEPROM save data
+ */
+EB_data *get_EEPROM(void)
+{
+	return &EBD;
+}
 
 /*
  * load EEPROM data to energy if correctly formatted
  */
 bool initbm_data(uint8_t * EB)
 {
+	EB_data *ebd = (EB_data*) EB;
+
 	if (DATAEE_ReadByte(0) != BM_CM) {
-		EBD.loaded = false;
+		ebd->loaded = false;
 		return false;
 	} else {
-		for (uint16_t i = 0; i < sizeof(EBD); i++) {
+		for (uint16_t i = 0; i < sizeof(EB_data); i++) {
 			EB[i] = DATAEE_ReadByte(i);
 		}
-		EBD.loaded = true;
+		ebd->loaded = true;
 	}
 	return true;
 }
@@ -38,16 +47,18 @@ bool initbm_data(uint8_t * EB)
  */
 void wr_bm_data(uint8_t * EB)
 {
-	EB[0] = BM_CM;
-	EBD.crc = 0;
-	EBD.crc = crc16(EB, sizeof(EBD) - 2); // exclude crc bytes
-	EBD.bat_time = ++EBD.bat_time;
+	EB_data *ebd = (EB_data*) EB;
 
-	if ((EBD.bat_time) % BAT_CYCLES == 0) {
-		EBD.bat_cycles++;
+	EB[0] = BM_CM;
+	ebd->crc = 0;
+	ebd->crc = crc16(EB, sizeof(EB_data) - 2); // exclude crc bytes
+	ebd->bat_time = ++ebd->bat_time;
+
+	if ((ebd->bat_time) % BAT_CYCLES == 0) {
+		ebd->bat_cycles++;
 	}
 
-	for (uint16_t i = 0; i < sizeof(EBD); i++) {
+	for (uint16_t i = 0; i < sizeof(EB_data); i++) {
 		DATAEE_WriteByte(i, EB[i]);
 	}
 }
@@ -85,7 +96,7 @@ void get_bm_data(EB_data * EB)
 			if (B.alt_display > MAX_ALT_DIS) {
 				B.alt_display = 0;
 			}
-			EBD.alt_display = B.alt_display;
+			EB->alt_display = B.alt_display;
 			break;
 		case 'D': // display time
 		case 'd':
@@ -95,12 +106,12 @@ void get_bm_data(EB_data * EB)
 		case 'f': // set energy to Full
 		case 'F':
 			EB->bat_energy = BAT_ENERGY;
-			EBD.bat_cycles++;
+			EB->bat_cycles++;
 			break;
 		case 'e': // set energy to Empty
 		case 'E':
 			EB->bat_energy = 1;
-			EBD.bat_cycles++;
+			EB->bat_cycles++;
 			break;
 		case 'i': // start Info scroll on display
 		case 'I':
@@ -146,7 +157,7 @@ void get_bm_data(EB_data * EB)
 			break;
 		case 'W': // Write current state to EEPROM data
 		case 'w':
-			wr_bm_data((void*) &EBD);
+			wr_bm_data((void*) EB);
 			MM_ERROR_S;
 			break;
 		default:

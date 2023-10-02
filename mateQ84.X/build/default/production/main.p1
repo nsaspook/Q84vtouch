@@ -21,6 +21,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 "139
 [s S3296 `Va 1 `Va 1 `Va 1 `Va 1 `Va 1 `Vus 1 `Vus 1 `Vus 1 `Vus 1 `Vus 1 `Va 1 `Va 1 `Vuc 1 `Vuc 1 `Vuc 1 `f 1 `f 1 `us -> 10 `i `us -> 3 `i `S3295 1 ]
 [n S3296 B_type ten_sec_flag one_sec_flag FM80_charged pv_high pv_update pacing rx_count flush pv_prev day_check FM80_online FM80_io canbus_online modbus_online alt_display run_time net_balance mui fwrev log ]
+"53 ./../batmon.h
+[; ;./../batmon.h: 53:  typedef struct EB_data {
+[s S3309 `uc 1 `uc 1 `uc 1 `a 1 `f 1 `f 1 `f 1 `f 1 `f 1 `f 1 `f 1 `f 1 `f 1 `f 1 `f 1 `us 1 `us 1 `us 1 `us 1 `us 1 `ul 1 `ul 1 `us 1 ]
+[n S3309 EB_data checkmark version alt_display loaded FMw FMpv FMa FMbv ENw ENva ENvar ENac volt_whole bat_amp_whole bat_energy cc_mode bat_cycles bat_mode time date bat_time fm80_time crc ]
+"91
+[; ;./../batmon.h: 91:  extern EB_data EBD;
+[v _EBD `S3309 ~T0 @X0 0 e ]
 [p mainexit ]
 "82 ./../mateQ84.X/mcc_generated_files/mcc.h
 [v _SYSTEM_Initialize `(v ~T0 @X0 0 ef ]
@@ -96,13 +103,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "98 ./../batmon.h
 [; ;./../batmon.h: 98:  _Bool initbm_data(uint8_t *);
 [v _initbm_data `(a ~T0 @X0 0 ef1`*uc ]
-"53
-[; ;./../batmon.h: 53:  typedef struct EB_data {
-[s S3309 `uc 1 `uc 1 `uc 1 `a 1 `f 1 `f 1 `f 1 `f 1 `f 1 `f 1 `f 1 `f 1 `f 1 `f 1 `f 1 `us 1 `us 1 `us 1 `us 1 `us 1 `ul 1 `ul 1 `us 1 ]
-[n S3309 EB_data checkmark version alt_display loaded FMw FMpv FMa FMbv ENw ENva ENvar ENac volt_whole bat_amp_whole bat_energy cc_mode bat_cycles bat_mode time date bat_time fm80_time crc ]
-"91
-[; ;./../batmon.h: 91:  extern EB_data EBD, EBD_ptr;
-[v _EBD `S3309 ~T0 @X0 0 e ]
 "4502 /root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.22.413/xc8/pic/include/proc/pic18f47q84.h
 [v _STATUS `Vuc ~T0 @X0 0 e@1240 ]
 "5038
@@ -250,8 +250,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "107 /opt/microchip/xc8/v2.41/pic/include/c99/stdio.h
 [; ;/opt/microchip/xc8/v2.41/pic/include/c99/stdio.h: 107: int printf(const char *restrict, ...);
 [v _printf `(i ~T0 @X0 0 ev`*Cuc ]
-"107 ./../batmon.h
-[; ;./../batmon.h: 107:  uint16_t Volts_to_SOC(const uint16_t, const uint16_t);
+"108 ./../batmon.h
+[; ;./../batmon.h: 108:  uint16_t Volts_to_SOC(const uint16_t, const uint16_t);
 [v _Volts_to_SOC `(us ~T0 @X0 0 ef2`Cus`Cus ]
 "3628 /root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.22.413/xc8/pic/include/proc/pic18f47q84.h
 [s S3154 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -5262,7 +5262,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _info_buffer `uc ~T0 @X0 -> 255 `i e ]
 [v _log_buffer `uc ~T0 @X0 -> 255 `i e ]
 "228
-[; ;main.c: 228: const char *build_date = "Oct  1 2023", *build_time = "15:08:36";
+[; ;main.c: 228: const char *build_date = "Oct  1 2023", *build_time = "19:33:51";
 [v _build_date `*Cuc ~T0 @X0 1 e ]
 [i _build_date
 :s 1C
@@ -5354,8 +5354,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 "254
-[; ;main.c: 254: mx_logpage_t mx_log;
-[v _mx_log `S3295 ~T0 @X0 1 e ]
+[; ;main.c: 254: static EB_data *EB = &EBD;
+[v _EB `*S3309 ~T0 @X0 1 s ]
+[i _EB
+&U _EBD
+]
 "286
 [; ;main.c: 286: void wdtdelay(const uint32_t delay)
 [v _wdtdelay `(v ~T0 @X0 1 ef1`Cul ]
@@ -5461,12 +5464,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 343:  eaDogM_WriteStringAtPos(1, 0, buffer);
 [e ( _eaDogM_WriteStringAtPos (3 , , -> -> 1 `i `uc -> -> 0 `i `uc &U _buffer ]
 "344
-[; ;main.c: 344:  if (initbm_data((void*) &EBD)) {
-[e $ ! != -> ( _initbm_data (1 -> -> &U _EBD `*v `*uc `i -> 0 `i 3316  ]
+[; ;main.c: 344:  if (initbm_data((void*) EB)) {
+[e $ ! != -> ( _initbm_data (1 -> -> _EB `*v `*uc `i -> 0 `i 3316  ]
 {
 "345
-[; ;main.c: 345:   B.alt_display = EBD.alt_display;
-[e = . _B 14 . _EBD 2 ]
+[; ;main.c: 345:   B.alt_display = EB->alt_display;
+[e = . _B 14 . *U _EB 2 ]
 "346
 [; ;main.c: 346:   snprintf(buffer, 255, "Battery data loaded   ");
 [e ( _snprintf (2 , , &U _buffer -> -> 255 `i `ui :s 5C ]
@@ -5930,8 +5933,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 505:      M.error = 0;
 [e = . _M 8 -> -> 0 `i `us ]
 "535
-[; ;main.c: 535:      snprintf(buffer, 255, "EMon  %6.1fWh   %c%c    ", EBD.bat_energy / 360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
-[e ( _snprintf (2 , , , (. , , &U _buffer -> -> 255 `i `ui :s 15C -> / . _EBD 14 -> .360.0 `f `d -> ( _spinners (2 , -> - -> -> -> 5 `i `uc `i -> -> _cc_mode `uc `i `uc -> -> 0 `i `uc `i -> ( _spinners (2 , -> - -> -> -> 5 `i `uc `i -> -> _cc_mode `uc `i `uc -> -> 0 `i `uc `i ]
+[; ;main.c: 535:      snprintf(buffer, 255, "EMon  %6.1fWh   %c%c    ", EB->bat_energy / 360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
+[e ( _snprintf (2 , , , (. , , &U _buffer -> -> 255 `i `ui :s 15C -> / . *U _EB 14 -> .360.0 `f `d -> ( _spinners (2 , -> - -> -> -> 5 `i `uc `i -> -> _cc_mode `uc `i `uc -> -> 0 `i `uc `i -> ( _spinners (2 , -> - -> -> -> 5 `i `uc `i -> -> _cc_mode `uc `i `uc -> -> 0 `i `uc `i ]
 "536
 [; ;main.c: 536:      eaDogM_WriteStringAtPos(1, 0, buffer);
 [e ( _eaDogM_WriteStringAtPos (3 , , -> -> 1 `i `uc -> -> 0 `i `uc &U _buffer ]
@@ -6193,8 +6196,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 620:    Soc = ((float) Volts_to_SOC(vw, vf) * 0.01f);
 [e = _Soc * -> ( _Volts_to_SOC (2 , _vw _vf `f -> .0.01 `f ]
 "621
-[; ;main.c: 621:    EBD.bat_energy = 25.6f*200.0f*360.0f*Soc;
-[e = . _EBD 14 * * * -> .25.6 `f -> .200.0 `f -> .360.0 `f _Soc ]
+[; ;main.c: 621:    EB->bat_energy = 25.6f*200.0f*360.0f*Soc;
+[e = . *U _EB 14 * * * -> .25.6 `f -> .200.0 `f -> .360.0 `f _Soc ]
 "622
 [; ;main.c: 622:   }
 }
@@ -6625,8 +6628,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 788:    case 2:
 [e :U 3404 ]
 "789
-[; ;main.c: 789:     snprintf(buffer, 255, "%4.2fBE %4.2fLW         ", EBD.bat_energy / 360.0f, (float) em.wl1 / 10.0f);
-[e ( _snprintf (2 , , (. , , &U _buffer -> -> 255 `i `ui :s 24C -> / . _EBD 14 -> .360.0 `f `d -> / -> . _em 9 `f -> .10.0 `f `d ]
+[; ;main.c: 789:     snprintf(buffer, 255, "%4.2fBE %4.2fLW         ", EB->bat_energy / 360.0f, (float) em.wl1 / 10.0f);
+[e ( _snprintf (2 , , (. , , &U _buffer -> -> 255 `i `ui :s 24C -> / . *U _EB 14 -> .360.0 `f `d -> / -> . _em 9 `f -> .10.0 `f `d ]
 "790
 [; ;main.c: 790:     eaDogM_WriteStringAtPos(2, 0, buffer);
 [e ( _eaDogM_WriteStringAtPos (3 , , -> -> 2 `i `uc -> -> 0 `i `uc &U _buffer ]
@@ -6696,23 +6699,23 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 810:    snprintf(info_buffer, 255, " Data OK\r\n");
 [e ( _snprintf (2 , , &U _info_buffer -> -> 255 `i `ui :s 30C ]
 "814
-[; ;main.c: 814:    get_bm_data(&EBD);
-[e ( _get_bm_data (1 &U _EBD ]
+[; ;main.c: 814:    get_bm_data(EB);
+[e ( _get_bm_data (1 _EB ]
 "815
-[; ;main.c: 815:    compute_bm_data(&EBD);
-[e ( _compute_bm_data (1 &U _EBD ]
+[; ;main.c: 815:    compute_bm_data(EB);
+[e ( _compute_bm_data (1 _EB ]
 "816
-[; ;main.c: 816:    if (!EBD.loaded)
-[e $ ! ! != -> . _EBD 3 `i -> 0 `i 3408  ]
+[; ;main.c: 816:    if (!EB->loaded)
+[e $ ! ! != -> . *U _EB 3 `i -> 0 `i 3408  ]
 "817
 [; ;main.c: 817:    {
 {
 "818
-[; ;main.c: 818:     EBD.loaded = 1;
-[e = . _EBD 3 -> -> 1 `i `a ]
+[; ;main.c: 818:     EB->loaded = 1;
+[e = . *U _EB 3 -> -> 1 `i `a ]
 "819
-[; ;main.c: 819:     wr_bm_data((void*) &EBD);
-[e ( _wr_bm_data (1 -> -> &U _EBD `*v `*uc ]
+[; ;main.c: 819:     wr_bm_data((void*) EB);
+[e ( _wr_bm_data (1 -> -> _EB `*v `*uc ]
 "820
 [; ;main.c: 820:     do { LATBbits.LATB1 = 1; } while(0);
 [e :U 3411 ]
@@ -6729,11 +6732,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ ! || >= -> ++ _EBD_update -> -> 1 `i `us `ui -> -> 3600 `i `ui && >= -> _EBD_update `ui -> -> 1800 `i `ui != -> _cc_mode `ui -> . `E24799 0 `ui 3412  ]
 {
 "823
-[; ;main.c: 823:     EBD.loaded = 1;
-[e = . _EBD 3 -> -> 1 `i `a ]
+[; ;main.c: 823:     EB->loaded = 1;
+[e = . *U _EB 3 -> -> 1 `i `a ]
 "824
-[; ;main.c: 824:     wr_bm_data((void*) &EBD);
-[e ( _wr_bm_data (1 -> -> &U _EBD `*v `*uc ]
+[; ;main.c: 824:     wr_bm_data((void*) EB);
+[e ( _wr_bm_data (1 -> -> _EB `*v `*uc ]
 "825
 [; ;main.c: 825:     EBD_update = 0;
 [e = _EBD_update -> -> 0 `i `us ]
@@ -7011,8 +7014,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [p f _snprintf 3875536879 ]
 [a 20C 37 115 0 ]
 [a 21C 37 115 0 ]
-[a 2C 49 53 58 48 56 58 51 54 0 ]
 [a 1C 79 99 116 32 32 49 32 50 48 50 51 0 ]
+[a 2C 49 57 58 51 51 58 53 50 0 ]
 [a 7C 37 115 32 0 ]
 [a 9C 37 115 32 0 ]
 [a 28C 37 100 32 87 97 116 116 115 32 37 100 46 37 48 49 100 32 86 111 108 116 115 32 32 32 0 ]

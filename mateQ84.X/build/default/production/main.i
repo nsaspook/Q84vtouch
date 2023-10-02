@@ -41539,7 +41539,7 @@ void delay_ms(const uint16_t);
  typedef uint24_t device_id_address_t;
  device_id_data_t DeviceID_Read(device_id_address_t);
 
- extern EB_data EBD, EBD_ptr;
+ extern EB_data EBD;
  extern uint16_t EBD_update;
  extern struct tm *can_newtime;
  extern float pv_Wh_daily, pv_Wh_daily_prev, ac_Wh_daily, ac_Wh_daily_prev;
@@ -41552,6 +41552,7 @@ void delay_ms(const uint16_t);
  void compute_bm_data(EB_data *);
  void update_time(struct tm *, EB_data *);
 
+ EB_data * get_EEPROM(void);
  void DATAEE_WriteByte(const uint16_t, const uint8_t);
  uint8_t DATAEE_ReadByte(const uint16_t);
 
@@ -41599,7 +41600,7 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[255] = "Boot Init Display   ", can_buffer[64*2], info_buffer[255], log_buffer[255];
-const char *build_date = "Oct  1 2023", *build_time = "15:08:36";
+const char *build_date = "Oct  1 2023", *build_time = "19:33:51";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
@@ -41625,7 +41626,7 @@ B_type B = {
  .pv_update = 0,
 };
 
-mx_logpage_t mx_log;
+static EB_data *EB = &EBD;
 
 
 
@@ -41715,8 +41716,8 @@ void main(void)
  eaDogM_WriteStringAtPos(0, 0, buffer);
  snprintf(buffer, 255, "%s   ", build_date);
  eaDogM_WriteStringAtPos(1, 0, buffer);
- if (initbm_data((void*) &EBD)) {
-  B.alt_display = EBD.alt_display;
+ if (initbm_data((void*) EB)) {
+  B.alt_display = EB->alt_display;
   snprintf(buffer, 255, "Battery data loaded   ");
  } else {
 
@@ -41878,7 +41879,7 @@ void main(void)
     } else {
      M.error = 0;
 # 535 "main.c"
-     snprintf(buffer, 255, "EMon  %6.1fWh   %c%c    ", EBD.bat_energy / 360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
+     snprintf(buffer, 255, "EMon  %6.1fWh   %c%c    ", EB->bat_energy / 360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
      eaDogM_WriteStringAtPos(1, 0, buffer);
      snprintf(buffer, 255, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
      eaDogM_WriteStringAtPos(0, 0, buffer);
@@ -41964,7 +41965,7 @@ void state_init_cb(void)
   printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: FM80 Online\r\n", B.rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
   if (!B.FM80_online) {
    Soc = ((float) Volts_to_SOC(vw, vf) * 0.01f);
-   EBD.bat_energy = 25.6f*200.0f*360.0f*Soc;
+   EB->bat_energy = 25.6f*200.0f*360.0f*Soc;
   }
   B.FM80_online = 1;
   off_delay = 0;
@@ -42121,7 +42122,7 @@ void state_mx_status_cb(void)
     eaDogM_WriteStringAtPos(3, 0, buffer);
     break;
    case 2:
-    snprintf(buffer, 255, "%4.2fBE %4.2fLW         ", EBD.bat_energy / 360.0f, (float) em.wl1 / 10.0f);
+    snprintf(buffer, 255, "%4.2fBE %4.2fLW         ", EB->bat_energy / 360.0f, (float) em.wl1 / 10.0f);
     eaDogM_WriteStringAtPos(2, 0, buffer);
     snprintf(buffer, 255, "ALT 2                   ");
     eaDogM_WriteStringAtPos(3, 0, buffer);
@@ -42146,17 +42147,17 @@ void state_mx_status_cb(void)
 
 
 
-   get_bm_data(&EBD);
-   compute_bm_data(&EBD);
-   if (!EBD.loaded)
+   get_bm_data(EB);
+   compute_bm_data(EB);
+   if (!EB->loaded)
    {
-    EBD.loaded = 1;
-    wr_bm_data((void*) &EBD);
+    EB->loaded = 1;
+    wr_bm_data((void*) EB);
     do { LATBbits.LATB1 = 1; } while(0);
    }
    if ((EBD_update++ >= 3600) || ((EBD_update >= 1800) && (cc_mode != STATUS_SLEEPING))) {
-    EBD.loaded = 1;
-    wr_bm_data((void*) &EBD);
+    EB->loaded = 1;
+    wr_bm_data((void*) EB);
     EBD_update = 0;
     do { LATBbits.LATB1 = 1; } while(0);
    }

@@ -88,7 +88,7 @@ extern "C" {
 	typedef uint24_t device_id_address_t;
 	device_id_data_t DeviceID_Read(device_id_address_t);
 
-	extern EB_data EBD, EBD_ptr;
+	extern EB_data EBD;
 	extern uint16_t EBD_update;
 	extern struct tm *can_newtime;
 	extern float pv_Wh_daily, pv_Wh_daily_prev, ac_Wh_daily, ac_Wh_daily_prev;
@@ -101,6 +101,7 @@ extern "C" {
 	void compute_bm_data(EB_data *);
 	void update_time(struct tm *, EB_data *);
 
+	EB_data * get_EEPROM(void);
 	void DATAEE_WriteByte(const uint16_t, const uint8_t);
 	uint8_t DATAEE_ReadByte(const uint16_t);
 

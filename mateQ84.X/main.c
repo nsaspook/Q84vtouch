@@ -251,7 +251,7 @@ B_type B = {
 	.pv_update = false,
 };
 
-mx_logpage_t mx_log;
+static EB_data *EB = &EBD;
 
 /*
  * show fixed point fractions
@@ -341,8 +341,8 @@ void main(void)
 	eaDogM_WriteStringAtPos(0, 0, buffer);
 	snprintf(buffer, MAX_B_BUF, "%s   ", build_date);
 	eaDogM_WriteStringAtPos(1, 0, buffer);
-	if (initbm_data((void*) &EBD)) {
-		B.alt_display = EBD.alt_display;
+	if (initbm_data((void*) EB)) {
+		B.alt_display = EB->alt_display;
 		snprintf(buffer, MAX_B_BUF, "Battery data loaded   ");
 	} else {
 		/* display build time and boot status codes 67 34 07, WDT reset 67 24 07 */
@@ -532,7 +532,7 @@ void main(void)
 					eaDogM_WriteStringAtPos(3, 0, buffer);
 #endif
 #else
-					snprintf(buffer, MAX_B_BUF, "EMon  %6.1fWh   %c%c    ", EBD.bat_energy / TEN_SEC_HOUR, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
+					snprintf(buffer, MAX_B_BUF, "EMon  %6.1fWh   %c%c    ", EB->bat_energy / TEN_SEC_HOUR, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
 					eaDogM_WriteStringAtPos(1, 0, buffer);
 					snprintf(buffer, MAX_B_BUF, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, false), lp_filter(wva, F_wva, false), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
 					eaDogM_WriteStringAtPos(0, 0, buffer);
@@ -618,7 +618,7 @@ void state_init_cb(void)
 		printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: FM80 Online\r\n", B.rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
 		if (!B.FM80_online) { // try to guess battery energy by looking at battery voltage
 			Soc = ((float) Volts_to_SOC(vw, vf) * 0.01f);
-			EBD.bat_energy = BAT_ENERGY*Soc;
+			EB->bat_energy = BAT_ENERGY*Soc;
 		}
 		B.FM80_online = true;
 		off_delay = 0;
@@ -786,7 +786,7 @@ void state_mx_status_cb(void)
 				eaDogM_WriteStringAtPos(3, 0, buffer);
 				break;
 			case 2:
-				snprintf(buffer, MAX_B_BUF, "%4.2fBE %4.2fLW         ", EBD.bat_energy / TEN_SEC_HOUR, (float) em.wl1 / 10.0f);
+				snprintf(buffer, MAX_B_BUF, "%4.2fBE %4.2fLW         ", EB->bat_energy / TEN_SEC_HOUR, (float) em.wl1 / 10.0f);
 				eaDogM_WriteStringAtPos(2, 0, buffer);
 				snprintf(buffer, MAX_B_BUF, "ALT 2                   ");
 				eaDogM_WriteStringAtPos(3, 0, buffer);
@@ -811,17 +811,17 @@ void state_mx_status_cb(void)
 			/*
 			 * update EEPROM energy history structure and check for serial commands on the logging port
 			 */
-			get_bm_data(&EBD);
-			compute_bm_data(&EBD); // calculate battery energy at 10 second update rate
-			if (!EBD.loaded) // save a copy to EEPROM if it wasn't loaded at boot
+			get_bm_data(EB);
+			compute_bm_data(EB); // calculate battery energy at 10 second update rate
+			if (!EB->loaded) // save a copy to EEPROM if it wasn't loaded at boot
 			{
-				EBD.loaded = true;
-				wr_bm_data((void*) &EBD);
+				EB->loaded = true;
+				wr_bm_data((void*) EB);
 				MM_ERROR_S;
 			}
 			if ((EBD_update++ >= BM_UPDATE) || ((EBD_update >= BM_UPDATE_RUN) && (cc_mode != STATUS_SLEEPING))) {
-				EBD.loaded = true;
-				wr_bm_data((void*) &EBD);
+				EB->loaded = true;
+				wr_bm_data((void*) EB);
 				EBD_update = 0;
 				MM_ERROR_S;
 			}
