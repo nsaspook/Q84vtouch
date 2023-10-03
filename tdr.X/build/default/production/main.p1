@@ -692,167 +692,167 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _s_m / _r_m -> .4.0 `f ]
 "121
 [e = _l_m + / _adc_scaled _s_m -> .1.0 `f ]
-"122
-[e ( _snprintf (2 , (. , , &U _buffer -> -> 255 `i `ui :s 1C -> _l_m `d ]
 "123
-[e ( _printf , (. :s 2C &U _buffer ]
+[e ( _snprintf (2 , (. , , &U _buffer -> -> 255 `i `ui :s 1C -> _adc_raw_float `d ]
 "124
+[e ( _printf , (. :s 2C &U _buffer ]
+"125
 }
 [e :U 840 ]
-"125
+"126
 }
 [e :U 837 ]
 [e $U 838  ]
 [e :U 839 ]
-"126
+"127
 [e :UE 836 ]
 }
-"128
-[v _blinker `(v ~T0 @X0 1 ef ]
 "129
+[v _blinker `(v ~T0 @X0 1 ef ]
+"130
 {
 [e :U _blinker ]
 [f ]
-"130
+"131
 [v _del `ul ~T0 @X0 1 a ]
 [e = _del -> -> -> 0 `i `l `ul ]
-"132
+"133
 [e :U 844 ]
 {
 [e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
 }
 [e :U 843 ]
-"133
-[e = . . _CTMUCONHbits 0 7 -> -> 0 `i `uc ]
 "134
-[e = _CTMUICON -> -> 3 `i `uc ]
+[e = . . _CTMUCONHbits 0 7 -> -> 0 `i `uc ]
 "135
-[e = . . _CTMUCONHbits 0 7 -> -> 1 `i `uc ]
+[e = _CTMUICON -> -> 3 `i `uc ]
 "136
-[e = . . _CTMUCONHbits 0 1 -> -> 1 `i `uc ]
+[e = . . _CTMUCONHbits 0 7 -> -> 1 `i `uc ]
 "137
-[e ( _wdtdelay (1 -> -> -> 100 `i `l `ul ]
+[e = . . _CTMUCONHbits 0 1 -> -> 1 `i `uc ]
 "138
-[e = . . _CTMUCONHbits 0 1 -> -> 0 `i `uc ]
+[e ( _wdtdelay (1 -> -> -> 100 `i `l `ul ]
 "139
-[e = . . _CTMUCONLbits 0 0 -> -> 0 `i `uc ]
+[e = . . _CTMUCONHbits 0 1 -> -> 0 `i `uc ]
 "140
-[e = . . _CTMUCONLbits 0 1 -> -> 0 `i `uc ]
+[e = . . _CTMUCONLbits 0 0 -> -> 0 `i `uc ]
 "141
-[e = . . _CTMUCONHbits 0 3 -> -> 1 `i `uc ]
+[e = . . _CTMUCONLbits 0 1 -> -> 0 `i `uc ]
 "142
+[e = . . _CTMUCONHbits 0 3 -> -> 1 `i `uc ]
+"143
 [e :U 847 ]
 {
 [e = . . _LATCbits 0 2 -> -> 1 `i `uc ]
 }
 [e :U 846 ]
-"144
+"145
 [e $U 848  ]
 [e :U 849 ]
 {
-"145
+"146
 [e $ ! > =+ _del -> -> -> 1 `i `l `ul -> -> -> 1000 `i `l `ul 851  ]
 {
-"146
+"147
 [e :U 854 ]
 {
 [e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
 }
 [e :U 853 ]
-"147
-[e $UE 841  ]
 "148
-}
-[e :U 851 ]
+[e $UE 841  ]
 "149
 }
+[e :U 851 ]
+"150
+}
 [e :U 848 ]
-"144
+"145
 [e $ ! != -> . . _PIR3bits 0 3 `i -> 0 `i 849  ]
 [e :U 850 ]
-"150
+"151
 [e :U 857 ]
 {
 [e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
 }
 [e :U 856 ]
-"153
-[e = . . _PIR3bits 0 3 -> -> 0 `i `uc ]
 "154
-[e ( _ADC_StartConversion ..  ]
+[e = . . _PIR3bits 0 3 -> -> 0 `i `uc ]
 "155
-[e = . . _CTMUCONHbits 0 7 -> -> 0 `i `uc ]
+[e ( _ADC_StartConversion ..  ]
 "156
-[e = _CTMUICON -> -> 0 `i `uc ]
+[e = . . _CTMUCONHbits 0 7 -> -> 0 `i `uc ]
 "157
-[e = . . _PIE3bits 0 3 -> -> 0 `i `uc ]
+[e = _CTMUICON -> -> 0 `i `uc ]
 "158
-[e = . . _CTMUCONHbits 0 3 -> -> 0 `i `uc ]
+[e = . . _PIE3bits 0 3 -> -> 0 `i `uc ]
 "159
-[e = . . _CTMUCONLbits 0 0 -> -> 0 `i `uc ]
+[e = . . _CTMUCONHbits 0 3 -> -> 0 `i `uc ]
 "160
+[e = . . _CTMUCONLbits 0 0 -> -> 0 `i `uc ]
+"161
 [e = . . _CTMUCONLbits 0 1 -> -> 0 `i `uc ]
-"162
+"163
 [e $U 858  ]
 [e :U 859 ]
 {
-"164
+"165
 }
 [e :U 858 ]
-"162
+"163
 [e $ ! != -> ( _ADC_IsConversionDone ..  `i -> 0 `i 859  ]
 [e :U 860 ]
-"166
+"167
 [e $ ! ! != -> _printout `i -> 0 `i 861  ]
 {
-"167
-[e = _tdr_adc ( _ADC_GetConversionResult ..  ]
 "168
+[e = _tdr_adc ( _ADC_GetConversionResult ..  ]
+"169
 }
 [e :U 861 ]
-"170
+"171
 [e :U 864 ]
 {
 [e = . . _LATCbits 0 1 -> ~ -> . . _LATCbits 0 1 `i `uc ]
 }
 [e :U 863 ]
-"172
-[e = _printout -> -> 1 `i `a ]
 "173
+[e = _printout -> -> 1 `i `a ]
+"174
 [e :UE 841 ]
 }
-"178
-[v _wdtdelay `(v ~T0 @X0 1 ef1`ul ]
 "179
+[v _wdtdelay `(v ~T0 @X0 1 ef1`ul ]
+"180
 {
 [e :U _wdtdelay ]
-"178
-[v _delay `ul ~T0 @X0 1 r1 ]
 "179
-[f ]
+[v _delay `ul ~T0 @X0 1 r1 ]
 "180
+[f ]
+"181
 [v F6941 `ul ~T0 @X0 1 s dcount ]
-"182
+"183
 {
 [e = F6941 -> -> -> 0 `i `l `ul ]
 [e $U 869  ]
 [e :U 866 ]
 {
-"183
-[e ( ___nop ..  ]
 "184
-[; <"  clrwdt ;# ">
+[e ( ___nop ..  ]
 "185
+[; <"  clrwdt ;# ">
+"186
 }
 [e ++ F6941 -> -> -> 1 `i `l `ul ]
 [e :U 869 ]
 [e $ <= F6941 _delay 866  ]
 [e :U 867 ]
 }
-"186
+"187
 [e :UE 865 ]
 }
 [p f _printf 8650752 ]
 [p f _snprintf 8462336 ]
 [a 2C 37 115 0 ]
-[a 1C 84 68 82 32 37 46 50 102 77 32 99 97 98 108 101 32 0 ]
+[a 1C 65 68 67 32 37 46 50 102 32 0 ]
