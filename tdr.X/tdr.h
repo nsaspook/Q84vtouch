@@ -27,6 +27,11 @@ extern "C" {
 #define DLED2		LATCbits.LATC2
 #define DLED3		LATCbits.LATC3
 
+// CTMU ADC results for cables
+#define offset_meter	2752.0f
+#define	one_meter	2752.0f
+#define five_meter	3264.0f
+
 
 #ifdef	__cplusplus
 }

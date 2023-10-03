@@ -50,6 +50,7 @@
 
 volatile bool printout = false;
 volatile adc_result_t tdr_adc = 0;
+char buffer[255];
 
 void blinker(void);
 void wdtdelay(uint32_t);
@@ -59,6 +60,7 @@ void wdtdelay(uint32_t);
  */
 void main(void)
 {
+	float adc_raw_float = 0.0f, adc_scaled = 0.0f, r_m, s_m, l_m;
 	// Initialize the device
 	SYSTEM_Initialize();
 
@@ -110,8 +112,15 @@ void main(void)
 	while (1) {
 		// Add your application code
 		if (printout) {
+			adc_raw_float = (float) tdr_adc;
 			printout = false;
-			printf("\rTDR %4u", tdr_adc);
+
+			adc_scaled = adc_raw_float - offset_meter;
+			r_m = five_meter - one_meter;
+			s_m = r_m / 4.0f;
+			l_m = (adc_scaled / s_m) + 1.0f;
+			snprintf(buffer, 255, "TDR %.2fM cable ", l_m);
+			printf("%s", buffer);
 		}
 	}
 }
@@ -154,7 +163,9 @@ void blinker(void)
 
 	}
 
-	tdr_adc = ADC_GetConversionResult();
+	if (!printout) {
+		tdr_adc = ADC_GetConversionResult();
+	}
 
 	DLED1_Toggle();
 

@@ -1,402 +1,801 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"409 /opt/microchip/xc8/v2.45/pic/include/c99/bits/alltypes.h
-[; ;/opt/microchip/xc8/v2.45/pic/include/c99/bits/alltypes.h: 409: typedef struct _IO_FILE FILE;
+"399 /opt/microchip/xc8/v2.41/pic/include/c99/bits/alltypes.h
 [s S1 ]
 [n S1 _IO_FILE ]
-"113 /opt/microchip/xc8/v2.45/pic/include/c99/stdio.h
-[; ;/opt/microchip/xc8/v2.45/pic/include/c99/stdio.h: 113: int fputs(const char *restrict, FILE *restrict);
-[v _fputs `(i ~T0 @X0 0 ef2`*Cuc`*S1 ]
-"98
-[; ;/opt/microchip/xc8/v2.45/pic/include/c99/stdio.h: 98: int fputc(int, FILE *);
+"93 /opt/microchip/xc8/v2.41/pic/include/c99/stdio.h
 [v _fputc `(i ~T0 @X0 0 ef2`i`*S1 ]
-[v F1161 `*v ~T0 @X0 -> -> 1 `i `ux t ]
-"14 /opt/microchip/xc8/v2.45/pic/include/c99/stdarg.h
+"103
+[v _fputs `(i ~T0 @X0 0 ef2`*Cuc`*S1 ]
+"54 /opt/microchip/xc8/v2.41/pic/include/c99/string.h
+[v _strlen `(ui ~T0 @X0 0 ef1`*Cuc ]
+"121 /opt/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+[u S9 `d 1 `l 1 ]
+[n S9 flui f u ]
+"42 /opt/microchip/xc8/v2.41/pic/include/c99/math.h
+[v ___fpclassifyf `(i ~T0 @X0 0 ef1`f ]
+"33 /opt/microchip/xc8/v2.41/pic/include/c99/string.h
+[v _strcpy `(*uc ~T0 @X0 0 ef2`*uc`*Cuc ]
+"63 /opt/microchip/xc8/v2.41/pic/include/c99/stdlib.h
+[v _labs `(l ~T0 @X0 0 ef1`l ]
+"174 /opt/microchip/xc8/v2.41/pic/include/c99/math.h
+[v _floorf `(f ~T0 @X0 0 ef1`f ]
+"27 /opt/microchip/xc8/v2.41/pic/include/c99/string.h
+[v _memcpy `(*v ~T0 @X0 0 ef3`*v`*Cv`ui ]
+[v F1178 `*v ~T0 @X0 -> -> 1 `i `ux t ]
+"14 /opt/microchip/xc8/v2.41/pic/include/c99/stdarg.h
 [v ___va_arg `(*v ~T0 @X0 0 ev`*v ]
 [p i ___va_arg ]
-"1182 /opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1182:  union {
-[u S28 `i 1 `ui 1 `d 1 ]
-[n S28 . sint uint f ]
-"153 /opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 153: static int prec, width;
+"1052 /opt/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
+[u S65 `*v 1 `d 1 ]
+[n S65 . vp f ]
+"40 /opt/microchip/xc8/v2.41/pic/include/c99/string.h
+[v _strncmp `(i ~T0 @X0 0 ef3`*Cuc`*Cuc`ui ]
+"118 /opt/microchip/xc8/v2.41/pic/sources/c99/common/doprnt.c
 [v _prec `i ~T0 @X0 1 s ]
 [v _width `i ~T0 @X0 1 s ]
-"154
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 154: static char flags;
+"119
 [v _flags `uc ~T0 @X0 1 s ]
-"185
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 185: static char dbuf[32];
-[v _dbuf `uc ~T0 @X0 -> 32 `i s ]
-"193
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 193: static void pad(FILE *fp, char *buf, int p)
-[v _pad `(v ~T0 @X0 1 sf3`*S1`*uc`i ]
-"194
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 194: {
+"144
+[v _dbuf `uc ~T0 @X0 -> 80 `i s ]
+"148
+[v _nout `i ~T0 @X0 1 s ]
+"152
+[v _pad `(i ~T0 @X0 1 sf3`*S1`*uc`i ]
+"153
 {
 [e :U _pad ]
-"193
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 193: static void pad(FILE *fp, char *buf, int p)
+"152
 [v _fp `*S1 ~T0 @X0 1 r1 ]
 [v _buf `*uc ~T0 @X0 1 r2 ]
 [v _p `i ~T0 @X0 1 r3 ]
-"194
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 194: {
+"153
 [f ]
-"195
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 195:     int i;
-[v _i `i ~T0 @X0 1 a ]
-"199
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 199:     if (flags & (1 << 0)) {
-[e $ ! != & -> _flags `i << -> 1 `i -> 0 `i -> 0 `i 11  ]
-{
-"200
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 200:         fputs((const char *)buf, fp);
-[e ( _fputs (2 , -> _buf `*Cuc _fp ]
-"201
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 201:     }
-}
-[e :U 11 ]
-"205
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 205:  if (p < 0) {
-[e $ ! < _p -> 0 `i 12  ]
-{
-"206
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 206:   p = 0;
-[e = _p -> 0 `i ]
-"207
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 207:  }
-}
-[e :U 12 ]
-"208
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 208:     i = 0;
-[e = _i -> 0 `i ]
-"209
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 209:     while (i < p) {
-[e $U 13  ]
-[e :U 14 ]
-{
-"210
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 210:         fputc(' ', fp);
-[e ( _fputc (2 , -> -> 32 `ui `i _fp ]
-"211
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 211:         ++i;
-[e =+ _i -> 1 `i ]
-"212
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 212:     }
-}
-[e :U 13 ]
-"209
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 209:     while (i < p) {
-[e $ < _i _p 14  ]
-[e :U 15 ]
-"216
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 216:     if (!(flags & (1 << 0))) {
-[e $ ! ! != & -> _flags `i << -> 1 `i -> 0 `i -> 0 `i 16  ]
-{
-"218
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 218:         fputs((const char *)buf, fp);
-[e ( _fputs (2 , -> _buf `*Cuc _fp ]
-"220
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 220:     }
-}
-[e :U 16 ]
-"226
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 226: }
-[e :UE 10 ]
-}
-"1001
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1001: static void utoa(FILE *fp, vfpf_uint_t d)
-[v _utoa `(v ~T0 @X0 1 sf2`*S1`ui ]
-"1002
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1002: {
-{
-[e :U _utoa ]
-"1001
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1001: static void utoa(FILE *fp, vfpf_uint_t d)
-[v _fp `*S1 ~T0 @X0 1 r1 ]
-[v _d `ui ~T0 @X0 1 r2 ]
-"1002
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1002: {
-[f ]
-"1003
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1003:     int i, w;
+"154
 [v _i `i ~T0 @X0 1 a ]
 [v _w `i ~T0 @X0 1 a ]
-"1007
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1007:  _Bool p = 1;
-[v _p `a ~T0 @X0 1 a ]
-[e = _p -> -> 1 `i `a ]
-"1019
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1019:     w = width;
-[e = _w _width ]
-"1022
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1022:     i = sizeof(dbuf) - 1;
-[e = _i -> - -> # _dbuf `ui -> -> 1 `i `ui `i ]
-"1023
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1023:     dbuf[i] = '\0';
-[e = *U + &U _dbuf * -> -> _i `ui `ux -> -> # *U &U _dbuf `ui `ux -> -> 0 `ui `uc ]
-"1024
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1024:     while (i && (d != 0
-[e $U 18  ]
-[e :U 19 ]
-"1033
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1033:     )) {
+"164
+[e = _w ? < _p -> 0 `i : -> 0 `i _p ]
+"165
+[e = _i -> 0 `i ]
+"166
+[e $U 11  ]
+[e :U 12 ]
 {
-"1034
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1034:         --i;
-[e =- _i -> 1 `i ]
-"1035
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1035:         dbuf[i] = '0' + (d % 10);
-[e = *U + &U _dbuf * -> -> _i `ui `ux -> -> # *U &U _dbuf `ui `ux -> + -> 48 `ui % _d -> -> 10 `i `ui `uc ]
-"1039
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1039:   p = 0;
-[e = _p -> -> 0 `i `a ]
-"1041
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1041:         --w;
-[e =- _w -> 1 `i ]
-"1042
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1042:         d = d / 10;
-[e = _d / _d -> -> 10 `i `ui ]
-"1043
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1043:     }
+"167
+[e ( _fputc (2 , -> -> 32 `ui `i _fp ]
+"168
+[e =+ _i -> 1 `i ]
+"169
+}
+[e :U 11 ]
+"166
+[e $ < _i _w 12  ]
+[e :U 13 ]
+"175
+[e ( _fputs (2 , -> _buf `*Cuc _fp ]
+"181
+[e ) -> + ( _strlen (1 -> _buf `*Cuc -> _w `ui `i ]
+[e $UE 10  ]
+"183
+[e :UE 10 ]
+}
+"531
+[v _efgtoa `(i ~T0 @X0 1 sf3`*S1`d`uc ]
+"532
+{
+[e :U _efgtoa ]
+"531
+[v _fp `*S1 ~T0 @X0 1 r1 ]
+[v _f `d ~T0 @X0 1 r2 ]
+[v _c `uc ~T0 @X0 1 r3 ]
+"532
+[f ]
+"533
+[v _mode `uc ~T0 @X0 1 a ]
+[v _nmode `uc ~T0 @X0 1 a ]
+[v _pp `uc ~T0 @X0 1 a ]
+[v _sign `uc ~T0 @X0 1 a ]
+[v _esign `uc ~T0 @X0 1 a ]
+"534
+[v _d `i ~T0 @X0 1 a ]
+[v _e `i ~T0 @X0 1 a ]
+[v _i `i ~T0 @X0 1 a ]
+[v _m `i ~T0 @X0 1 a ]
+[v _n `i ~T0 @X0 1 a ]
+[v _ne `i ~T0 @X0 1 a ]
+[v _p `i ~T0 @X0 1 a ]
+[v _t `i ~T0 @X0 1 a ]
+[v _w `i ~T0 @X0 1 a ]
+"535
+[v _h `d ~T0 @X0 1 a ]
+[v _l `d ~T0 @X0 1 a ]
+"536
+[v _g `S9 ~T0 @X0 1 a ]
+[v _u `S9 ~T0 @X0 1 a ]
+[v _ou `S9 ~T0 @X0 1 a ]
+"539
+[e = _sign -> -> 0 `i `uc ]
+"540
+[e = . _g 0 _f ]
+"541
+[e $ ! < . _g 0 -> .0.0 `d 15  ]
+{
+"542
+[e = _sign -> -> 1 `i `uc ]
+"543
+[e = . _g 0 -U . _g 0 ]
+"544
+}
+[e :U 15 ]
+"547
+[e = _n -> 0 `i ]
+"548
+[e = _w _width ]
+"549
+[e $ ! != -> _sign `i -> 0 `i 16  ]
+"553
+{
+"554
+[e = _sign -> ? != -> _sign `i -> 0 `i : -> 45 `ui -> 43 `ui `uc ]
+"555
+}
+[e :U 16 ]
+"563
+[e $ ! == ( ___fpclassifyf (1 -> . _g 0 `f -> 1 `i 17  ]
+{
+"564
+[e $ ! != -> _sign `i -> 0 `i 18  ]
+{
+"565
+[e = *U + &U _dbuf * -> -> -> 0 `i `ui `ux -> -> # *U &U _dbuf `ui `ux _sign ]
+"566
+[e -- _w -> 1 `i ]
+"567
+[e = _n -> 1 `i ]
+"568
 }
 [e :U 18 ]
-"1024
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1024:     while (i && (d != 0
-[e $ && != _i -> 0 `i || != _d -> -> 0 `i `ui != -> _p `i -> 0 `i 19  ]
-[e :U 20 ]
-"1046
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1046:     return (void) pad(fp, &dbuf[i], w);
-[e ) -> ( _pad (3 , , _fp &U *U + &U _dbuf * -> -> _i `ui `ux -> -> # *U &U _dbuf `ui `ux _w `v ]
-[e $UE 17  ]
-"1047
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1047: }
-[e :UE 17 ]
+"575
+{
+"576
+[e ( _strcpy (2 , &U *U + &U _dbuf * -> -> _n `ui `ux -> -> # *U &U _dbuf `ui `ux :s 1C ]
+"577
 }
-"1158
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1158: read_prec_or_width (const char **fmt, va_list *ap) {
-[v _read_prec_or_width `(i ~T0 @X0 1 sf2`**Cuc`*F1161 ]
+"578
+[e =- _w -> - / -> 4 `ui -> # *U + :s 3C * -> -> 0 `i `x -> -> # *U :s 3C `i `x `ui -> -> 1 `i `ui `i ]
+"579
+[e ) ( _pad (3 , , _fp &U *U + &U _dbuf * -> -> -> 0 `i `ui `ux -> -> # *U &U _dbuf `ui `ux _w ]
+[e $UE 14  ]
+"580
+}
+[e :U 17 ]
+"581
+[e $ ! == ( ___fpclassifyf (1 -> . _g 0 `f -> 0 `i 19  ]
+{
+"582
+[e $ ! != -> _sign `i -> 0 `i 20  ]
+{
+"583
+[e = *U + &U _dbuf * -> -> -> 0 `i `ui `ux -> -> # *U &U _dbuf `ui `ux _sign ]
+"584
+[e -- _w -> 1 `i ]
+"585
+[e = _n -> 1 `i ]
+"586
+}
+[e :U 20 ]
+"593
+{
+"594
+[e ( _strcpy (2 , &U *U + &U _dbuf * -> -> _n `ui `ux -> -> # *U &U _dbuf `ui `ux :s 4C ]
+"595
+}
+"596
+[e =- _w -> - / -> 4 `ui -> # *U + :s 6C * -> -> 0 `i `x -> -> # *U :s 6C `i `x `ui -> -> 1 `i `ui `i ]
+"597
+[e ) ( _pad (3 , , _fp &U *U + &U _dbuf * -> -> -> 0 `i `ui `ux -> -> # *U &U _dbuf `ui `ux _w ]
+[e $UE 14  ]
+"598
+}
+[e :U 19 ]
+"601
+[e = . _u 0 -> .1.0 `d ]
+"602
+[e = _e -> 0 `i ]
+"603
+[e $ ! ! == . _g 0 -> .0.0 `d 21  ]
+{
+"604
+[e $U 22  ]
+[e :U 23 ]
+{
+"605
+[e = _u _ou ]
+"606
+[e =+ _e -> 1 `i ]
+"607
+}
+[e :U 22 ]
+"604
+[e $ || <= ( _labs (1 - . _g 1 . ; = . _ou 0 * . _u 0 -> .10.0 `d _ou 1 -> -> 1 `i `l > . _g 0 . _ou 0 23  ]
+[e :U 24 ]
+"608
+[e $ ! <= ( _labs (1 - . _g 1 . _u 1 -> -> 1 `i `l 25  ]
+{
+"609
+[e = _g _u ]
+"610
+}
+[e $U 26  ]
+"611
+[e :U 25 ]
+{
+"612
+[e $U 27  ]
+[e :U 28 ]
+{
+"613
+[e = . _u 0 / . _u 0 -> .10.0 `d ]
+"614
+[e =- _e -> 1 `i ]
+"615
+[e $ ! <= ( _labs (1 - . _g 1 . _u 1 -> -> 1 `i `l 30  ]
+{
+"616
+[e = _g _u ]
+"617
+[e $U 29  ]
+"618
+}
+[e :U 30 ]
+"619
+}
+[e :U 27 ]
+"612
+[e $ < . _g 0 . _u 0 28  ]
+[e :U 29 ]
+"620
+}
+[e :U 26 ]
+"621
+}
+[e :U 21 ]
+"627
+[e = _mode _c ]
+"629
+[e = _nmode _mode ]
+"639
+{
+"640
+[e = _p ? < _prec -> 0 `i : -> 6 `i _prec ]
+"641
+}
+"655
+[e = _m _p ]
+"659
+{
+"660
+[e =+ _m -> 1 `i ]
+"661
+}
+"665
+[e $ ! == -> _nmode `ui -> 102 `ui 31  ]
+{
+"666
+[e $ ! < _e -> 0 `i 32  ]
+{
+"667
+[e = . _u 0 -> .1.0 `d ]
+"668
+[e = _e -> 0 `i ]
+"669
+}
+[e :U 32 ]
+"670
+[e $ ! ! == -> _mode `ui -> 103 `ui 33  ]
+{
+"671
+[e =+ _m _e ]
+"672
+}
+[e :U 33 ]
+"673
+}
+[e :U 31 ]
+"677
+[e = _i -> 0 `i ]
+"678
+[e = _h . _g 0 ]
+"679
+[e = _ou _u ]
+"680
+[e $U 34  ]
+[e :U 35 ]
+{
+"681
+[e = _l -> ( _floorf (1 -> / _h . _u 0 `f `d ]
+"682
+[e = _d -> _l `i ]
+"683
+[e =- _h * _l . _u 0 ]
+"684
+[e = . _u 0 / . _u 0 -> .10.0 `d ]
+"685
+[e =+ _i -> 1 `i ]
+"686
+}
+[e :U 34 ]
+"680
+[e $ < _i _m 35  ]
+[e :U 36 ]
+"689
+[e = _l * . _u 0 -> .5.0 `d ]
+"690
+[e $ ! < _h _l 37  ]
+{
+"691
+[e = _l -> .0.0 `d ]
+"692
+}
+[e $U 38  ]
+[e :U 37 ]
+{
+"694
+[e $ ! && == _h _l ! != % _d -> 2 `i -> 0 `i 39  ]
+{
+"695
+[e = _l -> .0.0 `d ]
+"696
+}
+[e :U 39 ]
+"697
+}
+[e :U 38 ]
+"700
+[e = _h + . _g 0 _l ]
+"702
+[e $ ! >= _h * . _ou 0 -> .10.0 `d 40  ]
+{
+"703
+[e ++ _e -> 1 `i ]
+"704
+[e =* . _ou 0 -> .10.0 `d ]
+"706
+[e $ ! == -> _nmode `ui -> 102 `ui 41  ]
+{
+"708
+[e ++ _m -> 1 `i ]
+"709
+}
+[e :U 41 ]
+"711
+}
+[e :U 40 ]
+"714
+[e = _u _ou ]
+"718
+[e = _ne _e ]
+"720
+[e = _pp -> -> 0 `i `uc ]
+"721
+[e = _t -> 0 `i ]
+"722
+[e = _i -> 0 `i ]
+"723
+[e $U 42  ]
+[e :U 43 ]
+{
+"724
+[e = _l -> ( _floorf (1 -> / _h . _u 0 `f `d ]
+"725
+[e = _d ? > -> _l `i -> 9 `i : -> 9 `i -> _l `i ]
+"736
+{
+"737
+[e $ ! && ! != -> _pp `i -> 0 `i < _ne -> 0 `i 45  ]
+{
+"738
+[e = *U + &U _dbuf * -> -> ++ _n -> 1 `i `ui `ux -> -> # *U &U _dbuf `ui `ux -> -> 46 `ui `uc ]
+"739
+[e =- _w -> 1 `i ]
+"740
+[e = _pp -> -> 1 `i `uc ]
+"741
+}
+[e :U 45 ]
+"742
+[e $U 46  ]
+[e :U 47 ]
+{
+"743
+[e = *U + &U _dbuf * -> -> ++ _n -> 1 `i `ui `ux -> -> # *U &U _dbuf `ui `ux -> -> 48 `ui `uc ]
+"744
+[e =- _w -> 1 `i ]
+"745
+[e =- _t -> 1 `i ]
+"746
+}
+[e :U 46 ]
+"742
+[e $ != _t -> 0 `i 47  ]
+[e :U 48 ]
+"747
+[e = *U + &U _dbuf * -> -> ++ _n -> 1 `i `ui `ux -> -> # *U &U _dbuf `ui `ux -> + -> -> 48 `ui `i _d `uc ]
+"748
+[e =- _w -> 1 `i ]
+"749
+}
+"750
+[e =- _h * _l . _u 0 ]
+"751
+[e = . _u 0 / . _u 0 -> .10.0 `d ]
+"752
+[e =- _ne -> 1 `i ]
+"753
+[e =+ _i -> 1 `i ]
+"754
+}
+[e :U 42 ]
+"723
+[e $ && < _i _m < _n - -> 80 `i -> 5 `i 43  ]
+[e :U 44 ]
+"760
+[e = _i -> - -> # _dbuf `ui -> -> 1 `i `ui `i ]
+"761
+[e = *U + &U _dbuf * -> -> _i `ui `ux -> -> # *U &U _dbuf `ui `ux -> -> 0 `ui `uc ]
+"792
+[e ( _memcpy (3 , , -> &U *U + &U _dbuf * -> -> - _i _n `ui `ux -> -> # *U &U _dbuf `ui `ux `*v -> &U *U + &U _dbuf * -> -> -> 0 `i `ui `ux -> -> # *U &U _dbuf `ui `ux `*Cv -> _n `ui ]
+"793
+[e = _n - _i _n ]
+"794
+[e = _i ? == -> _sign `i -> 0 `i : -> 0 `i -> 1 `i ]
+"805
+[e $ ! != -> _sign `i -> 0 `i 49  ]
+{
+"806
+[e = *U + &U _dbuf * -> -> =- _n -> 1 `i `ui `ux -> -> # *U &U _dbuf `ui `ux _sign ]
+"807
+}
+[e :U 49 ]
+"808
+[e =- _w _i ]
+"811
+[e ) ( _pad (3 , , _fp &U *U + &U _dbuf * -> -> _n `ui `ux -> -> # *U &U _dbuf `ui `ux _w ]
+[e $UE 14  ]
+"812
+[e :UE 14 ]
+}
+"862
+[v _stoa `(i ~T0 @X0 1 sf2`*S1`*uc ]
+"863
+{
+[e :U _stoa ]
+"862
+[v _fp `*S1 ~T0 @X0 1 r1 ]
+[v _s `*uc ~T0 @X0 1 r2 ]
+"863
+[f ]
+"864
+[v _cp `*uc ~T0 @X0 1 a ]
+[v F1171 `uc ~T0 @X0 -> 7 `i s ]
+[i F1171
+:U ..
+-> 40 `c
+-> 110 `c
+-> 117 `c
+-> 108 `c
+-> 108 `c
+-> 41 `c
+-> 0 `c
+..
+]
+[v _nuls `uc ~T0 @X0 -> 7 `i a ]
+[e = _nuls F1171 ]
+"865
+[v _i `i ~T0 @X0 1 a ]
+[v _l `i ~T0 @X0 1 a ]
+[v _p `i ~T0 @X0 1 a ]
+[v _w `i ~T0 @X0 1 a ]
+"868
+[e = _cp _s ]
+"869
+[e $ ! ! != _cp -> -> 0 `i `*uc 51  ]
+{
+"870
+[e = _cp &U _nuls ]
+"871
+}
+[e :U 51 ]
+"874
+[e = _l -> ( _strlen (1 -> _cp `*Cuc `i ]
+"875
+[e = _p _prec ]
+"876
+[e = _l ? && ! < _p -> 0 `i < _p _l : _p _l ]
+"877
+[e = _p _l ]
+"878
+[e = _w _width ]
+"884
+[e $U 52  ]
+[e :U 53 ]
+{
+"885
+[e ( _fputc (2 , -> -> 32 `ui `i _fp ]
+"886
+[e =+ _l -> 1 `i ]
+"887
+}
+[e :U 52 ]
+"884
+[e $ < _l _w 53  ]
+[e :U 54 ]
+"893
+[e = _i -> 0 `i ]
+"894
+[e $U 55  ]
+[e :U 56 ]
+{
+"895
+[e ( _fputc (2 , -> *U _cp `i _fp ]
+"896
+[e =+ _cp * -> -> 1 `i `x -> -> # *U _cp `i `x ]
+"897
+[e =+ _i -> 1 `i ]
+"898
+}
+[e :U 55 ]
+"894
+[e $ < _i _p 56  ]
+[e :U 57 ]
+"911
+[e ) _l ]
+[e $UE 50  ]
+"913
+[e :UE 50 ]
+}
+"1029
+[v _read_prec_or_width `(i ~T0 @X0 1 sf2`**Cuc`*F1178 ]
 {
 [e :U _read_prec_or_width ]
 [v _fmt `**Cuc ~T0 @X0 1 r1 ]
-[v F1164 `*v ~T0 @X0 -> -> 1 `i `ux t ]
-[v _ap `*F1164 ~T0 @X0 1 r2 ]
+[v F1181 `*v ~T0 @X0 -> -> 1 `i `ux t ]
+[v _ap `*F1181 ~T0 @X0 1 r2 ]
 [f ]
-"1159
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1159:     int n = 0;
+"1030
 [v _n `i ~T0 @X0 1 a ]
 [e = _n -> 0 `i ]
-"1160
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1160:     if ((*fmt)[0] == '*') {
-[e $ ! == -> *U + *U _fmt * -> -> 0 `i `x -> -> # *U *U _fmt `i `x `ui -> 42 `ui 22  ]
+"1031
+[e $ ! == -> *U + *U _fmt * -> -> 0 `i `x -> -> # *U *U _fmt `i `x `ui -> 42 `ui 59  ]
 {
-"1161
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1161:         ++*fmt;
+"1032
 [e =+ *U _fmt * -> -> 1 `i `x -> -> # *U *U _fmt `i `x ]
-"1162
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1162:         n = (*(int *)__va_arg(*(int **)*ap, (int)0));
+"1033
 [e = _n *U -> ( ___va_arg , (. -> *U -> &U *U _ap `**i `*v -> 0 `i `*i ]
-"1163
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1163:     } else {
+"1034
 }
-[e $U 23  ]
-[e :U 22 ]
+[e $U 60  ]
+[e :U 59 ]
 {
-"1164
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1164:         unsigned char c;
+"1035
 [v _c `uc ~T0 @X0 1 a ]
-"1165
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1165:         while ((c = ((unsigned)(*fmt)[0]) - '0') < 10) {
-[e $U 24  ]
-[e :U 25 ]
+"1036
+[e $U 61  ]
+[e :U 62 ]
 {
-"1166
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1166:             n = n * 10 + c;
+"1037
 [e = _n + * _n -> 10 `i -> _c `i ]
-"1167
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1167:             ++*fmt;
+"1038
 [e =+ *U _fmt * -> -> 1 `i `x -> -> # *U *U _fmt `i `x ]
-"1168
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1168:         }
+"1039
 }
-[e :U 24 ]
-"1165
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1165:         while ((c = ((unsigned)(*fmt)[0]) - '0') < 10) {
-[e $ < -> = _c -> - -> *U + *U _fmt * -> -> 0 `i `x -> -> # *U *U _fmt `i `x `ui -> 48 `ui `uc `i -> 10 `i 25  ]
-[e :U 26 ]
-"1169
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1169:     }
+[e :U 61 ]
+"1036
+[e $ < -> = _c -> - -> *U + *U _fmt * -> -> 0 `i `x -> -> # *U *U _fmt `i `x `ui -> 48 `ui `uc `i -> 10 `i 62  ]
+[e :U 63 ]
+"1040
 }
-[e :U 23 ]
-"1170
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1170:     return n;
+[e :U 60 ]
+"1041
 [e ) _n ]
-[e $UE 21  ]
-"1171
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1171: }
-[e :UE 21 ]
+[e $UE 58  ]
+"1042
+[e :UE 58 ]
 }
-"1177
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1177: vfpfcnvrt(FILE *fp, char *fmt[], va_list ap)
-[v _vfpfcnvrt `(v ~T0 @X0 1 sf3`*S1`**uc`**v ]
-"1178
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1178: {
+"1048
+[v _vfpfcnvrt `(i ~T0 @X0 1 sf3`*S1`**uc`**v ]
+"1049
 {
 [e :U _vfpfcnvrt ]
-"1177
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1177: vfpfcnvrt(FILE *fp, char *fmt[], va_list ap)
+"1048
 [v _fp `*S1 ~T0 @X0 1 r1 ]
 [v _fmt `**uc ~T0 @X0 1 r2 ]
 [v _ap `**v ~T0 @X0 1 r3 ]
-"1178
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1178: {
+"1049
 [f ]
-"1179
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1179:     char c, *cp;
+"1050
 [v _c `uc ~T0 @X0 1 a ]
 [v _cp `*uc ~T0 @X0 1 a ]
-"1180
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1180:     _Bool done;
-[v _done `a ~T0 @X0 1 a ]
-"1188
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1188:  } convarg;
-[v _convarg `S28 ~T0 @X0 1 a ]
-"1201
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1201:     if ((*fmt)[0] == '%') {
-[e $ ! == -> *U + *U _fmt * -> -> 0 `i `x -> -> # *U *U _fmt `i `x `ui -> 37 `ui 29  ]
+"1051
+[v _done `i ~T0 @X0 1 a ]
+[v _i `i ~T0 @X0 1 a ]
+"1059
+[v _convarg `S65 ~T0 @X0 1 a ]
+"1062
+[e $ ! == -> *U + *U _fmt * -> -> 0 `i `x -> -> # *U *U _fmt `i `x `ui -> 37 `ui 66  ]
 {
-"1202
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1202:         ++*fmt;
+"1063
 [e =+ *U _fmt * -> -> 1 `i `x -> -> # *U *U _fmt `i `x ]
-"1204
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1204:         flags = width = 0;
+"1065
 [e = _flags -> = _width -> 0 `i `uc ]
-"1205
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1205:         prec = -1;
+"1066
 [e = _prec -U -> 1 `i ]
-[v F1179 `*v ~T0 @X0 -> -> 1 `i `ux t ]
-"1256
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1256:   width = read_prec_or_width(fmt, ap);
-[e = _width ( _read_prec_or_width (2 , -> _fmt `**Cuc -> _ap `*F1179 ]
-"1257
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1257:   if (width < 0) {
-[e $ ! < _width -> 0 `i 30  ]
+"1126
+[e $ ! == -> *U + *U _fmt * -> -> 0 `i `x -> -> # *U *U _fmt `i `x `ui -> 46 `ui 67  ]
 {
-"1258
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1258:    flags |= (1 << 0);
-[e =| _flags -> << -> 1 `i -> 0 `i `uc ]
-"1259
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1259:    width = -width;
-[e = _width -U _width ]
-"1260
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1260:   }
+"1127
+[e =+ *U _fmt * -> -> 1 `i `x -> -> # *U *U _fmt `i `x ]
+[v F1196 `*v ~T0 @X0 -> -> 1 `i `ux t ]
+"1128
+[e = _prec ( _read_prec_or_width (2 , -> _fmt `**Cuc -> _ap `*F1196 ]
+"1129
 }
-[e :U 30 ]
-"1291
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1291:   cp = *fmt;
+[e :U 67 ]
+"1409
+[e $ ! || == -> *U *U + _fmt * -> -> 0 `i `x -> -> # *U _fmt `i `x `ui -> 115 `ui ! != ( _strncmp (3 , , -> *U _fmt `*Cuc :s 9C - / -> 4 `ui -> # *U + :s 10C * -> -> 0 `i `x -> -> # *U :s 10C `i `x `ui -> -> 1 `i `ui -> 0 `i 68  ]
+{
+"1411
+[e =+ *U _fmt * -> ? == -> *U *U + _fmt * -> -> 0 `i `x -> -> # *U _fmt `i `x `ui -> 115 `ui : -> -> 1 `i `ui - / -> 4 `ui -> # *U + :s 11C * -> -> 0 `i `x -> -> # *U :s 11C `i `x `ui -> -> 1 `i `ui `ux -> -> # *U *U _fmt `ui `ux ]
+"1412
+[e ) ( _stoa (2 , _fp *U -> ( ___va_arg , (. -> *U -> _ap `***uc `*v -> -> 0 `i `*uc `**uc ]
+[e $UE 64  ]
+"1413
+}
+[e :U 68 ]
+"1418
 [e = _cp *U _fmt ]
+"1419
+[e = _c *U _cp ]
+"1420
+[e $U 70  ]
+{
+"1422
+[e :U 71 ]
+"1423
+[e :U 72 ]
+"1424
+[e ++ _cp * -> -> 1 `i `x -> -> # *U _cp `i `x ]
+"1425
+[e $U 69  ]
 "1439
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1439:   if (0
-[e $ ! || != -> 0 `i -> 0 `i == -> *U _cp `ui -> 117 `ui 31  ]
+[e :U 73 ]
+"1450
+[e = _c -> -> 108 `ui `uc ]
+"1451
+[e $U 69  ]
 "1452
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1452:     ) {
+[e :U 74 ]
+"1453
+[e = _c -> -> 0 `i `uc ]
+"1454
+[e $U 69  ]
+"1455
+}
+[e $U 69  ]
+[e :U 70 ]
+[e [\ -> _c `i , $ -> -> 108 `ui `i 71
+ , $ -> -> 76 `ui `i 72
+ , $ -> -> 102 `ui `i 73
+ 74 ]
+[e :U 69 ]
+"1457
+[e $ ! || != -> 0 `i -> 0 `i == -> *U _cp `ui -> 102 `ui 75  ]
+"1482
 {
-"1495
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1495:    convarg.uint = (vfpf_uint_t)(unsigned int)(*(unsigned int *)__va_arg(*(unsigned int **)ap, (unsigned int)0));
-[e = . _convarg 1 *U -> ( ___va_arg , (. -> *U -> _ap `**ui `*v -> -> 0 `i `ui `*ui ]
-"1497
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1497:    *fmt = cp+1;
+"1483
+[e $U 77  ]
+{
+"1484
+[e :U 78 ]
+"1485
+[e = . _convarg 1 -> *U -> ( ___va_arg , (. -> *U -> _ap `**d `*v -> -> 0 `i `d `*d `d ]
+"1486
+[e $U 76  ]
+"1487
+[e :U 79 ]
+"1488
+[e = . _convarg 1 *U -> ( ___va_arg , (. -> *U -> _ap `**d `*v -> -> 0 `i `d `*d ]
+"1489
+[e $U 76  ]
+"1490
+}
+[e $U 76  ]
+[e :U 77 ]
+[e [\ -> _c `i , $ -> -> 108 `ui `i 78
+ , $ -> -> 76 `ui `i 79
+ 76 ]
+[e :U 76 ]
+"1491
 [e = *U _fmt + _cp * -> -> 1 `i `x -> -> # *U _cp `i `x ]
-"1498
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1498:    switch (*cp) {
-[e $U 33  ]
+"1492
+[e $U 81  ]
 {
-"1523
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1523:     case 'u':
-[e :U 34 ]
-"1542
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1542:      return (void) utoa(fp, convarg.uint);
-[e ) -> ( _utoa (2 , _fp . _convarg 1 `v ]
-[e $UE 27  ]
-"1589
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1589:    }
+"1508
+[e :U 82 ]
+"1519
+[e ) ( _efgtoa (3 , , _fp . _convarg 1 *U _cp ]
+[e $UE 64  ]
+"1521
 }
-[e $U 32  ]
-[e :U 33 ]
-[e [\ -> *U _cp `i , $ -> -> 117 `ui `i 34
- 32 ]
-[e :U 32 ]
-"1590
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1590:   }
+[e $U 80  ]
+[e :U 81 ]
+[e [\ -> *U _cp `i , $ -> -> 102 `ui `i 82
+ 80 ]
+[e :U 80 ]
+"1522
 }
-[e :U 31 ]
-"1806
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1806:         ++*fmt;
+[e :U 75 ]
+"1535
 [e =+ *U _fmt * -> -> 1 `i `x -> -> # *U *U _fmt `i `x ]
-"1807
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1807:         return (void) 0;
-[e ) -> -> 0 `i `v ]
-[e $UE 27  ]
-"1808
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1808:     }
+"1536
+[e ) -> 0 `i ]
+[e $UE 64  ]
+"1537
 }
-[e :U 29 ]
-"1811
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1811:     fputc((int)(*fmt)[0], fp);
+[e :U 66 ]
+"1540
 [e ( _fputc (2 , -> *U + *U _fmt * -> -> 0 `i `x -> -> # *U *U _fmt `i `x `i _fp ]
-"1812
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1812:     ++*fmt;
+"1541
 [e =+ *U _fmt * -> -> 1 `i `x -> -> # *U *U _fmt `i `x ]
-"1813
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1813:     return (void) 1;
-[e ) -> -> 1 `i `v ]
-[e $UE 27  ]
-"1814
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1814: }
-[e :UE 27 ]
+"1542
+[e ) -> 1 `i ]
+[e $UE 64  ]
+"1543
+[e :UE 64 ]
 }
-"1817
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1817: int vfprintf(FILE *fp, const char *fmt, va_list ap)
+"1546
 [v _vfprintf `(i ~T0 @X0 1 ef3`*S1`*Cuc`**v ]
-"1818
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1818: {
+"1547
 {
 [e :U _vfprintf ]
-"1817
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1817: int vfprintf(FILE *fp, const char *fmt, va_list ap)
+"1546
 [v _fp `*S1 ~T0 @X0 1 r1 ]
 [v _fmt `*Cuc ~T0 @X0 1 r2 ]
 [v _ap `**v ~T0 @X0 1 r3 ]
-"1818
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1818: {
+"1547
 [f ]
-"1820
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1820:     char *cfmt;
+"1549
 [v _cfmt `*uc ~T0 @X0 1 a ]
-"1822
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1822:     cfmt = (char *)fmt;
+"1551
 [e = _cfmt -> _fmt `*uc ]
-"1826
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1826:     while (*cfmt) {
-[e $U 36  ]
-[e :U 37 ]
+"1553
+[e = _nout -> 0 `i ]
+"1555
+[e $U 84  ]
+[e :U 85 ]
 {
-"1830
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1830:    vfpfcnvrt(fp, &cfmt, ap);
-[e ( _vfpfcnvrt (3 , , _fp &U _cfmt _ap ]
-"1831
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1831:     }
+"1557
+[e =+ _nout ( _vfpfcnvrt (3 , , _fp &U _cfmt _ap ]
+"1560
 }
-[e :U 36 ]
-"1826
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1826:     while (*cfmt) {
-[e $ != -> *U _cfmt `i -> 0 `i 37  ]
-[e :U 38 ]
-"1835
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1835:  return 0;
-[e ) -> 0 `i ]
-[e $UE 35  ]
-"1840
-[; ;/opt/microchip/xc8/v2.45/pic/sources/c99/common/doprnt.c: 1840: }
-[e :UE 35 ]
+[e :U 84 ]
+"1555
+[e $ != -> *U _cfmt `i -> 0 `i 85  ]
+[e :U 86 ]
+"1562
+[e ) _nout ]
+[e $UE 83  ]
+"1569
+[e :UE 83 ]
 }
+[a 7C 108 108 115 0 ]
+[a 8C 108 108 115 0 ]
+[a 9C 108 108 115 0 ]
+[a 10C 108 108 115 0 ]
+[a 11C 108 108 115 0 ]
+[a 4C 110 97 110 0 ]
+[a 5C 110 97 110 0 ]
+[a 6C 110 97 110 0 ]
+[a 1C 105 110 102 0 ]
+[a 2C 105 110 102 0 ]
+[a 3C 105 110 102 0 ]
