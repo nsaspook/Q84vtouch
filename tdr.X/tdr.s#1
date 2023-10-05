@@ -10494,6 +10494,8 @@ Source: www.kingbright.com</description>
 <classes>
 <class number="0" name="default" width="0" drill="0">
 </class>
+<class number="1" name="icurrent" width="0.3048" drill="0">
+</class>
 </classes>
 <parts>
 <part name="IC1" library="PIC18F25K22-I_SP" deviceset="PIC18F25K22-I_SP" device=""/>
@@ -10533,6 +10535,7 @@ Source: www.kingbright.com</description>
 <part name="VDD7" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VDD" device=""/>
 <part name="C4" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-US" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2" value="0.1uf"/>
 <part name="VSS14" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VSS" device=""/>
+<part name="SV4" library="con-lstb" library_urn="urn:adsk.eagle:library:162" deviceset="MA04-1" device="" package3d_urn="urn:adsk.eagle:package:8337/1"/>
 </parts>
 <sheets>
 <sheet>
@@ -10670,11 +10673,15 @@ Source: www.kingbright.com</description>
 <instance part="VSS14" gate="G$1" x="96.52" y="27.94" smashed="yes" rot="R180">
 <attribute name="VALUE" x="99.06" y="33.02" size="1.778" layer="96" rot="R270"/>
 </instance>
+<instance part="SV4" gate="1" x="134.62" y="83.82" smashed="yes">
+<attribute name="VALUE" x="133.35" y="73.66" size="1.778" layer="96"/>
+<attribute name="NAME" x="133.35" y="89.662" size="1.778" layer="95"/>
+</instance>
 </instances>
 <busses>
 </busses>
 <nets>
-<net name="CTED1" class="0">
+<net name="CTED1" class="1">
 <segment>
 <pinref part="IC1" gate="G$1" pin="RB2"/>
 <wire x1="86.36" y1="50.8" x2="111.76" y2="50.8" width="0.1524" layer="91"/>
@@ -10690,7 +10697,7 @@ Source: www.kingbright.com</description>
 <junction x="154.94" y="43.18"/>
 </segment>
 </net>
-<net name="CTED2" class="0">
+<net name="CTED2" class="1">
 <segment>
 <pinref part="IC1" gate="G$1" pin="RB3"/>
 <wire x1="86.36" y1="53.34" x2="111.76" y2="53.34" width="0.1524" layer="91"/>
@@ -10716,7 +10723,7 @@ Source: www.kingbright.com</description>
 <junction x="33.02" y="63.5"/>
 </segment>
 </net>
-<net name="VDD" class="0">
+<net name="VDD" class="1">
 <segment>
 <pinref part="C2" gate="G$1" pin="1"/>
 <pinref part="VDD1" gate="G$1" pin="VDD"/>
@@ -10762,7 +10769,7 @@ Source: www.kingbright.com</description>
 <junction x="25.4" y="83.82"/>
 </segment>
 </net>
-<net name="VSS" class="0">
+<net name="VSS" class="1">
 <segment>
 <pinref part="C1" gate="G$1" pin="2"/>
 <pinref part="VSS1" gate="G$1" pin="VSS"/>
@@ -10931,7 +10938,7 @@ Source: www.kingbright.com</description>
 <junction x="25.4" y="35.56"/>
 </segment>
 </net>
-<net name="CTPLS" class="0">
+<net name="CTPLS" class="1">
 <segment>
 <pinref part="IC1" gate="G$1" pin="RC2"/>
 <wire x1="43.18" y1="33.02" x2="33.02" y2="33.02" width="0.1524" layer="91"/>
@@ -10952,6 +10959,34 @@ Source: www.kingbright.com</description>
 <label x="152.4" y="53.34" size="1.778" layer="95"/>
 <junction x="142.24" y="53.34"/>
 <junction x="154.94" y="53.34"/>
+</segment>
+<segment>
+<wire x1="154.94" y1="78.74" x2="142.24" y2="78.74" width="0.1524" layer="91"/>
+<pinref part="SV4" gate="1" pin="1"/>
+<junction x="142.24" y="78.74"/>
+<junction x="154.94" y="78.74"/>
+<label x="147.32" y="78.74" size="1.778" layer="95"/>
+</segment>
+<segment>
+<wire x1="154.94" y1="81.28" x2="142.24" y2="81.28" width="0.1524" layer="91"/>
+<pinref part="SV4" gate="1" pin="2"/>
+<junction x="142.24" y="81.28"/>
+<junction x="154.94" y="81.28"/>
+<label x="147.32" y="81.28" size="1.778" layer="95"/>
+</segment>
+<segment>
+<wire x1="154.94" y1="83.82" x2="142.24" y2="83.82" width="0.1524" layer="91"/>
+<pinref part="SV4" gate="1" pin="3"/>
+<junction x="142.24" y="83.82"/>
+<junction x="154.94" y="83.82"/>
+<label x="147.32" y="83.82" size="1.778" layer="95"/>
+</segment>
+<segment>
+<wire x1="154.94" y1="86.36" x2="142.24" y2="86.36" width="0.1524" layer="91"/>
+<pinref part="SV4" gate="1" pin="4"/>
+<junction x="142.24" y="86.36"/>
+<junction x="154.94" y="86.36"/>
+<label x="147.32" y="86.36" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="N$4" class="0">
