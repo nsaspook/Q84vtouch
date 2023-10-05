@@ -137,7 +137,7 @@ extern "C" {
 	} mx_logpage_t;
 
 	typedef struct B_type {
-		volatile bool ten_sec_flag, one_sec_flag, FM80_charged, pv_high, pv_update;
+		volatile bool ten_sec_flag, one_sec_flag, FM80_charged, pv_high, pv_update, once;
 		volatile uint16_t pacing, rx_count, flush, pv_prev, day_check;
 		volatile bool FM80_online, FM80_io;
 		volatile uint8_t canbus_online, modbus_online,alt_display;

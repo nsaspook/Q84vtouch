@@ -16,7 +16,7 @@ extern "C" {
 #include "modbus_master.h"
 #include "mateQ84.X/mxcmd.h"
 
-#define CHK_DAY_TIME	120
+#define CHK_DAY_TIME	1200
 #define TEN_SEC_HOUR	360.0f
 #define BM_EEPROM_VER   1
 #define BM_CM           0x57+BM_EEPROM_VER

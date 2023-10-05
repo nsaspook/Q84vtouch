@@ -249,6 +249,7 @@ B_type B = {
 	.pv_high = false,
 	.pv_prev = STATUS_SLEEPING,
 	.pv_update = false,
+	.once = false,
 };
 
 static EB_data *EB = &EBD;
@@ -654,29 +655,34 @@ void state_status_cb(void)
 	 * status in pv_prev variable
 	 */
 
-	/* clear event counter timer 10s ticks */
+	/*
+	 * once a day/night event has happened wait for a long while until the next change
+	 * clear event counter timer 10s ticks 
+	 */
 	if (B.day_check++ > CHK_DAY_TIME) {
 		B.day_check = 0;
-		day_clocks = 0;
+		B.once = false;
 	}
 
 	if (FMxx_STATE != STATUS_SLEEPING) {
 		if (++day_clocks > BAT_DAY_COUNT) {
 			day_clocks = 0;
-			B.day_check = 0;
-			if (B.pv_prev == STATUS_SLEEPING) { // check sun on PV and trigger a daily energy update
+			if (!B.once && (B.pv_prev == STATUS_SLEEPING)) { // check sun on PV and trigger a daily energy update
+				B.day_check = 0;
 				B.pv_update = true;
 				B.pv_prev = FMxx_STATE;
+				B.once = true;
 			}
 			B.pv_high = true;
 		}
 	} else {
 		if (++day_clocks > BAT_DAY_COUNT) {
 			day_clocks = 0;
-			B.day_check = 0;
-			if (B.pv_prev != STATUS_SLEEPING) { // check for night and update day totals
+			if (!B.once && (B.pv_prev != STATUS_SLEEPING)) { // check for night and update day totals
+				B.day_check = 0;
 				B.pv_update = true;
 				B.pv_prev = FMxx_STATE;
+				B.once = true;
 			}
 			B.pv_high = false;
 		}
