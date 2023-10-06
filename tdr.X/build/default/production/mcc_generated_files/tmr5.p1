@@ -1,5 +1,5 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[v F5777 `(v ~T0 @X0 0 tf ]
+[v F5764 `(v ~T0 @X0 0 tf ]
 "1480 /root/.mchp_packs/Microchip/PIC18F-K_DFP/1.12.287/xc8/pic/include/proc/pic18f25k22.h
 [v _T5GCON `Vuc ~T0 @X0 0 e@3917 ]
 "1711
@@ -24,9 +24,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [n S320 . . ]
 "6076
 [v _PIE5bits `VS320 ~T0 @X0 0 e@3965 ]
-[v F5769 `(v ~T0 @X0 0 tf ]
+[v F5756 `(v ~T0 @X0 0 tf ]
 "383 mcc_generated_files/tmr5.h
-[v _TMR5_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F5769 ]
+[v _TMR5_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F5756 ]
 "419
 [v _TMR5_DefaultInterruptHandler `(v ~T0 @X0 0 ef ]
 "1575 /root/.mchp_packs/Microchip/PIC18F-K_DFP/1.12.287/xc8/pic/include/proc/pic18f25k22.h
@@ -67,9 +67,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _T5GCONbits `VS72 ~T0 @X0 0 e@3917 ]
 "365 mcc_generated_files/tmr5.h
 [v _TMR5_CallBack `(v ~T0 @X0 0 ef ]
-[v F5794 `(v ~T0 @X0 0 tf ]
-[v F5796 `(v ~T0 @X0 0 tf ]
-[v F5798 `(v ~T0 @X0 0 tf ]
+[v F5781 `(v ~T0 @X0 0 tf ]
+[v F5783 `(v ~T0 @X0 0 tf ]
+[v F5785 `(v ~T0 @X0 0 tf ]
 "54 /root/.mchp_packs/Microchip/PIC18F-K_DFP/1.12.287/xc8/pic/include/proc/pic18f25k22.h
 [; <" ANSELA equ 0F38h ;# ">
 "99
@@ -561,7 +561,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "57 mcc_generated_files/tmr5.c
 [v _timer5ReloadVal `Vus ~T0 @X0 1 e ]
 "58
-[v _TMR5_InterruptHandler `*F5777 ~T0 @X0 1 e ]
+[v _TMR5_InterruptHandler `*F5764 ~T0 @X0 1 e ]
 "64
 [v _TMR5_Initialize `(v ~T0 @X0 1 ef ]
 "65
@@ -714,8 +714,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _TMR5_ISR ]
 [f ]
 "160
-[v F5792 `Vui ~T0 @X0 1 s CountCallBack ]
-[i F5792
+[v F5779 `Vui ~T0 @X0 1 s CountCallBack ]
+[i F5779
 -> -> 0 `i `ui
 ]
 "163
@@ -723,13 +723,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 "164
 [e ( _TMR5_WriteTimer (1 _timer5ReloadVal ]
 "167
-[e $ ! >= =+ F5792 -> -> 1 `i `Vui -> -> 20 `i `ui 837  ]
+[e $ ! >= =+ F5779 -> -> 1 `i `Vui -> -> 20 `i `ui 837  ]
 "168
 {
 "170
 [e ( _TMR5_CallBack ..  ]
 "173
-[e = F5792 -> -> 0 `i `ui ]
+[e = F5779 -> -> 0 `i `ui ]
 "174
 }
 [e :U 837 ]
@@ -743,7 +743,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _TMR5_CallBack ]
 [f ]
 "180
-[e $ ! != _TMR5_InterruptHandler -> -> 0 `i `*F5794 839  ]
+[e $ ! != _TMR5_InterruptHandler -> -> 0 `i `*F5781 839  ]
 "181
 {
 "182
@@ -755,10 +755,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :UE 838 ]
 }
 "186
-[v _TMR5_SetInterruptHandler `(v ~T0 @X0 1 ef1`*F5796 ]
+[v _TMR5_SetInterruptHandler `(v ~T0 @X0 1 ef1`*F5783 ]
 {
 [e :U _TMR5_SetInterruptHandler ]
-[v _InterruptHandler `*F5798 ~T0 @X0 1 r1 ]
+[v _InterruptHandler `*F5785 ~T0 @X0 1 r1 ]
 [f ]
 "187
 [e = _TMR5_InterruptHandler _InterruptHandler ]

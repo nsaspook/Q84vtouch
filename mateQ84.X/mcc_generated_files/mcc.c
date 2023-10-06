@@ -54,11 +54,13 @@ void SYSTEM_Initialize(void)
     ADC_Initialize();
     PIN_MANAGER_Initialize();
     OSCILLATOR_Initialize();
+    CLC7_Initialize();
     DMA1_Initialize();
     TMR4_Initialize();
     TMR2_Initialize();
     TMR0_Initialize();
     TMR6_Initialize();
+    CLC8_Initialize();
     TMR5_Initialize();
     UART1_Initialize();
     UART2_Initialize();

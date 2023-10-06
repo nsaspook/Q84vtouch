@@ -77,7 +77,6 @@ void FM_io(void) {
      * read serial data if polled interrupt flag is set
      */
     if (PIR4bits.U1RXIF) {
-        IO_RB7_Toggle(); // GPIO scope trace
         if (U1ERRIRbits.FERIF) {
             // do nothing, will clear auto
         }

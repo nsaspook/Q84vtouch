@@ -117,7 +117,7 @@ void main(void)
 
 			adc_scaled = adc_raw_float - offset_meter;
 			r_m = five_meter - one_meter;
-			s_m = r_m / 4.0f;
+			s_m = r_m / cal_meters;
 			l_m = (adc_scaled / s_m) + 1.0f;
 //			snprintf(buffer, 255, "TDR %.2fM cable ", l_m);
 			snprintf(buffer, 255, "ADC %.2f ", adc_raw_float);

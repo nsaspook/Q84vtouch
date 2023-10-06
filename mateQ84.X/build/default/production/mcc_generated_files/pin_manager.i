@@ -38678,7 +38678,7 @@ unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 # 34 "/opt/microchip/xc8/v2.41/pic/include/xc.h" 2 3
 # 54 "mcc_generated_files/pin_manager.h" 2
-# 642 "mcc_generated_files/pin_manager.h"
+# 634 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
 # 49 "mcc_generated_files/pin_manager.c" 2
 
@@ -38712,7 +38712,7 @@ void PIN_MANAGER_Initialize(void)
 
     ANSELD = 0x00;
     ANSELC = 0x00;
-    ANSELB = 0xC0;
+    ANSELB = 0x00;
     ANSELE = 0x00;
     ANSELA = 0xFF;
 
@@ -38754,15 +38754,16 @@ void PIN_MANAGER_Initialize(void)
 # 127 "mcc_generated_files/pin_manager.c"
     U2RXPPS = 0x18;
     U5RXPPS = 0x10;
-    SPI1SCKPPS = 0x13;
     RC3PPS = 0x31;
+    RB7PPS = 0x07;
     RC1PPS = 0x2C;
-    CANRXPPS = 0x08;
     RB4PPS = 0x46;
-    RC5PPS = 0x32;
-    RC6PPS = 0x20;
     U1RXPPS = 0x17;
     RD6PPS = 0x23;
+    SPI1SCKPPS = 0x13;
+    CANRXPPS = 0x08;
+    RC5PPS = 0x32;
+    RC6PPS = 0x20;
     SPI1SDIPPS = 0x14;
 }
 

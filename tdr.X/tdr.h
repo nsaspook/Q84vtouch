@@ -31,6 +31,7 @@ extern "C" {
 #define offset_meter	2752.0f
 #define	one_meter	2752.0f
 #define five_meter	3264.0f
+#define cal_meters	4.0f
 
 
 #ifdef	__cplusplus
