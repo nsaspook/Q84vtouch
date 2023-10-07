@@ -1,5 +1,5 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[v F22918 `(v ~T0 @X0 0 tf ]
+[v F22937 `(v ~T0 @X0 0 tf ]
 "39483 /root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.22.413/xc8/pic/include/proc/pic18f47q84.h
 [; ;/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.22.413/xc8/pic/include/proc/pic18f47q84.h: 39483: extern volatile unsigned char T0CON1 __attribute__((address(0x31B)));
 [v _T0CON1 `Vuc ~T0 @X0 0 e@795 ]
@@ -26,10 +26,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1801
 [; ;/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.22.413/xc8/pic/include/proc/pic18f47q84.h: 1801: extern volatile unsigned char PMD8 __attribute__((address(0x068)));
 [v _PIE3bits `VS3092 ~T0 @X0 0 e@1185 ]
-[v F22910 `(v ~T0 @X0 0 tf ]
+[v F22929 `(v ~T0 @X0 0 tf ]
 "293 mcc_generated_files/tmr0.h
 [; ;mcc_generated_files/tmr0.h: 293:  void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
-[v _TMR0_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F22910 ]
+[v _TMR0_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F22929 ]
 "329
 [; ;mcc_generated_files/tmr0.h: 329: void TMR0_DefaultInterruptHandler(void);
 [v _TMR0_DefaultInterruptHandler `(v ~T0 @X0 0 ef ]
@@ -61,9 +61,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _T0CON0bits `VS1831 ~T0 @X0 0 e@794 ]
 [t ~ __interrupt . k ]
 [t T1 __interrupt irq ( TMR0 ) base ( 8 ) low_priority ]
-[v F22930 `(v ~T0 @X0 0 tf ]
-[v F22932 `(v ~T0 @X0 0 tf ]
-[v F22934 `(v ~T0 @X0 0 tf ]
+[v F22949 `(v ~T0 @X0 0 tf ]
+[v F22951 `(v ~T0 @X0 0 tf ]
+[v F22953 `(v ~T0 @X0 0 tf ]
 "362 /root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.22.413/xc8/pic/include/proc/pic18f47q84.h
 [; ;/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.22.413/xc8/pic/include/proc/pic18f47q84.h: 362: __asm("BOOTREG equ 038h");
 [; <" BOOTREG equ 038h ;# ">
@@ -3663,7 +3663,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; <" TOSU equ 04FFh ;# ">
 "60 mcc_generated_files/tmr0.c
 [; ;mcc_generated_files/tmr0.c: 60: void (*TMR0_InterruptHandler)(void);
-[v _TMR0_InterruptHandler `*F22918 ~T0 @X0 1 e ]
+[v _TMR0_InterruptHandler `*F22937 ~T0 @X0 1 e ]
 "62
 [; ;mcc_generated_files/tmr0.c: 62: void TMR0_Initialize(void)
 [v _TMR0_Initialize `(v ~T0 @X0 1 ef ]
@@ -3803,7 +3803,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _PIR3bits 0 7 -> -> 0 `i `uc ]
 "126
 [; ;mcc_generated_files/tmr0.c: 126:     if(TMR0_InterruptHandler)
-[e $ ! != _TMR0_InterruptHandler -> -> 0 `i `*F22930 3282  ]
+[e $ ! != _TMR0_InterruptHandler -> -> 0 `i `*F22949 3282  ]
 "127
 [; ;mcc_generated_files/tmr0.c: 127:     {
 {
@@ -3820,10 +3820,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 "135
 [; ;mcc_generated_files/tmr0.c: 135: void TMR0_SetInterruptHandler(void (* InterruptHandler)(void)){
-[v _TMR0_SetInterruptHandler `(v ~T0 @X0 1 ef1`*F22932 ]
+[v _TMR0_SetInterruptHandler `(v ~T0 @X0 1 ef1`*F22951 ]
 {
 [e :U _TMR0_SetInterruptHandler ]
-[v _InterruptHandler `*F22934 ~T0 @X0 1 r1 ]
+[v _InterruptHandler `*F22953 ~T0 @X0 1 r1 ]
 [f ]
 "136
 [; ;mcc_generated_files/tmr0.c: 136:     TMR0_InterruptHandler = InterruptHandler;
