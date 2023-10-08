@@ -65,8 +65,8 @@ void Can1FIFO1NotEmptyHandler(void)
 				memcpy((void *) &rxMsgData[CAN_ERROR_BUF][0], msg[half].data, CANFD_BYTES);
 				break;
 			}
-			if ((msg[half].msgId & 0xf) == EMON_TM) {
-				memcpy((void *) &can_timer, msg[half].data, sizeof(time_t)); // load 32-bit linux time from canbus packet
+			if ((msg[MIRR0R_BUF].msgId & 0xf) == EMON_TM) {
+				memcpy((void *) &can_timer, msg[MIRR0R_BUF].data, sizeof(time_t)); // load 32-bit linux time from canbus packet
 				EB->fm80_time = can_timer; // save remote Unix time from canbus packets
 				can_newtime = localtime(&can_timer);
 				update_time(can_newtime, EB);

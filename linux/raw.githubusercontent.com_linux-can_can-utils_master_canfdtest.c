@@ -133,22 +133,22 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 			if (id == EMON_ER || id == EMON_CO) {
 				full_buffer[i] = (uint8_t) (data[i] + inc_data);
 			} else {
-				if (id == CAN_MSG_ID_PING) {
-					full_buffer[i] = (uint8_t) (data[i] + inc_data);
+			if (id == CAN_MSG_ID_PING) {
+				full_buffer[i] = (uint8_t) (data[i] + inc_data);
 				} else {
-					full_buffer[i + CAN_MSG_LEN] = (uint8_t) (data[i] + inc_data);
-				}
+				full_buffer[i + CAN_MSG_LEN] = (uint8_t) (data[i] + inc_data);
 			}
 		}
-		if (id == CAN_MSG_ID_PING_X) {
-			fprintf(stdout, "%s", full_buffer);
-		}
-		if (id == EMON_ER) {
-			fprintf(stderr, "%s", full_buffer);
-		}
-		if (id == EMON_CO) {
-			fprintf(stderr, "%s\r\n", full_buffer);
-		}
+	}
+	if (id == CAN_MSG_ID_PING_X) {
+		fprintf(stdout, "%s", full_buffer);
+	}
+	if (id == EMON_ER) {
+		fprintf(stderr, "%s", full_buffer);
+	}
+	if (id == EMON_CO) {
+		fprintf(stderr, "%s\r\n", full_buffer);
+	}
 
 	}
 	if (print_hex) {

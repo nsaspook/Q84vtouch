@@ -26,7 +26,7 @@ extern "C" {
 #include "qconfig.h"
 
 #define USEMCC_SPI
-#ifndef CAN_REMOTE
+#ifndef CAN_REMOTE_NODMA
 #define USE_LCD_DMA
 #endif
 
@@ -54,6 +54,7 @@ extern "C" {
 #define LCD_CMD_SET	0x100
 #define LCD_CLEAR_HOME	0x04
 #define LCD_CMD_ON	0x41
+#define LCD_CMD_OFF	0x42
 #define LCD_CMD_HOME	0x46
 #define LCD_CMD_CLR	0x51
 #define LCD_CMD_CONT	0x52
@@ -76,6 +77,7 @@ extern "C" {
 
     extern void wdtdelay(const uint32_t);
     bool init_display(void);
+    void no_dma_set_lcd(void);
     void send_lcd_data_dma(const uint8_t);
     void send_lcd_cmd_dma(const uint8_t);
     void send_lcd_pos_dma(const uint8_t);

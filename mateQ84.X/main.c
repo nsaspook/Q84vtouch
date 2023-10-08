@@ -349,12 +349,22 @@ void main(void)
 		/* display build time and boot status codes 67 34 07, WDT reset 67 24 07 */
 		snprintf(buffer, MAX_B_BUF, "%s B:%X %X %X   ", build_time, STATUS, PCON0, PCON1);
 	}
+#ifdef CAN_REMOTE
+	no_dma_set_lcd();
+	eaDogM_WriteStringAtPos(2, 0, buffer);
+	snprintf(buffer, MAX_B_BUF, "%s ", "Start Up Remote        ");
+	eaDogM_WriteStringAtPos(3, 0, buffer);
+	wdtdelay(1000000);
+	snprintf(buffer, MAX_B_BUF, "%s ", "Polling MateQ84        ");
+	eaDogM_WriteStringAtPos(2, 0, buffer);
+#else
 	eaDogM_WriteStringAtPos(2, 0, buffer);
 	snprintf(buffer, MAX_B_BUF, "%s ", "Start Up            ");
 	eaDogM_WriteStringAtPos(3, 0, buffer);
 	wdtdelay(1000000);
 	snprintf(buffer, MAX_B_BUF, "%s ", "Polling FM80        ");
 	eaDogM_WriteStringAtPos(2, 0, buffer);
+#endif
 
 	can_fd_tx(); // send the testing packet via CANBUS
 

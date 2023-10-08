@@ -173,8 +173,8 @@ static void CAN1_RX_FIFO_Configuration(void)
     // TXAT Unlimited number of retransmission attempts; TXPRI 1; 
     C1FIFOCON1U = 0x60;
     
-    // PLSIZE 64; FSIZE 8; 
-    C1FIFOCON1T = 0xE7;
+    // PLSIZE 64; FSIZE 4; 
+    C1FIFOCON1T = 0xE3;
     
     CAN1_SetFIFO1NotEmptyHandler(DefaultFIFO1NotEmptyHandler);
     
@@ -210,8 +210,8 @@ static void CAN1_TX_FIFO_Configuration(void)
     // TXAT 3; TXPRI 2; 
     C1TXQCONU = 0x61;
 
-    // PLSIZE 64; FSIZE 10; 
-    C1TXQCONT = 0xE9;
+    // PLSIZE 64; FSIZE 4; 
+    C1TXQCONT = 0xE3;
 
     // TXEN enabled; RTREN disabled; RXTSEN disabled; TXATIE enabled; RXOVIE disabled; TFERFFIE disabled; TFHRFHIE disabled; TFNRFNIE disabled; 
     C1FIFOCON2L = 0x90;
