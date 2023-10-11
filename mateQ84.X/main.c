@@ -348,15 +348,21 @@ void main(void)
 	} else {
 		/* display build time and boot status codes 67 34 07, WDT reset 67 24 07 */
 		snprintf(buffer, MAX_B_BUF, "%s B:%X %X %X   ", build_time, STATUS, PCON0, PCON1);
-	}
 #ifdef CAN_REMOTE
-	no_dma_set_lcd();
+		wr_bm_data((void*) EB);
+#endif
+	}
 	eaDogM_WriteStringAtPos(2, 0, buffer);
+#ifdef CAN_REMOTE
+#ifdef CAN_REMOTE_NODMA
+	no_dma_set_lcd();
+#endif
 	snprintf(buffer, MAX_B_BUF, "%s ", "Start Up Remote        ");
 	eaDogM_WriteStringAtPos(3, 0, buffer);
-	wdtdelay(1000000);
+	wdtdelay(700000);
 	snprintf(buffer, MAX_B_BUF, "%s ", "Polling MateQ84        ");
 	eaDogM_WriteStringAtPos(2, 0, buffer);
+	wdtdelay(300000);
 #else
 	eaDogM_WriteStringAtPos(2, 0, buffer);
 	snprintf(buffer, MAX_B_BUF, "%s ", "Start Up            ");
@@ -376,7 +382,7 @@ void main(void)
 	}
 	{
 		char s_buffer[22];
-		snprintf(s_buffer, 21, "0X%X%X%X%X%X%X%X%X         ", B.mui[0], B.mui[1], B.mui[2], B.mui[3], B.mui[4], B.mui[5], B.mui[6], B.mui[7]);
+		snprintf(s_buffer, 21, "%X%X%X%X%X%X%X%X         ", B.mui[0], B.mui[1], B.mui[2], B.mui[3], B.mui[4], B.mui[5], B.mui[6], B.mui[7]);
 		eaDogM_Scroll_String(s_buffer);
 		can_newtime = localtime(&can_timer);
 #ifdef SDEBUG

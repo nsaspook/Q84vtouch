@@ -22,7 +22,7 @@ extern "C" {
 #include "../timers.h"
 
 #define VER	1
-	const char build_version[] = "V1.88 FM80 Q84";
+	const char build_version[] = "V1.90 FM80 Q84";
 	/*
 	 * code changes
 	 * 1.55 remove critical section interrupt disables for FM80 serial
@@ -49,6 +49,7 @@ extern "C" {
 	 * 1.86 fix more logging buffer length issues
 	 * 1.87 use CLC for heartbeat timer and I/O signal
 	 * 1.88 XC8 must use V2.41 as V2.45 seems to be buggy
+	 * 1.90 Remote DMA LCD mode fixes
 	 */
 
 #define MAX_B_BUF	255

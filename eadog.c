@@ -3,6 +3,18 @@
 #include "eadog.h"
 #include "mateQ84.X/mcc_generated_files/mcc.h"
 
+#ifdef TRACE
+#define E_TRACE	IO_RB5_Toggle()
+#else
+#define E_TRACE	""
+#endif
+
+#ifdef CAN_REMOTE
+#define DONE_DELAY	99
+#else
+#define DONE_DELAY	99999
+#endif
+
 volatile struct spi_link_type spi_link = {
 	.LCD_DATA = false,
 };
@@ -71,7 +83,7 @@ bool init_display(void)
 	DMAnCON0bits.EN = 1; /* enable DMA */
 	SPI1INTFbits.SPI1TXUIF = 1;
 	send_lcd_cmd_dma(LCD_CMD_BRI); // set back-light level
-	send_lcd_data_dma(NHD_BL_LOW);
+	send_lcd_data_dma(NHD_BL_HIGH);
 	send_lcd_cmd_dma(LCD_CMD_CONT); // set display contrast
 	send_lcd_data_dma(NHD_CONT);
 	send_lcd_cmd_dma(LCD_CMD_ON); // display on
@@ -291,9 +303,19 @@ bool wait_lcd_check(void)
 
 void wait_lcd_done(void)
 {
+	uint32_t delay = 0;
 #ifdef USE_LCD_DMA
-	while (spi_link.LCD_DATA);
-	while (!SPI1STATUSbits.TXBE);
+	while (spi_link.LCD_DATA) {
+		if (delay++ > DONE_DELAY) {
+			return;
+		}
+	};
+	delay = 0;
+	while (!SPI1STATUSbits.TXBE) {
+		if (delay++ > DONE_DELAY) {
+			return;
+		}
+	};
 	MLED_SetLow();
 #endif
 }
@@ -305,6 +327,10 @@ void clear_lcd_done(void)
 {
 	INT_TRACE; // GPIO interrupt scope trace
 	spi_link.LCD_DATA = false;
+	E_TRACE;
+	E_TRACE;
+	E_TRACE;
+	E_TRACE;
 }
 
 void spi_rec_done(void)

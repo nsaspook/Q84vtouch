@@ -38,8 +38,8 @@
 #include <time.h>
 #include <math.h>
 
-#define CAN_REMOTE	// can received data on LCD for remote mate board
-#define CAN_REMOTE_NODMA
+//#define CAN_REMOTE	// can received data on LCD for remote mate board
+//#define CAN_REMOTE_NODMA
 #define TRACE
 
 #ifdef TRACE

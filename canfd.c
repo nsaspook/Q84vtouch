@@ -27,6 +27,10 @@ union {
 
 static EB_data *EB = &EBD;
 
+#ifdef CAN_REMOTE	
+static char s_buffer[LCD_BUF_SIZ];
+#endif
+
 /*
  * process the FIFO data into msg structure
  */
@@ -36,9 +40,6 @@ void Can1FIFO1NotEmptyHandler(void)
 	static uint8_t half = CAN_LOW_BUF;
 
 	INT_TRACE; // GPIO interrupt scope trace
-#ifdef CAN_REMOTE	
-	char s_buffer[LCD_BUF_SIZ];
-#endif
 
 	while (true) {
 		can_rec_count.rec_count++;
@@ -163,11 +164,10 @@ void can_fd_tx(void)
 			CAN1_Transmit(FIFO3, &Transmission); //transmit frame
 		}
 	}
-#ifdef CAN_REMOTE
+#ifdef CAN_REMOTE_ERR
 	if (CAN1_IsRxErrorActive()) {
 	}
 #endif
-	IO_RB5_SetLow();
 }
 
 /*
@@ -232,11 +232,10 @@ void can_fd_lcd_mirror(const uint8_t r, char *strPtr)
 			CAN1_Transmit(TXQ, &Transmission); //transmit frame
 		}
 	}
-#ifdef CAN_REMOTE
+#ifdef CAN_REMOTE_ERR
 	if (CAN1_IsRxErrorActive()) {
 	}
 #endif
-	IO_RB5_SetLow();
 }
 
 void TXQNotFullHandler(void)
