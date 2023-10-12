@@ -18,6 +18,10 @@ extern "C" {
 #endif
 
 #define TRACE
+// EXT_IO pin 4, SPI DMA driver toggles to RB5
+// Ext_IO PIN 5, interrupt toggles to RB6
+// EXT_IO pin 6, composite I/O from CLC7 to RB7
+// EXT_IO pin 2, main program trace high to RD5
 
 
 #ifdef	__cplusplus

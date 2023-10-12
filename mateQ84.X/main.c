@@ -470,7 +470,9 @@ void main(void)
 		}
 
 		if (B.one_sec_flag) { // one second tasks
+#ifndef CAN_REMOTE
 			eaDogM_Scroll_Task();
+#endif
 			B.one_sec_flag = false;
 			B.canbus_online = (!C1TXQCONHbits.TXREQ)&0x01;
 			if (!B.canbus_online) {

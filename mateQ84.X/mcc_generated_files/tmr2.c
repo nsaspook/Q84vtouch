@@ -69,8 +69,8 @@ void TMR2_Initialize(void)
     // T2CS LFINTOSC; 
     T2CLKCON = 0x04;
 
-    // T2PSYNC Not Synchronized; T2MODE Software control; T2CKPOL Rising Edge; T2CKSYNC Not Synchronized; 
-    T2HLT = 0x00;
+    // T2PSYNC Not Synchronized; T2MODE Software control; T2CKPOL Rising Edge; T2CKSYNC Synchronized; 
+    T2HLT = 0x20;
 
     // T2RSEL T2CKIPPS pin; 
     T2RST = 0x00;

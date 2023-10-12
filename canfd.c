@@ -39,7 +39,7 @@ static volatile bool mirror_print[CAN_MIRRORS] = {false, false, false, false};
 
 /*
  * process the FIFO data into msg structure
- * interrupt context
+ * interrupt context ISR
  */
 void Can1FIFO1NotEmptyHandler(void)
 {
@@ -130,6 +130,7 @@ void Can1FIFO1NotEmptyHandler(void)
 
 void can_mirror_print(void)
 {
+#ifdef CAN_REMOTE
 	if (mirror_print[LCD0]) {
 		eaDogM_WriteStringAtPos(LCD0, 0, (char*) &s_buffer[LCD0][0]);
 		mirror_print[LCD0] = false;
@@ -146,6 +147,7 @@ void can_mirror_print(void)
 		eaDogM_WriteStringAtPos(LCD3, 0, (char*) &s_buffer[LCD3][0]);
 		mirror_print[LCD3] = false;
 	}
+#endif
 }
 
 /*
@@ -245,6 +247,7 @@ void can_setup(void)
  */
 void can_fd_lcd_mirror(const uint8_t r, char *strPtr)
 {
+#ifndef CAN_REMOTE	// don't repeat a received message
 	if (!B.FM80_io) {
 		CAN_MSG_OBJ Transmission; //create the CAN message object
 		Transmission.field.brs = CAN_BRS_MODE; //Transmit the data bytes at data bit rate
@@ -259,6 +262,7 @@ void can_fd_lcd_mirror(const uint8_t r, char *strPtr)
 			CAN1_Transmit(TXQ, &Transmission); //transmit frame
 		}
 	}
+#endif
 #ifdef CAN_REMOTE_ERR
 	if (CAN1_IsRxErrorActive()) {
 	}

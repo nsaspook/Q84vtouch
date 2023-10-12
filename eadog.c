@@ -63,7 +63,7 @@ bool init_display(void)
 	SPI1CON0bits.EN = 1;
 #endif
 	if (powerup) {
-		wdtdelay(350000); // > 400ms power up delay
+		wdtdelay(LCD_PWR_DELAY); // > 400ms power up delay
 	}
 
 #ifdef USE_LCD_DMA
@@ -88,7 +88,7 @@ bool init_display(void)
 	send_lcd_data_dma(NHD_CONT);
 	send_lcd_cmd_dma(LCD_CMD_ON); // display on
 	send_lcd_cmd_dma(LCD_CMD_CLR); // clear screen
-	wdtdelay(800);
+	wdtdelay(NHD_L_DELAY);
 	DMA1_StopTransfer();
 #else
 	send_lcd_cmd(LCD_CMD_BRI); // set back-light level
@@ -97,7 +97,7 @@ bool init_display(void)
 	send_lcd_data(NHD_CONT);
 	send_lcd_cmd(LCD_CMD_OFF); // display on
 	send_lcd_cmd(LCD_CMD_CLR); // clear screen
-	wdtdelay(800);
+	wdtdelay(NHD_L_DELAY);
 	DMA1_StopTransfer();
 #endif
 #endif
@@ -115,25 +115,25 @@ static void send_lcd_data(const uint8_t data)
 {
 	CS_SetLow();
 	SPI1_ExchangeByte(data);
-	wdtdelay(8);
+	wdtdelay(NHD_T_DELAY);
 }
 
 static void send_lcd_cmd(const uint8_t cmd)
 {
 	CS_SetLow();
 	SPI1_ExchangeByte(NHD_CMD);
-	wdtdelay(8);
+	wdtdelay(NHD_T_DELAY);
 	SPI1_ExchangeByte(cmd);
-	wdtdelay(8);
+	wdtdelay(NHD_T_DELAY);
 }
 
 static void send_lcd_cmd_long(const uint8_t cmd)
 {
 	CS_SetLow();
 	SPI1_ExchangeByte(NHD_CMD);
-	wdtdelay(8);
+	wdtdelay(NHD_T_DELAY);
 	SPI1_ExchangeByte(cmd);
-	wdtdelay(800);
+	wdtdelay(NHD_L_DELAY);
 }
 
 /*
@@ -196,6 +196,7 @@ void send_lcd_data_dma(const uint8_t strPtr)
  */
 void send_lcd_pos_dma(const uint8_t strPtr)
 {
+	E_TRACE;
 	wait_lcd_done();
 	wait_lcd_set();
 	CS_SetLow(); /* SPI select display */
@@ -213,9 +214,11 @@ void eaDogM_WriteStringAtPos(const uint8_t r, const uint8_t c, char *strPtr)
 {
 	uint8_t row;
 
+#ifndef CAN_REMOTE
 	if (scroll_lock) { // don't update LCD text when in scroll mode
 		return;
 	}
+#endif
 
 	switch (r) {
 	case LCD1:
@@ -237,6 +240,8 @@ void eaDogM_WriteStringAtPos(const uint8_t r, const uint8_t c, char *strPtr)
 
 #ifdef USE_LCD_DMA
 	send_lcd_pos_dma(row + c);
+	wdtdelay(NHD_S_DELAY); // display command processing delay
+	E_TRACE;
 #else
 	send_lcd_cmd(0x45);
 	send_lcd_data(row + c);
@@ -401,5 +406,5 @@ void no_dma_set_lcd(void)
 	send_lcd_data(NHD_CONT);
 	send_lcd_cmd(LCD_CMD_ON); // display on
 	send_lcd_cmd(LCD_CMD_CLR); // clear screen
-	wdtdelay(800);
+	wdtdelay(NHD_L_DELAY);
 }

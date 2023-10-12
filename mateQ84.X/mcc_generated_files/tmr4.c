@@ -69,8 +69,8 @@ void TMR4_Initialize(void)
     // T4CS FOSC; 
     T4CLKCON = 0x02;
 
-    // T4PSYNC Not Synchronized; T4MODE Software control; T4CKPOL Rising Edge; T4CKSYNC Not Synchronized; 
-    T4HLT = 0x00;
+    // T4PSYNC Not Synchronized; T4MODE Software control; T4CKPOL Rising Edge; T4CKSYNC Synchronized; 
+    T4HLT = 0x20;
 
     // T4RSEL T4CKIPPS pin; 
     T4RST = 0x00;

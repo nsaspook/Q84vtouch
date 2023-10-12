@@ -39314,6 +39314,13 @@ void DMA1_SetORIInterruptHandler(void (* InterruptHandler)(void));
 void DMA1_DefaultInterruptHandler(void);
 # 57 "./mcc_generated_files/mcc.h" 2
 
+# 1 "./mcc_generated_files/nco1.h" 1
+# 93 "./mcc_generated_files/nco1.h"
+void NCO1_Initialize(void);
+# 128 "./mcc_generated_files/nco1.h"
+_Bool NCO1_GetOutputStatus(void);
+# 58 "./mcc_generated_files/mcc.h" 2
+
 # 1 "./mcc_generated_files/tmr5.h" 1
 # 100 "./mcc_generated_files/tmr5.h"
 void TMR5_Initialize(void);
@@ -39337,7 +39344,7 @@ uint8_t TMR5_CheckGateValueStatus(void);
 extern void (*TMR5_InterruptHandler)(void);
 # 404 "./mcc_generated_files/tmr5.h"
 void TMR5_DefaultInterruptHandler(void);
-# 58 "./mcc_generated_files/mcc.h" 2
+# 59 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/tmr6.h" 1
 # 79 "./mcc_generated_files/tmr6.h"
@@ -39630,7 +39637,7 @@ void TMR6_LoadPeriodRegister(uint8_t periodVal);
 extern void (*TMR6_InterruptHandler)(void);
 # 913 "./mcc_generated_files/tmr6.h"
 void TMR6_DefaultInterruptHandler(void);
-# 59 "./mcc_generated_files/mcc.h" 2
+# 60 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/tmr4.h" 1
 # 79 "./mcc_generated_files/tmr4.h"
@@ -39923,7 +39930,7 @@ void TMR4_LoadPeriodRegister(uint8_t periodVal);
 extern void (*TMR4_InterruptHandler)(void);
 # 913 "./mcc_generated_files/tmr4.h"
 void TMR4_DefaultInterruptHandler(void);
-# 60 "./mcc_generated_files/mcc.h" 2
+# 61 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/tmr2.h" 1
 # 79 "./mcc_generated_files/tmr2.h"
@@ -40216,7 +40223,14 @@ void TMR2_LoadPeriodRegister(uint8_t periodVal);
 extern void (*TMR2_InterruptHandler)(void);
 # 913 "./mcc_generated_files/tmr2.h"
 void TMR2_DefaultInterruptHandler(void);
-# 61 "./mcc_generated_files/mcc.h" 2
+# 62 "./mcc_generated_files/mcc.h" 2
+
+# 1 "./mcc_generated_files/clc8.h" 1
+# 91 "./mcc_generated_files/clc8.h"
+void CLC8_Initialize(void);
+# 113 "./mcc_generated_files/clc8.h"
+_Bool CLC8_OutputStatusGet(void);
+# 63 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/tmr0.h" 1
 # 100 "./mcc_generated_files/tmr0.h"
@@ -40237,21 +40251,14 @@ void TMR0_Reload(uint8_t periodVal);
 extern void (*TMR0_InterruptHandler)(void);
 # 329 "./mcc_generated_files/tmr0.h"
 void TMR0_DefaultInterruptHandler(void);
-# 62 "./mcc_generated_files/mcc.h" 2
-
-# 1 "./mcc_generated_files/clc8.h" 1
-# 91 "./mcc_generated_files/clc8.h"
-void CLC8_Initialize(void);
-# 113 "./mcc_generated_files/clc8.h"
-_Bool CLC8_OutputStatusGet(void);
-# 63 "./mcc_generated_files/mcc.h" 2
+# 64 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/clc7.h" 1
 # 91 "./mcc_generated_files/clc7.h"
 void CLC7_Initialize(void);
 # 113 "./mcc_generated_files/clc7.h"
 _Bool CLC7_OutputStatusGet(void);
-# 64 "./mcc_generated_files/mcc.h" 2
+# 65 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/uart2.h" 1
 # 75 "./mcc_generated_files/uart2.h"
@@ -40304,7 +40311,7 @@ void (*UART2_TxInterruptHandler)(void);
 void UART2_SetRxInterruptHandler(void (* InterruptHandler)(void));
 # 574 "./mcc_generated_files/uart2.h"
 void UART2_SetTxInterruptHandler(void (* InterruptHandler)(void));
-# 65 "./mcc_generated_files/mcc.h" 2
+# 66 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/uart1.h" 1
 # 74 "./mcc_generated_files/uart1.h"
@@ -40339,7 +40346,7 @@ void UART1_SetFramingErrorHandler(void (* interruptHandler)(void));
 void UART1_SetOverrunErrorHandler(void (* interruptHandler)(void));
 # 450 "./mcc_generated_files/uart1.h"
 void UART1_SetErrorHandler(void (* interruptHandler)(void));
-# 66 "./mcc_generated_files/mcc.h" 2
+# 67 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/uart5.h" 1
 # 74 "./mcc_generated_files/uart5.h"
@@ -40392,7 +40399,7 @@ void (*UART5_TxInterruptHandler)(void);
 void UART5_SetRxInterruptHandler(void (* InterruptHandler)(void));
 # 573 "./mcc_generated_files/uart5.h"
 void UART5_SetTxInterruptHandler(void (* InterruptHandler)(void));
-# 67 "./mcc_generated_files/mcc.h" 2
+# 68 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/can1.h" 1
 # 56 "./mcc_generated_files/can1.h"
@@ -40571,7 +40578,7 @@ void CAN1_SetTXQNotFullHandler(void (*handler)(void));
 void CAN1_SetFIFO2nullHandler(void (*handler)(void));
 # 1460 "./mcc_generated_files/can1.h"
 void CAN1_SetFIFO3nullHandler(void (*handler)(void));
-# 68 "./mcc_generated_files/mcc.h" 2
+# 69 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/spi1.h" 1
 # 59 "./mcc_generated_files/spi1.h"
@@ -40588,14 +40595,14 @@ void SPI1_WriteBlock(void *block, size_t blockSize);
 void SPI1_ReadBlock(void *block, size_t blockSize);
 void SPI1_WriteByte(uint8_t byte);
 uint8_t SPI1_ReadByte(void);
-# 69 "./mcc_generated_files/mcc.h" 2
-# 84 "./mcc_generated_files/mcc.h"
+# 70 "./mcc_generated_files/mcc.h" 2
+# 85 "./mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
-# 97 "./mcc_generated_files/mcc.h"
+# 98 "./mcc_generated_files/mcc.h"
 void OSCILLATOR_Initialize(void);
-# 110 "./mcc_generated_files/mcc.h"
+# 111 "./mcc_generated_files/mcc.h"
 void PMD_Initialize(void);
-# 122 "./mcc_generated_files/mcc.h"
+# 123 "./mcc_generated_files/mcc.h"
 void SystemArbiter_Initialize(void);
 # 21 "./mxcmd.h" 2
 # 1 "./../eadog.h" 1
@@ -41111,7 +41118,7 @@ extern char spinners(uint8_t, const uint8_t);
         uint8_t baud;
         uint8_t operation;
     } spi1_configuration_t;
-# 78 "./../eadog.h"
+# 84 "./../eadog.h"
     extern void wdtdelay(const uint32_t);
     _Bool init_display(void);
     void no_dma_set_lcd(void);
@@ -41162,8 +41169,8 @@ void delay_ms(const uint16_t);
 # 23 "./mxcmd.h" 2
 
 
- const char build_version[] = "V1.90 FM80 Q84";
-# 72 "./mxcmd.h"
+ const char build_version[] = "V1.91 FM80 Q84";
+# 73 "./mxcmd.h"
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
  const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};
@@ -41618,7 +41625,7 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[255] = "Boot Init Display   ", can_buffer[64*2], info_buffer[255], log_buffer[255];
-const char *build_date = "Oct 11 2023", *build_time = "20:31:19";
+const char *build_date = "Oct 12 2023", *build_time = "11:40:26";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
@@ -41742,21 +41749,19 @@ void main(void)
 
   snprintf(buffer, 255, "%s B:%X %X %X   ", build_time, STATUS, PCON0, PCON1);
 
-  wr_bm_data((void*) EB);
+
 
  }
  eaDogM_WriteStringAtPos(2, 0, buffer);
-
-
-
-
- snprintf(buffer, 255, "%s ", "Start Up Remote        ");
- eaDogM_WriteStringAtPos(3, 0, buffer);
- wdtdelay(700000);
- snprintf(buffer, 255, "%s ", "Polling MateQ84        ");
+# 367 "main.c"
  eaDogM_WriteStringAtPos(2, 0, buffer);
- wdtdelay(300000);
-# 375 "main.c"
+ snprintf(buffer, 255, "%s ", "Start Up            ");
+ eaDogM_WriteStringAtPos(3, 0, buffer);
+ wdtdelay(1000000);
+ snprintf(buffer, 255, "%s ", "Polling FM80        ");
+ eaDogM_WriteStringAtPos(2, 0, buffer);
+
+
  can_fd_tx();
 
 
@@ -41855,7 +41860,9 @@ void main(void)
   }
 
   if (B.one_sec_flag) {
+
    eaDogM_Scroll_Task();
+
    B.one_sec_flag = 0;
    B.canbus_online = (!C1TXQCONHbits.TXREQ)&0x01;
    if (!B.canbus_online) {
@@ -41863,10 +41870,10 @@ void main(void)
    }
    B.modbus_online = C.data_ok;
 
-   snprintf(buffer, 255, "%X %X %X %X  %lu %lu %lu      ", C1BDIAG0T, C1BDIAG0U, C1BDIAG0H, C1BDIAG0L, can_rec_count.rec_count, msg[0].msgId, msg[1].msgId);
 
-   can_newtime = localtime(&can_timer);
-   snprintf(buffer, 21, "%s", asctime(can_newtime));
+
+
+
 
 
   }
@@ -41890,7 +41897,7 @@ void main(void)
     if (C.data_ok && (M.error > error_save)) {
      snprintf(buffer, 255, "EMon  %4.1fVAC   %c%c    ", lp_filter(ac, F_ac, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
 
-
+     eaDogM_WriteStringAtPos(1, 0, buffer);
 
      snprintf(info_buffer, 255, " error logged \r\n");
      if (e_update == 0) {
@@ -41900,7 +41907,7 @@ void main(void)
       snprintf(buffer, 255, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
 
 
-
+      eaDogM_WriteStringAtPos(0, 0, buffer);
 
      }
      if (e_update++ >= 10) {
@@ -41909,11 +41916,12 @@ void main(void)
      }
     } else {
      M.error = 0;
+# 559 "main.c"
+     snprintf(buffer, 255, "EMon  %6.1fWh   %c%c    ", EB->bat_energy / 360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
+     eaDogM_WriteStringAtPos(1, 0, buffer);
+     snprintf(buffer, 255, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
+     eaDogM_WriteStringAtPos(0, 0, buffer);
 
-
-
-     can_mirror_print();
-# 562 "main.c"
     }
    }
   }
@@ -42001,12 +42009,12 @@ void state_init_cb(void)
   off_delay = 0;
   snprintf(buffer, 255, "FM80 Online         ");
 
-
+  eaDogM_WriteStringAtPos(3, 0, buffer);
 
  } else {
   snprintf(buffer, 255, "FM80 Offline        ");
 
-
+  eaDogM_WriteStringAtPos(3, 0, buffer);
 
   if (off_delay++ > 3) {
    B.FM80_online = 0;
@@ -42020,7 +42028,7 @@ void state_status_cb(void)
 {
  static uint16_t day_clocks = 0;
  static uint8_t status_prev = STATUS_SLEEPING;
-# 683 "main.c"
+# 685 "main.c"
  if (B.day_check++ > 1200) {
   B.day_check = 0;
   B.once = 0;
