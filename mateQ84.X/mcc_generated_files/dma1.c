@@ -185,7 +185,7 @@ void DMA1_SetDMAPriority(uint8_t priority)
 	PRLOCKbits.PRLOCKED = 1;
 }
 
-void __interrupt(irq(IRQ_DMA1SCNT),base(8)) DMA1_DMASCNTI_ISR()
+void __interrupt(irq(IRQ_DMA1SCNT),base(8),low_priority) DMA1_DMASCNTI_ISR()
 {
     // Clear the source count interrupt flag
     PIR2bits.DMA1SCNTIF = 0;

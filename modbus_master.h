@@ -51,8 +51,7 @@ extern "C" {
 #include <string.h>
 #include "mateQ84.X/mcc_generated_files/mcc.h"
 #include "timers.h"
-
-#define TRACE
+#include "trace.h"
 
 #ifdef TRACE
 #define INT_TRACE	IO_RB6_Toggle()

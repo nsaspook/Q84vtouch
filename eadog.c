@@ -10,9 +10,9 @@
 #endif
 
 #ifdef CAN_REMOTE
-#define DONE_DELAY	99
+#define DONE_DELAY	999
 #else
-#define DONE_DELAY	99999
+#define DONE_DELAY	999
 #endif
 
 volatile struct spi_link_type spi_link = {
@@ -143,6 +143,8 @@ void eaDogM_WriteString(char *strPtr)
 {
 	uint8_t len = (uint8_t) strlen(strPtr);
 
+	E_TRACE;
+	E_TRACE;
 	wait_lcd_done();
 	wait_lcd_set();
 	CS_SetLow(); /* SPI select display */
@@ -175,6 +177,9 @@ void send_lcd_cmd_dma(const uint8_t strPtr)
  */
 void send_lcd_data_dma(const uint8_t strPtr)
 {
+	E_TRACE;
+	E_TRACE;
+	E_TRACE;
 	wait_lcd_done();
 	wait_lcd_set();
 	CS_SetLow(); /* SPI select display */
@@ -303,20 +308,23 @@ bool wait_lcd_check(void)
 
 void wait_lcd_done(void)
 {
-	uint32_t delay = 0;
 #ifdef USE_LCD_DMA
+	uint32_t delay = 0;
 	while (spi_link.LCD_DATA) {
 		if (delay++ > DONE_DELAY) {
+			MLED_SetHigh();
 			return;
 		}
 	};
 	delay = 0;
 	while (!SPI1STATUSbits.TXBE) {
 		if (delay++ > DONE_DELAY) {
+			MLED_SetHigh();
 			return;
 		}
 	};
 	MLED_SetLow();
+	CS_SetHigh();
 #endif
 }
 

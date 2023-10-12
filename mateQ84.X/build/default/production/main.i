@@ -40218,13 +40218,6 @@ extern void (*TMR2_InterruptHandler)(void);
 void TMR2_DefaultInterruptHandler(void);
 # 61 "./mcc_generated_files/mcc.h" 2
 
-# 1 "./mcc_generated_files/clc8.h" 1
-# 91 "./mcc_generated_files/clc8.h"
-void CLC8_Initialize(void);
-# 113 "./mcc_generated_files/clc8.h"
-_Bool CLC8_OutputStatusGet(void);
-# 62 "./mcc_generated_files/mcc.h" 2
-
 # 1 "./mcc_generated_files/tmr0.h" 1
 # 100 "./mcc_generated_files/tmr0.h"
 void TMR0_Initialize(void);
@@ -40244,6 +40237,13 @@ void TMR0_Reload(uint8_t periodVal);
 extern void (*TMR0_InterruptHandler)(void);
 # 329 "./mcc_generated_files/tmr0.h"
 void TMR0_DefaultInterruptHandler(void);
+# 62 "./mcc_generated_files/mcc.h" 2
+
+# 1 "./mcc_generated_files/clc8.h" 1
+# 91 "./mcc_generated_files/clc8.h"
+void CLC8_Initialize(void);
+# 113 "./mcc_generated_files/clc8.h"
+_Bool CLC8_OutputStatusGet(void);
 # 63 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/clc7.h" 1
@@ -41069,6 +41069,8 @@ double y0(double);
 double y1(double);
 double yn(int, double);
 # 40 "./../qconfig.h" 2
+# 1 "./../trace.h" 1
+# 41 "./../qconfig.h" 2
 # 58 "./../qconfig.h"
 const char spin[6][20] = {
  "||//--",
@@ -41261,7 +41263,7 @@ void delay_ms(const uint16_t);
 
 
 # 1 "./../modbus_master.h" 1
-# 90 "./../modbus_master.h"
+# 89 "./../modbus_master.h"
  typedef enum comm_type {
   CLEAR = 0,
   INIT,
@@ -41477,7 +41479,7 @@ void delay_ms(const uint16_t);
   0x44, 0x84, 0x85, 0x45, 0x87, 0x47, 0x46, 0x86, 0x82, 0x42,
   0x43, 0x83, 0x41, 0x81, 0x80, 0x40
  };
-# 323 "./../modbus_master.h"
+# 322 "./../modbus_master.h"
  uint16_t crc16(volatile uint8_t *, uint16_t);
  uint16_t modbus_rtu_send_msg(void *, const void *, uint16_t);
 
@@ -41615,7 +41617,7 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[255] = "Boot Init Display   ", can_buffer[64*2], info_buffer[255], log_buffer[255];
-const char *build_date = "Oct 11 2023", *build_time = "11:05:39";
+const char *build_date = "Oct 11 2023", *build_time = "18:59:55";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
@@ -41739,19 +41741,21 @@ void main(void)
 
   snprintf(buffer, 255, "%s B:%X %X %X   ", build_time, STATUS, PCON0, PCON1);
 
-
+  wr_bm_data((void*) EB);
 
  }
  eaDogM_WriteStringAtPos(2, 0, buffer);
-# 367 "main.c"
- eaDogM_WriteStringAtPos(2, 0, buffer);
- snprintf(buffer, 255, "%s ", "Start Up            ");
+
+
+
+
+ snprintf(buffer, 255, "%s ", "Start Up Remote        ");
  eaDogM_WriteStringAtPos(3, 0, buffer);
- wdtdelay(1000000);
- snprintf(buffer, 255, "%s ", "Polling FM80        ");
+ wdtdelay(700000);
+ snprintf(buffer, 255, "%s ", "Polling MateQ84        ");
  eaDogM_WriteStringAtPos(2, 0, buffer);
-
-
+ wdtdelay(300000);
+# 375 "main.c"
  can_fd_tx();
 
 
@@ -41858,10 +41862,10 @@ void main(void)
    }
    B.modbus_online = C.data_ok;
 
+   snprintf(buffer, 255, "%X %X %X %X  %lu %lu %lu      ", C1BDIAG0T, C1BDIAG0U, C1BDIAG0H, C1BDIAG0L, can_rec_count.rec_count, msg[0].msgId, msg[1].msgId);
 
-
-
-
+   can_newtime = localtime(&can_timer);
+   snprintf(buffer, 21, "%s", asctime(can_newtime));
 
 
   }
@@ -41900,12 +41904,7 @@ void main(void)
      }
     } else {
      M.error = 0;
-# 552 "main.c"
-     snprintf(buffer, 255, "EMon  %6.1fWh   %c%c    ", EB->bat_energy / 360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
-     eaDogM_WriteStringAtPos(1, 0, buffer);
-     snprintf(buffer, 255, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
-     eaDogM_WriteStringAtPos(0, 0, buffer);
-
+# 557 "main.c"
     }
    }
   }
@@ -41993,12 +41992,12 @@ void state_init_cb(void)
   off_delay = 0;
   snprintf(buffer, 255, "FM80 Online         ");
 
-  eaDogM_WriteStringAtPos(3, 0, buffer);
+
 
  } else {
   snprintf(buffer, 255, "FM80 Offline        ");
 
-  eaDogM_WriteStringAtPos(3, 0, buffer);
+
 
   if (off_delay++ > 3) {
    B.FM80_online = 0;
