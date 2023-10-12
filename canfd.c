@@ -28,11 +28,18 @@ union {
 static EB_data *EB = &EBD;
 
 #ifdef CAN_REMOTE	
-static char s_buffer[LCD_BUF_SIZ];
+static volatile char s_buffer[CAN_MIRRORS][LCD_BUF_SIZ + 1] = {
+	"                     ",
+	"                     ",
+	"                     ",
+	"                     ",
+};
+static volatile bool mirror_print[CAN_MIRRORS] = {false, false, false, false};
 #endif
 
 /*
  * process the FIFO data into msg structure
+ * interrupt context
  */
 void Can1FIFO1NotEmptyHandler(void)
 {
@@ -94,23 +101,23 @@ void Can1FIFO1NotEmptyHandler(void)
 			}
 #ifdef CAN_REMOTE
 			if ((msg[MIRR0R_BUF].msgId & 0xf) == EMON_MR + LCD0) {
-				memcpy((void *) s_buffer, msg[MIRR0R_BUF].data, LCD_BUF_SIZ); // load LCD mirror packet
-				eaDogM_WriteStringAtPos(LCD0, 0, s_buffer);
+				memcpy((void *) &s_buffer[LCD0][0], msg[MIRR0R_BUF].data, LCD_BUF_SIZ); // load LCD mirror packet
+				mirror_print[LCD0] = true;
 				break;
 			}
 			if ((msg[MIRR0R_BUF].msgId & 0xf) == EMON_MR + LCD1) {
-				memcpy((void *) s_buffer, msg[MIRR0R_BUF].data, LCD_BUF_SIZ); // load LCD mirror packet
-				eaDogM_WriteStringAtPos(LCD1, 0, s_buffer);
+				memcpy((void *) &s_buffer[LCD1][0], msg[MIRR0R_BUF].data, LCD_BUF_SIZ); // load LCD mirror packet
+				mirror_print[LCD1] = true;
 				break;
 			}
 			if ((msg[MIRR0R_BUF].msgId & 0xf) == EMON_MR + LCD2) {
-				memcpy((void *) s_buffer, msg[MIRR0R_BUF].data, LCD_BUF_SIZ); // load LCD mirror packet
-				eaDogM_WriteStringAtPos(LCD2, 0, s_buffer);
+				memcpy((void *) &s_buffer[LCD2][0], msg[MIRR0R_BUF].data, LCD_BUF_SIZ); // load LCD mirror packet
+				mirror_print[LCD2] = true;
 				break;
 			}
 			if ((msg[MIRR0R_BUF].msgId & 0xf) == EMON_MR + LCD3) {
-				memcpy((void *) s_buffer, msg[MIRR0R_BUF].data, LCD_BUF_SIZ); // load LCD mirror packet
-				eaDogM_WriteStringAtPos(LCD3, 0, s_buffer);
+				memcpy((void *) &s_buffer[LCD3][0], msg[MIRR0R_BUF].data, LCD_BUF_SIZ); // load LCD mirror packet
+				mirror_print[LCD3] = true;
 				break;
 			}
 #endif
@@ -118,6 +125,26 @@ void Can1FIFO1NotEmptyHandler(void)
 		if (++tries >= CAN_RX_TRIES) {
 			break;
 		}
+	}
+}
+
+void can_mirror_print(void)
+{
+	if (mirror_print[LCD0]) {
+		eaDogM_WriteStringAtPos(LCD0, 0, (char*) &s_buffer[LCD0][0]);
+		mirror_print[LCD0] = false;
+	}
+	if (mirror_print[LCD1]) {
+		eaDogM_WriteStringAtPos(LCD1, 0, (char*) &s_buffer[LCD1][0]);
+		mirror_print[LCD1] = false;
+	}
+	if (mirror_print[LCD2]) {
+		eaDogM_WriteStringAtPos(LCD2, 0, (char*) &s_buffer[LCD2][0]);
+		mirror_print[LCD2] = false;
+	}
+	if (mirror_print[LCD3]) {
+		eaDogM_WriteStringAtPos(LCD3, 0, (char*) &s_buffer[LCD3][0]);
+		mirror_print[LCD3] = false;
 	}
 }
 

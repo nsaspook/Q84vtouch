@@ -504,7 +504,9 @@ void main(void)
 				StartTimer(TMR_SPIN, SPINNER_SPEED);
 				if (C.data_ok && (M.error > error_save)) {
 					snprintf(buffer, MAX_B_BUF, "EMon  %4.1fVAC   %c%c    ", lp_filter(ac, F_ac, false), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
+#ifndef CAN_REMOTE
 					eaDogM_WriteStringAtPos(1, 0, buffer);
+#endif
 					snprintf(info_buffer, MAX_B_BUF, " error logged \r\n");
 					if (e_update == 0) {
 #ifdef SHOW_MODBUS_DEBUG
@@ -512,7 +514,9 @@ void main(void)
 #else
 						snprintf(buffer, MAX_B_BUF, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, false), lp_filter(wva, F_wva, false), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
 #endif
+#ifndef CAN_REMOTE
 						eaDogM_WriteStringAtPos(0, 0, buffer);
+#endif
 					}
 					if (e_update++ >= E_UPDATE) {
 						error_save = M.error + E_SAVE;
@@ -523,6 +527,7 @@ void main(void)
 #ifdef CAN_REMOTE
 #ifdef DATA_DEBUG
 #ifdef LCD_MIRROR
+					can_mirror_print();
 #else
 					if (show_can) {
 						rxMsgData[0][42] = 0;

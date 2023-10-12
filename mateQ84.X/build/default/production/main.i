@@ -41575,7 +41575,7 @@ void delay_ms(const uint16_t);
 
  uint16_t Volts_to_SOC(const uint16_t, const uint16_t);
 # 22 "./../canfd.h" 2
-# 51 "./../canfd.h"
+# 52 "./../canfd.h"
  typedef struct {
   uint32_t rec_count;
   _Bool rec_flag;
@@ -41594,6 +41594,7 @@ void delay_ms(const uint16_t);
  void can_fd_tx(void);
  void can_setup(void);
  void can_fd_lcd_mirror(const uint8_t, char *);
+ void can_mirror_print(void);
 # 198 "main.c" 2
 # 207 "main.c"
 enum state_type {
@@ -41617,7 +41618,7 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[255] = "Boot Init Display   ", can_buffer[64*2], info_buffer[255], log_buffer[255];
-const char *build_date = "Oct 11 2023", *build_time = "18:59:55";
+const char *build_date = "Oct 11 2023", *build_time = "20:31:19";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
@@ -41888,7 +41889,9 @@ void main(void)
     StartTimer(TMR_SPIN, 200);
     if (C.data_ok && (M.error > error_save)) {
      snprintf(buffer, 255, "EMon  %4.1fVAC   %c%c    ", lp_filter(ac, F_ac, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
-     eaDogM_WriteStringAtPos(1, 0, buffer);
+
+
+
      snprintf(info_buffer, 255, " error logged \r\n");
      if (e_update == 0) {
 
@@ -41896,7 +41899,9 @@ void main(void)
 
       snprintf(buffer, 255, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
 
-      eaDogM_WriteStringAtPos(0, 0, buffer);
+
+
+
      }
      if (e_update++ >= 10) {
       error_save = M.error + 3;
@@ -41904,7 +41909,11 @@ void main(void)
      }
     } else {
      M.error = 0;
-# 557 "main.c"
+
+
+
+     can_mirror_print();
+# 562 "main.c"
     }
    }
   }
@@ -42011,7 +42020,7 @@ void state_status_cb(void)
 {
  static uint16_t day_clocks = 0;
  static uint8_t status_prev = STATUS_SLEEPING;
-# 678 "main.c"
+# 683 "main.c"
  if (B.day_check++ > 1200) {
   B.day_check = 0;
   B.once = 0;

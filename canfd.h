@@ -35,6 +35,7 @@ extern "C" {
 #define CAN_HIGH_BUF	1
 #define CAN_INFO_BUF	2
 #define CAN_ERROR_BUF	3
+#define CAN_MIRRORS	4
 
 #define	EMON_M	0x1	// FM80 host
 #define EMON_SL	0x2	// remote display lower data
@@ -66,6 +67,7 @@ extern "C" {
 	void can_fd_tx(void);
 	void can_setup(void);
 	void can_fd_lcd_mirror(const uint8_t, char *);
+	void can_mirror_print(void);
 
 #ifdef	__cplusplus
 }

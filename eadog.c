@@ -9,10 +9,10 @@
 #define E_TRACE	""
 #endif
 
-#ifdef CAN_REMOTE
-#define DONE_DELAY	999
+#ifdef CAN_REMOTE // SPI DMA wait timeout counts
+#define DONE_DELAY	99999
 #else
-#define DONE_DELAY	999
+#define DONE_DELAY	99999
 #endif
 
 volatile struct spi_link_type spi_link = {
