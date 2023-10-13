@@ -529,7 +529,6 @@ void main(void)
 #ifdef CAN_REMOTE
 #ifdef DATA_DEBUG
 #ifdef LCD_MIRROR
-					can_mirror_print();
 #else
 					if (show_can) {
 						rxMsgData[0][42] = 0;
@@ -564,6 +563,9 @@ void main(void)
 				}
 			}
 		}
+#ifdef LCD_MIRROR
+		can_mirror_print();
+#endif
 #ifdef TRACE
 		IO_RD5_SetLow();
 #endif

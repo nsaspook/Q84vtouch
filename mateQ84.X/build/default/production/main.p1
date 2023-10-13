@@ -110,6 +110,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _PCON0 `Vuc ~T0 @X0 0 e@1264 ]
 "5191
 [v _PCON1 `Vuc ~T0 @X0 0 e@1265 ]
+"99 ./../batmon.h
+[; ;./../batmon.h: 99:  void wr_bm_data(uint8_t *);
+[v _wr_bm_data `(v ~T0 @X0 0 ef1`*uc ]
 "67 ./../canfd.h
 [; ;./../canfd.h: 67:  void can_fd_tx(void);
 [v _can_fd_tx `(v ~T0 @X0 0 ef ]
@@ -196,9 +199,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "277
 [; ;main.c: 277: void state_misc_cb(void);
 [v _state_misc_cb `(v ~T0 @X0 0 ef ]
-"104 ./../eadog.h
-[; ;./../eadog.h: 104:     void eaDogM_Scroll_Task(void);
-[v _eaDogM_Scroll_Task `(v ~T0 @X0 0 ef ]
 "13565 /root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.22.413/xc8/pic/include/proc/pic18f47q84.h
 [; ;/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.22.413/xc8/pic/include/proc/pic18f47q84.h: 13565:     struct {
 [s S628 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -210,6 +210,43 @@ Version 4.0 HI-TECH Software Intermediate Code
 "13571
 [; ;/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.22.413/xc8/pic/include/proc/pic18f47q84.h: 13571: extern volatile C1TXQCONHbits_t C1TXQCONHbits __attribute__((address(0x151)));
 [v _C1TXQCONHbits `VS627 ~T0 @X0 0 e@337 ]
+"12430
+[; ;/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.22.413/xc8/pic/include/proc/pic18f47q84.h: 12430: extern volatile unsigned char C1BDIAG0T __attribute__((address(0x13B)));
+[v _C1BDIAG0T `Vuc ~T0 @X0 0 e@315 ]
+"12360
+[; ;/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.22.413/xc8/pic/include/proc/pic18f47q84.h: 12360: extern volatile unsigned char C1BDIAG0U __attribute__((address(0x13A)));
+[v _C1BDIAG0U `Vuc ~T0 @X0 0 e@314 ]
+"12290
+[; ;/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.22.413/xc8/pic/include/proc/pic18f47q84.h: 12290: extern volatile unsigned char C1BDIAG0H __attribute__((address(0x139)));
+[v _C1BDIAG0H `Vuc ~T0 @X0 0 e@313 ]
+"12220
+[; ;/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.22.413/xc8/pic/include/proc/pic18f47q84.h: 12220: extern volatile unsigned char C1BDIAG0L __attribute__((address(0x138)));
+[v _C1BDIAG0L `Vuc ~T0 @X0 0 e@312 ]
+"52 ./../canfd.h
+[; ;./../canfd.h: 52:  typedef struct {
+[s S3310 `ul 1 `a 1 ]
+[n S3310 . rec_count rec_flag ]
+"57
+[; ;./../canfd.h: 57:  extern volatile can_rec_count_t can_rec_count;
+[v _can_rec_count `VS3310 ~T0 @X0 0 e ]
+"69 ./mcc_generated_files/can_types.h
+[; ;./mcc_generated_files/can_types.h: 69:     {
+[s S3285 :1 `uc 1 :1 `uc 1 :4 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S3285 . idType frameType dlc formatType brs ]
+"66
+[; ;./mcc_generated_files/can_types.h: 66: {
+[u S3284 `uc 1 `S3285 1 ]
+[n S3284 . msgfields . ]
+"79
+[; ;./mcc_generated_files/can_types.h: 79: {
+[s S3286 `ul 1 `S3284 1 `*uc 1 ]
+[n S3286 . msgId field data ]
+"58 ./../canfd.h
+[; ;./../canfd.h: 58:  extern CAN_MSG_OBJ msg[3];
+[v _msg `S3286 ~T0 @X0 -> 0 `x e ]
+"61 /opt/microchip/xc8/v2.41/pic/include/c99/time.h
+[; ;/opt/microchip/xc8/v2.41/pic/include/c99/time.h: 61: char *asctime (const struct tm *);
+[v _asctime `(*uc ~T0 @X0 0 ef1`*CS3288 ]
 "25 ./../timers.h
 [; ;./../timers.h: 25: _Bool TimerDone(const uint8_t timer);
 [v _TimerDone `(a ~T0 @X0 0 ef1`Cuc ]
@@ -232,6 +269,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "82 ./../qconfig.h
 [; ;./../qconfig.h: 82: extern char spinners(uint8_t, const uint8_t);
 [v _spinners `(uc ~T0 @X0 0 ef2`uc`Cuc ]
+"70 ./../canfd.h
+[; ;./../canfd.h: 70:  void can_mirror_print(void);
+[v _can_mirror_print `(v ~T0 @X0 0 ef ]
 "62 /opt/microchip/xc8/v2.41/pic/include/c99/stdlib.h
 [; ;/opt/microchip/xc8/v2.41/pic/include/c99/stdlib.h: 62: int abs (int);
 [v _abs `(i ~T0 @X0 0 ef1`i ]
@@ -239,8 +279,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _FM_tx_empty `(a ~T0 @X0 0 ef ]
 "157
 [v _FM_tx `(uc ~T0 @X0 0 ef2`*Cus`Cuc ]
-[v F25286 `(v ~T0 @X0 0 tf ]
-[v F25288 `(v ~T0 @X0 0 tf ]
+[v F25283 `(v ~T0 @X0 0 tf ]
+[v F25285 `(v ~T0 @X0 0 tf ]
 "160
 [v _FM_rx_ready `(a ~T0 @X0 0 ef ]
 "161
@@ -262,9 +302,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3639
 [; ;/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.22.413/xc8/pic/include/proc/pic18f47q84.h: 3639: extern volatile unsigned char SPI1TCNTL __attribute__((address(0x082)));
 [v _LATBbits `VS3153 ~T0 @X0 0 e@1215 ]
-"61 /opt/microchip/xc8/v2.41/pic/include/c99/time.h
-[; ;/opt/microchip/xc8/v2.41/pic/include/c99/time.h: 61: char *asctime (const struct tm *);
-[v _asctime `(*uc ~T0 @X0 0 ef1`*CS3288 ]
 "94 ./../batmon.h
 [; ;./../batmon.h: 94:  extern float pv_Wh_daily, pv_Wh_daily_prev, ac_Wh_daily, ac_Wh_daily_prev;
 [v _pv_Wh_daily `f ~T0 @X0 0 e ]
@@ -282,9 +319,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "101
 [; ;./../batmon.h: 101:  void compute_bm_data(EB_data *);
 [v _compute_bm_data `(v ~T0 @X0 0 ef1`*S3309 ]
-"99
-[; ;./../batmon.h: 99:  void wr_bm_data(uint8_t *);
-[v _wr_bm_data `(v ~T0 @X0 0 ef1`*uc ]
 "92
 [; ;./../batmon.h: 92:  extern uint16_t EBD_update;
 [v _EBD_update `us ~T0 @X0 0 e ]
@@ -5262,7 +5296,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _info_buffer `uc ~T0 @X0 -> 255 `i e ]
 [v _log_buffer `uc ~T0 @X0 -> 255 `i e ]
 "228
-[; ;main.c: 228: const char *build_date = "Oct 12 2023", *build_time = "11:40:26";
+[; ;main.c: 228: const char *build_date = "Oct 12 2023", *build_time = "18:11:01";
 [v _build_date `*Cuc ~T0 @X0 1 e ]
 [i _build_date
 :s 1C
@@ -5483,6 +5517,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "350
 [; ;main.c: 350:   snprintf(buffer, 255, "%s B:%X %X %X   ", build_time, STATUS, PCON0, PCON1);
 [e ( _snprintf (2 , , , , (. , , &U _buffer -> -> 255 `i `ui :s 6C _build_time -> _STATUS `i -> _PCON0 `i -> _PCON1 `i ]
+"352
+[; ;main.c: 352:   wr_bm_data((void*) EB);
+[e ( _wr_bm_data (1 -> -> _EB `*v `*uc ]
 "354
 [; ;main.c: 354:  }
 }
@@ -5490,24 +5527,24 @@ Version 4.0 HI-TECH Software Intermediate Code
 "355
 [; ;main.c: 355:  eaDogM_WriteStringAtPos(2, 0, buffer);
 [e ( _eaDogM_WriteStringAtPos (3 , , -> -> 2 `i `uc -> -> 0 `i `uc &U _buffer ]
-"367
-[; ;main.c: 367:  eaDogM_WriteStringAtPos(2, 0, buffer);
-[e ( _eaDogM_WriteStringAtPos (3 , , -> -> 2 `i `uc -> -> 0 `i `uc &U _buffer ]
-"368
-[; ;main.c: 368:  snprintf(buffer, 255, "%s ", "Start Up            ");
+"360
+[; ;main.c: 360:  snprintf(buffer, 255, "%s ", "Start Up Remote        ");
 [e ( _snprintf (2 , (. , , &U _buffer -> -> 255 `i `ui :s 7C :s 8C ]
-"369
-[; ;main.c: 369:  eaDogM_WriteStringAtPos(3, 0, buffer);
+"361
+[; ;main.c: 361:  eaDogM_WriteStringAtPos(3, 0, buffer);
 [e ( _eaDogM_WriteStringAtPos (3 , , -> -> 3 `i `uc -> -> 0 `i `uc &U _buffer ]
-"370
-[; ;main.c: 370:  wdtdelay(1000000);
-[e ( _wdtdelay (1 -> -> 1000000 `l `ul ]
-"371
-[; ;main.c: 371:  snprintf(buffer, 255, "%s ", "Polling FM80        ");
+"362
+[; ;main.c: 362:  wdtdelay(700000);
+[e ( _wdtdelay (1 -> -> 700000 `l `ul ]
+"363
+[; ;main.c: 363:  snprintf(buffer, 255, "%s ", "Polling MateQ84        ");
 [e ( _snprintf (2 , (. , , &U _buffer -> -> 255 `i `ui :s 9C :s 10C ]
-"372
-[; ;main.c: 372:  eaDogM_WriteStringAtPos(2, 0, buffer);
+"364
+[; ;main.c: 364:  eaDogM_WriteStringAtPos(2, 0, buffer);
 [e ( _eaDogM_WriteStringAtPos (3 , , -> -> 2 `i `uc -> -> 0 `i `uc &U _buffer ]
+"365
+[; ;main.c: 365:  wdtdelay(300000);
+[e ( _wdtdelay (1 -> -> 300000 `l `ul ]
 "375
 [; ;main.c: 375:  can_fd_tx();
 [e ( _can_fd_tx ..  ]
@@ -5795,9 +5832,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 472:   if (B.one_sec_flag) {
 [e $ ! != -> . _B 1 `i -> 0 `i 3348  ]
 {
-"474
-[; ;main.c: 474:    eaDogM_Scroll_Task();
-[e ( _eaDogM_Scroll_Task ..  ]
 "476
 [; ;main.c: 476:    B.one_sec_flag = 0;
 [e = . _B 1 -> -> 0 `i `a ]
@@ -5818,6 +5852,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 "481
 [; ;main.c: 481:    B.modbus_online = C.data_ok;
 [e = . _B 14 -> . _C 8 `uc ]
+"483
+[; ;main.c: 483:    snprintf(buffer, 255, "%X %X %X %X  %lu %lu %lu      ", C1BDIAG0T, C1BDIAG0U, C1BDIAG0H, C1BDIAG0L, can_rec_count.rec_count, msg[0].msgId, msg[1].msgId);
+[e ( _snprintf (2 , , , , , , , (. , , &U _buffer -> -> 255 `i `ui :s 12C -> _C1BDIAG0T `i -> _C1BDIAG0U `i -> _C1BDIAG0H `i -> _C1BDIAG0L `i . _can_rec_count 0 . *U + &U _msg * -> -> -> 0 `i `ui `ux -> -> # *U &U _msg `ui `ux 0 . *U + &U _msg * -> -> -> 1 `i `ui `ux -> -> # *U &U _msg `ui `ux 0 ]
+"485
+[; ;main.c: 485:    can_newtime = localtime(&can_timer);
+[e = _can_newtime ( _localtime (1 -> &U _can_timer `*Cul ]
+"486
+[; ;main.c: 486:    snprintf(buffer, 21, "%s", asctime(can_newtime));
+[e ( _snprintf (2 , (. , , &U _buffer -> -> 21 `i `ui :s 13C ( _asctime (1 -> _can_newtime `*CS3288 ]
 "489
 [; ;main.c: 489:   }
 }
@@ -5892,23 +5935,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "508
 [; ;main.c: 508:      snprintf(buffer, 255, "EMon  %4.1fVAC   %c%c    ", lp_filter(ac, F_ac, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
-[e ( _snprintf (2 , , , (. , , &U _buffer -> -> 255 `i `ui :s 12C -> ( _lp_filter (3 , , F25271 -> . `E25051 0 `uc -> -> 0 `i `c `d -> ( _spinners (2 , -> - -> -> -> 5 `i `uc `i -> -> _cc_mode `uc `i `uc -> -> 0 `i `uc `i -> ( _spinners (2 , -> - -> -> -> 5 `i `uc `i -> -> _cc_mode `uc `i `uc -> -> 0 `i `uc `i ]
-"510
-[; ;main.c: 510:      eaDogM_WriteStringAtPos(1, 0, buffer);
-[e ( _eaDogM_WriteStringAtPos (3 , , -> -> 1 `i `uc -> -> 0 `i `uc &U _buffer ]
+[e ( _snprintf (2 , , , (. , , &U _buffer -> -> 255 `i `ui :s 14C -> ( _lp_filter (3 , , F25271 -> . `E25051 0 `uc -> -> 0 `i `c `d -> ( _spinners (2 , -> - -> -> -> 5 `i `uc `i -> -> _cc_mode `uc `i `uc -> -> 0 `i `uc `i -> ( _spinners (2 , -> - -> -> -> 5 `i `uc `i -> -> _cc_mode `uc `i `uc -> -> 0 `i `uc `i ]
 "512
 [; ;main.c: 512:      snprintf(info_buffer, 255, " error logged \r\n");
-[e ( _snprintf (2 , , &U _info_buffer -> -> 255 `i `ui :s 13C ]
+[e ( _snprintf (2 , , &U _info_buffer -> -> 255 `i `ui :s 15C ]
 "513
 [; ;main.c: 513:      if (e_update == 0) {
 [e $ ! == -> F25270 `i -> 0 `i 3353  ]
 {
 "517
 [; ;main.c: 517:       snprintf(buffer, 255, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
-[e ( _snprintf (2 , , , , , (. , , &U _buffer -> -> 255 `i `ui :s 14C -> ( _lp_filter (3 , , F25272 -> . `E25051 1 `uc -> -> 0 `i `c `d -> ( _lp_filter (3 , , F25273 -> . `E25051 2 `uc -> -> 0 `i `c `d -> *U + &U *U + &U _state_name * -> _cc_mode `ux -> * -> # *U &U *U &U _state_name `ui -> -> 12 `i `ui `ux * -> -> -> 0 `i `ui `ux -> -> # *U &U *U + &U _state_name * -> _cc_mode `ux -> * -> # *U &U *U &U _state_name `ui -> -> 12 `i `ui `ux `ui `ux `i -> *U + &U *U + &U _canbus_name * -> . _B 13 `ux -> * -> # *U &U *U &U _canbus_name `ui -> -> 12 `i `ui `ux * -> -> -> 0 `i `ui `ux -> -> # *U &U *U + &U _canbus_name * -> . _B 13 `ux -> * -> # *U &U *U &U _canbus_name `ui -> -> 12 `i `ui `ux `ui `ux `i -> *U + &U *U + &U _modbus_name * -> . _B 14 `ux -> * -> # *U &U *U &U _modbus_name `ui -> -> 12 `i `ui `ux * -> -> -> 0 `i `ui `ux -> -> # *U &U *U + &U _modbus_name * -> . _B 14 `ux -> * -> # *U &U *U &U _modbus_name `ui -> -> 12 `i `ui `ux `ui `ux `i ]
-"520
-[; ;main.c: 520:       eaDogM_WriteStringAtPos(0, 0, buffer);
-[e ( _eaDogM_WriteStringAtPos (3 , , -> -> 0 `i `uc -> -> 0 `i `uc &U _buffer ]
+[e ( _snprintf (2 , , , , , (. , , &U _buffer -> -> 255 `i `ui :s 16C -> ( _lp_filter (3 , , F25272 -> . `E25051 1 `uc -> -> 0 `i `c `d -> ( _lp_filter (3 , , F25273 -> . `E25051 2 `uc -> -> 0 `i `c `d -> *U + &U *U + &U _state_name * -> _cc_mode `ux -> * -> # *U &U *U &U _state_name `ui -> -> 12 `i `ui `ux * -> -> -> 0 `i `ui `ux -> -> # *U &U *U + &U _state_name * -> _cc_mode `ux -> * -> # *U &U *U &U _state_name `ui -> -> 12 `i `ui `ux `ui `ux `i -> *U + &U *U + &U _canbus_name * -> . _B 13 `ux -> * -> # *U &U *U &U _canbus_name `ui -> -> 12 `i `ui `ux * -> -> -> 0 `i `ui `ux -> -> # *U &U *U + &U _canbus_name * -> . _B 13 `ux -> * -> # *U &U *U &U _canbus_name `ui -> -> 12 `i `ui `ux `ui `ux `i -> *U + &U *U + &U _modbus_name * -> . _B 14 `ux -> * -> # *U &U *U &U _modbus_name `ui -> -> 12 `i `ui `ux * -> -> -> 0 `i `ui `ux -> -> # *U &U *U + &U _modbus_name * -> . _B 14 `ux -> * -> # *U &U *U &U _modbus_name `ui -> -> 12 `i `ui `ux `ui `ux `i ]
 "522
 [; ;main.c: 522:      }
 }
@@ -5936,763 +5973,748 @@ Version 4.0 HI-TECH Software Intermediate Code
 "528
 [; ;main.c: 528:      M.error = 0;
 [e = . _M 8 -> -> 0 `i `us ]
-"559
-[; ;main.c: 559:      snprintf(buffer, 255, "EMon  %6.1fWh   %c%c    ", EB->bat_energy / 360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
-[e ( _snprintf (2 , , , (. , , &U _buffer -> -> 255 `i `ui :s 15C -> / . *U _EB 14 -> .360.0 `f `d -> ( _spinners (2 , -> - -> -> -> 5 `i `uc `i -> -> _cc_mode `uc `i `uc -> -> 0 `i `uc `i -> ( _spinners (2 , -> - -> -> -> 5 `i `uc `i -> -> _cc_mode `uc `i `uc -> -> 0 `i `uc `i ]
-"560
-[; ;main.c: 560:      eaDogM_WriteStringAtPos(1, 0, buffer);
-[e ( _eaDogM_WriteStringAtPos (3 , , -> -> 1 `i `uc -> -> 0 `i `uc &U _buffer ]
-"561
-[; ;main.c: 561:      snprintf(buffer, 255, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
-[e ( _snprintf (2 , , , , , (. , , &U _buffer -> -> 255 `i `ui :s 16C -> ( _lp_filter (3 , , F25272 -> . `E25051 1 `uc -> -> 0 `i `c `d -> ( _lp_filter (3 , , F25273 -> . `E25051 2 `uc -> -> 0 `i `c `d -> *U + &U *U + &U _state_name * -> _cc_mode `ux -> * -> # *U &U *U &U _state_name `ui -> -> 12 `i `ui `ux * -> -> -> 0 `i `ui `ux -> -> # *U &U *U + &U _state_name * -> _cc_mode `ux -> * -> # *U &U *U &U _state_name `ui -> -> 12 `i `ui `ux `ui `ux `i -> *U + &U *U + &U _canbus_name * -> . _B 13 `ux -> * -> # *U &U *U &U _canbus_name `ui -> -> 12 `i `ui `ux * -> -> -> 0 `i `ui `ux -> -> # *U &U *U + &U _canbus_name * -> . _B 13 `ux -> * -> # *U &U *U &U _canbus_name `ui -> -> 12 `i `ui `ux `ui `ux `i -> *U + &U *U + &U _modbus_name * -> . _B 14 `ux -> * -> # *U &U *U &U _modbus_name `ui -> -> 12 `i `ui `ux * -> -> -> 0 `i `ui `ux -> -> # *U &U *U + &U _modbus_name * -> . _B 14 `ux -> * -> # *U &U *U &U _modbus_name `ui -> -> 12 `i `ui `ux `ui `ux `i ]
-"562
-[; ;main.c: 562:      eaDogM_WriteStringAtPos(0, 0, buffer);
-[e ( _eaDogM_WriteStringAtPos (3 , , -> -> 0 `i `uc -> -> 0 `i `uc &U _buffer ]
-"564
-[; ;main.c: 564:     }
+"563
+[; ;main.c: 563:     }
 }
 [e :U 3355 ]
-"565
-[; ;main.c: 565:    }
+"564
+[; ;main.c: 564:    }
 }
-"566
-[; ;main.c: 566:   }
+"565
+[; ;main.c: 565:   }
 }
 [e :U 3350 ]
-"568
-[; ;main.c: 568:   do { LATDbits.LATD5 = 0; } while(0);
+"567
+[; ;main.c: 567:   can_mirror_print();
+[e ( _can_mirror_print ..  ]
+"570
+[; ;main.c: 570:   do { LATDbits.LATD5 = 0; } while(0);
 [e :U 3358 ]
 {
 [e = . . _LATDbits 0 5 -> -> 0 `i `uc ]
 }
 [e :U 3357 ]
-"570
-[; ;main.c: 570:  }
+"572
+[; ;main.c: 572:  }
 }
 [e :U 3321 ]
 [e $U 3322  ]
 [e :U 3323 ]
-"571
-[; ;main.c: 571: }
+"573
+[; ;main.c: 573: }
 [e :UE 3315 ]
 }
-"577
-[; ;main.c: 577: static void volt_f(const uint16_t voltage)
+"579
+[; ;main.c: 579: static void volt_f(const uint16_t voltage)
 [v _volt_f `(v ~T0 @X0 1 sf1`Cus ]
-"578
-[; ;main.c: 578: {
+"580
+[; ;main.c: 580: {
 {
 [e :U _volt_f ]
-"577
-[; ;main.c: 577: static void volt_f(const uint16_t voltage)
-[v _voltage `Cus ~T0 @X0 1 r1 ]
-"578
-[; ;main.c: 578: {
-[f ]
 "579
-[; ;main.c: 579:  volt_fract = (uint16_t) abs(voltage % 10);
-[e = _volt_fract -> ( _abs (1 -> % -> _voltage `ui -> -> 10 `i `ui `i `us ]
+[; ;main.c: 579: static void volt_f(const uint16_t voltage)
+[v _voltage `Cus ~T0 @X0 1 r1 ]
 "580
-[; ;main.c: 580:  volt_whole = voltage / 10;
-[e = _volt_whole -> / -> _voltage `ui -> -> 10 `i `ui `us ]
+[; ;main.c: 580: {
+[f ]
 "581
-[; ;main.c: 581: }
+[; ;main.c: 581:  volt_fract = (uint16_t) abs(voltage % 10);
+[e = _volt_fract -> ( _abs (1 -> % -> _voltage `ui -> -> 10 `i `ui `i `us ]
+"582
+[; ;main.c: 582:  volt_whole = voltage / 10;
+[e = _volt_whole -> / -> _voltage `ui -> -> 10 `i `ui `us ]
+"583
+[; ;main.c: 583: }
 [e :UE 3359 ]
 }
-"586
-[; ;main.c: 586: static void send_mx_cmd(const uint16_t * cmd)
+"588
+[; ;main.c: 588: static void send_mx_cmd(const uint16_t * cmd)
 [v _send_mx_cmd `(v ~T0 @X0 1 sf1`*Cus ]
-"587
-[; ;main.c: 587: {
+"589
+[; ;main.c: 589: {
 {
 [e :U _send_mx_cmd ]
-"586
-[; ;main.c: 586: static void send_mx_cmd(const uint16_t * cmd)
-[v _cmd `*Cus ~T0 @X0 1 r1 ]
-"587
-[; ;main.c: 587: {
-[f ]
 "588
-[; ;main.c: 588:  if (FM_tx_empty()) {
+[; ;main.c: 588: static void send_mx_cmd(const uint16_t * cmd)
+[v _cmd `*Cus ~T0 @X0 1 r1 ]
+"589
+[; ;main.c: 589: {
+[f ]
+"590
+[; ;main.c: 590:  if (FM_tx_empty()) {
 [e $ ! != -> ( _FM_tx_empty ..  `i -> 0 `i 3361  ]
 {
-"589
-[; ;main.c: 589:   if (B.pacing++ > 31000) {
+"591
+[; ;main.c: 591:   if (B.pacing++ > 31000) {
 [e $ ! > -> ++ . _B 6 -> -> 1 `i `Vus `ui -> -> 31000 `i `ui 3362  ]
 {
-"590
-[; ;main.c: 590:    FM_tx(cmd, 8);
-[e ( _FM_tx (2 , _cmd -> -> 8 `i `uc ]
-"591
-[; ;main.c: 591:    B.pacing = 0;
-[e = . _B 6 -> -> 0 `i `us ]
 "592
-[; ;main.c: 592:   }
+[; ;main.c: 592:    FM_tx(cmd, 8);
+[e ( _FM_tx (2 , _cmd -> -> 8 `i `uc ]
+"593
+[; ;main.c: 593:    B.pacing = 0;
+[e = . _B 6 -> -> 0 `i `us ]
+"594
+[; ;main.c: 594:   }
 }
 [e :U 3362 ]
-"593
-[; ;main.c: 593:  }
+"595
+[; ;main.c: 595:  }
 }
 [e :U 3361 ]
-"594
-[; ;main.c: 594: }
+"596
+[; ;main.c: 596: }
 [e :UE 3360 ]
 }
-"599
-[; ;main.c: 599: static void rec_mx_cmd(void (* DataHandler)(void), const uint8_t rec_len)
-[v _rec_mx_cmd `(v ~T0 @X0 1 sf2`*F25286`Cuc ]
-"600
-[; ;main.c: 600: {
+"601
+[; ;main.c: 601: static void rec_mx_cmd(void (* DataHandler)(void), const uint8_t rec_len)
+[v _rec_mx_cmd `(v ~T0 @X0 1 sf2`*F25283`Cuc ]
+"602
+[; ;main.c: 602: {
 {
 [e :U _rec_mx_cmd ]
-"599
-[; ;main.c: 599: static void rec_mx_cmd(void (* DataHandler)(void), const uint8_t rec_len)
-[v _DataHandler `*F25288 ~T0 @X0 1 r1 ]
-[v _rec_len `Cuc ~T0 @X0 1 r2 ]
-"600
-[; ;main.c: 600: {
-[f ]
 "601
-[; ;main.c: 601:  static uint16_t online_count = 0;
-[v F25290 `us ~T0 @X0 1 s online_count ]
-[i F25290
+[; ;main.c: 601: static void rec_mx_cmd(void (* DataHandler)(void), const uint8_t rec_len)
+[v _DataHandler `*F25285 ~T0 @X0 1 r1 ]
+[v _rec_len `Cuc ~T0 @X0 1 r2 ]
+"602
+[; ;main.c: 602: {
+[f ]
+"603
+[; ;main.c: 603:  static uint16_t online_count = 0;
+[v F25287 `us ~T0 @X0 1 s online_count ]
+[i F25287
 -> -> 0 `i `us
 ]
-"603
-[; ;main.c: 603:  if (FM_rx_ready()) {
+"605
+[; ;main.c: 605:  if (FM_rx_ready()) {
 [e $ ! != -> ( _FM_rx_ready ..  `i -> 0 `i 3364  ]
 {
-"604
-[; ;main.c: 604:   if (FM_rx_count() >= rec_len) {
+"606
+[; ;main.c: 606:   if (FM_rx_count() >= rec_len) {
 [e $ ! >= -> ( _FM_rx_count ..  `i -> _rec_len `i 3365  ]
 {
-"605
-[; ;main.c: 605:    online_count = 0;
-[e = F25290 -> -> 0 `i `us ]
-"606
-[; ;main.c: 606:    if (rec_len == 17) {
+"607
+[; ;main.c: 607:    online_count = 0;
+[e = F25287 -> -> 0 `i `us ]
+"608
+[; ;main.c: 608:    if (rec_len == 17) {
 [e $ ! == -> _rec_len `i -> 17 `i 3366  ]
 {
-"607
-[; ;main.c: 607:     FM_rx(cbuf);
+"609
+[; ;main.c: 609:     FM_rx(cbuf);
 [e ( _FM_rx (1 &U _cbuf ]
-"608
-[; ;main.c: 608:    } else {
+"610
+[; ;main.c: 610:    } else {
 }
 [e $U 3367  ]
 [e :U 3366 ]
 {
-"609
-[; ;main.c: 609:     FM_rx(abuf);
+"611
+[; ;main.c: 611:     FM_rx(abuf);
 [e ( _FM_rx (1 &U _abuf ]
-"610
-[; ;main.c: 610:    }
+"612
+[; ;main.c: 612:    }
 }
 [e :U 3367 ]
-"611
-[; ;main.c: 611:    B.FM80_io = 0;
-[e = . _B 12 -> -> 0 `i `a ]
-"612
-[; ;main.c: 612:    DataHandler();
-[e ( *U _DataHandler ..  ]
 "613
-[; ;main.c: 613:   } else {
+[; ;main.c: 613:    B.FM80_io = 0;
+[e = . _B 12 -> -> 0 `i `a ]
+"614
+[; ;main.c: 614:    DataHandler();
+[e ( *U _DataHandler ..  ]
+"615
+[; ;main.c: 615:   } else {
 }
 [e $U 3368  ]
 [e :U 3365 ]
 {
-"614
-[; ;main.c: 614:    if (online_count++ > 30000) {
-[e $ ! > -> ++ F25290 -> -> 1 `i `us `ui -> -> 30000 `i `ui 3369  ]
-{
-"615
-[; ;main.c: 615:     online_count = 0;
-[e = F25290 -> -> 0 `i `us ]
 "616
-[; ;main.c: 616:     B.FM80_online = 0;
-[e = . _B 11 -> -> 0 `i `a ]
+[; ;main.c: 616:    if (online_count++ > 30000) {
+[e $ ! > -> ++ F25287 -> -> 1 `i `us `ui -> -> 30000 `i `ui 3369  ]
+{
 "617
-[; ;main.c: 617:     B.FM80_io = 0;
-[e = . _B 12 -> -> 0 `i `a ]
+[; ;main.c: 617:     online_count = 0;
+[e = F25287 -> -> 0 `i `us ]
 "618
-[; ;main.c: 618:     cc_mode = STATUS_LAST;
-[e = _cc_mode -> . `E24806 5 `us ]
+[; ;main.c: 618:     B.FM80_online = 0;
+[e = . _B 11 -> -> 0 `i `a ]
 "619
-[; ;main.c: 619:     state = state_init;
-[e = _state . `E25183 0 ]
+[; ;main.c: 619:     B.FM80_io = 0;
+[e = . _B 12 -> -> 0 `i `a ]
 "620
-[; ;main.c: 620:    }
+[; ;main.c: 620:     cc_mode = STATUS_LAST;
+[e = _cc_mode -> . `E24806 5 `us ]
+"621
+[; ;main.c: 621:     state = state_init;
+[e = _state . `E25183 0 ]
+"622
+[; ;main.c: 622:    }
 }
 [e :U 3369 ]
-"621
-[; ;main.c: 621:   }
+"623
+[; ;main.c: 623:   }
 }
 [e :U 3368 ]
-"622
-[; ;main.c: 622:  }
+"624
+[; ;main.c: 624:  }
 }
 [e :U 3364 ]
-"623
-[; ;main.c: 623:  if ((B.FM80_online == 0) && online_count++ > 30000) {
-[e $ ! && == -> . _B 11 `i -> 0 `i > -> ++ F25290 -> -> 1 `i `us `ui -> -> 30000 `i `ui 3370  ]
-{
-"624
-[; ;main.c: 624:   online_count = 0;
-[e = F25290 -> -> 0 `i `us ]
 "625
-[; ;main.c: 625:   B.FM80_online = 0;
-[e = . _B 11 -> -> 0 `i `a ]
+[; ;main.c: 625:  if ((B.FM80_online == 0) && online_count++ > 30000) {
+[e $ ! && == -> . _B 11 `i -> 0 `i > -> ++ F25287 -> -> 1 `i `us `ui -> -> 30000 `i `ui 3370  ]
+{
 "626
-[; ;main.c: 626:   B.FM80_io = 0;
-[e = . _B 12 -> -> 0 `i `a ]
+[; ;main.c: 626:   online_count = 0;
+[e = F25287 -> -> 0 `i `us ]
 "627
-[; ;main.c: 627:   cc_mode = STATUS_LAST;
-[e = _cc_mode -> . `E24806 5 `us ]
+[; ;main.c: 627:   B.FM80_online = 0;
+[e = . _B 11 -> -> 0 `i `a ]
 "628
-[; ;main.c: 628:   state = state_watts;
-[e = _state . `E25183 5 ]
+[; ;main.c: 628:   B.FM80_io = 0;
+[e = . _B 12 -> -> 0 `i `a ]
 "629
-[; ;main.c: 629:   mx_code = 0x0;
-[e = _mx_code -> -> 0 `i `us ]
+[; ;main.c: 629:   cc_mode = STATUS_LAST;
+[e = _cc_mode -> . `E24806 5 `us ]
 "630
-[; ;main.c: 630:   DataHandler();
-[e ( *U _DataHandler ..  ]
+[; ;main.c: 630:   state = state_watts;
+[e = _state . `E25183 5 ]
 "631
-[; ;main.c: 631:  }
+[; ;main.c: 631:   mx_code = 0x0;
+[e = _mx_code -> -> 0 `i `us ]
+"632
+[; ;main.c: 632:   DataHandler();
+[e ( *U _DataHandler ..  ]
+"633
+[; ;main.c: 633:  }
 }
 [e :U 3370 ]
-"633
-[; ;main.c: 633: }
+"635
+[; ;main.c: 635: }
 [e :UE 3363 ]
 }
-"635
-[; ;main.c: 635: void state_init_cb(void)
+"637
+[; ;main.c: 637: void state_init_cb(void)
 [v _state_init_cb `(v ~T0 @X0 1 ef ]
-"636
-[; ;main.c: 636: {
+"638
+[; ;main.c: 638: {
 {
 [e :U _state_init_cb ]
 [f ]
-"637
-[; ;main.c: 637:  float Soc;
+"639
+[; ;main.c: 639:  float Soc;
 [v _Soc `f ~T0 @X0 1 a ]
-"638
-[; ;main.c: 638:  static uint8_t off_delay = 0;
-[v F25293 `uc ~T0 @X0 1 s off_delay ]
-[i F25293
+"640
+[; ;main.c: 640:  static uint8_t off_delay = 0;
+[v F25290 `uc ~T0 @X0 1 s off_delay ]
+[i F25290
 -> -> 0 `i `uc
 ]
-"640
-[; ;main.c: 640:  mx_code = abuf[2]&0xf;
+"642
+[; ;main.c: 642:  mx_code = abuf[2]&0xf;
 [e = _mx_code -> & -> *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 15 `i `ui `us ]
-"641
-[; ;main.c: 641:  if (mx_code == 0x03) {
+"643
+[; ;main.c: 643:  if (mx_code == 0x03) {
 [e $ ! == -> _mx_code `ui -> -> 3 `i `ui 3372  ]
 {
-"642
-[; ;main.c: 642:   printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: FM80 Online\r\n", B.rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
+"644
+[; ;main.c: 644:   printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: FM80 Online\r\n", B.rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
 [e ( _printf , , , , , , (. :s 17C -> ++ . _B 7 -> -> 1 `i `Vus `ui -> *U + &U _abuf * -> -> -> 0 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> *U + &U _abuf * -> -> -> 3 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> *U + &U _abuf * -> -> -> 4 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui ]
-"643
-[; ;main.c: 643:   if (!B.FM80_online) {
+"645
+[; ;main.c: 645:   if (!B.FM80_online) {
 [e $ ! ! != -> . _B 11 `i -> 0 `i 3373  ]
 {
-"644
-[; ;main.c: 644:    Soc = ((float) Volts_to_SOC(vw, vf) * 0.01f);
-[e = _Soc * -> ( _Volts_to_SOC (2 , _vw _vf `f -> .0.01 `f ]
-"645
-[; ;main.c: 645:    EB->bat_energy = 25.6f*200.0f*360.0f*Soc;
-[e = . *U _EB 14 * * * -> .25.6 `f -> .200.0 `f -> .360.0 `f _Soc ]
 "646
-[; ;main.c: 646:   }
+[; ;main.c: 646:    Soc = ((float) Volts_to_SOC(vw, vf) * 0.01f);
+[e = _Soc * -> ( _Volts_to_SOC (2 , _vw _vf `f -> .0.01 `f ]
+"647
+[; ;main.c: 647:    EB->bat_energy = 25.6f*200.0f*360.0f*Soc;
+[e = . *U _EB 14 * * * -> .25.6 `f -> .200.0 `f -> .360.0 `f _Soc ]
+"648
+[; ;main.c: 648:   }
 }
 [e :U 3373 ]
-"647
-[; ;main.c: 647:   B.FM80_online = 1;
-[e = . _B 11 -> -> 1 `i `a ]
-"648
-[; ;main.c: 648:   off_delay = 0;
-[e = F25293 -> -> 0 `i `uc ]
 "649
-[; ;main.c: 649:   snprintf(buffer, 255, "FM80 Online         ");
-[e ( _snprintf (2 , , &U _buffer -> -> 255 `i `ui :s 18C ]
+[; ;main.c: 649:   B.FM80_online = 1;
+[e = . _B 11 -> -> 1 `i `a ]
+"650
+[; ;main.c: 650:   off_delay = 0;
+[e = F25290 -> -> 0 `i `uc ]
 "651
-[; ;main.c: 651:   eaDogM_WriteStringAtPos(3, 0, buffer);
-[e ( _eaDogM_WriteStringAtPos (3 , , -> -> 3 `i `uc -> -> 0 `i `uc &U _buffer ]
-"653
-[; ;main.c: 653:  } else {
+[; ;main.c: 651:   snprintf(buffer, 255, "FM80 Online         ");
+[e ( _snprintf (2 , , &U _buffer -> -> 255 `i `ui :s 18C ]
+"655
+[; ;main.c: 655:  } else {
 }
 [e $U 3374  ]
 [e :U 3372 ]
 {
-"654
-[; ;main.c: 654:   snprintf(buffer, 255, "FM80 Offline        ");
-[e ( _snprintf (2 , , &U _buffer -> -> 255 `i `ui :s 19C ]
 "656
-[; ;main.c: 656:   eaDogM_WriteStringAtPos(3, 0, buffer);
-[e ( _eaDogM_WriteStringAtPos (3 , , -> -> 3 `i `uc -> -> 0 `i `uc &U _buffer ]
-"658
-[; ;main.c: 658:   if (off_delay++ > 3) {
-[e $ ! > -> ++ F25293 -> -> 1 `i `uc `i -> 3 `i 3375  ]
-{
-"659
-[; ;main.c: 659:    B.FM80_online = 0;
-[e = . _B 11 -> -> 0 `i `a ]
+[; ;main.c: 656:   snprintf(buffer, 255, "FM80 Offline        ");
+[e ( _snprintf (2 , , &U _buffer -> -> 255 `i `ui :s 19C ]
 "660
-[; ;main.c: 660:    cc_mode = STATUS_LAST;
-[e = _cc_mode -> . `E24806 5 `us ]
+[; ;main.c: 660:   if (off_delay++ > 3) {
+[e $ ! > -> ++ F25290 -> -> 1 `i `uc `i -> 3 `i 3375  ]
+{
 "661
-[; ;main.c: 661:   }
+[; ;main.c: 661:    B.FM80_online = 0;
+[e = . _B 11 -> -> 0 `i `a ]
+"662
+[; ;main.c: 662:    cc_mode = STATUS_LAST;
+[e = _cc_mode -> . `E24806 5 `us ]
+"663
+[; ;main.c: 663:   }
 }
 [e :U 3375 ]
-"662
-[; ;main.c: 662:  }
+"664
+[; ;main.c: 664:  }
 }
 [e :U 3374 ]
-"663
-[; ;main.c: 663:  state = state_status;
+"665
+[; ;main.c: 665:  state = state_status;
 [e = _state . `E25183 1 ]
-"664
-[; ;main.c: 664: }
+"666
+[; ;main.c: 666: }
 [e :UE 3371 ]
 }
-"666
-[; ;main.c: 666: void state_status_cb(void)
+"668
+[; ;main.c: 668: void state_status_cb(void)
 [v _state_status_cb `(v ~T0 @X0 1 ef ]
-"667
-[; ;main.c: 667: {
+"669
+[; ;main.c: 669: {
 {
 [e :U _state_status_cb ]
 [f ]
-"668
-[; ;main.c: 668:  static uint16_t day_clocks = 0;
-[v F25295 `us ~T0 @X0 1 s day_clocks ]
-[i F25295
+"670
+[; ;main.c: 670:  static uint16_t day_clocks = 0;
+[v F25292 `us ~T0 @X0 1 s day_clocks ]
+[i F25292
 -> -> 0 `i `us
 ]
-"669
-[; ;main.c: 669:  static uint8_t status_prev = STATUS_SLEEPING;
-[v F25296 `uc ~T0 @X0 1 s status_prev ]
-[i F25296
+"671
+[; ;main.c: 671:  static uint8_t status_prev = STATUS_SLEEPING;
+[v F25293 `uc ~T0 @X0 1 s status_prev ]
+[i F25293
 -> . `E24806 0 `uc
 ]
-"685
-[; ;main.c: 685:  if (B.day_check++ > 1200) {
+"687
+[; ;main.c: 687:  if (B.day_check++ > 1200) {
 [e $ ! > -> ++ . _B 10 -> -> 1 `i `Vus `ui -> -> 1200 `i `ui 3377  ]
 {
-"686
-[; ;main.c: 686:   B.day_check = 0;
-[e = . _B 10 -> -> 0 `i `us ]
-"687
-[; ;main.c: 687:   B.once = 0;
-[e = . _B 5 -> -> 0 `i `a ]
 "688
-[; ;main.c: 688:  }
+[; ;main.c: 688:   B.day_check = 0;
+[e = . _B 10 -> -> 0 `i `us ]
+"689
+[; ;main.c: 689:   B.once = 0;
+[e = . _B 5 -> -> 0 `i `a ]
+"690
+[; ;main.c: 690:  }
 }
 [e :U 3377 ]
-"690
-[; ;main.c: 690:  if (abuf[2] != STATUS_SLEEPING) {
+"692
+[; ;main.c: 692:  if (abuf[2] != STATUS_SLEEPING) {
 [e $ ! != -> *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> . `E24806 0 `ui 3378  ]
 {
-"691
-[; ;main.c: 691:   if (++day_clocks > 45) {
-[e $ ! > -> =+ F25295 -> -> 1 `i `us `ui -> -> 45 `i `ui 3379  ]
-{
-"692
-[; ;main.c: 692:    day_clocks = 0;
-[e = F25295 -> -> 0 `i `us ]
 "693
-[; ;main.c: 693:    if (!B.once && (B.pv_prev == STATUS_SLEEPING)) {
-[e $ ! && ! != -> . _B 5 `i -> 0 `i == -> . _B 9 `ui -> . `E24806 0 `ui 3380  ]
+[; ;main.c: 693:   if (++day_clocks > 45) {
+[e $ ! > -> =+ F25292 -> -> 1 `i `us `ui -> -> 45 `i `ui 3379  ]
 {
 "694
-[; ;main.c: 694:     B.day_check = 0;
-[e = . _B 10 -> -> 0 `i `us ]
+[; ;main.c: 694:    day_clocks = 0;
+[e = F25292 -> -> 0 `i `us ]
 "695
-[; ;main.c: 695:     B.pv_update = 1;
-[e = . _B 4 -> -> 1 `i `a ]
+[; ;main.c: 695:    if (!B.once && (B.pv_prev == STATUS_SLEEPING)) {
+[e $ ! && ! != -> . _B 5 `i -> 0 `i == -> . _B 9 `ui -> . `E24806 0 `ui 3380  ]
+{
 "696
-[; ;main.c: 696:     B.pv_prev = abuf[2];
-[e = . _B 9 *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux ]
+[; ;main.c: 696:     B.day_check = 0;
+[e = . _B 10 -> -> 0 `i `us ]
 "697
-[; ;main.c: 697:     B.once = 1;
-[e = . _B 5 -> -> 1 `i `a ]
+[; ;main.c: 697:     B.pv_update = 1;
+[e = . _B 4 -> -> 1 `i `a ]
 "698
-[; ;main.c: 698:    }
+[; ;main.c: 698:     B.pv_prev = abuf[2];
+[e = . _B 9 *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux ]
+"699
+[; ;main.c: 699:     B.once = 1;
+[e = . _B 5 -> -> 1 `i `a ]
+"700
+[; ;main.c: 700:    }
 }
 [e :U 3380 ]
-"699
-[; ;main.c: 699:    B.pv_high = 1;
+"701
+[; ;main.c: 701:    B.pv_high = 1;
 [e = . _B 3 -> -> 1 `i `a ]
-"700
-[; ;main.c: 700:   }
+"702
+[; ;main.c: 702:   }
 }
 [e :U 3379 ]
-"701
-[; ;main.c: 701:  } else {
+"703
+[; ;main.c: 703:  } else {
 }
 [e $U 3381  ]
 [e :U 3378 ]
 {
-"702
-[; ;main.c: 702:   if (++day_clocks > 45) {
-[e $ ! > -> =+ F25295 -> -> 1 `i `us `ui -> -> 45 `i `ui 3382  ]
-{
-"703
-[; ;main.c: 703:    day_clocks = 0;
-[e = F25295 -> -> 0 `i `us ]
 "704
-[; ;main.c: 704:    if (!B.once && (B.pv_prev != STATUS_SLEEPING)) {
-[e $ ! && ! != -> . _B 5 `i -> 0 `i != -> . _B 9 `ui -> . `E24806 0 `ui 3383  ]
+[; ;main.c: 704:   if (++day_clocks > 45) {
+[e $ ! > -> =+ F25292 -> -> 1 `i `us `ui -> -> 45 `i `ui 3382  ]
 {
 "705
-[; ;main.c: 705:     B.day_check = 0;
-[e = . _B 10 -> -> 0 `i `us ]
+[; ;main.c: 705:    day_clocks = 0;
+[e = F25292 -> -> 0 `i `us ]
 "706
-[; ;main.c: 706:     B.pv_update = 1;
-[e = . _B 4 -> -> 1 `i `a ]
+[; ;main.c: 706:    if (!B.once && (B.pv_prev != STATUS_SLEEPING)) {
+[e $ ! && ! != -> . _B 5 `i -> 0 `i != -> . _B 9 `ui -> . `E24806 0 `ui 3383  ]
+{
 "707
-[; ;main.c: 707:     B.pv_prev = abuf[2];
-[e = . _B 9 *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux ]
+[; ;main.c: 707:     B.day_check = 0;
+[e = . _B 10 -> -> 0 `i `us ]
 "708
-[; ;main.c: 708:     B.once = 1;
-[e = . _B 5 -> -> 1 `i `a ]
+[; ;main.c: 708:     B.pv_update = 1;
+[e = . _B 4 -> -> 1 `i `a ]
 "709
-[; ;main.c: 709:    }
+[; ;main.c: 709:     B.pv_prev = abuf[2];
+[e = . _B 9 *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux ]
+"710
+[; ;main.c: 710:     B.once = 1;
+[e = . _B 5 -> -> 1 `i `a ]
+"711
+[; ;main.c: 711:    }
 }
 [e :U 3383 ]
-"710
-[; ;main.c: 710:    B.pv_high = 0;
+"712
+[; ;main.c: 712:    B.pv_high = 0;
 [e = . _B 3 -> -> 0 `i `a ]
-"711
-[; ;main.c: 711:   }
+"713
+[; ;main.c: 713:   }
 }
 [e :U 3382 ]
-"713
-[; ;main.c: 713:  }
+"715
+[; ;main.c: 715:  }
 }
 [e :U 3381 ]
-"714
-[; ;main.c: 714:  if (B.FM80_online) {
+"716
+[; ;main.c: 716:  if (B.FM80_online) {
 [e $ ! != -> . _B 11 `i -> 0 `i 3384  ]
 {
-"715
-[; ;main.c: 715:   cc_mode = abuf[2];
+"717
+[; ;main.c: 717:   cc_mode = abuf[2];
 [e = _cc_mode *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux ]
-"716
-[; ;main.c: 716:  }
+"718
+[; ;main.c: 718:  }
 }
 [e :U 3384 ]
-"717
-[; ;main.c: 717:  state = state_watts;
+"719
+[; ;main.c: 719:  state = state_watts;
 [e = _state . `E25183 5 ]
-"718
-[; ;main.c: 718: }
+"720
+[; ;main.c: 720: }
 [e :UE 3376 ]
 }
-"720
-[; ;main.c: 720: void state_panelv_cb(void)
+"722
+[; ;main.c: 722: void state_panelv_cb(void)
 [v _state_panelv_cb `(v ~T0 @X0 1 ef ]
-"721
-[; ;main.c: 721: {
+"723
+[; ;main.c: 723: {
 {
 [e :U _state_panelv_cb ]
 [f ]
-"725
-[; ;main.c: 725:  state = state_batteryv;
+"727
+[; ;main.c: 727:  state = state_batteryv;
 [e = _state . `E25183 3 ]
-"726
-[; ;main.c: 726: }
+"728
+[; ;main.c: 728: }
 [e :UE 3385 ]
 }
-"728
-[; ;main.c: 728: void state_batteryv_cb(void)
+"730
+[; ;main.c: 730: void state_batteryv_cb(void)
 [v _state_batteryv_cb `(v ~T0 @X0 1 ef ]
-"729
-[; ;main.c: 729: {
+"731
+[; ;main.c: 731: {
 {
 [e :U _state_batteryv_cb ]
 [f ]
-"730
-[; ;main.c: 730:  volt_f((abuf[2] + (abuf[1] << 8)));
+"732
+[; ;main.c: 732:  volt_f((abuf[2] + (abuf[1] << 8)));
 [e ( _volt_f (1 -> + -> *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui << -> *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> 8 `i `us ]
-"734
-[; ;main.c: 734:  state = state_batterya;
+"736
+[; ;main.c: 736:  state = state_batterya;
 [e = _state . `E25183 4 ]
-"735
-[; ;main.c: 735: }
+"737
+[; ;main.c: 737: }
 [e :UE 3386 ]
 }
-"737
-[; ;main.c: 737: void state_batterya_cb(void)
+"739
+[; ;main.c: 739: void state_batterya_cb(void)
 [v _state_batterya_cb `(v ~T0 @X0 1 ef ]
-"738
-[; ;main.c: 738: {
+"740
+[; ;main.c: 740: {
 {
 [e :U _state_batterya_cb ]
 [f ]
-"739
-[; ;main.c: 739:  volt_f((abuf[2] + (abuf[1] << 8)));
+"741
+[; ;main.c: 741:  volt_f((abuf[2] + (abuf[1] << 8)));
 [e ( _volt_f (1 -> + -> *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui << -> *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> 8 `i `us ]
-"743
-[; ;main.c: 743:  state = state_watts;
+"745
+[; ;main.c: 745:  state = state_watts;
 [e = _state . `E25183 5 ]
-"744
-[; ;main.c: 744: }
+"746
+[; ;main.c: 746: }
 [e :UE 3387 ]
 }
-"746
-[; ;main.c: 746: void state_watts_cb(void)
+"748
+[; ;main.c: 748: void state_watts_cb(void)
 [v _state_watts_cb `(v ~T0 @X0 1 ef ]
-"747
-[; ;main.c: 747: {
+"749
+[; ;main.c: 749: {
 {
 [e :U _state_watts_cb ]
 [f ]
-"751
-[; ;main.c: 751:  panel_watts = (abuf[2] + (abuf[1] << 8));
+"753
+[; ;main.c: 753:  panel_watts = (abuf[2] + (abuf[1] << 8));
 [e = _panel_watts -> + -> *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui << -> *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> 8 `i `us ]
-"752
-[; ;main.c: 752:  if (B.FM80_online) {
+"754
+[; ;main.c: 754:  if (B.FM80_online) {
 [e $ ! != -> . _B 11 `i -> 0 `i 3389  ]
 {
-"753
-[; ;main.c: 753:   state = state_mx_log;
+"755
+[; ;main.c: 755:   state = state_mx_log;
 [e = _state . `E25183 9 ]
-"754
-[; ;main.c: 754:  } else {
+"756
+[; ;main.c: 756:  } else {
 }
 [e $U 3390  ]
 [e :U 3389 ]
 {
-"755
-[; ;main.c: 755:   state = state_mx_status;
+"757
+[; ;main.c: 757:   state = state_mx_status;
 [e = _state . `E25183 11 ]
-"756
-[; ;main.c: 756:  }
+"758
+[; ;main.c: 758:  }
 }
 [e :U 3390 ]
-"757
-[; ;main.c: 757: }
+"759
+[; ;main.c: 759: }
 [e :UE 3388 ]
 }
-"759
-[; ;main.c: 759: void state_mx_log_cb(void)
+"761
+[; ;main.c: 761: void state_mx_log_cb(void)
 [v _state_mx_log_cb `(v ~T0 @X0 1 ef ]
-"760
-[; ;main.c: 760: {
+"762
+[; ;main.c: 762: {
 {
 [e :U _state_mx_log_cb ]
 [f ]
-"761
-[; ;main.c: 761:  B.log.volts_peak = (int16_t) cbuf[5];
-[e = . . _B 20 3 -> *U + &U _cbuf * -> -> -> 5 `i `ui `ux -> -> # *U &U _cbuf `ui `ux `s ]
-"762
-[; ;main.c: 762:  B.log.day = (int16_t) cbuf[14];
-[e = . . _B 20 0 -> *U + &U _cbuf * -> -> -> 14 `i `ui `ux -> -> # *U &U _cbuf `ui `ux `s ]
 "763
-[; ;main.c: 763:  B.log.kilowatt_hours = (int16_t) (((uint16_t) (cbuf[3] & 0xF0) >> 4) | (uint16_t) (cbuf[4] << 4));
-[e = . . _B 20 2 -> | >> -> -> & -> *U + &U _cbuf * -> -> -> 3 `i `ui `ux -> -> # *U &U _cbuf `ui `ux `ui -> -> 240 `i `ui `us `ui -> 4 `i -> -> << -> *U + &U _cbuf * -> -> -> 4 `i `ui `ux -> -> # *U &U _cbuf `ui `ux `ui -> 4 `i `us `ui `s ]
+[; ;main.c: 763:  B.log.volts_peak = (int16_t) cbuf[5];
+[e = . . _B 20 3 -> *U + &U _cbuf * -> -> -> 5 `i `ui `ux -> -> # *U &U _cbuf `ui `ux `s ]
 "764
-[; ;main.c: 764:  B.log.kilowatts_peak = (int16_t) (((uint16_t) (cbuf[13] & 0xFC) >> 2) | (uint16_t) (cbuf[12] << 6));
-[e = . . _B 20 5 -> | >> -> -> & -> *U + &U _cbuf * -> -> -> 13 `i `ui `ux -> -> # *U &U _cbuf `ui `ux `ui -> -> 252 `i `ui `us `ui -> 2 `i -> -> << -> *U + &U _cbuf * -> -> -> 12 `i `ui `ux -> -> # *U &U _cbuf `ui `ux `ui -> 6 `i `us `ui `s ]
+[; ;main.c: 764:  B.log.day = (int16_t) cbuf[14];
+[e = . . _B 20 0 -> *U + &U _cbuf * -> -> -> 14 `i `ui `ux -> -> # *U &U _cbuf `ui `ux `s ]
 "765
-[; ;main.c: 765:  B.log.bat_max = (int16_t) (((uint16_t) (cbuf[2] & 0xFC) >> 2) | (uint16_t) ((cbuf[3] & 0x0F) << 6));
-[e = . . _B 20 7 -> | >> -> -> & -> *U + &U _cbuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _cbuf `ui `ux `ui -> -> 252 `i `ui `us `ui -> 2 `i -> -> << & -> *U + &U _cbuf * -> -> -> 3 `i `ui `ux -> -> # *U &U _cbuf `ui `ux `ui -> -> 15 `i `ui -> 6 `i `us `ui `s ]
+[; ;main.c: 765:  B.log.kilowatt_hours = (int16_t) (((uint16_t) (cbuf[3] & 0xF0) >> 4) | (uint16_t) (cbuf[4] << 4));
+[e = . . _B 20 2 -> | >> -> -> & -> *U + &U _cbuf * -> -> -> 3 `i `ui `ux -> -> # *U &U _cbuf `ui `ux `ui -> -> 240 `i `ui `us `ui -> 4 `i -> -> << -> *U + &U _cbuf * -> -> -> 4 `i `ui `ux -> -> # *U &U _cbuf `ui `ux `ui -> 4 `i `us `ui `s ]
 "766
-[; ;main.c: 766:  B.log.bat_min = (int16_t) (((uint16_t) (cbuf[10] & 0xC0) >> 6) | (uint16_t) ((cbuf[11] << 2) | ((cbuf[12] & 0x03) << 10)));
-[e = . . _B 20 6 -> | >> -> -> & -> *U + &U _cbuf * -> -> -> 10 `i `ui `ux -> -> # *U &U _cbuf `ui `ux `ui -> -> 192 `i `ui `us `ui -> 6 `i -> -> | << -> *U + &U _cbuf * -> -> -> 11 `i `ui `ux -> -> # *U &U _cbuf `ui `ux `ui -> 2 `i << & -> *U + &U _cbuf * -> -> -> 12 `i `ui `ux -> -> # *U &U _cbuf `ui `ux `ui -> -> 3 `i `ui -> 10 `i `us `ui `s ]
+[; ;main.c: 766:  B.log.kilowatts_peak = (int16_t) (((uint16_t) (cbuf[13] & 0xFC) >> 2) | (uint16_t) (cbuf[12] << 6));
+[e = . . _B 20 5 -> | >> -> -> & -> *U + &U _cbuf * -> -> -> 13 `i `ui `ux -> -> # *U &U _cbuf `ui `ux `ui -> -> 252 `i `ui `us `ui -> 2 `i -> -> << -> *U + &U _cbuf * -> -> -> 12 `i `ui `ux -> -> # *U &U _cbuf `ui `ux `ui -> 6 `i `us `ui `s ]
 "767
-[; ;main.c: 767:  B.log.amps_peak = (int16_t) (cbuf[1] | ((cbuf[2] & 0x03) << 8));
-[e = . . _B 20 4 -> | -> *U + &U _cbuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _cbuf `ui `ux `ui << & -> *U + &U _cbuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _cbuf `ui `ux `ui -> -> 3 `i `ui -> 8 `i `s ]
+[; ;main.c: 767:  B.log.bat_max = (int16_t) (((uint16_t) (cbuf[2] & 0xFC) >> 2) | (uint16_t) ((cbuf[3] & 0x0F) << 6));
+[e = . . _B 20 7 -> | >> -> -> & -> *U + &U _cbuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _cbuf `ui `ux `ui -> -> 252 `i `ui `us `ui -> 2 `i -> -> << & -> *U + &U _cbuf * -> -> -> 3 `i `ui `ux -> -> # *U &U _cbuf `ui `ux `ui -> -> 15 `i `ui -> 6 `i `us `ui `s ]
 "768
-[; ;main.c: 768:  B.log.amp_hours = (int16_t) (cbuf[9] | ((cbuf[10] & 0x3F) << 8));
-[e = . . _B 20 1 -> | -> *U + &U _cbuf * -> -> -> 9 `i `ui `ux -> -> # *U &U _cbuf `ui `ux `ui << & -> *U + &U _cbuf * -> -> -> 10 `i `ui `ux -> -> # *U &U _cbuf `ui `ux `ui -> -> 63 `i `ui -> 8 `i `s ]
+[; ;main.c: 768:  B.log.bat_min = (int16_t) (((uint16_t) (cbuf[10] & 0xC0) >> 6) | (uint16_t) ((cbuf[11] << 2) | ((cbuf[12] & 0x03) << 10)));
+[e = . . _B 20 6 -> | >> -> -> & -> *U + &U _cbuf * -> -> -> 10 `i `ui `ux -> -> # *U &U _cbuf `ui `ux `ui -> -> 192 `i `ui `us `ui -> 6 `i -> -> | << -> *U + &U _cbuf * -> -> -> 11 `i `ui `ux -> -> # *U &U _cbuf `ui `ux `ui -> 2 `i << & -> *U + &U _cbuf * -> -> -> 12 `i `ui `ux -> -> # *U &U _cbuf `ui `ux `ui -> -> 3 `i `ui -> 10 `i `us `ui `s ]
 "769
-[; ;main.c: 769:  B.log.absorb_time = (int16_t) (cbuf[6] | ((cbuf[7] & 0x0F) << 8));
-[e = . . _B 20 8 -> | -> *U + &U _cbuf * -> -> -> 6 `i `ui `ux -> -> # *U &U _cbuf `ui `ux `ui << & -> *U + &U _cbuf * -> -> -> 7 `i `ui `ux -> -> # *U &U _cbuf `ui `ux `ui -> -> 15 `i `ui -> 8 `i `s ]
+[; ;main.c: 769:  B.log.amps_peak = (int16_t) (cbuf[1] | ((cbuf[2] & 0x03) << 8));
+[e = . . _B 20 4 -> | -> *U + &U _cbuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _cbuf `ui `ux `ui << & -> *U + &U _cbuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _cbuf `ui `ux `ui -> -> 3 `i `ui -> 8 `i `s ]
 "770
-[; ;main.c: 770:  B.log.float_time = (int16_t) (((cbuf[7] & 0xF0) >> 4) | (cbuf[8] << 4));
-[e = . . _B 20 9 -> | >> & -> *U + &U _cbuf * -> -> -> 7 `i `ui `ux -> -> # *U &U _cbuf `ui `ux `ui -> -> 240 `i `ui -> 4 `i << -> *U + &U _cbuf * -> -> -> 8 `i `ui `ux -> -> # *U &U _cbuf `ui `ux `ui -> 4 `i `s ]
+[; ;main.c: 770:  B.log.amp_hours = (int16_t) (cbuf[9] | ((cbuf[10] & 0x3F) << 8));
+[e = . . _B 20 1 -> | -> *U + &U _cbuf * -> -> -> 9 `i `ui `ux -> -> # *U &U _cbuf `ui `ux `ui << & -> *U + &U _cbuf * -> -> -> 10 `i `ui `ux -> -> # *U &U _cbuf `ui `ux `ui -> -> 63 `i `ui -> 8 `i `s ]
+"771
+[; ;main.c: 771:  B.log.absorb_time = (int16_t) (cbuf[6] | ((cbuf[7] & 0x0F) << 8));
+[e = . . _B 20 8 -> | -> *U + &U _cbuf * -> -> -> 6 `i `ui `ux -> -> # *U &U _cbuf `ui `ux `ui << & -> *U + &U _cbuf * -> -> -> 7 `i `ui `ux -> -> # *U &U _cbuf `ui `ux `ui -> -> 15 `i `ui -> 8 `i `s ]
 "772
-[; ;main.c: 772:  cmd_mx_log[5] = B.log.select;
+[; ;main.c: 772:  B.log.float_time = (int16_t) (((cbuf[7] & 0xF0) >> 4) | (cbuf[8] << 4));
+[e = . . _B 20 9 -> | >> & -> *U + &U _cbuf * -> -> -> 7 `i `ui `ux -> -> # *U &U _cbuf `ui `ux `ui -> -> 240 `i `ui -> 4 `i << -> *U + &U _cbuf * -> -> -> 8 `i `ui `ux -> -> # *U &U _cbuf `ui `ux `ui -> 4 `i `s ]
+"774
+[; ;main.c: 774:  cmd_mx_log[5] = B.log.select;
 [e = *U + &U _cmd_mx_log * -> -> -> 5 `i `ui `ux -> -> # *U &U _cmd_mx_log `ui `ux -> . . _B 20 10 `us ]
-"773
-[; ;main.c: 773:  cmd_mx_log[7] = 0x16 + B.log.select;
-[e = *U + &U _cmd_mx_log * -> -> -> 7 `i `ui `ux -> -> # *U &U _cmd_mx_log `ui `ux -> + -> 22 `i -> . . _B 20 10 `i `us ]
 "775
-[; ;main.c: 775:  state = state_mx_status;
+[; ;main.c: 775:  cmd_mx_log[7] = 0x16 + B.log.select;
+[e = *U + &U _cmd_mx_log * -> -> -> 7 `i `ui `ux -> -> # *U &U _cmd_mx_log `ui `ux -> + -> 22 `i -> . . _B 20 10 `i `us ]
+"777
+[; ;main.c: 777:  state = state_mx_status;
 [e = _state . `E25183 11 ]
-"776
-[; ;main.c: 776: }
+"778
+[; ;main.c: 778: }
 [e :UE 3391 ]
 }
-"778
-[; ;main.c: 778: void state_mx_status_cb(void)
+"780
+[; ;main.c: 780: void state_mx_status_cb(void)
 [v _state_mx_status_cb `(v ~T0 @X0 1 ef ]
-"779
-[; ;main.c: 779: {
+"781
+[; ;main.c: 781: {
 {
 [e :U _state_mx_status_cb ]
 [f ]
-"780
-[; ;main.c: 780:  volt_f((abuf[11] + (abuf[10] << 8)));
-[e ( _volt_f (1 -> + -> *U + &U _abuf * -> -> -> 11 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui << -> *U + &U _abuf * -> -> -> 10 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> 8 `i `us ]
-"781
-[; ;main.c: 781:  vw = volt_whole;
-[e = _vw _volt_whole ]
 "782
-[; ;main.c: 782:  vf = volt_fract;
-[e = _vf _volt_fract ]
+[; ;main.c: 782:  volt_f((abuf[11] + (abuf[10] << 8)));
+[e ( _volt_f (1 -> + -> *U + &U _abuf * -> -> -> 11 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui << -> *U + &U _abuf * -> -> -> 10 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> 8 `i `us ]
 "783
-[; ;main.c: 783:  volt_f((abuf[13] + (abuf[12] << 8)));
-[e ( _volt_f (1 -> + -> *U + &U _abuf * -> -> -> 13 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui << -> *U + &U _abuf * -> -> -> 12 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> 8 `i `us ]
+[; ;main.c: 783:  vw = volt_whole;
+[e = _vw _volt_whole ]
 "784
-[; ;main.c: 784:  if ((abuf[1] &0x0f) > 9) {
+[; ;main.c: 784:  vf = volt_fract;
+[e = _vf _volt_fract ]
+"785
+[; ;main.c: 785:  volt_f((abuf[13] + (abuf[12] << 8)));
+[e ( _volt_f (1 -> + -> *U + &U _abuf * -> -> -> 13 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui << -> *U + &U _abuf * -> -> -> 12 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> 8 `i `us ]
+"786
+[; ;main.c: 786:  if ((abuf[1] &0x0f) > 9) {
 [e $ ! > & -> *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 15 `i `ui -> -> 9 `i `ui 3393  ]
 {
-"785
-[; ;main.c: 785:   abuf[2]++;
-[e ++ *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux -> -> 1 `i `us ]
-"786
-[; ;main.c: 786:   abuf[1] = (abuf[1]&0x0f) - 10;
-[e = *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux -> - & -> *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 15 `i `ui -> -> 10 `i `ui `us ]
 "787
-[; ;main.c: 787:  }
+[; ;main.c: 787:   abuf[2]++;
+[e ++ *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux -> -> 1 `i `us ]
+"788
+[; ;main.c: 788:   abuf[1] = (abuf[1]&0x0f) - 10;
+[e = *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux -> - & -> *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 15 `i `ui -> -> 10 `i `ui `us ]
+"789
+[; ;main.c: 789:  }
 }
 [e :U 3393 ]
-"788
-[; ;main.c: 788:  if (B.FM80_online) {
+"790
+[; ;main.c: 790:  if (B.FM80_online) {
 [e $ ! != -> . _B 11 `i -> 0 `i 3394  ]
 {
-"789
-[; ;main.c: 789:   bat_amp_whole = abuf[3] - 128;
+"791
+[; ;main.c: 791:   bat_amp_whole = abuf[3] - 128;
 [e = _bat_amp_whole -> - -> *U + &U _abuf * -> -> -> 3 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 128 `i `ui `us ]
-"790
-[; ;main.c: 790:  }
+"792
+[; ;main.c: 792:  }
 }
 [e :U 3394 ]
-"795
-[; ;main.c: 795:  if (B.ten_sec_flag) {
+"797
+[; ;main.c: 797:  if (B.ten_sec_flag) {
 [e $ ! != -> . _B 0 `i -> 0 `i 3395  ]
 {
-"796
-[; ;main.c: 796:   B.ten_sec_flag = 0;
+"798
+[; ;main.c: 798:   B.ten_sec_flag = 0;
 [e = . _B 0 -> -> 0 `i `a ]
-"797
-[; ;main.c: 797:   if (B.FM80_online || B.modbus_online) {
+"799
+[; ;main.c: 799:   if (B.FM80_online || B.modbus_online) {
 [e $ ! || != -> . _B 11 `i -> 0 `i != -> . _B 14 `i -> 0 `i 3396  ]
 {
-"798
-[; ;main.c: 798:    do { LATBbits.LATB1 = 0; } while(0);
+"800
+[; ;main.c: 800:    do { LATBbits.LATB1 = 0; } while(0);
 [e :U 3399 ]
 {
 [e = . . _LATBbits 0 1 -> -> 0 `i `uc ]
 }
 [e :U 3398 ]
-"802
-[; ;main.c: 802:    snprintf(buffer, 25, "%s", asctime(can_newtime));
-[e ( _snprintf (2 , (. , , &U _buffer -> -> 25 `i `ui :s 20C ( _asctime (1 -> _can_newtime `*CS3288 ]
-"803
-[; ;main.c: 803:    buffer[26] = 0;
-[e = *U + &U _buffer * -> -> -> 26 `i `ui `ux -> -> # *U &U _buffer `ui `ux -> -> 0 `i `uc ]
 "804
-[; ;main.c: 804:    snprintf(log_buffer, 255, log_format, abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, pv_Wh_daily, ac_Wh_daily, B.run_time, B.net_balance, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, EBD.bat_energy / 3600.0f, EBD.bat_cycles, ((float) em.pfl1) / 1000.0f, ((float) emt.hz) / 1000.0f, B.rx_count++,buffer);
-[e ( _snprintf (2 , , , , , , , , , , , , , , , , , , , , , , , (. , , &U _log_buffer -> -> 255 `i `ui &U _log_format - -> *U + &U _abuf * -> -> -> 3 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 128 `i `ui & -> *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 15 `i `ui -> _vw `ui -> _vf `ui - -> *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 128 `i `ui -> _volt_whole `ui -> _volt_fract `ui -> _panel_watts `ui -> _pv_Wh_daily `d -> _ac_Wh_daily `d -> . _B 16 `d -> . _B 17 `d -> _cc_mode `ui -> / -> . _em 9 `f -> .10.0 `f `d -> / -> . _em 12 `f -> .10.0 `f `d -> / -> . _em 15 `f -> .10.0 `f `d -> / -> . _em 3 `f -> .10.0 `f `d -> / . _EBD 14 -> .3600.0 `f `d -> . _EBD 16 `ui -> / -> . _em 23 `f -> .1000.0 `f `d -> / -> . _emt 17 `f -> .1000.0 `f `d -> ++ . _B 7 -> -> 1 `i `Vus `ui &U _buffer ]
+[; ;main.c: 804:    snprintf(buffer, 25, "%s", asctime(can_newtime));
+[e ( _snprintf (2 , (. , , &U _buffer -> -> 25 `i `ui :s 20C ( _asctime (1 -> _can_newtime `*CS3288 ]
 "805
-[; ;main.c: 805:    printf("%s", log_buffer);
-[e ( _printf , (. :s 21C &U _log_buffer ]
+[; ;main.c: 805:    buffer[26] = 0;
+[e = *U + &U _buffer * -> -> -> 26 `i `ui `ux -> -> # *U &U _buffer `ui `ux -> -> 0 `i `uc ]
 "806
-[; ;main.c: 806:    if (B.FM80_online) {
+[; ;main.c: 806:    snprintf(log_buffer, 255, log_format, abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, pv_Wh_daily, ac_Wh_daily, B.run_time, B.net_balance, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, EBD.bat_energy / 3600.0f, EBD.bat_cycles, ((float) em.pfl1) / 1000.0f, ((float) emt.hz) / 1000.0f, B.rx_count++,buffer);
+[e ( _snprintf (2 , , , , , , , , , , , , , , , , , , , , , , , (. , , &U _log_buffer -> -> 255 `i `ui &U _log_format - -> *U + &U _abuf * -> -> -> 3 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 128 `i `ui & -> *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 15 `i `ui -> _vw `ui -> _vf `ui - -> *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 128 `i `ui -> _volt_whole `ui -> _volt_fract `ui -> _panel_watts `ui -> _pv_Wh_daily `d -> _ac_Wh_daily `d -> . _B 16 `d -> . _B 17 `d -> _cc_mode `ui -> / -> . _em 9 `f -> .10.0 `f `d -> / -> . _em 12 `f -> .10.0 `f `d -> / -> . _em 15 `f -> .10.0 `f `d -> / -> . _em 3 `f -> .10.0 `f `d -> / . _EBD 14 -> .3600.0 `f `d -> . _EBD 16 `ui -> / -> . _em 23 `f -> .1000.0 `f `d -> / -> . _emt 17 `f -> .1000.0 `f `d -> ++ . _B 7 -> -> 1 `i `Vus `ui &U _buffer ]
+"807
+[; ;main.c: 807:    printf("%s", log_buffer);
+[e ( _printf , (. :s 21C &U _log_buffer ]
+"808
+[; ;main.c: 808:    if (B.FM80_online) {
 [e $ ! != -> . _B 11 `i -> 0 `i 3400  ]
 {
-"807
-[; ;main.c: 807:     bat_amp_whole = abuf[3] - 128;
+"809
+[; ;main.c: 809:     bat_amp_whole = abuf[3] - 128;
 [e = _bat_amp_whole -> - -> *U + &U _abuf * -> -> -> 3 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 128 `i `ui `us ]
-"808
-[; ;main.c: 808:    }
+"810
+[; ;main.c: 810:    }
 }
 [e :U 3400 ]
-"810
-[; ;main.c: 810:    switch (B.alt_display) {
+"812
+[; ;main.c: 812:    switch (B.alt_display) {
 [e $U 3402  ]
 {
-"811
-[; ;main.c: 811:    case 3:
-[e :U 3403 ]
-"812
-[; ;main.c: 812:     snprintf(buffer, 255, "%4.2fHours              ", lp_filter(B.run_time, F_run, 0));
-[e ( _snprintf (2 , (. , , &U _buffer -> -> 255 `i `ui :s 22C -> ( _lp_filter (3 , , . _B 16 -> . `E25051 4 `uc -> -> 0 `i `c `d ]
 "813
-[; ;main.c: 813:     eaDogM_WriteStringAtPos(2, 0, buffer);
-[e ( _eaDogM_WriteStringAtPos (3 , , -> -> 2 `i `uc -> -> 0 `i `uc &U _buffer ]
+[; ;main.c: 813:    case 3:
+[e :U 3403 ]
 "814
-[; ;main.c: 814:     snprintf(buffer, 255, "ALT 3                   ");
-[e ( _snprintf (2 , , &U _buffer -> -> 255 `i `ui :s 23C ]
+[; ;main.c: 814:     snprintf(buffer, 255, "%4.2fHours              ", lp_filter(B.run_time, F_run, 0));
+[e ( _snprintf (2 , (. , , &U _buffer -> -> 255 `i `ui :s 22C -> ( _lp_filter (3 , , . _B 16 -> . `E25051 4 `uc -> -> 0 `i `c `d ]
 "815
-[; ;main.c: 815:     eaDogM_WriteStringAtPos(3, 0, buffer);
-[e ( _eaDogM_WriteStringAtPos (3 , , -> -> 3 `i `uc -> -> 0 `i `uc &U _buffer ]
+[; ;main.c: 815:     eaDogM_WriteStringAtPos(2, 0, buffer);
+[e ( _eaDogM_WriteStringAtPos (3 , , -> -> 2 `i `uc -> -> 0 `i `uc &U _buffer ]
 "816
-[; ;main.c: 816:     break;
-[e $U 3401  ]
+[; ;main.c: 816:     snprintf(buffer, 255, "ALT 3                   ");
+[e ( _snprintf (2 , , &U _buffer -> -> 255 `i `ui :s 23C ]
 "817
-[; ;main.c: 817:    case 2:
-[e :U 3404 ]
+[; ;main.c: 817:     eaDogM_WriteStringAtPos(3, 0, buffer);
+[e ( _eaDogM_WriteStringAtPos (3 , , -> -> 3 `i `uc -> -> 0 `i `uc &U _buffer ]
 "818
-[; ;main.c: 818:     snprintf(buffer, 255, "%4.2fBE %4.2fLW         ", EB->bat_energy / 360.0f, (float) em.wl1 / 10.0f);
-[e ( _snprintf (2 , , (. , , &U _buffer -> -> 255 `i `ui :s 24C -> / . *U _EB 14 -> .360.0 `f `d -> / -> . _em 9 `f -> .10.0 `f `d ]
+[; ;main.c: 818:     break;
+[e $U 3401  ]
 "819
-[; ;main.c: 819:     eaDogM_WriteStringAtPos(2, 0, buffer);
-[e ( _eaDogM_WriteStringAtPos (3 , , -> -> 2 `i `uc -> -> 0 `i `uc &U _buffer ]
+[; ;main.c: 819:    case 2:
+[e :U 3404 ]
 "820
-[; ;main.c: 820:     snprintf(buffer, 255, "ALT 2                   ");
-[e ( _snprintf (2 , , &U _buffer -> -> 255 `i `ui :s 25C ]
+[; ;main.c: 820:     snprintf(buffer, 255, "%4.2fBE %4.2fLW         ", EB->bat_energy / 360.0f, (float) em.wl1 / 10.0f);
+[e ( _snprintf (2 , , (. , , &U _buffer -> -> 255 `i `ui :s 24C -> / . *U _EB 14 -> .360.0 `f `d -> / -> . _em 9 `f -> .10.0 `f `d ]
 "821
-[; ;main.c: 821:     eaDogM_WriteStringAtPos(3, 0, buffer);
-[e ( _eaDogM_WriteStringAtPos (3 , , -> -> 3 `i `uc -> -> 0 `i `uc &U _buffer ]
+[; ;main.c: 821:     eaDogM_WriteStringAtPos(2, 0, buffer);
+[e ( _eaDogM_WriteStringAtPos (3 , , -> -> 2 `i `uc -> -> 0 `i `uc &U _buffer ]
 "822
-[; ;main.c: 822:     break;
-[e $U 3401  ]
+[; ;main.c: 822:     snprintf(buffer, 255, "ALT 2                   ");
+[e ( _snprintf (2 , , &U _buffer -> -> 255 `i `ui :s 25C ]
 "823
-[; ;main.c: 823:    case 1:
-[e :U 3405 ]
+[; ;main.c: 823:     eaDogM_WriteStringAtPos(3, 0, buffer);
+[e ( _eaDogM_WriteStringAtPos (3 , , -> -> 3 `i `uc -> -> 0 `i `uc &U _buffer ]
 "824
-[; ;main.c: 824:     snprintf(buffer, 255, "%4.2fHr %4.2fBW           ", B.run_time, B.net_balance);
-[e ( _snprintf (2 , , (. , , &U _buffer -> -> 255 `i `ui :s 26C -> . _B 16 `d -> . _B 17 `d ]
+[; ;main.c: 824:     break;
+[e $U 3401  ]
 "825
-[; ;main.c: 825:     eaDogM_WriteStringAtPos(2, 0, buffer);
-[e ( _eaDogM_WriteStringAtPos (3 , , -> -> 2 `i `uc -> -> 0 `i `uc &U _buffer ]
+[; ;main.c: 825:    case 1:
+[e :U 3405 ]
 "826
-[; ;main.c: 826:     snprintf(buffer, 255, "%d.%01d Amps %d.%01d Volts   ", bat_amp_whole, abuf[1]&0x0f, vw, vf);
-[e ( _snprintf (2 , , , , (. , , &U _buffer -> -> 255 `i `ui :s 27C -> _bat_amp_whole `ui & -> *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 15 `i `ui -> _vw `ui -> _vf `ui ]
+[; ;main.c: 826:     snprintf(buffer, 255, "%4.2fHr %4.2fBW           ", B.run_time, B.net_balance);
+[e ( _snprintf (2 , , (. , , &U _buffer -> -> 255 `i `ui :s 26C -> . _B 16 `d -> . _B 17 `d ]
 "827
-[; ;main.c: 827:     eaDogM_WriteStringAtPos(3, 0, buffer);
-[e ( _eaDogM_WriteStringAtPos (3 , , -> -> 3 `i `uc -> -> 0 `i `uc &U _buffer ]
-"828
-[; ;main.c: 828:     break;
-[e $U 3401  ]
-"829
-[; ;main.c: 829:    case 0:
-[e :U 3406 ]
-"830
-[; ;main.c: 830:    default:
-[e :U 3407 ]
-"831
-[; ;main.c: 831:     snprintf(buffer, 255, "%d Watts %d.%01d Volts   ", panel_watts, volt_whole, volt_fract);
-[e ( _snprintf (2 , , , (. , , &U _buffer -> -> 255 `i `ui :s 28C -> _panel_watts `ui -> _volt_whole `ui -> _volt_fract `ui ]
-"832
-[; ;main.c: 832:     eaDogM_WriteStringAtPos(2, 0, buffer);
+[; ;main.c: 827:     eaDogM_WriteStringAtPos(2, 0, buffer);
 [e ( _eaDogM_WriteStringAtPos (3 , , -> -> 2 `i `uc -> -> 0 `i `uc &U _buffer ]
-"833
-[; ;main.c: 833:     snprintf(buffer, 255, "%d.%01d Amps %d.%01d Volts   ", bat_amp_whole, abuf[1]&0x0f, vw, vf);
-[e ( _snprintf (2 , , , , (. , , &U _buffer -> -> 255 `i `ui :s 29C -> _bat_amp_whole `ui & -> *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 15 `i `ui -> _vw `ui -> _vf `ui ]
-"834
-[; ;main.c: 834:     eaDogM_WriteStringAtPos(3, 0, buffer);
+"828
+[; ;main.c: 828:     snprintf(buffer, 255, "%d.%01d Amps %d.%01d Volts   ", bat_amp_whole, abuf[1]&0x0f, vw, vf);
+[e ( _snprintf (2 , , , , (. , , &U _buffer -> -> 255 `i `ui :s 27C -> _bat_amp_whole `ui & -> *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 15 `i `ui -> _vw `ui -> _vf `ui ]
+"829
+[; ;main.c: 829:     eaDogM_WriteStringAtPos(3, 0, buffer);
 [e ( _eaDogM_WriteStringAtPos (3 , , -> -> 3 `i `uc -> -> 0 `i `uc &U _buffer ]
-"835
-[; ;main.c: 835:     break;
+"830
+[; ;main.c: 830:     break;
 [e $U 3401  ]
+"831
+[; ;main.c: 831:    case 0:
+[e :U 3406 ]
+"832
+[; ;main.c: 832:    default:
+[e :U 3407 ]
+"833
+[; ;main.c: 833:     snprintf(buffer, 255, "%d Watts %d.%01d Volts   ", panel_watts, volt_whole, volt_fract);
+[e ( _snprintf (2 , , , (. , , &U _buffer -> -> 255 `i `ui :s 28C -> _panel_watts `ui -> _volt_whole `ui -> _volt_fract `ui ]
+"834
+[; ;main.c: 834:     eaDogM_WriteStringAtPos(2, 0, buffer);
+[e ( _eaDogM_WriteStringAtPos (3 , , -> -> 2 `i `uc -> -> 0 `i `uc &U _buffer ]
+"835
+[; ;main.c: 835:     snprintf(buffer, 255, "%d.%01d Amps %d.%01d Volts   ", bat_amp_whole, abuf[1]&0x0f, vw, vf);
+[e ( _snprintf (2 , , , , (. , , &U _buffer -> -> 255 `i `ui :s 29C -> _bat_amp_whole `ui & -> *U + &U _abuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _abuf `ui `ux `ui -> -> 15 `i `ui -> _vw `ui -> _vf `ui ]
 "836
-[; ;main.c: 836:    }
+[; ;main.c: 836:     eaDogM_WriteStringAtPos(3, 0, buffer);
+[e ( _eaDogM_WriteStringAtPos (3 , , -> -> 3 `i `uc -> -> 0 `i `uc &U _buffer ]
+"837
+[; ;main.c: 837:     break;
+[e $U 3401  ]
+"838
+[; ;main.c: 838:    }
 }
 [e $U 3401  ]
 [e :U 3402 ]
@@ -6702,330 +6724,331 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> 0 `i 3406
  3407 ]
 [e :U 3401 ]
-"838
-[; ;main.c: 838:    can_fd_tx();
+"840
+[; ;main.c: 840:    can_fd_tx();
 [e ( _can_fd_tx ..  ]
-"839
-[; ;main.c: 839:    snprintf(info_buffer, 255, " Data OK\r\n");
+"841
+[; ;main.c: 841:    snprintf(info_buffer, 255, " Data OK\r\n");
 [e ( _snprintf (2 , , &U _info_buffer -> -> 255 `i `ui :s 30C ]
-"843
-[; ;main.c: 843:    get_bm_data(EB);
-[e ( _get_bm_data (1 _EB ]
-"844
-[; ;main.c: 844:    compute_bm_data(EB);
-[e ( _compute_bm_data (1 _EB ]
 "845
-[; ;main.c: 845:    if (!EB->loaded)
-[e $ ! ! != -> . *U _EB 3 `i -> 0 `i 3408  ]
+[; ;main.c: 845:    get_bm_data(EB);
+[e ( _get_bm_data (1 _EB ]
 "846
-[; ;main.c: 846:    {
-{
+[; ;main.c: 846:    compute_bm_data(EB);
+[e ( _compute_bm_data (1 _EB ]
 "847
-[; ;main.c: 847:     EB->loaded = 1;
-[e = . *U _EB 3 -> -> 1 `i `a ]
+[; ;main.c: 847:    if (!EB->loaded)
+[e $ ! ! != -> . *U _EB 3 `i -> 0 `i 3408  ]
 "848
-[; ;main.c: 848:     wr_bm_data((void*) EB);
-[e ( _wr_bm_data (1 -> -> _EB `*v `*uc ]
+[; ;main.c: 848:    {
+{
 "849
-[; ;main.c: 849:     do { LATBbits.LATB1 = 1; } while(0);
+[; ;main.c: 849:     EB->loaded = 1;
+[e = . *U _EB 3 -> -> 1 `i `a ]
+"850
+[; ;main.c: 850:     wr_bm_data((void*) EB);
+[e ( _wr_bm_data (1 -> -> _EB `*v `*uc ]
+"851
+[; ;main.c: 851:     do { LATBbits.LATB1 = 1; } while(0);
 [e :U 3411 ]
 {
 [e = . . _LATBbits 0 1 -> -> 1 `i `uc ]
 }
 [e :U 3410 ]
-"850
-[; ;main.c: 850:    }
+"852
+[; ;main.c: 852:    }
 }
 [e :U 3408 ]
-"851
-[; ;main.c: 851:    if ((EBD_update++ >= 3600) || ((EBD_update >= 1800) && (cc_mode != STATUS_SLEEPING))) {
+"853
+[; ;main.c: 853:    if ((EBD_update++ >= 3600) || ((EBD_update >= 1800) && (cc_mode != STATUS_SLEEPING))) {
 [e $ ! || >= -> ++ _EBD_update -> -> 1 `i `us `ui -> -> 3600 `i `ui && >= -> _EBD_update `ui -> -> 1800 `i `ui != -> _cc_mode `ui -> . `E24806 0 `ui 3412  ]
 {
-"852
-[; ;main.c: 852:     EB->loaded = 1;
-[e = . *U _EB 3 -> -> 1 `i `a ]
-"853
-[; ;main.c: 853:     wr_bm_data((void*) EB);
-[e ( _wr_bm_data (1 -> -> _EB `*v `*uc ]
 "854
-[; ;main.c: 854:     EBD_update = 0;
-[e = _EBD_update -> -> 0 `i `us ]
+[; ;main.c: 854:     EB->loaded = 1;
+[e = . *U _EB 3 -> -> 1 `i `a ]
 "855
-[; ;main.c: 855:     do { LATBbits.LATB1 = 1; } while(0);
+[; ;main.c: 855:     wr_bm_data((void*) EB);
+[e ( _wr_bm_data (1 -> -> _EB `*v `*uc ]
+"856
+[; ;main.c: 856:     EBD_update = 0;
+[e = _EBD_update -> -> 0 `i `us ]
+"857
+[; ;main.c: 857:     do { LATBbits.LATB1 = 1; } while(0);
 [e :U 3415 ]
 {
 [e = . . _LATBbits 0 1 -> -> 1 `i `uc ]
 }
 [e :U 3414 ]
-"856
-[; ;main.c: 856:    }
+"858
+[; ;main.c: 858:    }
 }
 [e :U 3412 ]
-"857
-[; ;main.c: 857:   }
+"859
+[; ;main.c: 859:   }
 }
 [e :U 3396 ]
-"858
-[; ;main.c: 858:  }
+"860
+[; ;main.c: 860:  }
 }
 [e :U 3395 ]
-"859
-[; ;main.c: 859:  state = state_fwrev;
+"861
+[; ;main.c: 861:  state = state_fwrev;
 [e = _state . `E25183 6 ]
-"860
-[; ;main.c: 860: }
+"862
+[; ;main.c: 862: }
 [e :UE 3392 ]
 }
-"862
-[; ;main.c: 862: static void state_fwrev_cb(void)
+"864
+[; ;main.c: 864: static void state_fwrev_cb(void)
 [v _state_fwrev_cb `(v ~T0 @X0 1 sf ]
-"863
-[; ;main.c: 863: {
+"865
+[; ;main.c: 865: {
 {
 [e :U _state_fwrev_cb ]
 [f ]
-"864
-[; ;main.c: 864:  B.fwrev[fw_state++] = abuf[2];
+"866
+[; ;main.c: 866:  B.fwrev[fw_state++] = abuf[2];
 [e = *U + &U . _B 19 * -> ++ _fw_state -> -> 1 `i `uc `ux -> -> # *U &U . _B 19 `ui `ux *U + &U _abuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _abuf `ui `ux ]
-"865
-[; ;main.c: 865:  if (!C.tm_ok) {
+"867
+[; ;main.c: 867:  if (!C.tm_ok) {
 [e $ ! ! != -> . _C 12 `i -> 0 `i 3417  ]
 {
-"866
-[; ;main.c: 866:   state = state_misc;
+"868
+[; ;main.c: 868:   state = state_misc;
 [e = _state . `E25183 10 ]
-"867
-[; ;main.c: 867:  } else {
+"869
+[; ;main.c: 869:  } else {
 }
 [e $U 3418  ]
 [e :U 3417 ]
 {
-"868
-[; ;main.c: 868:   C.tm_ok = 0;
-[e = . _C 12 -> -> 0 `i `a ]
-"869
-[; ;main.c: 869:   state = state_time;
-[e = _state . `E25183 7 ]
 "870
-[; ;main.c: 870:  }
+[; ;main.c: 870:   C.tm_ok = 0;
+[e = . _C 12 -> -> 0 `i `a ]
+"871
+[; ;main.c: 871:   state = state_time;
+[e = _state . `E25183 7 ]
+"872
+[; ;main.c: 872:  }
 }
 [e :U 3418 ]
-"871
-[; ;main.c: 871: }
+"873
+[; ;main.c: 873: }
 [e :UE 3416 ]
 }
-"873
-[; ;main.c: 873: static void state_time_cb(void)
+"875
+[; ;main.c: 875: static void state_time_cb(void)
 [v _state_time_cb `(v ~T0 @X0 1 sf ]
-"874
-[; ;main.c: 874: {
+"876
+[; ;main.c: 876: {
 {
 [e :U _state_time_cb ]
 [f ]
-"880
-[; ;main.c: 880:  state = state_date;
+"882
+[; ;main.c: 882:  state = state_date;
 [e = _state . `E25183 8 ]
-"881
-[; ;main.c: 881: }
+"883
+[; ;main.c: 883: }
 [e :UE 3419 ]
 }
-"883
-[; ;main.c: 883: static void state_date_cb(void)
+"885
+[; ;main.c: 885: static void state_date_cb(void)
 [v _state_date_cb `(v ~T0 @X0 1 sf ]
-"884
-[; ;main.c: 884: {
+"886
+[; ;main.c: 886: {
 {
 [e :U _state_date_cb ]
 [f ]
-"890
-[; ;main.c: 890:  state = state_misc;
+"892
+[; ;main.c: 892:  state = state_misc;
 [e = _state . `E25183 10 ]
-"891
-[; ;main.c: 891: }
+"893
+[; ;main.c: 893: }
 [e :UE 3420 ]
 }
-"896
-[; ;main.c: 896: void state_misc_cb(void)
+"898
+[; ;main.c: 898: void state_misc_cb(void)
 [v _state_misc_cb `(v ~T0 @X0 1 ef ]
-"897
-[; ;main.c: 897: {
+"899
+[; ;main.c: 899: {
 {
 [e :U _state_misc_cb ]
 [f ]
-"898
-[; ;main.c: 898:  if (mx_code == 0x03) {
+"900
+[; ;main.c: 900:  if (mx_code == 0x03) {
 [e $ ! == -> _mx_code `ui -> -> 3 `i `ui 3422  ]
 {
-"899
-[; ;main.c: 899:  } else {
+"901
+[; ;main.c: 901:  } else {
 }
 [e $U 3423  ]
 [e :U 3422 ]
 {
-"900
-[; ;main.c: 900:   B.FM80_online = 0;
-[e = . _B 11 -> -> 0 `i `a ]
-"901
-[; ;main.c: 901:   cc_mode = STATUS_LAST;
-[e = _cc_mode -> . `E24806 5 `us ]
 "902
-[; ;main.c: 902:   state = state_init;
-[e = _state . `E25183 0 ]
+[; ;main.c: 902:   B.FM80_online = 0;
+[e = . _B 11 -> -> 0 `i `a ]
 "903
-[; ;main.c: 903:   return;
-[e $UE 3421  ]
+[; ;main.c: 903:   cc_mode = STATUS_LAST;
+[e = _cc_mode -> . `E24806 5 `us ]
 "904
-[; ;main.c: 904:  }
+[; ;main.c: 904:   state = state_init;
+[e = _state . `E25183 0 ]
+"905
+[; ;main.c: 905:   return;
+[e $UE 3421  ]
+"906
+[; ;main.c: 906:  }
 }
 [e :U 3423 ]
-"905
-[; ;main.c: 905:  if (!B.ten_sec_flag) {
+"907
+[; ;main.c: 907:  if (!B.ten_sec_flag) {
 [e $ ! ! != -> . _B 0 `i -> 0 `i 3424  ]
 {
-"906
-[; ;main.c: 906:   state = state_misc;
+"908
+[; ;main.c: 908:   state = state_misc;
 [e = _state . `E25183 10 ]
-"907
-[; ;main.c: 907:  } else {
+"909
+[; ;main.c: 909:  } else {
 }
 [e $U 3425  ]
 [e :U 3424 ]
 {
-"908
-[; ;main.c: 908:   state = state_status;
+"910
+[; ;main.c: 910:   state = state_status;
 [e = _state . `E25183 1 ]
-"909
-[; ;main.c: 909:  }
+"911
+[; ;main.c: 911:  }
 }
 [e :U 3425 ]
-"910
-[; ;main.c: 910: }
+"912
+[; ;main.c: 912: }
 [e :UE 3421 ]
 }
-"913
-[; ;main.c: 913: char spinners(uint8_t shape, const uint8_t reset)
+"915
+[; ;main.c: 915: char spinners(uint8_t shape, const uint8_t reset)
 [v _spinners `(uc ~T0 @X0 1 ef2`uc`Cuc ]
-"914
-[; ;main.c: 914: {
+"916
+[; ;main.c: 916: {
 {
 [e :U _spinners ]
-"913
-[; ;main.c: 913: char spinners(uint8_t shape, const uint8_t reset)
+"915
+[; ;main.c: 915: char spinners(uint8_t shape, const uint8_t reset)
 [v _shape `uc ~T0 @X0 1 r1 ]
 [v _reset `Cuc ~T0 @X0 1 r2 ]
-"914
-[; ;main.c: 914: {
-[f ]
-"915
-[; ;main.c: 915:  static uint8_t s[6];
-[v F25310 `uc ~T0 @X0 -> 6 `i s s ]
 "916
-[; ;main.c: 916:  char c;
-[v _c `uc ~T0 @X0 1 a ]
+[; ;main.c: 916: {
+[f ]
+"917
+[; ;main.c: 917:  static uint8_t s[6];
+[v F25307 `uc ~T0 @X0 -> 6 `i s s ]
 "918
-[; ;main.c: 918:  if (shape > (6 - 1))
+[; ;main.c: 918:  char c;
+[v _c `uc ~T0 @X0 1 a ]
+"920
+[; ;main.c: 920:  if (shape > (6 - 1))
 [e $ ! > -> _shape `i - -> 6 `i -> 1 `i 3427  ]
-"919
-[; ;main.c: 919:   shape = 0;
+"921
+[; ;main.c: 921:   shape = 0;
 [e = _shape -> -> 0 `i `uc ]
 [e :U 3427 ]
-"920
-[; ;main.c: 920:  if (reset)
-[e $ ! != -> _reset `i -> 0 `i 3428  ]
-"921
-[; ;main.c: 921:   s[shape] = 0;
-[e = *U + &U F25310 * -> _shape `ux -> -> # *U &U F25310 `ui `ux -> -> 0 `i `uc ]
-[e :U 3428 ]
 "922
-[; ;main.c: 922:  c = spin[shape][s[shape]];
-[e = _c *U + &U *U + &U _spin * -> _shape `ux -> * -> # *U &U *U &U _spin `ui -> -> 20 `i `ui `ux * -> *U + &U F25310 * -> _shape `ux -> -> # *U &U F25310 `ui `ux `ux -> -> # *U &U *U + &U _spin * -> _shape `ux -> * -> # *U &U *U &U _spin `ui -> -> 20 `i `ui `ux `ui `ux ]
+[; ;main.c: 922:  if (reset)
+[e $ ! != -> _reset `i -> 0 `i 3428  ]
 "923
-[; ;main.c: 923:  if (++s[shape] >= strlen(spin[shape]))
-[e $ ! >= -> =+ *U + &U F25310 * -> _shape `ux -> -> # *U &U F25310 `ui `ux -> -> 1 `i `uc `ui ( _strlen (1 &U *U + &U _spin * -> _shape `ux -> * -> # *U &U *U &U _spin `ui -> -> 20 `i `ui `ux 3429  ]
+[; ;main.c: 923:   s[shape] = 0;
+[e = *U + &U F25307 * -> _shape `ux -> -> # *U &U F25307 `ui `ux -> -> 0 `i `uc ]
+[e :U 3428 ]
 "924
-[; ;main.c: 924:   s[shape] = 0;
-[e = *U + &U F25310 * -> _shape `ux -> -> # *U &U F25310 `ui `ux -> -> 0 `i `uc ]
-[e :U 3429 ]
+[; ;main.c: 924:  c = spin[shape][s[shape]];
+[e = _c *U + &U *U + &U _spin * -> _shape `ux -> * -> # *U &U *U &U _spin `ui -> -> 20 `i `ui `ux * -> *U + &U F25307 * -> _shape `ux -> -> # *U &U F25307 `ui `ux `ux -> -> # *U &U *U + &U _spin * -> _shape `ux -> * -> # *U &U *U &U _spin `ui -> -> 20 `i `ui `ux `ui `ux ]
 "925
-[; ;main.c: 925:  return c;
+[; ;main.c: 925:  if (++s[shape] >= strlen(spin[shape]))
+[e $ ! >= -> =+ *U + &U F25307 * -> _shape `ux -> -> # *U &U F25307 `ui `ux -> -> 1 `i `uc `ui ( _strlen (1 &U *U + &U _spin * -> _shape `ux -> * -> # *U &U *U &U _spin `ui -> -> 20 `i `ui `ux 3429  ]
+"926
+[; ;main.c: 926:   s[shape] = 0;
+[e = *U + &U F25307 * -> _shape `ux -> -> # *U &U F25307 `ui `ux -> -> 0 `i `uc ]
+[e :U 3429 ]
+"927
+[; ;main.c: 927:  return c;
 [e ) _c ]
 [e $UE 3426  ]
-"926
-[; ;main.c: 926: }
+"928
+[; ;main.c: 928: }
 [e :UE 3426 ]
 }
-"928
-[; ;main.c: 928: void run_day_to_night(void)
+"930
+[; ;main.c: 930: void run_day_to_night(void)
 [v _run_day_to_night `(v ~T0 @X0 1 ef ]
-"929
-[; ;main.c: 929: {
+"931
+[; ;main.c: 931: {
 {
 [e :U _run_day_to_night ]
 [f ]
-"930
-[; ;main.c: 930:  char s_buffer[22];
-[v _s_buffer `uc ~T0 @X0 -> 22 `i a ]
 "932
-[; ;main.c: 932:  snprintf(s_buffer, 21, "DN %.1fWh PV        ", pv_Wh_daily);
-[e ( _snprintf (2 , (. , , &U _s_buffer -> -> 21 `i `ui :s 31C -> _pv_Wh_daily `d ]
-"933
-[; ;main.c: 933:  eaDogM_Scroll_String(s_buffer);
-[e ( _eaDogM_Scroll_String (1 &U _s_buffer ]
+[; ;main.c: 932:  char s_buffer[22];
+[v _s_buffer `uc ~T0 @X0 -> 22 `i a ]
 "934
-[; ;main.c: 934:  snprintf(s_buffer, 21, "DN %.1fWh AC        ", ac_Wh_daily);
-[e ( _snprintf (2 , (. , , &U _s_buffer -> -> 21 `i `ui :s 32C -> _ac_Wh_daily `d ]
+[; ;main.c: 934:  snprintf(s_buffer, 21, "DN %.1fWh PV        ", pv_Wh_daily);
+[e ( _snprintf (2 , (. , , &U _s_buffer -> -> 21 `i `ui :s 31C -> _pv_Wh_daily `d ]
 "935
 [; ;main.c: 935:  eaDogM_Scroll_String(s_buffer);
 [e ( _eaDogM_Scroll_String (1 &U _s_buffer ]
 "936
-[; ;main.c: 936:  eaDogM_Scroll_String(s_buffer);
-[e ( _eaDogM_Scroll_String (1 &U _s_buffer ]
+[; ;main.c: 936:  snprintf(s_buffer, 21, "DN %.1fWh AC        ", ac_Wh_daily);
+[e ( _snprintf (2 , (. , , &U _s_buffer -> -> 21 `i `ui :s 32C -> _ac_Wh_daily `d ]
 "937
 [; ;main.c: 937:  eaDogM_Scroll_String(s_buffer);
 [e ( _eaDogM_Scroll_String (1 &U _s_buffer ]
 "938
-[; ;main.c: 938: }
+[; ;main.c: 938:  eaDogM_Scroll_String(s_buffer);
+[e ( _eaDogM_Scroll_String (1 &U _s_buffer ]
+"939
+[; ;main.c: 939:  eaDogM_Scroll_String(s_buffer);
+[e ( _eaDogM_Scroll_String (1 &U _s_buffer ]
+"940
+[; ;main.c: 940: }
 [e :UE 3430 ]
 }
-"940
-[; ;main.c: 940: void run_night_to_day(void)
+"942
+[; ;main.c: 942: void run_night_to_day(void)
 [v _run_night_to_day `(v ~T0 @X0 1 ef ]
-"941
-[; ;main.c: 941: {
+"943
+[; ;main.c: 943: {
 {
 [e :U _run_night_to_day ]
 [f ]
-"942
-[; ;main.c: 942:  char s_buffer[22];
-[v _s_buffer `uc ~T0 @X0 -> 22 `i a ]
 "944
-[; ;main.c: 944:  snprintf(s_buffer, 21, "ND %.1fWh PV        ", pv_Wh_daily_prev);
-[e ( _snprintf (2 , (. , , &U _s_buffer -> -> 21 `i `ui :s 33C -> _pv_Wh_daily_prev `d ]
-"945
-[; ;main.c: 945:  eaDogM_Scroll_String(s_buffer);
-[e ( _eaDogM_Scroll_String (1 &U _s_buffer ]
+[; ;main.c: 944:  char s_buffer[22];
+[v _s_buffer `uc ~T0 @X0 -> 22 `i a ]
 "946
-[; ;main.c: 946:  snprintf(s_buffer, 21, "ND %.1fWh AC        ", ac_Wh_daily_prev);
-[e ( _snprintf (2 , (. , , &U _s_buffer -> -> 21 `i `ui :s 34C -> _ac_Wh_daily_prev `d ]
+[; ;main.c: 946:  snprintf(s_buffer, 21, "ND %.1fWh PV        ", pv_Wh_daily_prev);
+[e ( _snprintf (2 , (. , , &U _s_buffer -> -> 21 `i `ui :s 33C -> _pv_Wh_daily_prev `d ]
 "947
 [; ;main.c: 947:  eaDogM_Scroll_String(s_buffer);
 [e ( _eaDogM_Scroll_String (1 &U _s_buffer ]
 "948
-[; ;main.c: 948:  eaDogM_Scroll_String(s_buffer);
-[e ( _eaDogM_Scroll_String (1 &U _s_buffer ]
+[; ;main.c: 948:  snprintf(s_buffer, 21, "ND %.1fWh AC        ", ac_Wh_daily_prev);
+[e ( _snprintf (2 , (. , , &U _s_buffer -> -> 21 `i `ui :s 34C -> _ac_Wh_daily_prev `d ]
 "949
 [; ;main.c: 949:  eaDogM_Scroll_String(s_buffer);
 [e ( _eaDogM_Scroll_String (1 &U _s_buffer ]
 "950
-[; ;main.c: 950: }
+[; ;main.c: 950:  eaDogM_Scroll_String(s_buffer);
+[e ( _eaDogM_Scroll_String (1 &U _s_buffer ]
+"951
+[; ;main.c: 951:  eaDogM_Scroll_String(s_buffer);
+[e ( _eaDogM_Scroll_String (1 &U _s_buffer ]
+"952
+[; ;main.c: 952: }
 [e :UE 3431 ]
 }
 [p f _printf 12877952 ]
-[p f _snprintf 3875536879 ]
+[p f _snprintf 3875536895 ]
+[a 13C 37 115 0 ]
 [a 20C 37 115 0 ]
 [a 21C 37 115 0 ]
-[a 2C 49 49 58 52 48 58 50 55 0 ]
 [a 1C 79 99 116 32 49 50 32 50 48 50 51 0 ]
+[a 2C 49 56 58 49 49 58 48 50 0 ]
 [a 7C 37 115 32 0 ]
 [a 9C 37 115 32 0 ]
 [a 28C 37 100 32 87 97 116 116 115 32 37 100 46 37 48 49 100 32 86 111 108 116 115 32 32 32 0 ]
@@ -7034,25 +7057,24 @@ Version 4.0 HI-TECH Software Intermediate Code
 [a 3C 37 115 32 32 32 0 ]
 [a 4C 37 115 32 32 32 0 ]
 [a 5C 66 97 116 116 101 114 121 32 100 97 116 97 32 108 111 97 100 101 100 32 32 32 0 ]
-[a 14C 37 54 46 49 102 87 32 37 54 46 49 102 86 65 32 37 99 37 99 37 99 32 32 32 0 ]
 [a 16C 37 54 46 49 102 87 32 37 54 46 49 102 86 65 32 37 99 37 99 37 99 32 32 32 0 ]
 [a 6C 37 115 32 66 58 37 88 32 37 88 32 37 88 32 32 32 0 ]
-[a 15C 69 77 111 110 32 32 37 54 46 49 102 87 104 32 32 32 37 99 37 99 32 32 32 32 0 ]
-[a 12C 69 77 111 110 32 32 37 52 46 49 102 86 65 67 32 32 32 37 99 37 99 32 32 32 32 0 ]
+[a 14C 69 77 111 110 32 32 37 52 46 49 102 86 65 67 32 32 32 37 99 37 99 32 32 32 32 0 ]
+[a 12C 37 88 32 37 88 32 37 88 32 37 88 32 32 37 108 117 32 37 108 117 32 37 108 117 32 32 32 32 32 32 0 ]
+[a 8C 83 116 97 114 116 32 85 112 32 82 101 109 111 116 101 32 32 32 32 32 32 32 32 0 ]
 [a 19C 70 77 56 48 32 79 102 102 108 105 110 101 32 32 32 32 32 32 32 32 0 ]
 [a 31C 68 78 32 37 46 49 102 87 104 32 80 86 32 32 32 32 32 32 32 32 0 ]
 [a 33C 78 68 32 37 46 49 102 87 104 32 80 86 32 32 32 32 32 32 32 32 0 ]
 [a 32C 68 78 32 37 46 49 102 87 104 32 65 67 32 32 32 32 32 32 32 32 0 ]
 [a 34C 78 68 32 37 46 49 102 87 104 32 65 67 32 32 32 32 32 32 32 32 0 ]
-[a 10C 80 111 108 108 105 110 103 32 70 77 56 48 32 32 32 32 32 32 32 32 0 ]
+[a 10C 80 111 108 108 105 110 103 32 77 97 116 101 81 56 52 32 32 32 32 32 32 32 32 0 ]
 [a 18C 70 77 56 48 32 79 110 108 105 110 101 32 32 32 32 32 32 32 32 32 0 ]
 [a 11C 37 88 37 88 37 88 37 88 37 88 37 88 37 88 37 88 32 32 32 32 32 32 32 32 32 0 ]
 [a 24C 37 52 46 50 102 66 69 32 37 52 46 50 102 76 87 32 32 32 32 32 32 32 32 32 0 ]
 [a 26C 37 52 46 50 102 72 114 32 37 52 46 50 102 66 87 32 32 32 32 32 32 32 32 32 32 32 0 ]
-[a 8C 83 116 97 114 116 32 85 112 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
 [a 22C 37 52 46 50 102 72 111 117 114 115 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
 [a 23C 65 76 84 32 51 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
 [a 25C 65 76 84 32 50 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
 [a 17C 13 10 13 10 37 53 100 32 37 51 120 32 37 51 120 32 37 51 120 32 37 51 120 32 37 51 120 32 32 32 73 78 73 84 58 32 70 77 56 48 32 79 110 108 105 110 101 13 10 0 ]
 [a 30C 32 68 97 116 97 32 79 75 13 10 0 ]
-[a 13C 32 101 114 114 111 114 32 108 111 103 103 101 100 32 13 10 0 ]
+[a 15C 32 101 114 114 111 114 32 108 111 103 103 101 100 32 13 10 0 ]

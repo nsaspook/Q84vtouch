@@ -39,7 +39,7 @@
 #include <math.h>
 #include "trace.h"
 
-//#define CAN_REMOTE	// can received data on LCD for remote mate board
+#define CAN_REMOTE	// can received data on LCD for remote mate board
 //#define CAN_REMOTE_NODMA // don't use DMA in remote mode
 
 #ifdef TRACE
