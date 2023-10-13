@@ -338,7 +338,6 @@ int8_t master_controller_work(C_data * client) {
                 }
                 delay_ms(TDELAY);
                 DERE_SetLow(); // enable modbus receiver
-                DB0_SetHigh();
             }
             break;
         case RECV:
@@ -383,7 +382,6 @@ int8_t master_controller_work(C_data * client) {
         default:
             break;
     }
-    IO_RD7_SetLow();
     return client->trace;
 }
 
@@ -552,7 +550,6 @@ static bool modbus_write_check(C_data * client, bool* cstate, const uint16_t rec
         client->mcmd = G_LAST; // what do we run next
     } else {
         if (get_500hz(false) >= RDELAY) {
-            DB0_SetLow();
             client->cstate = CLEAR; // where do we go next
             client->mcmd = G_ID; // what do we run next
             M.to_error++;
@@ -595,7 +592,6 @@ static bool modbus_read_check(C_data * client, bool* cstate, const uint16_t rec_
         client->cstate = CLEAR;
     } else {
         if (get_500hz(false) >= RDELAY) {
-            DB0_SetLow();
             client->cstate = CLEAR;
             MM_ERROR_C;
             client->mcmd = G_ID;
@@ -636,7 +632,6 @@ static bool modbus_read_id_check(C_data * client, bool* cstate, const uint16_t r
         client->cstate = CLEAR;
     } else {
         if (get_500hz(false) >= RDELAY) {
-            DB0_SetLow();
             client->cstate = CLEAR;
             client->mcmd = G_ID;
             M.to_error++;

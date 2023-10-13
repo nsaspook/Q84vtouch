@@ -54,7 +54,7 @@ extern "C" {
 #include "trace.h"
 
 #ifdef TRACE
-#define INT_TRACE	IO_RB6_Toggle() // EXT_IO pin 5
+#define INT_TRACE	INT_TRACE_Toggle() // EXT_IO pin 5
 #else
 #define INT_TRACE	""
 #endif

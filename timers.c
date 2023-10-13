@@ -40,14 +40,12 @@ void WaitMs(const uint16_t numMilliseconds)
  */
 void timer_ms_tick(const uint32_t status, const uintptr_t context)
 {
-	MISC_SetHigh();
 	//Decrement each software timer
 	for (uint16_t i = 0; i < TMR_COUNT; i++) {
 		if (tickCount[i] != 0) {
 			tickCount[i]--;
 		}
 	}
-	MISC_SetLow();
 }
 
 /*

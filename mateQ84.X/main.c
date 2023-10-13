@@ -306,21 +306,11 @@ void main(void)
 	 */
 	can_setup();
 
-	// If using interrupts in PIC18 High/Low Priority Mode you need to enable the Global High and Low Interrupts
-	// If using interrupts in PIC Mid-Range Compatibility Mode you need to enable the Global Interrupts
-	// Use the following macros to:
-
 	// Enable high priority global interrupts
 	INTERRUPT_GlobalInterruptHighEnable();
 
 	// Enable low priority global interrupts.
 	INTERRUPT_GlobalInterruptLowEnable();
-
-	// Disable high priority global interrupts
-	//INTERRUPT_GlobalInterruptHighDisable();
-
-	// Disable low priority global interrupts.
-	//INTERRUPT_GlobalInterruptLowDisable();
 
 	TMR4_SetInterruptHandler(FM_io);
 	TMR4_StartTimer();
@@ -394,7 +384,7 @@ void main(void)
 	}
 	while (true) {
 #ifdef TRACE
-		IO_RD5_SetHigh(); // main loop timing
+		PROG_TRACE_SetHigh(); // main loop timing
 #endif
 		// Add your application code
 #ifdef MB_MASTER
@@ -480,11 +470,9 @@ void main(void)
 			}
 			B.modbus_online = C.data_ok;
 #ifdef CAN_REMOTE
-			snprintf(buffer, MAX_B_BUF, "%X %X %X %X  %lu %lu %lu      ", C1BDIAG0T, C1BDIAG0U, C1BDIAG0H, C1BDIAG0L, can_rec_count.rec_count, msg[0].msgId, msg[1].msgId);
-			//			eaDogM_WriteStringAtPos(0, 0, buffer);
+			//			snprintf(buffer, MAX_B_BUF, "%X %X %X %X  %lu %lu %lu      ", C1BDIAG0T, C1BDIAG0U, C1BDIAG0H, C1BDIAG0L, can_rec_count.rec_count, msg[0].msgId, msg[1].msgId);
 			can_newtime = localtime(&can_timer);
 			snprintf(buffer, 21, "%s", asctime(can_newtime));
-			//			eaDogM_WriteStringAtPos(1, 0, buffer);
 #endif
 		}
 		if (TimerDone(TMR_SPIN)) { // LCD status spinner for charger MODE
@@ -567,7 +555,7 @@ void main(void)
 		can_mirror_print();
 #endif
 #ifdef TRACE
-		IO_RD5_SetLow();
+		PROG_TRACE_SetLow();
 #endif
 	}
 }
@@ -589,7 +577,7 @@ static void send_mx_cmd(const uint16_t * cmd)
 {
 	if (FM_tx_empty()) {
 		if (B.pacing++ > PACE) {
-			FM_tx(cmd, CMD_LEN); // send 8 9-bits command data stream
+			FM_tx(cmd, CMD_LEN); // send 9-bit command data stream
 			B.pacing = 0;
 		}
 	}
@@ -937,6 +925,8 @@ void run_day_to_night(void)
 	eaDogM_Scroll_String(s_buffer);
 	eaDogM_Scroll_String(s_buffer);
 	eaDogM_Scroll_String(s_buffer);
+	DAY_RELAY_OFF;
+	NIGHT_RELAY_ON;
 }
 
 void run_night_to_day(void)
@@ -949,6 +939,8 @@ void run_night_to_day(void)
 	eaDogM_Scroll_String(s_buffer);
 	eaDogM_Scroll_String(s_buffer);
 	eaDogM_Scroll_String(s_buffer);
+	NIGHT_RELAY_OFF;
+	DAY_RELAY_ON;
 }
 /**
  End of File

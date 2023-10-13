@@ -24,6 +24,7 @@ mcc_generated_files/spi1.h  \
 ../eadog.h  \
 ../qconfig.h  \
 ../trace.h  \
+../dio.h  \
 ../timers.h  \
 ../modbus_master.h  \
 ../canfd.h  \

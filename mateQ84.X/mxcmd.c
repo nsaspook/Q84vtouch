@@ -28,16 +28,12 @@ bool FM_tx_empty(void) {
  * after the tbuf has been loaded start the TX transfer
  */
 uint8_t FM_tx(const uint16_t * data, const uint8_t count) {
-    RELAY_SetHigh();
-    RELAY_SetLow(); // tx trace signature
-    RELAY_SetHigh();
     if (dcount == 0) {
         memcpy((void *) tbuf, (const void *) data, (size_t) (count << 1)); // copy 16-bit values
         dstart = 0;
         dcount = count;
         B.FM80_io = true; // start the CANBUS lockup until the RX transaction is complete
     }
-    RELAY_SetLow();
     return dstart;
 }
 
@@ -47,7 +43,6 @@ uint8_t FM_tx(const uint16_t * data, const uint8_t count) {
  */
 void FM_io(void) {
     INT_TRACE; // GPIO interrupt scope trace
-    MISC_SetHigh(); // serial CPU usage signal for I/O polling
 
     if (pace++ > BUFFER_SPACING) {
         if (dcount-- > 0) {
@@ -95,23 +90,20 @@ void FM_io(void) {
         rdstart++;
     }
 
-    MISC_SetLow();
     timer_ms_tick(0, 0); // software timers update
-
 }
 
 /*
+ * buffer received data
  * disabled using critical section interrupts here and it was too long 500us
  * and causing data errors
  */
 uint8_t FM_rx(uint16_t * data) {
     uint8_t count;
 
-    RELAY_SetHigh();
     count = rdstart;
     memcpy(data, (const void *) rbuf, (size_t) (count << 1)); // copy 16-bit values
     rdstart = 0;
-    RELAY_SetLow();
     return count;
 }
 

@@ -38,19 +38,19 @@
 #include <time.h>
 #include <math.h>
 #include "trace.h"
+#include "dio.h"
 
-#define CAN_REMOTE	// can received data on LCD for remote mate board
+//#define CAN_REMOTE	// can received data on LCD for remote mate board
 //#define CAN_REMOTE_NODMA // don't use DMA in remote mode
 
 #ifdef TRACE
-#define INT_TRACE	IO_RB6_Toggle() // Ext_IO PIN 5
+#define INT_TRACE	INT_TRACE_Toggle() // Ext_IO PIN 5
 #else
 #define INT_TRACE	""
 #endif
 
-//#define DEBUG_DISP0
-//#define DEBUG_DISP1
-//#define SDEBUG		// scrolling text debug messages
+//#define DATA_DEBUG // show CANBUS registers
+//#define SDEBUG		// FM80 date/time DIAG scrolling text debug messages
 #define NHD		// 4x20 SPI display
 
 /* spinner defines */

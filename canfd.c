@@ -186,7 +186,7 @@ void can_fd_tx(void)
 
 	if (C.serial_ok && C.version_ok) {
 		Transmission.msgId = (EMON_CO); // config packet type ID
-		snprintf(info_buffer, MAX_B_BUF, "SN: %s %u FW: 0X%X", ems.serial, ems.year, emv.firmware);
+		snprintf(info_buffer, MAX_B_BUF, "SN: %s %u FW: 0X%X,%X", ems.serial, ems.year, emv.firmware, LATE);
 		Transmission.data = (uint8_t*) info_buffer; //transmit the data from the data bytes
 		if (CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(FIFO3) & CAN_TX_FIFO_AVAILABLE))//ensure that the FIFO has space for a message
 		{
