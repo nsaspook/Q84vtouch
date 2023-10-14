@@ -75,6 +75,7 @@ static int msg_len = CAN_MSG_LEN;
 static int is_extended_frame_format = 1;
 uint8_t full_buffer[CAN_FULL_BUFFER];
 int sec_30;
+char *token;
 
 long long current_timestamp(void);
 
@@ -133,22 +134,27 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 			if (id == EMON_ER || id == EMON_CO) {
 				full_buffer[i] = (uint8_t) (data[i] + inc_data);
 			} else {
-			if (id == CAN_MSG_ID_PING) {
-				full_buffer[i] = (uint8_t) (data[i] + inc_data);
+				if (id == CAN_MSG_ID_PING) {
+					full_buffer[i] = (uint8_t) (data[i] + inc_data);
 				} else {
-				full_buffer[i + CAN_MSG_LEN] = (uint8_t) (data[i] + inc_data);
+					full_buffer[i + CAN_MSG_LEN] = (uint8_t) (data[i] + inc_data);
+				}
 			}
 		}
-	}
-	if (id == CAN_MSG_ID_PING_X) {
-		fprintf(stdout, "%s", full_buffer);
-	}
-	if (id == EMON_ER) {
-		fprintf(stderr, "%s", full_buffer);
-	}
-	if (id == EMON_CO) {
-		fprintf(stderr, "%s\r\n", full_buffer);
-	}
+		if (id == CAN_MSG_ID_PING_X) {
+			fprintf(stdout, "%s", full_buffer);
+		}
+		if (id == EMON_ER) {
+			fprintf(stderr, "%s", full_buffer);
+		}
+		if (id == EMON_CO) {
+			token = strtok(full_buffer, ",");
+			if (token != NULL) {
+				fprintf(stderr, "%s ", token);
+				token = strtok(NULL, ",");
+				fprintf(stderr, " relay outputs: %s\r\n", token);
+			}
+		}
 
 	}
 	if (print_hex) {

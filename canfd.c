@@ -35,6 +35,7 @@ static volatile char s_buffer[CAN_MIRRORS][LCD_BUF_SIZ + 1] = {
 	"                     ",
 };
 static volatile bool mirror_print[CAN_MIRRORS] = {false, false, false, false};
+static char *token;
 #endif
 
 /*
@@ -67,6 +68,13 @@ void Can1FIFO1NotEmptyHandler(void)
 			}
 			if ((msg[half].msgId & 0xf) == EMON_CO) {
 				memcpy((void *) &rxMsgData[CAN_INFO_BUF][0], msg[half].data, CANFD_BYTES);
+#ifdef CAN_REMOTE	// parse the relay bits from the info string into the local LATE
+				token = strtok((char*) &rxMsgData[CAN_INFO_BUF][0], ",");
+				if (token != NULL) {
+					token = strtok(NULL, ",");
+					LATE = (uint8_t) atoi(token);
+				}
+#endif
 				break;
 			}
 			if ((msg[half].msgId & 0xf) == EMON_ER) {

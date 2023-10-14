@@ -1,4 +1,5 @@
 #include "batmon.h"
+#include "dio.h"
 
 EB_data EBD = {
 	.checkmark = BM_CM,
@@ -159,6 +160,15 @@ void get_bm_data(EB_data * EB)
 		case 'w':
 			wr_bm_data((void*) EB);
 			MM_ERROR_S;
+			break;
+		case 'V': // charger on
+			CHARGER_RELAY_ON;
+			break;
+		case 'v': // charger off
+			CHARGER_RELAY_OFF;
+			break;
+		case '!': // all relays off
+			all_relays_off();
 			break;
 		default:
 			break;
