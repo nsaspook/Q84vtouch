@@ -207,8 +207,8 @@ static void CAN1_TX_FIFO_Configuration(void)
 	// FRESET enabled; UINC disabled; 
 	C1TXQCONH = 0x04;
 
-    // TXAT 3; TXPRI 2; 
-    C1TXQCONU = 0x61;
+    // TXAT 3; TXPRI 3; 
+    C1TXQCONU = 0x62;
 
     // PLSIZE 64; FSIZE 4; 
     C1TXQCONT = 0xE3;
@@ -219,8 +219,8 @@ static void CAN1_TX_FIFO_Configuration(void)
     // FRESET enabled; TXREQ disabled; UINC disabled; 
     C1FIFOCON2H = 0x04;
     
-    // TXAT Unlimited number of retransmission attempts; TXPRI 4; 
-    C1FIFOCON2U = 0x63;
+    // TXAT Unlimited number of retransmission attempts; TXPRI 3; 
+    C1FIFOCON2U = 0x62;
     
     // PLSIZE 64; FSIZE 4; 
     C1FIFOCON2T = 0xE3;

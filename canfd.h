@@ -45,6 +45,7 @@ extern "C" {
 #define EMON_DS	0xB	// remote display server
 #define EMON_ER	0xF	// error reporting
 #define EMON_CO	0xC	// configuration reporting
+#define EMON_DA	0xD	// 64 byte binary blob
 
 #define MIRR0R_BUF	CANFD_NBUF-1 // LCD mirror CANBUS buffer
 #define LCD_BUF_SIZ	22
@@ -53,6 +54,10 @@ extern "C" {
 		uint32_t rec_count;
 		bool rec_flag;
 	} can_rec_count_t;
+
+	typedef struct {
+		volatile uint8_t blob[CANFD_BYTES];
+	} blob_type;
 
 	extern volatile can_rec_count_t can_rec_count;
 	extern CAN_MSG_OBJ msg[3];
@@ -63,11 +68,13 @@ extern "C" {
 	void TXQNotFullHandler(void);
 	void Can1FIFO1NotEmptyHandler(void);
 
-	extern char can_buffer[MAX_C_BUF], info_buffer[MAX_B_BUF];
+	extern char info_buffer[MAX_B_BUF], log_buffer[MAX_B_BUF];
 	void can_fd_tx(void);
 	void can_setup(void);
 	void can_fd_lcd_mirror(const uint8_t, char *);
 	void can_mirror_print(void);
+	void can_blob_set(blob_type*);
+	blob_type* can_blob_get(blob_type*);
 
 #ifdef	__cplusplus
 }

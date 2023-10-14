@@ -22,7 +22,7 @@ extern "C" {
 #include "../timers.h"
 
 #define VER	1
-	const char build_version[] = "V1.92 FM80 Q84";
+	const char build_version[] = "V1.93 FM80 Q84";
 	/*
 	 * code changes
 	 * 1.55 remove critical section interrupt disables for FM80 serial
@@ -52,6 +52,7 @@ extern "C" {
 	 * 1.90 Remote DMA LCD mode fixes
 	 * 1.91 LCD command timing fixes
 	 * 1.92 reorg trace signal names and add LATE status to canbus info packet to sync remotes
+	 * 1.93 send/receive blob binary data can data packets
 	 */
 
 #define MAX_B_BUF	255

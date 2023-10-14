@@ -224,7 +224,7 @@ static uint16_t abuf[FM_BUFFER], cbuf[FM_BUFFER + 2];
 volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = AMP_WHOLE_ZERO, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
-char buffer[MAX_B_BUF] = "Boot Init Display   ", can_buffer[MAX_C_BUF], info_buffer[MAX_B_BUF], log_buffer[MAX_B_BUF];
+char buffer[MAX_B_BUF] = "Boot Init Display   ", info_buffer[MAX_B_BUF], log_buffer[MAX_B_BUF];
 const char *build_date = __DATE__, *build_time = __TIME__;
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
@@ -670,7 +670,7 @@ void state_status_cb(void)
 
 	/*
 	 * once a day/night event has happened wait for a long while until the next change
-	 * clear event counter timer 10s ticks 
+	 * clear event counter timer 10s ticks
 	 */
 	if (B.day_check++ > CHK_DAY_TIME) {
 		B.day_check = 0;

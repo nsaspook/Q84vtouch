@@ -48,8 +48,11 @@
 
 #define CAN_MSG_ID_PING  0x80000002
 #define CAN_MSG_ID_PING_X 0x80000003
+#define EMON_SL   0x80000002 // error reporting
+#define EMON_SU   0x80000003 // config reporting
 #define EMON_ER   0x8000000F // error reporting
 #define EMON_CO   0x8000000C // config reporting
+#define EMON_DA   0x8000000D // blob reporting
 #define EMON_TM   0x8000000A // send time to mateQ84
 #define CAN_MSG_ID_PONG  0x3
 #define CAN_MSG_LEN 64
@@ -73,7 +76,7 @@ static int bit_rate_switch = 1;
 static int print_hex = 0;
 static int msg_len = CAN_MSG_LEN;
 static int is_extended_frame_format = 1;
-uint8_t full_buffer[CAN_FULL_BUFFER];
+uint8_t full_buffer[CAN_FULL_BUFFER], data_buffer[CAN_FULL_BUFFER];
 int sec_30;
 char *token;
 
@@ -131,21 +134,25 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 			if (print_hex) {
 				printf(" %02x", (uint8_t) (data[i] + inc_data));
 			}
-			if (id == EMON_ER || id == EMON_CO) {
+			if (id == EMON_ER || id == EMON_CO || id == EMON_DA) {
 				full_buffer[i] = (uint8_t) (data[i] + inc_data);
-			} else {
-				if (id == CAN_MSG_ID_PING) {
-					full_buffer[i] = (uint8_t) (data[i] + inc_data);
-				} else {
-					full_buffer[i + CAN_MSG_LEN] = (uint8_t) (data[i] + inc_data);
-				}
+			}
+			if (id == EMON_SL) {
+				data_buffer[i] = (uint8_t) (data[i] + inc_data);
+			}
+			if (id == EMON_SU) {
+				data_buffer[i + CAN_MSG_LEN] = (uint8_t) (data[i] + inc_data);
 			}
 		}
-		if (id == CAN_MSG_ID_PING_X) {
-			fprintf(stdout, "%s", full_buffer);
+
+		if (id == EMON_SU) {
+			fprintf(stdout, "log %s", data_buffer);
 		}
 		if (id == EMON_ER) {
 			fprintf(stderr, "%s", full_buffer);
+		}
+		if (id == EMON_DA) {
+			fprintf(stderr, "BLOB \r");
 		}
 		if (id == EMON_CO) {
 			token = strtok(full_buffer, ",");
@@ -337,7 +344,7 @@ static int can_echo_dut(void)
 			print_frame(frame.can_id, frame.data, frame.len, 0);
 		}
 
-		err = check_frame(&frame);
+		//		err = check_frame(&frame);
 		inc_frame(&frame);
 		/*
 		 * don't echo or send canbus frames

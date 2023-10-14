@@ -8,6 +8,13 @@ volatile uint8_t rxMsgData[CAN_REC_BUFFERS][CANFD_BYTES] = {
 	" no info2           ",
 };
 
+static blob_type blob = {
+	.blob = 0,
+},
+blob_rec = {
+	.blob = 0,
+};
+
 volatile can_rec_count_t can_rec_count = {
 	.rec_count = 0,
 	.rec_flag = false,
@@ -27,7 +34,7 @@ union {
 
 static EB_data *EB = &EBD;
 
-#ifdef CAN_REMOTE	
+#ifdef CAN_REMOTE
 static volatile char s_buffer[CAN_MIRRORS][LCD_BUF_SIZ + 1] = {
 	"                     ",
 	"                     ",
@@ -79,6 +86,10 @@ void Can1FIFO1NotEmptyHandler(void)
 			}
 			if ((msg[half].msgId & 0xf) == EMON_ER) {
 				memcpy((void *) &rxMsgData[CAN_ERROR_BUF][0], msg[half].data, CANFD_BYTES);
+				break;
+			}
+			if ((msg[half].msgId & 0xf) == EMON_DA) {
+				memcpy((void *) &blob_rec, msg[half].data, CANFD_BYTES);
 				break;
 			}
 			if ((msg[MIRR0R_BUF].msgId & 0xf) == EMON_TM) {
@@ -162,7 +173,8 @@ void can_mirror_print(void)
  * send 64 byte CAN packets with the ASCII battery data in CSV format
  * EMON_SL [0..63], EMON_SU [64..127] bytes of data
  * ^ for ASCII start of string, ~ for end of data string
- * also send aux error and config packets if flagged
+ * EMON_DA blob binary packet for generic data
+ * also send EMON_ER aux error and EMON_CO config packets if flagged
  */
 void can_fd_tx(void)
 {
@@ -173,16 +185,22 @@ void can_fd_tx(void)
 	Transmission.field.frameType = CAN_FRAME_DATA; //Data frame
 	Transmission.field.idType = CAN_FRAME_EXT; //Standard ID
 	Transmission.msgId = EMON_SL; // packet type ID of client
-	Transmission.data = (uint8_t*) can_buffer; //transmit the data from the data bytes
-	if (CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(FIFO2) & CAN_TX_FIFO_AVAILABLE))//ensure that the FIFO has space for a message
+	Transmission.data = (uint8_t*) log_buffer; //transmit the log data from the data bytes
+	if (CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(TXQ) & CAN_TX_FIFO_AVAILABLE))//ensure that the FIFO has space for a message
 	{
-		CAN1_Transmit(FIFO2, &Transmission); //transmit frame
+		CAN1_Transmit(TXQ, &Transmission); //transmit frame
 	}
 	Transmission.msgId = (EMON_SU);
-	Transmission.data = (uint8_t*) can_buffer + CANFD_BYTES; //transmit the data from the data bytes
-	if (CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(FIFO2) & CAN_TX_FIFO_AVAILABLE))//ensure that the FIFO has space for a message
+	Transmission.data = (uint8_t*) log_buffer + CANFD_BYTES; //transmit the data from the data bytes
+	if (CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(TXQ) & CAN_TX_FIFO_AVAILABLE))//ensure that the FIFO has space for a message
 	{
-		CAN1_Transmit(FIFO2, &Transmission); //transmit frame
+		CAN1_Transmit(TXQ, &Transmission); //transmit frame
+	}
+	Transmission.msgId = (EMON_DA); // BLOB data packet type ID
+	Transmission.data = (uint8_t*) & blob; //transmit the data from the data bytes
+	if (CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(FIFO3) & CAN_TX_FIFO_AVAILABLE))//ensure that the FIFO has space for a message
+	{
+		CAN1_Transmit(FIFO3, &Transmission); //transmit frame
 	}
 
 	Transmission.msgId = (EMON_ER); // error packet type ID
@@ -269,6 +287,12 @@ void can_fd_lcd_mirror(const uint8_t r, char *strPtr)
 		{
 			CAN1_Transmit(TXQ, &Transmission); //transmit frame
 		}
+		Transmission.msgId = (EMON_DA); // BLOB data packet type ID
+		Transmission.data = (uint8_t*) & blob; //transmit the data from the data bytes
+		if (CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(FIFO3) & CAN_TX_FIFO_AVAILABLE))//ensure that the FIFO has space for a message
+		{
+			CAN1_Transmit(FIFO3, &Transmission); //transmit frame
+		}
 	}
 #endif
 #ifdef CAN_REMOTE_ERR
@@ -282,3 +306,14 @@ void TXQNotFullHandler(void)
 	INT_TRACE; // GPIO interrupt scope trace
 	C1INTUbits.TXIE = 0;
 }
+
+void can_blob_set(blob_type* data)
+{
+	memcpy((void *) &blob, data, CANFD_BYTES);
+};
+
+blob_type* can_blob_get(blob_type* data)
+{
+	memcpy((void *) data, &blob_rec, CANFD_BYTES);
+	return &blob_rec;
+};
