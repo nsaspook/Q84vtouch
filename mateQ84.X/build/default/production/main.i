@@ -41232,6 +41232,7 @@ void delay_ms(const uint16_t);
  } mx_log_packed_t;
 
  typedef struct {
+  uint8_t type;
   int16_t day;
   int16_t amp_hours;
   int16_t kilowatt_hours;
@@ -41594,7 +41595,16 @@ void delay_ms(const uint16_t);
 
  typedef struct {
   volatile uint8_t blob[64];
+  volatile _Bool tx_flag, rx_flag;
  } blob_type;
+
+
+
+
+ union blob_log {
+  blob_type blob;
+  mx_logpage_t log;
+ };
 
  extern volatile can_rec_count_t can_rec_count;
  extern CAN_MSG_OBJ msg[3];
@@ -41612,6 +41622,8 @@ void delay_ms(const uint16_t);
  void can_mirror_print(void);
  void can_blob_set(blob_type*);
  blob_type* can_blob_get(blob_type*);
+ _Bool get_blob_tx(void);
+ _Bool get_blob_rx(void);
 # 198 "main.c" 2
 # 207 "main.c"
 enum state_type {
@@ -41635,7 +41647,7 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[255] = "Boot Init Display   ", info_buffer[255], log_buffer[255];
-const char *build_date = "Oct 14 2023", *build_time = "13:33:19";
+const char *build_date = "Oct 15 2023", *build_time = "21:25:18";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
@@ -41660,7 +41672,13 @@ B_type B = {
  .pv_prev = STATUS_SLEEPING,
  .pv_update = 0,
  .once = 0,
+ .log.type = 1,
 };
+
+
+
+
+union blob_log *mxlog_ptr = (void*) & B.log;
 
 static EB_data *EB = &EBD;
 
@@ -41749,19 +41767,21 @@ void main(void)
 
   snprintf(buffer, 255, "%s B:%X %X %X   ", build_time, STATUS, PCON0, PCON1);
 
-
+  wr_bm_data((void*) EB);
 
  }
  eaDogM_WriteStringAtPos(2, 0, buffer);
-# 357 "main.c"
- eaDogM_WriteStringAtPos(2, 0, buffer);
- snprintf(buffer, 255, "%s ", "Start Up            ");
+
+
+
+
+ snprintf(buffer, 255, "%s ", "Start Up Remote        ");
  eaDogM_WriteStringAtPos(3, 0, buffer);
- wdtdelay(1000000);
- snprintf(buffer, 255, "%s ", "Polling FM80        ");
+ wdtdelay(700000);
+ snprintf(buffer, 255, "%s ", "Polling MateQ84        ");
  eaDogM_WriteStringAtPos(2, 0, buffer);
-
-
+ wdtdelay(300000);
+# 371 "main.c"
  can_fd_tx();
 
 
@@ -41861,7 +41881,7 @@ void main(void)
 
   if (B.one_sec_flag) {
 
-   eaDogM_Scroll_Task();
+
 
    B.one_sec_flag = 0;
    B.canbus_online = (!C1TXQCONHbits.TXREQ)&0x01;
@@ -41871,8 +41891,8 @@ void main(void)
    B.modbus_online = C.data_ok;
 
 
-
-
+   can_newtime = localtime(&can_timer);
+   snprintf(buffer, 21, "%s", asctime(can_newtime));
 
   }
   if (TimerDone(TMR_SPIN)) {
@@ -41895,7 +41915,7 @@ void main(void)
     if (C.data_ok && (M.error > error_save)) {
      snprintf(buffer, 255, "EMon  %4.1fVAC   %c%c    ", lp_filter(ac, F_ac, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
 
-     eaDogM_WriteStringAtPos(1, 0, buffer);
+
 
      snprintf(info_buffer, 255, " error logged \r\n");
      if (e_update == 0) {
@@ -41905,7 +41925,7 @@ void main(void)
       snprintf(buffer, 255, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
 
 
-      eaDogM_WriteStringAtPos(0, 0, buffer);
+
 
      }
      if (e_update++ >= 10) {
@@ -41914,17 +41934,12 @@ void main(void)
      }
     } else {
      M.error = 0;
-# 546 "main.c"
-     snprintf(buffer, 255, "EMon  %6.1fWh   %c%c    ", EB->bat_energy / 360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
-     eaDogM_WriteStringAtPos(1, 0, buffer);
-     snprintf(buffer, 255, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
-     eaDogM_WriteStringAtPos(0, 0, buffer);
-
+# 557 "main.c"
     }
    }
   }
 
-
+  can_mirror_print();
 
 
   do { LATDbits.LATD5 = 0; } while(0);
@@ -42010,12 +42025,12 @@ void state_init_cb(void)
   off_delay = 0;
   snprintf(buffer, 255, "FM80 Online         ");
 
-  eaDogM_WriteStringAtPos(3, 0, buffer);
+
 
  } else {
   snprintf(buffer, 255, "FM80 Offline        ");
 
-  eaDogM_WriteStringAtPos(3, 0, buffer);
+
 
   if (off_delay++ > 3) {
    B.FM80_online = 0;
@@ -42029,7 +42044,7 @@ void state_status_cb(void)
 {
  static uint16_t day_clocks = 0;
  static uint8_t status_prev = STATUS_SLEEPING;
-# 675 "main.c"
+# 681 "main.c"
  if (B.day_check++ > 1200) {
   B.day_check = 0;
   B.once = 0;
@@ -42119,6 +42134,7 @@ void state_mx_log_cb(void)
 
  cmd_mx_log[5] = B.log.select;
  cmd_mx_log[7] = 0x16 + B.log.select;
+ mxlog_ptr->log.type = 1;
 
  state = state_mx_status;
 }

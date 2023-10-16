@@ -57,7 +57,16 @@ extern "C" {
 
 	typedef struct {
 		volatile uint8_t blob[CANFD_BYTES];
+		volatile bool tx_flag, rx_flag;
 	} blob_type;
+
+	/*
+	 * testing blob data feature for logs
+	 */
+	union blob_log {
+		blob_type blob;
+		mx_logpage_t log;
+	};
 
 	extern volatile can_rec_count_t can_rec_count;
 	extern CAN_MSG_OBJ msg[3];
@@ -75,6 +84,8 @@ extern "C" {
 	void can_mirror_print(void);
 	void can_blob_set(blob_type*);
 	blob_type* can_blob_get(blob_type*);
+	bool get_blob_tx(void);
+	bool get_blob_rx(void);
 
 #ifdef	__cplusplus
 }

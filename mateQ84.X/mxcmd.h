@@ -129,6 +129,7 @@ extern "C" {
 	} mx_log_packed_t;
 
 	typedef struct {
+		uint8_t type;
 		int16_t day;
 		int16_t amp_hours;
 		int16_t kilowatt_hours;

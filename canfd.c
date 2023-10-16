@@ -90,6 +90,7 @@ void Can1FIFO1NotEmptyHandler(void)
 			}
 			if ((msg[half].msgId & 0xf) == EMON_DA) {
 				memcpy((void *) &blob_rec, msg[half].data, CANFD_BYTES);
+				blob_rec.rx_flag = true;
 				break;
 			}
 			if ((msg[MIRR0R_BUF].msgId & 0xf) == EMON_TM) {
@@ -202,6 +203,7 @@ void can_fd_tx(void)
 	{
 		CAN1_Transmit(FIFO3, &Transmission); //transmit frame
 	}
+	blob.tx_flag = false;
 
 	Transmission.msgId = (EMON_ER); // error packet type ID
 	Transmission.data = (uint8_t*) info_buffer; //transmit the data from the data bytes
@@ -293,6 +295,7 @@ void can_fd_lcd_mirror(const uint8_t r, char *strPtr)
 		{
 			CAN1_Transmit(FIFO3, &Transmission); //transmit frame
 		}
+		blob.tx_flag = false;
 	}
 #endif
 #ifdef CAN_REMOTE_ERR
@@ -310,10 +313,22 @@ void TXQNotFullHandler(void)
 void can_blob_set(blob_type* data)
 {
 	memcpy((void *) &blob, data, CANFD_BYTES);
+	blob.tx_flag = true;
 };
+
+bool get_blob_tx(void)
+{
+	return blob.tx_flag;
+}
 
 blob_type* can_blob_get(blob_type* data)
 {
 	memcpy((void *) data, &blob_rec, CANFD_BYTES);
+	blob.rx_flag = false;
 	return &blob_rec;
 };
+
+bool get_blob_rx(void)
+{
+	return blob_rec.rx_flag;
+}
