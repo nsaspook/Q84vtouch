@@ -83,6 +83,7 @@ void get_bm_data(EB_data * EB)
 	EB->cc_mode = cc_mode;
 	EB->bat_amp_whole = (float) bat_amp_whole;
 	EB->volt_whole = (float) vw;
+
 	/*
 	 * check for commands using the logging serial port
 	 * 'F' FULL,	reset battery energy to max and increase one battery charge cycle
@@ -179,13 +180,13 @@ void get_bm_data(EB_data * EB)
 /*
  * track energy usage and storage of the system
  * with LiFePO4 battery chem this is simple, direct with no major secondary effects over the discharge/charge curve
- * 
+ *
  */
 void compute_bm_data(EB_data * EB)
 {
 	float net_energy, net_balance;
 
-	pv_Wh_daily += (EB->FMw / TEN_SEC_HOUR); // integrate Wh for 10 second updates 
+	pv_Wh_daily += (EB->FMw / TEN_SEC_HOUR); // integrate Wh for 10 second updates
 	ac_Wh_daily += (EB->ENw / TEN_SEC_HOUR);
 
 	net_balance = EB->FMw - (EB->ENw * INV_EFF_VAL); // make the energy comparison AC -> DC watts equal using inverter losses
@@ -327,17 +328,17 @@ device_id_data_t DeviceID_Read(device_id_address_t address)
 	//Save the table pointer
 	uint32_t tablePointer = ((uint32_t) TBLPTRU << 16) | ((uint32_t) TBLPTRH << 8) | ((uint32_t) TBLPTRL);
 
-	//Load table pointer with Device ID address 
+	//Load table pointer with Device ID address
 	TBLPTRU = (uint8_t) (address >> 16);
 	TBLPTRH = (uint8_t) (address >> 8);
 	TBLPTRL = (uint8_t) address;
 
-	//Execute table read and increment table pointer 
+	//Execute table read and increment table pointer
 	asm("TBLRD*+");
 
 	deviceID = (device_id_data_t) TABLAT;
 
-	//Execute table read 
+	//Execute table read
 	asm("TBLRD*");
 
 	deviceID |= (device_id_data_t) (TABLAT << 8);

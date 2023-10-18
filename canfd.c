@@ -314,7 +314,7 @@ void can_blob_set(blob_type* data)
 {
 	memcpy((void *) &blob, data, CANFD_BYTES);
 	blob.tx_flag = true;
-};
+}
 
 bool get_blob_tx(void)
 {
@@ -326,7 +326,7 @@ blob_type* can_blob_get(blob_type* data)
 	memcpy((void *) data, &blob_rec, CANFD_BYTES);
 	blob.rx_flag = false;
 	return &blob_rec;
-};
+}
 
 bool get_blob_rx(void)
 {

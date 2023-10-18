@@ -105,25 +105,25 @@
 #define channel_ANA1_SetAnalogMode()      do { ANSELAbits.ANSELA1 = 1; } while(0)
 #define channel_ANA1_SetDigitalMode()     do { ANSELAbits.ANSELA1 = 0; } while(0)
 
-// get/set channel_ANA2 aliases
-#define channel_ANA2_TRIS                 TRISAbits.TRISA2
-#define channel_ANA2_LAT                  LATAbits.LATA2
-#define channel_ANA2_PORT                 PORTAbits.RA2
-#define channel_ANA2_WPU                  WPUAbits.WPUA2
-#define channel_ANA2_OD                   ODCONAbits.ODCA2
-#define channel_ANA2_ANS                  ANSELAbits.ANSELA2
-#define channel_ANA2_SetHigh()            do { LATAbits.LATA2 = 1; } while(0)
-#define channel_ANA2_SetLow()             do { LATAbits.LATA2 = 0; } while(0)
-#define channel_ANA2_Toggle()             do { LATAbits.LATA2 = ~LATAbits.LATA2; } while(0)
-#define channel_ANA2_GetValue()           PORTAbits.RA2
-#define channel_ANA2_SetDigitalInput()    do { TRISAbits.TRISA2 = 1; } while(0)
-#define channel_ANA2_SetDigitalOutput()   do { TRISAbits.TRISA2 = 0; } while(0)
-#define channel_ANA2_SetPullup()          do { WPUAbits.WPUA2 = 1; } while(0)
-#define channel_ANA2_ResetPullup()        do { WPUAbits.WPUA2 = 0; } while(0)
-#define channel_ANA2_SetPushPull()        do { ODCONAbits.ODCA2 = 0; } while(0)
-#define channel_ANA2_SetOpenDrain()       do { ODCONAbits.ODCA2 = 1; } while(0)
-#define channel_ANA2_SetAnalogMode()      do { ANSELAbits.ANSELA2 = 1; } while(0)
-#define channel_ANA2_SetDigitalMode()     do { ANSELAbits.ANSELA2 = 0; } while(0)
+// get/set L_SWITCH aliases
+#define L_SWITCH_TRIS                 TRISAbits.TRISA2
+#define L_SWITCH_LAT                  LATAbits.LATA2
+#define L_SWITCH_PORT                 PORTAbits.RA2
+#define L_SWITCH_WPU                  WPUAbits.WPUA2
+#define L_SWITCH_OD                   ODCONAbits.ODCA2
+#define L_SWITCH_ANS                  ANSELAbits.ANSELA2
+#define L_SWITCH_SetHigh()            do { LATAbits.LATA2 = 1; } while(0)
+#define L_SWITCH_SetLow()             do { LATAbits.LATA2 = 0; } while(0)
+#define L_SWITCH_Toggle()             do { LATAbits.LATA2 = ~LATAbits.LATA2; } while(0)
+#define L_SWITCH_GetValue()           PORTAbits.RA2
+#define L_SWITCH_SetDigitalInput()    do { TRISAbits.TRISA2 = 1; } while(0)
+#define L_SWITCH_SetDigitalOutput()   do { TRISAbits.TRISA2 = 0; } while(0)
+#define L_SWITCH_SetPullup()          do { WPUAbits.WPUA2 = 1; } while(0)
+#define L_SWITCH_ResetPullup()        do { WPUAbits.WPUA2 = 0; } while(0)
+#define L_SWITCH_SetPushPull()        do { ODCONAbits.ODCA2 = 0; } while(0)
+#define L_SWITCH_SetOpenDrain()       do { ODCONAbits.ODCA2 = 1; } while(0)
+#define L_SWITCH_SetAnalogMode()      do { ANSELAbits.ANSELA2 = 1; } while(0)
+#define L_SWITCH_SetDigitalMode()     do { ANSELAbits.ANSELA2 = 0; } while(0)
 
 // get/set RA3 procedures
 #define RA3_SetHigh()            do { LATAbits.LATA3 = 1; } while(0)
@@ -157,25 +157,25 @@
 #define channel_ANA4_SetAnalogMode()      do { ANSELAbits.ANSELA4 = 1; } while(0)
 #define channel_ANA4_SetDigitalMode()     do { ANSELAbits.ANSELA4 = 0; } while(0)
 
-// get/set channel_ANA5 aliases
-#define channel_ANA5_TRIS                 TRISAbits.TRISA5
-#define channel_ANA5_LAT                  LATAbits.LATA5
-#define channel_ANA5_PORT                 PORTAbits.RA5
-#define channel_ANA5_WPU                  WPUAbits.WPUA5
-#define channel_ANA5_OD                   ODCONAbits.ODCA5
-#define channel_ANA5_ANS                  ANSELAbits.ANSELA5
-#define channel_ANA5_SetHigh()            do { LATAbits.LATA5 = 1; } while(0)
-#define channel_ANA5_SetLow()             do { LATAbits.LATA5 = 0; } while(0)
-#define channel_ANA5_Toggle()             do { LATAbits.LATA5 = ~LATAbits.LATA5; } while(0)
-#define channel_ANA5_GetValue()           PORTAbits.RA5
-#define channel_ANA5_SetDigitalInput()    do { TRISAbits.TRISA5 = 1; } while(0)
-#define channel_ANA5_SetDigitalOutput()   do { TRISAbits.TRISA5 = 0; } while(0)
-#define channel_ANA5_SetPullup()          do { WPUAbits.WPUA5 = 1; } while(0)
-#define channel_ANA5_ResetPullup()        do { WPUAbits.WPUA5 = 0; } while(0)
-#define channel_ANA5_SetPushPull()        do { ODCONAbits.ODCA5 = 0; } while(0)
-#define channel_ANA5_SetOpenDrain()       do { ODCONAbits.ODCA5 = 1; } while(0)
-#define channel_ANA5_SetAnalogMode()      do { ANSELAbits.ANSELA5 = 1; } while(0)
-#define channel_ANA5_SetDigitalMode()     do { ANSELAbits.ANSELA5 = 0; } while(0)
+// get/set A_SWITCH aliases
+#define A_SWITCH_TRIS                 TRISAbits.TRISA5
+#define A_SWITCH_LAT                  LATAbits.LATA5
+#define A_SWITCH_PORT                 PORTAbits.RA5
+#define A_SWITCH_WPU                  WPUAbits.WPUA5
+#define A_SWITCH_OD                   ODCONAbits.ODCA5
+#define A_SWITCH_ANS                  ANSELAbits.ANSELA5
+#define A_SWITCH_SetHigh()            do { LATAbits.LATA5 = 1; } while(0)
+#define A_SWITCH_SetLow()             do { LATAbits.LATA5 = 0; } while(0)
+#define A_SWITCH_Toggle()             do { LATAbits.LATA5 = ~LATAbits.LATA5; } while(0)
+#define A_SWITCH_GetValue()           PORTAbits.RA5
+#define A_SWITCH_SetDigitalInput()    do { TRISAbits.TRISA5 = 1; } while(0)
+#define A_SWITCH_SetDigitalOutput()   do { TRISAbits.TRISA5 = 0; } while(0)
+#define A_SWITCH_SetPullup()          do { WPUAbits.WPUA5 = 1; } while(0)
+#define A_SWITCH_ResetPullup()        do { WPUAbits.WPUA5 = 0; } while(0)
+#define A_SWITCH_SetPushPull()        do { ODCONAbits.ODCA5 = 0; } while(0)
+#define A_SWITCH_SetOpenDrain()       do { ODCONAbits.ODCA5 = 1; } while(0)
+#define A_SWITCH_SetAnalogMode()      do { ANSELAbits.ANSELA5 = 1; } while(0)
+#define A_SWITCH_SetDigitalMode()     do { ANSELAbits.ANSELA5 = 0; } while(0)
 
 // get/set RB0 procedures
 #define RB0_SetHigh()            do { LATBbits.LATB0 = 1; } while(0)
@@ -633,6 +633,174 @@
  */
 void PIN_MANAGER_Initialize (void);
 
+
+
+/**
+ * @Param
+    none
+ * @Returns
+    none
+ * @Description
+    Interrupt on Change Handler for the IOCAF2 pin functionality
+ * @Example
+    IOCAF2_ISR();
+ */
+void IOCAF2_ISR(void);
+
+/**
+  @Summary
+    Interrupt Handler Setter for IOCAF2 pin interrupt-on-change functionality
+
+  @Description
+    Allows selecting an interrupt handler for IOCAF2 at application runtime
+    
+  @Preconditions
+    Pin Manager intializer called
+
+  @Returns
+    None.
+
+  @Param
+    InterruptHandler function pointer.
+
+  @Example
+    PIN_MANAGER_Initialize();
+    IOCAF2_SetInterruptHandler(MyInterruptHandler);
+
+*/
+void IOCAF2_SetInterruptHandler(void (* InterruptHandler)(void));
+
+/**
+  @Summary
+    Dynamic Interrupt Handler for IOCAF2 pin
+
+  @Description
+    This is a dynamic interrupt handler to be used together with the IOCAF2_SetInterruptHandler() method.
+    This handler is called every time the IOCAF2 ISR is executed and allows any function to be registered at runtime.
+    
+  @Preconditions
+    Pin Manager intializer called
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    PIN_MANAGER_Initialize();
+    IOCAF2_SetInterruptHandler(IOCAF2_InterruptHandler);
+
+*/
+extern void (*IOCAF2_InterruptHandler)(void);
+
+/**
+  @Summary
+    Default Interrupt Handler for IOCAF2 pin
+
+  @Description
+    This is a predefined interrupt handler to be used together with the IOCAF2_SetInterruptHandler() method.
+    This handler is called every time the IOCAF2 ISR is executed. 
+    
+  @Preconditions
+    Pin Manager intializer called
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    PIN_MANAGER_Initialize();
+    IOCAF2_SetInterruptHandler(IOCAF2_DefaultInterruptHandler);
+
+*/
+void IOCAF2_DefaultInterruptHandler(void);
+
+
+/**
+ * @Param
+    none
+ * @Returns
+    none
+ * @Description
+    Interrupt on Change Handler for the IOCAF5 pin functionality
+ * @Example
+    IOCAF5_ISR();
+ */
+void IOCAF5_ISR(void);
+
+/**
+  @Summary
+    Interrupt Handler Setter for IOCAF5 pin interrupt-on-change functionality
+
+  @Description
+    Allows selecting an interrupt handler for IOCAF5 at application runtime
+    
+  @Preconditions
+    Pin Manager intializer called
+
+  @Returns
+    None.
+
+  @Param
+    InterruptHandler function pointer.
+
+  @Example
+    PIN_MANAGER_Initialize();
+    IOCAF5_SetInterruptHandler(MyInterruptHandler);
+
+*/
+void IOCAF5_SetInterruptHandler(void (* InterruptHandler)(void));
+
+/**
+  @Summary
+    Dynamic Interrupt Handler for IOCAF5 pin
+
+  @Description
+    This is a dynamic interrupt handler to be used together with the IOCAF5_SetInterruptHandler() method.
+    This handler is called every time the IOCAF5 ISR is executed and allows any function to be registered at runtime.
+    
+  @Preconditions
+    Pin Manager intializer called
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    PIN_MANAGER_Initialize();
+    IOCAF5_SetInterruptHandler(IOCAF5_InterruptHandler);
+
+*/
+extern void (*IOCAF5_InterruptHandler)(void);
+
+/**
+  @Summary
+    Default Interrupt Handler for IOCAF5 pin
+
+  @Description
+    This is a predefined interrupt handler to be used together with the IOCAF5_SetInterruptHandler() method.
+    This handler is called every time the IOCAF5 ISR is executed. 
+    
+  @Preconditions
+    Pin Manager intializer called
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    PIN_MANAGER_Initialize();
+    IOCAF5_SetInterruptHandler(IOCAF5_DefaultInterruptHandler);
+
+*/
+void IOCAF5_DefaultInterruptHandler(void);
 
 
 

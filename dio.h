@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   dio.h
  * Author: root
  *
@@ -14,17 +14,17 @@ extern "C" {
 
 #include <xc.h>
 #include "mateQ84.X/mcc_generated_files/pin_manager.h"
-/*
- * MISC_IO
- * pin 3, RE2
- * pin 2, MISC
- * pin 1, RELAY
- * 
- * DIGITAL
- * 
- * pin 2, DB1
- * pin 1, DB0
- */
+	/*
+	 * MISC_IO
+	 * pin 3, RE2
+	 * pin 2, MISC
+	 * pin 1, RELAY
+	 *
+	 * DIGITAL
+	 *
+	 * pin 2, DB1
+	 * pin 1, DB0
+	 */
 
 #define DAY_RELAY_ON			RELAY_SetHigh()
 #define DAY_RELAY_OFF			RELAY_SetLow()
@@ -32,8 +32,11 @@ extern "C" {
 #define NIGHT_RELAY_OFF			MISC_SetLow()
 #define CHARGER_RELAY_ON		CHARGER_SetHigh()
 #define CHARGER_RELAY_OFF		CHARGER_SetLow()
-	
-void all_relays_off(void);
+
+	void all_relays_off(void);
+
+	void aswitch(void);
+	void lswitch(void);
 
 #ifdef	__cplusplus
 }

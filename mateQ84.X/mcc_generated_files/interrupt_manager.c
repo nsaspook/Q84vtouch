@@ -78,6 +78,7 @@ void  INTERRUPT_Initialize (void)
     IPR4bits.CANRXIP = 1;
     IPR8bits.U2TXIP = 1;
     IPR8bits.U2RXIP = 1;
+    IPR0bits.IOCIP = 0;
     IPR13bits.U5TXIP = 1;
     IPR13bits.U5RXIP = 1;
     IPR3bits.TMR0IP = 0;

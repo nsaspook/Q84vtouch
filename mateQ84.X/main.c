@@ -325,6 +325,10 @@ void main(void)
 	TMR2_SetInterruptHandler(tensec_io);
 	TMR2_StartTimer();
 
+	// switch pressed ISR handlers
+	IOCAF5_SetInterruptHandler(aswitch);
+	IOCAF2_SetInterruptHandler(lswitch);
+
 #ifdef MB_MASTER
 	init_mb_master_timers(); // pacing, spacing and timeouts
 	UART5_SetRxInterruptHandler(my_modbus_rx_32); // install custom serial receive ISR
@@ -556,6 +560,26 @@ void main(void)
 #endif
 				}
 			}
+		}
+		/*
+		 * check command switches
+		 */
+		if (B.a_switch[D_SW_A]) {
+			MM_ERROR_S;
+			B.a_switch[D_SW_A] = false;
+			B.alt_display++;
+			if (B.alt_display > MAX_ALT_DIS) {
+				B.alt_display = 0;
+			}
+			EB->alt_display = B.alt_display;
+			snprintf(buffer, MAX_B_BUF, "%d %s", B.alt_display, "Alt Button Pressed        ");
+			eaDogM_WriteStringAtPos(2, 0, buffer);
+		}
+		if (B.a_switch[D_SW_L]) {
+			MM_ERROR_S;
+			B.a_switch[D_SW_L] = false;
+			snprintf(buffer, MAX_B_BUF, "%s", "Log Button Pressed        ");
+			eaDogM_WriteStringAtPos(2, 0, buffer);
 		}
 #ifdef LCD_MIRROR
 		can_mirror_print();
