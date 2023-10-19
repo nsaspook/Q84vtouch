@@ -326,8 +326,7 @@ void main(void)
 	TMR2_StartTimer();
 
 	// switch pressed ISR handlers
-	IOCAF5_SetInterruptHandler(aswitch);
-	IOCAF2_SetInterruptHandler(lswitch);
+	init_all_switch();
 
 #ifdef MB_MASTER
 	init_mb_master_timers(); // pacing, spacing and timeouts
@@ -579,6 +578,12 @@ void main(void)
 			MM_ERROR_S;
 			B.a_switch[D_SW_L] = false;
 			snprintf(buffer, MAX_B_BUF, "%s", "Log Button Pressed        ");
+			eaDogM_WriteStringAtPos(2, 0, buffer);
+		}
+		if (B.a_switch[D_SW_M]) {
+			MM_ERROR_S;
+			B.a_switch[D_SW_M] = false;
+			snprintf(buffer, MAX_B_BUF, "%s", "MISC Button Pressed        ");
 			eaDogM_WriteStringAtPos(2, 0, buffer);
 		}
 #ifdef LCD_MIRROR

@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include "mateQ84.X/mcc_generated_files/mcc.h"
+#include "dio.h"
 
 //Software timers - use these to refer to timers rather than
 //integers.  Add more as needed.
@@ -20,18 +21,6 @@ enum APP_TIMERS {
 	//
 	TMR_COUNT //number of timers - always keep at end of enum!
 };
-
-enum D_SW {
-	D_SW_A = 0,
-	D_SW_L,
-	D_SW_COUNT // number is switches to check
-};
-
-extern uint8_t a_debounce[D_SW_COUNT];
-
-#define debounce_time	200
-#define SW_NO	0
-#define SW_NC	1
 
 void StartTimer(const uint8_t timer, const uint16_t count);
 bool TimerDone(const uint8_t timer);

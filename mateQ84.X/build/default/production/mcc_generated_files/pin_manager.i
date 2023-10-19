@@ -38681,20 +38681,28 @@ unsigned char __t3rd16on(void);
 # 634 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
 # 648 "mcc_generated_files/pin_manager.h"
-void IOCAF2_ISR(void);
+void IOCAF1_ISR(void);
 # 671 "mcc_generated_files/pin_manager.h"
-void IOCAF2_SetInterruptHandler(void (* InterruptHandler)(void));
+void IOCAF1_SetInterruptHandler(void (* InterruptHandler)(void));
 # 695 "mcc_generated_files/pin_manager.h"
-extern void (*IOCAF2_InterruptHandler)(void);
+extern void (*IOCAF1_InterruptHandler)(void);
 # 719 "mcc_generated_files/pin_manager.h"
-void IOCAF2_DefaultInterruptHandler(void);
+void IOCAF1_DefaultInterruptHandler(void);
 # 732 "mcc_generated_files/pin_manager.h"
-void IOCAF5_ISR(void);
+void IOCAF2_ISR(void);
 # 755 "mcc_generated_files/pin_manager.h"
-void IOCAF5_SetInterruptHandler(void (* InterruptHandler)(void));
+void IOCAF2_SetInterruptHandler(void (* InterruptHandler)(void));
 # 779 "mcc_generated_files/pin_manager.h"
-extern void (*IOCAF5_InterruptHandler)(void);
+extern void (*IOCAF2_InterruptHandler)(void);
 # 803 "mcc_generated_files/pin_manager.h"
+void IOCAF2_DefaultInterruptHandler(void);
+# 816 "mcc_generated_files/pin_manager.h"
+void IOCAF5_ISR(void);
+# 839 "mcc_generated_files/pin_manager.h"
+void IOCAF5_SetInterruptHandler(void (* InterruptHandler)(void));
+# 863 "mcc_generated_files/pin_manager.h"
+extern void (*IOCAF5_InterruptHandler)(void);
+# 887 "mcc_generated_files/pin_manager.h"
 void IOCAF5_DefaultInterruptHandler(void);
 # 49 "mcc_generated_files/pin_manager.c" 2
 
@@ -38707,6 +38715,7 @@ void INTERRUPT_Initialize (void);
 
 
 
+void (*IOCAF1_InterruptHandler)(void);
 void (*IOCAF2_InterruptHandler)(void);
 void (*IOCAF5_InterruptHandler)(void);
 
@@ -38738,7 +38747,7 @@ void PIN_MANAGER_Initialize(void)
     ANSELC = 0x00;
     ANSELB = 0x00;
     ANSELE = 0x00;
-    ANSELA = 0xDB;
+    ANSELA = 0xD9;
 
 
 
@@ -38746,7 +38755,7 @@ void PIN_MANAGER_Initialize(void)
     WPUD = 0x00;
     WPUE = 0x00;
     WPUB = 0x00;
-    WPUA = 0x24;
+    WPUA = 0x26;
     WPUC = 0x01;
 
 
@@ -38781,13 +38790,19 @@ void PIN_MANAGER_Initialize(void)
 
 
 
+    IOCAFbits.IOCAF1 = 0;
+
     IOCAFbits.IOCAF2 = 0;
 
     IOCAFbits.IOCAF5 = 0;
 
+    IOCANbits.IOCAN1 = 1;
+
     IOCANbits.IOCAN2 = 1;
 
     IOCANbits.IOCAN5 = 1;
+
+    IOCAPbits.IOCAP1 = 0;
 
     IOCAPbits.IOCAP2 = 0;
 
@@ -38796,6 +38811,7 @@ void PIN_MANAGER_Initialize(void)
 
 
 
+    IOCAF1_SetInterruptHandler(IOCAF1_DefaultInterruptHandler);
     IOCAF2_SetInterruptHandler(IOCAF2_DefaultInterruptHandler);
     IOCAF5_SetInterruptHandler(IOCAF5_DefaultInterruptHandler);
 
@@ -38821,6 +38837,11 @@ void PIN_MANAGER_Initialize(void)
 void __attribute__((picinterrupt(("irq(IOC),base(8),low_priority")))) PIN_MANAGER_IOC()
 {
 
+    if(IOCAFbits.IOCAF1 == 1)
+    {
+        IOCAF1_ISR();
+    }
+
     if(IOCAFbits.IOCAF2 == 1)
     {
         IOCAF2_ISR();
@@ -38830,6 +38851,36 @@ void __attribute__((picinterrupt(("irq(IOC),base(8),low_priority")))) PIN_MANAGE
     {
         IOCAF5_ISR();
     }
+}
+
+
+
+
+void IOCAF1_ISR(void) {
+
+
+
+
+    if(IOCAF1_InterruptHandler)
+    {
+        IOCAF1_InterruptHandler();
+    }
+    IOCAFbits.IOCAF1 = 0;
+}
+
+
+
+
+void IOCAF1_SetInterruptHandler(void (* InterruptHandler)(void)){
+    IOCAF1_InterruptHandler = InterruptHandler;
+}
+
+
+
+
+void IOCAF1_DefaultInterruptHandler(void){
+
+
 }
 
 

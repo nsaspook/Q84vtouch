@@ -39055,20 +39055,28 @@ void *memccpy (void *restrict, const void *restrict, int, size_t);
 # 634 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
 # 648 "./mcc_generated_files/pin_manager.h"
-void IOCAF2_ISR(void);
+void IOCAF1_ISR(void);
 # 671 "./mcc_generated_files/pin_manager.h"
-void IOCAF2_SetInterruptHandler(void (* InterruptHandler)(void));
+void IOCAF1_SetInterruptHandler(void (* InterruptHandler)(void));
 # 695 "./mcc_generated_files/pin_manager.h"
-extern void (*IOCAF2_InterruptHandler)(void);
+extern void (*IOCAF1_InterruptHandler)(void);
 # 719 "./mcc_generated_files/pin_manager.h"
-void IOCAF2_DefaultInterruptHandler(void);
+void IOCAF1_DefaultInterruptHandler(void);
 # 732 "./mcc_generated_files/pin_manager.h"
-void IOCAF5_ISR(void);
+void IOCAF2_ISR(void);
 # 755 "./mcc_generated_files/pin_manager.h"
-void IOCAF5_SetInterruptHandler(void (* InterruptHandler)(void));
+void IOCAF2_SetInterruptHandler(void (* InterruptHandler)(void));
 # 779 "./mcc_generated_files/pin_manager.h"
-extern void (*IOCAF5_InterruptHandler)(void);
+extern void (*IOCAF2_InterruptHandler)(void);
 # 803 "./mcc_generated_files/pin_manager.h"
+void IOCAF2_DefaultInterruptHandler(void);
+# 816 "./mcc_generated_files/pin_manager.h"
+void IOCAF5_ISR(void);
+# 839 "./mcc_generated_files/pin_manager.h"
+void IOCAF5_SetInterruptHandler(void (* InterruptHandler)(void));
+# 863 "./mcc_generated_files/pin_manager.h"
+extern void (*IOCAF5_InterruptHandler)(void);
+# 887 "./mcc_generated_files/pin_manager.h"
 void IOCAF5_DefaultInterruptHandler(void);
 # 51 "./mcc_generated_files/mcc.h" 2
 
@@ -39094,7 +39102,6 @@ typedef uint16_t adc_result_t;
 typedef enum
 {
     channel_ANA0 = 0x0,
-    channel_ANA1 = 0x1,
     channel_ANA4 = 0x4,
     channel_VSS = 0x3B,
     channel_Temp = 0x3C,
@@ -39112,87 +39119,87 @@ typedef enum
 {
     CONTEXT_1,
 } ADC_context_t;
-# 115 "./mcc_generated_files/adc.h"
+# 114 "./mcc_generated_files/adc.h"
 void ADC_Initialize(void);
-# 146 "./mcc_generated_files/adc.h"
+# 145 "./mcc_generated_files/adc.h"
 __attribute__((inline)) void ADC_EnableChannelSequencer(void);
-# 168 "./mcc_generated_files/adc.h"
+# 167 "./mcc_generated_files/adc.h"
 __attribute__((inline)) void ADC_DisableChannelSequencer(void);
-# 200 "./mcc_generated_files/adc.h"
+# 199 "./mcc_generated_files/adc.h"
 __attribute__((inline)) void ADC_StartChannelSequencer(void);
-# 223 "./mcc_generated_files/adc.h"
+# 222 "./mcc_generated_files/adc.h"
 __attribute__((inline)) void ADC_SelectContext(ADC_context_t context);
-# 245 "./mcc_generated_files/adc.h"
+# 244 "./mcc_generated_files/adc.h"
 void ADC_EnableChannelScan(ADC_context_t context);
-# 269 "./mcc_generated_files/adc.h"
+# 268 "./mcc_generated_files/adc.h"
 void ADC_DisableChannelScan(ADC_context_t context);
-# 296 "./mcc_generated_files/adc.h"
+# 295 "./mcc_generated_files/adc.h"
 void ADC_StartConversion(ADC_channel_t channel);
-# 322 "./mcc_generated_files/adc.h"
+# 321 "./mcc_generated_files/adc.h"
 _Bool ADC_IsConversionDone(void);
-# 348 "./mcc_generated_files/adc.h"
+# 347 "./mcc_generated_files/adc.h"
 adc_result_t ADC_GetConversionResult(void);
-# 374 "./mcc_generated_files/adc.h"
+# 373 "./mcc_generated_files/adc.h"
 adc_result_t ADC_GetSingleConversion(ADC_channel_t channel);
-# 399 "./mcc_generated_files/adc.h"
+# 398 "./mcc_generated_files/adc.h"
 __attribute__((inline)) void ADC_StopConversion(void);
-# 423 "./mcc_generated_files/adc.h"
+# 422 "./mcc_generated_files/adc.h"
 __attribute__((inline)) void ADC_SetStopOnInterrupt(void);
-# 451 "./mcc_generated_files/adc.h"
+# 450 "./mcc_generated_files/adc.h"
 __attribute__((inline)) void ADC_DischargeSampleCapacitor(void);
-# 475 "./mcc_generated_files/adc.h"
+# 474 "./mcc_generated_files/adc.h"
 void ADC_LoadAcquisitionRegister(uint16_t acquisitionValue);
-# 499 "./mcc_generated_files/adc.h"
+# 498 "./mcc_generated_files/adc.h"
 void ADC_SetPrechargeTime(uint16_t prechargeTime);
-# 523 "./mcc_generated_files/adc.h"
+# 522 "./mcc_generated_files/adc.h"
 __attribute__((inline)) void ADC_SetRepeatCount(uint8_t repeatCount);
-# 547 "./mcc_generated_files/adc.h"
+# 546 "./mcc_generated_files/adc.h"
 uint8_t ADC_GetCurrentCountofConversions(void);
-# 570 "./mcc_generated_files/adc.h"
+# 569 "./mcc_generated_files/adc.h"
 __attribute__((inline)) void ADC_ClearAccumulator(void);
-# 594 "./mcc_generated_files/adc.h"
+# 593 "./mcc_generated_files/adc.h"
 uint24_t ADC_GetAccumulatorValue(void);
-# 621 "./mcc_generated_files/adc.h"
+# 620 "./mcc_generated_files/adc.h"
 _Bool ADC_HasAccumulatorOverflowed(void);
-# 645 "./mcc_generated_files/adc.h"
+# 644 "./mcc_generated_files/adc.h"
 uint16_t ADC_GetFilterValue(void);
-# 669 "./mcc_generated_files/adc.h"
+# 668 "./mcc_generated_files/adc.h"
 uint16_t ADC_GetPreviousResult(void);
-# 693 "./mcc_generated_files/adc.h"
+# 692 "./mcc_generated_files/adc.h"
 void ADC_DefineSetPoint(uint16_t setPoint);
-# 717 "./mcc_generated_files/adc.h"
+# 716 "./mcc_generated_files/adc.h"
 void ADC_SetUpperThreshold(uint16_t upperThreshold);
-# 741 "./mcc_generated_files/adc.h"
+# 740 "./mcc_generated_files/adc.h"
 void ADC_SetLowerThreshold(uint16_t lowerThreshold);
-# 766 "./mcc_generated_files/adc.h"
+# 765 "./mcc_generated_files/adc.h"
 uint16_t ADC_GetErrorCalculation(void);
-# 790 "./mcc_generated_files/adc.h"
+# 789 "./mcc_generated_files/adc.h"
 __attribute__((inline)) void ADC_EnableDoubleSampling(void);
-# 814 "./mcc_generated_files/adc.h"
+# 813 "./mcc_generated_files/adc.h"
 __attribute__((inline)) void ADC_EnableContinuousConversion(void);
-# 838 "./mcc_generated_files/adc.h"
+# 837 "./mcc_generated_files/adc.h"
 __attribute__((inline)) void ADC_DisableContinuousConversion(void);
-# 865 "./mcc_generated_files/adc.h"
+# 864 "./mcc_generated_files/adc.h"
 _Bool ADC_HasErrorCrossedUpperThreshold(void);
-# 892 "./mcc_generated_files/adc.h"
+# 891 "./mcc_generated_files/adc.h"
 _Bool ADC_HasErrorCrossedLowerThreshold(void);
-# 917 "./mcc_generated_files/adc.h"
+# 916 "./mcc_generated_files/adc.h"
 uint8_t ADC_GetConversionStageStatus(void);
-# 938 "./mcc_generated_files/adc.h"
+# 937 "./mcc_generated_files/adc.h"
 __attribute__((inline)) void ADC_EnableChargePump(void);
-# 959 "./mcc_generated_files/adc.h"
+# 958 "./mcc_generated_files/adc.h"
 __attribute__((inline)) void ADC_DisableChargePump(void);
-# 988 "./mcc_generated_files/adc.h"
+# 987 "./mcc_generated_files/adc.h"
 void ADC_SetADIInterruptHandler(void (* InterruptHandler)(void));
-# 1017 "./mcc_generated_files/adc.h"
+# 1016 "./mcc_generated_files/adc.h"
 void ADC_SetActiveClockTuningInterruptHandler(void (* InterruptHandler)(void));
-# 1046 "./mcc_generated_files/adc.h"
+# 1045 "./mcc_generated_files/adc.h"
 void ADC_SetContext1ThresholdInterruptHandler(void (* InterruptHandler)(void));
-# 1075 "./mcc_generated_files/adc.h"
+# 1074 "./mcc_generated_files/adc.h"
 void ADC_SetContext2ThresholdInterruptHandler(void (* InterruptHandler)(void));
-# 1104 "./mcc_generated_files/adc.h"
+# 1103 "./mcc_generated_files/adc.h"
 void ADC_SetContext3ThresholdInterruptHandler(void (* InterruptHandler)(void));
-# 1133 "./mcc_generated_files/adc.h"
+# 1132 "./mcc_generated_files/adc.h"
 void ADC_SetContext4ThresholdInterruptHandler(void (* InterruptHandler)(void));
 # 56 "./mcc_generated_files/mcc.h" 2
 
@@ -41093,11 +41100,27 @@ double yn(int, double);
 # 1 "./../trace.h" 1
 # 41 "./../qconfig.h" 2
 # 1 "./../dio.h" 1
-# 36 "./../dio.h"
- void all_relays_off(void);
+# 47 "./../dio.h"
+ enum D_SW {
+  D_SW_A = 0,
+  D_SW_L,
+  D_SW_M,
+  D_SW_COUNT
+ };
 
- void aswitch(void);
- void lswitch(void);
+
+
+
+ const uint8_t sw_contact_types[D_SW_COUNT] = {
+  0,
+  0,
+  1,
+ };
+
+ void init_all_switch(void);
+ void button_press_check(void);
+
+ void all_relays_off(void);
 # 42 "./../qconfig.h" 2
 # 58 "./../qconfig.h"
 const char spin[6][20] = {
@@ -41168,7 +41191,7 @@ extern char spinners(uint8_t, const uint8_t);
     extern void can_fd_lcd_mirror(const uint8_t, char *);
 # 22 "./mxcmd.h" 2
 # 1 "./../timers.h" 1
-# 12 "./../timers.h"
+# 13 "./../timers.h"
 enum APP_TIMERS {
  TMR_INTERNAL = 0,
  TMR_MBMASTER,
@@ -41180,18 +41203,6 @@ enum APP_TIMERS {
 
  TMR_COUNT
 };
-
-enum D_SW {
- D_SW_A = 0,
- D_SW_L,
- D_SW_COUNT
-};
-
-extern uint8_t a_debounce[D_SW_COUNT];
-
-
-
-
 
 void StartTimer(const uint8_t timer, const uint16_t count);
 _Bool TimerDone(const uint8_t timer);
@@ -41276,7 +41287,7 @@ void delay_ms(const uint16_t);
  } mx_logpage_t;
 
  typedef struct B_type {
-  volatile _Bool ten_sec_flag, one_sec_flag, FM80_charged, pv_high, pv_update, once, a_switch[D_SW_COUNT], a_trigger[D_SW_COUNT];
+  volatile _Bool ten_sec_flag, one_sec_flag, FM80_charged, pv_high, pv_update, once, a_switch[D_SW_COUNT], a_trigger[D_SW_COUNT], a_type[D_SW_COUNT];
   volatile uint16_t pacing, rx_count, flush, pv_prev, day_check;
   volatile _Bool FM80_online, FM80_io;
   volatile uint8_t canbus_online, modbus_online, alt_display;
@@ -41676,7 +41687,7 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[255] = "Boot Init Display   ", info_buffer[255], log_buffer[255];
-const char *build_date = "Oct 17 2023", *build_time = "20:49:20";
+const char *build_date = "Oct 19 2023", *build_time = "09:29:23";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
@@ -41777,8 +41788,7 @@ void main(void)
  TMR2_StartTimer();
 
 
- IOCAF5_SetInterruptHandler(aswitch);
- IOCAF2_SetInterruptHandler(lswitch);
+ init_all_switch();
 
 
  init_mb_master_timers();
@@ -41800,21 +41810,19 @@ void main(void)
 
   snprintf(buffer, 255, "%s B:%X %X %X   ", build_time, STATUS, PCON0, PCON1);
 
-  wr_bm_data((void*) EB);
+
 
  }
  eaDogM_WriteStringAtPos(2, 0, buffer);
-
-
-
-
- snprintf(buffer, 255, "%s ", "Start Up Remote        ");
- eaDogM_WriteStringAtPos(3, 0, buffer);
- wdtdelay(700000);
- snprintf(buffer, 255, "%s ", "Polling MateQ84        ");
+# 366 "main.c"
  eaDogM_WriteStringAtPos(2, 0, buffer);
- wdtdelay(300000);
-# 375 "main.c"
+ snprintf(buffer, 255, "%s ", "Start Up            ");
+ eaDogM_WriteStringAtPos(3, 0, buffer);
+ wdtdelay(1000000);
+ snprintf(buffer, 255, "%s ", "Polling FM80        ");
+ eaDogM_WriteStringAtPos(2, 0, buffer);
+
+
  can_fd_tx();
 
 
@@ -41914,7 +41922,7 @@ void main(void)
 
   if (B.one_sec_flag) {
 
-
+   eaDogM_Scroll_Task();
 
    B.one_sec_flag = 0;
    B.canbus_online = (!C1TXQCONHbits.TXREQ)&0x01;
@@ -41924,8 +41932,8 @@ void main(void)
    B.modbus_online = C.data_ok;
 
 
-   can_newtime = localtime(&can_timer);
-   snprintf(buffer, 21, "%s", asctime(can_newtime));
+
+
 
   }
   if (TimerDone(TMR_SPIN)) {
@@ -41948,7 +41956,7 @@ void main(void)
     if (C.data_ok && (M.error > error_save)) {
      snprintf(buffer, 255, "EMon  %4.1fVAC   %c%c    ", lp_filter(ac, F_ac, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
 
-
+     eaDogM_WriteStringAtPos(1, 0, buffer);
 
      snprintf(info_buffer, 255, " error logged \r\n");
      if (e_update == 0) {
@@ -41958,7 +41966,7 @@ void main(void)
       snprintf(buffer, 255, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
 
 
-
+      eaDogM_WriteStringAtPos(0, 0, buffer);
 
      }
      if (e_update++ >= 10) {
@@ -41967,7 +41975,12 @@ void main(void)
      }
     } else {
      M.error = 0;
-# 561 "main.c"
+# 555 "main.c"
+     snprintf(buffer, 255, "EMon  %6.1fWh   %c%c    ", EB->bat_energy / 360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
+     eaDogM_WriteStringAtPos(1, 0, buffer);
+     snprintf(buffer, 255, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
+     eaDogM_WriteStringAtPos(0, 0, buffer);
+
     }
    }
   }
@@ -41991,8 +42004,14 @@ void main(void)
    snprintf(buffer, 255, "%s", "Log Button Pressed        ");
    eaDogM_WriteStringAtPos(2, 0, buffer);
   }
+  if (B.a_switch[D_SW_M]) {
+   do { LATBbits.LATB1 = 1; } while(0);
+   B.a_switch[D_SW_M] = 0;
+   snprintf(buffer, 255, "%s", "MISC Button Pressed        ");
+   eaDogM_WriteStringAtPos(2, 0, buffer);
+  }
 
-  can_mirror_print();
+
 
 
   do { LATDbits.LATD5 = 0; } while(0);
@@ -42078,12 +42097,12 @@ void state_init_cb(void)
   off_delay = 0;
   snprintf(buffer, 255, "FM80 Online         ");
 
-
+  eaDogM_WriteStringAtPos(3, 0, buffer);
 
  } else {
   snprintf(buffer, 255, "FM80 Offline        ");
 
-
+  eaDogM_WriteStringAtPos(3, 0, buffer);
 
   if (off_delay++ > 3) {
    B.FM80_online = 0;
@@ -42097,7 +42116,7 @@ void state_status_cb(void)
 {
  static uint16_t day_clocks = 0;
  static uint8_t status_prev = STATUS_SLEEPING;
-# 705 "main.c"
+# 710 "main.c"
  if (B.day_check++ > 1200) {
   B.day_check = 0;
   B.once = 0;

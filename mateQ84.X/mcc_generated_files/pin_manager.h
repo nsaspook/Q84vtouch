@@ -85,25 +85,25 @@
 #define channel_ANA0_SetAnalogMode()      do { ANSELAbits.ANSELA0 = 1; } while(0)
 #define channel_ANA0_SetDigitalMode()     do { ANSELAbits.ANSELA0 = 0; } while(0)
 
-// get/set channel_ANA1 aliases
-#define channel_ANA1_TRIS                 TRISAbits.TRISA1
-#define channel_ANA1_LAT                  LATAbits.LATA1
-#define channel_ANA1_PORT                 PORTAbits.RA1
-#define channel_ANA1_WPU                  WPUAbits.WPUA1
-#define channel_ANA1_OD                   ODCONAbits.ODCA1
-#define channel_ANA1_ANS                  ANSELAbits.ANSELA1
-#define channel_ANA1_SetHigh()            do { LATAbits.LATA1 = 1; } while(0)
-#define channel_ANA1_SetLow()             do { LATAbits.LATA1 = 0; } while(0)
-#define channel_ANA1_Toggle()             do { LATAbits.LATA1 = ~LATAbits.LATA1; } while(0)
-#define channel_ANA1_GetValue()           PORTAbits.RA1
-#define channel_ANA1_SetDigitalInput()    do { TRISAbits.TRISA1 = 1; } while(0)
-#define channel_ANA1_SetDigitalOutput()   do { TRISAbits.TRISA1 = 0; } while(0)
-#define channel_ANA1_SetPullup()          do { WPUAbits.WPUA1 = 1; } while(0)
-#define channel_ANA1_ResetPullup()        do { WPUAbits.WPUA1 = 0; } while(0)
-#define channel_ANA1_SetPushPull()        do { ODCONAbits.ODCA1 = 0; } while(0)
-#define channel_ANA1_SetOpenDrain()       do { ODCONAbits.ODCA1 = 1; } while(0)
-#define channel_ANA1_SetAnalogMode()      do { ANSELAbits.ANSELA1 = 1; } while(0)
-#define channel_ANA1_SetDigitalMode()     do { ANSELAbits.ANSELA1 = 0; } while(0)
+// get/set M_SWITCH aliases
+#define M_SWITCH_TRIS                 TRISAbits.TRISA1
+#define M_SWITCH_LAT                  LATAbits.LATA1
+#define M_SWITCH_PORT                 PORTAbits.RA1
+#define M_SWITCH_WPU                  WPUAbits.WPUA1
+#define M_SWITCH_OD                   ODCONAbits.ODCA1
+#define M_SWITCH_ANS                  ANSELAbits.ANSELA1
+#define M_SWITCH_SetHigh()            do { LATAbits.LATA1 = 1; } while(0)
+#define M_SWITCH_SetLow()             do { LATAbits.LATA1 = 0; } while(0)
+#define M_SWITCH_Toggle()             do { LATAbits.LATA1 = ~LATAbits.LATA1; } while(0)
+#define M_SWITCH_GetValue()           PORTAbits.RA1
+#define M_SWITCH_SetDigitalInput()    do { TRISAbits.TRISA1 = 1; } while(0)
+#define M_SWITCH_SetDigitalOutput()   do { TRISAbits.TRISA1 = 0; } while(0)
+#define M_SWITCH_SetPullup()          do { WPUAbits.WPUA1 = 1; } while(0)
+#define M_SWITCH_ResetPullup()        do { WPUAbits.WPUA1 = 0; } while(0)
+#define M_SWITCH_SetPushPull()        do { ODCONAbits.ODCA1 = 0; } while(0)
+#define M_SWITCH_SetOpenDrain()       do { ODCONAbits.ODCA1 = 1; } while(0)
+#define M_SWITCH_SetAnalogMode()      do { ANSELAbits.ANSELA1 = 1; } while(0)
+#define M_SWITCH_SetDigitalMode()     do { ANSELAbits.ANSELA1 = 0; } while(0)
 
 // get/set L_SWITCH aliases
 #define L_SWITCH_TRIS                 TRISAbits.TRISA2
@@ -633,6 +633,90 @@
  */
 void PIN_MANAGER_Initialize (void);
 
+
+
+/**
+ * @Param
+    none
+ * @Returns
+    none
+ * @Description
+    Interrupt on Change Handler for the IOCAF1 pin functionality
+ * @Example
+    IOCAF1_ISR();
+ */
+void IOCAF1_ISR(void);
+
+/**
+  @Summary
+    Interrupt Handler Setter for IOCAF1 pin interrupt-on-change functionality
+
+  @Description
+    Allows selecting an interrupt handler for IOCAF1 at application runtime
+    
+  @Preconditions
+    Pin Manager intializer called
+
+  @Returns
+    None.
+
+  @Param
+    InterruptHandler function pointer.
+
+  @Example
+    PIN_MANAGER_Initialize();
+    IOCAF1_SetInterruptHandler(MyInterruptHandler);
+
+*/
+void IOCAF1_SetInterruptHandler(void (* InterruptHandler)(void));
+
+/**
+  @Summary
+    Dynamic Interrupt Handler for IOCAF1 pin
+
+  @Description
+    This is a dynamic interrupt handler to be used together with the IOCAF1_SetInterruptHandler() method.
+    This handler is called every time the IOCAF1 ISR is executed and allows any function to be registered at runtime.
+    
+  @Preconditions
+    Pin Manager intializer called
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    PIN_MANAGER_Initialize();
+    IOCAF1_SetInterruptHandler(IOCAF1_InterruptHandler);
+
+*/
+extern void (*IOCAF1_InterruptHandler)(void);
+
+/**
+  @Summary
+    Default Interrupt Handler for IOCAF1 pin
+
+  @Description
+    This is a predefined interrupt handler to be used together with the IOCAF1_SetInterruptHandler() method.
+    This handler is called every time the IOCAF1 ISR is executed. 
+    
+  @Preconditions
+    Pin Manager intializer called
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    PIN_MANAGER_Initialize();
+    IOCAF1_SetInterruptHandler(IOCAF1_DefaultInterruptHandler);
+
+*/
+void IOCAF1_DefaultInterruptHandler(void);
 
 
 /**

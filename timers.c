@@ -6,8 +6,6 @@
 #pragma warning disable 1090
 
 extern volatile uint16_t tickCount[TMR_COUNT];
-static uint8_t get_d_switch(uint8_t i);
-uint8_t a_debounce[D_SW_COUNT] = {0, 0};
 
 //**********************************************************************************************************************
 // Start one of the software timers
@@ -39,29 +37,10 @@ void WaitMs(const uint16_t numMilliseconds)
 } //(timer interrupt will wake part from idle)
 
 /*
- * debounce button status parser
- */
-static uint8_t get_d_switch(uint8_t i)
-{
-	switch (i) {
-	case D_SW_A:
-		return A_SWITCH_GetValue();
-		break;
-	case D_SW_L:
-		return L_SWITCH_GetValue();
-		break;
-	default:
-		return A_SWITCH_GetValue();
-		break;
-	}
-}
-
-/*
  * runs in timer #4 interrupt from FM_io(void)
  */
 void timer_ms_tick(const uint32_t status, const uintptr_t context)
 {
-
 	//Decrement each software timer
 	for (uint16_t i = 0; i < TMR_COUNT; i++) {
 		if (tickCount[i] != 0) {
@@ -71,17 +50,7 @@ void timer_ms_tick(const uint32_t status, const uintptr_t context)
 	/*
 	 * check for button presses
 	 */
-	for (uint8_t i = 0; i < D_SW_COUNT; i++) {
-		if (B.a_trigger[i]) {
-			if ((++a_debounce[i] > debounce_time) && (get_d_switch(i) == SW_NC)) {
-				a_debounce[i] = 0;
-				B.a_trigger[i] = false;
-				B.a_switch[i] = true;
-			}
-		} else {
-			a_debounce[i] = 0;
-		}
-	}
+	button_press_check();
 }
 
 /*
