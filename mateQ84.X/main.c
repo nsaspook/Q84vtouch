@@ -571,7 +571,7 @@ void main(void)
 				B.alt_display = 0;
 			}
 			EB->alt_display = B.alt_display;
-			snprintf(buffer, MAX_B_BUF, "%d %s", B.alt_display, "Alt Button Pressed        ");
+			snprintf(buffer, MAX_B_BUF, "%d %s", B.alt_display, "Alt Button \337\364       ");
 			eaDogM_WriteStringAtPos(2, 0, buffer);
 		}
 		if (B.a_switch[D_SW_L]) {
@@ -579,6 +579,7 @@ void main(void)
 			B.a_switch[D_SW_L] = false;
 			snprintf(buffer, MAX_B_BUF, "%s", "Log Button Pressed        ");
 			eaDogM_WriteStringAtPos(2, 0, buffer);
+			B.LOG=true;
 		}
 		if (B.a_switch[D_SW_M]) {
 			MM_ERROR_S;

@@ -147,7 +147,7 @@ extern "C" {
 	typedef struct B_type {
 		volatile bool ten_sec_flag, one_sec_flag, FM80_charged, pv_high, pv_update, once, a_switch[D_SW_COUNT], a_trigger[D_SW_COUNT], a_type[D_SW_COUNT];
 		volatile uint16_t pacing, rx_count, flush, pv_prev, day_check;
-		volatile bool FM80_online, FM80_io;
+		volatile bool FM80_online, FM80_io, LOG;
 		volatile uint8_t canbus_online, modbus_online, alt_display;
 		float run_time, net_balance;
 		uint16_t mui[10];

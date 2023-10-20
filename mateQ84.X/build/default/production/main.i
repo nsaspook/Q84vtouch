@@ -41100,13 +41100,14 @@ double yn(int, double);
 # 1 "./../trace.h" 1
 # 41 "./../qconfig.h" 2
 # 1 "./../dio.h" 1
-# 47 "./../dio.h"
+# 56 "./../dio.h"
  enum D_SW {
   D_SW_A = 0,
   D_SW_L,
   D_SW_M,
   D_SW_COUNT
  };
+
 
 
 
@@ -41289,7 +41290,7 @@ void delay_ms(const uint16_t);
  typedef struct B_type {
   volatile _Bool ten_sec_flag, one_sec_flag, FM80_charged, pv_high, pv_update, once, a_switch[D_SW_COUNT], a_trigger[D_SW_COUNT], a_type[D_SW_COUNT];
   volatile uint16_t pacing, rx_count, flush, pv_prev, day_check;
-  volatile _Bool FM80_online, FM80_io;
+  volatile _Bool FM80_online, FM80_io, LOG;
   volatile uint8_t canbus_online, modbus_online, alt_display;
   float run_time, net_balance;
   uint16_t mui[10];
@@ -41687,7 +41688,7 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[255] = "Boot Init Display   ", info_buffer[255], log_buffer[255];
-const char *build_date = "Oct 19 2023", *build_time = "09:29:23";
+const char *build_date = "Oct 19 2023", *build_time = "17:06:05";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
@@ -41995,7 +41996,7 @@ void main(void)
     B.alt_display = 0;
    }
    EB->alt_display = B.alt_display;
-   snprintf(buffer, 255, "%d %s", B.alt_display, "Alt Button Pressed        ");
+   snprintf(buffer, 255, "%d %s", B.alt_display, "Alt Button \337\364       ");
    eaDogM_WriteStringAtPos(2, 0, buffer);
   }
   if (B.a_switch[D_SW_L]) {
@@ -42003,6 +42004,7 @@ void main(void)
    B.a_switch[D_SW_L] = 0;
    snprintf(buffer, 255, "%s", "Log Button Pressed        ");
    eaDogM_WriteStringAtPos(2, 0, buffer);
+   B.LOG=1;
   }
   if (B.a_switch[D_SW_M]) {
    do { LATBbits.LATB1 = 1; } while(0);
@@ -42116,7 +42118,7 @@ void state_status_cb(void)
 {
  static uint16_t day_clocks = 0;
  static uint8_t status_prev = STATUS_SLEEPING;
-# 710 "main.c"
+# 711 "main.c"
  if (B.day_check++ > 1200) {
   B.day_check = 0;
   B.once = 0;

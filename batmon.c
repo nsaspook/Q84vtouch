@@ -88,8 +88,13 @@ void get_bm_data(EB_data * EB)
 	 * check for commands using the logging serial port
 	 * 'F' FULL,	reset battery energy to max and increase one battery charge cycle
 	 */
-	if (UART2_is_rx_ready()) {
-		rxData = UART2_Read();
+	if (UART2_is_rx_ready() || B.LOG) {
+		if (B.LOG) {
+			B.LOG = false;
+			rxData = 'L';
+		} else {
+			rxData = UART2_Read();
+		}
 		switch (rxData) {
 		case 'A': // alternative data display for rows 2 and 3
 			B.alt_display = MAX_ALT_DIS;
