@@ -2,7 +2,7 @@
 #include "dio.h"
 #include "mateQ84.X/mxcmd.h"
 
-static uint8_t a_debounce[D_SW_COUNT];
+static uint8_t a_debounce[D_SW_COUNT] = {0};
 static uint8_t get_d_switch(uint8_t i);
 
 static void aswitch(void);
@@ -22,16 +22,19 @@ void all_relays_off(void)
 static void aswitch(void)
 {
 	B.a_trigger[D_SW_A] = true;
+	a_debounce[D_SW_A] = 0;
 }
 
 static void lswitch(void)
 {
 	B.a_trigger[D_SW_L] = true;
+	a_debounce[D_SW_L] = 0;
 }
 
 static void mswitch(void)
 {
 	B.a_trigger[D_SW_M] = true;
+	a_debounce[D_SW_M] = 0;
 }
 
 void init_all_switch(void)
