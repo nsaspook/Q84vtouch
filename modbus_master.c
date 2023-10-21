@@ -11,7 +11,7 @@ volatile M_data M = {
 };
 
 volatile M_time_data MT = {
-    .clock_10hz = 0,
+    .clock_500ahz = 0,
     .clock_2hz = 0,
     .clock_500hz = 0,
 };
@@ -241,7 +241,7 @@ int8_t master_controller_work(C_data * client) {
         case CLEAR:
             client->trace = T_clear;
             clear_2hz();
-            clear_10hz();
+            clear_500ahz();
             client->cstate = INIT;
             client->modbus_command = client->mcmd++; // sequence modbus commands to client
             if (client->modbus_command == G_CONFIG && client->config_ok) { // skip if we have valid data from client
@@ -311,7 +311,7 @@ int8_t master_controller_work(C_data * client) {
              * MODBUS master query speed
              */
 #ifdef	FASTQ
-            if (get_10hz(false) >= CDELAY) {
+            if (get_500ahz(false) >= CDELAY) {
 #else
             if (get_2hz(false) >= QDELAY) {
 #endif
@@ -392,8 +392,8 @@ void clear_2hz(void) {
     MT.clock_2hz = 0;
 }
 
-void clear_10hz(void) {
-    MT.clock_10hz = 0;
+void clear_500ahz(void) {
+    MT.clock_500ahz = 0;
 }
 
 void clear_500hz(void) {
@@ -412,17 +412,17 @@ uint32_t get_2hz(const uint8_t mode) {
 }
 
 /*
- * fake timer, really 500Hz updates
+ * 500Hz updates
  * used for fast updates timing
  */
-uint32_t get_10hz(const uint8_t mode) {
+uint32_t get_500ahz(const uint8_t mode) {
     static uint32_t tmp = 0;
 
     if (mode) {
         return tmp;
     }
 
-    tmp = MT.clock_10hz;
+    tmp = MT.clock_500ahz;
     return tmp;
 }
 
@@ -467,7 +467,6 @@ static void half_dup_rx(const bool delay) {
 void timer_500ms_tick(void) {
     INT_TRACE;
     MT.clock_2hz++;
-    MT.clock_blinks++;
 }
 
 // ISR function for TMR6
@@ -475,7 +474,7 @@ void timer_500ms_tick(void) {
 void timer_2ms_tick(void) {
     INT_TRACE;
     MT.clock_500hz++;
-    MT.clock_10hz++;
+    MT.clock_500ahz++;
 }
 
 /*

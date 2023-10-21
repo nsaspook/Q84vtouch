@@ -39335,13 +39335,6 @@ void DMA1_SetORIInterruptHandler(void (* InterruptHandler)(void));
 void DMA1_DefaultInterruptHandler(void);
 # 57 "./mcc_generated_files/mcc.h" 2
 
-# 1 "./mcc_generated_files/nco1.h" 1
-# 93 "./mcc_generated_files/nco1.h"
-void NCO1_Initialize(void);
-# 128 "./mcc_generated_files/nco1.h"
-_Bool NCO1_GetOutputStatus(void);
-# 58 "./mcc_generated_files/mcc.h" 2
-
 # 1 "./mcc_generated_files/tmr5.h" 1
 # 100 "./mcc_generated_files/tmr5.h"
 void TMR5_Initialize(void);
@@ -39365,7 +39358,7 @@ uint8_t TMR5_CheckGateValueStatus(void);
 extern void (*TMR5_InterruptHandler)(void);
 # 404 "./mcc_generated_files/tmr5.h"
 void TMR5_DefaultInterruptHandler(void);
-# 59 "./mcc_generated_files/mcc.h" 2
+# 58 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/tmr6.h" 1
 # 79 "./mcc_generated_files/tmr6.h"
@@ -39658,7 +39651,7 @@ void TMR6_LoadPeriodRegister(uint8_t periodVal);
 extern void (*TMR6_InterruptHandler)(void);
 # 913 "./mcc_generated_files/tmr6.h"
 void TMR6_DefaultInterruptHandler(void);
-# 60 "./mcc_generated_files/mcc.h" 2
+# 59 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/tmr4.h" 1
 # 79 "./mcc_generated_files/tmr4.h"
@@ -39951,7 +39944,7 @@ void TMR4_LoadPeriodRegister(uint8_t periodVal);
 extern void (*TMR4_InterruptHandler)(void);
 # 913 "./mcc_generated_files/tmr4.h"
 void TMR4_DefaultInterruptHandler(void);
-# 61 "./mcc_generated_files/mcc.h" 2
+# 60 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/tmr2.h" 1
 # 79 "./mcc_generated_files/tmr2.h"
@@ -40244,6 +40237,13 @@ void TMR2_LoadPeriodRegister(uint8_t periodVal);
 extern void (*TMR2_InterruptHandler)(void);
 # 913 "./mcc_generated_files/tmr2.h"
 void TMR2_DefaultInterruptHandler(void);
+# 61 "./mcc_generated_files/mcc.h" 2
+
+# 1 "./mcc_generated_files/clc8.h" 1
+# 91 "./mcc_generated_files/clc8.h"
+void CLC8_Initialize(void);
+# 113 "./mcc_generated_files/clc8.h"
+_Bool CLC8_OutputStatusGet(void);
 # 62 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/tmr0.h" 1
@@ -40267,19 +40267,12 @@ extern void (*TMR0_InterruptHandler)(void);
 void TMR0_DefaultInterruptHandler(void);
 # 63 "./mcc_generated_files/mcc.h" 2
 
-# 1 "./mcc_generated_files/clc8.h" 1
-# 91 "./mcc_generated_files/clc8.h"
-void CLC8_Initialize(void);
-# 113 "./mcc_generated_files/clc8.h"
-_Bool CLC8_OutputStatusGet(void);
-# 64 "./mcc_generated_files/mcc.h" 2
-
 # 1 "./mcc_generated_files/clc7.h" 1
 # 91 "./mcc_generated_files/clc7.h"
 void CLC7_Initialize(void);
 # 113 "./mcc_generated_files/clc7.h"
 _Bool CLC7_OutputStatusGet(void);
-# 65 "./mcc_generated_files/mcc.h" 2
+# 64 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/uart2.h" 1
 # 75 "./mcc_generated_files/uart2.h"
@@ -40332,7 +40325,7 @@ void (*UART2_TxInterruptHandler)(void);
 void UART2_SetRxInterruptHandler(void (* InterruptHandler)(void));
 # 574 "./mcc_generated_files/uart2.h"
 void UART2_SetTxInterruptHandler(void (* InterruptHandler)(void));
-# 66 "./mcc_generated_files/mcc.h" 2
+# 65 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/uart1.h" 1
 # 74 "./mcc_generated_files/uart1.h"
@@ -40367,7 +40360,7 @@ void UART1_SetFramingErrorHandler(void (* interruptHandler)(void));
 void UART1_SetOverrunErrorHandler(void (* interruptHandler)(void));
 # 450 "./mcc_generated_files/uart1.h"
 void UART1_SetErrorHandler(void (* interruptHandler)(void));
-# 67 "./mcc_generated_files/mcc.h" 2
+# 66 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/uart5.h" 1
 # 74 "./mcc_generated_files/uart5.h"
@@ -40420,7 +40413,7 @@ void (*UART5_TxInterruptHandler)(void);
 void UART5_SetRxInterruptHandler(void (* InterruptHandler)(void));
 # 573 "./mcc_generated_files/uart5.h"
 void UART5_SetTxInterruptHandler(void (* InterruptHandler)(void));
-# 68 "./mcc_generated_files/mcc.h" 2
+# 67 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/can1.h" 1
 # 56 "./mcc_generated_files/can1.h"
@@ -40599,7 +40592,7 @@ void CAN1_SetTXQNotFullHandler(void (*handler)(void));
 void CAN1_SetFIFO2nullHandler(void (*handler)(void));
 # 1460 "./mcc_generated_files/can1.h"
 void CAN1_SetFIFO3nullHandler(void (*handler)(void));
-# 69 "./mcc_generated_files/mcc.h" 2
+# 68 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/spi1.h" 1
 # 59 "./mcc_generated_files/spi1.h"
@@ -40616,14 +40609,14 @@ void SPI1_WriteBlock(void *block, size_t blockSize);
 void SPI1_ReadBlock(void *block, size_t blockSize);
 void SPI1_WriteByte(uint8_t byte);
 uint8_t SPI1_ReadByte(void);
-# 70 "./mcc_generated_files/mcc.h" 2
-# 85 "./mcc_generated_files/mcc.h"
+# 69 "./mcc_generated_files/mcc.h" 2
+# 84 "./mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
-# 98 "./mcc_generated_files/mcc.h"
+# 97 "./mcc_generated_files/mcc.h"
 void OSCILLATOR_Initialize(void);
-# 111 "./mcc_generated_files/mcc.h"
+# 110 "./mcc_generated_files/mcc.h"
 void PMD_Initialize(void);
-# 123 "./mcc_generated_files/mcc.h"
+# 122 "./mcc_generated_files/mcc.h"
 void SystemArbiter_Initialize(void);
 # 21 "./mxcmd.h" 2
 # 1 "./../eadog.h" 1
@@ -41123,7 +41116,7 @@ double yn(int, double);
 
  void all_relays_off(void);
 # 42 "./../qconfig.h" 2
-# 58 "./../qconfig.h"
+# 67 "./../qconfig.h"
 const char spin[6][20] = {
  "||//--",
  "||//--\\\\",
@@ -41214,7 +41207,7 @@ void delay_ms(const uint16_t);
 # 23 "./mxcmd.h" 2
 
 
- const char build_version[] = "V1.94 FM80 Q84";
+ const char build_version[] = "V1.95 FM80 Q84";
 # 76 "./mxcmd.h"
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
@@ -41291,7 +41284,7 @@ void delay_ms(const uint16_t);
   volatile _Bool ten_sec_flag, one_sec_flag, FM80_charged, pv_high, pv_update, once, a_switch[D_SW_COUNT], a_trigger[D_SW_COUNT], a_type[D_SW_COUNT];
   volatile uint16_t pacing, rx_count, flush, pv_prev, day_check;
   volatile _Bool FM80_online, FM80_io, LOG;
-  volatile uint8_t canbus_online, modbus_online, alt_display;
+  volatile uint8_t canbus_online, modbus_online, alt_display, a_pin[D_SW_COUNT];
   float run_time, net_balance;
   uint16_t mui[10];
   uint16_t fwrev[3];
@@ -41390,11 +41383,8 @@ void delay_ms(const uint16_t);
 
  typedef struct M_time_data {
   uint32_t clock_500hz;
-  uint32_t clock_10hz;
+  uint32_t clock_500ahz;
   uint32_t clock_2hz;
-  uint8_t clock_blinks;
-  uint8_t num_blinks;
-  uint8_t auto_rx;
  } M_time_data;
 
  typedef struct M_data {
@@ -41532,7 +41522,7 @@ void delay_ms(const uint16_t);
   0x44, 0x84, 0x85, 0x45, 0x87, 0x47, 0x46, 0x86, 0x82, 0x42,
   0x43, 0x83, 0x41, 0x81, 0x80, 0x40
  };
-# 322 "./../modbus_master.h"
+# 319 "./../modbus_master.h"
  uint16_t crc16(volatile uint8_t *, uint16_t);
  uint16_t modbus_rtu_send_msg(void *, const void *, uint16_t);
 
@@ -41544,10 +41534,10 @@ void delay_ms(const uint16_t);
  int16_t mb16_swap(const int16_t);
 
  void clear_2hz(void);
- void clear_10hz(void);
+ void clear_500ahz(void);
  void clear_500hz(void);
  uint32_t get_2hz(const uint8_t);
- uint32_t get_10hz(const uint8_t);
+ uint32_t get_500ahz(const uint8_t);
  uint32_t get_500hz(const uint8_t);
 
  void timer_500ms_tick(void);
@@ -41688,7 +41678,7 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[255] = "Boot Init Display   ", info_buffer[255], log_buffer[255];
-const char *build_date = "Oct 20 2023", *build_time = "19:07:20";
+const char *build_date = "Oct 21 2023", *build_time = "10:48:37";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 

@@ -159,11 +159,8 @@ extern "C" {
 
 	typedef struct M_time_data { // ISR used, mainly for non-atomic mod problems
 		uint32_t clock_500hz;
-		uint32_t clock_10hz;
+		uint32_t clock_500ahz;
 		uint32_t clock_2hz;
-		uint8_t clock_blinks;
-		uint8_t num_blinks;
-		uint8_t auto_rx;
 	} M_time_data;
 
 	typedef struct M_data { // ISR used, mainly for non-atomic mod problems
@@ -330,10 +327,10 @@ extern "C" {
 	int16_t mb16_swap(const int16_t);
 
 	void clear_2hz(void);
-	void clear_10hz(void);
+	void clear_500ahz(void);
 	void clear_500hz(void);
 	uint32_t get_2hz(const uint8_t);
-	uint32_t get_10hz(const uint8_t);
+	uint32_t get_500ahz(const uint8_t);
 	uint32_t get_500hz(const uint8_t);
 
 	void timer_500ms_tick(void);

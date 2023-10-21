@@ -53,6 +53,15 @@
 //#define SDEBUG		// FM80 date/time DIAG scrolling text debug messages
 #define NHD		// 4x20 SPI display
 
+/*
+ * timers used
+ * 0	one second task
+ * 2	ten second task
+ * 4	500us FM80 I/O polling, sw timers and button press task
+ * 5	500ms modbus task
+ * 6	2ms modbus task
+ */
+
 /* spinner defines */
 #define MAX_SHAPES  6
 const char spin[MAX_SHAPES][20] = {

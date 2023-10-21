@@ -76,12 +76,16 @@ static uint8_t get_d_switch(uint8_t i)
  */
 void button_press_check(void)
 {
+#ifdef TRACE
+	IO_RD7_SetHigh();
+#endif
 	/*
 	 * check for button presses
 	 */
 	for (uint8_t i = 0; i < D_SW_COUNT; i++) {
+		B.a_pin[i] = get_d_switch(i); // update the pin value at every interrupt
 		if (B.a_trigger[i]) {
-			if ((++a_debounce[i] > debounce_time) && (get_d_switch(i) == B.a_type[i])) {
+			if ((++a_debounce[i] > debounce_time) && (B.a_pin[i] == B.a_type[i])) {
 				a_debounce[i] = 0;
 				B.a_trigger[i] = false;
 				B.a_switch[i] = true;
@@ -90,4 +94,7 @@ void button_press_check(void)
 			a_debounce[i] = 0;
 		}
 	}
+#ifdef TRACE
+	IO_RD7_SetLow();
+#endif
 }

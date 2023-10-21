@@ -22,7 +22,7 @@ extern "C" {
 #include "../timers.h"
 
 #define VER	1
-	const char build_version[] = "V1.94 FM80 Q84";
+	const char build_version[] = "V1.95 FM80 Q84";
 	/*
 	 * code changes
 	 * 1.55 remove critical section interrupt disables for FM80 serial
@@ -53,7 +53,7 @@ extern "C" {
 	 * 1.91 LCD command timing fixes
 	 * 1.92 reorg trace signal names and add LATE status to canbus info packet to sync remotes
 	 * 1.93 send/receive blob binary data can data packets
-	 * add button functions and debouncing
+	 * 1.94, 1.95 add button functions and debouncing
 	 */
 
 #define MAX_B_BUF	255
@@ -148,7 +148,7 @@ extern "C" {
 		volatile bool ten_sec_flag, one_sec_flag, FM80_charged, pv_high, pv_update, once, a_switch[D_SW_COUNT], a_trigger[D_SW_COUNT], a_type[D_SW_COUNT];
 		volatile uint16_t pacing, rx_count, flush, pv_prev, day_check;
 		volatile bool FM80_online, FM80_io, LOG;
-		volatile uint8_t canbus_online, modbus_online, alt_display;
+		volatile uint8_t canbus_online, modbus_online, alt_display, a_pin[D_SW_COUNT];
 		float run_time, net_balance;
 		uint16_t mui[10];
 		uint16_t fwrev[3];
