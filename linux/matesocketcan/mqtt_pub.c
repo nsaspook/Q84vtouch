@@ -70,7 +70,7 @@ int mqtt_check(uint8_t * application_message)
 		return -1;
 	}
 	/* publish the logging data */
-	mqtt_publish(&client, topic, application_message, strlen(application_message) - 2, MQTT_PUBLISH_QOS_0);
+	mqtt_publish(&client, topic, application_message, strlen(application_message), MQTT_PUBLISH_QOS_0);
 
 	/* check for errors */
 	if (client.error != MQTT_OK) {

@@ -42,6 +42,7 @@
 #include <sys/socket.h>
 #include <sys/time.h>
 #include <sys/types.h>
+#include <cjson/cJSON.h>
 
 #include <linux/can.h>
 #include <linux/can/raw.h>
@@ -80,6 +81,8 @@ static int is_extended_frame_format = 1;
 uint8_t full_buffer[CAN_FULL_BUFFER], data_buffer[CAN_FULL_BUFFER];
 int sec_30;
 char *token;
+
+cJSON *json;
 
 long long current_timestamp(void);
 
@@ -121,6 +124,7 @@ static void print_usage(char *prg)
 static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 {
 	int i;
+	double energy, load, solar;
 
 	if (print_hex) {
 		printf("%04x: ", id);
@@ -148,7 +152,45 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 
 		if (id == EMON_SU) {
 			fprintf(stdout, "log %s", data_buffer);
-			mqtt_check(data_buffer);
+			token = strtok(data_buffer, ",");
+			if (token != NULL) {
+				/*
+				 * parse the string for varible values
+				 */
+				token = strtok(NULL, ",");
+				token = strtok(NULL, ",");
+				token = strtok(NULL, ",");
+				token = strtok(NULL, ",");
+				token = strtok(NULL, ",");
+				token = strtok(NULL, ",");
+				/*
+				 * convert this token into a double variable for the JSON data
+				 */
+				solar = atof(token);
+				fprintf(stderr, " log variable: %s ", token);
+				token = strtok(NULL, ",");
+				load = atof(token);
+				fprintf(stderr, " %s ", token);
+				token = strtok(NULL, ",");
+				token = strtok(NULL, ",");
+				energy = atof(token);
+
+				fprintf(stderr, " %s\r\n", token);
+			}
+
+			json = cJSON_CreateObject();
+			cJSON_AddStringToObject(json, "name", "mateq84");
+			cJSON_AddNumberToObject(json, "energy", energy);
+			cJSON_AddNumberToObject(json, "load", load);
+			cJSON_AddNumberToObject(json, "solar", solar);
+			cJSON_AddStringToObject(json, "system", "FM80 solar monitor");
+			// convert the cJSON object to a JSON string 
+			char *json_str = cJSON_Print(json);
+
+			mqtt_check(json_str);
+
+			cJSON_free(json_str);
+			cJSON_Delete(json);
 		}
 		if (id == EMON_ER) {
 			fprintf(stderr, "%s", full_buffer);
