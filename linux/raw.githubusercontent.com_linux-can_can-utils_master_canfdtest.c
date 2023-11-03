@@ -20,7 +20,7 @@
 
 /*
  * Logging only version for EM540 data from the mateQ84 controller module
- * presets have been defaulted for proper CANFD operation using the 
+ * presets have been defaulted for proper CANFD operation using the
  * PU2CANFD USB adapter with 64 byte payloads
  */
 
@@ -45,6 +45,7 @@
 
 #include <linux/can.h>
 #include <linux/can/raw.h>
+#include "matesocketcan/mqtt_pub.h"
 
 #define CAN_MSG_ID_PING  0x80000002
 #define CAN_MSG_ID_PING_X 0x80000003
@@ -147,6 +148,7 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 
 		if (id == EMON_SU) {
 			fprintf(stdout, "log %s", data_buffer);
+			mqtt_check(data_buffer);
 		}
 		if (id == EMON_ER) {
 			fprintf(stderr, "%s", full_buffer);
@@ -483,6 +485,8 @@ int main(int argc, char *argv[])
 
 	sec_30 = time(NULL);
 
+	mqtt_socket();
+
 	while ((opt = getopt(argc, argv, "bdef:gi:l:o:s:vx?")) != -1) {
 		switch (opt) {
 		case 'b':
@@ -645,6 +649,7 @@ int main(int argc, char *argv[])
 
 	if (verbose) {
 		printf("Exiting...\n");
+		mqtt_exit();
 	}
 
 	close(sockfd);
