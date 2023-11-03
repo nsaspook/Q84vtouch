@@ -1,6 +1,5 @@
-/**
- * @file
- * A simple program to that publishes the current time whenever ENTER is pressed.
+/*
+ * MQTT routines for mateQ84 solar energy monitor
  */
 #include <unistd.h>
 #include <stdlib.h>
@@ -26,7 +25,9 @@ pthread_t client_daemon;
  */
 int mqtt_socket(void)
 {
-	addr = "hp8.sma2.rain.com";
+	//	addr = "hp8.sma2.rain.com"; // internal house server/broker
+
+	addr = "test.mosquitto.org"; // cloud testing server
 	port = "1883";
 	topic = "mateq84";
 
@@ -68,7 +69,7 @@ int mqtt_check(uint8_t * application_message)
 	if (strlen(application_message) < 3) {
 		return -1;
 	}
-	/* publish the time */
+	/* publish the logging data */
 	mqtt_publish(&client, topic, application_message, strlen(application_message) - 2, MQTT_PUBLISH_QOS_0);
 
 	/* check for errors */
