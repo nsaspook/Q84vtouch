@@ -48,6 +48,8 @@
 #include <linux/can/raw.h>
 #include "matesocketcan/mqtt_pub.h"
 
+#define LOG_VERSION            "v00.5"
+
 #define CAN_MSG_ID_PING  0x80000002
 #define CAN_MSG_ID_PING_X 0x80000003
 #define EMON_SL   0x80000002 // error reporting
@@ -124,7 +126,7 @@ static void print_usage(char *prg)
 static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 {
 	int i;
-	double energy, load, solar;
+	double benergy, acenergy, load, solar, bvolts, bamps, pvolts, pamps, pwatts;
 
 	if (print_hex) {
 		printf("%04x: ", id);
@@ -158,31 +160,45 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 				 * parse the string for varible values
 				 */
 				token = strtok(NULL, ",");
+				bamps = atof(token);
 				token = strtok(NULL, ",");
+				bvolts = atof(token);
 				token = strtok(NULL, ",");
+				pamps = atof(token);
 				token = strtok(NULL, ",");
+				pvolts = atof(token);
 				token = strtok(NULL, ",");
+				pwatts = atof(token);
 				token = strtok(NULL, ",");
 				/*
 				 * convert this token into a double variable for the JSON data
 				 */
 				solar = atof(token);
-				fprintf(stderr, " log variable: %s ", token);
+				fprintf(stderr, " %s %s log variable: %s ", DATA_MQTT_SOLAR, ADDR_MQTT, token);
 				token = strtok(NULL, ",");
 				load = atof(token);
 				fprintf(stderr, " %s ", token);
 				token = strtok(NULL, ",");
 				token = strtok(NULL, ",");
-				energy = atof(token);
+				benergy = atof(token);
 
 				fprintf(stderr, " %s\r\n", token);
+				token = strtok(NULL, ",");
+				token = strtok(NULL, ",");
+				acenergy = atof(token);
 			}
 
 			json = cJSON_CreateObject();
 			cJSON_AddStringToObject(json, "name", "mateq84");
-			cJSON_AddNumberToObject(json, "energy", energy);
+			cJSON_AddNumberToObject(json, "benergy", benergy);
+			cJSON_AddNumberToObject(json, "acenergy", acenergy);
 			cJSON_AddNumberToObject(json, "load", load);
 			cJSON_AddNumberToObject(json, "solar", solar);
+			cJSON_AddNumberToObject(json, "bamps", bamps);
+			cJSON_AddNumberToObject(json, "bvolts", bvolts);
+			cJSON_AddNumberToObject(json, "pamps", pamps);
+			cJSON_AddNumberToObject(json, "pvolts", pvolts);
+			cJSON_AddNumberToObject(json, "pwatts", pwatts);
 			cJSON_AddStringToObject(json, "system", "FM80 solar monitor");
 			// convert the cJSON object to a JSON string 
 			char *json_str = cJSON_Print(json);
@@ -528,6 +544,8 @@ int main(int argc, char *argv[])
 	sec_30 = time(NULL);
 
 	mqtt_socket();
+
+	printf("\r\n log version %s : mqtt version %s\r\n", LOG_VERSION, MQTT_VERSION);
 
 	while ((opt = getopt(argc, argv, "bdef:gi:l:o:s:vx?")) != -1) {
 		switch (opt) {

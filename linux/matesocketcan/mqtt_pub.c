@@ -27,9 +27,9 @@ int mqtt_socket(void)
 {
 	//	addr = "hp8.sma2.rain.com"; // internal house server/broker
 
-	addr = "test.mosquitto.org"; // cloud testing server
+	addr = ADDR_MQTT; // cloud testing server
 	port = "1883";
-	topic = "mateq84";
+	topic = DATA_MQTT_SOLAR;
 
 	/* open the non-blocking TCP socket (connecting to the broker) */
 	sockfd = open_nb_socket_mqtt(addr, port);
@@ -70,7 +70,7 @@ int mqtt_check(uint8_t * application_message)
 		return -1;
 	}
 	/* publish the logging data */
-	mqtt_publish(&client, topic, application_message, strlen(application_message), MQTT_PUBLISH_QOS_0);
+	mqtt_publish(&client, topic, application_message, strlen(application_message), MQTT_PUBLISH_QOS_1);
 
 	/* check for errors */
 	if (client.error != MQTT_OK) {
