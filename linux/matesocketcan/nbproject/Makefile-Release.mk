@@ -63,27 +63,27 @@ LDLIBSOPTIONS=`pkg-config --libs libcjson` `pkg-config --libs libcjson_utils`
 
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/matesocketcan: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/matesocketcan ${OBJECTFILES} ${LDLIBSOPTIONS}
+	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/matesocketcan ${OBJECTFILES} ${LDLIBSOPTIONS} -s
 
 ${OBJECTDIR}/_ext/5c0/raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.o: ../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c
 	${MKDIR} -p ${OBJECTDIR}/_ext/5c0
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 `pkg-config --cflags libcjson` `pkg-config --cflags libcjson_utils`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5c0/raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.o ../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c
+	$(COMPILE.c) -O3 -s `pkg-config --cflags libcjson` `pkg-config --cflags libcjson_utils`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5c0/raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.o ../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c
 
 ${OBJECTDIR}/mqtt.o: mqtt.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 `pkg-config --cflags libcjson` `pkg-config --cflags libcjson_utils`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/mqtt.o mqtt.c
+	$(COMPILE.c) -O3 -s `pkg-config --cflags libcjson` `pkg-config --cflags libcjson_utils`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/mqtt.o mqtt.c
 
 ${OBJECTDIR}/mqtt_pal.o: mqtt_pal.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 `pkg-config --cflags libcjson` `pkg-config --cflags libcjson_utils`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/mqtt_pal.o mqtt_pal.c
+	$(COMPILE.c) -O3 -s `pkg-config --cflags libcjson` `pkg-config --cflags libcjson_utils`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/mqtt_pal.o mqtt_pal.c
 
 ${OBJECTDIR}/mqtt_pub.o: mqtt_pub.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 `pkg-config --cflags libcjson` `pkg-config --cflags libcjson_utils`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/mqtt_pub.o mqtt_pub.c
+	$(COMPILE.c) -O3 -s `pkg-config --cflags libcjson` `pkg-config --cflags libcjson_utils`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/mqtt_pub.o mqtt_pub.c
 
 # Subprojects
 .build-subprojects:

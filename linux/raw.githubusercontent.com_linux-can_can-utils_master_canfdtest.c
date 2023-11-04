@@ -22,6 +22,10 @@
  * Logging only version for EM540 data from the mateQ84 controller module
  * presets have been defaulted for proper CANFD operation using the
  * PU2CANFD USB adapter with 64 byte payloads
+ * 
+ * MQTT and JSON code and examples
+ * https://github.com/LiamBindle/MQTT-C/tree/master
+ * https://www.geeksforgeeks.org/cjson-json-file-write-read-modify-in-c/
  */
 
 #include <errno.h>
@@ -48,7 +52,7 @@
 #include <linux/can/raw.h>
 #include "matesocketcan/mqtt_pub.h"
 
-#define LOG_VERSION            "v00.5"
+#define LOG_VERSION            "v00.6"
 
 #define CAN_MSG_ID_PING  0x80000002
 #define CAN_MSG_ID_PING_X 0x80000003
@@ -186,27 +190,27 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 				token = strtok(NULL, ",");
 				token = strtok(NULL, ",");
 				acenergy = atof(token);
+
+				json = cJSON_CreateObject();
+				cJSON_AddStringToObject(json, "name", "mateq84");
+				cJSON_AddNumberToObject(json, "benergy", benergy);
+				cJSON_AddNumberToObject(json, "acenergy", acenergy);
+				cJSON_AddNumberToObject(json, "load", load);
+				cJSON_AddNumberToObject(json, "solar", solar);
+				cJSON_AddNumberToObject(json, "bamps", bamps);
+				cJSON_AddNumberToObject(json, "bvolts", bvolts);
+				cJSON_AddNumberToObject(json, "pamps", pamps);
+				cJSON_AddNumberToObject(json, "pvolts", pvolts);
+				cJSON_AddNumberToObject(json, "pwatts", pwatts);
+				cJSON_AddStringToObject(json, "system", "FM80 solar monitor");
+				// convert the cJSON object to a JSON string 
+				char *json_str = cJSON_Print(json);
+
+				mqtt_check(json_str);
+
+				cJSON_free(json_str);
+				cJSON_Delete(json);
 			}
-
-			json = cJSON_CreateObject();
-			cJSON_AddStringToObject(json, "name", "mateq84");
-			cJSON_AddNumberToObject(json, "benergy", benergy);
-			cJSON_AddNumberToObject(json, "acenergy", acenergy);
-			cJSON_AddNumberToObject(json, "load", load);
-			cJSON_AddNumberToObject(json, "solar", solar);
-			cJSON_AddNumberToObject(json, "bamps", bamps);
-			cJSON_AddNumberToObject(json, "bvolts", bvolts);
-			cJSON_AddNumberToObject(json, "pamps", pamps);
-			cJSON_AddNumberToObject(json, "pvolts", pvolts);
-			cJSON_AddNumberToObject(json, "pwatts", pwatts);
-			cJSON_AddStringToObject(json, "system", "FM80 solar monitor");
-			// convert the cJSON object to a JSON string 
-			char *json_str = cJSON_Print(json);
-
-			mqtt_check(json_str);
-
-			cJSON_free(json_str);
-			cJSON_Delete(json);
 		}
 		if (id == EMON_ER) {
 			fprintf(stderr, "%s", full_buffer);
@@ -246,7 +250,7 @@ static void print_compare(
 
 static int compare_frame(const struct canfd_frame *exp, const struct canfd_frame *rec, int inc)
 {
-	int i, err = 0;
+	int err = 0;
 	const canid_t expected_can_id = inc ? can_id_pong : can_id_ping;
 
 	if (0 && rec->can_id != expected_can_id) {
@@ -356,7 +360,6 @@ static int send_frame(struct canfd_frame *frame)
 static int check_frame(const struct canfd_frame *frame)
 {
 	int err = 0;
-	int i;
 
 	if (frame->can_id != can_id_ping && frame->can_id != can_id_pingx && frame->can_id != EMON_ER && frame->can_id != EMON_CO) {
 		printf("Unexpected Message ID 0x%04x!\n", frame->can_id);
@@ -368,7 +371,6 @@ static int check_frame(const struct canfd_frame *frame)
 		err = -1;
 	}
 
-out:
 	return err;
 }
 
@@ -433,7 +435,6 @@ static int can_echo_gen(void)
 	unsigned char counter = 0;
 	int send_pos = 0, recv_rx_pos = 0, recv_tx_pos = 0, unprocessed = 0, loops = 0;
 	int err = 0;
-	int i;
 	time_t t, timeofs;
 
 	tx_frames = calloc(inflight_count, sizeof(* tx_frames));
