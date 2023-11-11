@@ -376,9 +376,18 @@ void main(void)
 	/*
 	 * read and store the CPU_ID for PCB tracing
 	 */
+	B.node_id = 0;
 	for (uint8_t i = 0; i <= 8; i++) {
 		B.mui[i] = DeviceID_Read(DIA_MUI + (i * 2)); // Read CPU ID from memory and store in array
+		B.node_id += B.mui[i];
 	}
+
+#ifdef NO_NODE_ID
+	B.node_id = 0; // set to zero to only use EMON type number as the CAN packet ID
+#else
+	B.node_id = B.node_id & 0xf;
+#endif
+
 	{
 		char s_buffer[22];
 		snprintf(s_buffer, 21, "%X%X%X%X%X%X%X%X         ", B.mui[0], B.mui[1], B.mui[2], B.mui[3], B.mui[4], B.mui[5], B.mui[6], B.mui[7]);
@@ -579,7 +588,7 @@ void main(void)
 			B.a_switch[D_SW_L] = false;
 			snprintf(buffer, MAX_B_BUF, "%s", "Log Button Pressed        ");
 			eaDogM_WriteStringAtPos(2, 0, buffer);
-			B.LOG=true;
+			B.LOG = true;
 		}
 		if (B.a_switch[D_SW_M]) {
 			MM_ERROR_S;

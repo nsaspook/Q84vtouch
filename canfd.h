@@ -21,6 +21,8 @@ extern "C" {
 #include "batmon.h"
 
 #define DATA_DEBUG
+#define NO_NODE_ID
+#define NODE_ID_SHIFT	4
 
 #ifdef CAN_REMOTE
 #define LCD_MIRROR

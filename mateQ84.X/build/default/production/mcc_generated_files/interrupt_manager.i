@@ -40026,13 +40026,6 @@ extern void (*TMR2_InterruptHandler)(void);
 void TMR2_DefaultInterruptHandler(void);
 # 61 "mcc_generated_files/mcc.h" 2
 
-# 1 "mcc_generated_files/clc8.h" 1
-# 91 "mcc_generated_files/clc8.h"
-void CLC8_Initialize(void);
-# 113 "mcc_generated_files/clc8.h"
-_Bool CLC8_OutputStatusGet(void);
-# 62 "mcc_generated_files/mcc.h" 2
-
 # 1 "mcc_generated_files/tmr0.h" 1
 # 100 "mcc_generated_files/tmr0.h"
 void TMR0_Initialize(void);
@@ -40052,6 +40045,13 @@ void TMR0_Reload(uint8_t periodVal);
 extern void (*TMR0_InterruptHandler)(void);
 # 329 "mcc_generated_files/tmr0.h"
 void TMR0_DefaultInterruptHandler(void);
+# 62 "mcc_generated_files/mcc.h" 2
+
+# 1 "mcc_generated_files/clc8.h" 1
+# 91 "mcc_generated_files/clc8.h"
+void CLC8_Initialize(void);
+# 113 "mcc_generated_files/clc8.h"
+_Bool CLC8_OutputStatusGet(void);
 # 63 "mcc_generated_files/mcc.h" 2
 
 # 1 "mcc_generated_files/clc7.h" 1

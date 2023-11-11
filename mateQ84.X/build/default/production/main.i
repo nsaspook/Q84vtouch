@@ -40239,13 +40239,6 @@ extern void (*TMR2_InterruptHandler)(void);
 void TMR2_DefaultInterruptHandler(void);
 # 61 "./mcc_generated_files/mcc.h" 2
 
-# 1 "./mcc_generated_files/clc8.h" 1
-# 91 "./mcc_generated_files/clc8.h"
-void CLC8_Initialize(void);
-# 113 "./mcc_generated_files/clc8.h"
-_Bool CLC8_OutputStatusGet(void);
-# 62 "./mcc_generated_files/mcc.h" 2
-
 # 1 "./mcc_generated_files/tmr0.h" 1
 # 100 "./mcc_generated_files/tmr0.h"
 void TMR0_Initialize(void);
@@ -40265,6 +40258,13 @@ void TMR0_Reload(uint8_t periodVal);
 extern void (*TMR0_InterruptHandler)(void);
 # 329 "./mcc_generated_files/tmr0.h"
 void TMR0_DefaultInterruptHandler(void);
+# 62 "./mcc_generated_files/mcc.h" 2
+
+# 1 "./mcc_generated_files/clc8.h" 1
+# 91 "./mcc_generated_files/clc8.h"
+void CLC8_Initialize(void);
+# 113 "./mcc_generated_files/clc8.h"
+_Bool CLC8_OutputStatusGet(void);
 # 63 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/clc7.h" 1
@@ -41282,7 +41282,7 @@ void delay_ms(const uint16_t);
 
  typedef struct B_type {
   volatile _Bool ten_sec_flag, one_sec_flag, FM80_charged, pv_high, pv_update, once, a_switch[D_SW_COUNT], a_trigger[D_SW_COUNT], a_type[D_SW_COUNT];
-  volatile uint16_t pacing, rx_count, flush, pv_prev, day_check;
+  volatile uint16_t pacing, rx_count, flush, pv_prev, day_check, node_id;
   volatile _Bool FM80_online, FM80_io, LOG;
   volatile uint8_t canbus_online, modbus_online, alt_display, a_pin[D_SW_COUNT];
   float run_time, net_balance;
@@ -41618,7 +41618,7 @@ void delay_ms(const uint16_t);
 
  uint16_t Volts_to_SOC(const uint16_t, const uint16_t);
 # 22 "./../canfd.h" 2
-# 53 "./../canfd.h"
+# 55 "./../canfd.h"
  typedef struct {
   uint32_t rec_count;
   _Bool rec_flag;
@@ -41678,7 +41678,7 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[255] = "Boot Init Display   ", info_buffer[255], log_buffer[255];
-const char *build_date = "Oct 27 2023", *build_time = "20:49:54";
+const char *build_date = "Nov 11 2023", *build_time = "09:01:52";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
@@ -41819,9 +41819,18 @@ void main(void)
 
 
 
+ B.node_id = 0;
  for (uint8_t i = 0; i <= 8; i++) {
   B.mui[i] = DeviceID_Read(0x2C0000 + (i * 2));
+  B.node_id += B.mui[i];
  }
+
+
+ B.node_id = 0;
+
+
+
+
  {
   char s_buffer[22];
   snprintf(s_buffer, 21, "%X%X%X%X%X%X%X%X         ", B.mui[0], B.mui[1], B.mui[2], B.mui[3], B.mui[4], B.mui[5], B.mui[6], B.mui[7]);
@@ -41966,7 +41975,7 @@ void main(void)
      }
     } else {
      M.error = 0;
-# 555 "main.c"
+# 564 "main.c"
      snprintf(buffer, 255, "EMon  %6.1fWh   %c%c    ", EB->bat_energy / 360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
      eaDogM_WriteStringAtPos(1, 0, buffer);
      snprintf(buffer, 255, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
@@ -41994,7 +42003,7 @@ void main(void)
    B.a_switch[D_SW_L] = 0;
    snprintf(buffer, 255, "%s", "Log Button Pressed        ");
    eaDogM_WriteStringAtPos(2, 0, buffer);
-   B.LOG=1;
+   B.LOG = 1;
   }
   if (B.a_switch[D_SW_M]) {
    do { LATBbits.LATB1 = 1; } while(0);
@@ -42108,7 +42117,7 @@ void state_status_cb(void)
 {
  static uint16_t day_clocks = 0;
  static uint8_t status_prev = STATUS_SLEEPING;
-# 711 "main.c"
+# 720 "main.c"
  if (B.day_check++ > 1200) {
   B.day_check = 0;
   B.once = 0;

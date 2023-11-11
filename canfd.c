@@ -2,8 +2,8 @@
 
 CAN_MSG_OBJ msg[CANFD_NBUF];
 volatile uint8_t rxMsgData[CAN_REC_BUFFERS][CANFD_BYTES] = {
-	"     no data        ",
-	" no_data            ",
+	" no data            ",
+	" no_data0           ",
 	" no info1           ",
 	" no info2           ",
 };
@@ -197,7 +197,7 @@ void can_fd_tx(void)
 	{
 		CAN1_Transmit(TXQ, &Transmission); //transmit frame
 	}
-	Transmission.msgId = (EMON_DA); // BLOB data packet type ID
+	Transmission.msgId = (EMON_DA + (B.node_id << NODE_ID_SHIFT)); // BLOB data packet type ID
 	Transmission.data = (uint8_t*) & blob; //transmit the data from the data bytes
 	if (CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(FIFO3) & CAN_TX_FIFO_AVAILABLE))//ensure that the FIFO has space for a message
 	{
@@ -243,6 +243,17 @@ void can_setup(void)
 	CAN1_SetRxBufferOverFlowInterruptHandler(Can1FIFO1NotEmptyHandler);
 	CAN1_SetTXQNotFullHandler(TXQNotFullHandler);
 
+
+	// FLTEN1 enabled; F1BP FIFO 1; 
+	C1FLTOBJ1L = 0xFF;
+	C1FLTOBJ1H = 0xFF;
+	C1FLTOBJ1U = 0xFF;
+	C1FLTOBJ1T = 0x5F;
+	C1MASK1L = 0xFF;
+	C1MASK1H = 0xFF;
+	C1MASK1U = 0xFF;
+	C1MASK1T = 0x5F;
+	C1FLTCON0H = 0x81;
 	/*
 	 * user mod filter and masking
 	 * SID to allow all system id's to pass
@@ -283,13 +294,13 @@ void can_fd_lcd_mirror(const uint8_t r, char *strPtr)
 		Transmission.field.formatType = CAN_FD_FORMAT; // CAN FD frames
 		Transmission.field.frameType = CAN_FRAME_DATA; // Data frame
 		Transmission.field.idType = CAN_FRAME_EXT; // EXT ID
-		Transmission.msgId = EMON_MR + r; // packet type ID of client
+		Transmission.msgId = EMON_MR + r + (B.node_id << NODE_ID_SHIFT); // packet type ID of client
 		Transmission.data = (uint8_t*) strPtr; //transmit the data from the data bytes
 		if (CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(TXQ) & CAN_TX_FIFO_AVAILABLE))//ensure that the FIFO has space for a message
 		{
 			CAN1_Transmit(TXQ, &Transmission); //transmit frame
 		}
-		Transmission.msgId = (EMON_DA); // BLOB data packet type ID
+		Transmission.msgId = (EMON_DA + (B.node_id << NODE_ID_SHIFT)); // BLOB data packet type ID
 		Transmission.data = (uint8_t*) & blob; //transmit the data from the data bytes
 		if (CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(FIFO3) & CAN_TX_FIFO_AVAILABLE))//ensure that the FIFO has space for a message
 		{
