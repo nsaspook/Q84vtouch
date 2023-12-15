@@ -835,6 +835,7 @@ void state_mx_status_cb(void)
 			/*
 			 * log CSV values to the comm ports for data storage and processing
 			 */
+			B.run_time = lp_filter(B.run_time, F_run, false); // smooth run-time
 			snprintf(buffer, 25, "%s", asctime(can_newtime)); // the log_buffer uses this string in LOG_VARS
 			buffer[26] = 0; // remove newline
 			snprintf(log_buffer, MAX_B_BUF, log_format, LOG_VARS);
