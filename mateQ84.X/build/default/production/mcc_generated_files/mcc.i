@@ -38783,7 +38783,7 @@ int fgetc(FILE *);
 int getc(FILE *);
 int getchar(void);
 int ungetc(int, FILE *);
-int getch(void);
+char getch(void);
 
 int fputc(int, FILE *);
 int putc(int, FILE *);

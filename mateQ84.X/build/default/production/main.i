@@ -38902,7 +38902,7 @@ int fgetc(FILE *);
 int getc(FILE *);
 int getchar(void);
 int ungetc(int, FILE *);
-int getch(void);
+char getch(void);
 
 int fputc(int, FILE *);
 int putc(int, FILE *);
@@ -41678,7 +41678,7 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[255] = "Boot Init Display   ", info_buffer[255], log_buffer[255];
-const char *build_date = "Nov 13 2023", *build_time = "15:37:39";
+const char *build_date = "Nov 28 2023", *build_time = "12:02:03";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 

@@ -130,7 +130,7 @@ static void print_usage(char *prg)
 static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 {
 	int i;
-	double benergy, acenergy, load, solar, bvolts, bamps, pvolts, pamps, pwatts;
+	double benergy, acenergy, load, solar, bvolts, bamps, pvolts, pamps, pwatts, runtime;
 
 	if (print_hex) {
 		printf("%04x: ", id);
@@ -161,7 +161,7 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 			token = strtok(data_buffer, ",");
 			if (token != NULL) {
 				/*
-				 * parse the string for varible values
+				 * parse the string for variable values
 				 */
 				token = strtok(NULL, ",");
 				bamps = atof(token);
@@ -183,6 +183,8 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 				load = atof(token);
 				fprintf(stderr, " %s ", token);
 				token = strtok(NULL, ",");
+				runtime = atof(token);
+				fprintf(stderr, " %s ", token);
 				token = strtok(NULL, ",");
 				benergy = atof(token);
 
@@ -196,6 +198,7 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 				cJSON_AddNumberToObject(json, "benergy", benergy);
 				cJSON_AddNumberToObject(json, "acenergy", acenergy);
 				cJSON_AddNumberToObject(json, "load", load);
+				cJSON_AddNumberToObject(json, "runtime", runtime);
 				cJSON_AddNumberToObject(json, "solar", solar);
 				cJSON_AddNumberToObject(json, "bamps", bamps);
 				cJSON_AddNumberToObject(json, "bvolts", bvolts);

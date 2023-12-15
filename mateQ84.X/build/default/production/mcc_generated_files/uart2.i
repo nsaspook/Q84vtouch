@@ -38744,7 +38744,7 @@ int fgetc(FILE *);
 int getc(FILE *);
 int getchar(void);
 int ungetc(int, FILE *);
-int getch(void);
+char getch(void);
 
 int fputc(int, FILE *);
 int putc(int, FILE *);
@@ -39042,7 +39042,7 @@ void UART2_Write(uint8_t txData)
  PIE8bits.U2TXIE = 1;
 }
 
-int getch(void)
+char getch(void)
 {
  return UART2_Read();
 }
