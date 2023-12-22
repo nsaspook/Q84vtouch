@@ -1,6 +1,8 @@
-Emulates the baswic MATE interface for the FM 80/60 series of Charge Controllers by OutBack Power. 9600 bps 9N1 with opto-isolation.
+Emulates the basic MATE interface for the FM 80/60 series of Charge Controllers by OutBack Power. 9600 bps 9N1 with opto-isolation.
 
 The starting point and store of priceless information was here.
 https://github.com/jorticus/pymate   
 
-Very much a work in progress and the battery monitor sub-systems need to be created and added the logging functions.
+This is the production version of the project. Tracks battery energy using data from the FM80 and a AC power meter connected via MODBUS, the EM500. The CAN-FD bus uploads data to remote displays and to a Linux server program
+that converts that data to JSON format for remote MQTT access.
+
