@@ -3,7 +3,7 @@
 #include "mateQ84.X/mxcmd.h"
 
 static uint8_t a_debounce[D_SW_COUNT] = {0};
-static uint8_t get_d_switch(uint8_t i);
+static uint8_t get_d_switch(const uint8_t i);
 
 static void aswitch(void);
 static void lswitch(void);
@@ -53,7 +53,7 @@ void init_all_switch(void)
 /*
  * debounce button pin status parser
  */
-static uint8_t get_d_switch(uint8_t i)
+static uint8_t get_d_switch(const uint8_t i)
 {
 	switch (i) {
 	case D_SW_A:

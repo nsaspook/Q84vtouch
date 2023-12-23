@@ -16,7 +16,7 @@ extern "C" {
 #include "mateQ84.X/mcc_generated_files/pin_manager.h"
 	/*
 	 * MISC_IO header
-	 * pin 3, RE2
+	 * pin 3, CHARGER
 	 * pin 2, MISC
 	 * pin 1, RELAY
 	 *
@@ -54,8 +54,8 @@ extern "C" {
 	 * timing ISR for processing
 	 */
 	enum D_SW {
-		D_SW_A = 0,
-		D_SW_L,
+		D_SW_A = 0,	// alternate LCD display
+		D_SW_L,		// history logging from FM80
 		D_SW_M,
 		D_SW_COUNT // one extra for number of switches to check
 	};
