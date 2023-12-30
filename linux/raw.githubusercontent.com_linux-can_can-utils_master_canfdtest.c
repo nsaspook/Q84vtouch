@@ -130,7 +130,7 @@ static void print_usage(char *prg)
 static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 {
 	int i;
-	double benergy, acenergy, load, solar, bvolts, bamps, pvolts, pamps, pwatts, runtime;
+	double benergy, acenergy, load, solar, bvolts, bamps, pvolts, pamps, pwatts, runtime, bat_energy_scaled, bat_energy_kw;
 
 	if (print_hex) {
 		printf("%04x: ", id);
@@ -180,7 +180,7 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 				solar = atof(token);
 				fprintf(stderr, " %s %s log variable: %s ", DATA_MQTT_SOLAR, ADDR_MQTT, token);
 				token = strtok(NULL, ",");
-				load = atof(token);
+				acenergy = atof(token);
 				fprintf(stderr, " %s ", token);
 				token = strtok(NULL, ",");
 				runtime = atof(token);
@@ -191,7 +191,13 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 				fprintf(stderr, " %s\r\n", token);
 				token = strtok(NULL, ",");
 				token = strtok(NULL, ",");
-				acenergy = atof(token);
+				load = atof(token);
+				token = strtok(NULL, ",");
+				token = strtok(NULL, ",");
+				token = strtok(NULL, ",");
+				token = strtok(NULL, ",");
+				bat_energy_scaled = atof(token);
+				bat_energy_kw = bat_energy_scaled * 10.0;
 
 				json = cJSON_CreateObject();
 				cJSON_AddStringToObject(json, "name", "mateq84");
@@ -200,6 +206,8 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 				cJSON_AddNumberToObject(json, "load", load);
 				cJSON_AddNumberToObject(json, "runtime", runtime);
 				cJSON_AddNumberToObject(json, "solar", solar);
+				cJSON_AddNumberToObject(json, "batenergykw", bat_energy_kw);
+				cJSON_AddNumberToObject(json, "batenergyscaled", bat_energy_scaled);
 				cJSON_AddNumberToObject(json, "bamps", bamps);
 				cJSON_AddNumberToObject(json, "bvolts", bvolts);
 				cJSON_AddNumberToObject(json, "pamps", pamps);
