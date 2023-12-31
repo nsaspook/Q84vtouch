@@ -131,6 +131,7 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 {
 	int i;
 	double benergy, acenergy, load, solar, bvolts, bamps, pvolts, pamps, pwatts, runtime, bat_energy_scaled, bat_energy_kw;
+	double gridin = 10.1, gridout = 0.0, gasenergy = 10.1, watergal = 0.1;
 
 	if (print_hex) {
 		printf("%04x: ", id);
@@ -213,6 +214,11 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 				cJSON_AddNumberToObject(json, "pamps", pamps);
 				cJSON_AddNumberToObject(json, "pvolts", pvolts);
 				cJSON_AddNumberToObject(json, "pwatts", pwatts);
+				// fake data for HA
+				cJSON_AddNumberToObject(json, "gridin", gridin);
+				cJSON_AddNumberToObject(json, "gridout", gridout);
+				cJSON_AddNumberToObject(json, "gasenergy", gasenergy);
+				cJSON_AddNumberToObject(json, "watergal", watergal);
 				cJSON_AddStringToObject(json, "system", "FM80 solar monitor");
 				// convert the cJSON object to a JSON string 
 				char *json_str = cJSON_Print(json);
