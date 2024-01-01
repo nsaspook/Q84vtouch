@@ -169,7 +169,7 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 				gridin += E_PER_HOUR; // update the tracked energy values
 				gasenergy += G_PER_HOUR;
 				day_time += HR_SEC; // add a hour of seconds to the day variable
-				if (day_time >= HR_SEC) { // check for a day of seconds
+				if (day_time >= DAY_SEC) { // check for a day of seconds
 					day_time = 0;
 					gridin = 0.001;
 					gasenergy = 0.001;
