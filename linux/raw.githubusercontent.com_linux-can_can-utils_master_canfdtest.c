@@ -51,8 +51,9 @@
 #include <linux/can.h>
 #include <linux/can/raw.h>
 #include "matesocketcan/mqtt_pub.h"
+#include "matesocketcan/pge.h"
 
-#define LOG_VERSION            "v00.6"
+#define LOG_VERSION            "v00.7"
 
 #define CAN_MSG_ID_PING  0x80000002
 #define CAN_MSG_ID_PING_X 0x80000003
@@ -68,6 +69,8 @@
 #define CAN_MSG_COUNT 1
 #define CAN_MSG_WAIT 27
 #define CAN_TM_TIME 30
+#define HR_SEC  3600
+#define DAY_SEC  HR_SEC*24
 
 static int running = 1;
 static int verbose = 2;
@@ -91,6 +94,10 @@ char *token;
 cJSON *json;
 
 long long current_timestamp(void);
+time_t start_time = 0, hour_time = 0, day_time = 0;
+
+double benergy, acenergy, load, solar, bvolts, bamps, pvolts, pamps, pwatts, runtime, bat_energy_scaled, bat_energy_kw;
+double gridin = 0.001, gridout = 0.001, gasenergy = 0.001, watergal = 0.1;
 
 static void print_usage(char *prg)
 {
@@ -130,8 +137,6 @@ static void print_usage(char *prg)
 static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 {
 	int i;
-	double benergy, acenergy, load, solar, bvolts, bamps, pvolts, pamps, pwatts, runtime, bat_energy_scaled, bat_energy_kw;
-	double gridin = 10.1, gridout = 0.0, gasenergy = 10.1, watergal = 0.1;
 
 	if (print_hex) {
 		printf("%04x: ", id);
@@ -158,6 +163,18 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 		}
 
 		if (id == EMON_SU) {
+			hour_time = time(NULL); // update the current time in seconds
+			if (hour_time >= (start_time + HR_SEC)) { // check for a hour of seconds
+				start_time = time(NULL);
+				gridin += E_PER_HOUR; // update the tracked energy values
+				gasenergy += G_PER_HOUR;
+				day_time += HR_SEC; // add a hour of seconds to the day variable
+				if (day_time >= HR_SEC) { // check for a day of seconds
+					day_time = 0;
+					gridin = 0.001;
+					gasenergy = 0.001;
+				}
+			}
 			fprintf(stdout, "log %s", data_buffer);
 			token = strtok(data_buffer, ",");
 			if (token != NULL) {
@@ -560,6 +577,7 @@ int main(int argc, char *argv[])
 	signal(SIGINT, signal_handler);
 
 	sec_30 = time(NULL);
+	start_time = time(NULL);
 
 	mqtt_socket();
 
