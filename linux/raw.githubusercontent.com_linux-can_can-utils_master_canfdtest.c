@@ -175,6 +175,10 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 					gasenergy = 0.001;
 				}
 			}
+#ifdef PGE_ZERO
+			gridin = 0.0f;
+			gridout = 0.0f;
+#endif
 			fprintf(stdout, "log %s", data_buffer);
 			token = strtok(data_buffer, ",");
 			if (token != NULL) {

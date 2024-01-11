@@ -19,7 +19,7 @@ extern "C" {
 
 #include "mqtt.h"
 
-#define MQTT_VERSION            "v01.1"
+#define MQTT_VERSION            "v01.2"
 #define DATA_MQTT_SOLAR         "mateq84/data/solar"
 //#define ADDR_MQTT               "test.mosquitto.org" // testing broker
 #define ADDR_MQTT               "10.1.1.172"  // local broker
