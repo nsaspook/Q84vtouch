@@ -53,7 +53,7 @@
 #include "matesocketcan/mqtt_pub.h"
 #include "matesocketcan/pge.h"
 
-#define LOG_VERSION            "v00.7"
+#define LOG_VERSION            "v00.8"
 
 #define CAN_MSG_ID_PING  0x80000002
 #define CAN_MSG_ID_PING_X 0x80000003
@@ -137,6 +137,7 @@ static void print_usage(char *prg)
 static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 {
 	int i;
+	static int j = 0;
 
 	if (print_hex) {
 		printf("%04x: ", id);

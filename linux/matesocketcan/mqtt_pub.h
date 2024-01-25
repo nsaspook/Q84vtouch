@@ -21,6 +21,7 @@ extern "C" {
 
 #define MQTT_VERSION            "v01.2"
 #define DATA_MQTT_SOLAR         "mateq84/data/solar"
+//#define DATA_MQTT_SOLAR         "comedi/data/p8055/set"
 //#define ADDR_MQTT               "test.mosquitto.org" // testing broker
 #define ADDR_MQTT               "10.1.1.172"  // local broker
         
