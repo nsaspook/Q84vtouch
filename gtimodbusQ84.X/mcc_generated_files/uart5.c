@@ -13,13 +13,13 @@
   @Description
     This source file provides APIs for UART5.
     Generation Information :
-	Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.8
-	Device            :  PIC18F47Q84
-	Driver Version    :  2.4.1
+        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.8
+        Device            :  PIC18F47Q84
+        Driver Version    :  2.4.1
     The generated drivers are tested against the following:
-	Compiler          :  XC8 2.36 and above
-	MPLAB             :  MPLAB X 6.00
- */
+        Compiler          :  XC8 2.36 and above
+        MPLAB             :  MPLAB X 6.00
+*/
 
 /*
     (c) 2018 Microchip Technology Inc. and its subsidiaries. 
@@ -42,33 +42,24 @@
     CLAIMS IN ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT 
     OF FEES, IF ANY, THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS 
     SOFTWARE.
- */
+*/
 
 /**
   Section: Included Files
- */
+*/
 #include <xc.h>
 #include "uart5.h"
 #include "interrupt_manager.h"
 
-#define IO_RB6_Toggle()             do { LATBbits.LATB6 = ~LATBbits.LATB6; } while(0)
-#define TRACE
-
-#ifdef TRACE
-#define INT_TRACE	IO_RB6_Toggle()
-#else
-#define INT_TRACE	""
-#endif
-
 /**
   Section: Macro Declarations
- */
+*/
 #define UART5_TX_BUFFER_SIZE 64
-#define UART5_RX_BUFFER_SIZE 8
+#define UART5_RX_BUFFER_SIZE 64
 
 /**
   Section: Global Variables
- */
+*/
 
 static volatile uint8_t uart5TxHead = 0;
 static volatile uint8_t uart5TxTail = 0;
@@ -84,7 +75,7 @@ static volatile uart5_status_t uart5RxLastError;
 
 /**
   Section: UART5 APIs
- */
+*/
 void (*UART5_FramingErrorHandler)(void);
 void (*UART5_OverrunErrorHandler)(void);
 void (*UART5_ErrorHandler)(void);
@@ -95,232 +86,236 @@ void UART5_DefaultErrorHandler(void);
 
 void UART5_Initialize(void)
 {
-	// Disable interrupts before changing states
-	PIE13bits.U5RXIE = 0;
-	UART5_SetRxInterruptHandler(UART5_Receive_ISR);
-	PIE13bits.U5TXIE = 0;
-	UART5_SetTxInterruptHandler(UART5_Transmit_ISR);
+    // Disable interrupts before changing states
+    PIE13bits.U5RXIE = 0;
+    UART5_SetRxInterruptHandler(UART5_Receive_ISR);
+    PIE13bits.U5TXIE = 0;
+    UART5_SetTxInterruptHandler(UART5_Transmit_ISR);
 
-	// Set the UART5 module to the options selected in the user interface.
+    // Set the UART5 module to the options selected in the user interface.
 
-	// P1L 0; 
-	U5P1L = 0x00;
+    // P1L 0; 
+    U5P1L = 0x00;
 
-	// P2L 0; 
-	U5P2L = 0x00;
+    // P2L 0; 
+    U5P2L = 0x00;
 
-	// P3L 0; 
-	U5P3L = 0x00;
+    // P3L 0; 
+    U5P3L = 0x00;
 
-	// BRGS high speed; MODE Asynchronous 8-bit mode; RXEN enabled; TXEN enabled; ABDEN disabled; 
-	U5CON0 = 0xB0;
+    // BRGS high speed; MODE Asynchronous 8-bit mode; RXEN enabled; TXEN enabled; ABDEN disabled; 
+    U5CON0 = 0xB0;
 
-	// RXBIMD Set RXBKIF on rising RX input; BRKOVR disabled; WUE disabled; SENDB disabled; ON enabled; 
-	U5CON1 = 0x80;
+    // RXBIMD Set RXBKIF on rising RX input; BRKOVR disabled; WUE disabled; SENDB disabled; ON enabled; 
+    U5CON1 = 0x80;
 
-	// TXPOL not inverted; FLO off; RXPOL not inverted; RUNOVF RX input shifter stops all activity; STP Transmit 1Stop bit, receiver verifies first Stop bit; 
-	U5CON2 = 0x00;
+    // TXPOL not inverted; FLO off; RXPOL not inverted; RUNOVF RX input shifter stops all activity; STP Transmit 1Stop bit, receiver verifies first Stop bit; 
+    U5CON2 = 0x00;
 
-	// BRGL 86; 
-	U5BRGL = 0x56;
+    // BRGL 34; 
+    U5BRGL = 0x22;
 
-	// BRGH 0; 
-	U5BRGH = 0x00;
+    // BRGH 8; 
+    U5BRGH = 0x08;
 
-	// STPMD in middle of first Stop bit; TXWRE No error; 
-	U5FIFO = 0x00;
+    // STPMD in middle of first Stop bit; TXWRE No error; 
+    U5FIFO = 0x00;
 
-	// ABDIF Auto-baud not enabled or not complete; WUIF WUE not enabled by software; ABDIE disabled; 
-	U5UIR = 0x00;
+    // ABDIF Auto-baud not enabled or not complete; WUIF WUE not enabled by software; ABDIE disabled; 
+    U5UIR = 0x00;
 
-	// ABDOVF Not overflowed; TXCIF 0; RXBKIF No Break detected; RXFOIF not overflowed; CERIF No Checksum error; 
-	U5ERRIR = 0x00;
+    // ABDOVF Not overflowed; TXCIF 0; RXBKIF No Break detected; RXFOIF not overflowed; CERIF No Checksum error; 
+    U5ERRIR = 0x00;
 
-	// TXCIE disabled; FERIE disabled; TXMTIE disabled; ABDOVE disabled; CERIE disabled; RXFOIE disabled; PERIE disabled; RXBKIE disabled; 
-	U5ERRIE = 0x00;
+    // TXCIE disabled; FERIE disabled; TXMTIE disabled; ABDOVE disabled; CERIE disabled; RXFOIE disabled; PERIE disabled; RXBKIE disabled; 
+    U5ERRIE = 0x00;
 
 
-	UART5_SetFramingErrorHandler(UART5_DefaultFramingErrorHandler);
-	UART5_SetOverrunErrorHandler(UART5_DefaultOverrunErrorHandler);
-	UART5_SetErrorHandler(UART5_DefaultErrorHandler);
+    UART5_SetFramingErrorHandler(UART5_DefaultFramingErrorHandler);
+    UART5_SetOverrunErrorHandler(UART5_DefaultOverrunErrorHandler);
+    UART5_SetErrorHandler(UART5_DefaultErrorHandler);
 
-	uart5RxLastError.status = 0;
+    uart5RxLastError.status = 0;
 
-	// initializing the driver state
-	uart5TxHead = 0;
-	uart5TxTail = 0;
-	uart5TxBufferRemaining = sizeof(uart5TxBuffer);
-	uart5RxHead = 0;
-	uart5RxTail = 0;
-	uart5RxCount = 0;
+    // initializing the driver state
+    uart5TxHead = 0;
+    uart5TxTail = 0;
+    uart5TxBufferRemaining = sizeof(uart5TxBuffer);
+    uart5RxHead = 0;
+    uart5RxTail = 0;
+    uart5RxCount = 0;
 
-	// enable receive interrupt
-	PIE13bits.U5RXIE = 1;
+    // enable receive interrupt
+    PIE13bits.U5RXIE = 1;
 }
 
 bool UART5_is_rx_ready(void)
 {
-	return(uart5RxCount ? true : false);
+    return (uart5RxCount ? true : false);
 }
 
 bool UART5_is_tx_ready(void)
 {
-	return(uart5TxBufferRemaining ? true : false);
+    return (uart5TxBufferRemaining ? true : false);
 }
 
 bool UART5_is_tx_done(void)
 {
-	return U5ERRIRbits.TXMTIF;
+    return U5ERRIRbits.TXMTIF;
 }
 
-uart5_status_t UART5_get_last_status(void)
-{
-	return uart5RxLastError;
+uart5_status_t UART5_get_last_status(void){
+    return uart5RxLastError;
 }
 
 uint8_t UART5_Read(void)
 {
-	uint8_t readValue = 0;
+    uint8_t readValue  = 0;
+    
+    while(0 == uart5RxCount)
+    {
+    }
 
-	while (0 == uart5RxCount) {
-	}
+    uart5RxLastError = uart5RxStatusBuffer[uart5RxTail];
 
-	uart5RxLastError = uart5RxStatusBuffer[uart5RxTail];
+    readValue = uart5RxBuffer[uart5RxTail++];
+   	if(sizeof(uart5RxBuffer) <= uart5RxTail)
+    {
+        uart5RxTail = 0;
+    }
+    PIE13bits.U5RXIE = 0;
+    uart5RxCount--;
+    PIE13bits.U5RXIE = 1;
 
-	readValue = uart5RxBuffer[uart5RxTail++];
-	if (sizeof(uart5RxBuffer) <= uart5RxTail) {
-		uart5RxTail = 0;
-	}
-	PIE13bits.U5RXIE = 0;
-	uart5RxCount--;
-	PIE13bits.U5RXIE = 1;
-
-	return readValue;
+    return readValue;
 }
 
 void UART5_Write(uint8_t txData)
 {
-	while (0 == uart5TxBufferRemaining) {
-	}
+    while(0 == uart5TxBufferRemaining)
+    {
+    }
 
-	if (0 == PIE13bits.U5TXIE) {
-		U5TXB = txData;
-	} else {
-		PIE13bits.U5TXIE = 0;
-		uart5TxBuffer[uart5TxHead++] = txData;
-		if (sizeof(uart5TxBuffer) <= uart5TxHead) {
-			uart5TxHead = 0;
-		}
-		uart5TxBufferRemaining--;
-	}
-	PIE13bits.U5TXIE = 1;
+    if(0 == PIE13bits.U5TXIE)
+    {
+        U5TXB = txData;
+    }
+    else
+    {
+        PIE13bits.U5TXIE = 0;
+        uart5TxBuffer[uart5TxHead++] = txData;
+        if(sizeof(uart5TxBuffer) <= uart5TxHead)
+        {
+            uart5TxHead = 0;
+        }
+        uart5TxBufferRemaining--;
+    }
+    PIE13bits.U5TXIE = 1;
 }
 
-void __interrupt(irq(U5TX), base(8)) UART5_tx_vect_isr()
+void __interrupt(irq(U5TX),base(8)) UART5_tx_vect_isr()
+{   
+    if(UART5_TxInterruptHandler)
+    {
+        UART5_TxInterruptHandler();
+    }
+}
+
+void __interrupt(irq(U5RX),base(8)) UART5_rx_vect_isr()
 {
-	INT_TRACE; // GPIO interrupt scope trace
-	if (UART5_TxInterruptHandler) {
-		UART5_TxInterruptHandler();
-	}
+    if(UART5_RxInterruptHandler)
+    {
+        UART5_RxInterruptHandler();
+    }
 }
 
-void __interrupt(irq(U5RX), base(8)) UART5_rx_vect_isr()
-{
-	INT_TRACE; // GPIO interrupt scope trace
-	if (UART5_RxInterruptHandler) {
-		UART5_RxInterruptHandler();
-	}
-}
+
 
 void UART5_Transmit_ISR(void)
 {
-	// use this default transmit interrupt handler code
-	if (sizeof(uart5TxBuffer) > uart5TxBufferRemaining) {
-		U5TXB = uart5TxBuffer[uart5TxTail++];
-		if (sizeof(uart5TxBuffer) <= uart5TxTail) {
-			uart5TxTail = 0;
-		}
-		uart5TxBufferRemaining++;
-	} else {
-		PIE13bits.U5TXIE = 0;
-	}
-
-	// or set custom function using UART5_SetTxInterruptHandler()
+    // use this default transmit interrupt handler code
+    if(sizeof(uart5TxBuffer) > uart5TxBufferRemaining)
+    {
+        U5TXB = uart5TxBuffer[uart5TxTail++];
+       if(sizeof(uart5TxBuffer) <= uart5TxTail)
+        {
+            uart5TxTail = 0;
+        }
+        uart5TxBufferRemaining++;
+    }
+    else
+    {
+        PIE13bits.U5TXIE = 0;
+    }
+    
+    // or set custom function using UART5_SetTxInterruptHandler()
 }
 
 void UART5_Receive_ISR(void)
 {
-	// use this default receive interrupt handler code
-	uart5RxStatusBuffer[uart5RxHead].status = 0;
+    // use this default receive interrupt handler code
+    uart5RxStatusBuffer[uart5RxHead].status = 0;
 
-	if (U5ERRIRbits.FERIF) {
-		uart5RxStatusBuffer[uart5RxHead].ferr = 1;
-		UART5_FramingErrorHandler();
-	}
+    if(U5ERRIRbits.FERIF){
+        uart5RxStatusBuffer[uart5RxHead].ferr = 1;
+        UART5_FramingErrorHandler();
+    }
+    
+    if(U5ERRIRbits.RXFOIF){
+        uart5RxStatusBuffer[uart5RxHead].oerr = 1;
+        UART5_OverrunErrorHandler();
+    }
+    
+    if(uart5RxStatusBuffer[uart5RxHead].status){
+        UART5_ErrorHandler();
+    } else {
+        UART5_RxDataHandler();
+    }
 
-	if (U5ERRIRbits.RXFOIF) {
-		uart5RxStatusBuffer[uart5RxHead].oerr = 1;
-		UART5_OverrunErrorHandler();
-	}
-
-	if (uart5RxStatusBuffer[uart5RxHead].status) {
-		UART5_ErrorHandler();
-	} else {
-		UART5_RxDataHandler();
-	}
-
-	// or set custom function using UART5_SetRxInterruptHandler()
+    // or set custom function using UART5_SetRxInterruptHandler()
 }
 
-void UART5_RxDataHandler(void)
-{
-	// use this default receive interrupt handler code
-	uart5RxBuffer[uart5RxHead++] = U5RXB;
-	if (sizeof(uart5RxBuffer) <= uart5RxHead) {
-		uart5RxHead = 0;
-	}
-	uart5RxCount++;
+void UART5_RxDataHandler(void){
+    // use this default receive interrupt handler code
+    uart5RxBuffer[uart5RxHead++] = U5RXB;
+    if(sizeof(uart5RxBuffer) <= uart5RxHead)
+    {
+        uart5RxHead = 0;
+    }
+    uart5RxCount++;
 }
 
-void UART5_DefaultFramingErrorHandler(void)
-{
+void UART5_DefaultFramingErrorHandler(void){}
+
+void UART5_DefaultOverrunErrorHandler(void){}
+
+void UART5_DefaultErrorHandler(void){
+    UART5_RxDataHandler();
 }
 
-void UART5_DefaultOverrunErrorHandler(void)
-{
+void UART5_SetFramingErrorHandler(void (* interruptHandler)(void)){
+    UART5_FramingErrorHandler = interruptHandler;
 }
 
-void UART5_DefaultErrorHandler(void)
-{
-	UART5_RxDataHandler();
+void UART5_SetOverrunErrorHandler(void (* interruptHandler)(void)){
+    UART5_OverrunErrorHandler = interruptHandler;
 }
 
-void UART5_SetFramingErrorHandler(void (* interruptHandler)(void))
-{
-	UART5_FramingErrorHandler = interruptHandler;
+void UART5_SetErrorHandler(void (* interruptHandler)(void)){
+    UART5_ErrorHandler = interruptHandler;
 }
 
-void UART5_SetOverrunErrorHandler(void (* interruptHandler)(void))
-{
-	UART5_OverrunErrorHandler = interruptHandler;
+
+
+void UART5_SetRxInterruptHandler(void (* InterruptHandler)(void)){
+    UART5_RxInterruptHandler = InterruptHandler;
 }
 
-void UART5_SetErrorHandler(void (* interruptHandler)(void))
-{
-	UART5_ErrorHandler = interruptHandler;
-}
-
-void UART5_SetRxInterruptHandler(void (* InterruptHandler)(void))
-{
-	UART5_RxInterruptHandler = InterruptHandler;
-}
-
-void UART5_SetTxInterruptHandler(void (* InterruptHandler)(void))
-{
-	UART5_TxInterruptHandler = InterruptHandler;
+void UART5_SetTxInterruptHandler(void (* InterruptHandler)(void)){
+    UART5_TxInterruptHandler = InterruptHandler;
 }
 
 
 /**
   End of File
- */
+*/

@@ -254,6 +254,10 @@ B_type B = {
 	.log.type = 1, // mxlog type
 };
 
+bool flop = true;
+uint8_t gti_sbuf[8] = {0x24, 0x56, 0x00, 0x21, 0x03, 0x99, 0x80, 0x6c};
+uint8_t gti_zero[8] = {0x24, 0x56, 0x00, 0x21, 0x00, 0x00, 0x80, 0x08};
+
 /*
  * testing blob data feature for logs
  */
@@ -288,6 +292,8 @@ static void state_fwrev_cb(void);
 static void state_time_cb(void);
 static void state_date_cb(void);
 
+uint8_t gti_checksum(uint8_t *, uint16_t);
+
 /*
  * busy loop delay with WDT reset
  */
@@ -298,6 +304,23 @@ void wdtdelay(const uint32_t delay)
 	for (dcount = 0; dcount <= delay; dcount++) { // delay a bit
 		ClrWdt(); // reset the WDT timer
 	};
+}
+
+uint8_t gti_checksum(uint8_t * gti_sbuf, uint16_t power)
+{
+	uint16_t pu, pl, cs;
+
+	pu = power >> 8;
+	pl = power & 0xff;
+	cs = 264 - pu - pl;
+	if (cs >= 256) {
+		cs = 8;
+	}
+
+	gti_sbuf[4] = (uint8_t) pu;
+	gti_sbuf[5] = (uint8_t) pl;
+	gti_sbuf[7] = (uint8_t) cs;
+	return(uint8_t) cs;
 }
 
 /*
@@ -336,6 +359,7 @@ void main(void)
 	void mb_setup(); // serial error handlers
 #endif
 	StartTimer(TMR_SPIN, SPINNER_SPEED);
+	StartTimer(TMR_GTI, GTI_SPEED);
 
 	init_display();
 	snprintf(buffer, MAX_B_BUF, "%s   ", build_version);
@@ -390,16 +414,45 @@ void main(void)
 #endif
 
 	{
-		char s_buffer[22];
-		snprintf(s_buffer, 21, "%X%X%X%X%X%X%X%X         ", B.mui[0], B.mui[1], B.mui[2], B.mui[3], B.mui[4], B.mui[5], B.mui[6], B.mui[7]);
-		eaDogM_Scroll_String(s_buffer);
+		snprintf(buffer, 21, "%X%X%X%X%X%X%X%X         ", B.mui[0], B.mui[1], B.mui[2], B.mui[3], B.mui[4], B.mui[5], B.mui[6], B.mui[7]);
+		eaDogM_WriteStringAtPos(3, 0, buffer);
 		can_newtime = localtime(&can_timer);
+		snprintf(buffer, MAX_B_BUF, "GTI Limiter    ");
+		eaDogM_WriteStringAtPos(0, 0, buffer);
 #ifdef SDEBUG
 		snprintf(s_buffer, 21, "%s", asctime(can_newtime));
 		eaDogM_Scroll_String(s_buffer);
 		snprintf(s_buffer, 21, "CheckSum %X", calc_checksum((uint8_t *) & cmd_panelv[1], 10));
 		eaDogM_Scroll_String(s_buffer);
 #endif
+	}
+
+	if (FAKE_FM80) {
+		uint16_t gti_power = 500;
+		while (true) {
+			if (TimerDone(TMR_SPIN)) {
+				StartTimer(TMR_SPIN, SPINNER_SPEED);
+				snprintf(buffer, MAX_B_BUF, "EMon    %c%c    ", spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
+				eaDogM_WriteStringAtPos(1, 0, buffer);
+				snprintf(buffer, MAX_B_BUF, "Power Limit %iW    ", gti_power);
+				eaDogM_WriteStringAtPos(2, 0, buffer);
+			}
+			if (TimerDone(TMR_GTI)) {
+				StartTimer(TMR_GTI, GTI_SPEED);
+				DERE_SetHigh();
+				delay_ms(5);
+				gti_checksum(gti_sbuf, gti_power);
+				for (uint8_t i = 0; i < 8; i++) {
+					if (flop) {
+						Swrite(gti_sbuf[i]);
+					} else {
+						Swrite(gti_zero[i]);
+					}
+				}
+				delay_ms(20);
+				DERE_SetLow(); // enable modbus receiver
+			}
+		}
 	}
 	while (true) {
 #ifdef TRACE
@@ -519,7 +572,7 @@ void main(void)
 				}
 				StartTimer(TMR_SPIN, SPINNER_SPEED);
 				if (FAKE_FM80) {
-					C.data_ok=false;
+					C.data_ok = false;
 				}
 				if (C.data_ok && (M.error > error_save)) {
 					snprintf(buffer, MAX_B_BUF, "EMon  %4.1fVAC   %c%c    ", lp_filter(ac, F_ac, false), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));

@@ -64,6 +64,7 @@ extern "C" {
 #define	FM_BUFFER	32
 #define BUFFER_SPACING	4
 #define SPINNER_SPEED	200
+#define GTI_SPEED	1000
 #define LP_BUFFER_SIZE	9
 #define ONLINE_TIMEOUT	30000
 
