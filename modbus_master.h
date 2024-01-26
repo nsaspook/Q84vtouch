@@ -49,7 +49,7 @@ extern "C" {
 #include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
-#include "mateQ84.X/mcc_generated_files/mcc.h"
+#include "gtimodbusQ84.X/mcc_generated_files/mcc.h"
 #include "timers.h"
 #include "trace.h"
 

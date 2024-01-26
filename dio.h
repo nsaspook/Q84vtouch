@@ -13,7 +13,7 @@ extern "C" {
 #endif
 
 #include <xc.h>
-#include "mateQ84.X/mcc_generated_files/pin_manager.h"
+#include "gtimodbusQ84.X/mcc_generated_files/pin_manager.h"
 	/*
 	 * MISC_IO header
 	 * pin 3, CHARGER

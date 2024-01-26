@@ -1,7 +1,7 @@
 #include <string.h>
 #include "qconfig.h"
 #include "eadog.h"
-#include "mateQ84.X/mcc_generated_files/mcc.h"
+#include "gtimodbusQ84.X/mcc_generated_files/mcc.h"
 
 #ifdef TRACE
 #define E_TRACE	IO_RB5_Toggle()

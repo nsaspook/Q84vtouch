@@ -1,5 +1,5 @@
 #include "timers.h"
-#include "mateQ84.X/mxcmd.h"
+#include "gtimodbusQ84.X/mxcmd.h"
 
 #pragma warning disable 520
 #pragma warning disable 1498
