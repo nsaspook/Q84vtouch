@@ -22,12 +22,12 @@
  * Logging only version for EM540 data from the mateQ84 controller module
  * presets have been defaulted for proper CANFD operation using the
  * PU2CANFD USB adapter with 64 byte payloads
- * 
+ *
  * MQTT and JSON code and examples
- * https://github.com/LiamBindle/MQTT-C/tree/master
  * https://www.geeksforgeeks.org/cjson-json-file-write-read-modify-in-c/
  */
 
+#define _DEFAULT_SOURCE
 #include <errno.h>
 #include <getopt.h>
 #include <libgen.h>
@@ -38,6 +38,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 #include <time.h>
 #include <unistd.h>
 
@@ -47,13 +48,10 @@
 #include <sys/time.h>
 #include <sys/types.h>
 #include <cjson/cJSON.h>
+#include "MQTTClient.h"
 
 #include <linux/can.h>
 #include <linux/can/raw.h>
-#include "matesocketcan/mqtt_pub.h"
-#include "matesocketcan/pge.h"
-
-#define LOG_VERSION            "v00.8"
 
 #define CAN_MSG_ID_PING  0x80000002
 #define CAN_MSG_ID_PING_X 0x80000003
@@ -71,6 +69,27 @@
 #define CAN_TM_TIME 30
 #define HR_SEC  3600
 #define DAY_SEC  HR_SEC*24
+
+#define LOG_VERSION     "v1.00"
+#define MQTT_VERSION    "V1.00"
+#define ADDRESS         "tcp://10.1.1.172:1883"
+#define CLIENTID        "MateQ84_Mqtt"
+#define TOPIC_P         "mateq84/data/solar"
+#define TOPIC_S         "mateq84/data/solar/sub"
+#define QOS             1
+#define TIMEOUT         10000L
+#define SPACING_USEC    500 * 1000
+#define MQTT_TIMEOUT    150
+
+#define E_MONTH         2266.0f // Kwh
+#define G_MONTH         1000.0f // kWh
+#define E_DAYS          31.0f
+#define E_PER_DAY       E_MONTH/E_DAYS
+#define E_PER_HOUR      E_PER_DAY/24.0f
+#define G_PER_DAY       G_MONTH/E_DAYS
+#define G_PER_HOUR      G_PER_DAY/24.0f
+
+#define PGE_ZERO
 
 static int running = 1;
 static int verbose = 2;
@@ -90,14 +109,26 @@ static int is_extended_frame_format = 1;
 uint8_t full_buffer[CAN_FULL_BUFFER], data_buffer[CAN_FULL_BUFFER];
 int sec_30;
 char *token;
-
 cJSON *json;
+
+volatile MQTTClient_deliveryToken deliveredtoken, receivedtoken = false;
+volatile bool runner = false;
+
+MQTTClient client;
+MQTTClient_connectOptions conn_opts = MQTTClient_connectOptions_initializer;
+MQTTClient_message pubmsg = MQTTClient_message_initializer;
+MQTTClient_deliveryToken mtoken;
 
 long long current_timestamp(void);
 time_t start_time = 0, hour_time = 0, day_time = 0;
 
 double benergy, acenergy, load, solar, bvolts, bamps, pvolts, pamps, pwatts, runtime, bat_energy_scaled, bat_energy_kw;
 double gridin = 0.001, gridout = 0.001, gasenergy = 0.001, watergal = 0.1;
+
+void timer_callback(int32_t);
+void delivered(void *, MQTTClient_deliveryToken);
+int32_t msgarrvd(void *, char *, int, MQTTClient_message *);
+void connlost(void *, char *);
 
 static void print_usage(char *prg)
 {
@@ -150,7 +181,7 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 		}
 		for (i = 0; i < dlc; i++) {
 			if (print_hex) {
-				printf(" %02x", (uint8_t) (data[i] + inc_data));
+				printf(" %02x", (uint32_t) (data[i] + inc_data));
 			}
 			if (id == EMON_ER || id == EMON_CO || id == EMON_DA) {
 				full_buffer[i] = (uint8_t) (data[i] + inc_data);
@@ -201,7 +232,7 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 				 * convert this token into a double variable for the JSON data
 				 */
 				solar = atof(token);
-				fprintf(stderr, " %s %s log variable: %s ", DATA_MQTT_SOLAR, ADDR_MQTT, token);
+				fprintf(stderr, " %s %s log variable: %s ", TOPIC_P, ADDRESS, token);
 				token = strtok(NULL, ",");
 				acenergy = atof(token);
 				fprintf(stderr, " %s ", token);
@@ -242,10 +273,26 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 				cJSON_AddNumberToObject(json, "gasenergy", gasenergy);
 				cJSON_AddNumberToObject(json, "watergal", watergal);
 				cJSON_AddStringToObject(json, "system", "FM80 solar monitor");
-				// convert the cJSON object to a JSON string 
+				// convert the cJSON object to a JSON string
 				char *json_str = cJSON_Print(json);
 
-				mqtt_check(json_str);
+				pubmsg.payload = json_str;
+				pubmsg.payloadlen = strlen(json_str);
+				pubmsg.qos = QOS;
+				pubmsg.retained = 0;
+				deliveredtoken = 0;
+				MQTTClient_publishMessage(client, TOPIC_P, &pubmsg, &mtoken);
+				// a busy, wait loop for the async delivery thread to complete
+				{
+					uint32_t waiting = 0;
+					while (deliveredtoken != mtoken) {
+						usleep(100);
+						if (waiting++ > MQTT_TIMEOUT) {
+							printf("\r\nStill Waiting, timeout");
+							break;
+						}
+					};
+				}
 
 				cJSON_free(json_str);
 				cJSON_Delete(json);
@@ -567,6 +614,76 @@ out_free_tx_frames:
 	return err;
 }
 
+/*
+ * Async processing threads
+ */
+
+/*
+ * Comedi data update timer flag
+ */
+void timer_callback(int32_t signum)
+{
+	signal(signum, timer_callback);
+	runner = true;
+}
+
+/*
+ * set the broker has message token
+ */
+void delivered(void *context, MQTTClient_deliveryToken dt)
+{
+	deliveredtoken = dt;
+}
+
+/*
+ * data received on topic from the broker
+ */
+int32_t msgarrvd(void *context, char *topicName, int topicLen, MQTTClient_message *message)
+{
+	int32_t i;
+	char* payloadptr;
+	char buffer[1024];
+
+#ifdef DEBUG_REC
+	printf("Message arrived\n");
+#endif
+	payloadptr = message->payload;
+	for (i = 0; i < message->payloadlen; i++) {
+		buffer[i] = *payloadptr++;
+	}
+	buffer[i] = 0; // make C string
+
+	// parse the JSON data
+	cJSON *json = cJSON_ParseWithLength(buffer, message->payloadlen);
+	if (json == NULL) {
+		const char *error_ptr = cJSON_GetErrorPtr();
+		if (error_ptr != NULL) {
+			printf("Error: %s\n", error_ptr);
+		}
+		goto error_exit;
+		return 1;
+	}
+
+	receivedtoken = true;
+error_exit:
+	// delete the JSON object
+	cJSON_Delete(json);
+
+	MQTTClient_freeMessage(&message);
+	MQTTClient_free(topicName);
+	return 1;
+}
+
+/*
+ * Broker errors
+ */
+void connlost(void *context, char *cause)
+{
+	printf("\nConnection lost\n");
+	printf("     cause: %s\n", cause);
+	exit(EXIT_FAILURE);
+}
+
 int main(int argc, char *argv[])
 {
 	struct sockaddr_can addr;
@@ -576,6 +693,7 @@ int main(int argc, char *argv[])
 	int opt, err;
 	int enable_socket_option = 1;
 	int filter = 0;
+	uint32_t rc;
 
 	signal(SIGTERM, signal_handler);
 	signal(SIGHUP, signal_handler);
@@ -584,9 +702,22 @@ int main(int argc, char *argv[])
 	sec_30 = time(NULL);
 	start_time = time(NULL);
 
-	mqtt_socket();
-
 	printf("\r\n log version %s : mqtt version %s\r\n", LOG_VERSION, MQTT_VERSION);
+
+	MQTTClient_create(&client, ADDRESS, CLIENTID, MQTTCLIENT_PERSISTENCE_NONE, NULL);
+	conn_opts.keepAliveInterval = 20;
+	conn_opts.cleansession = 1;
+
+	MQTTClient_setCallbacks(client, NULL, connlost, msgarrvd, delivered);
+	if ((rc = MQTTClient_connect(client, &conn_opts)) != MQTTCLIENT_SUCCESS) {
+		printf("Failed to connect, return code %d\n", rc);
+		exit(EXIT_FAILURE);
+	}
+
+	/*
+	 * on topic received data will trigger the msgarrvd function
+	 */
+	MQTTClient_subscribe(client, TOPIC_S, QOS);
 
 	while ((opt = getopt(argc, argv, "bdef:gi:l:o:s:vx?")) != -1) {
 		switch (opt) {
@@ -750,7 +881,7 @@ int main(int argc, char *argv[])
 
 	if (verbose) {
 		printf("Exiting...\n");
-		mqtt_exit();
+		//		mqtt_exit();
 	}
 
 	close(sockfd);
@@ -767,6 +898,5 @@ long long current_timestamp(void)
 	struct timeval te;
 	gettimeofday(&te, NULL); // get current time
 	long long milliseconds = te.tv_sec * 1000LL + te.tv_usec / 1000; // calculate milliseconds
-	// printf("milliseconds: %lld\n", milliseconds);
 	return milliseconds;
 }

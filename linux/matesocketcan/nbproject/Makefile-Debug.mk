@@ -35,10 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/_ext/5c0/raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.o \
-	${OBJECTDIR}/mqtt.o \
-	${OBJECTDIR}/mqtt_pal.o \
-	${OBJECTDIR}/mqtt_pub.o
+	${OBJECTDIR}/_ext/5c0/raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.o
 
 
 # C Compiler Flags
@@ -69,21 +66,6 @@ ${OBJECTDIR}/_ext/5c0/raw.githubusercontent.com_linux-can_can-utils_master_canfd
 	${MKDIR} -p ${OBJECTDIR}/_ext/5c0
 	${RM} "$@.d"
 	$(COMPILE.c) -O3 -Wall -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5c0/raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.o ../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c
-
-${OBJECTDIR}/mqtt.o: mqtt.c
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.c) -O3 -Wall -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/mqtt.o mqtt.c
-
-${OBJECTDIR}/mqtt_pal.o: mqtt_pal.c
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.c) -O3 -Wall -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/mqtt_pal.o mqtt_pal.c
-
-${OBJECTDIR}/mqtt_pub.o: mqtt_pub.c
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.c) -O3 -Wall -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/mqtt_pub.o mqtt_pub.c
 
 # Subprojects
 .build-subprojects:
