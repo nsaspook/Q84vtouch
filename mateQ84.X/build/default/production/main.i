@@ -4,8 +4,8 @@
 # 288 "<built-in>" 3
 # 1 "<command line>" 1
 # 1 "<built-in>" 2
-# 1 "/opt/microchip/xc8/v2.45/pic/include/language_support.h" 1 3
-# 68 "/opt/microchip/xc8/v2.45/pic/include/language_support.h" 3
+# 1 "/opt/microchip/xc8/v2.46/pic/include/language_support.h" 1 3
+# 68 "/opt/microchip/xc8/v2.46/pic/include/language_support.h" 3
 extern char * __stack_lo;
 extern char * __stack_hi;
 
@@ -166,48 +166,43 @@ extern char * __intlo_stack_hi;
 
 
 #pragma config CRCERESL = hFF
-
-
-
-
-
-
-# 1 "/opt/microchip/xc8/v2.45/pic/include/xc.h" 1 3
-# 18 "/opt/microchip/xc8/v2.45/pic/include/xc.h" 3
+# 197 "main.c"
+# 1 "/opt/microchip/xc8/v2.46/pic/include/xc.h" 1 3
+# 18 "/opt/microchip/xc8/v2.46/pic/include/xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
 
 extern double __fpnormalize(double);
 
 
 
-# 1 "/opt/microchip/xc8/v2.45/pic/include/c99/xc8debug.h" 1 3
+# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/xc8debug.h" 1 3
 
 
 
-# 1 "/opt/microchip/xc8/v2.45/pic/include/c99/stdlib.h" 1 3
+# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/stdlib.h" 1 3
 
 
 
-# 1 "/opt/microchip/xc8/v2.45/pic/include/c99/musl_xc8.h" 1 3
-# 5 "/opt/microchip/xc8/v2.45/pic/include/c99/stdlib.h" 2 3
+# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/musl_xc8.h" 1 3
+# 5 "/opt/microchip/xc8/v2.46/pic/include/c99/stdlib.h" 2 3
 
 
 
 
 
-# 1 "/opt/microchip/xc8/v2.45/pic/include/c99/features.h" 1 3
-# 11 "/opt/microchip/xc8/v2.45/pic/include/c99/stdlib.h" 2 3
-# 21 "/opt/microchip/xc8/v2.45/pic/include/c99/stdlib.h" 3
-# 1 "/opt/microchip/xc8/v2.45/pic/include/c99/bits/alltypes.h" 1 3
-# 24 "/opt/microchip/xc8/v2.45/pic/include/c99/bits/alltypes.h" 3
+# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/features.h" 1 3
+# 11 "/opt/microchip/xc8/v2.46/pic/include/c99/stdlib.h" 2 3
+# 21 "/opt/microchip/xc8/v2.46/pic/include/c99/stdlib.h" 3
+# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 1 3
+# 24 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 3
 typedef long int wchar_t;
-# 128 "/opt/microchip/xc8/v2.45/pic/include/c99/bits/alltypes.h" 3
+# 128 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 3
 typedef unsigned size_t;
-# 174 "/opt/microchip/xc8/v2.45/pic/include/c99/bits/alltypes.h" 3
+# 174 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 3
 typedef __int24 int24_t;
-# 210 "/opt/microchip/xc8/v2.45/pic/include/c99/bits/alltypes.h" 3
+# 210 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 3
 typedef __uint24 uint24_t;
-# 22 "/opt/microchip/xc8/v2.45/pic/include/c99/stdlib.h" 2 3
+# 22 "/opt/microchip/xc8/v2.46/pic/include/c99/stdlib.h" 2 3
 
 int atoi (const char *);
 long atol (const char *);
@@ -233,7 +228,7 @@ unsigned long long strtoull (const char *restrict, char **restrict, int);
 unsigned long __strtoxl(const char * s, char ** endptr, int base, char is_signed);
 
 unsigned long long __strtoxll(const char * s, char ** endptr, int base, char is_signed);
-# 55 "/opt/microchip/xc8/v2.45/pic/include/c99/stdlib.h" 3
+# 55 "/opt/microchip/xc8/v2.46/pic/include/c99/stdlib.h" 3
 int rand (void);
 void srand (unsigned);
 
@@ -279,7 +274,7 @@ typedef struct { unsigned int quot, rem; } udiv_t;
 typedef struct { unsigned long quot, rem; } uldiv_t;
 udiv_t udiv (unsigned int, unsigned int);
 uldiv_t uldiv (unsigned long, unsigned long);
-# 5 "/opt/microchip/xc8/v2.45/pic/include/c99/xc8debug.h" 2 3
+# 5 "/opt/microchip/xc8/v2.46/pic/include/c99/xc8debug.h" 2 3
 
 
 
@@ -289,26 +284,26 @@ uldiv_t uldiv (unsigned long, unsigned long);
 
 #pragma intrinsic(__builtin_software_breakpoint)
 extern void __builtin_software_breakpoint(void);
-# 24 "/opt/microchip/xc8/v2.45/pic/include/xc.h" 2 3
-# 1 "/opt/microchip/xc8/v2.45/pic/include/builtins.h" 1 3
+# 24 "/opt/microchip/xc8/v2.46/pic/include/xc.h" 2 3
+# 1 "/opt/microchip/xc8/v2.46/pic/include/builtins.h" 1 3
 
 
 
-# 1 "/opt/microchip/xc8/v2.45/pic/include/c99/stdint.h" 1 3
-# 26 "/opt/microchip/xc8/v2.45/pic/include/c99/stdint.h" 3
-# 1 "/opt/microchip/xc8/v2.45/pic/include/c99/bits/alltypes.h" 1 3
-# 133 "/opt/microchip/xc8/v2.45/pic/include/c99/bits/alltypes.h" 3
+# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/stdint.h" 1 3
+# 26 "/opt/microchip/xc8/v2.46/pic/include/c99/stdint.h" 3
+# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 1 3
+# 133 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 3
 typedef unsigned __int24 uintptr_t;
-# 148 "/opt/microchip/xc8/v2.45/pic/include/c99/bits/alltypes.h" 3
+# 148 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 3
 typedef __int24 intptr_t;
-# 164 "/opt/microchip/xc8/v2.45/pic/include/c99/bits/alltypes.h" 3
+# 164 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 3
 typedef signed char int8_t;
 
 
 
 
 typedef short int16_t;
-# 179 "/opt/microchip/xc8/v2.45/pic/include/c99/bits/alltypes.h" 3
+# 179 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 3
 typedef long int32_t;
 
 
@@ -316,7 +311,7 @@ typedef long int32_t;
 
 
 typedef long long int64_t;
-# 194 "/opt/microchip/xc8/v2.45/pic/include/c99/bits/alltypes.h" 3
+# 194 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 3
 typedef long long intmax_t;
 
 
@@ -329,7 +324,7 @@ typedef unsigned char uint8_t;
 
 
 typedef unsigned short uint16_t;
-# 215 "/opt/microchip/xc8/v2.45/pic/include/c99/bits/alltypes.h" 3
+# 215 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 3
 typedef unsigned long uint32_t;
 
 
@@ -337,9 +332,9 @@ typedef unsigned long uint32_t;
 
 
 typedef unsigned long long uint64_t;
-# 235 "/opt/microchip/xc8/v2.45/pic/include/c99/bits/alltypes.h" 3
+# 235 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 3
 typedef unsigned long long uintmax_t;
-# 27 "/opt/microchip/xc8/v2.45/pic/include/c99/stdint.h" 2 3
+# 27 "/opt/microchip/xc8/v2.46/pic/include/c99/stdint.h" 2 3
 
 typedef int8_t int_fast8_t;
 
@@ -371,14 +366,14 @@ typedef uint24_t uint_fast24_t;
 typedef uint32_t uint_least32_t;
 
 typedef uint64_t uint_least64_t;
-# 148 "/opt/microchip/xc8/v2.45/pic/include/c99/stdint.h" 3
-# 1 "/opt/microchip/xc8/v2.45/pic/include/c99/bits/stdint.h" 1 3
+# 148 "/opt/microchip/xc8/v2.46/pic/include/c99/stdint.h" 3
+# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/stdint.h" 1 3
 typedef int16_t int_fast16_t;
 typedef int32_t int_fast32_t;
 typedef uint16_t uint_fast16_t;
 typedef uint32_t uint_fast32_t;
-# 149 "/opt/microchip/xc8/v2.45/pic/include/c99/stdint.h" 2 3
-# 5 "/opt/microchip/xc8/v2.45/pic/include/builtins.h" 2 3
+# 149 "/opt/microchip/xc8/v2.46/pic/include/c99/stdint.h" 2 3
+# 5 "/opt/microchip/xc8/v2.46/pic/include/builtins.h" 2 3
 
 
 #pragma intrinsic(__nop)
@@ -400,7 +395,7 @@ extern __attribute__((nonreentrant)) void _delaywdt(uint32_t);
 
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(uint8_t);
-# 25 "/opt/microchip/xc8/v2.45/pic/include/xc.h" 2 3
+# 25 "/opt/microchip/xc8/v2.46/pic/include/xc.h" 2 3
 
 
 
@@ -414,12 +409,12 @@ extern __attribute__((nonreentrant)) void _delay3(uint8_t);
 
 
 
-# 1 "/opt/microchip/xc8/v2.45/pic/include/htc.h" 1 3
+# 1 "/opt/microchip/xc8/v2.46/pic/include/htc.h" 1 3
 
 
 
-# 1 "/opt/microchip/xc8/v2.45/pic/include/xc.h" 1 3
-# 5 "/opt/microchip/xc8/v2.45/pic/include/htc.h" 2 3
+# 1 "/opt/microchip/xc8/v2.46/pic/include/xc.h" 1 3
+# 5 "/opt/microchip/xc8/v2.46/pic/include/htc.h" 2 3
 # 6 "/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.24.430/xc8/pic/include/pic18.h" 2 3
 
 
@@ -427,7 +422,7 @@ extern __attribute__((nonreentrant)) void _delay3(uint8_t);
 # 264 "/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.24.430/xc8/pic/include/pic18_chip_select.h" 3
 # 1 "/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.24.430/xc8/pic/include/proc/pic18f47q84.h" 1 3
 # 44 "/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.24.430/xc8/pic/include/proc/pic18f47q84.h" 3
-# 1 "/opt/microchip/xc8/v2.45/pic/include/__at.h" 1 3
+# 1 "/opt/microchip/xc8/v2.46/pic/include/__at.h" 1 3
 # 45 "/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.24.430/xc8/pic/include/proc/pic18f47q84.h" 2 3
 # 360 "/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.24.430/xc8/pic/include/proc/pic18f47q84.h" 3
 extern volatile unsigned char BOOTREG __attribute__((address(0x038)));
@@ -38850,7 +38845,7 @@ __attribute__((__unsupported__("The " "EraseFlash" " routine is no longer suppor
 
 
 
-# 1 "/opt/microchip/xc8/v2.45/pic/include/errata.h" 1 3
+# 1 "/opt/microchip/xc8/v2.46/pic/include/errata.h" 1 3
 # 28 "/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.24.430/xc8/pic/include/pic18.h" 2 3
 # 156 "/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.24.430/xc8/pic/include/pic18.h" 3
 __attribute__((__unsupported__("The " "Read_b_eep" " routine is no longer supported. Please use the MPLAB X MCC."))) unsigned char Read_b_eep(unsigned int badd);
@@ -38861,39 +38856,39 @@ __attribute__((__unsupported__("The READTIMER" "0" "() macro is not available wi
 # 192 "/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.24.430/xc8/pic/include/pic18.h" 3
 unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
-# 34 "/opt/microchip/xc8/v2.45/pic/include/xc.h" 2 3
-# 194 "main.c" 2
+# 34 "/opt/microchip/xc8/v2.46/pic/include/xc.h" 2 3
+# 197 "main.c" 2
 
 # 1 "./mxcmd.h" 1
 # 15 "./mxcmd.h"
-# 1 "/opt/microchip/xc8/v2.45/pic/include/c99/stddef.h" 1 3
-# 19 "/opt/microchip/xc8/v2.45/pic/include/c99/stddef.h" 3
-# 1 "/opt/microchip/xc8/v2.45/pic/include/c99/bits/alltypes.h" 1 3
-# 138 "/opt/microchip/xc8/v2.45/pic/include/c99/bits/alltypes.h" 3
+# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/stddef.h" 1 3
+# 19 "/opt/microchip/xc8/v2.46/pic/include/c99/stddef.h" 3
+# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 1 3
+# 138 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 3
 typedef int ptrdiff_t;
-# 20 "/opt/microchip/xc8/v2.45/pic/include/c99/stddef.h" 2 3
+# 20 "/opt/microchip/xc8/v2.46/pic/include/c99/stddef.h" 2 3
 # 16 "./mxcmd.h" 2
-# 1 "/opt/microchip/xc8/v2.45/pic/include/c99/stdbool.h" 1 3
+# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/stdbool.h" 1 3
 # 17 "./mxcmd.h" 2
 
-# 1 "/opt/microchip/xc8/v2.45/pic/include/c99/stdio.h" 1 3
-# 24 "/opt/microchip/xc8/v2.45/pic/include/c99/stdio.h" 3
-# 1 "/opt/microchip/xc8/v2.45/pic/include/c99/bits/alltypes.h" 1 3
-# 12 "/opt/microchip/xc8/v2.45/pic/include/c99/bits/alltypes.h" 3
+# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/stdio.h" 1 3
+# 24 "/opt/microchip/xc8/v2.46/pic/include/c99/stdio.h" 3
+# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 1 3
+# 12 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 3
 typedef void * va_list[1];
 
 
 
 
 typedef void * __isoc_va_list[1];
-# 143 "/opt/microchip/xc8/v2.45/pic/include/c99/bits/alltypes.h" 3
+# 143 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 3
 typedef __int24 ssize_t;
-# 255 "/opt/microchip/xc8/v2.45/pic/include/c99/bits/alltypes.h" 3
+# 255 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 3
 typedef long long off_t;
-# 409 "/opt/microchip/xc8/v2.45/pic/include/c99/bits/alltypes.h" 3
+# 409 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 3
 typedef struct _IO_FILE FILE;
-# 25 "/opt/microchip/xc8/v2.45/pic/include/c99/stdio.h" 2 3
-# 52 "/opt/microchip/xc8/v2.45/pic/include/c99/stdio.h" 3
+# 25 "/opt/microchip/xc8/v2.46/pic/include/c99/stdio.h" 2 3
+# 52 "/opt/microchip/xc8/v2.46/pic/include/c99/stdio.h" 3
 typedef union _G_fpos64_t {
  char __opaque[16];
  double __align;
@@ -39029,12 +39024,12 @@ char *ctermid(char *);
 
 char *tempnam(const char *, const char *);
 # 19 "./mxcmd.h" 2
-# 1 "/opt/microchip/xc8/v2.45/pic/include/c99/string.h" 1 3
-# 25 "/opt/microchip/xc8/v2.45/pic/include/c99/string.h" 3
-# 1 "/opt/microchip/xc8/v2.45/pic/include/c99/bits/alltypes.h" 1 3
-# 421 "/opt/microchip/xc8/v2.45/pic/include/c99/bits/alltypes.h" 3
+# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/string.h" 1 3
+# 25 "/opt/microchip/xc8/v2.46/pic/include/c99/string.h" 3
+# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 1 3
+# 421 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 3
 typedef struct __locale_struct * locale_t;
-# 26 "/opt/microchip/xc8/v2.45/pic/include/c99/string.h" 2 3
+# 26 "/opt/microchip/xc8/v2.46/pic/include/c99/string.h" 2 3
 
 void *memcpy (void *restrict, const void *restrict, size_t);
 void *memmove (void *, const void *, size_t);
@@ -39123,7 +39118,7 @@ void IOCAF5_DefaultInterruptHandler(void);
 
 
 
-# 1 "/opt/microchip/xc8/v2.45/pic/include/c99/conio.h" 1 3
+# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/conio.h" 1 3
 # 54 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/interrupt_manager.h" 1
@@ -40664,12 +40659,12 @@ void SystemArbiter_Initialize(void);
 # 26 "./../eadog.h"
 # 1 "./../qconfig.h" 1
 # 38 "./../qconfig.h"
-# 1 "/opt/microchip/xc8/v2.45/pic/include/c99/time.h" 1 3
-# 33 "/opt/microchip/xc8/v2.45/pic/include/c99/time.h" 3
-# 1 "/opt/microchip/xc8/v2.45/pic/include/c99/bits/alltypes.h" 1 3
-# 82 "/opt/microchip/xc8/v2.45/pic/include/c99/bits/alltypes.h" 3
+# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/time.h" 1 3
+# 33 "/opt/microchip/xc8/v2.46/pic/include/c99/time.h" 3
+# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 1 3
+# 82 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 3
 typedef unsigned long time_t;
-# 303 "/opt/microchip/xc8/v2.45/pic/include/c99/bits/alltypes.h" 3
+# 303 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 3
 typedef void * timer_t;
 
 
@@ -40681,7 +40676,7 @@ typedef int clockid_t;
 
 
 typedef unsigned long clock_t;
-# 323 "/opt/microchip/xc8/v2.45/pic/include/c99/bits/alltypes.h" 3
+# 323 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 3
 struct timespec { time_t tv_sec; long tv_nsec; };
 
 
@@ -40689,7 +40684,7 @@ struct timespec { time_t tv_sec; long tv_nsec; };
 
 
 typedef int pid_t;
-# 34 "/opt/microchip/xc8/v2.45/pic/include/c99/time.h" 2 3
+# 34 "/opt/microchip/xc8/v2.46/pic/include/c99/time.h" 2 3
 
 
 
@@ -40720,7 +40715,7 @@ struct tm *localtime (const time_t *);
 char *asctime (const struct tm *);
 char *ctime (const time_t *);
 int timespec_get(struct timespec *, int);
-# 73 "/opt/microchip/xc8/v2.45/pic/include/c99/time.h" 3
+# 73 "/opt/microchip/xc8/v2.46/pic/include/c99/time.h" 3
 size_t strftime_l (char * restrict, size_t, const char * restrict, const struct tm * restrict, locale_t);
 
 struct tm *gmtime_r (const time_t *restrict, struct tm *restrict);
@@ -40734,7 +40729,7 @@ struct itimerspec {
  struct timespec it_interval;
  struct timespec it_value;
 };
-# 102 "/opt/microchip/xc8/v2.45/pic/include/c99/time.h" 3
+# 102 "/opt/microchip/xc8/v2.46/pic/include/c99/time.h" 3
 int nanosleep (const struct timespec *, struct timespec *);
 int clock_getres (clockid_t, struct timespec *);
 int clock_gettime (clockid_t, struct timespec *);
@@ -40761,18 +40756,18 @@ extern long timezone;
 extern int getdate_err;
 struct tm *getdate (const char *);
 # 39 "./../qconfig.h" 2
-# 1 "/opt/microchip/xc8/v2.45/pic/include/c99/math.h" 1 3
-# 15 "/opt/microchip/xc8/v2.45/pic/include/c99/math.h" 3
-# 1 "/opt/microchip/xc8/v2.45/pic/include/c99/bits/alltypes.h" 1 3
-# 39 "/opt/microchip/xc8/v2.45/pic/include/c99/bits/alltypes.h" 3
+# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/math.h" 1 3
+# 15 "/opt/microchip/xc8/v2.46/pic/include/c99/math.h" 3
+# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 1 3
+# 39 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 3
 typedef float float_t;
 
 
 
 
 typedef double double_t;
-# 16 "/opt/microchip/xc8/v2.45/pic/include/c99/math.h" 2 3
-# 42 "/opt/microchip/xc8/v2.45/pic/include/c99/math.h" 3
+# 16 "/opt/microchip/xc8/v2.46/pic/include/c99/math.h" 2 3
+# 42 "/opt/microchip/xc8/v2.46/pic/include/c99/math.h" 3
 int __fpclassifyf(float);
 
 
@@ -40782,7 +40777,7 @@ int __fpclassifyf(float);
 
 
 int __signbitf(float);
-# 59 "/opt/microchip/xc8/v2.45/pic/include/c99/math.h" 3
+# 59 "/opt/microchip/xc8/v2.46/pic/include/c99/math.h" 3
 double acos(double);
 float acosf(float);
 long double acosl(long double);
@@ -41041,7 +41036,7 @@ long double nextafterl(long double, long double);
 double nexttoward(double, long double);
 float nexttowardf(float, long double);
 long double nexttowardl(long double, long double);
-# 326 "/opt/microchip/xc8/v2.45/pic/include/c99/math.h" 3
+# 326 "/opt/microchip/xc8/v2.46/pic/include/c99/math.h" 3
 double pow(double, double);
 __attribute__((nonreentrant)) float powf(float, float);
 long double powl(long double, long double);
@@ -41123,7 +41118,7 @@ long double tgammal(long double);
 double trunc(double);
 float truncf(float);
 long double truncl(long double);
-# 431 "/opt/microchip/xc8/v2.45/pic/include/c99/math.h" 3
+# 431 "/opt/microchip/xc8/v2.46/pic/include/c99/math.h" 3
 extern int signgam;
 
 double j0(double);
@@ -41251,8 +41246,8 @@ void delay_ms(const uint16_t);
 # 23 "./mxcmd.h" 2
 
 
- const char build_version[] = "V1.96 FM80 Q84";
-# 77 "./mxcmd.h"
+ const char build_version[] = "V1.97 FM80 Q84";
+# 80 "./mxcmd.h"
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
  const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};
@@ -41349,7 +41344,7 @@ void delay_ms(const uint16_t);
  extern uint16_t calc_checksum(uint8_t*, const uint8_t);
 
  extern B_type B;
-# 195 "main.c" 2
+# 198 "main.c" 2
 
 
 # 1 "./../modbus_master.h" 1
@@ -41599,7 +41594,7 @@ void delay_ms(const uint16_t);
  extern EM_data2 emt;
  extern EM_serial ems;
  extern EM_version emv;
-# 197 "main.c" 2
+# 200 "main.c" 2
 
 # 1 "./../canfd.h" 1
 # 21 "./../canfd.h"
@@ -41690,7 +41685,7 @@ void delay_ms(const uint16_t);
  void TXQNotFullHandler(void);
  void Can1FIFO1NotEmptyHandler(void);
 
- extern char info_buffer[255], log_buffer[255];
+ extern char info_buffer[512], log_buffer[512];
  void can_fd_tx(void);
  void can_setup(void);
  void can_fd_lcd_mirror(const uint8_t, char *);
@@ -41699,8 +41694,8 @@ void delay_ms(const uint16_t);
  blob_type* can_blob_get(blob_type*);
  _Bool get_blob_tx(void);
  _Bool get_blob_rx(void);
-# 198 "main.c" 2
-# 207 "main.c"
+# 201 "main.c" 2
+# 210 "main.c"
 enum state_type {
  state_init,
  state_status,
@@ -41721,8 +41716,8 @@ static uint16_t abuf[32], cbuf[32 + 2];
 volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
-char buffer[255] = "Boot Init Display   ", info_buffer[255], log_buffer[255];
-const char *build_date = "Jan 25 2024", *build_time = "14:30:16";
+char buffer[512] = "Boot Init Display   ", info_buffer[512], log_buffer[512];
+const char *build_date = "Feb  1 2024", *build_time = "16:48:10";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
@@ -41834,27 +41829,27 @@ void main(void)
  StartTimer(TMR_SPIN, 200);
 
  init_display();
- snprintf(buffer, 255, "%s   ", build_version);
+ snprintf(buffer, 512, "%s   ", build_version);
  eaDogM_WriteStringAtPos(0, 0, buffer);
- snprintf(buffer, 255, "%s   ", build_date);
+ snprintf(buffer, 512, "%s   ", build_date);
  eaDogM_WriteStringAtPos(1, 0, buffer);
  if (initbm_data((void*) EB)) {
   B.alt_display = EB->alt_display;
-  snprintf(buffer, 255, "Battery data loaded   ");
+  snprintf(buffer, 512, "Battery data loaded   ");
  } else {
 
-  snprintf(buffer, 255, "%s B:%X %X %X   ", build_time, STATUS, PCON0, PCON1);
+  snprintf(buffer, 512, "%s B:%X %X %X   ", build_time, STATUS, PCON0, PCON1);
 
 
 
  }
  eaDogM_WriteStringAtPos(2, 0, buffer);
-# 366 "main.c"
+# 369 "main.c"
  eaDogM_WriteStringAtPos(2, 0, buffer);
- snprintf(buffer, 255, "%s ", "Start Up            ");
+ snprintf(buffer, 512, "%s ", "Start Up            ");
  eaDogM_WriteStringAtPos(3, 0, buffer);
  wdtdelay(1000000);
- snprintf(buffer, 255, "%s ", "Polling FM80        ");
+ snprintf(buffer, 512, "%s ", "Polling FM80        ");
  eaDogM_WriteStringAtPos(2, 0, buffer);
 
 
@@ -41998,16 +41993,16 @@ void main(void)
     }
     StartTimer(TMR_SPIN, 200);
     if (C.data_ok && (M.error > error_save)) {
-     snprintf(buffer, 255, "EMon  %4.1fVAC   %c%c    ", lp_filter(ac, F_ac, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
+     snprintf(buffer, 512, "EMon  %4.1fVAC   %c%c    ", lp_filter(ac, F_ac, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
 
      eaDogM_WriteStringAtPos(1, 0, buffer);
 
-     snprintf(info_buffer, 255, " error logged \r\n");
+     snprintf(info_buffer, 512, " error logged \r\n");
      if (e_update == 0) {
 
 
 
-      snprintf(buffer, 255, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
+      snprintf(buffer, 512, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
 
 
       eaDogM_WriteStringAtPos(0, 0, buffer);
@@ -42019,10 +42014,10 @@ void main(void)
      }
     } else {
      M.error = 0;
-# 564 "main.c"
-     snprintf(buffer, 255, "EMon  %6.1fWh   %c%c    ", EB->bat_energy / 360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
+# 567 "main.c"
+     snprintf(buffer, 512, "EMon  %6.1fWh   %c%c    ", EB->bat_energy / 360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
      eaDogM_WriteStringAtPos(1, 0, buffer);
-     snprintf(buffer, 255, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
+     snprintf(buffer, 512, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
      eaDogM_WriteStringAtPos(0, 0, buffer);
 
     }
@@ -42039,20 +42034,20 @@ void main(void)
     B.alt_display = 0;
    }
    EB->alt_display = B.alt_display;
-   snprintf(buffer, 255, "%d %s", B.alt_display, "Alt Button \337\364       ");
+   snprintf(buffer, 512, "%d %s", B.alt_display, "Alt Button \337\364       ");
    eaDogM_WriteStringAtPos(2, 0, buffer);
   }
   if (B.a_switch[D_SW_L]) {
    do { LATBbits.LATB1 = 1; } while(0);
    B.a_switch[D_SW_L] = 0;
-   snprintf(buffer, 255, "%s", "Log Button Pressed        ");
+   snprintf(buffer, 512, "%s", "Log Button Pressed        ");
    eaDogM_WriteStringAtPos(2, 0, buffer);
    B.LOG = 1;
   }
   if (B.a_switch[D_SW_M]) {
    do { LATBbits.LATB1 = 1; } while(0);
    B.a_switch[D_SW_M] = 0;
-   snprintf(buffer, 255, "%s", "MISC Button Pressed        ");
+   snprintf(buffer, 512, "%s", "MISC Button Pressed        ");
    eaDogM_WriteStringAtPos(2, 0, buffer);
   }
 
@@ -42140,12 +42135,12 @@ void state_init_cb(void)
   }
   B.FM80_online = 1;
   off_delay = 0;
-  snprintf(buffer, 255, "FM80 Online         ");
+  snprintf(buffer, 512, "FM80 Online         ");
 
   eaDogM_WriteStringAtPos(3, 0, buffer);
 
  } else {
-  snprintf(buffer, 255, "FM80 Offline        ");
+  snprintf(buffer, 512, "FM80 Offline        ");
 
   eaDogM_WriteStringAtPos(3, 0, buffer);
 
@@ -42161,7 +42156,7 @@ void state_status_cb(void)
 {
  static uint16_t day_clocks = 0;
  static uint8_t status_prev = STATUS_SLEEPING;
-# 720 "main.c"
+# 723 "main.c"
  if (B.day_check++ > 1200) {
   B.day_check = 0;
   B.once = 0;
@@ -42282,8 +42277,8 @@ void state_mx_status_cb(void)
 
    B.run_time = lp_filter(B.run_time, F_run, 0);
    snprintf(buffer, 25, "%s", asctime(can_newtime));
-   buffer[26] = 0;
-   snprintf(log_buffer, 255, log_format, abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, pv_Wh_daily, ac_Wh_daily, B.run_time, B.net_balance, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, EBD.bat_energy / 3600.0f, EBD.bat_cycles, ((float) em.pfl1) / 1000.0f, ((float) emt.hz) / 1000.0f, B.rx_count++,buffer);
+   buffer[4] = 0;
+   snprintf(log_buffer, 512, log_format, abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, pv_Wh_daily, ac_Wh_daily, B.run_time, B.net_balance, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, EBD.bat_energy / 3600.0f, EBD.bat_cycles, ((float) em.pfl1) / 1000.0f, ((float) emt.hz) / 1000.0f, B.rx_count++,buffer);
    printf("%s", log_buffer);
    if (B.FM80_online) {
     bat_amp_whole = abuf[3] - 128;
@@ -42291,34 +42286,34 @@ void state_mx_status_cb(void)
 
    switch (B.alt_display) {
    case 3:
-    snprintf(buffer, 255, "%4.2fHours              ", lp_filter(B.run_time, F_run, 0));
+    snprintf(buffer, 512, "%4.2fHours              ", lp_filter(B.run_time, F_run, 0));
     eaDogM_WriteStringAtPos(2, 0, buffer);
-    snprintf(buffer, 255, "ALT 3                   ");
+    snprintf(buffer, 512, "ALT 3                   ");
     eaDogM_WriteStringAtPos(3, 0, buffer);
     break;
    case 2:
-    snprintf(buffer, 255, "%4.2fBE %4.2fLW         ", EB->bat_energy / 360.0f, (float) em.wl1 / 10.0f);
+    snprintf(buffer, 512, "%4.2fBE %4.2fLW         ", EB->bat_energy / 360.0f, (float) em.wl1 / 10.0f);
     eaDogM_WriteStringAtPos(2, 0, buffer);
-    snprintf(buffer, 255, "ALT 2                   ");
+    snprintf(buffer, 512, "ALT 2                   ");
     eaDogM_WriteStringAtPos(3, 0, buffer);
     break;
    case 1:
-    snprintf(buffer, 255, "%4.2fHr %4.2fBW           ", B.run_time, B.net_balance);
+    snprintf(buffer, 512, "%4.2fHr %4.2fBW           ", B.run_time, B.net_balance);
     eaDogM_WriteStringAtPos(2, 0, buffer);
-    snprintf(buffer, 255, "%d.%01d Amps %d.%01d Volts   ", bat_amp_whole, abuf[1]&0x0f, vw, vf);
+    snprintf(buffer, 512, "%d.%01d Amps %d.%01d Volts   ", bat_amp_whole, abuf[1]&0x0f, vw, vf);
     eaDogM_WriteStringAtPos(3, 0, buffer);
     break;
    case 0:
    default:
-    snprintf(buffer, 255, "%d Watts %d.%01d Volts   ", panel_watts, volt_whole, volt_fract);
+    snprintf(buffer, 512, "%d Watts %d.%01d Volts   ", panel_watts, volt_whole, volt_fract);
     eaDogM_WriteStringAtPos(2, 0, buffer);
-    snprintf(buffer, 255, "%d.%01d Amps %d.%01d Volts   ", bat_amp_whole, abuf[1]&0x0f, vw, vf);
+    snprintf(buffer, 512, "%d.%01d Amps %d.%01d Volts   ", bat_amp_whole, abuf[1]&0x0f, vw, vf);
     eaDogM_WriteStringAtPos(3, 0, buffer);
     break;
    }
 
    can_fd_tx();
-   snprintf(info_buffer, 255, " Data OK\r\n");
+   snprintf(info_buffer, 512, " Data OK\r\n");
 
 
 

@@ -1,5 +1,4 @@
 #include "modbus_master.h"
-#include "batmon.h"
 
 #define	ON	1
 #define	OFF	0
@@ -90,9 +89,6 @@ static void em_data_handler(void);
 static void emt_data_handler(void);
 static void ems_data_handler(void);
 static void emv_data_handler(void);
-
-uint8_t gti_sbuf[8] = {0x24, 0x54, 0x00, 0x21, 0x02, 0x21, 0x80, 0xe4},
-gti_status[9] = {0x24, 0x00, 0x00, 0x00, 0x00, 0x0, 0x00, 0x00};
 
 /*
  * add the required CRC bytes to a MODBUS message
@@ -246,22 +242,10 @@ int8_t master_controller_work(C_data * client)
 {
 	static uint32_t spacing = 0;
 
-
-
-	if (true || FAKE_FM80) {
-		for (uint8_t i = 0; i < 8; i++) {
-			Swrite(gti_status[i]);
-			delay_ms(5);
-		}
-		delay_ms(50);
-		DERE_SetLow(); // enable modbus receiver
-		return 0;
-	} else {
-		if (spacing++ <SPACING && !M.rx) {
-			return T_spacing;
-		}
-		spacing = 0;
+	if (spacing++ <SPACING && !M.rx) {
+		return T_spacing;
 	}
+	spacing = 0;
 
 	client->trace = T_begin;
 	switch (client->cstate) {

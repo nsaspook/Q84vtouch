@@ -22,7 +22,7 @@ extern "C" {
 #include "../timers.h"
 
 #define VER	1
-	const char build_version[] = "V1.96 FM80 Q84";
+	const char build_version[] = "V1.97 FM80 Q84";
 	/*
 	 * code changes
 	 * 1.55 remove critical section interrupt disables for FM80 serial
@@ -55,10 +55,11 @@ extern "C" {
 	 * 1.93 send/receive blob binary data can data packets
 	 * 1.94, 1.95 add button functions and debouncing
 	 * 1.96 smooth run-time data point
+	 * 1.97 expand logging buffer for canbus data
 	 */
 
-#define MAX_B_BUF	255
-#define MAX_C_BUF	CANFD_BYTES*2
+#define MAX_B_BUF	512
+#define MAX_C_BUF	CANFD_BYTES*3
 #define IO_TEST
 
 #define	FM_BUFFER	32
@@ -73,6 +74,8 @@ extern "C" {
 #define AMP_WHOLE_ZERO	0
 
 #define CMD_CRC_LEN	10
+	
+#define DTG_LEN		3 // normal size is 26 but we must save buffer space
 
 	const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
 	const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};

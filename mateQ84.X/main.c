@@ -190,6 +190,9 @@
 // #pragma config statements should precede project file includes.
 // Use project enums instead of #define for ON and OFF.
 
+/*
+ * this is the mateQ84 version that used CANbus to connect to the remote and Linux server
+ */
 
 #include <xc.h>
 #include "mxcmd.h"
@@ -837,7 +840,7 @@ void state_mx_status_cb(void)
 			 */
 			B.run_time = lp_filter(B.run_time, F_run, false); // smooth run-time
 			snprintf(buffer, 25, "%s", asctime(can_newtime)); // the log_buffer uses this string in LOG_VARS
-			buffer[26] = 0; // remove newline
+			buffer[DTG_LEN] = 0; // remove newline
 			snprintf(log_buffer, MAX_B_BUF, log_format, LOG_VARS);
 			printf("%s", log_buffer); // log to USART
 			if (B.FM80_online) {
