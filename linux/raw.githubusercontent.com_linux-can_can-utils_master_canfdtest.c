@@ -55,22 +55,23 @@
 
 #define CAN_MSG_ID_PING  0x80000002
 #define CAN_MSG_ID_PING_X 0x80000003
-#define EMON_SL   0x80000002 // error reporting
+#define EMON_SL   0x80000002 // config reporting
 #define EMON_SU   0x80000003 // config reporting
+#define EMON_SH   0x80000004 // config reporting
 #define EMON_ER   0x8000000F // error reporting
 #define EMON_CO   0x8000000C // config reporting
 #define EMON_DA   0x8000000D // blob reporting
 #define EMON_TM   0x8000000A // send time to mateQ84
 #define CAN_MSG_ID_PONG  0x3
 #define CAN_MSG_LEN 64
-#define CAN_FULL_BUFFER CAN_MSG_LEN+CAN_MSG_LEN+1
+#define CAN_FULL_BUFFER CAN_MSG_LEN+CAN_MSG_LEN+CAN_MSG_LEN+1
 #define CAN_MSG_COUNT 1
 #define CAN_MSG_WAIT 27
 #define CAN_TM_TIME 30
 #define HR_SEC  3600
 #define DAY_SEC  HR_SEC*24
 
-#define LOG_VERSION     "v1.00"
+#define LOG_VERSION     "v1.01"
 #define MQTT_VERSION    "V1.00"
 #define ADDRESS         "tcp://10.1.1.172:1883"
 #define CLIENTID        "MateQ84_Mqtt"
@@ -192,6 +193,9 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 			if (id == EMON_SU) {
 				data_buffer[i + CAN_MSG_LEN] = (uint8_t) (data[i] + inc_data);
 			}
+			if (id == EMON_SH) {
+				data_buffer[i + CAN_MSG_LEN + CAN_MSG_LEN] = (uint8_t) (data[i] + inc_data);
+			}
 		}
 
 		if (id == EMON_SU) {
@@ -203,8 +207,8 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 				day_time += HR_SEC; // add a hour of seconds to the day variable
 				if (day_time >= DAY_SEC) { // check for a day of seconds
 					day_time = 0;
-					gridin = 0.001;
-					gasenergy = 0.001;
+					gridin = 0.001f;
+					gasenergy = 0.001f;
 				}
 			}
 #ifdef PGE_ZERO
