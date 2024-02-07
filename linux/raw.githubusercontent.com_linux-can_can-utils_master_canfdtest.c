@@ -71,8 +71,8 @@
 #define HR_SEC  3600
 #define DAY_SEC  HR_SEC*24
 
-#define LOG_VERSION     "v1.01"
-#define MQTT_VERSION    "V1.00"
+#define LOG_VERSION     "v1.02"
+#define MQTT_VERSION    "V3.11"
 #define ADDRESS         "tcp://10.1.1.172:1883"
 #define CLIENTID        "MateQ84_Mqtt"
 #define TOPIC_P         "mateq84/data/solar"
@@ -125,6 +125,7 @@ time_t start_time = 0, hour_time = 0, day_time = 0;
 
 double benergy, acenergy, load, solar, bvolts, bamps, pvolts, pamps, pwatts, runtime, bat_energy_scaled, bat_energy_kw;
 double gridin = 0.001, gridout = 0.001, gasenergy = 0.001, watergal = 0.1;
+int32_t ccmode = 0;
 
 void timer_callback(int32_t);
 void delivered(void *, MQTTClient_deliveryToken);
@@ -246,8 +247,10 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 				token = strtok(NULL, ",");
 				benergy = atof(token);
 
-				fprintf(stderr, " %s\r\n", token);
+				fprintf(stderr, " %s ", token);
 				token = strtok(NULL, ",");
+				ccmode = atoi(token);
+				fprintf(stderr, " %s\r\n", token);
 				token = strtok(NULL, ",");
 				load = atof(token);
 				token = strtok(NULL, ",");
@@ -271,6 +274,7 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 				cJSON_AddNumberToObject(json, "pamps", pamps);
 				cJSON_AddNumberToObject(json, "pvolts", pvolts);
 				cJSON_AddNumberToObject(json, "pwatts", pwatts);
+				cJSON_AddNumberToObject(json, "pccmode", ccmode);
 				// fake data for HA
 				cJSON_AddNumberToObject(json, "gridin", gridin);
 				cJSON_AddNumberToObject(json, "gridout", gridout);
