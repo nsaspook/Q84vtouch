@@ -44,7 +44,7 @@ extern "C" {
 #define D_SW_L_PIN	L_SWITCH_GetValue()
 #define D_SW_M_PIN	M_SWITCH_GetValue()
 
-#define debounce_time	200	// debounce counts, at least a few tens of milliseconds for a typical switch
+#define debounce_time	300	// debounce counts, at least a few tens of milliseconds for a typical switch
 
 #define SW_NO	0	// switch, normally open
 #define SW_NC	1	// switch, normally closed

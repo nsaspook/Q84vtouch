@@ -185,6 +185,8 @@ void get_bm_data(EB_data * EB)
 /*
  * track energy usage and storage of the system
  * with LiFePO4 battery chem this is simple, direct with no major secondary effects over the discharge/charge curve
+ * 
+ * auto resets battery energy on charge controller float condition
  *
  */
 void compute_bm_data(EB_data * EB)

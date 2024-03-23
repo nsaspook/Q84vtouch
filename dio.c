@@ -2,7 +2,7 @@
 #include "dio.h"
 #include "mateQ84.X/mxcmd.h"
 
-static uint8_t a_debounce[D_SW_COUNT] = {0};
+static volatile uint16_t a_debounce[D_SW_COUNT] = {0};
 static uint8_t get_d_switch(const uint8_t i);
 
 static void aswitch(void);
