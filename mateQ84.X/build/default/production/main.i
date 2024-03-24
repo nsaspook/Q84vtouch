@@ -40275,6 +40275,13 @@ extern void (*TMR2_InterruptHandler)(void);
 void TMR2_DefaultInterruptHandler(void);
 # 61 "./mcc_generated_files/mcc.h" 2
 
+# 1 "./mcc_generated_files/clc8.h" 1
+# 91 "./mcc_generated_files/clc8.h"
+void CLC8_Initialize(void);
+# 113 "./mcc_generated_files/clc8.h"
+_Bool CLC8_OutputStatusGet(void);
+# 62 "./mcc_generated_files/mcc.h" 2
+
 # 1 "./mcc_generated_files/tmr0.h" 1
 # 100 "./mcc_generated_files/tmr0.h"
 void TMR0_Initialize(void);
@@ -40294,13 +40301,6 @@ void TMR0_Reload(uint8_t periodVal);
 extern void (*TMR0_InterruptHandler)(void);
 # 329 "./mcc_generated_files/tmr0.h"
 void TMR0_DefaultInterruptHandler(void);
-# 62 "./mcc_generated_files/mcc.h" 2
-
-# 1 "./mcc_generated_files/clc8.h" 1
-# 91 "./mcc_generated_files/clc8.h"
-void CLC8_Initialize(void);
-# 113 "./mcc_generated_files/clc8.h"
-_Bool CLC8_OutputStatusGet(void);
 # 63 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/clc7.h" 1
@@ -41717,7 +41717,7 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[512] = "Boot Init Display   ", info_buffer[512], log_buffer[512];
-const char *build_date = "Mar 23 2024", *build_time = "10:51:06";
+const char *build_date = "Mar 24 2024", *build_time = "10:11:06";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
