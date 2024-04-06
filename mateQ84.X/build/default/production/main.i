@@ -41599,7 +41599,7 @@ void delay_ms(const uint16_t);
 # 1 "./../canfd.h" 1
 # 21 "./../canfd.h"
 # 1 "./../batmon.h" 1
-# 53 "./../batmon.h"
+# 54 "./../batmon.h"
  typedef struct EB_data {
   uint8_t checkmark;
   uint8_t version, alt_display;
@@ -41717,7 +41717,7 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[512] = "Boot Init Display   ", info_buffer[512], log_buffer[512];
-const char *build_date = "Mar 24 2024", *build_time = "10:11:06";
+const char *build_date = "Apr  5 2024", *build_time = "19:35:14";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
@@ -42174,7 +42174,7 @@ void state_status_cb(void)
    B.pv_high = 1;
   }
  } else {
-  if (++day_clocks > 45) {
+  if (++day_clocks > 90) {
    day_clocks = 0;
    if (!B.once && (B.pv_prev != STATUS_SLEEPING)) {
     B.day_check = 0;

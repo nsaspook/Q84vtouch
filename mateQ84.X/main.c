@@ -737,7 +737,7 @@ void state_status_cb(void)
 			B.pv_high = true;
 		}
 	} else {
-		if (++day_clocks > BAT_DAY_COUNT) {
+		if (++day_clocks > BAT_NIGHT_COUNT) {
 			day_clocks = 0;
 			if (!B.once && (B.pv_prev != STATUS_SLEEPING)) { // check for night and update day totals
 				B.day_check = 0;
