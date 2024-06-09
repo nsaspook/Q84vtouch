@@ -1,0 +1,7 @@
+open_nb_socket_mqtt call:[close,connect,fcntl,fprintf,freeaddrinfo,gai_strerror,getaddrinfo,socket] noreturn:[fcntl]
+mqtt_socket global:[addr,client,client_daemon,client_id,connect_flags,port,recvbuf,sendbuf,sockfd,topic] call:[mqtt_connect,mqtt_init,open_nb_socket_mqtt,pthread_create,sizeof]
+mqtt_check global:[client,topic] call:[mqtt_publish,strlen]
+mqtt_exit global:[client_daemon,sockfd] call:[exit_example] noreturn:[exit_example]
+exit_example call:[close,exit,pthread_cancel] noreturn:[close,exit,pthread_cancel]
+publish_callback
+client_refresher call:[mqtt_sync,usleep] noreturn:[usleep]

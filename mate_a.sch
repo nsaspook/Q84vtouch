@@ -15094,8 +15094,8 @@ Source: &lt;a href="https://ww1.microchip.com/downloads/en/DeviceDoc/PIC18F27-47
 <attribute name="VALUE" x="15.24" y="-58.42" size="1.778" layer="96" rot="R180"/>
 </instance>
 <instance part="C12" gate="G$1" x="27.94" y="-45.72" smashed="yes">
-<attribute name="NAME" x="28.956" y="-45.085" size="1.778" layer="95"/>
-<attribute name="VALUE" x="28.956" y="-49.911" size="1.778" layer="96"/>
+<attribute name="NAME" x="21.336" y="-45.085" size="1.778" layer="95"/>
+<attribute name="VALUE" x="21.336" y="-49.911" size="1.778" layer="96"/>
 </instance>
 <instance part="C13" gate="G$1" x="38.1" y="-45.72" smashed="yes">
 <attribute name="NAME" x="39.116" y="-45.085" size="1.778" layer="95"/>
@@ -15236,8 +15236,8 @@ Source: &lt;a href="https://ww1.microchip.com/downloads/en/DeviceDoc/PIC18F27-47
 <attribute name="VALUE" x="-30.48" y="20.32" size="1.778" layer="96" rot="R180"/>
 </instance>
 <instance part="ZENER" gate="G$1" x="33.02" y="-45.72" smashed="yes" rot="R90">
-<attribute name="NAME" x="34.798" y="-37.465" size="1.778" layer="95" rot="R180"/>
-<attribute name="VALUE" x="34.798" y="-39.751" size="1.778" layer="96" rot="R180"/>
+<attribute name="NAME" x="34.798" y="-34.925" size="1.778" layer="95" rot="R180"/>
+<attribute name="VALUE" x="34.798" y="-37.211" size="1.778" layer="96" rot="R180"/>
 </instance>
 <instance part="VSS35" gate="G$1" x="33.02" y="-53.34" smashed="yes">
 <attribute name="VALUE" x="35.56" y="-58.42" size="1.778" layer="96" rot="R180"/>

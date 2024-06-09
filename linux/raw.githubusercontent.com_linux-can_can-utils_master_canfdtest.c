@@ -108,7 +108,7 @@ static int print_hex = 0;
 static int msg_len = CAN_MSG_LEN;
 static int is_extended_frame_format = 1;
 uint8_t full_buffer[CAN_FULL_BUFFER], data_buffer[CAN_FULL_BUFFER];
-int sec_30;
+int32_t sec_30;
 char *token;
 cJSON *json;
 
@@ -169,8 +169,7 @@ static void print_usage(char *prg)
 
 static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 {
-	int i;
-	static int j = 0;
+	int32_t i;
 
 	if (print_hex) {
 		printf("%04x: ", id);
@@ -669,7 +668,6 @@ int32_t msgarrvd(void *context, char *topicName, int topicLen, MQTTClient_messag
 			printf("Error: %s\n", error_ptr);
 		}
 		goto error_exit;
-		return 1;
 	}
 
 	receivedtoken = true;
@@ -701,7 +699,7 @@ int main(int argc, char *argv[])
 	int opt, err;
 	int enable_socket_option = 1;
 	int filter = 0;
-	uint32_t rc;
+	int32_t rc;
 
 	signal(SIGTERM, signal_handler);
 	signal(SIGHUP, signal_handler);
