@@ -41188,40 +41188,41 @@ extern char spinners(uint8_t, const uint8_t);
 
 
 
-    typedef struct {
-        uint8_t con0;
-        uint8_t con1;
-        uint8_t con2;
-        uint8_t baud;
-        uint8_t operation;
-    } spi1_configuration_t;
-# 84 "./../eadog.h"
-    extern void wdtdelay(const uint32_t);
-    _Bool init_display(void);
-    void no_dma_set_lcd(void);
-    void send_lcd_data_dma(const uint8_t);
-    void send_lcd_cmd_dma(const uint8_t);
-    void send_lcd_pos_dma(const uint8_t);
-    void start_lcd(void);
-    void wait_lcd_set(void);
-    _Bool wait_lcd_check(void);
-    void wait_lcd_done(void);
-    void eaDogM_WriteChr(const int8_t);
-    void eaDogM_WriteCommand(const uint8_t);
-    void eaDogM_SetPos(const uint8_t, const uint8_t);
-    void eaDogM_ClearRow(const uint8_t);
-    void eaDogM_WriteString(char *);
-    void eaDogM_WriteStringAtPos(const uint8_t, const uint8_t, char *);
-    void eaDogM_WriteIntAtPos(const uint8_t, const uint8_t, const uint8_t);
-    void eaDogM_WriteByteToCGRAM(const uint8_t, const uint8_t);
+ typedef struct {
+  uint8_t con0;
+  uint8_t con1;
+  uint8_t con2;
+  uint8_t baud;
+  uint8_t operation;
+ } spi1_configuration_t;
+# 86 "./../eadog.h"
+ extern void wdtdelay(const uint32_t);
+ _Bool init_display(void);
+ void no_dma_set_lcd(void);
+ void send_lcd_data_dma(const uint8_t);
+ void send_lcd_cmd_dma(const uint8_t);
+ void send_lcd_pos_dma(const uint8_t);
+ void start_lcd(void);
+ void wait_lcd_set(void);
+ _Bool wait_lcd_check(void);
+ void wait_lcd_done(void);
+ void eaDogM_WriteChr(const int8_t);
+ void eaDogM_WriteCommand(const uint8_t);
+ void eaDogM_SetPos(const uint8_t, const uint8_t);
+ void eaDogM_ClearRow(const uint8_t);
+ void eaDogM_WriteString(char *);
+ void eaDogM_WriteStringAtPos(const uint8_t, const uint8_t, char *);
+ void eaDogM_WriteIntAtPos(const uint8_t, const uint8_t, const uint8_t);
+ void eaDogM_WriteByteToCGRAM(const uint8_t, const uint8_t);
+ void set_lcd_dim(const _Bool);
 
-    char * eaDogM_Scroll_String(char *);
-    void eaDogM_Scroll_Task(void);
+ char * eaDogM_Scroll_String(char *);
+ void eaDogM_Scroll_Task(void);
 
 
-    void clear_lcd_done(void);
-    void spi_rec_done(void);
-    extern void can_fd_lcd_mirror(const uint8_t, char *);
+ void clear_lcd_done(void);
+ void spi_rec_done(void);
+ extern void can_fd_lcd_mirror(const uint8_t, char *);
 # 22 "./mxcmd.h" 2
 # 1 "./../timers.h" 1
 # 13 "./../timers.h"
@@ -41246,8 +41247,8 @@ void delay_ms(const uint16_t);
 # 23 "./mxcmd.h" 2
 
 
- const char build_version[] = "V1.97 FM80 Q84";
-# 80 "./mxcmd.h"
+ const char build_version[] = "V1.98 FM80 Q84";
+# 81 "./mxcmd.h"
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
  const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};
@@ -41321,8 +41322,8 @@ void delay_ms(const uint16_t);
 
  typedef struct B_type {
   volatile _Bool ten_sec_flag, one_sec_flag, FM80_charged, pv_high, pv_update, once, a_switch[D_SW_COUNT], a_trigger[D_SW_COUNT], a_type[D_SW_COUNT];
-  volatile uint16_t pacing, rx_count, flush, pv_prev, day_check, node_id;
-  volatile _Bool FM80_online, FM80_io, LOG;
+  volatile uint16_t pacing, rx_count, flush, pv_prev, day_check, node_id, dim_delay;
+  volatile _Bool FM80_online, FM80_io, LOG, display_dim, display_update;
   volatile uint8_t canbus_online, modbus_online, alt_display, a_pin[D_SW_COUNT];
   float run_time, net_balance;
   uint16_t mui[10];
@@ -41717,7 +41718,7 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[512] = "Boot Init Display   ", info_buffer[512], log_buffer[512];
-const char *build_date = "Apr  5 2024", *build_time = "19:35:14";
+const char *build_date = "Jun 10 2024", *build_time = "12:02:13";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
@@ -41743,6 +41744,9 @@ B_type B = {
  .pv_update = 0,
  .once = 0,
  .log.type = 1,
+ .display_dim = 0,
+ .display_update = 0,
+ .dim_delay = 12,
 };
 
 
@@ -41844,7 +41848,7 @@ void main(void)
 
  }
  eaDogM_WriteStringAtPos(2, 0, buffer);
-# 369 "main.c"
+# 372 "main.c"
  eaDogM_WriteStringAtPos(2, 0, buffer);
  snprintf(buffer, 512, "%s ", "Start Up            ");
  eaDogM_WriteStringAtPos(3, 0, buffer);
@@ -42014,7 +42018,7 @@ void main(void)
      }
     } else {
      M.error = 0;
-# 567 "main.c"
+# 570 "main.c"
      snprintf(buffer, 512, "EMon  %6.1fWh   %c%c    ", EB->bat_energy / 360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
      eaDogM_WriteStringAtPos(1, 0, buffer);
      snprintf(buffer, 512, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
@@ -42036,6 +42040,7 @@ void main(void)
    EB->alt_display = B.alt_display;
    snprintf(buffer, 512, "%d %s", B.alt_display, "Alt Button \337\364       ");
    eaDogM_WriteStringAtPos(2, 0, buffer);
+   B.display_update = 1;
   }
   if (B.a_switch[D_SW_L]) {
    do { LATBbits.LATB1 = 1; } while(0);
@@ -42043,12 +42048,14 @@ void main(void)
    snprintf(buffer, 512, "%s", "Log Button Pressed        ");
    eaDogM_WriteStringAtPos(2, 0, buffer);
    B.LOG = 1;
+   B.display_update = 1;
   }
   if (B.a_switch[D_SW_M]) {
    do { LATBbits.LATB1 = 1; } while(0);
    B.a_switch[D_SW_M] = 0;
    snprintf(buffer, 512, "%s", "MISC Button Pressed        ");
    eaDogM_WriteStringAtPos(2, 0, buffer);
+   B.display_update = 1;
   }
 
 
@@ -42156,7 +42163,7 @@ void state_status_cb(void)
 {
  static uint16_t day_clocks = 0;
  static uint8_t status_prev = STATUS_SLEEPING;
-# 723 "main.c"
+# 729 "main.c"
  if (B.day_check++ > 1200) {
   B.day_check = 0;
   B.once = 0;
@@ -42283,6 +42290,8 @@ void state_mx_status_cb(void)
    if (B.FM80_online) {
     bat_amp_whole = abuf[3] - 128;
    }
+
+   set_lcd_dim(B.display_update);
 
    switch (B.alt_display) {
    case 3:
