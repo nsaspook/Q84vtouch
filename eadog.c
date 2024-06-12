@@ -2,6 +2,7 @@
 #include "qconfig.h"
 #include "eadog.h"
 #include "mateQ84.X/mcc_generated_files/mcc.h"
+#include "mateQ84.X/mxcmd.h"
 
 #ifdef TRACE
 #define E_TRACE	IO_RB5_Toggle()
@@ -407,4 +408,40 @@ void no_dma_set_lcd(void)
 	send_lcd_cmd(LCD_CMD_ON); // display on
 	send_lcd_cmd(LCD_CMD_CLR); // clear screen
 	wdtdelay(NHD_L_DELAY);
+}
+
+void set_lcd_dim(const bool dim)
+{
+	if (B.display_update) {
+		B.display_update = false;
+		B.dim_delay = 0;
+#ifdef USE_LCD_DMA
+		if (dim) {
+			send_lcd_cmd_dma(LCD_CMD_BRI); // set back-light level
+			send_lcd_data_dma(NHD_BL_LOW);
+		} else {
+			send_lcd_cmd_dma(LCD_CMD_BRI); // set back-light level
+			send_lcd_data_dma(NHD_BL_HIGH);
+		}
+#else
+		if (dim) {
+			send_lcd_cmd(LCD_CMD_BRI); // set back-light level
+			send_lcd_data(NHD_BL_LOW);
+		} else {
+			send_lcd_cmd(LCD_CMD_BRI); // set back-light level
+			send_lcd_data(NHD_BL_HIGH);
+		}
+#endif
+	}
+
+	if (B.dim_delay >= DIM_DELAY) {
+		B.dim_delay = 0;
+#ifdef USE_LCD_DMA
+		send_lcd_cmd_dma(LCD_CMD_BRI); // set back-light level
+		send_lcd_data_dma(NHD_BL_LOW);
+#else
+		send_lcd_cmd(LCD_CMD_BRI); // set back-light level
+		send_lcd_data(NHD_BL_LOW);
+#endif
+	}
 }
