@@ -125,7 +125,10 @@ time_t start_time = 0, hour_time = 0, day_time = 0;
 
 double benergy, acenergy, load, solar, bvolts, bamps, pvolts, pamps, pwatts, runtime, bat_energy_scaled, bat_energy_kw;
 double gridin = 0.001, gridout = 0.001, gasenergy = 0.001, watergal = 0.1;
-int32_t ccmode = 0;
+int32_t ccmode = 0, sequence;
+
+static const char *const FW_Date = __DATE__;
+static const char *const FW_Time = __TIME__;
 
 void timer_callback(int32_t);
 void delivered(void *, MQTTClient_deliveryToken);
@@ -259,8 +262,10 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 				bat_energy_scaled = atof(token);
 				bat_energy_kw = bat_energy_scaled * 10.0;
 
+				sequence++;
 				json = cJSON_CreateObject();
 				cJSON_AddStringToObject(json, "name", "mateq84");
+				cJSON_AddNumberToObject(json, "sequence", sequence);
 				cJSON_AddNumberToObject(json, "benergy", benergy);
 				cJSON_AddNumberToObject(json, "acenergy", acenergy);
 				cJSON_AddNumberToObject(json, "load", load);
@@ -280,6 +285,8 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 				cJSON_AddNumberToObject(json, "gasenergy", gasenergy);
 				cJSON_AddNumberToObject(json, "watergal", watergal);
 				cJSON_AddStringToObject(json, "system", "FM80 solar monitor");
+				cJSON_AddStringToObject(json, "build_date", FW_Date);
+				cJSON_AddStringToObject(json, "build_time", FW_Time);
 				// convert the cJSON object to a JSON string
 				char *json_str = cJSON_Print(json);
 
