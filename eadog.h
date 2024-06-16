@@ -75,8 +75,8 @@ extern "C" {
 #define LCD1		1
 #define LCD2		2
 #define LCD3		3
-	
-#define DIM_DELAY	12
+
+#define DIM_DELAY	6
 
 #define NSB		5
 #define LSB		21
@@ -102,6 +102,7 @@ extern "C" {
 	void eaDogM_WriteIntAtPos(const uint8_t, const uint8_t, const uint8_t);
 	void eaDogM_WriteByteToCGRAM(const uint8_t, const uint8_t);
 	void set_lcd_dim(const bool);
+	void check_lcd_dim(const bool);
 
 	char * eaDogM_Scroll_String(char *);
 	void eaDogM_Scroll_Task(void);

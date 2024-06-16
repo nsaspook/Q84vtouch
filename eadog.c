@@ -410,6 +410,31 @@ void no_dma_set_lcd(void)
 	wdtdelay(NHD_L_DELAY);
 }
 
+void check_lcd_dim(const bool dim)
+{
+	if (B.display_update) {
+		B.display_update = false;
+		B.dim_delay = 0;
+#ifdef USE_LCD_DMA
+		if (dim) {
+			send_lcd_cmd_dma(LCD_CMD_BRI); // set back-light level
+			send_lcd_data_dma(NHD_BL_OFF);
+		} else {
+			send_lcd_cmd_dma(LCD_CMD_BRI); // set back-light level
+			send_lcd_data_dma(NHD_BL_HIGH);
+		}
+#else
+		if (dim) {
+			send_lcd_cmd(LCD_CMD_BRI); // set back-light level
+			send_lcd_data(NHD_BL_LOW);
+		} else {
+			send_lcd_cmd(LCD_CMD_BRI); // set back-light level
+			send_lcd_data(NHD_BL_HIGH);
+		}
+#endif
+	}
+}
+
 void set_lcd_dim(const bool dim)
 {
 	if (B.display_update) {
@@ -418,7 +443,7 @@ void set_lcd_dim(const bool dim)
 #ifdef USE_LCD_DMA
 		if (dim) {
 			send_lcd_cmd_dma(LCD_CMD_BRI); // set back-light level
-			send_lcd_data_dma(NHD_BL_LOW);
+			send_lcd_data_dma(NHD_BL_OFF);
 		} else {
 			send_lcd_cmd_dma(LCD_CMD_BRI); // set back-light level
 			send_lcd_data_dma(NHD_BL_HIGH);
@@ -434,11 +459,11 @@ void set_lcd_dim(const bool dim)
 #endif
 	}
 
-	if (B.dim_delay >= DIM_DELAY) {
+	if (B.dim_delay++ >= DIM_DELAY) {
 		B.dim_delay = 0;
 #ifdef USE_LCD_DMA
 		send_lcd_cmd_dma(LCD_CMD_BRI); // set back-light level
-		send_lcd_data_dma(NHD_BL_LOW);
+		send_lcd_data_dma(NHD_BL_OFF);
 #else
 		send_lcd_cmd(LCD_CMD_BRI); // set back-light level
 		send_lcd_data(NHD_BL_LOW);

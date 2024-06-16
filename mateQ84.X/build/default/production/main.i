@@ -39088,31 +39088,31 @@ void *memccpy (void *restrict, const void *restrict, int, size_t);
 # 50 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/pin_manager.h" 1
-# 634 "./mcc_generated_files/pin_manager.h"
+# 618 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
-# 648 "./mcc_generated_files/pin_manager.h"
+# 632 "./mcc_generated_files/pin_manager.h"
 void IOCAF1_ISR(void);
-# 671 "./mcc_generated_files/pin_manager.h"
+# 655 "./mcc_generated_files/pin_manager.h"
 void IOCAF1_SetInterruptHandler(void (* InterruptHandler)(void));
-# 695 "./mcc_generated_files/pin_manager.h"
+# 679 "./mcc_generated_files/pin_manager.h"
 extern void (*IOCAF1_InterruptHandler)(void);
-# 719 "./mcc_generated_files/pin_manager.h"
+# 703 "./mcc_generated_files/pin_manager.h"
 void IOCAF1_DefaultInterruptHandler(void);
-# 732 "./mcc_generated_files/pin_manager.h"
+# 716 "./mcc_generated_files/pin_manager.h"
 void IOCAF2_ISR(void);
-# 755 "./mcc_generated_files/pin_manager.h"
+# 739 "./mcc_generated_files/pin_manager.h"
 void IOCAF2_SetInterruptHandler(void (* InterruptHandler)(void));
-# 779 "./mcc_generated_files/pin_manager.h"
+# 763 "./mcc_generated_files/pin_manager.h"
 extern void (*IOCAF2_InterruptHandler)(void);
-# 803 "./mcc_generated_files/pin_manager.h"
+# 787 "./mcc_generated_files/pin_manager.h"
 void IOCAF2_DefaultInterruptHandler(void);
-# 816 "./mcc_generated_files/pin_manager.h"
+# 800 "./mcc_generated_files/pin_manager.h"
 void IOCAF5_ISR(void);
-# 839 "./mcc_generated_files/pin_manager.h"
+# 823 "./mcc_generated_files/pin_manager.h"
 void IOCAF5_SetInterruptHandler(void (* InterruptHandler)(void));
-# 863 "./mcc_generated_files/pin_manager.h"
+# 847 "./mcc_generated_files/pin_manager.h"
 extern void (*IOCAF5_InterruptHandler)(void);
-# 887 "./mcc_generated_files/pin_manager.h"
+# 871 "./mcc_generated_files/pin_manager.h"
 void IOCAF5_DefaultInterruptHandler(void);
 # 51 "./mcc_generated_files/mcc.h" 2
 
@@ -40275,13 +40275,6 @@ extern void (*TMR2_InterruptHandler)(void);
 void TMR2_DefaultInterruptHandler(void);
 # 61 "./mcc_generated_files/mcc.h" 2
 
-# 1 "./mcc_generated_files/clc8.h" 1
-# 91 "./mcc_generated_files/clc8.h"
-void CLC8_Initialize(void);
-# 113 "./mcc_generated_files/clc8.h"
-_Bool CLC8_OutputStatusGet(void);
-# 62 "./mcc_generated_files/mcc.h" 2
-
 # 1 "./mcc_generated_files/tmr0.h" 1
 # 100 "./mcc_generated_files/tmr0.h"
 void TMR0_Initialize(void);
@@ -40301,6 +40294,13 @@ void TMR0_Reload(uint8_t periodVal);
 extern void (*TMR0_InterruptHandler)(void);
 # 329 "./mcc_generated_files/tmr0.h"
 void TMR0_DefaultInterruptHandler(void);
+# 62 "./mcc_generated_files/mcc.h" 2
+
+# 1 "./mcc_generated_files/clc8.h" 1
+# 91 "./mcc_generated_files/clc8.h"
+void CLC8_Initialize(void);
+# 113 "./mcc_generated_files/clc8.h"
+_Bool CLC8_OutputStatusGet(void);
 # 63 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/clc7.h" 1
@@ -41215,6 +41215,7 @@ extern char spinners(uint8_t, const uint8_t);
  void eaDogM_WriteIntAtPos(const uint8_t, const uint8_t, const uint8_t);
  void eaDogM_WriteByteToCGRAM(const uint8_t, const uint8_t);
  void set_lcd_dim(const _Bool);
+ void check_lcd_dim(const _Bool);
 
  char * eaDogM_Scroll_String(char *);
  void eaDogM_Scroll_Task(void);
@@ -41718,7 +41719,7 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[512] = "Boot Init Display   ", info_buffer[512], log_buffer[512];
-const char *build_date = "Jun 10 2024", *build_time = "12:02:13";
+const char *build_date = "Jun 16 2024", *build_time = "09:02:14";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
@@ -41746,7 +41747,7 @@ B_type B = {
  .log.type = 1,
  .display_dim = 0,
  .display_update = 0,
- .dim_delay = 12,
+ .dim_delay = 6,
 };
 
 
@@ -42275,6 +42276,8 @@ void state_mx_status_cb(void)
 
 
 
+ check_lcd_dim(0);
+
  if (B.ten_sec_flag) {
   B.ten_sec_flag = 0;
   if (B.FM80_online || B.modbus_online) {
@@ -42291,7 +42294,7 @@ void state_mx_status_cb(void)
     bat_amp_whole = abuf[3] - 128;
    }
 
-   set_lcd_dim(B.display_update);
+   set_lcd_dim(0);
 
    switch (B.alt_display) {
    case 3:

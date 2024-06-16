@@ -837,6 +837,8 @@ void state_mx_status_cb(void)
 	printf("%5d: %3x %3x %3x %3x %3x  SDATA: FM80 Data mode %3x %3x %3x %3x %3x %3x %3x %3x %3x\r\n",
 		rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4], abuf[5], abuf[6], abuf[7], abuf[8], abuf[9], abuf[10], abuf[11], abuf[12], abuf[13]);
 #endif
+	check_lcd_dim(false);
+
 	if (B.ten_sec_flag) {
 		B.ten_sec_flag = false;
 		if (B.FM80_online || B.modbus_online) { // log for MX80 and EM540
@@ -852,8 +854,8 @@ void state_mx_status_cb(void)
 			if (B.FM80_online) {
 				bat_amp_whole = abuf[3] - 128;
 			}
-			
-			set_lcd_dim(B.display_update);
+
+			set_lcd_dim(false);
 
 			switch (B.alt_display) {
 			case 3:
