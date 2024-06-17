@@ -53,6 +53,11 @@
 #include <linux/can.h>
 #include <linux/can/raw.h>
 
+#include <sys/stat.h>
+#include <syslog.h>
+
+#define LOG_TO_FILE         "/store/logs/canfd.log"
+
 #define CAN_MSG_ID_PING  0x80000002
 #define CAN_MSG_ID_PING_X 0x80000003
 #define EMON_SL   0x80000002 // config reporting
@@ -112,6 +117,8 @@ int32_t sec_30;
 char *token;
 cJSON *json;
 
+FILE* fout;
+
 volatile MQTTClient_deliveryToken deliveredtoken, receivedtoken = false;
 volatile bool runner = false;
 
@@ -134,6 +141,58 @@ void timer_callback(int32_t);
 void delivered(void *, MQTTClient_deliveryToken);
 int32_t msgarrvd(void *, char *, int, MQTTClient_message *);
 void connlost(void *, char *);
+static void signal_handler(int);
+
+static void skeleton_daemon()
+{
+	pid_t pid;
+
+	/* Fork off the parent process */
+	pid = fork();
+
+	/* An error occurred */
+	if (pid < 0)
+		exit(EXIT_FAILURE);
+
+	/* Success: Let the parent terminate */
+	if (pid > 0)
+		exit(EXIT_SUCCESS);
+
+	/* On success: The child process becomes session leader */
+	if (setsid() < 0)
+		exit(EXIT_FAILURE);
+
+	/* Catch, ignore and handle signals */
+	/*TODO: Implement a working signal handler */
+	signal(SIGTERM, signal_handler);
+	signal(SIGHUP, signal_handler);
+	signal(SIGINT, signal_handler);
+
+	/* Fork off for the second time*/
+	pid = fork();
+
+	/* An error occurred */
+	if (pid < 0)
+		exit(EXIT_FAILURE);
+
+	/* Success: Let the parent terminate */
+	if (pid > 0)
+		exit(EXIT_SUCCESS);
+
+	/* Set new file permissions */
+	umask(0);
+
+	/* Change the working directory to the root directory */
+	/* or another appropriated directory */
+	chdir("/");
+
+	/* Close all open file descriptors */
+	int x;
+	for (x = sysconf(_SC_OPEN_MAX); x >= 0; x--) {
+		close(x);
+	}
+
+}
 
 static void print_usage(char *prg)
 {
@@ -218,7 +277,7 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 			gridin = 0.0f;
 			gridout = 0.0f;
 #endif
-			fprintf(stdout, "log %s", data_buffer);
+			fprintf(fout, "log %s", data_buffer);
 			token = strtok(data_buffer, ",");
 			if (token != NULL) {
 				/*
@@ -239,20 +298,20 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 				 * convert this token into a double variable for the JSON data
 				 */
 				solar = atof(token);
-				fprintf(stderr, " %s %s log variable: %s ", TOPIC_P, ADDRESS, token);
+				fprintf(fout, " %s %s log variable: %s ", TOPIC_P, ADDRESS, token);
 				token = strtok(NULL, ",");
 				acenergy = atof(token);
-				fprintf(stderr, " %s ", token);
+				fprintf(fout, " %s ", token);
 				token = strtok(NULL, ",");
 				runtime = atof(token);
-				fprintf(stderr, " %s ", token);
+				fprintf(fout, " %s ", token);
 				token = strtok(NULL, ",");
 				benergy = atof(token);
 
-				fprintf(stderr, " %s ", token);
+				fprintf(fout, " %s ", token);
 				token = strtok(NULL, ",");
 				ccmode = atoi(token);
-				fprintf(stderr, " %s\r\n", token);
+				fprintf(fout, " %s\r\n", token);
 				token = strtok(NULL, ",");
 				load = atof(token);
 				token = strtok(NULL, ",");
@@ -312,18 +371,19 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 				cJSON_Delete(json);
 			}
 		}
+		fflush(fout);
 		if (id == EMON_ER) {
-			fprintf(stderr, "%s", full_buffer);
+			fprintf(fout, "%s", full_buffer);
 		}
 		if (id == EMON_DA) {
-			fprintf(stderr, "BLOB \r");
+			fprintf(fout, "BLOB \r");
 		}
 		if (id == EMON_CO) {
 			token = strtok(full_buffer, ",");
 			if (token != NULL) {
-				fprintf(stderr, "%s ", token);
+				fprintf(fout, "%s ", token);
 				token = strtok(NULL, ",");
-				fprintf(stderr, " relay outputs: %s\r\n", token);
+				fprintf(fout, " relay outputs: %s\r\n", token);
 			}
 		}
 
@@ -331,6 +391,7 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 	if (print_hex) {
 		printf("\n");
 	}
+	fflush(fout);
 }
 
 static void print_compare(
@@ -419,7 +480,8 @@ static int recv_frame(struct canfd_frame *frame)
 		if (ret < 0) {
 			perror("recv failed");
 		} else {
-			fprintf(stderr, "recv returned %zd", ret);
+			fprintf(fout, "recv returned %zd", ret);
+			fflush(fout);
 		}
 		return -1;
 	}
@@ -442,7 +504,8 @@ static int send_frame(struct canfd_frame *frame)
 
 	while ((ret = send(sockfd, frame, len, 0)) != len) {
 		if (ret >= 0) {
-			fprintf(stderr, "send returned %zd", ret);
+			fprintf(fout, "send returned %zd", ret);
+			fflush(fout);
 			return -1;
 		}
 		if (errno != ENOBUFS) {
@@ -697,6 +760,24 @@ void connlost(void *context, char *cause)
 	exit(EXIT_FAILURE);
 }
 
+char * log_time(bool log)
+{
+	static char time_log[512] = {0};
+	uint32_t len = 0;
+	time_t rawtime_log;
+
+	tzset();
+	time(&rawtime_log);
+	sprintf(time_log, "%s", ctime(&rawtime_log));
+	len = strlen(time_log);
+	time_log[len - 1] = 0; // munge out the return character
+	if (log) {
+		fprintf(fout, "%s ", time_log);
+		fflush(fout);
+	}
+	return time_log;
+}
+
 int main(int argc, char *argv[])
 {
 	struct sockaddr_can addr;
@@ -708,6 +789,8 @@ int main(int argc, char *argv[])
 	int filter = 0;
 	int32_t rc;
 
+	skeleton_daemon();
+
 	signal(SIGTERM, signal_handler);
 	signal(SIGHUP, signal_handler);
 	signal(SIGINT, signal_handler);
@@ -715,7 +798,18 @@ int main(int argc, char *argv[])
 	sec_30 = time(NULL);
 	start_time = time(NULL);
 
-	printf("\r\n log version %s : mqtt version %s\r\n", LOG_VERSION, MQTT_VERSION);
+#ifdef LOG_TO_FILE
+	fout = fopen(LOG_TO_FILE, "a");
+	if (fout == NULL) {
+		fout = stdout;
+		printf("\r\nUnable to open LOG file %s \r\n", LOG_TO_FILE);
+	}
+#else
+	fout = stdout;
+#endif
+	fprintf(fout, "\r\n%s LOG Version %s : MQTT Version %s\r\n", log_time(false), LOG_VERSION, MQTT_VERSION);
+	printf("\r\n%s log version %s : mqtt version %s\r\n", log_time(false), LOG_VERSION, MQTT_VERSION);
+	fflush(fout);
 
 	MQTTClient_create(&client, ADDRESS, CLIENTID, MQTTCLIENT_PERSISTENCE_NONE, NULL);
 	conn_opts.keepAliveInterval = 20;
