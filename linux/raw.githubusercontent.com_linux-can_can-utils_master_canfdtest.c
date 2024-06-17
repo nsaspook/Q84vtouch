@@ -76,7 +76,7 @@
 #define HR_SEC  3600
 #define DAY_SEC  HR_SEC*24
 
-#define LOG_VERSION     "v1.03"
+#define LOG_VERSION     "v1.10"
 #define MQTT_VERSION    "V3.11"
 #define ADDRESS         "tcp://10.1.1.172:1883"
 #define CLIENTID        "MateQ84_Mqtt"
@@ -142,6 +142,7 @@ void delivered(void *, MQTTClient_deliveryToken);
 int32_t msgarrvd(void *, char *, int, MQTTClient_message *);
 void connlost(void *, char *);
 static void signal_handler(int);
+char * log_time(bool);
 
 static void skeleton_daemon()
 {
@@ -277,7 +278,7 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 			gridin = 0.0f;
 			gridout = 0.0f;
 #endif
-			fprintf(fout, "log %s", data_buffer);
+			fprintf(fout, "%s log %s", log_time(false), data_buffer);
 			token = strtok(data_buffer, ",");
 			if (token != NULL) {
 				/*
