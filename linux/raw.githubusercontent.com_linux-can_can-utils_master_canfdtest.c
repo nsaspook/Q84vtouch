@@ -76,7 +76,7 @@
 #define HR_SEC  3600
 #define DAY_SEC  HR_SEC*24
 
-#define LOG_VERSION     "v1.10"
+#define LOG_VERSION     "v1.11"
 #define MQTT_VERSION    "V3.11"
 #define ADDRESS         "tcp://10.1.1.172:1883"
 #define CLIENTID        "MateQ84_Mqtt"
@@ -299,7 +299,7 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 				 * convert this token into a double variable for the JSON data
 				 */
 				solar = atof(token);
-				fprintf(fout, " %s %s log variable: %s ", TOPIC_P, ADDRESS, token);
+				fprintf(fout, "%s %s %s log variable: %s ", log_time(false), TOPIC_P, ADDRESS, token);
 				token = strtok(NULL, ",");
 				acenergy = atof(token);
 				fprintf(fout, " %s ", token);
@@ -374,15 +374,15 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 		}
 		fflush(fout);
 		if (id == EMON_ER) {
-			fprintf(fout, "%s", full_buffer);
+			fprintf(fout, "%s %s", log_time(false), full_buffer);
 		}
 		if (id == EMON_DA) {
-			fprintf(fout, "BLOB \r");
+			fprintf(fout, "%s BLOB \r", log_time(false));
 		}
 		if (id == EMON_CO) {
 			token = strtok(full_buffer, ",");
 			if (token != NULL) {
-				fprintf(fout, "%s ", token);
+				fprintf(fout, "%s %s ", log_time(false), token);
 				token = strtok(NULL, ",");
 				fprintf(fout, " relay outputs: %s\r\n", token);
 			}
