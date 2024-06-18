@@ -22,7 +22,7 @@ extern "C" {
 #include "../timers.h"
 
 #define VER	1
-	const char build_version[] = "V1.98 FM80 Q84";
+	const char build_version[] = "V1.99 FM80 Q84";
 	/*
 	 * code changes
 	 * 1.55 remove critical section interrupt disables for FM80 serial
@@ -57,6 +57,7 @@ extern "C" {
 	 * 1.96 smooth run-time data point
 	 * 1.97 expand logging buffer for canbus data
 	 * 1.98 main display dimming
+	 * 1.99 Float fixes
 	 */
 
 #define MAX_B_BUF	512
