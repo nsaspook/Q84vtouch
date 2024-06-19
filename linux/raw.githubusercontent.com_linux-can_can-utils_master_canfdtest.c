@@ -41,6 +41,8 @@
 #include <stdbool.h>
 #include <time.h>
 #include <unistd.h>
+#include <sys/stat.h>
+#include <syslog.h>
 
 #include <net/if.h>
 #include <sys/ioctl.h>
@@ -454,8 +456,7 @@ static void millisleep(int msecs)
 static void echo_progress(unsigned char data)
 {
 	if (data == 0xff) {
-		printf(".");
-		fflush(stdout);
+		syslog(LOG_NOTICE, ".");
 	}
 }
 
@@ -479,7 +480,7 @@ static int recv_frame(struct canfd_frame *frame)
 	ret = recv(sockfd, frame, len, 0);
 	if (ret != len) {
 		if (ret < 0) {
-			perror("recv failed");
+			syslog(LOG_ERR, "perror recv failed %s", strerror(errno));
 		} else {
 			fprintf(fout, "recv returned %zd", ret);
 			fflush(fout);
@@ -510,12 +511,11 @@ static int send_frame(struct canfd_frame *frame)
 			return -1;
 		}
 		if (errno != ENOBUFS) {
-			perror("send failed");
+			syslog(LOG_ERR, "perror send failed %s", strerror(errno));
 			return -1;
 		}
 		if (verbose) {
-			printf("N");
-			fflush(stdout);
+			syslog(LOG_NOTICE, "N");
 		}
 	}
 	return 0;
@@ -782,7 +782,7 @@ char * log_time(bool log)
 int main(int argc, char *argv[])
 {
 	struct sockaddr_can addr;
-	char *intf_name;
+	char *intf_name, buffer[512];
 	int family = PF_CAN, type = SOCK_RAW, proto = CAN_RAW;
 	int echo_gen = 1;
 	int opt, err;
@@ -802,15 +802,17 @@ int main(int argc, char *argv[])
 #ifdef LOG_TO_FILE
 	fout = fopen(LOG_TO_FILE, "a");
 	if (fout == NULL) {
-		fout = stdout;
-		printf("\r\nUnable to open LOG file %s \r\n", LOG_TO_FILE);
+		snprintf(buffer, 511, "\r\nUnable to open LOG file %s \r\n", LOG_TO_FILE);
+		syslog(LOG_NOTICE, buffer);
+		exit(EXIT_FAILURE);
 	}
 #else
 	fout = stdout;
 #endif
 	fprintf(fout, "\r\n%s LOG Version %s : MQTT Version %s\r\n", log_time(false), LOG_VERSION, MQTT_VERSION);
-	printf("\r\n%s log version %s : mqtt version %s\r\n", log_time(false), LOG_VERSION, MQTT_VERSION);
+	snprintf(buffer, 511, "\r\n%s LOG version %s : MQTT version %s\r\n", log_time(false), LOG_VERSION, MQTT_VERSION);
 	fflush(fout);
+	syslog(LOG_NOTICE, buffer);
 
 	MQTTClient_create(&client, ADDRESS, CLIENTID, MQTTCLIENT_PERSISTENCE_NONE, NULL);
 	conn_opts.keepAliveInterval = 20;
@@ -883,23 +885,23 @@ int main(int argc, char *argv[])
 
 	/* BRS can be enabled only if CAN FD is enabled */
 	if (bit_rate_switch && !is_can_fd) {
-		printf("Bit rate switch (-b) needs CAN FD (-d) to be enabled\n");
+		fprintf(fout, "Bit rate switch (-b) needs CAN FD (-d) to be enabled\n");
 		return 1;
 	}
 
 	/* Make sure the message length is valid */
 	if (msg_len <= 0) {
-		printf("Message length must > 0\n");
+		fprintf(fout, "Message length must > 0\n");
 		return 1;
 	}
 	if (is_can_fd) {
 		if (msg_len > CANFD_MAX_DLEN) {
-			printf("Message length must be <= %d bytes for CAN FD\n", CANFD_MAX_DLEN);
+			fprintf(fout, "Message length must be <= %d bytes for CAN FD\n", CANFD_MAX_DLEN);
 			return 1;
 		}
 	} else {
 		if (msg_len > CAN_MAX_DLEN) {
-			printf("Message length must be <= %d bytes for CAN 2.0B\n", CAN_MAX_DLEN);
+			fprintf(fout, "Message length must be <= %d bytes for CAN 2.0B\n", CAN_MAX_DLEN);
 			return 1;
 		}
 	}
@@ -919,18 +921,18 @@ int main(int argc, char *argv[])
 	}
 	intf_name = argv[optind];
 
-	printf("interface = %s, family = %d, type = %d, proto = %d\n",
+	fprintf(fout, "interface = %s, family = %d, type = %d, proto = %d\n",
 		intf_name, family, type, proto);
 
 	if ((sockfd = socket(family, type, proto)) < 0) {
-		perror("socket");
+		syslog(LOG_ERR, "perror socket %s", strerror(errno));
 		return 1;
 	}
 
 	if (echo_gen) {
 		if (setsockopt(sockfd, SOL_CAN_RAW, CAN_RAW_RECV_OWN_MSGS,
 			&enable_socket_option, sizeof(enable_socket_option)) == -1) {
-			perror("setsockopt CAN_RAW_RECV_OWN_MSGS");
+			syslog(LOG_ERR, "perror setsocketopt CAN %s", strerror(errno));
 			return 1;
 		}
 	}
@@ -938,7 +940,7 @@ int main(int argc, char *argv[])
 	if (is_can_fd) {
 		if (setsockopt(sockfd, SOL_CAN_RAW, CAN_RAW_FD_FRAMES,
 			&enable_socket_option, sizeof(enable_socket_option)) == -1) {
-			perror("setsockopt CAN_RAW_FD_FRAMES");
+			syslog(LOG_ERR, "perror CAN FRAME %s", strerror(errno));
 			return 1;
 		}
 	}
@@ -946,13 +948,13 @@ int main(int argc, char *argv[])
 	addr.can_family = family;
 	addr.can_ifindex = if_nametoindex(intf_name);
 	if (!addr.can_ifindex) {
-		perror("if_nametoindex");
+		syslog(LOG_ERR, "perror if_nametoindex %s", strerror(errno));
 		close(sockfd);
 		return 1;
 	}
 
 	if (bind(sockfd, (struct sockaddr *) &addr, sizeof(addr)) < 0) {
-		perror("bind");
+		syslog(LOG_ERR, "perror bind %s", strerror(errno));
 		close(sockfd);
 		return 1;
 	}
@@ -975,7 +977,7 @@ int main(int argc, char *argv[])
 
 		if (setsockopt(sockfd, SOL_CAN_RAW, CAN_RAW_FILTER, filters,
 			sizeof(struct can_filter) * (1 + echo_gen))) {
-			perror("setsockopt()");
+			syslog(LOG_ERR, "perror %s", strerror(errno));
 			close(sockfd);
 			return 1;
 		}
@@ -988,8 +990,7 @@ int main(int argc, char *argv[])
 	}
 
 	if (verbose) {
-		printf("Exiting...\n");
-		//		mqtt_exit();
+		fprintf(fout, "Exiting...\n");
 	}
 
 	close(sockfd);
