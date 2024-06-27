@@ -1,107 +1,34 @@
 <?xml version="1.0"?>
-<analyzerinfo hash="15232013275035370478">
-        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;mbedtls/ssl.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;mbedtls/ssl.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
-            <location file="/public/Q84vtouch/linux/matesocketcan/mqtt_pal.c" line="48" column="0"/>
-        </error>
-        <error id="missingInclude" severity="information" msg="Include file: &quot;1&quot; not found." verbose="Include file: &quot;1&quot; not found.">
-            <location file="/public/Q84vtouch/linux/matesocketcan/mqtt.h" line="41" column="0"/>
-        </error>
-        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;bearssl.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;bearssl.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
-            <location file="/public/Q84vtouch/linux/matesocketcan/mqtt_pal.c" line="170" column="0"/>
-        </error>
-        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;memory.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
-            <location file="/public/Q84vtouch/linux/matesocketcan/mqtt_pal.c" line="171" column="0"/>
-        </error>
-        <error id="knownConditionTrueFalse" severity="style" msg="Condition &apos;rc==MQTT_ERROR_SOCKET_ERROR&apos; is always false" verbose="Condition &apos;rc==MQTT_ERROR_SOCKET_ERROR&apos; is always false" cwe="570" file0="/public/Q84vtouch/linux/matesocketcan/mqtt_pal.c">
-            <location file="/public/Q84vtouch/linux/matesocketcan/mqtt_pal.c" line="269" column="9" info="Condition &apos;rc==MQTT_ERROR_SOCKET_ERROR&apos; is always false"/>
-            <location file="/public/Q84vtouch/linux/matesocketcan/mqtt_pal.c" line="262" column="11" info="Assignment &apos;rc=MQTT_OK&apos;, assigned value is 1"/>
-        </error>
-        <error id="variableScope" severity="style" msg="The scope of the variable &apos;status&apos; can be reduced." verbose="The scope of the variable &apos;status&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level." cwe="398" file0="/public/Q84vtouch/linux/matesocketcan/mqtt_pal.c">
-            <location file="/public/Q84vtouch/linux/matesocketcan/mqtt_pal.c" line="220" column="15"/>
+<analyzerinfo hash="12017284202806019819">
+        <error id="variableScope" severity="style" msg="The scope of the variable &apos;status&apos; can be reduced." verbose="The scope of the variable &apos;status&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level." cwe="398" file0="/store/solar_software/Q84vtouch/linux/matesocketcan/mqtt_pal.c">
+            <location file="/store/solar_software/Q84vtouch/linux/matesocketcan/mqtt_pal.c" line="220" column="15"/>
             <symbol>status</symbol>
         </error>
-        <error id="variableScope" severity="style" msg="The scope of the variable &apos;buffer&apos; can be reduced." verbose="The scope of the variable &apos;buffer&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level." cwe="398" file0="/public/Q84vtouch/linux/matesocketcan/mqtt_pal.c">
-            <location file="/public/Q84vtouch/linux/matesocketcan/mqtt_pal.c" line="263" column="11"/>
+        <error id="variableScope" severity="style" msg="The scope of the variable &apos;buffer&apos; can be reduced." verbose="The scope of the variable &apos;buffer&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level." cwe="398" file0="/store/solar_software/Q84vtouch/linux/matesocketcan/mqtt_pal.c">
+            <location file="/store/solar_software/Q84vtouch/linux/matesocketcan/mqtt_pal.c" line="263" column="11"/>
             <symbol>buffer</symbol>
         </error>
-        <error id="constVariablePointer" severity="style" msg="Variable &apos;buffer&apos; can be declared as pointer to const" verbose="Variable &apos;buffer&apos; can be declared as pointer to const" cwe="398" file0="/public/Q84vtouch/linux/matesocketcan/mqtt_pal.c">
-            <location file="/public/Q84vtouch/linux/matesocketcan/mqtt_pal.c" line="263" column="11" info="Variable &apos;buffer&apos; can be declared as pointer to const"/>
-            <symbol>buffer</symbol>
-        </error>
-        <error id="unreadVariable" severity="style" msg="Variable &apos;walker&apos; is assigned a value that is never used." verbose="Variable &apos;walker&apos; is assigned a value that is never used." cwe="563" file0="/public/Q84vtouch/linux/matesocketcan/mqtt_pal.c">
-            <location file="/public/Q84vtouch/linux/matesocketcan/mqtt_pal.c" line="291" column="11"/>
+        <error id="unreadVariable" severity="style" msg="Variable &apos;walker&apos; is assigned a value that is never used." verbose="Variable &apos;walker&apos; is assigned a value that is never used." cwe="563" file0="/store/solar_software/Q84vtouch/linux/matesocketcan/mqtt_pal.c">
+            <location file="/store/solar_software/Q84vtouch/linux/matesocketcan/mqtt_pal.c" line="291" column="11"/>
             <symbol>walker</symbol>
         </error>
-        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;limits.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;limits.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
-            <location file="/public/Q84vtouch/linux/matesocketcan/mqtt_pal.h" line="73" column="0"/>
+        <error id="knownConditionTrueFalse" severity="style" msg="Condition &apos;tmp&lt;=0&apos; is always true" verbose="Condition &apos;tmp&lt;=0&apos; is always true" cwe="571" file0="/store/solar_software/Q84vtouch/linux/matesocketcan/mqtt_pal.c">
+            <location file="/store/solar_software/Q84vtouch/linux/matesocketcan/mqtt_pal.c" line="311" column="18" info="Condition &apos;tmp&lt;=0&apos; is always true"/>
+            <location file="/store/solar_software/Q84vtouch/linux/matesocketcan/mqtt_pal.c" line="309" column="11" info="Assuming condition &apos;tmp&gt;0&apos; is false"/>
         </error>
-        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;string.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;string.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
-            <location file="/public/Q84vtouch/linux/matesocketcan/mqtt_pal.h" line="74" column="0"/>
-        </error>
-        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;stdarg.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;stdarg.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
-            <location file="/public/Q84vtouch/linux/matesocketcan/mqtt_pal.h" line="75" column="0"/>
-        </error>
-        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;time.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;time.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
-            <location file="/public/Q84vtouch/linux/matesocketcan/mqtt_pal.h" line="76" column="0"/>
-        </error>
-        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;arpa/inet.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;arpa/inet.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
-            <location file="/public/Q84vtouch/linux/matesocketcan/mqtt_pal.h" line="77" column="0"/>
-        </error>
-        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;pthread.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;pthread.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
-            <location file="/public/Q84vtouch/linux/matesocketcan/mqtt_pal.h" line="78" column="0"/>
-        </error>
-        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;openssl/bio.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;openssl/bio.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
-            <location file="/public/Q84vtouch/linux/matesocketcan/mqtt_pal.c" line="300" column="0"/>
-        </error>
-        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;openssl/ssl.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;openssl/ssl.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
-            <location file="/public/Q84vtouch/linux/matesocketcan/mqtt_pal.c" line="301" column="0"/>
-        </error>
-        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;openssl/err.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;openssl/err.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
-            <location file="/public/Q84vtouch/linux/matesocketcan/mqtt_pal.c" line="302" column="0"/>
-        </error>
-        <error id="knownConditionTrueFalse" severity="style" msg="Condition &apos;tmp&lt;=0&apos; is always true" verbose="Condition &apos;tmp&lt;=0&apos; is always true" cwe="571" file0="/public/Q84vtouch/linux/matesocketcan/mqtt_pal.c">
-            <location file="/public/Q84vtouch/linux/matesocketcan/mqtt_pal.c" line="311" column="18" info="Condition &apos;tmp&lt;=0&apos; is always true"/>
-            <location file="/public/Q84vtouch/linux/matesocketcan/mqtt_pal.c" line="309" column="11" info="Assuming condition &apos;tmp&gt;0&apos; is false"/>
-        </error>
-        <error id="variableScope" severity="style" msg="The scope of the variable &apos;rv&apos; can be reduced." verbose="The scope of the variable &apos;rv&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level." cwe="398" file0="/public/Q84vtouch/linux/matesocketcan/mqtt_pal.c">
-            <location file="/public/Q84vtouch/linux/matesocketcan/mqtt_pal.c" line="323" column="6"/>
+        <error id="variableScope" severity="style" msg="The scope of the variable &apos;rv&apos; can be reduced." verbose="The scope of the variable &apos;rv&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level." cwe="398" file0="/store/solar_software/Q84vtouch/linux/matesocketcan/mqtt_pal.c">
+            <location file="/store/solar_software/Q84vtouch/linux/matesocketcan/mqtt_pal.c" line="323" column="6"/>
             <symbol>rv</symbol>
         </error>
-        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;limits.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;limits.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
-            <location file="/public/Q84vtouch/linux/matesocketcan/mqtt_pal.h" line="122" column="0"/>
-        </error>
-        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;winsock2.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;winsock2.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
-            <location file="/public/Q84vtouch/linux/matesocketcan/mqtt_pal.h" line="123" column="0"/>
-        </error>
-        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;windows.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;windows.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
-            <location file="/public/Q84vtouch/linux/matesocketcan/mqtt_pal.h" line="124" column="0"/>
-        </error>
-        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;time.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;time.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
-            <location file="/public/Q84vtouch/linux/matesocketcan/mqtt_pal.h" line="125" column="0"/>
-        </error>
-        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;stdint.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;stdint.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
-            <location file="/public/Q84vtouch/linux/matesocketcan/mqtt_pal.h" line="126" column="0"/>
-        </error>
-        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;wolfssl/ssl.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;wolfssl/ssl.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
-            <location file="/public/Q84vtouch/linux/matesocketcan/mqtt_pal.c" line="130" column="0"/>
-        </error>
-        <error id="arithOperationsOnVoidPointer" severity="portability" msg="&apos;buf&apos; is of type &apos;const void *&apos;. When using void pointers in calculations, the behaviour is undefined." verbose="&apos;buf&apos; is of type &apos;const void *&apos;. When using void pointers in calculations, the behaviour is undefined. Arithmetic operations on &apos;void *&apos; is a GNU C extension, which defines the &apos;sizeof(void)&apos; to be 1." cwe="467" file0="/public/Q84vtouch/linux/matesocketcan/mqtt_pal.c">
-            <location file="/public/Q84vtouch/linux/matesocketcan/mqtt_pal.c" line="136" column="35"/>
+        <error id="arithOperationsOnVoidPointer" severity="portability" msg="&apos;buf&apos; is of type &apos;const void *&apos;. When using void pointers in calculations, the behaviour is undefined." verbose="&apos;buf&apos; is of type &apos;const void *&apos;. When using void pointers in calculations, the behaviour is undefined. Arithmetic operations on &apos;void *&apos; is a GNU C extension, which defines the &apos;sizeof(void)&apos; to be 1." cwe="467" file0="/store/solar_software/Q84vtouch/linux/matesocketcan/mqtt_pal.c">
+            <location file="/store/solar_software/Q84vtouch/linux/matesocketcan/mqtt_pal.c" line="136" column="35"/>
             <symbol>buf</symbol>
         </error>
-        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;errno.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;errno.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
-            <location file="/public/Q84vtouch/linux/matesocketcan/mqtt_pal.c" line="406" column="0"/>
-        </error>
-        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;errno.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;errno.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
-            <location file="/public/Q84vtouch/linux/matesocketcan/mqtt_pal.c" line="341" column="0"/>
-        </error>
-        <error id="variableScope" severity="style" msg="The scope of the variable &apos;rv&apos; can be reduced." verbose="The scope of the variable &apos;rv&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level." cwe="398" file0="/public/Q84vtouch/linux/matesocketcan/mqtt_pal.c">
-            <location file="/public/Q84vtouch/linux/matesocketcan/mqtt_pal.c" line="374" column="10"/>
+        <error id="variableScope" severity="style" msg="The scope of the variable &apos;rv&apos; can be reduced." verbose="The scope of the variable &apos;rv&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level." cwe="398" file0="/store/solar_software/Q84vtouch/linux/matesocketcan/mqtt_pal.c">
+            <location file="/store/solar_software/Q84vtouch/linux/matesocketcan/mqtt_pal.c" line="374" column="10"/>
             <symbol>rv</symbol>
         </error>
   <FileInfo check="CheckUnusedFunctions">
-    <functiondecl functionName="mqtt_pal_sendall" lineNumber="50"/>
-    <functiondecl functionName="mqtt_pal_recvall" lineNumber="86"/>
     <functiondecl functionName="do_rec_data" lineNumber="173"/>
     <functiondecl functionName="mqtt_pal_sendall" lineNumber="213"/>
     <functiondecl functionName="mqtt_pal_recvall" lineNumber="260"/>
