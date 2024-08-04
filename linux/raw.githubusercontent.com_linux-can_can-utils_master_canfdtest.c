@@ -201,7 +201,7 @@ static void skeleton_daemon()
 
 static void print_usage(char *prg)
 {
-	fprintf(stderr,
+	fprintf(fout,
 		"%s - Full-duplex test program (DUT and host part).\n"
 		"Usage: %s [options] <can-interface>\n"
 		"\n"
@@ -242,14 +242,14 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 		printf("%04x: ", id);
 	}
 	if (id & CAN_RTR_FLAG) {
-		printf("remote request");
+		fprintf(fout, "remote request");
 	} else {
 		if (print_hex) {
-			printf("[%d]", dlc);
+			fprintf(fout, "[%d]", dlc);
 		}
 		for (i = 0; i < dlc; i++) {
 			if (print_hex) {
-				printf(" %02x", (uint32_t) (data[i] + inc_data));
+				fprintf(fout, " %02x", (uint32_t) (data[i] + inc_data));
 			}
 			if (id == EMON_ER || id == EMON_CO || id == EMON_DA) {
 				full_buffer[i] = (uint8_t) (data[i] + inc_data);
@@ -366,7 +366,7 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 					while (deliveredtoken != mtoken) {
 						usleep(100);
 						if (waiting++ > MQTT_TIMEOUT) {
-							printf("\r\nStill Waiting, timeout");
+							fprintf(fout, "\r\nStill Waiting, timeout");
 							break;
 						}
 					};
@@ -394,7 +394,7 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 
 	}
 	if (print_hex) {
-		printf("\n");
+		fprintf(fout, "\n");
 	}
 	fflush(fout);
 }
@@ -408,9 +408,9 @@ static void print_compare(
 	uint8_t rec_dlc,
 	int inc)
 {
-	printf("expected: ");
+	fprintf(fout, "expected: ");
 	print_frame(exp_id, exp_data, exp_dlc, inc);
-	printf("received: ");
+	fprintf(fout, "received: ");
 	print_frame(rec_id, rec_data, rec_dlc, 0);
 }
 
@@ -420,13 +420,13 @@ static int compare_frame(const struct canfd_frame *exp, const struct canfd_frame
 	const canid_t expected_can_id = inc ? can_id_pong : can_id_ping;
 
 	if (0 && rec->can_id != expected_can_id) {
-		printf("Message ID mismatch!\n");
+		fprintf(fout, "Message ID mismatch!\n");
 		print_compare(expected_can_id, exp->data, exp->len,
 			rec->can_id, rec->data, rec->len, inc);
 		running = 0;
 		err = -1;
 	} else if (rec->len != exp->len) {
-		printf("Message length mismatch!\n");
+		fprintf(fout, "Message length mismatch!\n");
 		print_compare(expected_can_id, exp->data, exp->len,
 			rec->can_id, rec->data, rec->len, inc);
 		running = 0;
@@ -448,7 +448,7 @@ static void millisleep(int msecs)
 	do {
 		err = clock_nanosleep(CLOCK_MONOTONIC, 0, &rqtp, &rmtp);
 		if (err != 0 && err != EINTR) {
-			printf("t\n");
+			fprintf(fout, "t\n");
 			break;
 		}
 		rqtp = rmtp;
@@ -528,12 +528,12 @@ static int check_frame(const struct canfd_frame *frame)
 	int err = 0;
 
 	if (frame->can_id != can_id_ping && frame->can_id != can_id_pingx && frame->can_id != EMON_ER && frame->can_id != EMON_CO) {
-		printf("Unexpected Message ID 0x%04x!\n", frame->can_id);
+		fprintf(fout, "Unexpected Message ID 0x%04x!\n", frame->can_id);
 		err = -1;
 	}
 
 	if (frame->len != msg_len) {
-		printf("Unexpected Message length %d!\n", frame->len);
+		fprintf(fout, "Unexpected Message length %d!\n", frame->len);
 		err = -1;
 	}
 
@@ -664,11 +664,6 @@ static int can_echo_gen(void)
 				continue;
 			}
 
-			if (!recv_tx[recv_rx_pos]) {
-				//				printf("RX before TX!\n");
-				//				print_frame(rx_frame.can_id, rx_frame.data, rx_frame.len, 0);
-				//				running = 0;
-			}
 			/* compare with expected */
 			err = compare_frame(&tx_frames[recv_rx_pos], &rx_frame, 1);
 			recv_rx_pos++;
@@ -684,7 +679,7 @@ static int can_echo_gen(void)
 		}
 	}
 
-	printf("\nTest messages sent and received: %d\n", loops);
+	fprintf(fout, "\nTest messages sent and received: %d\n", loops);
 
 out_free:
 	free(recv_tx);
@@ -725,7 +720,7 @@ int32_t msgarrvd(void *context, char *topicName, int topicLen, MQTTClient_messag
 	char buffer[1024];
 
 #ifdef DEBUG_REC
-	printf("Message arrived\n");
+	fprintf(fout, "Message arrived\n");
 #endif
 	payloadptr = message->payload;
 	for (i = 0; i < message->payloadlen; i++) {
@@ -738,7 +733,7 @@ int32_t msgarrvd(void *context, char *topicName, int topicLen, MQTTClient_messag
 	if (json == NULL) {
 		const char *error_ptr = cJSON_GetErrorPtr();
 		if (error_ptr != NULL) {
-			printf("Error: %s\n", error_ptr);
+			fprintf(fout, "Error: %s\n", error_ptr);
 		}
 		goto error_exit;
 	}
@@ -758,8 +753,8 @@ error_exit:
  */
 void connlost(void *context, char *cause)
 {
-	printf("\nConnection lost\n");
-	printf("     cause: %s\n", cause);
+	fprintf(fout, "\nConnection lost\n");
+	fprintf(fout, "     cause: %s\n", cause);
 	exit(EXIT_FAILURE);
 }
 
@@ -784,7 +779,7 @@ char * log_time(bool log)
 int main(int argc, char *argv[])
 {
 	struct sockaddr_can addr;
-	char *intf_name, buffer[512];
+	char *intf_name = "can0", buffer[512];
 	int family = PF_CAN, type = SOCK_RAW, proto = CAN_RAW;
 	int echo_gen = 1;
 	int opt, err;
@@ -822,7 +817,7 @@ int main(int argc, char *argv[])
 
 	MQTTClient_setCallbacks(client, NULL, connlost, msgarrvd, delivered);
 	if ((rc = MQTTClient_connect(client, &conn_opts)) != MQTTCLIENT_SUCCESS) {
-		printf("Failed to connect, return code %d\n", rc);
+		fprintf(fout, "Failed to connect, return code %d\n", rc);
 		exit(EXIT_FAILURE);
 	}
 
@@ -919,9 +914,11 @@ int main(int argc, char *argv[])
 	}
 
 	if ((argc - optind) != 1) {
-		print_usage(basename(argv[0]));
+//		print_usage(basename(argv[0]));
+		// default to can0 on the USB interface
+	} else {
+		intf_name = argv[optind];
 	}
-	intf_name = argv[optind];
 
 	fprintf(fout, "interface = %s, family = %d, type = %d, proto = %d\n",
 		intf_name, family, type, proto);
