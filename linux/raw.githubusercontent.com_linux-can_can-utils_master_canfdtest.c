@@ -67,6 +67,7 @@
 #define EMON_SL   0x80000002 // config reporting
 #define EMON_SU   0x80000003 // config reporting
 #define EMON_SH   0x80000004 // config reporting
+#define EMON_DM   0x8000000E // set display to mode 1
 #define EMON_ER   0x8000000F // error reporting
 #define EMON_CO   0x8000000C // config reporting
 #define EMON_DA   0x8000000D // blob reporting
@@ -80,7 +81,7 @@
 #define HR_SEC  3600
 #define DAY_SEC  HR_SEC*24
 
-#define LOG_VERSION     "v1.11"
+#define LOG_VERSION     "v1.12"
 #define MQTT_VERSION    "V3.11"
 #define ADDRESS         "tcp://10.1.1.172:1883"
 #define CLIENTID        "MateQ84_Mqtt"
