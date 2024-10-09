@@ -25,6 +25,8 @@
  *
  * MQTT and JSON code and examples
  * https://www.geeksforgeeks.org/cjson-json-file-write-read-modify-in-c/
+ * Daemon example code:
+ * https://github.com/pasce/daemon-skeleton-linux-c
  */
 
 #define _DEFAULT_SOURCE
