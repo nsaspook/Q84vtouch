@@ -10,7 +10,7 @@ EB_data EBD = {
 	.bat_mode = 0,
 	.bat_time = 0,
 	.crc = 0,
-	.alt_display = 0,
+	.alt_display = 1, // use mode 1 display at startup
 };
 
 uint16_t EBD_update = 0; // EEPROM write counter for BM_UPDATE

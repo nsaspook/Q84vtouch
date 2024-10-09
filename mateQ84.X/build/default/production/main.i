@@ -41248,8 +41248,8 @@ void delay_ms(const uint16_t);
 # 23 "./mxcmd.h" 2
 
 
- const char build_version[] = "V1.99 FM80 Q84";
-# 82 "./mxcmd.h"
+ const char build_version[] = "V2.00 FM80 Q84";
+# 83 "./mxcmd.h"
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
  const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};
@@ -41659,7 +41659,7 @@ void delay_ms(const uint16_t);
 
  uint16_t Volts_to_SOC(const uint16_t, const uint16_t);
 # 22 "./../canfd.h" 2
-# 55 "./../canfd.h"
+# 56 "./../canfd.h"
  typedef struct {
   uint32_t rec_count;
   _Bool rec_flag;
@@ -41719,7 +41719,7 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[512] = "Boot Init Display   ", info_buffer[512], log_buffer[512];
-const char *build_date = "Jun 18 2024", *build_time = "12:49:42";
+const char *build_date = "Aug 11 2024", *build_time = "14:40:16";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 

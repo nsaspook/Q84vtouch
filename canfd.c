@@ -119,6 +119,10 @@ void Can1FIFO1NotEmptyHandler(void)
 				}
 				break;
 			}
+			if ((msg[MIRR0R_BUF].msgId & 0xf) == EMON_DM) {
+				B.alt_display = 1;
+				break;
+			}
 #ifdef CAN_REMOTE
 			if ((msg[MIRR0R_BUF].msgId & 0xf) == EMON_MR + LCD0) {
 				memcpy((void *) &s_buffer[LCD0][0], msg[MIRR0R_BUF].data, LCD_BUF_SIZ); // load LCD mirror packet
