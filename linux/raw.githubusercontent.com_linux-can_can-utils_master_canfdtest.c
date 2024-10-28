@@ -19,7 +19,7 @@
  */
 
 /*
- * Logging only version for EM540 data from the mateQ84 controller module
+ * Logging only version for EM540 and FM80 data from the mateQ84 controller module
  * presets have been defaulted for proper CANFD operation using the
  * PU2CANFD USB adapter with 64 byte payloads
  *
@@ -84,7 +84,7 @@
 #define HR_SEC  3600
 #define DAY_SEC  HR_SEC*24
 
-#define LOG_VERSION     "v1.14"
+#define LOG_VERSION     "v1.15"
 #define MQTT_VERSION    "V3.11"
 #ifdef __amd64
 #define ADDRESS         "tcp://10.1.1.172:1883"
@@ -175,10 +175,9 @@ void showIP(void)
 
 		s = getnameinfo(ifa->ifa_addr, sizeof(struct sockaddr_in), host, NI_MAXHOST, NULL, 0, NI_NUMERICHOST);
 
-		if (/*(strcmp(ifa->ifa_name,"wlan0")==0)&&( */ ifa->ifa_addr->sa_family == AF_INET) // )
+		if (ifa->ifa_addr->sa_family == AF_INET) // )
 		{
 			if (s != 0) {
-				//                printf("getnameinfo() failed: %s\n", gai_strerror(s));
 				exit(EXIT_FAILURE);
 			}
 			printf("\tInterface : <%s>\n", ifa->ifa_name);
@@ -237,41 +236,11 @@ static void skeleton_daemon()
 	for (x = sysconf(_SC_OPEN_MAX); x >= 0; x--) {
 		close(x);
 	}
-
 }
 
 static void print_usage(char *prg)
 {
-	fprintf(fout,
-		"%s - Full-duplex test program (DUT and host part).\n"
-		"Usage: %s [options] <can-interface>\n"
-		"\n"
-		"Options:\n"
-		"         -b       (enable CAN FD Bit Rate Switch)\n"
-		"         -d       (use CAN FD frames instead of classic CAN)\n"
-		"         -e       (use 29-bit extended frame format instead of classic 11-bit one)\n"
-		"         -f COUNT (number of frames in flight, default: %d)\n"
-		"         -g       (generate messages)\n"
-		"         -i ID    (CAN ID to use for frames to DUT (ping), default %x)\n"
-		"         -l COUNT (test loop count)\n"
-		"         -o ID    (CAN ID to use for frames to host (pong), default %x)\n"
-		"         -s SIZE  (frame payload size in bytes)\n"
-		"         -v       (low verbosity)\n"
-		"         -vv      (high verbosity)\n"
-		"         -x       (ignore other frames on bus)\n"
-		"\n"
-		"With the option '-g' CAN messages are generated and checked\n"
-		"on <can-interface>, otherwise all messages received on the\n"
-		"<can-interface> are sent back incrementing the CAN id and\n"
-		"all data bytes. The program can be aborted with ^C.\n"
-		"\n"
-		"Examples:\n"
-		"\ton DUT:\n"
-		"%s -v can0\n"
-		"\ton Host:\n"
-		"%s -g -v can2\n",
-		prg, prg, CAN_MSG_COUNT, CAN_MSG_ID_PING, CAN_MSG_ID_PONG, prg, prg);
-
+	fprintf(fout, "%s - MATEQ84 CANBUS .\n", prg);
 	exit(1);
 }
 
@@ -615,13 +584,7 @@ static int can_echo_dut(void)
 			print_frame(frame.can_id, frame.data, frame.len, 0);
 		}
 
-		//		err = check_frame(&frame);
 		inc_frame(&frame);
-		/*
-		 * don't echo or send canbus frames
-		 */
-		//		if (send_frame(&frame))
-		//			return -1;
 
 		/*
 		 * to force a interlacing of the frames send by DUT and PC
@@ -958,7 +921,6 @@ int main(int argc, char *argv[])
 	}
 
 	if ((argc - optind) != 1) {
-		//		print_usage(basename(argv[0]));
 		// default to can0 on the USB interface
 	} else {
 		intf_name = argv[optind];
