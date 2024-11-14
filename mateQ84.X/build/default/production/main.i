@@ -39088,31 +39088,31 @@ void *memccpy (void *restrict, const void *restrict, int, size_t);
 # 50 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/pin_manager.h" 1
-# 634 "./mcc_generated_files/pin_manager.h"
+# 618 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
-# 648 "./mcc_generated_files/pin_manager.h"
+# 632 "./mcc_generated_files/pin_manager.h"
 void IOCAF1_ISR(void);
-# 671 "./mcc_generated_files/pin_manager.h"
+# 655 "./mcc_generated_files/pin_manager.h"
 void IOCAF1_SetInterruptHandler(void (* InterruptHandler)(void));
-# 695 "./mcc_generated_files/pin_manager.h"
+# 679 "./mcc_generated_files/pin_manager.h"
 extern void (*IOCAF1_InterruptHandler)(void);
-# 719 "./mcc_generated_files/pin_manager.h"
+# 703 "./mcc_generated_files/pin_manager.h"
 void IOCAF1_DefaultInterruptHandler(void);
-# 732 "./mcc_generated_files/pin_manager.h"
+# 716 "./mcc_generated_files/pin_manager.h"
 void IOCAF2_ISR(void);
-# 755 "./mcc_generated_files/pin_manager.h"
+# 739 "./mcc_generated_files/pin_manager.h"
 void IOCAF2_SetInterruptHandler(void (* InterruptHandler)(void));
-# 779 "./mcc_generated_files/pin_manager.h"
+# 763 "./mcc_generated_files/pin_manager.h"
 extern void (*IOCAF2_InterruptHandler)(void);
-# 803 "./mcc_generated_files/pin_manager.h"
+# 787 "./mcc_generated_files/pin_manager.h"
 void IOCAF2_DefaultInterruptHandler(void);
-# 816 "./mcc_generated_files/pin_manager.h"
+# 800 "./mcc_generated_files/pin_manager.h"
 void IOCAF5_ISR(void);
-# 839 "./mcc_generated_files/pin_manager.h"
+# 823 "./mcc_generated_files/pin_manager.h"
 void IOCAF5_SetInterruptHandler(void (* InterruptHandler)(void));
-# 863 "./mcc_generated_files/pin_manager.h"
+# 847 "./mcc_generated_files/pin_manager.h"
 extern void (*IOCAF5_InterruptHandler)(void);
-# 887 "./mcc_generated_files/pin_manager.h"
+# 871 "./mcc_generated_files/pin_manager.h"
 void IOCAF5_DefaultInterruptHandler(void);
 # 51 "./mcc_generated_files/mcc.h" 2
 
@@ -40275,13 +40275,6 @@ extern void (*TMR2_InterruptHandler)(void);
 void TMR2_DefaultInterruptHandler(void);
 # 61 "./mcc_generated_files/mcc.h" 2
 
-# 1 "./mcc_generated_files/clc8.h" 1
-# 91 "./mcc_generated_files/clc8.h"
-void CLC8_Initialize(void);
-# 113 "./mcc_generated_files/clc8.h"
-_Bool CLC8_OutputStatusGet(void);
-# 62 "./mcc_generated_files/mcc.h" 2
-
 # 1 "./mcc_generated_files/tmr0.h" 1
 # 100 "./mcc_generated_files/tmr0.h"
 void TMR0_Initialize(void);
@@ -40301,6 +40294,13 @@ void TMR0_Reload(uint8_t periodVal);
 extern void (*TMR0_InterruptHandler)(void);
 # 329 "./mcc_generated_files/tmr0.h"
 void TMR0_DefaultInterruptHandler(void);
+# 62 "./mcc_generated_files/mcc.h" 2
+
+# 1 "./mcc_generated_files/clc8.h" 1
+# 91 "./mcc_generated_files/clc8.h"
+void CLC8_Initialize(void);
+# 113 "./mcc_generated_files/clc8.h"
+_Bool CLC8_OutputStatusGet(void);
 # 63 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/clc7.h" 1
@@ -41188,40 +41188,42 @@ extern char spinners(uint8_t, const uint8_t);
 
 
 
-    typedef struct {
-        uint8_t con0;
-        uint8_t con1;
-        uint8_t con2;
-        uint8_t baud;
-        uint8_t operation;
-    } spi1_configuration_t;
-# 84 "./../eadog.h"
-    extern void wdtdelay(const uint32_t);
-    _Bool init_display(void);
-    void no_dma_set_lcd(void);
-    void send_lcd_data_dma(const uint8_t);
-    void send_lcd_cmd_dma(const uint8_t);
-    void send_lcd_pos_dma(const uint8_t);
-    void start_lcd(void);
-    void wait_lcd_set(void);
-    _Bool wait_lcd_check(void);
-    void wait_lcd_done(void);
-    void eaDogM_WriteChr(const int8_t);
-    void eaDogM_WriteCommand(const uint8_t);
-    void eaDogM_SetPos(const uint8_t, const uint8_t);
-    void eaDogM_ClearRow(const uint8_t);
-    void eaDogM_WriteString(char *);
-    void eaDogM_WriteStringAtPos(const uint8_t, const uint8_t, char *);
-    void eaDogM_WriteIntAtPos(const uint8_t, const uint8_t, const uint8_t);
-    void eaDogM_WriteByteToCGRAM(const uint8_t, const uint8_t);
+ typedef struct {
+  uint8_t con0;
+  uint8_t con1;
+  uint8_t con2;
+  uint8_t baud;
+  uint8_t operation;
+ } spi1_configuration_t;
+# 86 "./../eadog.h"
+ extern void wdtdelay(const uint32_t);
+ _Bool init_display(void);
+ void no_dma_set_lcd(void);
+ void send_lcd_data_dma(const uint8_t);
+ void send_lcd_cmd_dma(const uint8_t);
+ void send_lcd_pos_dma(const uint8_t);
+ void start_lcd(void);
+ void wait_lcd_set(void);
+ _Bool wait_lcd_check(void);
+ void wait_lcd_done(void);
+ void eaDogM_WriteChr(const int8_t);
+ void eaDogM_WriteCommand(const uint8_t);
+ void eaDogM_SetPos(const uint8_t, const uint8_t);
+ void eaDogM_ClearRow(const uint8_t);
+ void eaDogM_WriteString(char *);
+ void eaDogM_WriteStringAtPos(const uint8_t, const uint8_t, char *);
+ void eaDogM_WriteIntAtPos(const uint8_t, const uint8_t, const uint8_t);
+ void eaDogM_WriteByteToCGRAM(const uint8_t, const uint8_t);
+ void set_lcd_dim(const _Bool);
+ void check_lcd_dim(const _Bool);
 
-    char * eaDogM_Scroll_String(char *);
-    void eaDogM_Scroll_Task(void);
+ char * eaDogM_Scroll_String(char *);
+ void eaDogM_Scroll_Task(void);
 
 
-    void clear_lcd_done(void);
-    void spi_rec_done(void);
-    extern void can_fd_lcd_mirror(const uint8_t, char *);
+ void clear_lcd_done(void);
+ void spi_rec_done(void);
+ extern void can_fd_lcd_mirror(const uint8_t, char *);
 # 22 "./mxcmd.h" 2
 # 1 "./../timers.h" 1
 # 13 "./../timers.h"
@@ -41246,8 +41248,8 @@ void delay_ms(const uint16_t);
 # 23 "./mxcmd.h" 2
 
 
- const char build_version[] = "V1.97 FM80 Q84";
-# 80 "./mxcmd.h"
+ const char build_version[] = "V2.01 FM80 Q84";
+# 84 "./mxcmd.h"
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
  const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};
@@ -41321,8 +41323,8 @@ void delay_ms(const uint16_t);
 
  typedef struct B_type {
   volatile _Bool ten_sec_flag, one_sec_flag, FM80_charged, pv_high, pv_update, once, a_switch[D_SW_COUNT], a_trigger[D_SW_COUNT], a_type[D_SW_COUNT];
-  volatile uint16_t pacing, rx_count, flush, pv_prev, day_check, node_id;
-  volatile _Bool FM80_online, FM80_io, LOG;
+  volatile uint16_t pacing, rx_count, flush, pv_prev, day_check, node_id, dim_delay;
+  volatile _Bool FM80_online, FM80_io, LOG, display_dim, display_update;
   volatile uint8_t canbus_online, modbus_online, alt_display, a_pin[D_SW_COUNT];
   float run_time, net_balance;
   uint16_t mui[10];
@@ -41599,7 +41601,7 @@ void delay_ms(const uint16_t);
 # 1 "./../canfd.h" 1
 # 21 "./../canfd.h"
 # 1 "./../batmon.h" 1
-# 54 "./../batmon.h"
+# 55 "./../batmon.h"
  typedef struct EB_data {
   uint8_t checkmark;
   uint8_t version, alt_display;
@@ -41657,7 +41659,7 @@ void delay_ms(const uint16_t);
 
  uint16_t Volts_to_SOC(const uint16_t, const uint16_t);
 # 22 "./../canfd.h" 2
-# 55 "./../canfd.h"
+# 56 "./../canfd.h"
  typedef struct {
   uint32_t rec_count;
   _Bool rec_flag;
@@ -41717,7 +41719,7 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[512] = "Boot Init Display   ", info_buffer[512], log_buffer[512];
-const char *build_date = "Apr  5 2024", *build_time = "19:35:14";
+const char *build_date = "Oct 11 2024", *build_time = "20:13:33";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
@@ -41743,6 +41745,9 @@ B_type B = {
  .pv_update = 0,
  .once = 0,
  .log.type = 1,
+ .display_dim = 0,
+ .display_update = 0,
+ .dim_delay = 6,
 };
 
 
@@ -41844,7 +41849,7 @@ void main(void)
 
  }
  eaDogM_WriteStringAtPos(2, 0, buffer);
-# 369 "main.c"
+# 372 "main.c"
  eaDogM_WriteStringAtPos(2, 0, buffer);
  snprintf(buffer, 512, "%s ", "Start Up            ");
  eaDogM_WriteStringAtPos(3, 0, buffer);
@@ -42014,7 +42019,7 @@ void main(void)
      }
     } else {
      M.error = 0;
-# 567 "main.c"
+# 570 "main.c"
      snprintf(buffer, 512, "EMon  %6.1fWh   %c%c    ", EB->bat_energy / 360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
      eaDogM_WriteStringAtPos(1, 0, buffer);
      snprintf(buffer, 512, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
@@ -42036,6 +42041,7 @@ void main(void)
    EB->alt_display = B.alt_display;
    snprintf(buffer, 512, "%d %s", B.alt_display, "Alt Button \337\364       ");
    eaDogM_WriteStringAtPos(2, 0, buffer);
+   B.display_update = 1;
   }
   if (B.a_switch[D_SW_L]) {
    do { LATBbits.LATB1 = 1; } while(0);
@@ -42043,12 +42049,14 @@ void main(void)
    snprintf(buffer, 512, "%s", "Log Button Pressed        ");
    eaDogM_WriteStringAtPos(2, 0, buffer);
    B.LOG = 1;
+   B.display_update = 1;
   }
   if (B.a_switch[D_SW_M]) {
    do { LATBbits.LATB1 = 1; } while(0);
    B.a_switch[D_SW_M] = 0;
    snprintf(buffer, 512, "%s", "MISC Button Pressed        ");
    eaDogM_WriteStringAtPos(2, 0, buffer);
+   B.display_update = 1;
   }
 
 
@@ -42156,7 +42164,7 @@ void state_status_cb(void)
 {
  static uint16_t day_clocks = 0;
  static uint8_t status_prev = STATUS_SLEEPING;
-# 723 "main.c"
+# 729 "main.c"
  if (B.day_check++ > 1200) {
   B.day_check = 0;
   B.once = 0;
@@ -42268,6 +42276,8 @@ void state_mx_status_cb(void)
 
 
 
+ check_lcd_dim(0);
+
  if (B.ten_sec_flag) {
   B.ten_sec_flag = 0;
   if (B.FM80_online || B.modbus_online) {
@@ -42283,6 +42293,8 @@ void state_mx_status_cb(void)
    if (B.FM80_online) {
     bat_amp_whole = abuf[3] - 128;
    }
+
+   set_lcd_dim(0);
 
    switch (B.alt_display) {
    case 3:

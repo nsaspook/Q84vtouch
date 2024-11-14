@@ -1,0 +1,195 @@
+<?xml version="1.0"?>
+<analyzerinfo hash="15540257920913671943">
+        <error id="redundantAssignment" severity="style" msg="Variable &apos;gridin&apos; is reassigned a value before the old one has been used." verbose="Variable &apos;gridin&apos; is reassigned a value before the old one has been used." cwe="563" file0="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c">
+            <location file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="282" column="11" info="gridin is overwritten"/>
+            <location file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="272" column="12" info="gridin is assigned"/>
+            <symbol>gridin</symbol>
+        </error>
+        <error id="redundantAssignment" severity="style" msg="Variable &apos;gridin&apos; is reassigned a value before the old one has been used." verbose="Variable &apos;gridin&apos; is reassigned a value before the old one has been used." cwe="563" file0="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c">
+            <location file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="282" column="11" info="gridin is overwritten"/>
+            <location file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="277" column="13" info="gridin is assigned"/>
+            <symbol>gridin</symbol>
+        </error>
+        <error id="shadowVariable" severity="style" msg="Local variable &apos;json&apos; shadows outer variable" verbose="Local variable &apos;json&apos; shadows outer variable" cwe="398" file0="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c">
+            <location file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="737" column="9" info="Shadow variable"/>
+            <location file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="122" column="8" info="Shadowed declaration"/>
+            <symbol>json</symbol>
+        </error>
+  <FileInfo check="ctu">
+<function-call call-id="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c:237:13" call-funcname="print_frame" call-argnr="4" file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="414" col="13" call-argexpr="0" call-argvaluetype="0" call-argvalue="0"/><function-call call-id="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c:472:12" call-funcname="recv_frame" call-argnr="1" file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="565" col="17" call-argexpr="&amp;frame" call-argvaluetype="7" call-argvalue="0"/><function-call call-id="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c:237:13" call-funcname="print_frame" call-argnr="4" file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="572" col="15" call-argexpr="0" call-argvaluetype="0" call-argvalue="0"/><function-call call-id="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c:543:13" call-funcname="inc_frame" call-argnr="1" file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="576" col="12" call-argexpr="&amp;frame" call-argvaluetype="7" call-argvalue="0"/><function-call call-id="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c:472:12" call-funcname="recv_frame" call-argnr="1" file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="648" col="18" call-argexpr="&amp;rx_frame" call-argvaluetype="7" call-argvalue="0"/><function-call call-id="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c:237:13" call-funcname="print_frame" call-argnr="4" file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="654" col="16" call-argexpr="0" call-argvaluetype="0" call-argvalue="0"/><function-call call-id="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c:417:12" call-funcname="compare_frame" call-argnr="2" file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="659" col="24" call-argexpr="&amp;rx_frame" call-argvaluetype="7" call-argvalue="0"/><function-call call-id="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c:417:12" call-funcname="compare_frame" call-argnr="3" file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="659" col="24" call-argexpr="0" call-argvaluetype="0" call-argvalue="0"/><function-call call-id="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c:417:12" call-funcname="compare_frame" call-argnr="2" file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="673" col="23" call-argexpr="&amp;rx_frame" call-argvaluetype="7" call-argvalue="0"/><function-call call-id="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c:237:13" call-funcname="print_frame" call-argnr="2" file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="412" col="2" my-id="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c:402:13" my-argnr="2"/>
+<function-call call-id="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c:237:13" call-funcname="print_frame" call-argnr="2" file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="414" col="2" my-id="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c:402:13" my-argnr="5"/>
+  </FileInfo>
+  <FileInfo check="Null pointer">
+    <unsafe-usage my-id="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c:202:13" my-argnr="1" my-argname="prg" file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="232" col="3" value="0"/>
+    <unsafe-usage my-id="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c:526:12" my-argnr="1" my-argname="frame" file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="530" col="6" value="0"/>
+    <unsafe-usage my-id="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c:146:9" my-argnr="4" my-argname="message" file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="730" col="15" value="0"/>
+    <unsafe-usage my-id="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c:147:6" my-argnr="2" my-argname="cause" file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="762" col="29" value="0"/>
+  </FileInfo>
+  <FileInfo check="Uninitialized variables">
+    <unsafe-usage my-id="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c:526:12" my-argnr="1" my-argname="frame" file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="530" col="6" value="0"/>
+    <unsafe-usage my-id="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c:146:9" my-argnr="4" my-argname="message" file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="730" col="15" value="0"/>
+  </FileInfo>
+  <FileInfo check="ctu">
+<function-call call-id="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c:237:13" call-funcname="print_frame" call-argnr="4" file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="414" col="13" call-argexpr="0" call-argvaluetype="0" call-argvalue="0"/><function-call call-id="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c:472:12" call-funcname="recv_frame" call-argnr="1" file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="565" col="17" call-argexpr="&amp;frame" call-argvaluetype="7" call-argvalue="0"/><function-call call-id="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c:237:13" call-funcname="print_frame" call-argnr="4" file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="572" col="15" call-argexpr="0" call-argvaluetype="0" call-argvalue="0"/><function-call call-id="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c:543:13" call-funcname="inc_frame" call-argnr="1" file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="576" col="12" call-argexpr="&amp;frame" call-argvaluetype="7" call-argvalue="0"/><function-call call-id="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c:472:12" call-funcname="recv_frame" call-argnr="1" file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="648" col="18" call-argexpr="&amp;rx_frame" call-argvaluetype="7" call-argvalue="0"/><function-call call-id="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c:237:13" call-funcname="print_frame" call-argnr="4" file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="654" col="16" call-argexpr="0" call-argvaluetype="0" call-argvalue="0"/><function-call call-id="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c:417:12" call-funcname="compare_frame" call-argnr="2" file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="659" col="24" call-argexpr="&amp;rx_frame" call-argvaluetype="7" call-argvalue="0"/><function-call call-id="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c:417:12" call-funcname="compare_frame" call-argnr="3" file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="659" col="24" call-argexpr="0" call-argvaluetype="0" call-argvalue="0"/><function-call call-id="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c:417:12" call-funcname="compare_frame" call-argnr="2" file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="673" col="23" call-argexpr="&amp;rx_frame" call-argvaluetype="7" call-argvalue="0"/><function-call call-id="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c:237:13" call-funcname="print_frame" call-argnr="2" file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="412" col="2" my-id="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c:402:13" my-argnr="2"/>
+<function-call call-id="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c:237:13" call-funcname="print_frame" call-argnr="2" file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="414" col="2" my-id="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c:402:13" my-argnr="5"/>
+  </FileInfo>
+  <FileInfo check="Null pointer">
+    <unsafe-usage my-id="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c:202:13" my-argnr="1" my-argname="prg" file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="232" col="3" value="0"/>
+    <unsafe-usage my-id="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c:526:12" my-argnr="1" my-argname="frame" file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="530" col="6" value="0"/>
+    <unsafe-usage my-id="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c:146:9" my-argnr="4" my-argname="message" file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="730" col="15" value="0"/>
+    <unsafe-usage my-id="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c:147:6" my-argnr="2" my-argname="cause" file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="762" col="29" value="0"/>
+  </FileInfo>
+  <FileInfo check="Uninitialized variables">
+    <unsafe-usage my-id="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c:526:12" my-argnr="1" my-argname="frame" file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="530" col="6" value="0"/>
+    <unsafe-usage my-id="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c:146:9" my-argnr="4" my-argname="message" file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="730" col="15" value="0"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl functionName="skeleton_daemon" lineNumber="151"/>
+    <functiondecl functionName="print_usage" lineNumber="202"/>
+    <functiondecl functionName="print_frame" lineNumber="237"/>
+    <functiondecl functionName="print_compare" lineNumber="402"/>
+    <functiondecl functionName="compare_frame" lineNumber="417"/>
+    <functiondecl functionName="millisleep" lineNumber="439"/>
+    <functiondecl functionName="echo_progress" lineNumber="458"/>
+    <functiondecl functionName="signal_handler" lineNumber="465"/>
+    <functiondecl functionName="recv_frame" lineNumber="472"/>
+    <functiondecl functionName="send_frame" lineNumber="495"/>
+    <functiondecl functionName="check_frame" lineNumber="526"/>
+    <functiondecl functionName="inc_frame" lineNumber="543"/>
+    <functiondecl functionName="can_echo_dut" lineNumber="558"/>
+    <functiondecl functionName="can_echo_gen" lineNumber="596"/>
+    <functiondecl functionName="timer_callback" lineNumber="704"/>
+    <functiondecl functionName="delivered" lineNumber="713"/>
+    <functiondecl functionName="msgarrvd" lineNumber="721"/>
+    <functiondecl functionName="connlost" lineNumber="759"/>
+    <functiondecl functionName="log_time" lineNumber="766"/>
+    <functiondecl functionName="main" lineNumber="784"/>
+    <functiondecl functionName="current_timestamp" lineNumber="1007"/>
+    <functiondecl functionName="skeleton_daemon" lineNumber="151"/>
+    <functiondecl functionName="print_usage" lineNumber="202"/>
+    <functiondecl functionName="print_frame" lineNumber="237"/>
+    <functiondecl functionName="print_compare" lineNumber="402"/>
+    <functiondecl functionName="compare_frame" lineNumber="417"/>
+    <functiondecl functionName="millisleep" lineNumber="439"/>
+    <functiondecl functionName="echo_progress" lineNumber="458"/>
+    <functiondecl functionName="signal_handler" lineNumber="465"/>
+    <functiondecl functionName="recv_frame" lineNumber="472"/>
+    <functiondecl functionName="send_frame" lineNumber="495"/>
+    <functiondecl functionName="check_frame" lineNumber="526"/>
+    <functiondecl functionName="inc_frame" lineNumber="543"/>
+    <functiondecl functionName="can_echo_dut" lineNumber="558"/>
+    <functiondecl functionName="can_echo_gen" lineNumber="596"/>
+    <functiondecl functionName="timer_callback" lineNumber="704"/>
+    <functiondecl functionName="delivered" lineNumber="713"/>
+    <functiondecl functionName="msgarrvd" lineNumber="721"/>
+    <functiondecl functionName="connlost" lineNumber="759"/>
+    <functiondecl functionName="log_time" lineNumber="766"/>
+    <functiondecl functionName="main" lineNumber="784"/>
+    <functiondecl functionName="current_timestamp" lineNumber="1007"/>
+    <functioncall functionName="CANFD_MAX_DLEN"/>
+    <functioncall functionName="CAN_MAX_DLEN"/>
+    <functioncall functionName="CAN_RAW"/>
+    <functioncall functionName="CAN_RAW_FD_FRAMES"/>
+    <functioncall functionName="CAN_RAW_FILTER"/>
+    <functioncall functionName="CAN_RAW_RECV_OWN_MSGS"/>
+    <functioncall functionName="CAN_SFF_MASK"/>
+    <functioncall functionName="CLOCK_MONOTONIC"/>
+    <functioncall functionName="EXIT_FAILURE"/>
+    <functioncall functionName="EXIT_SUCCESS"/>
+    <functioncall functionName="LOG_ERR"/>
+    <functioncall functionName="LOG_NOTICE"/>
+    <functioncall functionName="MQTTCLIENT_PERSISTENCE_NONE"/>
+    <functioncall functionName="MQTTClient_connect"/>
+    <functioncall functionName="MQTTClient_connectOptions_initializer"/>
+    <functioncall functionName="MQTTClient_create"/>
+    <functioncall functionName="MQTTClient_deliveryToken"/>
+    <functioncall functionName="MQTTClient_free"/>
+    <functioncall functionName="MQTTClient_freeMessage"/>
+    <functioncall functionName="MQTTClient_message_initializer"/>
+    <functioncall functionName="MQTTClient_publishMessage"/>
+    <functioncall functionName="MQTTClient_setCallbacks"/>
+    <functioncall functionName="MQTTClient_subscribe"/>
+    <functioncall functionName="NULL"/>
+    <functioncall functionName="PF_CAN"/>
+    <functioncall functionName="SIGHUP"/>
+    <functioncall functionName="SOCK_RAW"/>
+    <functioncall functionName="SOL_CAN_RAW"/>
+    <functioncall functionName="_SC_OPEN_MAX"/>
+    <functioncall functionName="atof"/>
+    <functioncall functionName="atoi"/>
+    <functioncall functionName="basename"/>
+    <functioncall functionName="bind"/>
+    <functioncall functionName="cJSON_AddNumberToObject"/>
+    <functioncall functionName="cJSON_AddStringToObject"/>
+    <functioncall functionName="cJSON_CreateObject"/>
+    <functioncall functionName="cJSON_Delete"/>
+    <functioncall functionName="cJSON_GetErrorPtr"/>
+    <functioncall functionName="cJSON_ParseWithLength"/>
+    <functioncall functionName="cJSON_Print"/>
+    <functioncall functionName="cJSON_free"/>
+    <functioncall functionName="calloc"/>
+    <functioncall functionName="can_echo_dut"/>
+    <functioncall functionName="can_echo_gen"/>
+    <functioncall functionName="chdir"/>
+    <functioncall functionName="clock_nanosleep"/>
+    <functioncall functionName="close"/>
+    <functioncall functionName="compare_frame"/>
+    <functioncall functionName="connlost"/>
+    <functioncall functionName="ctime"/>
+    <functioncall functionName="data"/>
+    <functioncall functionName="delivered"/>
+    <functioncall functionName="echo_progress"/>
+    <functioncall functionName="errno"/>
+    <functioncall functionName="error_exit"/>
+    <functioncall functionName="exit"/>
+    <functioncall functionName="false"/>
+    <functioncall functionName="fflush"/>
+    <functioncall functionName="fopen"/>
+    <functioncall functionName="fork"/>
+    <functioncall functionName="fprintf"/>
+    <functioncall functionName="free"/>
+    <functioncall functionName="getopt"/>
+    <functioncall functionName="gettimeofday"/>
+    <functioncall functionName="if_nametoindex"/>
+    <functioncall functionName="inc_frame"/>
+    <functioncall functionName="localtime"/>
+    <functioncall functionName="log_time"/>
+    <functioncall functionName="memcpy"/>
+    <functioncall functionName="millisleep"/>
+    <functioncall functionName="msgarrvd"/>
+    <functioncall functionName="optarg"/>
+    <functioncall functionName="optind"/>
+    <functioncall functionName="out_free"/>
+    <functioncall functionName="out_free_tx_frames"/>
+    <functioncall functionName="print_compare"/>
+    <functioncall functionName="print_frame"/>
+    <functioncall functionName="print_usage"/>
+    <functioncall functionName="printf"/>
+    <functioncall functionName="recv"/>
+    <functioncall functionName="recv_frame"/>
+    <functioncall functionName="send"/>
+    <functioncall functionName="send_frame"/>
+    <functioncall functionName="setsid"/>
+    <functioncall functionName="setsockopt"/>
+    <functioncall functionName="signal"/>
+    <functioncall functionName="signal_handler"/>
+    <functioncall functionName="skeleton_daemon"/>
+    <functioncall functionName="snprintf"/>
+    <functioncall functionName="socket"/>
+    <functioncall functionName="sprintf"/>
+    <functioncall functionName="stderr"/>
+    <functioncall functionName="strerror"/>
+    <functioncall functionName="strlen"/>
+    <functioncall functionName="strtok"/>
+    <functioncall functionName="strtoul"/>
+    <functioncall functionName="sysconf"/>
+    <functioncall functionName="syslog"/>
+    <functioncall functionName="time"/>
+    <functioncall functionName="timegm"/>
+    <functioncall functionName="timer_callback"/>
+    <functioncall functionName="true"/>
+    <functioncall functionName="tzset"/>
+    <functioncall functionName="umask"/>
+    <functioncall functionName="usleep"/>
+  </FileInfo>
+</analyzerinfo>

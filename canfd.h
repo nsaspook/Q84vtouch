@@ -45,6 +45,7 @@ extern "C" {
 #define EMON_MR	0x4	// LCD mirror data [0..3]]
 #define EMON_TM	0xA	// remote time from time server
 #define EMON_DS	0xB	// remote display server
+#define EMON_DM	0xE	// set display mode to 1	
 #define EMON_ER	0xF	// error reporting
 #define EMON_CO	0xC	// configuration reporting
 #define EMON_DA	0xD	// 64 byte binary blob

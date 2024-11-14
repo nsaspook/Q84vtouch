@@ -38723,31 +38723,31 @@ unsigned char __t3rd16on(void);
 # 50 "mcc_generated_files/mcc.h" 2
 
 # 1 "mcc_generated_files/pin_manager.h" 1
-# 634 "mcc_generated_files/pin_manager.h"
+# 618 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
-# 648 "mcc_generated_files/pin_manager.h"
+# 632 "mcc_generated_files/pin_manager.h"
 void IOCAF1_ISR(void);
-# 671 "mcc_generated_files/pin_manager.h"
+# 655 "mcc_generated_files/pin_manager.h"
 void IOCAF1_SetInterruptHandler(void (* InterruptHandler)(void));
-# 695 "mcc_generated_files/pin_manager.h"
+# 679 "mcc_generated_files/pin_manager.h"
 extern void (*IOCAF1_InterruptHandler)(void);
-# 719 "mcc_generated_files/pin_manager.h"
+# 703 "mcc_generated_files/pin_manager.h"
 void IOCAF1_DefaultInterruptHandler(void);
-# 732 "mcc_generated_files/pin_manager.h"
+# 716 "mcc_generated_files/pin_manager.h"
 void IOCAF2_ISR(void);
-# 755 "mcc_generated_files/pin_manager.h"
+# 739 "mcc_generated_files/pin_manager.h"
 void IOCAF2_SetInterruptHandler(void (* InterruptHandler)(void));
-# 779 "mcc_generated_files/pin_manager.h"
+# 763 "mcc_generated_files/pin_manager.h"
 extern void (*IOCAF2_InterruptHandler)(void);
-# 803 "mcc_generated_files/pin_manager.h"
+# 787 "mcc_generated_files/pin_manager.h"
 void IOCAF2_DefaultInterruptHandler(void);
-# 816 "mcc_generated_files/pin_manager.h"
+# 800 "mcc_generated_files/pin_manager.h"
 void IOCAF5_ISR(void);
-# 839 "mcc_generated_files/pin_manager.h"
+# 823 "mcc_generated_files/pin_manager.h"
 void IOCAF5_SetInterruptHandler(void (* InterruptHandler)(void));
-# 863 "mcc_generated_files/pin_manager.h"
+# 847 "mcc_generated_files/pin_manager.h"
 extern void (*IOCAF5_InterruptHandler)(void);
-# 887 "mcc_generated_files/pin_manager.h"
+# 871 "mcc_generated_files/pin_manager.h"
 void IOCAF5_DefaultInterruptHandler(void);
 # 51 "mcc_generated_files/mcc.h" 2
 
@@ -40067,13 +40067,6 @@ extern void (*TMR2_InterruptHandler)(void);
 void TMR2_DefaultInterruptHandler(void);
 # 61 "mcc_generated_files/mcc.h" 2
 
-# 1 "mcc_generated_files/clc8.h" 1
-# 91 "mcc_generated_files/clc8.h"
-void CLC8_Initialize(void);
-# 113 "mcc_generated_files/clc8.h"
-_Bool CLC8_OutputStatusGet(void);
-# 62 "mcc_generated_files/mcc.h" 2
-
 # 1 "mcc_generated_files/tmr0.h" 1
 # 100 "mcc_generated_files/tmr0.h"
 void TMR0_Initialize(void);
@@ -40093,6 +40086,13 @@ void TMR0_Reload(uint8_t periodVal);
 extern void (*TMR0_InterruptHandler)(void);
 # 329 "mcc_generated_files/tmr0.h"
 void TMR0_DefaultInterruptHandler(void);
+# 62 "mcc_generated_files/mcc.h" 2
+
+# 1 "mcc_generated_files/clc8.h" 1
+# 91 "mcc_generated_files/clc8.h"
+void CLC8_Initialize(void);
+# 113 "mcc_generated_files/clc8.h"
+_Bool CLC8_OutputStatusGet(void);
 # 63 "mcc_generated_files/mcc.h" 2
 
 # 1 "mcc_generated_files/clc7.h" 1

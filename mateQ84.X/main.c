@@ -254,6 +254,9 @@ B_type B = {
 	.pv_update = false,
 	.once = false,
 	.log.type = 1, // mxlog type
+	.display_dim = false,
+	.display_update = false,
+	.dim_delay = DIM_DELAY,
 };
 
 /*
@@ -585,6 +588,7 @@ void main(void)
 			EB->alt_display = B.alt_display;
 			snprintf(buffer, MAX_B_BUF, "%d %s", B.alt_display, "Alt Button \337\364       ");
 			eaDogM_WriteStringAtPos(2, 0, buffer);
+			B.display_update = true;
 		}
 		if (B.a_switch[D_SW_L]) {
 			MM_ERROR_S;
@@ -592,12 +596,14 @@ void main(void)
 			snprintf(buffer, MAX_B_BUF, "%s", "Log Button Pressed        ");
 			eaDogM_WriteStringAtPos(2, 0, buffer);
 			B.LOG = true;
+			B.display_update = true;
 		}
 		if (B.a_switch[D_SW_M]) {
 			MM_ERROR_S;
 			B.a_switch[D_SW_M] = false;
 			snprintf(buffer, MAX_B_BUF, "%s", "MISC Button Pressed        ");
 			eaDogM_WriteStringAtPos(2, 0, buffer);
+			B.display_update = true;
 		}
 #ifdef LCD_MIRROR
 		can_mirror_print();
@@ -831,6 +837,8 @@ void state_mx_status_cb(void)
 	printf("%5d: %3x %3x %3x %3x %3x  SDATA: FM80 Data mode %3x %3x %3x %3x %3x %3x %3x %3x %3x\r\n",
 		rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4], abuf[5], abuf[6], abuf[7], abuf[8], abuf[9], abuf[10], abuf[11], abuf[12], abuf[13]);
 #endif
+	check_lcd_dim(false);
+
 	if (B.ten_sec_flag) {
 		B.ten_sec_flag = false;
 		if (B.FM80_online || B.modbus_online) { // log for MX80 and EM540
@@ -846,6 +854,8 @@ void state_mx_status_cb(void)
 			if (B.FM80_online) {
 				bat_amp_whole = abuf[3] - 128;
 			}
+
+			set_lcd_dim(false);
 
 			switch (B.alt_display) {
 			case 3:

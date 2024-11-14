@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<results version="2">
+    <cppcheck version="2.10"/>
+    <errors>
+        <error id="redundantAssignment" severity="style" msg="Variable &amp;#039;gridin&amp;#039; is reassigned a value before the old one has been used." verbose="Variable &amp;#039;gridin&amp;#039; is reassigned a value before the old one has been used." cwe="563" file0="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" sinceDate="M/d/yy">
+            <location file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="282" info="gridin is overwritten"/>
+            <location file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="272" info="gridin is assigned"/>
+        </error>
+        <error id="shadowVariable" severity="style" msg="Local variable &amp;#039;json&amp;#039; shadows outer variable" verbose="Local variable &amp;#039;json&amp;#039; shadows outer variable" cwe="398" file0="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" sinceDate="M/d/yy">
+            <location file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="737" info="Shadow variable"/>
+            <location file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="122" info="Shadowed declaration"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;check_frame&amp;#039; is never used." verbose="The function &amp;#039;check_frame&amp;#039; is never used." cwe="561" sinceDate="M/d/yy">
+            <location file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="526"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;current_timestamp&amp;#039; is never used." verbose="The function &amp;#039;current_timestamp&amp;#039; is never used." cwe="561" sinceDate="M/d/yy">
+            <location file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="1007"/>
+        </error>
+        <error id="ConfigurationNotChecked" severity="information" msg="Skipping configuration &amp;#039;MBEDTLS_ERR_SSL_ASYNC_IN_PROGRESS;MQTT_USE_MBEDTLS&amp;#039; since the value of &amp;#039;MBEDTLS_ERR_SSL_ASYNC_IN_PROGRESS&amp;#039; is unknown. Use -D if you want to check it. You can use -U to skip it explicitly." verbose="Skipping configuration &amp;#039;MBEDTLS_ERR_SSL_ASYNC_IN_PROGRESS;MQTT_USE_MBEDTLS&amp;#039; since the value of &amp;#039;MBEDTLS_ERR_SSL_ASYNC_IN_PROGRESS&amp;#039; is unknown. Use -D if you want to check it. You can use -U to skip it explicitly." sinceDate="M/d/yy">
+            <location file="mqtt_pal.c" line="60"/>
+        </error>
+        <error id="ConfigurationNotChecked" severity="information" msg="Skipping configuration &amp;#039;MBEDTLS_ERR_SSL_ASYNC_IN_PROGRESS;MQTT_USE_MBEDTLS&amp;#039; since the value of &amp;#039;MBEDTLS_ERR_SSL_ASYNC_IN_PROGRESS&amp;#039; is unknown. Use -D if you want to check it. You can use -U to skip it explicitly." verbose="Skipping configuration &amp;#039;MBEDTLS_ERR_SSL_ASYNC_IN_PROGRESS;MQTT_USE_MBEDTLS&amp;#039; since the value of &amp;#039;MBEDTLS_ERR_SSL_ASYNC_IN_PROGRESS&amp;#039; is unknown. Use -D if you want to check it. You can use -U to skip it explicitly." sinceDate="M/d/yy">
+            <location file="mqtt_pal.c" line="107"/>
+        </error>
+        <error id="ConfigurationNotChecked" severity="information" msg="Skipping configuration &amp;#039;MBEDTLS_ERR_SSL_CRYPTO_IN_PROGRESS;MQTT_USE_MBEDTLS&amp;#039; since the value of &amp;#039;MBEDTLS_ERR_SSL_CRYPTO_IN_PROGRESS&amp;#039; is unknown. Use -D if you want to check it. You can use -U to skip it explicitly." verbose="Skipping configuration &amp;#039;MBEDTLS_ERR_SSL_CRYPTO_IN_PROGRESS;MQTT_USE_MBEDTLS&amp;#039; since the value of &amp;#039;MBEDTLS_ERR_SSL_CRYPTO_IN_PROGRESS&amp;#039; is unknown. Use -D if you want to check it. You can use -U to skip it explicitly." sinceDate="M/d/yy">
+            <location file="mqtt_pal.c" line="63"/>
+        </error>
+        <error id="ConfigurationNotChecked" severity="information" msg="Skipping configuration &amp;#039;MBEDTLS_ERR_SSL_CRYPTO_IN_PROGRESS;MQTT_USE_MBEDTLS&amp;#039; since the value of &amp;#039;MBEDTLS_ERR_SSL_CRYPTO_IN_PROGRESS&amp;#039; is unknown. Use -D if you want to check it. You can use -U to skip it explicitly." verbose="Skipping configuration &amp;#039;MBEDTLS_ERR_SSL_CRYPTO_IN_PROGRESS;MQTT_USE_MBEDTLS&amp;#039; since the value of &amp;#039;MBEDTLS_ERR_SSL_CRYPTO_IN_PROGRESS&amp;#039; is unknown. Use -D if you want to check it. You can use -U to skip it explicitly." sinceDate="M/d/yy">
+            <location file="mqtt_pal.c" line="110"/>
+        </error>
+        <error id="variableScope" severity="style" msg="The scope of the variable &amp;#039;status&amp;#039; can be reduced." verbose="The scope of the variable &amp;#039;status&amp;#039; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &amp;#039;i&amp;#039; can be reduced:&#10;void f(int x)&#10;{&#10;    int i = 0;&#10;    if (x) {&#10;        // it&amp;#039;s safe to move &amp;#039;int i = 0;&amp;#039; here&#10;        for (int n = 0; n &amp;lt; 10; ++n) {&#10;            // it is possible but not safe to move &amp;#039;int i = 0;&amp;#039; here&#10;            do_something(&amp;amp;i);&#10;        }&#10;    }&#10;}&#10;When you see this message it is always safe to reduce the variable scope 1 level." cwe="398" file0="mqtt_pal.c" sinceDate="M/d/yy">
+            <location file="mqtt_pal.c" line="220"/>
+        </error>
+        <error id="variableScope" severity="style" msg="The scope of the variable &amp;#039;buffer&amp;#039; can be reduced." verbose="The scope of the variable &amp;#039;buffer&amp;#039; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &amp;#039;i&amp;#039; can be reduced:&#10;void f(int x)&#10;{&#10;    int i = 0;&#10;    if (x) {&#10;        // it&amp;#039;s safe to move &amp;#039;int i = 0;&amp;#039; here&#10;        for (int n = 0; n &amp;lt; 10; ++n) {&#10;            // it is possible but not safe to move &amp;#039;int i = 0;&amp;#039; here&#10;            do_something(&amp;amp;i);&#10;        }&#10;    }&#10;}&#10;When you see this message it is always safe to reduce the variable scope 1 level." cwe="398" file0="mqtt_pal.c" sinceDate="M/d/yy">
+            <location file="mqtt_pal.c" line="263"/>
+        </error>
+        <error id="unreadVariable" severity="style" msg="Variable &amp;#039;walker&amp;#039; is assigned a value that is never used." verbose="Variable &amp;#039;walker&amp;#039; is assigned a value that is never used." cwe="563" file0="mqtt_pal.c" sinceDate="M/d/yy">
+            <location file="mqtt_pal.c" line="291"/>
+        </error>
+        <error id="knownConditionTrueFalse" severity="style" msg="Condition &amp;#039;tmp&amp;lt;=0&amp;#039; is always true" verbose="Condition &amp;#039;tmp&amp;lt;=0&amp;#039; is always true" cwe="571" file0="mqtt_pal.c" sinceDate="M/d/yy">
+            <location file="mqtt_pal.c" line="311" info="Condition &amp;#039;tmp&amp;lt;=0&amp;#039; is always true"/>
+            <location file="mqtt_pal.c" line="309" info="Assuming condition &amp;#039;tmp&amp;gt;0&amp;#039; is false"/>
+        </error>
+        <error id="variableScope" severity="style" msg="The scope of the variable &amp;#039;rv&amp;#039; can be reduced." verbose="The scope of the variable &amp;#039;rv&amp;#039; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &amp;#039;i&amp;#039; can be reduced:&#10;void f(int x)&#10;{&#10;    int i = 0;&#10;    if (x) {&#10;        // it&amp;#039;s safe to move &amp;#039;int i = 0;&amp;#039; here&#10;        for (int n = 0; n &amp;lt; 10; ++n) {&#10;            // it is possible but not safe to move &amp;#039;int i = 0;&amp;#039; here&#10;            do_something(&amp;amp;i);&#10;        }&#10;    }&#10;}&#10;When you see this message it is always safe to reduce the variable scope 1 level." cwe="398" file0="mqtt_pal.c" sinceDate="M/d/yy">
+            <location file="mqtt_pal.c" line="323"/>
+        </error>
+        <error id="arithOperationsOnVoidPointer" severity="portability" msg="&amp;#039;buf&amp;#039; is of type &amp;#039;const void *&amp;#039;. When using void pointers in calculations, the behaviour is undefined." verbose="&amp;#039;buf&amp;#039; is of type &amp;#039;const void *&amp;#039;. When using void pointers in calculations, the behaviour is undefined. Arithmetic operations on &amp;#039;void *&amp;#039; is a GNU C extension, which defines the &amp;#039;sizeof(void)&amp;#039; to be 1." cwe="467" file0="mqtt_pal.c" sinceDate="M/d/yy">
+            <location file="mqtt_pal.c" line="136"/>
+        </error>
+        <error id="variableScope" severity="style" msg="The scope of the variable &amp;#039;rv&amp;#039; can be reduced." verbose="The scope of the variable &amp;#039;rv&amp;#039; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &amp;#039;i&amp;#039; can be reduced:&#10;void f(int x)&#10;{&#10;    int i = 0;&#10;    if (x) {&#10;        // it&amp;#039;s safe to move &amp;#039;int i = 0;&amp;#039; here&#10;        for (int n = 0; n &amp;lt; 10; ++n) {&#10;            // it is possible but not safe to move &amp;#039;int i = 0;&amp;#039; here&#10;            do_something(&amp;amp;i);&#10;        }&#10;    }&#10;}&#10;When you see this message it is always safe to reduce the variable scope 1 level." cwe="398" file0="mqtt_pal.c" sinceDate="M/d/yy">
+            <location file="mqtt_pal.c" line="374"/>
+        </error>
+        <error id="shadowVariable" severity="style" msg="Local variable &amp;#039;sockfd&amp;#039; shadows outer variable" verbose="Local variable &amp;#039;sockfd&amp;#039; shadows outer variable" cwe="398" file0="mqtt_pub.c" sinceDate="M/d/yy">
+            <location file="templates/posix_sockets.h" line="27" info="Shadow variable"/>
+            <location file="mqtt_pub.c" line="14" info="Shadowed declaration"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;mqtt_check&amp;#039; is never used." verbose="The function &amp;#039;mqtt_check&amp;#039; is never used." cwe="561" sinceDate="M/d/yy">
+            <location file="mqtt_pub.c" line="67"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;mqtt_exit&amp;#039; is never used." verbose="The function &amp;#039;mqtt_exit&amp;#039; is never used." cwe="561" sinceDate="M/d/yy">
+            <location file="mqtt_pub.c" line="85"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;mqtt_socket&amp;#039; is never used." verbose="The function &amp;#039;mqtt_socket&amp;#039; is never used." cwe="561" sinceDate="M/d/yy">
+            <location file="mqtt_pub.c" line="26"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;mqtt_init_reconnect&amp;#039; is never used." verbose="The function &amp;#039;mqtt_init_reconnect&amp;#039; is never used." cwe="561" sinceDate="M/d/yy">
+            <location file="mqtt.c" line="154"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;mqtt_ping&amp;#039; is never used." verbose="The function &amp;#039;mqtt_ping&amp;#039; is never used." cwe="561" sinceDate="M/d/yy">
+            <location file="mqtt.c" line="452"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;mqtt_reconnect&amp;#039; is never used." verbose="The function &amp;#039;mqtt_reconnect&amp;#039; is never used." cwe="561" sinceDate="M/d/yy">
+            <location file="mqtt.c" line="481"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;mqtt_reinit&amp;#039; is never used." verbose="The function &amp;#039;mqtt_reinit&amp;#039; is never used." cwe="561" sinceDate="M/d/yy">
+            <location file="mqtt.c" line="185"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;mqtt_subscribe&amp;#039; is never used." verbose="The function &amp;#039;mqtt_subscribe&amp;#039; is never used." cwe="561" sinceDate="M/d/yy">
+            <location file="mqtt.c" line="395"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;mqtt_unsubscribe&amp;#039; is never used." verbose="The function &amp;#039;mqtt_unsubscribe&amp;#039; is never used." cwe="561" sinceDate="M/d/yy">
+            <location file="mqtt.c" line="425"/>
+        </error>
+    </errors>
+</results>

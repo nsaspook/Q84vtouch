@@ -10,7 +10,7 @@ EB_data EBD = {
 	.bat_mode = 0,
 	.bat_time = 0,
 	.crc = 0,
-	.alt_display = 0,
+	.alt_display = 1, // use mode 1 display at startup
 };
 
 uint16_t EBD_update = 0; // EEPROM write counter for BM_UPDATE
@@ -210,7 +210,7 @@ void compute_bm_data(EB_data * EB)
 		/*
 		 * try to sync BMS charged condition to monitor charged condition and set full energy levels
 		 */
-		if ((cc_mode == STATUS_FLOATING) && (EB->FMw > BAT_CHARGED_W) && (EB->ENw > BAT_CHARGED_W)) {
+		if ((cc_mode == STATUS_FLOATING) && ((EB->FMw > BAT_CHARGED_W) || (EB->FMpv > BAT_CHARGED_V)) && (EB->ENw > BAT_CHARGED_W)) {
 			if (!B.FM80_charged) {
 				B.FM80_charged = true;
 				EB->bat_energy = BAT_ENERGY;

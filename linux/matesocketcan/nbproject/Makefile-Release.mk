@@ -52,7 +52,7 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=`pkg-config --libs libcjson` `pkg-config --libs libcjson_utils` -lpaho-mqtt3c  
+LDLIBSOPTIONS=`pkg-config --libs libcjson` -lpaho-mqtt3c  
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
@@ -65,7 +65,7 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/matesocketcan: ${OBJECTFILES}
 ${OBJECTDIR}/_ext/5c0/raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.o: ../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c
 	${MKDIR} -p ${OBJECTDIR}/_ext/5c0
 	${RM} "$@.d"
-	$(COMPILE.c) -O3 -s `pkg-config --cflags libcjson` `pkg-config --cflags libcjson_utils`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5c0/raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.o ../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c
+	$(COMPILE.c) -O3 -s `pkg-config --cflags libcjson`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5c0/raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.o ../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c
 
 # Subprojects
 .build-subprojects:
