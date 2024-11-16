@@ -39249,31 +39249,31 @@ double yn(int, double);
 # 1 "../dio.h" 1
 # 16 "../dio.h"
 # 1 "../dcuQ84.X/mcc_generated_files/pin_manager.h" 1
-# 618 "../dcuQ84.X/mcc_generated_files/pin_manager.h"
+# 634 "../dcuQ84.X/mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
-# 632 "../dcuQ84.X/mcc_generated_files/pin_manager.h"
+# 648 "../dcuQ84.X/mcc_generated_files/pin_manager.h"
 void IOCAF1_ISR(void);
-# 655 "../dcuQ84.X/mcc_generated_files/pin_manager.h"
+# 671 "../dcuQ84.X/mcc_generated_files/pin_manager.h"
 void IOCAF1_SetInterruptHandler(void (* InterruptHandler)(void));
-# 679 "../dcuQ84.X/mcc_generated_files/pin_manager.h"
+# 695 "../dcuQ84.X/mcc_generated_files/pin_manager.h"
 extern void (*IOCAF1_InterruptHandler)(void);
-# 703 "../dcuQ84.X/mcc_generated_files/pin_manager.h"
+# 719 "../dcuQ84.X/mcc_generated_files/pin_manager.h"
 void IOCAF1_DefaultInterruptHandler(void);
-# 716 "../dcuQ84.X/mcc_generated_files/pin_manager.h"
+# 732 "../dcuQ84.X/mcc_generated_files/pin_manager.h"
 void IOCAF2_ISR(void);
-# 739 "../dcuQ84.X/mcc_generated_files/pin_manager.h"
+# 755 "../dcuQ84.X/mcc_generated_files/pin_manager.h"
 void IOCAF2_SetInterruptHandler(void (* InterruptHandler)(void));
-# 763 "../dcuQ84.X/mcc_generated_files/pin_manager.h"
+# 779 "../dcuQ84.X/mcc_generated_files/pin_manager.h"
 extern void (*IOCAF2_InterruptHandler)(void);
-# 787 "../dcuQ84.X/mcc_generated_files/pin_manager.h"
+# 803 "../dcuQ84.X/mcc_generated_files/pin_manager.h"
 void IOCAF2_DefaultInterruptHandler(void);
-# 800 "../dcuQ84.X/mcc_generated_files/pin_manager.h"
+# 816 "../dcuQ84.X/mcc_generated_files/pin_manager.h"
 void IOCAF5_ISR(void);
-# 823 "../dcuQ84.X/mcc_generated_files/pin_manager.h"
+# 839 "../dcuQ84.X/mcc_generated_files/pin_manager.h"
 void IOCAF5_SetInterruptHandler(void (* InterruptHandler)(void));
-# 847 "../dcuQ84.X/mcc_generated_files/pin_manager.h"
+# 863 "../dcuQ84.X/mcc_generated_files/pin_manager.h"
 extern void (*IOCAF5_InterruptHandler)(void);
-# 871 "../dcuQ84.X/mcc_generated_files/pin_manager.h"
+# 887 "../dcuQ84.X/mcc_generated_files/pin_manager.h"
 void IOCAF5_DefaultInterruptHandler(void);
 # 17 "../dio.h" 2
 # 56 "../dio.h"
@@ -40689,6 +40689,13 @@ extern void (*TMR2_InterruptHandler)(void);
 void TMR2_DefaultInterruptHandler(void);
 # 61 "../dcuQ84.X/mcc_generated_files/mcc.h" 2
 
+# 1 "../dcuQ84.X/mcc_generated_files/clc8.h" 1
+# 91 "../dcuQ84.X/mcc_generated_files/clc8.h"
+void CLC8_Initialize(void);
+# 113 "../dcuQ84.X/mcc_generated_files/clc8.h"
+_Bool CLC8_OutputStatusGet(void);
+# 62 "../dcuQ84.X/mcc_generated_files/mcc.h" 2
+
 # 1 "../dcuQ84.X/mcc_generated_files/tmr0.h" 1
 # 100 "../dcuQ84.X/mcc_generated_files/tmr0.h"
 void TMR0_Initialize(void);
@@ -40708,13 +40715,6 @@ void TMR0_Reload(uint8_t periodVal);
 extern void (*TMR0_InterruptHandler)(void);
 # 329 "../dcuQ84.X/mcc_generated_files/tmr0.h"
 void TMR0_DefaultInterruptHandler(void);
-# 62 "../dcuQ84.X/mcc_generated_files/mcc.h" 2
-
-# 1 "../dcuQ84.X/mcc_generated_files/clc8.h" 1
-# 91 "../dcuQ84.X/mcc_generated_files/clc8.h"
-void CLC8_Initialize(void);
-# 113 "../dcuQ84.X/mcc_generated_files/clc8.h"
-_Bool CLC8_OutputStatusGet(void);
 # 63 "../dcuQ84.X/mcc_generated_files/mcc.h" 2
 
 # 1 "../dcuQ84.X/mcc_generated_files/clc7.h" 1

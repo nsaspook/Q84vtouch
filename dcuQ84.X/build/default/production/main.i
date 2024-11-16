@@ -39088,31 +39088,31 @@ void *memccpy (void *restrict, const void *restrict, int, size_t);
 # 50 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/pin_manager.h" 1
-# 618 "./mcc_generated_files/pin_manager.h"
+# 634 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
-# 632 "./mcc_generated_files/pin_manager.h"
+# 648 "./mcc_generated_files/pin_manager.h"
 void IOCAF1_ISR(void);
-# 655 "./mcc_generated_files/pin_manager.h"
+# 671 "./mcc_generated_files/pin_manager.h"
 void IOCAF1_SetInterruptHandler(void (* InterruptHandler)(void));
-# 679 "./mcc_generated_files/pin_manager.h"
+# 695 "./mcc_generated_files/pin_manager.h"
 extern void (*IOCAF1_InterruptHandler)(void);
-# 703 "./mcc_generated_files/pin_manager.h"
+# 719 "./mcc_generated_files/pin_manager.h"
 void IOCAF1_DefaultInterruptHandler(void);
-# 716 "./mcc_generated_files/pin_manager.h"
+# 732 "./mcc_generated_files/pin_manager.h"
 void IOCAF2_ISR(void);
-# 739 "./mcc_generated_files/pin_manager.h"
+# 755 "./mcc_generated_files/pin_manager.h"
 void IOCAF2_SetInterruptHandler(void (* InterruptHandler)(void));
-# 763 "./mcc_generated_files/pin_manager.h"
+# 779 "./mcc_generated_files/pin_manager.h"
 extern void (*IOCAF2_InterruptHandler)(void);
-# 787 "./mcc_generated_files/pin_manager.h"
+# 803 "./mcc_generated_files/pin_manager.h"
 void IOCAF2_DefaultInterruptHandler(void);
-# 800 "./mcc_generated_files/pin_manager.h"
+# 816 "./mcc_generated_files/pin_manager.h"
 void IOCAF5_ISR(void);
-# 823 "./mcc_generated_files/pin_manager.h"
+# 839 "./mcc_generated_files/pin_manager.h"
 void IOCAF5_SetInterruptHandler(void (* InterruptHandler)(void));
-# 847 "./mcc_generated_files/pin_manager.h"
+# 863 "./mcc_generated_files/pin_manager.h"
 extern void (*IOCAF5_InterruptHandler)(void);
-# 871 "./mcc_generated_files/pin_manager.h"
+# 887 "./mcc_generated_files/pin_manager.h"
 void IOCAF5_DefaultInterruptHandler(void);
 # 51 "./mcc_generated_files/mcc.h" 2
 
@@ -40275,6 +40275,13 @@ extern void (*TMR2_InterruptHandler)(void);
 void TMR2_DefaultInterruptHandler(void);
 # 61 "./mcc_generated_files/mcc.h" 2
 
+# 1 "./mcc_generated_files/clc8.h" 1
+# 91 "./mcc_generated_files/clc8.h"
+void CLC8_Initialize(void);
+# 113 "./mcc_generated_files/clc8.h"
+_Bool CLC8_OutputStatusGet(void);
+# 62 "./mcc_generated_files/mcc.h" 2
+
 # 1 "./mcc_generated_files/tmr0.h" 1
 # 100 "./mcc_generated_files/tmr0.h"
 void TMR0_Initialize(void);
@@ -40294,13 +40301,6 @@ void TMR0_Reload(uint8_t periodVal);
 extern void (*TMR0_InterruptHandler)(void);
 # 329 "./mcc_generated_files/tmr0.h"
 void TMR0_DefaultInterruptHandler(void);
-# 62 "./mcc_generated_files/mcc.h" 2
-
-# 1 "./mcc_generated_files/clc8.h" 1
-# 91 "./mcc_generated_files/clc8.h"
-void CLC8_Initialize(void);
-# 113 "./mcc_generated_files/clc8.h"
-_Bool CLC8_OutputStatusGet(void);
 # 63 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/clc7.h" 1
@@ -41719,7 +41719,7 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[512] = "Boot Init Display   ", info_buffer[512], log_buffer[512];
-const char *build_date = "Nov 16 2024", *build_time = "11:56:58";
+const char *build_date = "Nov 16 2024", *build_time = "12:25:51";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 

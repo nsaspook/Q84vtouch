@@ -38713,31 +38713,31 @@ unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 # 34 "/opt/microchip/xc8/v2.46/pic/include/xc.h" 2 3
 # 54 "mcc_generated_files/pin_manager.h" 2
-# 618 "mcc_generated_files/pin_manager.h"
+# 634 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
-# 632 "mcc_generated_files/pin_manager.h"
+# 648 "mcc_generated_files/pin_manager.h"
 void IOCAF1_ISR(void);
-# 655 "mcc_generated_files/pin_manager.h"
+# 671 "mcc_generated_files/pin_manager.h"
 void IOCAF1_SetInterruptHandler(void (* InterruptHandler)(void));
-# 679 "mcc_generated_files/pin_manager.h"
+# 695 "mcc_generated_files/pin_manager.h"
 extern void (*IOCAF1_InterruptHandler)(void);
-# 703 "mcc_generated_files/pin_manager.h"
+# 719 "mcc_generated_files/pin_manager.h"
 void IOCAF1_DefaultInterruptHandler(void);
-# 716 "mcc_generated_files/pin_manager.h"
+# 732 "mcc_generated_files/pin_manager.h"
 void IOCAF2_ISR(void);
-# 739 "mcc_generated_files/pin_manager.h"
+# 755 "mcc_generated_files/pin_manager.h"
 void IOCAF2_SetInterruptHandler(void (* InterruptHandler)(void));
-# 763 "mcc_generated_files/pin_manager.h"
+# 779 "mcc_generated_files/pin_manager.h"
 extern void (*IOCAF2_InterruptHandler)(void);
-# 787 "mcc_generated_files/pin_manager.h"
+# 803 "mcc_generated_files/pin_manager.h"
 void IOCAF2_DefaultInterruptHandler(void);
-# 800 "mcc_generated_files/pin_manager.h"
+# 816 "mcc_generated_files/pin_manager.h"
 void IOCAF5_ISR(void);
-# 823 "mcc_generated_files/pin_manager.h"
+# 839 "mcc_generated_files/pin_manager.h"
 void IOCAF5_SetInterruptHandler(void (* InterruptHandler)(void));
-# 847 "mcc_generated_files/pin_manager.h"
+# 863 "mcc_generated_files/pin_manager.h"
 extern void (*IOCAF5_InterruptHandler)(void);
-# 871 "mcc_generated_files/pin_manager.h"
+# 887 "mcc_generated_files/pin_manager.h"
 void IOCAF5_DefaultInterruptHandler(void);
 # 49 "mcc_generated_files/pin_manager.c" 2
 
