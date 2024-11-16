@@ -1,0 +1,27 @@
+build/default/production/_ext/1472/eadog.p1:  \
+../eadog.c  \
+../qconfig.h  \
+../trace.h  \
+../dio.h  \
+../dcuQ84.X/mcc_generated_files/pin_manager.h  \
+../eadog.h  \
+../dcuQ84.X/mcc_generated_files/mcc.h  \
+../dcuQ84.X/mcc_generated_files/device_config.h  \
+../dcuQ84.X/mcc_generated_files/interrupt_manager.h  \
+../dcuQ84.X/mcc_generated_files/adc.h  \
+../dcuQ84.X/mcc_generated_files/dma1.h  \
+../dcuQ84.X/mcc_generated_files/tmr5.h  \
+../dcuQ84.X/mcc_generated_files/tmr6.h  \
+../dcuQ84.X/mcc_generated_files/tmr4.h  \
+../dcuQ84.X/mcc_generated_files/tmr2.h  \
+../dcuQ84.X/mcc_generated_files/tmr0.h  \
+../dcuQ84.X/mcc_generated_files/clc8.h  \
+../dcuQ84.X/mcc_generated_files/clc7.h  \
+../dcuQ84.X/mcc_generated_files/uart2.h  \
+../dcuQ84.X/mcc_generated_files/uart1.h  \
+../dcuQ84.X/mcc_generated_files/uart5.h  \
+../dcuQ84.X/mcc_generated_files/can1.h  \
+../dcuQ84.X/mcc_generated_files/can_types.h  \
+../dcuQ84.X/mcc_generated_files/spi1.h  \
+../dcuQ84.X/mxcmd.h  \
+../timers.h 

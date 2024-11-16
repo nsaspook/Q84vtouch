@@ -1,8 +1,8 @@
 #include <string.h>
 #include "qconfig.h"
 #include "eadog.h"
-#include "mateQ84.X/mcc_generated_files/mcc.h"
-#include "mateQ84.X/mxcmd.h"
+#include "dcuQ84.X/mcc_generated_files/mcc.h"
+#include "dcuQ84.X/mxcmd.h"
 
 #ifdef TRACE
 #define E_TRACE	IO_RB5_Toggle()

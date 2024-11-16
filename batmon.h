@@ -14,7 +14,7 @@ extern "C" {
 
 #include "qconfig.h"
 #include "modbus_master.h"
-#include "mateQ84.X/mxcmd.h"
+#include "dcuQ84.X/mxcmd.h"
 
 #define CHK_DAY_TIME	1200
 #define TEN_SEC_HOUR	360.0f

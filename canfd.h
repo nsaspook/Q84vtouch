@@ -16,7 +16,7 @@ extern "C" {
 #endif
 
 #include "qconfig.h"
-#include "mateQ84.X/mxcmd.h"
+#include "dcuQ84.X/mxcmd.h"
 #include "modbus_master.h"
 #include "batmon.h"
 
