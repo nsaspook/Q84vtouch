@@ -40656,7 +40656,7 @@ void PMD_Initialize(void);
 void SystemArbiter_Initialize(void);
 # 21 "./mxcmd.h" 2
 # 1 "./../eadog.h" 1
-# 26 "./../eadog.h"
+# 40 "./../eadog.h"
 # 1 "./../qconfig.h" 1
 # 38 "./../qconfig.h"
 # 1 "/opt/microchip/xc8/v2.46/pic/include/c99/time.h" 1 3
@@ -41181,7 +41181,7 @@ struct spi_link_type {
 extern volatile uint16_t cc_mode;
 extern uint16_t panel_watts, volt_whole, bat_amp_whole, volt_fract, vw;
 extern char spinners(uint8_t, const uint8_t);
-# 27 "./../eadog.h" 2
+# 41 "./../eadog.h" 2
 
 
 
@@ -41195,7 +41195,7 @@ extern char spinners(uint8_t, const uint8_t);
   uint8_t baud;
   uint8_t operation;
  } spi1_configuration_t;
-# 86 "./../eadog.h"
+# 100 "./../eadog.h"
  extern void wdtdelay(const uint32_t);
  _Bool init_display(void);
  void no_dma_set_lcd(void);
@@ -41248,8 +41248,8 @@ void delay_ms(const uint16_t);
 # 23 "./mxcmd.h" 2
 
 
- const char build_version[] = "V2.01 FM80 Q84";
-# 84 "./mxcmd.h"
+ const char build_version[] = "V1.00 DCU  Q84    ";
+# 50 "./mxcmd.h"
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
  const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};
@@ -41719,7 +41719,7 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[512] = "Boot Init Display   ", info_buffer[512], log_buffer[512];
-const char *build_date = "Nov 16 2024", *build_time = "12:25:51";
+const char *build_date = "Nov 17 2024", *build_time = "02:47:45";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
@@ -41825,11 +41825,10 @@ void main(void)
 
  init_all_switch();
 
-
  init_mb_master_timers();
  UART5_SetRxInterruptHandler(my_modbus_rx_32);
  StartTimer(TMR_MBTEST, 20);
- void mb_setup();
+ mb_setup();
 
  StartTimer(TMR_SPIN, 200);
 
@@ -41844,21 +41843,14 @@ void main(void)
  } else {
 
   snprintf(buffer, 512, "%s B:%X %X %X   ", build_time, STATUS, PCON0, PCON1);
-
-
-
  }
  eaDogM_WriteStringAtPos(2, 0, buffer);
-# 372 "main.c"
- eaDogM_WriteStringAtPos(2, 0, buffer);
+
  snprintf(buffer, 512, "%s ", "Start Up            ");
  eaDogM_WriteStringAtPos(3, 0, buffer);
  wdtdelay(1000000);
- snprintf(buffer, 512, "%s ", "Polling FM80        ");
+ snprintf(buffer, 512, "%s ", "Polling Pump        ");
  eaDogM_WriteStringAtPos(2, 0, buffer);
-
-
- can_fd_tx();
 
 
 
@@ -41880,105 +41872,22 @@ void main(void)
   snprintf(s_buffer, 21, "%X%X%X%X%X%X%X%X         ", B.mui[0], B.mui[1], B.mui[2], B.mui[3], B.mui[4], B.mui[5], B.mui[6], B.mui[7]);
   eaDogM_Scroll_String(s_buffer);
   can_newtime = localtime(&can_timer);
-
-
-
-
-
-
  }
  while (1) {
 
   do { LATDbits.LATD5 = 1; } while(0);
 
 
-
   master_controller_work(&C);
 
-  switch (state) {
-  case state_init:
-   send_mx_cmd(cmd_id);
-   rec_mx_cmd(state_init_cb, 5);
-   break;
-  case state_status:
-   send_mx_cmd(cmd_status);
-   rec_mx_cmd(state_status_cb, 5);
-   break;
-  case state_panel:
-   send_mx_cmd(cmd_panelv);
-   rec_mx_cmd(state_panelv_cb, 5);
-   break;
-  case state_batteryv:
-   send_mx_cmd(cmd_batteryv);
-   rec_mx_cmd(state_batteryv_cb, 5);
-   break;
-  case state_batterya:
-   send_mx_cmd(cmd_batterya);
-   rec_mx_cmd(state_batterya_cb, 5);
-   break;
-  case state_watts:
-   send_mx_cmd(cmd_watts);
-   rec_mx_cmd(state_watts_cb, 5);
-   break;
-  case state_mx_status:
-   send_mx_cmd(cmd_mx_status);
-   rec_mx_cmd(state_mx_status_cb, 16);
-   break;
-  case state_fwrev:
-   switch (fw_state) {
-   case 0:
-    send_mx_cmd(cmd_fwreva);
-    rec_mx_cmd(state_fwrev_cb, 5);
-    break;
-   case 1:
-    send_mx_cmd(cmd_fwrevb);
-    rec_mx_cmd(state_fwrev_cb, 5);
-    break;
-   case 2:
-    send_mx_cmd(cmd_fwrevc);
-    rec_mx_cmd(state_fwrev_cb, 5);
-   default:
-    fw_state = 0;
-    break;
-   }
-   break;
-  case state_mx_log:
-   send_mx_cmd(cmd_mx_log);
-   rec_mx_cmd(state_mx_log_cb, 17);
-   break;
-  case state_time:
-   send_mx_cmd(cmd_time);
-   rec_mx_cmd(state_time_cb, 5);
-   break;
-  case state_date:
-   send_mx_cmd(cmd_date);
-   rec_mx_cmd(state_date_cb, 5);
-   break;
-  case state_misc:
-   send_mx_cmd(cmd_misc);
-   rec_mx_cmd(state_misc_cb, 5);
-   break;
-  default:
-   send_mx_cmd(cmd_id);
-   rec_mx_cmd(state_init_cb, 5);
-   break;
-  }
-
   if (B.one_sec_flag) {
-
    eaDogM_Scroll_Task();
-
    B.one_sec_flag = 0;
    B.canbus_online = (!C1TXQCONHbits.TXREQ)&0x01;
    if (!B.canbus_online) {
     C.tm_ok = 0;
    }
    B.modbus_online = C.data_ok;
-
-
-
-
-
   }
   if (TimerDone(TMR_SPIN)) {
    {
@@ -41998,20 +41907,12 @@ void main(void)
     }
     StartTimer(TMR_SPIN, 200);
     if (C.data_ok && (M.error > error_save)) {
-     snprintf(buffer, 512, "EMon  %4.1fVAC   %c%c    ", lp_filter(ac, F_ac, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
-
+     snprintf(buffer, 512, "DCU 1");
      eaDogM_WriteStringAtPos(1, 0, buffer);
-
      snprintf(info_buffer, 512, " error logged \r\n");
      if (e_update == 0) {
-
-
-
-      snprintf(buffer, 512, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
-
-
+      snprintf(buffer, 512, "C%u CRC%lu RC%u EC%u          ", C.modbus_command, M.crc_error, M.recv_count, C.req_length);
       eaDogM_WriteStringAtPos(0, 0, buffer);
-
      }
      if (e_update++ >= 10) {
       error_save = M.error + 3;
@@ -42019,10 +41920,9 @@ void main(void)
      }
     } else {
      M.error = 0;
-# 570 "main.c"
-     snprintf(buffer, 512, "EMon  %6.1fWh   %c%c    ", EB->bat_energy / 360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
+     snprintf(buffer, 512, "DCU 1");
      eaDogM_WriteStringAtPos(1, 0, buffer);
-     snprintf(buffer, 512, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
+     snprintf(buffer, 512, "DCU 0");
      eaDogM_WriteStringAtPos(0, 0, buffer);
 
     }
@@ -42058,9 +41958,6 @@ void main(void)
    eaDogM_WriteStringAtPos(2, 0, buffer);
    B.display_update = 1;
   }
-
-
-
 
   do { LATDbits.LATD5 = 0; } while(0);
 
@@ -42127,275 +42024,6 @@ static void rec_mx_cmd(void (* DataHandler)(void), const uint8_t rec_len)
   DataHandler();
  }
 
-}
-
-void state_init_cb(void)
-{
- float Soc;
- static uint8_t off_delay = 0;
-
- mx_code = abuf[2]&0xf;
- if (mx_code == 0x03) {
-  printf("\r\n\r\n%5d %3x %3x %3x %3x %3x   INIT: FM80 Online\r\n", B.rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4]);
-  if (!B.FM80_online) {
-   Soc = ((float) Volts_to_SOC(vw, vf) * 0.01f);
-   EB->bat_energy = 25.6f*200.0f*360.0f*Soc;
-  }
-  B.FM80_online = 1;
-  off_delay = 0;
-  snprintf(buffer, 512, "FM80 Online         ");
-
-  eaDogM_WriteStringAtPos(3, 0, buffer);
-
- } else {
-  snprintf(buffer, 512, "FM80 Offline        ");
-
-  eaDogM_WriteStringAtPos(3, 0, buffer);
-
-  if (off_delay++ > 3) {
-   B.FM80_online = 0;
-   cc_mode = STATUS_LAST;
-  }
- }
- state = state_status;
-}
-
-void state_status_cb(void)
-{
- static uint16_t day_clocks = 0;
- static uint8_t status_prev = STATUS_SLEEPING;
-# 729 "main.c"
- if (B.day_check++ > 1200) {
-  B.day_check = 0;
-  B.once = 0;
- }
-
- if (abuf[2] != STATUS_SLEEPING) {
-  if (++day_clocks > 45) {
-   day_clocks = 0;
-   if (!B.once && (B.pv_prev == STATUS_SLEEPING)) {
-    B.day_check = 0;
-    B.pv_update = 1;
-    B.pv_prev = abuf[2];
-    B.once = 1;
-   }
-   B.pv_high = 1;
-  }
- } else {
-  if (++day_clocks > 90) {
-   day_clocks = 0;
-   if (!B.once && (B.pv_prev != STATUS_SLEEPING)) {
-    B.day_check = 0;
-    B.pv_update = 1;
-    B.pv_prev = abuf[2];
-    B.once = 1;
-   }
-   B.pv_high = 0;
-  }
-
- }
- if (B.FM80_online) {
-  cc_mode = abuf[2];
- }
- state = state_watts;
-}
-
-void state_panelv_cb(void)
-{
-
-
-
- state = state_batteryv;
-}
-
-void state_batteryv_cb(void)
-{
- volt_f((abuf[2] + (abuf[1] << 8)));
-
-
-
- state = state_batterya;
-}
-
-void state_batterya_cb(void)
-{
- volt_f((abuf[2] + (abuf[1] << 8)));
-
-
-
- state = state_watts;
-}
-
-void state_watts_cb(void)
-{
-
-
-
- panel_watts = (abuf[2] + (abuf[1] << 8));
- if (B.FM80_online) {
-  state = state_mx_log;
- } else {
-  state = state_mx_status;
- }
-}
-
-void state_mx_log_cb(void)
-{
- B.log.volts_peak = (int16_t) cbuf[5];
- B.log.day = (int16_t) cbuf[14];
- B.log.kilowatt_hours = (int16_t) (((uint16_t) (cbuf[3] & 0xF0) >> 4) | (uint16_t) (cbuf[4] << 4));
- B.log.kilowatts_peak = (int16_t) (((uint16_t) (cbuf[13] & 0xFC) >> 2) | (uint16_t) (cbuf[12] << 6));
- B.log.bat_max = (int16_t) (((uint16_t) (cbuf[2] & 0xFC) >> 2) | (uint16_t) ((cbuf[3] & 0x0F) << 6));
- B.log.bat_min = (int16_t) (((uint16_t) (cbuf[10] & 0xC0) >> 6) | (uint16_t) ((cbuf[11] << 2) | ((cbuf[12] & 0x03) << 10)));
- B.log.amps_peak = (int16_t) (cbuf[1] | ((cbuf[2] & 0x03) << 8));
- B.log.amp_hours = (int16_t) (cbuf[9] | ((cbuf[10] & 0x3F) << 8));
- B.log.absorb_time = (int16_t) (cbuf[6] | ((cbuf[7] & 0x0F) << 8));
- B.log.float_time = (int16_t) (((cbuf[7] & 0xF0) >> 4) | (cbuf[8] << 4));
-
- cmd_mx_log[5] = B.log.select;
- cmd_mx_log[7] = 0x16 + B.log.select;
- mxlog_ptr->log.type = 1;
-
- state = state_mx_status;
-}
-
-void state_mx_status_cb(void)
-{
- volt_f((abuf[11] + (abuf[10] << 8)));
- vw = volt_whole;
- vf = volt_fract;
- volt_f((abuf[13] + (abuf[12] << 8)));
- if ((abuf[1] &0x0f) > 9) {
-  abuf[2]++;
-  abuf[1] = (abuf[1]&0x0f) - 10;
- }
- if (B.FM80_online) {
-  bat_amp_whole = abuf[3] - 128;
- }
-
-
-
-
- check_lcd_dim(0);
-
- if (B.ten_sec_flag) {
-  B.ten_sec_flag = 0;
-  if (B.FM80_online || B.modbus_online) {
-   do { LATBbits.LATB1 = 0; } while(0);
-
-
-
-   B.run_time = lp_filter(B.run_time, F_run, 0);
-   snprintf(buffer, 25, "%s", asctime(can_newtime));
-   buffer[3] = 0;
-   snprintf(log_buffer, 512, log_format, abuf[3] - 128, abuf[1]&0x0f, vw, vf, abuf[2] - 128, volt_whole, volt_fract, panel_watts, pv_Wh_daily, ac_Wh_daily, B.run_time, B.net_balance, cc_mode, ((float) em.wl1) / 10.0f, ((float) em.val1) / 10.0f, ((float) em.varl1) / 10.0f, ((float) em.vl1l2) / 10.0f, EBD.bat_energy / 3600.0f, EBD.bat_cycles, ((float) em.pfl1) / 1000.0f, ((float) emt.hz) / 1000.0f, B.rx_count++,buffer);
-   printf("%s", log_buffer);
-   if (B.FM80_online) {
-    bat_amp_whole = abuf[3] - 128;
-   }
-
-   set_lcd_dim(0);
-
-   switch (B.alt_display) {
-   case 3:
-    snprintf(buffer, 512, "%4.2fHours              ", lp_filter(B.run_time, F_run, 0));
-    eaDogM_WriteStringAtPos(2, 0, buffer);
-    snprintf(buffer, 512, "ALT 3                   ");
-    eaDogM_WriteStringAtPos(3, 0, buffer);
-    break;
-   case 2:
-    snprintf(buffer, 512, "%4.2fBE %4.2fLW         ", EB->bat_energy / 360.0f, (float) em.wl1 / 10.0f);
-    eaDogM_WriteStringAtPos(2, 0, buffer);
-    snprintf(buffer, 512, "ALT 2                   ");
-    eaDogM_WriteStringAtPos(3, 0, buffer);
-    break;
-   case 1:
-    snprintf(buffer, 512, "%4.2fHr %4.2fBW           ", B.run_time, B.net_balance);
-    eaDogM_WriteStringAtPos(2, 0, buffer);
-    snprintf(buffer, 512, "%d.%01d Amps %d.%01d Volts   ", bat_amp_whole, abuf[1]&0x0f, vw, vf);
-    eaDogM_WriteStringAtPos(3, 0, buffer);
-    break;
-   case 0:
-   default:
-    snprintf(buffer, 512, "%d Watts %d.%01d Volts   ", panel_watts, volt_whole, volt_fract);
-    eaDogM_WriteStringAtPos(2, 0, buffer);
-    snprintf(buffer, 512, "%d.%01d Amps %d.%01d Volts   ", bat_amp_whole, abuf[1]&0x0f, vw, vf);
-    eaDogM_WriteStringAtPos(3, 0, buffer);
-    break;
-   }
-
-   can_fd_tx();
-   snprintf(info_buffer, 512, " Data OK\r\n");
-
-
-
-   get_bm_data(EB);
-   compute_bm_data(EB);
-   if (!EB->loaded)
-   {
-    EB->loaded = 1;
-    wr_bm_data((void*) EB);
-    do { LATBbits.LATB1 = 1; } while(0);
-   }
-   if ((EBD_update++ >= 3600) || ((EBD_update >= 1800) && (cc_mode != STATUS_SLEEPING))) {
-    EB->loaded = 1;
-    wr_bm_data((void*) EB);
-    EBD_update = 0;
-    do { LATBbits.LATB1 = 1; } while(0);
-   }
-  }
- }
- state = state_fwrev;
-}
-
-static void state_fwrev_cb(void)
-{
- B.fwrev[fw_state++] = abuf[2];
- if (!C.tm_ok) {
-  state = state_misc;
- } else {
-  C.tm_ok = 0;
-  state = state_time;
- }
-}
-
-static void state_time_cb(void)
-{
-
-
-
-
-
- state = state_date;
-}
-
-static void state_date_cb(void)
-{
-
-
-
-
-
- state = state_misc;
-}
-
-
-
-
-void state_misc_cb(void)
-{
- if (mx_code == 0x03) {
- } else {
-  B.FM80_online = 0;
-  cc_mode = STATUS_LAST;
-  state = state_init;
-  return;
- }
- if (!B.ten_sec_flag) {
-  state = state_misc;
- } else {
-  state = state_status;
- }
 }
 
 

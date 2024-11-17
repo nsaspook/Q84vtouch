@@ -41038,7 +41038,7 @@ void PMD_Initialize(void);
 void SystemArbiter_Initialize(void);
 # 21 "../dcuQ84.X/mxcmd.h" 2
 # 1 "./../eadog.h" 1
-# 33 "./../eadog.h"
+# 47 "./../eadog.h"
  typedef struct {
   uint8_t con0;
   uint8_t con1;
@@ -41046,7 +41046,7 @@ void SystemArbiter_Initialize(void);
   uint8_t baud;
   uint8_t operation;
  } spi1_configuration_t;
-# 86 "./../eadog.h"
+# 100 "./../eadog.h"
  extern void wdtdelay(const uint32_t);
  _Bool init_display(void);
  void no_dma_set_lcd(void);
@@ -41099,8 +41099,8 @@ void delay_ms(const uint16_t);
 # 23 "../dcuQ84.X/mxcmd.h" 2
 
 
- const char build_version[] = "V2.01 FM80 Q84";
-# 84 "../dcuQ84.X/mxcmd.h"
+ const char build_version[] = "V1.00 DCU  Q84    ";
+# 50 "../dcuQ84.X/mxcmd.h"
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
  const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};

@@ -73,19 +73,19 @@ Version 4.0 HI-TECH Software Intermediate Code
 "104 ../batmon.h
 [; ;../batmon.h: 104:  void update_time(struct tm *, EB_data *);
 [v _update_time `(v ~T0 @X0 0 ef2`*S3277`*S3309 ]
-"177 ../dcuQ84.X/mxcmd.h
-[; ;../dcuQ84.X/mxcmd.h: 177:  extern uint16_t calc_checksum(uint8_t*, const uint8_t);
+"143 ../dcuQ84.X/mxcmd.h
+[; ;../dcuQ84.X/mxcmd.h: 143:  extern uint16_t calc_checksum(uint8_t*, const uint8_t);
 [v _calc_checksum `(us ~T0 @X0 0 ef2`*uc`Cuc ]
-"140
-[; ;../dcuQ84.X/mxcmd.h: 140:  typedef struct {
+"106
+[; ;../dcuQ84.X/mxcmd.h: 106:  typedef struct {
 [s S3295 `uc 1 `s 1 `s 1 `s 1 `s 1 `s 1 `s 1 `s 1 `s 1 `s 1 `s 1 `uc 1 ]
 [n S3295 . type day amp_hours kilowatt_hours volts_peak amps_peak kilowatts_peak bat_min bat_max absorb_time float_time select ]
-"155
-[; ;../dcuQ84.X/mxcmd.h: 155:  typedef struct B_type {
+"121
+[; ;../dcuQ84.X/mxcmd.h: 121:  typedef struct B_type {
 [s S3296 `Va 1 `Va 1 `Va 1 `Va 1 `Va 1 `Va 1 `Va -> 3 `i `Va -> 3 `i `Va -> 3 `i `Vus 1 `Vus 1 `Vus 1 `Vus 1 `Vus 1 `Vus 1 `Vus 1 `Va 1 `Va 1 `Va 1 `Va 1 `Va 1 `Vuc 1 `Vuc 1 `Vuc 1 `Vuc -> 3 `i `f 1 `f 1 `us -> 10 `i `us -> 3 `i `S3295 1 ]
 [n S3296 B_type ten_sec_flag one_sec_flag FM80_charged pv_high pv_update once a_switch a_trigger a_type pacing rx_count flush pv_prev day_check node_id dim_delay FM80_online FM80_io LOG display_dim display_update canbus_online modbus_online alt_display a_pin run_time net_balance mui fwrev log ]
-"179
-[; ;../dcuQ84.X/mxcmd.h: 179:  extern B_type B;
+"145
+[; ;../dcuQ84.X/mxcmd.h: 145:  extern B_type B;
 [v _B `S3296 ~T0 @X0 0 e ]
 "118 ../canfd.c
 [; ;../canfd.c: 118:      C.tm_ok = 1;
@@ -3986,29 +3986,33 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;../dcuQ84.X/mcc_generated_files/uart5.h: 535: void (*UART5_TxInterruptHandler)(void);
 [v _UART5_TxInterruptHandler `*F24585 ~T0 @X0 1 e ]
 "25 ../dcuQ84.X/mxcmd.h
-[; ;../dcuQ84.X/mxcmd.h: 25:  const char build_version[] = "V2.01 FM80 Q84";
-[v _build_version `Cuc ~T0 @X0 -> 15 `i e ]
+[; ;../dcuQ84.X/mxcmd.h: 25:  const char build_version[] = "V1.00 DCU  Q84    ";
+[v _build_version `Cuc ~T0 @X0 -> 19 `i e ]
 [i _build_version
 :U ..
 -> 86 `c
--> 50 `c
+-> 49 `c
 -> 46 `c
 -> 48 `c
--> 49 `c
--> 32 `c
--> 70 `c
--> 77 `c
--> 56 `c
 -> 48 `c
+-> 32 `c
+-> 68 `c
+-> 67 `c
+-> 85 `c
+-> 32 `c
 -> 32 `c
 -> 81 `c
 -> 56 `c
 -> 52 `c
+-> 32 `c
+-> 32 `c
+-> 32 `c
+-> 32 `c
 -> 0 `c
 ..
 ]
-"84
-[; ;../dcuQ84.X/mxcmd.h: 84:  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
+"50
+[; ;../dcuQ84.X/mxcmd.h: 50:  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
 [v _cmd_id `Cus ~T0 @X0 -> 8 `i e ]
 [i _cmd_id
 :U ..
@@ -4022,8 +4026,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 2 `i `us
 ..
 ]
-"85
-[; ;../dcuQ84.X/mxcmd.h: 85:  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
+"51
+[; ;../dcuQ84.X/mxcmd.h: 51:  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
 [v _cmd_status `Cus ~T0 @X0 -> 8 `i e ]
 [i _cmd_status
 :U ..
@@ -4037,8 +4041,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 203 `i `us
 ..
 ]
-"86
-[; ;../dcuQ84.X/mxcmd.h: 86:  const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};
+"52
+[; ;../dcuQ84.X/mxcmd.h: 52:  const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};
 [v _cmd_mx_status `Cus ~T0 @X0 -> 8 `i e ]
 [i _cmd_mx_status
 :U ..
@@ -4052,8 +4056,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 5 `i `us
 ..
 ]
-"87
-[; ;../dcuQ84.X/mxcmd.h: 87:  uint16_t cmd_mx_log[] = {0x100, 0x16, 0x00, 0x00, 0x00, 0x01, 0x00, 0x17};
+"53
+[; ;../dcuQ84.X/mxcmd.h: 53:  uint16_t cmd_mx_log[] = {0x100, 0x16, 0x00, 0x00, 0x00, 0x01, 0x00, 0x17};
 [v _cmd_mx_log `us ~T0 @X0 -> 8 `i e ]
 [i _cmd_mx_log
 :U ..
@@ -4067,8 +4071,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 23 `i `us
 ..
 ]
-"88
-[; ;../dcuQ84.X/mxcmd.h: 88:  const uint16_t cmd_panelv[] = {0x100, 0x02, 0x01, 0xc6, 0x00, 0x00, 0x00, 0xc9};
+"54
+[; ;../dcuQ84.X/mxcmd.h: 54:  const uint16_t cmd_panelv[] = {0x100, 0x02, 0x01, 0xc6, 0x00, 0x00, 0x00, 0xc9};
 [v _cmd_panelv `Cus ~T0 @X0 -> 8 `i e ]
 [i _cmd_panelv
 :U ..
@@ -4082,8 +4086,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 201 `i `us
 ..
 ]
-"89
-[; ;../dcuQ84.X/mxcmd.h: 89:  const uint16_t cmd_batteryv[] = {0x100, 0x02, 0x00, 0x08, 0x00, 0x00, 0x00, 0x0a};
+"55
+[; ;../dcuQ84.X/mxcmd.h: 55:  const uint16_t cmd_batteryv[] = {0x100, 0x02, 0x00, 0x08, 0x00, 0x00, 0x00, 0x0a};
 [v _cmd_batteryv `Cus ~T0 @X0 -> 8 `i e ]
 [i _cmd_batteryv
 :U ..
@@ -4097,8 +4101,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 10 `i `us
 ..
 ]
-"90
-[; ;../dcuQ84.X/mxcmd.h: 90:  const uint16_t cmd_batterya[] = {0x100, 0x02, 0x01, 0xc7, 0x00, 0x00, 0x00, 0xca};
+"56
+[; ;../dcuQ84.X/mxcmd.h: 56:  const uint16_t cmd_batterya[] = {0x100, 0x02, 0x01, 0xc7, 0x00, 0x00, 0x00, 0xca};
 [v _cmd_batterya `Cus ~T0 @X0 -> 8 `i e ]
 [i _cmd_batterya
 :U ..
@@ -4112,8 +4116,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 202 `i `us
 ..
 ]
-"91
-[; ;../dcuQ84.X/mxcmd.h: 91:  const uint16_t cmd_watts[] = {0x100, 0x02, 0x01, 0x6a, 0x00, 0x00, 0x00, 0x6d};
+"57
+[; ;../dcuQ84.X/mxcmd.h: 57:  const uint16_t cmd_watts[] = {0x100, 0x02, 0x01, 0x6a, 0x00, 0x00, 0x00, 0x6d};
 [v _cmd_watts `Cus ~T0 @X0 -> 8 `i e ]
 [i _cmd_watts
 :U ..
@@ -4127,8 +4131,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 109 `i `us
 ..
 ]
-"92
-[; ;../dcuQ84.X/mxcmd.h: 92:  const uint16_t cmd_misc[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
+"58
+[; ;../dcuQ84.X/mxcmd.h: 58:  const uint16_t cmd_misc[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
 [v _cmd_misc `Cus ~T0 @X0 -> 8 `i e ]
 [i _cmd_misc
 :U ..
@@ -4142,8 +4146,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 2 `i `us
 ..
 ]
-"93
-[; ;../dcuQ84.X/mxcmd.h: 93:  const uint16_t cmd_fwreva[] = {0x100, 0x02, 0x00, 0x02, 0x00, 0x00, 0x00, 0x04};
+"59
+[; ;../dcuQ84.X/mxcmd.h: 59:  const uint16_t cmd_fwreva[] = {0x100, 0x02, 0x00, 0x02, 0x00, 0x00, 0x00, 0x04};
 [v _cmd_fwreva `Cus ~T0 @X0 -> 8 `i e ]
 [i _cmd_fwreva
 :U ..
@@ -4157,8 +4161,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 4 `i `us
 ..
 ]
-"94
-[; ;../dcuQ84.X/mxcmd.h: 94:  const uint16_t cmd_fwrevb[] = {0x100, 0x02, 0x00, 0x03, 0x00, 0x00, 0x00, 0x05};
+"60
+[; ;../dcuQ84.X/mxcmd.h: 60:  const uint16_t cmd_fwrevb[] = {0x100, 0x02, 0x00, 0x03, 0x00, 0x00, 0x00, 0x05};
 [v _cmd_fwrevb `Cus ~T0 @X0 -> 8 `i e ]
 [i _cmd_fwrevb
 :U ..
@@ -4172,8 +4176,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 5 `i `us
 ..
 ]
-"95
-[; ;../dcuQ84.X/mxcmd.h: 95:  const uint16_t cmd_fwrevc[] = {0x100, 0x02, 0x00, 0x04, 0x00, 0x00, 0x00, 0x06};
+"61
+[; ;../dcuQ84.X/mxcmd.h: 61:  const uint16_t cmd_fwrevc[] = {0x100, 0x02, 0x00, 0x04, 0x00, 0x00, 0x00, 0x06};
 [v _cmd_fwrevc `Cus ~T0 @X0 -> 8 `i e ]
 [i _cmd_fwrevc
 :U ..
@@ -4187,8 +4191,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 6 `i `us
 ..
 ]
-"96
-[; ;../dcuQ84.X/mxcmd.h: 96:  uint16_t cmd_time[] = {0x100, 0x03, 0x40, 0x04, 0x00, 0x00, 0x00, 0x00};
+"62
+[; ;../dcuQ84.X/mxcmd.h: 62:  uint16_t cmd_time[] = {0x100, 0x03, 0x40, 0x04, 0x00, 0x00, 0x00, 0x00};
 [v _cmd_time `us ~T0 @X0 -> 8 `i e ]
 [i _cmd_time
 :U ..
@@ -4202,8 +4206,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `i `us
 ..
 ]
-"97
-[; ;../dcuQ84.X/mxcmd.h: 97:  uint16_t cmd_date[] = {0x100, 0x03, 0x40, 0x05, 0x00, 0x00, 0x00, 0x00};
+"63
+[; ;../dcuQ84.X/mxcmd.h: 63:  uint16_t cmd_date[] = {0x100, 0x03, 0x40, 0x05, 0x00, 0x00, 0x00, 0x00};
 [v _cmd_date `us ~T0 @X0 -> 8 `i e ]
 [i _cmd_date
 :U ..
@@ -4218,8 +4222,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 [v F24865 `Cuc ~T0 @X0 -> 12 `i t ]
-"108
-[; ;../dcuQ84.X/mxcmd.h: 108:  const char state_name [][12] = {
+"74
+[; ;../dcuQ84.X/mxcmd.h: 74:  const char state_name [][12] = {
 [v _state_name `F24865 ~T0 @X0 -> 6 `i e ]
 [i _state_name
 :U ..
@@ -4283,8 +4287,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 [v F24867 `Cuc ~T0 @X0 -> 12 `i t ]
-"117
-[; ;../dcuQ84.X/mxcmd.h: 117:  const char FM80_name [][12] = {
+"83
+[; ;../dcuQ84.X/mxcmd.h: 83:  const char FM80_name [][12] = {
 [v _FM80_name `F24867 ~T0 @X0 -> 2 `i e ]
 [i _FM80_name
 :U ..
@@ -4313,8 +4317,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 [v F24869 `Cuc ~T0 @X0 -> 12 `i t ]
-"122
-[; ;../dcuQ84.X/mxcmd.h: 122:  const char canbus_name [][12] = {
+"88
+[; ;../dcuQ84.X/mxcmd.h: 88:  const char canbus_name [][12] = {
 [v _canbus_name `F24869 ~T0 @X0 -> 2 `i e ]
 [i _canbus_name
 :U ..
@@ -4343,8 +4347,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 [v F24871 `Cuc ~T0 @X0 -> 12 `i t ]
-"127
-[; ;../dcuQ84.X/mxcmd.h: 127:  const char modbus_name [][12] = {
+"93
+[; ;../dcuQ84.X/mxcmd.h: 93:  const char modbus_name [][12] = {
 [v _modbus_name `F24871 ~T0 @X0 -> 2 `i e ]
 [i _modbus_name
 :U ..

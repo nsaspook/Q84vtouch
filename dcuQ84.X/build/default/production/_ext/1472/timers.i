@@ -40578,7 +40578,7 @@ void *memccpy (void *restrict, const void *restrict, int, size_t);
 # 20 "../dcuQ84.X/mxcmd.h" 2
 
 # 1 "./../eadog.h" 1
-# 26 "./../eadog.h"
+# 40 "./../eadog.h"
 # 1 "../qconfig.h" 1
 # 38 "../qconfig.h"
 # 1 "/opt/microchip/xc8/v2.46/pic/include/c99/time.h" 1 3
@@ -41079,7 +41079,7 @@ struct spi_link_type {
 extern volatile uint16_t cc_mode;
 extern uint16_t panel_watts, volt_whole, bat_amp_whole, volt_fract, vw;
 extern char spinners(uint8_t, const uint8_t);
-# 27 "./../eadog.h" 2
+# 41 "./../eadog.h" 2
 
 
 
@@ -41093,7 +41093,7 @@ extern char spinners(uint8_t, const uint8_t);
   uint8_t baud;
   uint8_t operation;
  } spi1_configuration_t;
-# 86 "./../eadog.h"
+# 100 "./../eadog.h"
  extern void wdtdelay(const uint32_t);
  _Bool init_display(void);
  void no_dma_set_lcd(void);
@@ -41126,8 +41126,8 @@ extern char spinners(uint8_t, const uint8_t);
 
 
 
- const char build_version[] = "V2.01 FM80 Q84";
-# 84 "../dcuQ84.X/mxcmd.h"
+ const char build_version[] = "V1.00 DCU  Q84    ";
+# 50 "../dcuQ84.X/mxcmd.h"
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
  const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};

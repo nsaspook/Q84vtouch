@@ -15,6 +15,20 @@
  *     written by : Michael Bradley (mbradley@mculabs.com)
  *   contributions: Imaginos (CCS forum), Emil Nad (8Bit testing)
  *                  jgschmidt (CCS forum)
+ * 
+Pin No. Symbol External Connection Function Description
+1 SPISS MPU SPI Slave Select (NC in I2C mode)
+2 SDO NC No Connect
+3 SCK/SCL MPU Serial Clock
+4 SDI/SDA MPU Serial Data In (SPI) / Serial Data (I2C)
+5 VSS Power Supply Ground
+6 VDD Power Supply Power Supply for logic (+5.0V
+ * 
+R1 R2 Protocol Description
+Short Short TEST Self-test
+Open Short SPI 100KHz max clock
+Short Open I2C 50KHz max clock
+Open Open RS-232 5V, TTL signal
  */
 
 #ifndef EADOG_H
