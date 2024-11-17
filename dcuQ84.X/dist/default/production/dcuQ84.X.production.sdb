@@ -305,7 +305,7 @@ STATUS_EQUALIZE 4
 STATUS_LAST 5
 ]
 "229
-[e E25255 state_type `uc
+[e E25302 state_type `uc
 state_init 0
 state_status 1
 state_panel 2
@@ -330,13 +330,13 @@ TMR_DERE 4
 TMR_COUNT 5
 ]
 "390
-[e E24946 comm_type `uc
+[e E24981 comm_type `uc
 CLEAR 0
 INIT 1
 SEND 2
 RECV 3
 ]
-[e E24952 cmd_type `uc
+[e E24987 cmd_type `uc
 G_ID 0
 G_DATA1 1
 G_DATA2 2
@@ -348,7 +348,7 @@ G_SERIAL 7
 G_LAST 8
 ]
 "412
-[e E25109 filter_type `uc
+[e E25144 filter_type `uc
 F_ac 0
 F_wac 1
 F_wva 2
@@ -359,7 +359,7 @@ F_6 6
 F_7 7
 F_8 8
 ]
-"443
+"446
 [e E24739 D_SW `uc
 D_SW_A 0
 D_SW_L 1
@@ -375,14 +375,14 @@ TMR_SPIN 3
 TMR_DERE 4
 TMR_COUNT 5
 ]
-"19 /public/Q84vtouch/modbus_master.c
-[e E24191 comm_type `uc
+"61 /public/Q84vtouch/modbus_master.c
+[e E24226 comm_type `uc
 CLEAR 0
 INIT 1
 SEND 2
 RECV 3
 ]
-[e E24197 cmd_type `uc
+[e E24232 cmd_type `uc
 G_ID 0
 G_DATA1 1
 G_DATA2 2
@@ -393,8 +393,8 @@ G_VERSION 6
 G_SERIAL 7
 G_LAST 8
 ]
-"246
-[e E24208 trace_type `uc
+"303
+[e E24243 trace_type `uc
 T_begin 1
 T_clear 2
 T_passwd 3
@@ -415,7 +415,7 @@ T_misc3 17
 T_spacing 18
 T_light 19
 ]
-"524
+"744
 [e E24172 APP_TIMERS `uc
 TMR_INTERNAL 0
 TMR_MBMASTER 1
@@ -429,13 +429,13 @@ TMR_COUNT 5
 FIFO1 1
 ]
 "118
-[e E24946 comm_type `uc
+[e E24981 comm_type `uc
 CLEAR 0
 INIT 1
 SEND 2
 RECV 3
 ]
-[e E24952 cmd_type `uc
+[e E24987 cmd_type `uc
 G_ID 0
 G_DATA1 1
 G_DATA2 2
@@ -519,7 +519,7 @@ CAN_OP_MODE_REQUEST_FAIL 1
 CAN_OP_MODE_SYS_ERROR_OCCURED 2
 ]
 "213 /public/Q84vtouch/batmon.c
-[e E25071 status_type `uc
+[e E25118 status_type `uc
 STATUS_SLEEPING 0
 STATUS_FLOATING 1
 STATUS_BULK 2
@@ -598,68 +598,76 @@ D_SW_COUNT 3
 [v _eaDogM_Scroll_String eaDogM_Scroll_String `R(*.39uc  1 e 2 0 ]
 "383
 [v _eaDogM_Scroll_Task eaDogM_Scroll_Task `R(v  1 e 1 0 ]
-"96 /public/Q84vtouch/modbus_master.c
+"141 /public/Q84vtouch/modbus_master.c
 [v _modbus_rtu_send_msg_crc modbus_rtu_send_msg_crc `R(us  1 s 2 modbus_rtu_send_msg_crc ]
-"110
+"155
+[v _modbus_dcu_send_msg modbus_dcu_send_msg `R(us  1 e 2 0 ]
+"167
 [v _modbus_rtu_send_msg modbus_rtu_send_msg `R(us  1 e 2 0 ]
-"122
+"179
 [v _crc16 crc16 `R(us  1 e 2 0 ]
-"144
+"201
 [v _my_modbus_rx_32 my_modbus_rx_32 `R(v  1 e 1 0 ]
-"169
+"226
 [v _init_mb_master_timers init_mb_master_timers `R(v  1 e 1 0 ]
-"181
+"238
 [v _crc16_receive crc16_receive `R(us  1 s 2 crc16_receive ]
-"189
+"246
 [v _log_crc_error log_crc_error `R(v  1 s 1 log_crc_error ]
-"207
+"264
 [v _mb32_swap mb32_swap `R(l  1 e 4 0 ]
-"223
+"280
 [v _mb16_swap mb16_swap `R(s  1 e 2 0 ]
-"241
-[v _master_controller_work master_controller_work `R(c  1 e 1 0 ]
-"402
+"298
+[v _master_controller_work_dcu master_controller_work_dcu `R(c  1 e 1 0 ]
+"622
 [v _clear_2hz clear_2hz `R(v  1 e 1 0 ]
-"407
+"627
 [v _clear_500ahz clear_500ahz `R(v  1 e 1 0 ]
-"412
+"632
 [v _clear_500hz clear_500hz `R(v  1 e 1 0 ]
-"433
+"653
 [v _get_500ahz get_500ahz `R(ul  1 e 4 0 ]
-"445
+"665
 [v _get_500hz get_500hz `R(ul  1 e 4 0 ]
-"459
+"679
 [v _half_dup_tx half_dup_tx `R(v  1 s 1 half_dup_tx ]
-"473
+"693
 [v _half_dup_rx half_dup_rx `R(v  1 s 1 half_dup_rx ]
-"486
+"706
 [v _timer_500ms_tick timer_500ms_tick `R(v  1 e 1 0 ]
-"494
+"714
 [v _timer_2ms_tick timer_2ms_tick `R(v  1 e 1 0 ]
-"514
+"734
 [v _serial_trmt serial_trmt `R(a  1 s 1 serial_trmt ]
-"535
+"755
 [v _UART1_DefaultFramingErrorHandler_mb UART1_DefaultFramingErrorHandler_mb `R(v  1 s 1 UART1_DefaultFramingErrorHandler_mb ]
-"541
+"761
 [v _UART1_DefaultOverrunErrorHandler_mb UART1_DefaultOverrunErrorHandler_mb `R(v  1 s 1 UART1_DefaultOverrunErrorHandler_mb ]
-"547
+"767
 [v _UART1_DefaultErrorHandler_mb UART1_DefaultErrorHandler_mb `R(v  1 s 1 UART1_DefaultErrorHandler_mb ]
-"553
+"773
 [v _mb_setup mb_setup `R(v  1 e 1 0 ]
-"560
+"780
 [v _modbus_write_check modbus_write_check `R(a  1 s 1 modbus_write_check ]
-"593
+"813
 [v _modbus_read_check modbus_read_check `R(a  1 s 1 modbus_read_check ]
-"636
+"856
 [v _modbus_read_id_check modbus_read_id_check `R(a  1 s 1 modbus_read_id_check ]
-"682
+"902
+[v _modbus_read_dcu_check modbus_read_dcu_check `R(a  1 s 1 modbus_read_dcu_check ]
+"990
 [v _em_data_handler em_data_handler `R(v  1 s 1 em_data_handler ]
-"707
+"1015
 [v _emt_data_handler emt_data_handler `R(v  1 s 1 emt_data_handler ]
-"716
+"1024
 [v _ems_data_handler ems_data_handler `R(v  1 s 1 ems_data_handler ]
-"726
+"1034
 [v _emv_data_handler emv_data_handler `R(v  1 s 1 emv_data_handler ]
+"1043
+[v _dcu_crc_r dcu_crc_r `R(uc  1 e 1 0 ]
+"1053
+[v _dcu_crc_a dcu_crc_a `R(uc  1 e 1 0 ]
 "13 /public/Q84vtouch/timers.c
 [v _StartTimer StartTimer `R(v  1 e 1 0 ]
 "21
@@ -782,9 +790,9 @@ D_SW_COUNT 3
 [v _wdtdelay wdtdelay `R(v  1 e 1 0 ]
 "311
 [v _main main `R(v  1 e 1 0 ]
-"554
+"557
 [v _run_day_to_night run_day_to_night `R(v  1 e 1 0 ]
-"568
+"571
 [v _run_night_to_day run_night_to_day `R(v  1 e 1 0 ]
 "65 /public/Q84vtouch/dcuQ84.X/mcc_generated_files/adc.c
 [v _ADC_Initialize ADC_Initialize `R(v  1 e 1 0 ]
@@ -1161,22 +1169,22 @@ D_SW_COUNT 3
 [v _msg msg `[3]S733  1 e 21 0 ]
 "4
 [v _rxMsgData rxMsgData `VE[4][64]uc  1 e 256 0 ]
-[s S6761 . 66 `VE[64]uc 1 blob 64 0 `VEa 1 tx_flag 1 64 `VEa 1 rx_flag 1 65 ]
+[s S7005 . 66 `VE[64]uc 1 blob 64 0 `VEa 1 tx_flag 1 64 `VEa 1 rx_flag 1 65 ]
 "11
-[v _blob blob `VES6761  1 s 66 blob ]
+[v _blob blob `VES7005  1 s 66 blob ]
 "14
-[v _blob_rec blob_rec `VES6761  1 s 66 blob_rec ]
-[s S6765 . 5 `ul 1 rec_count 4 0 `a 1 rec_flag 1 4 ]
+[v _blob_rec blob_rec `VES7005  1 s 66 blob_rec ]
+[s S7009 . 5 `ul 1 rec_count 4 0 `a 1 rec_flag 1 4 ]
 "18
-[v _can_rec_count can_rec_count `VES6765  1 e 5 0 ]
-[s S6768 . 2 `uc 1 Byte1 1 0 :8:0 
+[v _can_rec_count can_rec_count `VES7009  1 e 5 0 ]
+[s S7012 . 2 `uc 1 Byte1 1 0 :8:0 
 `uc 1 Byte2 1 1 :8:0 
 ]
 "33
-[u S6771 . 2 `us 1 Word 2 0 `S6768 1 structBytes 2 0 ]
-[v _myVar myVar `S6771  1 e 2 0 ]
+[u S7015 . 2 `us 1 Word 2 0 `S7012 1 structBytes 2 0 ]
+[v _myVar myVar `S7015  1 e 2 0 ]
 "35
-[v _EB@canfd$F7136 EB `*.39S4740  1 s 2 EB ]
+[v _EB@canfd$F7380 EB `*.39S4740  1 s 2 EB ]
 "55 /public/Q84vtouch/dcuQ84.X/mcc_generated_files/dma1.h
 [v _lcd_dma_buf lcd_dma_buf `[32]uc  1 e 32 0 ]
 "518 /public/Q84vtouch/dcuQ84.X/mcc_generated_files/uart2.h
@@ -1197,13 +1205,13 @@ D_SW_COUNT 3
 [v _a_debounce a_debounce `VE[3]us  1 s 6 a_debounce ]
 "67 /public/Q84vtouch/dio.h
 [v _sw_contact_types sw_contact_types `C[3]uc  1 e 3 0 ]
-[s S5592 spi_link_type 10 `uc 1 SPI_LCD 1 0 :1:0 
+[s S5670 spi_link_type 10 `uc 1 SPI_LCD 1 0 :1:0 
 `uc 1 SPI_AUX 1 0 :1:1 
 `uc 1 LCD_TIMER 1 0 :1:2 
 `uc 1 LCD_DATA 1 0 :1:3 
 `us 1 delay 2 1 `uc 1 config 1 3 `*.39uc 1 txbuf 2 4 `VEl 1 int_count 4 6 ]
 "19 /public/Q84vtouch/eadog.c
-[v _spi_link spi_link `VES5592  1 e 10 0 ]
+[v _spi_link spi_link `VES5670  1 e 10 0 ]
 "27
 [v _Sstr Sstr `[5][21]uc  1 s 105 Sstr ]
 "28
@@ -1215,55 +1223,57 @@ D_SW_COUNT 3
 [v _cc_stream_file cc_stream_file `VEuc  1 e 1 0 ]
 [v _cc_buffer cc_buffer `VE[240]uc  1 e 240 0 ]
 [v _cc_buffer_tx cc_buffer_tx `VE[240]uc  1 e 240 0 ]
+[s S5125 P_data 16 `uc 1 addr2 1 0 `uc 1 addr1 1 1 `uc 1 addr0 1 2 `uc 1 action1 1 3 `uc 1 action0 1 4 `uc 1 para2 1 5 `uc 1 para1 1 6 `uc 1 para0 1 7 `uc 1 dl1 1 8 `uc 1 dl0 1 9 `uc 1 data1 1 10 `uc 1 data0 1 11 `uc 1 crc2 1 12 `uc 1 crc1 1 13 `uc 1 crc0 1 14 `uc 1 cr 1 15 ]
+"8
+[v _P_read P_read `S5125  1 e 16 0 ]
+[s S5164 P_data_r 20 `uc 1 addr2 1 0 `uc 1 addr1 1 1 `uc 1 addr0 1 2 `uc 1 action1 1 3 `uc 1 action0 1 4 `uc 1 para2 1 5 `uc 1 para1 1 6 `uc 1 para0 1 7 `uc 1 dl1 1 8 `uc 1 dl0 1 9 `[6]uc 1 data 6 10 `uc 1 crc2 1 16 `uc 1 crc1 1 17 `uc 1 crc0 1 18 `uc 1 cr 1 19 ]
+"27
+[v _P_action P_action `S5164  1 e 20 0 ]
 [s S4937 M_data 23 `uc 1 blink_lock 1 0 :1:0 
 `uc 1 config 1 0 :1:1 
 `uc 1 stable 1 0 :1:2 
 `uc 1 boot_code 1 0 :1:3 
 `uc 1 power_on 1 0 :1:4 
 `uc 1 send_count 1 1 `uc 1 recv_count 1 2 `uc 1 pwm_volts 1 3 `us 1 error 2 4 `us 1 crc_data 2 6 `us 1 crc_calc 2 8 `ul 1 crc_error 4 10 `ul 1 to_error 4 14 `ul 1 sends 4 18 `VEa 1 rx 1 22 ]
-"8
+"50
 [v _M M `VES4937  1 e 23 0 ]
-[s S6063 M_time_data 12 `ul 1 clock_500hz 4 0 `ul 1 clock_500ahz 4 4 `ul 1 clock_2hz 4 8 ]
-"13
-[v _MT MT `VES6063  1 e 12 0 ]
-"19
-[s S4953 C_data 45 `uc 1 mcmd 1 0 `E24946 1 cstate 1 1 `E24952 1 modbus_command 1 2 `us 1 req_length 2 3 `c 1 trace 1 5 `a 1 id_ok 1 6 `a 1 passwd_ok 1 7 `a 1 config_ok 1 8 `a 1 data_ok 1 9 `a 1 light_ok 1 10 `a 1 serial_ok 1 11 `a 1 version_ok 1 12 `a 1 tm_ok 1 13 `ul 1 data_count 4 14 `ul 1 data_prev 4 18 `VES4937 1 M 23 22 ]
-[v _C C `VES4953  1 e 45 0 ]
-[s S6099 V_type 46 `ul 1 StartTime 4 0 `ul 1 TimeUsed 4 4 `VEul 1 pacing 4 8 `VEul 1 pwm_update 4 12 `VEul 1 pwm_stop 4 16 `VEul 1 fault_count 4 20 `VEul 1 fault_ticks 4 24 `VEul 1 fault_source 4 28 `VEul 1 modbus_rx 4 32 `VEul 1 modbus_tx 4 36 `l 1 motor_speed 4 40 `VEa 1 fault_active 1 44 `VEa 1 dmt_sosc_flag 1 45 ]
-"34
-[v _V V `VES6099  1 e 46 0 ]
-"52
-[v _modbus_em_id modbus_em_id `C[6]uc  1 e 6 0 ]
-"53
-[v _modbus_em_version modbus_em_version `C[6]uc  1 e 6 0 ]
-"54
-[v _modbus_em_data1 modbus_em_data1 `C[6]uc  1 e 6 0 ]
+[s S6174 M_time_data 12 `ul 1 clock_500hz 4 0 `ul 1 clock_500ahz 4 4 `ul 1 clock_2hz 4 8 ]
 "55
+[v _MT MT `VES6174  1 e 12 0 ]
+"61
+[s S4953 C_data 45 `uc 1 mcmd 1 0 `E24981 1 cstate 1 1 `E24987 1 modbus_command 1 2 `us 1 req_length 2 3 `c 1 trace 1 5 `a 1 id_ok 1 6 `a 1 passwd_ok 1 7 `a 1 config_ok 1 8 `a 1 data_ok 1 9 `a 1 light_ok 1 10 `a 1 serial_ok 1 11 `a 1 version_ok 1 12 `a 1 tm_ok 1 13 `ul 1 data_count 4 14 `ul 1 data_prev 4 18 `VES4937 1 M 23 22 ]
+[v _C C `VES4953  1 e 45 0 ]
+[s S6210 V_type 46 `ul 1 StartTime 4 0 `ul 1 TimeUsed 4 4 `VEul 1 pacing 4 8 `VEul 1 pwm_update 4 12 `VEul 1 pwm_stop 4 16 `VEul 1 fault_count 4 20 `VEul 1 fault_ticks 4 24 `VEul 1 fault_source 4 28 `VEul 1 modbus_rx 4 32 `VEul 1 modbus_tx 4 36 `l 1 motor_speed 4 40 `VEa 1 fault_active 1 44 `VEa 1 dmt_sosc_flag 1 45 ]
+"76
+[v _V V `VES6210  1 e 46 0 ]
+"94
+[v _modbus_em_id modbus_em_id `C[6]uc  1 e 6 0 ]
+"95
+[v _modbus_em_version modbus_em_version `C[6]uc  1 e 6 0 ]
+"96
+[v _modbus_em_data1 modbus_em_data1 `C[6]uc  1 e 6 0 ]
+"97
 [v _modbus_em_data2 modbus_em_data2 `C[6]uc  1 e 6 0 ]
-"56
+"98
 [v _modbus_em_serial modbus_em_serial `C[6]uc  1 e 6 0 ]
-"57
+"99
 [v _modbus_em_config modbus_em_config `C[6]uc  1 e 6 0 ]
-"58
+"100
 [v _modbus_em_passwd modbus_em_passwd `C[6]uc  1 e 6 0 ]
-"59
+"101
 [v _modbus_em_light modbus_em_light `C[6]uc  1 e 6 0 ]
 [s S5034 EM_data1 104 `VEl 1 vl1n 4 0 `VEl 1 vl2n 4 4 `VEl 1 vl3n 4 8 `VEl 1 vl1l2 4 12 `VEl 1 vl2l3 4 16 `VEl 1 vl3l1 4 20 `VEl 1 al1 4 24 `VEl 1 al2 4 28 `VEl 1 al3 4 32 `VEl 1 wl1 4 36 `VEl 1 wl2 4 40 `VEl 1 wl3 4 44 `VEl 1 val1 4 48 `VEl 1 val2 4 52 `VEl 1 val3 4 56 `VEl 1 varl1 4 60 `VEl 1 varl2 4 64 `VEl 1 varl3 4 68 `VEl 1 vlnsys 4 72 `VEl 1 vllsys 4 76 `VEl 1 wsys 4 80 `VEl 1 vasys 4 84 `VEl 1 varsys 4 88 `VEs 1 pfl1 2 92 `VEs 1 pfl2 2 94 `VEs 1 pfl3 2 96 `VEs 1 pfsys 2 98 `VEs 1 phaseseq 2 100 `VEs 1 hz 2 102 ]
-"70
+"112
 [v _em em `VQES5034  1 e 104 0 ]
-[s S6143 EM_data2 128 `VEo 1 kwhpt 8 0 `VEo 1 kvarhpt 8 8 `VEo 1 kwhpp 8 16 `VEo 1 kvarhpp 8 24 `VEo 1 kwhpl1 8 32 `VEo 1 kwhpl2 8 40 `VEo 1 kwhpl3 8 48 `VEo 1 kwhnt 8 56 `VEo 1 kvarhnt 8 64 `VEo 1 kwhnp 8 72 `VEo 1 kvarhnp 8 80 `VEo 1 kvaht 8 88 `VEo 1 kvahp 8 96 `VEl 1 rhm 4 104 `VEl 1 rhmk 4 108 `VEl 1 rhmp 4 112 `VEl 1 rhmkp 4 116 `VEl 1 hz 4 120 `VEl 1 rhlc 4 124 ]
-"71
-[v _emt emt `VQES6143  1 e 128 0 ]
-[s S6163 EM_serial 16 `VE[14]uc 1 serial 14 0 `VEs 1 year 2 14 ]
-"72
-[v _ems ems `VQES6163  1 e 16 0 ]
-[s S6166 EM_version 2 `VEs 1 firmware 2 0 ]
-"73
-[v _emv emv `VQES6166  1 e 2 0 ]
-"243 /public/Q84vtouch/modbus_master.h
-[v _table_crc_hi@modbus_master$F6373 table_crc_hi `C[256]uc  1 s 256 table_crc_hi ]
-"273
-[v _table_crc_lo@modbus_master$F6374 table_crc_lo `C[256]uc  1 s 256 table_crc_lo ]
+[s S6254 EM_data2 128 `VEo 1 kwhpt 8 0 `VEo 1 kvarhpt 8 8 `VEo 1 kwhpp 8 16 `VEo 1 kvarhpp 8 24 `VEo 1 kwhpl1 8 32 `VEo 1 kwhpl2 8 40 `VEo 1 kwhpl3 8 48 `VEo 1 kwhnt 8 56 `VEo 1 kvarhnt 8 64 `VEo 1 kwhnp 8 72 `VEo 1 kvarhnp 8 80 `VEo 1 kvaht 8 88 `VEo 1 kvahp 8 96 `VEl 1 rhm 4 104 `VEl 1 rhmk 4 108 `VEl 1 rhmp 4 112 `VEl 1 rhmkp 4 116 `VEl 1 hz 4 120 `VEl 1 rhlc 4 124 ]
+"113
+[v _emt emt `VQES6254  1 e 128 0 ]
+[s S6274 EM_serial 16 `VE[14]uc 1 serial 14 0 `VEs 1 year 2 14 ]
+"114
+[v _ems ems `VQES6274  1 e 16 0 ]
+[s S6277 EM_version 2 `VEs 1 firmware 2 0 ]
+"115
+[v _emv emv `VQES6277  1 e 2 0 ]
 "67 /public/Q84vtouch/qconfig.h
 [v _spin spin `C[6][20]uc  1 e 120 0 ]
 "153 /opt/microchip/xc8/v2.46/pic/sources/c99/common/doprnt.c
@@ -1275,24 +1285,24 @@ D_SW_COUNT 3
 [v _dbuf dbuf `[80]uc  1 s 80 dbuf ]
 "189
 [v _nout nout `i  1 s 2 nout ]
-[s S7465 . 1 `uc 1 GO 1 0 :1:0 
+[s S7709 . 1 `uc 1 GO 1 0 :1:0 
 ]
 "596 /root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.25.433/xc8/pic/include/proc/pic18f47q84.h
-[s S7467 . 1 `uc 1 NOT_DONE 1 0 :1:0 
+[s S7711 . 1 `uc 1 NOT_DONE 1 0 :1:0 
 ]
-[s S7469 . 1 `uc 1 nDONE 1 0 :1:0 
+[s S7713 . 1 `uc 1 nDONE 1 0 :1:0 
 ]
-[u S7471 . 1 `S7465 1 . 1 0 `S7467 1 . 1 0 `S7469 1 . 1 0 ]
-[v _NVMCON0bits NVMCON0bits `VES7471  1 e 1 @64 ]
-[s S7448 . 1 `uc 1 CMD 1 0 :3:0 
+[u S7715 . 1 `S7709 1 . 1 0 `S7711 1 . 1 0 `S7713 1 . 1 0 ]
+[v _NVMCON0bits NVMCON0bits `VES7715  1 e 1 @64 ]
+[s S7692 . 1 `uc 1 CMD 1 0 :3:0 
 `uc 1 . 1 0 :4:3 
 `uc 1 WRERR 1 0 :1:7 
 ]
 "631
-[s S7452 . 1 `uc 1 NVMCMD 1 0 :3:0 
+[s S7696 . 1 `uc 1 NVMCMD 1 0 :3:0 
 ]
-[u S7454 . 1 `S7448 1 . 1 0 `S7452 1 . 1 0 ]
-[v _NVMCON1bits NVMCON1bits `VES7454  1 e 1 @65 ]
+[u S7698 . 1 `S7692 1 . 1 0 `S7696 1 . 1 0 ]
+[v _NVMCON1bits NVMCON1bits `VES7698  1 e 1 @65 ]
 "651
 [v _NVMLOCK NVMLOCK `VEuc  1 e 1 @66 ]
 "680
@@ -1556,7 +1566,7 @@ D_SW_COUNT 3
 ]
 [u S2252 . 1 `S2240 1 . 1 0 `S2246 1 . 1 0 ]
 [v _SPI1CON0bits SPI1CON0bits `VES2252  1 e 1 @132 ]
-[s S6261 . 1 `uc 1 LATC0 1 0 :1:0 
+[s S6372 . 1 `uc 1 LATC0 1 0 :1:0 
 `uc 1 LATC1 1 0 :1:1 
 `uc 1 LATC2 1 0 :1:2 
 `uc 1 LATC3 1 0 :1:3 
@@ -1566,8 +1576,8 @@ D_SW_COUNT 3
 `uc 1 LATC7 1 0 :1:7 
 ]
 "3701
-[u S6270 . 1 `S6261 1 . 1 0 ]
-[v _LATCbits LATCbits `VES6270  1 e 1 @1216 ]
+[u S6381 . 1 `S6372 1 . 1 0 ]
+[v _LATCbits LATCbits `VES6381  1 e 1 @1216 ]
 "3745
 [v _SPI1CON1 SPI1CON1 `VEuc  1 e 1 @133 ]
 "3746
@@ -1592,7 +1602,7 @@ D_SW_COUNT 3
 [v _SPI1CON2 SPI1CON2 `VEuc  1 e 1 @134 ]
 "3902
 [v _TRISB TRISB `VEuc  1 e 1 @1223 ]
-[s S5766 . 1 `uc 1 RXBF 1 0 :1:0 
+[s S5844 . 1 `uc 1 RXBF 1 0 :1:0 
 `uc 1 . 1 0 :1:1 
 `uc 1 CLRBF 1 0 :1:2 
 `uc 1 RXRE 1 0 :1:3 
@@ -1602,7 +1612,7 @@ D_SW_COUNT 3
 `uc 1 TXWE 1 0 :1:7 
 ]
 "3952
-[s S5775 . 1 `uc 1 SPI1RXBF 1 0 :1:0 
+[s S5853 . 1 `uc 1 SPI1RXBF 1 0 :1:0 
 `uc 1 . 1 0 :1:1 
 `uc 1 SPI1CLRBF 1 0 :1:2 
 `uc 1 SPI1RXRE 1 0 :1:3 
@@ -1611,8 +1621,8 @@ D_SW_COUNT 3
 `uc 1 . 1 0 :1:6 
 `uc 1 SPI1TXWE 1 0 :1:7 
 ]
-[u S5784 . 1 `S5766 1 . 1 0 `S5775 1 . 1 0 ]
-[v _SPI1STATUSbits SPI1STATUSbits `VES5784  1 e 1 @135 ]
+[u S5862 . 1 `S5844 1 . 1 0 `S5853 1 . 1 0 ]
+[v _SPI1STATUSbits SPI1STATUSbits `VES5862  1 e 1 @135 ]
 "3964
 [v _TRISC TRISC `VEuc  1 e 1 @1224 ]
 [s S2217 . 1 `uc 1 TRISC0 1 0 :1:0 
@@ -1633,7 +1643,7 @@ D_SW_COUNT 3
 [v _SPI1BAUD SPI1BAUD `VEuc  1 e 1 @137 ]
 "4088
 [v _TRISE TRISE `VEuc  1 e 1 @1226 ]
-[s S7805 . 1 `uc 1 RA0 1 0 :1:0 
+[s S8049 . 1 `uc 1 RA0 1 0 :1:0 
 `uc 1 RA1 1 0 :1:1 
 `uc 1 RA2 1 0 :1:2 
 `uc 1 RA3 1 0 :1:3 
@@ -1643,9 +1653,9 @@ D_SW_COUNT 3
 `uc 1 RA7 1 0 :1:7 
 ]
 "4137
-[u S7814 . 1 `S7805 1 . 1 0 ]
-[v _PORTAbits PORTAbits `VES7814  1 e 1 @1230 ]
-[s S5628 . 1 `uc 1 . 1 0 :1:0 
+[u S8058 . 1 `S8049 1 . 1 0 ]
+[v _PORTAbits PORTAbits `VES8058  1 e 1 @1230 ]
+[s S5706 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 TXUIF 1 0 :1:1 
 `uc 1 RXOIF 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -1655,7 +1665,7 @@ D_SW_COUNT 3
 `uc 1 SRMTIF 1 0 :1:7 
 ]
 "4144
-[s S5637 . 1 `uc 1 . 1 0 :1:0 
+[s S5715 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 SPI1TXUIF 1 0 :1:1 
 `uc 1 SPI1RXOIF 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -1664,9 +1674,9 @@ D_SW_COUNT 3
 `uc 1 SPI1TCZIF 1 0 :1:6 
 `uc 1 SPI1SRMTIF 1 0 :1:7 
 ]
-[u S5646 . 1 `S5628 1 . 1 0 `S5637 1 . 1 0 ]
-[v _SPI1INTFbits SPI1INTFbits `VES5646  1 e 1 @138 ]
-[s S6326 . 1 `uc 1 RC0 1 0 :1:0 
+[u S5724 . 1 `S5706 1 . 1 0 `S5715 1 . 1 0 ]
+[v _SPI1INTFbits SPI1INTFbits `VES5724  1 e 1 @138 ]
+[s S6444 . 1 `uc 1 RC0 1 0 :1:0 
 `uc 1 RC1 1 0 :1:1 
 `uc 1 RC2 1 0 :1:2 
 `uc 1 RC3 1 0 :1:3 
@@ -1676,8 +1686,8 @@ D_SW_COUNT 3
 `uc 1 RC7 1 0 :1:7 
 ]
 "4261
-[u S6335 . 1 `S6326 1 . 1 0 ]
-[v _PORTCbits PORTCbits `VES6335  1 e 1 @1232 ]
+[u S6453 . 1 `S6444 1 . 1 0 ]
+[v _PORTCbits PORTCbits `VES6453  1 e 1 @1232 ]
 "4301
 [v _SPI1CLK SPI1CLK `VEuc  1 e 1 @140 ]
 [s S1423 . 1 `uc 1 INT0EDG 1 0 :1:0 
@@ -1945,7 +1955,7 @@ D_SW_COUNT 3
 [v _C1TXQSTALbits C1TXQSTALbits `VES859  1 e 1 @340 ]
 "14149
 [v _C1FIFOCON1L C1FIFOCON1L `VEuc  1 e 1 @348 ]
-[s S7027 . 1 `uc 1 TFNRFNIE 1 0 :1:0 
+[s S7271 . 1 `uc 1 TFNRFNIE 1 0 :1:0 
 `uc 1 TFHRFHIE 1 0 :1:1 
 `uc 1 TFERFFIE 1 0 :1:2 
 `uc 1 RXOVIE 1 0 :1:3 
@@ -1955,8 +1965,8 @@ D_SW_COUNT 3
 `uc 1 TXEN 1 0 :1:7 
 ]
 "14166
-[u S7036 . 1 `S7027 1 . 1 0 ]
-[v _C1FIFOCON1Lbits C1FIFOCON1Lbits `VES7036  1 e 1 @348 ]
+[u S7280 . 1 `S7271 1 . 1 0 ]
+[v _C1FIFOCON1Lbits C1FIFOCON1Lbits `VES7280  1 e 1 @348 ]
 "14211
 [v _C1FIFOCON1H C1FIFOCON1H `VEuc  1 e 1 @349 ]
 "14243
@@ -2717,7 +2727,7 @@ D_SW_COUNT 3
 [v _cc_mode cc_mode `VEus  1 e 2 0 ]
 [v _mx_code mx_code `VEus  1 e 2 0 ]
 "229
-[v _state state `VEE25255  1 e 1 0 ]
+[v _state state `VEE25302  1 e 1 0 ]
 "230
 [v _buffer buffer `[512]uc  1 e 512 0 ]
 [v _info_buffer info_buffer `[512]uc  1 e 512 0 ]
@@ -2870,15 +2880,15 @@ D_SW_COUNT 3
 [v main@e_update e_update `uc  1 s 1 e_update ]
 "409
 [v main@error_save error_save `ul  1 s 4 error_save ]
-"474
+"477
 } 23
 "13 /opt/microchip/xc8/v2.46/pic/sources/c99/common/nf_snprintf.c
 [v _snprintf snprintf `R(i  1 e 2 0 ]
 {
-[u S8519 . 3 `*.2uc 1 buffer 3 0 `*.2Cuc 1 source 3 0 ]
+[u S8763 . 3 `*.2uc 1 buffer 3 0 `*.2Cuc 1 source 3 0 ]
 "17
-[s S8522 _IO_FILE 12 `S8519 1 . 3 0 `i 1 count 2 3 `[3]uc 1 ungetbuf 3 5 `i 1 ungetcnt 2 8 `i 1 limit 2 10 ]
-[v _f f `S8522  1 a 12 2 ]
+[s S8766 _IO_FILE 12 `S8763 1 . 3 0 `i 1 count 2 3 `[3]uc 1 ungetbuf 3 5 `i 1 ungetcnt 2 8 `i 1 limit 2 10 ]
+[v _f f `S8766  1 a 12 2 ]
 "16
 [v _ap ap `[1]*.39v  1 a 2 14 ]
 "15
@@ -2894,9 +2904,9 @@ D_SW_COUNT 3
 {
 "1820
 [v _cfmt cfmt `*.32uc  1 a 2 0 ]
-[s S8557 _IO_FILE 0 ]
+[s S8801 _IO_FILE 0 ]
 "1817
-[v _fp fp `*.39S8557  1 p 2 -2 ]
+[v _fp fp `*.39S8801  1 p 2 -2 ]
 [v _fmt fmt `*.32Cuc  1 p 2 -4 ]
 [v _ap ap `*.39*.39v  1 p 2 -6 ]
 "1840
@@ -2904,17 +2914,17 @@ D_SW_COUNT 3
 "1177
 [v _vfpfcnvrt vfpfcnvrt `R(i  1 s 2 vfpfcnvrt ]
 {
-[u S8603 . 4 `l 1 sint 4 0 `ul 1 uint 4 0 `d 1 f 4 0 ]
+[u S8847 . 4 `l 1 sint 4 0 `ul 1 uint 4 0 `d 1 f 4 0 ]
 "1188
-[v _convarg convarg `S8603  1 a 4 0 ]
+[v _convarg convarg `S8847  1 a 4 0 ]
 "1179
 [v _cp cp `*.32uc  1 a 2 4 ]
 [v _c c `uc  1 a 1 6 ]
 "1180
 [v _done done `a  1 a 1 7 ]
-[s S8557 _IO_FILE 0 ]
+[s S8801 _IO_FILE 0 ]
 "1177
-[v _fp fp `*.39S8557  1 p 2 -2 ]
+[v _fp fp `*.39S8801  1 p 2 -2 ]
 [v _fmt fmt `*.39*.32uc  1 p 2 -4 ]
 [v _ap ap `*.39*.39v  1 p 2 -6 ]
 "1814
@@ -2924,15 +2934,14 @@ D_SW_COUNT 3
 {
 "1063
 [v _i i `i  1 a 2 0 ]
+[v _w w `i  1 a 2 2 ]
 "1065
-[v _p p `i  1 a 2 2 ]
-"1063
-[v _w w `i  1 a 2 4 ]
+[v _p p `i  1 a 2 4 ]
 "1059
 [v _c c `uc  1 a 1 6 ]
-[s S8557 _IO_FILE 0 ]
+[s S8801 _IO_FILE 0 ]
 "1055
-[v _fp fp `*.39S8557  1 p 2 -2 ]
+[v _fp fp `*.39S8801  1 p 2 -2 ]
 [v _d d `ul  1 p 4 -6 ]
 "1153
 } 7
@@ -2941,13 +2950,12 @@ D_SW_COUNT 3
 {
 "1003
 [v _i i `i  1 a 2 0 ]
+[v _w w `i  1 a 2 2 ]
 "1005
-[v _p p `i  1 a 2 2 ]
-"1003
-[v _w w `i  1 a 2 4 ]
-[s S8557 _IO_FILE 0 ]
+[v _p p `i  1 a 2 4 ]
+[s S8801 _IO_FILE 0 ]
 "1001
-[v _fp fp `*.39S8557  1 p 2 -2 ]
+[v _fp fp `*.39S8801  1 p 2 -2 ]
 [v _d d `ul  1 p 4 -6 ]
 "1047
 } 6
@@ -2962,9 +2970,9 @@ D_SW_COUNT 3
 [v _w w `i  1 a 2 4 ]
 "945
 [v _p p `i  1 a 2 6 ]
-[s S8557 _IO_FILE 0 ]
+[s S8801 _IO_FILE 0 ]
 "942
-[v _fp fp `*.39S8557  1 p 2 -2 ]
+[v _fp fp `*.39S8801  1 p 2 -2 ]
 [v _s s `*.34uc  1 p 2 -4 ]
 "997
 } 8
@@ -2983,15 +2991,15 @@ D_SW_COUNT 3
 "587
 [v _efgtoa efgtoa `R(i  1 s 2 efgtoa ]
 {
-[u S8572 flui 4 `d 1 f 4 0 `l 1 u 4 0 ]
+[u S8816 flui 4 `d 1 f 4 0 `l 1 u 4 0 ]
 "592
-[v _u u `S8572  1 a 4 2 ]
-[v _g g `S8572  1 a 4 6 ]
+[v _u u `S8816  1 a 4 2 ]
+[v _g g `S8816  1 a 4 6 ]
 "591
 [v _l l `d  1 a 4 10 ]
 [v _h h `d  1 a 4 14 ]
 "592
-[v _ou ou `S8572  1 a 4 18 ]
+[v _ou ou `S8816  1 a 4 18 ]
 "590
 [v _n n `i  1 a 2 22 ]
 [v _i i `i  1 a 2 24 ]
@@ -3007,9 +3015,9 @@ D_SW_COUNT 3
 [v _nmode nmode `uc  1 a 1 41 ]
 [v _mode mode `uc  1 a 1 42 ]
 [v _pp pp `uc  1 a 1 43 ]
-[s S8557 _IO_FILE 0 ]
+[s S8801 _IO_FILE 0 ]
 "587
-[v _fp fp `*.39S8557  1 p 2 -2 ]
+[v _fp fp `*.39S8801  1 p 2 -2 ]
 [v _f f `d  1 p 4 -6 ]
 [v _c c `uc  1 p 1 -7 ]
 "868
@@ -3033,9 +3041,9 @@ D_SW_COUNT 3
 "3 /opt/microchip/xc8/v2.46/pic/sources/c99/common/floorf.c
 [v _floorf floorf `R(f  1 e 4 0 ]
 {
-[u S8364 . 4 `f 1 f 4 0 `ul 1 i 4 0 ]
+[u S8608 . 4 `f 1 f 4 0 `ul 1 i 4 0 ]
 "5
-[v _u u `S8364  1 a 4 0 ]
+[v _u u `S8608  1 a 4 0 ]
 "7
 [v _m m `ul  1 a 4 4 ]
 "6
@@ -3043,21 +3051,21 @@ D_SW_COUNT 3
 "3
 [v _x x `f  1 p 4 -4 ]
 "4
-[v floorf@F521 F521 `S8364  1 s 4 F521 ]
+[v floorf@F521 F521 `S8608  1 s 4 F521 ]
 "27
 } 10
 "4 /opt/microchip/xc8/v2.46/pic/sources/c99/common/__fpclassifyf.c
 [v ___fpclassifyf __fpclassifyf `R(i  1 e 2 0 ]
 {
-[u S8364 . 4 `f 1 f 4 0 `ul 1 i 4 0 ]
+[u S8608 . 4 `f 1 f 4 0 `ul 1 i 4 0 ]
 "6
-[v _u u `S8364  1 a 4 0 ]
+[v _u u `S8608  1 a 4 0 ]
 "7
 [v _e e `i  1 a 2 4 ]
 "4
 [v _x x `f  1 p 4 -4 ]
 "5
-[v ___fpclassifyf@F465 F465 `S8364  1 s 4 F465 ]
+[v ___fpclassifyf@F465 F465 `S8608  1 s 4 F465 ]
 "11
 } 6
 "43 /opt/microchip/xc8/v2.46/pic/sources/c99/common/fltol.c
@@ -3115,15 +3123,14 @@ D_SW_COUNT 3
 {
 "516
 [v _i i `i  1 a 2 2 ]
+[v _w w `i  1 a 2 4 ]
 "518
-[v _p p `i  1 a 2 4 ]
-"516
-[v _w w `i  1 a 2 6 ]
+[v _p p `i  1 a 2 6 ]
 "515
 [v _s s `uc  1 a 1 8 ]
-[s S8557 _IO_FILE 0 ]
+[s S8801 _IO_FILE 0 ]
 "513
-[v _fp fp `*.39S8557  1 p 2 -2 ]
+[v _fp fp `*.39S8801  1 p 2 -2 ]
 [v _d d `l  1 p 4 -6 ]
 "583
 } 9
@@ -3132,9 +3139,9 @@ D_SW_COUNT 3
 {
 "195
 [v _i i `i  1 a 2 0 ]
-[s S8557 _IO_FILE 0 ]
+[s S8801 _IO_FILE 0 ]
 "193
-[v _fp fp `*.39S8557  1 p 2 -2 ]
+[v _fp fp `*.39S8801  1 p 2 -2 ]
 [v _buf buf `*.39uc  1 p 2 -4 ]
 [v _p p `i  1 p 2 -6 ]
 "226
@@ -3148,18 +3155,18 @@ D_SW_COUNT 3
 [v _c c `uc  1 a 1 2 ]
 "8
 [v _s s `*.39Cuc  1 p 2 -2 ]
-[u S8519 . 3 `*.2uc 1 buffer 3 0 `*.2Cuc 1 source 3 0 ]
-[s S8522 _IO_FILE 12 `S8519 1 . 3 0 `i 1 count 2 3 `[3]uc 1 ungetbuf 3 5 `i 1 ungetcnt 2 8 `i 1 limit 2 10 ]
-[v _fp fp `*.39S8522  1 p 2 -4 ]
+[u S8763 . 3 `*.2uc 1 buffer 3 0 `*.2Cuc 1 source 3 0 ]
+[s S8766 _IO_FILE 12 `S8763 1 . 3 0 `i 1 count 2 3 `[3]uc 1 ungetbuf 3 5 `i 1 ungetcnt 2 8 `i 1 limit 2 10 ]
+[v _fp fp `*.39S8766  1 p 2 -4 ]
 "19
 } 3
 "8 /opt/microchip/xc8/v2.46/pic/sources/c99/common/nf_fputc.c
 [v _fputc fputc `R(i  1 e 2 0 ]
 {
 [v _c c `i  1 p 2 -2 ]
-[u S8519 . 3 `*.2uc 1 buffer 3 0 `*.2Cuc 1 source 3 0 ]
-[s S8522 _IO_FILE 12 `S8519 1 . 3 0 `i 1 count 2 3 `[3]uc 1 ungetbuf 3 5 `i 1 ungetcnt 2 8 `i 1 limit 2 10 ]
-[v _fp fp `*.39S8522  1 p 2 -4 ]
+[u S8763 . 3 `*.2uc 1 buffer 3 0 `*.2Cuc 1 source 3 0 ]
+[s S8766 _IO_FILE 12 `S8763 1 . 3 0 `i 1 count 2 3 `[3]uc 1 ungetbuf 3 5 `i 1 ungetcnt 2 8 `i 1 limit 2 10 ]
+[v _fp fp `*.39S8766  1 p 2 -4 ]
 "24
 } 0
 "233 /public/Q84vtouch/dcuQ84.X/mcc_generated_files/uart2.c
@@ -3180,212 +3187,109 @@ D_SW_COUNT 3
 [v _a a `i  1 p 2 -2 ]
 "4
 } 0
-"553 /public/Q84vtouch/modbus_master.c
+"773 /public/Q84vtouch/modbus_master.c
 [v _mb_setup mb_setup `R(v  1 e 1 0 ]
 {
-"558
+"778
 } 0
-"241
-[v _master_controller_work master_controller_work `R(c  1 e 1 0 ]
+"298
+[v _master_controller_work_dcu master_controller_work_dcu `R(c  1 e 1 0 ]
 {
-"339
+"396
 [v _i i `uc  1 a 1 0 ]
-[s S6047 M_data 23 `uc 1 blink_lock 1 0 :1:0 
+[s S6158 M_data 23 `uc 1 blink_lock 1 0 :1:0 
 `uc 1 config 1 0 :1:1 
 `uc 1 stable 1 0 :1:2 
 `uc 1 boot_code 1 0 :1:3 
 `uc 1 power_on 1 0 :1:4 
 `uc 1 send_count 1 1 `uc 1 recv_count 1 2 `uc 1 pwm_volts 1 3 `us 1 error 2 4 `us 1 crc_data 2 6 `us 1 crc_calc 2 8 `ul 1 crc_error 4 10 `ul 1 to_error 4 14 `ul 1 sends 4 18 `VEa 1 rx 1 22 ]
-"241
-[s S6082 C_data 45 `uc 1 mcmd 1 0 `E24191 1 cstate 1 1 `E24197 1 modbus_command 1 2 `us 1 req_length 2 3 `c 1 trace 1 5 `a 1 id_ok 1 6 `a 1 passwd_ok 1 7 `a 1 config_ok 1 8 `a 1 data_ok 1 9 `a 1 light_ok 1 10 `a 1 serial_ok 1 11 `a 1 version_ok 1 12 `a 1 tm_ok 1 13 `ul 1 data_count 4 14 `ul 1 data_prev 4 18 `VES6047 1 M 23 22 ]
-[v _client client `*.39VES6082  1 p 2 -2 ]
-"243
-[v master_controller_work@spacing spacing `ul  1 s 4 spacing ]
-"397
+"298
+[s S6193 C_data 45 `uc 1 mcmd 1 0 `E24226 1 cstate 1 1 `E24232 1 modbus_command 1 2 `us 1 req_length 2 3 `c 1 trace 1 5 `a 1 id_ok 1 6 `a 1 passwd_ok 1 7 `a 1 config_ok 1 8 `a 1 data_ok 1 9 `a 1 light_ok 1 10 `a 1 serial_ok 1 11 `a 1 version_ok 1 12 `a 1 tm_ok 1 13 `ul 1 data_count 4 14 `ul 1 data_prev 4 18 `VES6158 1 M 23 22 ]
+[v _client client `*.39VES6193  1 p 2 -2 ]
+"300
+[v master_controller_work_dcu@spacing spacing `ul  1 s 4 spacing ]
+"454
 } 1
-"514
+"734
 [v _serial_trmt serial_trmt `R(a  1 s 1 serial_trmt ]
 {
-"517
+"737
 } 0
-"560
-[v _modbus_write_check modbus_write_check `R(a  1 s 1 modbus_write_check ]
+"902
+[v _modbus_read_dcu_check modbus_read_dcu_check `R(a  1 s 1 modbus_read_dcu_check ]
 {
-"562
+"904
 [v _c_crc_rec c_crc_rec `us  1 a 2 0 ]
 [v _c_crc c_crc `us  1 a 2 2 ]
-[s S6047 M_data 23 `uc 1 blink_lock 1 0 :1:0 
+[s S6158 M_data 23 `uc 1 blink_lock 1 0 :1:0 
 `uc 1 config 1 0 :1:1 
 `uc 1 stable 1 0 :1:2 
 `uc 1 boot_code 1 0 :1:3 
 `uc 1 power_on 1 0 :1:4 
 `uc 1 send_count 1 1 `uc 1 recv_count 1 2 `uc 1 pwm_volts 1 3 `us 1 error 2 4 `us 1 crc_data 2 6 `us 1 crc_calc 2 8 `ul 1 crc_error 4 10 `ul 1 to_error 4 14 `ul 1 sends 4 18 `VEa 1 rx 1 22 ]
-"560
-[s S6082 C_data 45 `uc 1 mcmd 1 0 `E24191 1 cstate 1 1 `E24197 1 modbus_command 1 2 `us 1 req_length 2 3 `c 1 trace 1 5 `a 1 id_ok 1 6 `a 1 passwd_ok 1 7 `a 1 config_ok 1 8 `a 1 data_ok 1 9 `a 1 light_ok 1 10 `a 1 serial_ok 1 11 `a 1 version_ok 1 12 `a 1 tm_ok 1 13 `ul 1 data_count 4 14 `ul 1 data_prev 4 18 `VES6047 1 M 23 22 ]
-[v _client client `*.39VES6082  1 p 2 -2 ]
+"902
+[s S6193 C_data 45 `uc 1 mcmd 1 0 `E24226 1 cstate 1 1 `E24232 1 modbus_command 1 2 `us 1 req_length 2 3 `c 1 trace 1 5 `a 1 id_ok 1 6 `a 1 passwd_ok 1 7 `a 1 config_ok 1 8 `a 1 data_ok 1 9 `a 1 light_ok 1 10 `a 1 serial_ok 1 11 `a 1 version_ok 1 12 `a 1 tm_ok 1 13 `ul 1 data_count 4 14 `ul 1 data_prev 4 18 `VES6158 1 M 23 22 ]
+[v _client client `*.39VES6193  1 p 2 -2 ]
 [v _cstate cstate `*.39a  1 p 2 -4 ]
 [v _rec_length rec_length `Cus  1 p 2 -6 ]
-"591
+"944
 } 4
-"110
-[v _modbus_rtu_send_msg modbus_rtu_send_msg `R(us  1 e 2 0 ]
-{
-[v _cc_buffer cc_buffer `*.39v  1 p 2 -2 ]
-[v _modbus_cc_mode modbus_cc_mode `*.32Cv  1 p 2 -4 ]
-[v _req_length req_length `us  1 p 2 -6 ]
-"117
-} 0
-"96
-[v _modbus_rtu_send_msg_crc modbus_rtu_send_msg_crc `R(us  1 s 2 modbus_rtu_send_msg_crc ]
-{
-"98
-[v _crc crc `us  1 a 2 0 ]
-"96
-[v _req req `*.39VEuc  1 p 2 -2 ]
-[v _req_length req_length `us  1 p 2 -4 ]
-"105
-} 2
-"636
-[v _modbus_read_id_check modbus_read_id_check `R(a  1 s 1 modbus_read_id_check ]
-{
-"638
-[v _c_crc_rec c_crc_rec `us  1 a 2 0 ]
-[v _c_crc c_crc `us  1 a 2 2 ]
-[s S6047 M_data 23 `uc 1 blink_lock 1 0 :1:0 
-`uc 1 config 1 0 :1:1 
-`uc 1 stable 1 0 :1:2 
-`uc 1 boot_code 1 0 :1:3 
-`uc 1 power_on 1 0 :1:4 
-`uc 1 send_count 1 1 `uc 1 recv_count 1 2 `uc 1 pwm_volts 1 3 `us 1 error 2 4 `us 1 crc_data 2 6 `us 1 crc_calc 2 8 `ul 1 crc_error 4 10 `ul 1 to_error 4 14 `ul 1 sends 4 18 `VEa 1 rx 1 22 ]
-"636
-[s S6082 C_data 45 `uc 1 mcmd 1 0 `E24191 1 cstate 1 1 `E24197 1 modbus_command 1 2 `us 1 req_length 2 3 `c 1 trace 1 5 `a 1 id_ok 1 6 `a 1 passwd_ok 1 7 `a 1 config_ok 1 8 `a 1 data_ok 1 9 `a 1 light_ok 1 10 `a 1 serial_ok 1 11 `a 1 version_ok 1 12 `a 1 tm_ok 1 13 `ul 1 data_count 4 14 `ul 1 data_prev 4 18 `VES6047 1 M 23 22 ]
-[v _client client `*.39VES6082  1 p 2 -2 ]
-[v _cstate cstate `*.39a  1 p 2 -4 ]
-[v _rec_length rec_length `Cus  1 p 2 -6 ]
-"680
-} 4
-"593
-[v _modbus_read_check modbus_read_check `R(a  1 s 1 modbus_read_check ]
-{
-"595
-[v _c_crc_rec c_crc_rec `us  1 a 2 0 ]
-[v _c_crc c_crc `us  1 a 2 2 ]
-[s S6047 M_data 23 `uc 1 blink_lock 1 0 :1:0 
-`uc 1 config 1 0 :1:1 
-`uc 1 stable 1 0 :1:2 
-`uc 1 boot_code 1 0 :1:3 
-`uc 1 power_on 1 0 :1:4 
-`uc 1 send_count 1 1 `uc 1 recv_count 1 2 `uc 1 pwm_volts 1 3 `us 1 error 2 4 `us 1 crc_data 2 6 `us 1 crc_calc 2 8 `ul 1 crc_error 4 10 `ul 1 to_error 4 14 `ul 1 sends 4 18 `VEa 1 rx 1 22 ]
-"593
-[s S6082 C_data 45 `uc 1 mcmd 1 0 `E24191 1 cstate 1 1 `E24197 1 modbus_command 1 2 `us 1 req_length 2 3 `c 1 trace 1 5 `a 1 id_ok 1 6 `a 1 passwd_ok 1 7 `a 1 config_ok 1 8 `a 1 data_ok 1 9 `a 1 light_ok 1 10 `a 1 serial_ok 1 11 `a 1 version_ok 1 12 `a 1 tm_ok 1 13 `ul 1 data_count 4 14 `ul 1 data_prev 4 18 `VES6047 1 M 23 22 ]
-[v _client client `*.39VES6082  1 p 2 -2 ]
-[v _cstate cstate `*.39a  1 p 2 -4 ]
-[v _rec_length rec_length `Cus  1 p 2 -6 ]
-[v _DataHandler DataHandler `*.38R(v  1 p 3 -9 ]
-"634
-} 4
-"189
+"246
 [v _log_crc_error log_crc_error `R(v  1 s 1 log_crc_error ]
 {
 [v _c_crc c_crc `Cus  1 p 2 -2 ]
 [v _c_crc_rec c_crc_rec `Cus  1 p 2 -4 ]
-"195
+"252
 } 0
-"445
+"665
 [v _get_500hz get_500hz `R(ul  1 e 4 0 ]
 {
 [v _mode mode `Cuc  1 p 1 -1 ]
-"447
+"667
 [v get_500hz@tmp tmp `ul  1 s 4 tmp ]
-"455
+"675
 } 0
-"716
-[v _ems_data_handler ems_data_handler `R(v  1 s 1 ems_data_handler ]
+"1043
+[v _dcu_crc_r dcu_crc_r `R(uc  1 e 1 0 ]
 {
-"724
-} 0
-"707
-[v _emt_data_handler emt_data_handler `R(v  1 s 1 emt_data_handler ]
-{
-"714
-} 0
-"682
-[v _em_data_handler em_data_handler `R(v  1 s 1 em_data_handler ]
-{
-"705
-} 0
-"726
-[v _emv_data_handler emv_data_handler `R(v  1 s 1 emv_data_handler ]
-{
-"733
-} 0
-"207
-[v _mb32_swap mb32_swap `R(l  1 e 4 0 ]
-{
-[u S6202 MREG32 4 `l 1 value 4 0 `[4]uc 1 bytes 4 0 ]
-"210
-[v _dvalue dvalue `S6202  1 a 4 0 ]
-"209
-[v _i i `uc  1 a 1 4 ]
-"207
-[v _value value `Cl  1 p 4 -4 ]
-"221
-} 5
-"223
-[v _mb16_swap mb16_swap `R(s  1 e 2 0 ]
-{
-[u S6205 MREG 2 `s 1 value 2 0 `[2]uc 1 bytes 2 0 ]
-"226
-[v _dvalue dvalue `S6205  1 a 2 0 ]
-"225
-[v _i i `uc  1 a 1 2 ]
-"223
-[v _value value `Cs  1 p 2 -2 ]
-"234
-} 3
-"181
-[v _crc16_receive crc16_receive `R(us  1 s 2 crc16_receive ]
-{
-"183
-[v _crc16r crc16r `us  1 a 2 0 ]
-[s S6047 M_data 23 `uc 1 blink_lock 1 0 :1:0 
-`uc 1 config 1 0 :1:1 
-`uc 1 stable 1 0 :1:2 
-`uc 1 boot_code 1 0 :1:3 
-`uc 1 power_on 1 0 :1:4 
-`uc 1 send_count 1 1 `uc 1 recv_count 1 2 `uc 1 pwm_volts 1 3 `us 1 error 2 4 `us 1 crc_data 2 6 `us 1 crc_calc 2 8 `ul 1 crc_error 4 10 `ul 1 to_error 4 14 `ul 1 sends 4 18 `VEa 1 rx 1 22 ]
-"181
-[s S6082 C_data 45 `uc 1 mcmd 1 0 `E24191 1 cstate 1 1 `E24197 1 modbus_command 1 2 `us 1 req_length 2 3 `c 1 trace 1 5 `a 1 id_ok 1 6 `a 1 passwd_ok 1 7 `a 1 config_ok 1 8 `a 1 data_ok 1 9 `a 1 light_ok 1 10 `a 1 serial_ok 1 11 `a 1 version_ok 1 12 `a 1 tm_ok 1 13 `ul 1 data_count 4 14 `ul 1 data_prev 4 18 `VES6047 1 M 23 22 ]
-[v _client client `*.39VES6082  1 p 2 -2 ]
-"187
+"1047
+[v _i i `uc  1 a 1 0 ]
+"1045
+[v _crc_num crc_num `uc  1 a 1 1 ]
+"1043
+[v _p p `*.39uc  1 p 2 -2 ]
+"1051
 } 2
-"122
-[v _crc16 crc16 `R(us  1 e 2 0 ]
+"1053
+[v _dcu_crc_a dcu_crc_a `R(uc  1 e 1 0 ]
 {
-"127
-[v _crc16t crc16t `us  1 a 2 0 ]
-"125
-[v _crc_lo crc_lo `uc  1 a 1 2 ]
-"124
-[v _crc_hi crc_hi `uc  1 a 1 3 ]
-"126
-[v _i i `uc  1 a 1 4 ]
-"122
-[v _buffer buffer `*.39VEuc  1 p 2 -2 ]
-[v _buffer_length buffer_length `us  1 p 2 -4 ]
-"138
-} 5
-"459
+"1057
+[v _i i `uc  1 a 1 0 ]
+"1055
+[v _crc_num crc_num `uc  1 a 1 1 ]
+"1053
+[v _p p `*.39uc  1 p 2 -2 ]
+"1061
+} 2
+"155
+[v _modbus_dcu_send_msg modbus_dcu_send_msg `R(us  1 e 2 0 ]
+{
+[v _cc_buffer cc_buffer `*.39v  1 p 2 -2 ]
+[v _modbus_cc_mode modbus_cc_mode `*.39Cv  1 p 2 -4 ]
+[v _req_length req_length `us  1 p 2 -6 ]
+"162
+} 0
+"679
 [v _half_dup_tx half_dup_tx `R(v  1 s 1 half_dup_tx ]
 {
 [v _delay delay `Ca  1 p 1 -1 ]
-"469
+"689
 } 0
-"473
+"693
 [v _half_dup_rx half_dup_rx `R(v  1 s 1 half_dup_rx ]
 {
 [v _delay delay `Ca  1 p 1 -1 ]
-"482
+"702
 } 0
 "64 /public/Q84vtouch/timers.c
 [v _delay_ms delay_ms `R(v  1 e 1 0 ]
@@ -3412,28 +3316,28 @@ D_SW_COUNT 3
 [v _count count `Cus  1 p 2 -3 ]
 "16
 } 0
-"433 /public/Q84vtouch/modbus_master.c
+"653 /public/Q84vtouch/modbus_master.c
 [v _get_500ahz get_500ahz `R(ul  1 e 4 0 ]
 {
 [v _mode mode `Cuc  1 p 1 -1 ]
-"435
+"655
 [v get_500ahz@tmp tmp `ul  1 s 4 tmp ]
-"443
+"663
 } 0
-"412
+"632
 [v _clear_500hz clear_500hz `R(v  1 e 1 0 ]
 {
-"415
+"635
 } 0
-"407
+"627
 [v _clear_500ahz clear_500ahz `R(v  1 e 1 0 ]
 {
-"410
+"630
 } 0
-"402
+"622
 [v _clear_2hz clear_2hz `R(v  1 e 1 0 ]
 {
-"405
+"625
 } 0
 "202 /public/Q84vtouch/dcuQ84.X/mcc_generated_files/uart5.c
 [v _UART5_Write UART5_Write `R(v  1 e 1 0 ]
@@ -3480,17 +3384,17 @@ D_SW_COUNT 3
 "8 /opt/microchip/xc8/v2.46/pic/sources/c99/common/sprcmul.c
 [v ___flmul __flmul `R(d  1 e 4 0 ]
 {
-[s S8191 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
+[s S8435 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
 "13
-[s S8196 . 4 `s 1 wordA 2 0 `s 1 wordB 2 2 ]
-[u S8199 . 4 `l 1 i 4 0 `d 1 f 4 0 `S8191 1 fAsBytes 4 0 `S8196 1 fAsWords 4 0 ]
-[v _prod prod `S8199  1 a 4 0 ]
+[s S8440 . 4 `s 1 wordA 2 0 `s 1 wordB 2 2 ]
+[u S8443 . 4 `l 1 i 4 0 `d 1 f 4 0 `S8435 1 fAsBytes 4 0 `S8440 1 fAsWords 4 0 ]
+[v _prod prod `S8443  1 a 4 0 ]
 "12
 [v _grs grs `ul  1 a 4 4 ]
-[s S8267 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
+[s S8511 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
 "14
-[u S8270 . 2 `s 1 i 2 0 `us 1 n 2 0 `S8267 1 nAsBytes 2 0 ]
-[v _temp temp `S8270  1 a 2 8 ]
+[u S8514 . 2 `s 1 i 2 0 `us 1 n 2 0 `S8511 1 nAsBytes 2 0 ]
+[v _temp temp `S8514  1 a 2 8 ]
 "10
 [v _bexp bexp `uc  1 a 1 10 ]
 "11
@@ -3628,10 +3532,10 @@ D_SW_COUNT 3
 [v _bAdd bAdd `Cus  1 p 2 -2 ]
 "310
 } 0
-"169 /public/Q84vtouch/modbus_master.c
+"226 /public/Q84vtouch/modbus_master.c
 [v _init_mb_master_timers init_mb_master_timers `R(v  1 e 1 0 ]
 {
-"175
+"232
 } 0
 "115 /public/Q84vtouch/dcuQ84.X/mcc_generated_files/tmr6.c
 [v _TMR6_StartTimer TMR6_StartTimer `R(v  1 e 1 0 ]
@@ -4408,10 +4312,10 @@ D_SW_COUNT 3
 {
 "186
 } 0
-"494 /public/Q84vtouch/modbus_master.c
+"714 /public/Q84vtouch/modbus_master.c
 [v _timer_2ms_tick timer_2ms_tick `R(v  1 e 1 0 ]
 {
-"499
+"719
 } 0
 "165 /public/Q84vtouch/dcuQ84.X/mcc_generated_files/tmr5.c
 [v _TMR5_ISR TMR5_ISR `IIL(v  1 e 1 0 ]
@@ -4423,10 +4327,10 @@ D_SW_COUNT 3
 {
 "186
 } 0
-"486 /public/Q84vtouch/modbus_master.c
+"706 /public/Q84vtouch/modbus_master.c
 [v _timer_500ms_tick timer_500ms_tick `R(v  1 e 1 0 ]
 {
-"490
+"710
 } 0
 "128 /public/Q84vtouch/dcuQ84.X/mcc_generated_files/tmr5.c
 [v _TMR5_WriteTimer TMR5_WriteTimer `R(v  1 e 1 0 ]
@@ -4770,12 +4674,12 @@ D_SW_COUNT 3
 {
 "285
 } 0
-"144 /public/Q84vtouch/modbus_master.c
+"201 /public/Q84vtouch/modbus_master.c
 [v _my_modbus_rx_32 my_modbus_rx_32 `R(v  1 e 1 0 ]
 {
-"146
+"203
 [v my_modbus_rx_32@m_data m_data `uc  1 s 1 m_data ]
-"158
+"215
 } 0
 "299 /public/Q84vtouch/dcuQ84.X/mcc_generated_files/uart5.c
 [v _UART5_DefaultOverrunErrorHandler UART5_DefaultOverrunErrorHandler `R(v  1 e 1 0 ]

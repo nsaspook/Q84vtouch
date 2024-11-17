@@ -5,6 +5,48 @@
 
 volatile uint8_t cc_stream_file, cc_buffer[MAX_DATA], cc_buffer_tx[MAX_DATA]; // RX and TX command buffers
 
+P_data P_read = {
+	.addr2 = '1',
+	.addr1 = '2',
+	.addr0 = '3',
+	.action1 = '0',
+	.action0 = '0',
+	.para2 = '3',
+	.para1 = '0',
+	.para0 = '9',
+	.dl1 = '0',
+	.dl0 = '2',
+	.data1 = '=',
+	.data0 = '?',
+	.crc2 = '1',
+	.crc1 = '1',
+	.crc0 = '2',
+	.cr = 13,
+};
+
+P_data_r P_action = {
+	.addr2 = '0',
+	.addr1 = '4',
+	.addr0 = '2',
+	.action1 = '1',
+	.action0 = '0',
+	.para2 = '0',
+	.para1 = '2',
+	.para0 = '3',
+	.dl1 = '0',
+	.dl0 = '6',
+	.data[5] = '1',
+	.data[4] = '1',
+	.data[3] = '1',
+	.data[2] = '1',
+	.data[1] = '1',
+	.data[0] = '1',
+	.crc2 = '0',
+	.crc1 = '2',
+	.crc0 = '4',
+	.cr = 13,
+};
+
 volatile M_data M = {
 	.blink_lock = false,
 	.power_on = true,
@@ -90,6 +132,9 @@ static void emt_data_handler(void);
 static void ems_data_handler(void);
 static void emv_data_handler(void);
 
+static bool modbus_read_dcu_check(C_data *, bool*, uint16_t);
+static bool modbus_action_dcu_check(C_data *, bool*, uint16_t);
+
 /*
  * add the required CRC bytes to a MODBUS message
  */
@@ -101,6 +146,18 @@ static uint16_t modbus_rtu_send_msg_crc(volatile uint8_t *req, uint16_t req_leng
 	req[req_length++] = crc >> (uint16_t) 8;
 	req[req_length++] = crc & 0x00FF;
 
+	return req_length;
+}
+
+/*
+ * constructs a properly formatted RTU message with CRC from a program memory array to the data memory array buffer
+ */
+uint16_t modbus_dcu_send_msg(void *cc_buffer, const void *modbus_cc_mode, uint16_t req_length)
+{
+	memcpy((void*) cc_buffer, (const void *) modbus_cc_mode, req_length);
+	/*
+	 * add the CRC and increase message size by two bytes for the CRC16
+	 */
 	return req_length;
 }
 
@@ -231,6 +288,169 @@ int16_t mb16_swap(const int16_t value)
 	dvalue.bytes[0] = dvalue.bytes[1];
 	dvalue.bytes[1] = i;
 	return dvalue.value;
+}
+
+/*
+ * Simple MODBUS master state machine for soft DCU
+ * this needs to run in the main programming loop
+ * to handle RS485 serial I/O exchanges
+ */
+int8_t master_controller_work_dcu(C_data * client)
+{
+	static uint32_t spacing = 0;
+
+	if (spacing++ <SPACING && !M.rx) {
+		return T_spacing;
+	}
+	spacing = 0;
+
+	client->trace = T_begin;
+	switch (client->cstate) {
+	case CLEAR:
+		client->trace = T_clear;
+		clear_2hz();
+		clear_500ahz();
+		client->cstate = INIT;
+		client->modbus_command = client->mcmd++; // sequence modbus commands to client
+		if (client->modbus_command == G_CONFIG && client->config_ok) { // skip if we have valid data from client
+			client->modbus_command = client->mcmd++;
+		}
+		if (client->modbus_command == G_PASSWD && client->passwd_ok) { // skip if we have valid data from client
+			client->modbus_command = client->mcmd++;
+		}
+		if (client->modbus_command == G_LIGHT && client->light_ok) { // skip if we have valid data from client
+			client->modbus_command = client->mcmd++;
+		}
+		if (client->modbus_command == G_VERSION && client->version_ok) { // skip if we have valid data from client
+			client->modbus_command = client->mcmd++;
+		}
+		if (client->modbus_command == G_SERIAL && client->serial_ok) { // skip if we have valid data from client
+			client->modbus_command = client->mcmd++;
+		}
+		if (client->mcmd > G_LAST) {
+			client->mcmd = G_ID;
+		}
+		/*
+		 * command specific tx buffer setup
+		 */
+		switch (client->modbus_command) {
+		case G_VERSION: // write code request
+			client->trace = T_version;
+			client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_action, sizeof(P_action));
+			break;
+		case G_SERIAL: // write code request
+			client->trace = T_serial;
+			client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_action, sizeof(P_action));
+			break;
+		case G_LIGHT: // write code request
+			client->trace = T_light;
+			client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_action, sizeof(P_action));
+			break;
+		case G_PASSWD: // write code request
+			client->trace = T_passwd;
+			client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_action, sizeof(P_action));
+			break;
+		case G_CONFIG: // write code request
+			client->trace = T_config;
+			client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_action, sizeof(P_action));
+			break;
+		case G_DATA1: // read code request
+			client->trace = T_data;
+			client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_action, sizeof(P_action));
+			break;
+		case G_DATA2: // read code request
+			client->trace = T_data;
+			client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_action, sizeof(P_action));
+			break;
+		case G_LAST: // end of command sequences
+			client->cstate = CLEAR;
+			client->mcmd = G_ID; // what do we run next
+			break;
+		case G_ID: // operating mode request
+			client->trace = T_id;
+		default:
+			client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_read, sizeof(P_read));
+			break;
+		}
+		break;
+	case INIT:
+		client->trace = T_init;
+		/*
+		 * MODBUS master query speed
+		 */
+#ifdef	FASTQ
+		if (get_500ahz(false) >= CDELAY) {
+#else
+		if (get_2hz(false) >= QDELAY) {
+#endif
+			half_dup_tx(false); // no delays here
+			M.recv_count = 0;
+			client->cstate = SEND;
+			clear_500hz();
+			client->trace = T_init_d;
+		}
+		break;
+	case SEND:
+		client->trace = T_send;
+		if (get_500hz(false) >= TEDELAY) {
+			for (uint8_t i = 0; i < client->req_length; i++) {
+				Swrite(cc_buffer_tx[i]);
+			}
+			client->cstate = RECV;
+			clear_500hz(); // state machine execute background timer clear
+			client->trace = T_send_d;
+			M.sends++;
+			M.rx = false;
+			if (serial_trmt()) { // check for serial UART transmit shift register and buffer empty
+				clear_500hz(); // clear timer until buffer empty
+			}
+			delay_ms(TDELAY + client->req_length);
+			DERE_SetLow(); // enable modbus receiver
+		}
+		break;
+	case RECV:
+		client->trace = T_recv;
+		if (get_500hz(false) >= TEDELAY) { // state machine execute timer test
+
+			client->trace = T_recv_r;
+			half_dup_rx(false); // no delays here
+
+			/*
+			 * check received response data for size and format for each command sent
+			 */
+			switch (client->modbus_command) {
+			case G_LIGHT: // c
+				modbus_read_dcu_check(client, &client->light_ok, sizeof(P_action));
+				break;
+			case G_PASSWD: // 
+				modbus_read_dcu_check(client, &client->passwd_ok, sizeof(P_action));
+				break;
+			case G_CONFIG: // 
+				modbus_read_dcu_check(client, &client->config_ok, sizeof(P_action));
+				break;
+			case G_DATA1: //
+				modbus_read_dcu_check(client, &client->data_ok, sizeof(P_action));
+				break;
+			case G_DATA2: // 
+				modbus_read_dcu_check(client, &client->data_ok, sizeof(P_action));
+				break;
+			case G_VERSION: // 
+				modbus_read_dcu_check(client, &client->version_ok, sizeof(P_action));
+				break;
+			case G_SERIAL: // 
+				modbus_read_dcu_check(client, &client->serial_ok, sizeof(P_action));
+				break;
+			case G_ID: // check for client module type
+			default:
+				modbus_read_dcu_check(client, &client->id_ok, sizeof(P_action));
+				break;
+			}
+		}
+		break;
+	default:
+		break;
+	}
+	return client->trace;
 }
 
 /*
@@ -679,6 +899,94 @@ static bool modbus_read_id_check(C_data * client, bool* cstate, const uint16_t r
 	return *cstate;
 }
 
+static bool modbus_read_dcu_check(C_data * client, bool* cstate, const uint16_t rec_length)
+{
+	uint16_t c_crc, c_crc_rec;
+
+	client->req_length = rec_length;
+	if (DBUG_R((M.recv_count >= client->req_length))) {
+		c_crc = dcu_crc_r((uint8_t*) & P_read); // use data from crc from rec buffer crc data
+		c_crc_rec = dcu_crc_a((uint8_t*) cc_buffer); // from computed data from total rec buffer
+		if (DBUG_R c_crc == c_crc_rec) {
+			MM_ERROR_C;
+			client->id_ok = true;
+			*cstate = true;
+		} else {
+			MM_ERROR_S;
+			*cstate = false;
+			client->id_ok = false;
+			client->config_ok = false;
+			client->passwd_ok = false;
+			client->data_ok = false;
+			client->light_ok = false;
+			client->version_ok = false;
+			client->serial_ok = false;
+			log_crc_error(c_crc, c_crc_rec);
+		}
+		client->cstate = CLEAR;
+	} else {
+		if (get_500hz(false) >= RDELAY) {
+			client->cstate = CLEAR;
+			client->mcmd = G_ID;
+			M.to_error++;
+			M.error++;
+			client->id_ok = false;
+			*cstate = false;
+			client->config_ok = false;
+			client->passwd_ok = false;
+			client->data_ok = false;
+			client->light_ok = false;
+			client->version_ok = false;
+			client->serial_ok = false;
+		}
+	}
+	return *cstate;
+}
+
+static bool modbus_action_dcu_check(C_data * client, bool* cstate, const uint16_t rec_length)
+{
+	uint16_t c_crc, c_crc_rec;
+
+	client->req_length = rec_length;
+	if (DBUG_R((M.recv_count >= client->req_length))) {
+		c_crc = dcu_crc_a((uint8_t*) & P_action); // use data from crc from rec buffer crc data
+		c_crc_rec = dcu_crc_a((uint8_t*) cc_buffer); // from computed data from total rec buffer
+		if (DBUG_R c_crc == c_crc_rec) {
+			MM_ERROR_C;
+			client->id_ok = true;
+			*cstate = true;
+		} else {
+			MM_ERROR_S;
+			*cstate = false;
+			client->id_ok = false;
+			client->config_ok = false;
+			client->passwd_ok = false;
+			client->data_ok = false;
+			client->light_ok = false;
+			client->version_ok = false;
+			client->serial_ok = false;
+			log_crc_error(c_crc, c_crc_rec);
+		}
+		client->cstate = CLEAR;
+	} else {
+		if (get_500hz(false) >= RDELAY) {
+			client->cstate = CLEAR;
+			client->mcmd = G_ID;
+			M.to_error++;
+			M.error++;
+			client->id_ok = false;
+			*cstate = false;
+			client->config_ok = false;
+			client->passwd_ok = false;
+			client->data_ok = false;
+			client->light_ok = false;
+			client->version_ok = false;
+			client->serial_ok = false;
+		}
+	}
+	return *cstate;
+}
+
 static void em_data_handler(void)
 {
 	/*
@@ -730,4 +1038,24 @@ static void emv_data_handler(void)
 	 */
 	memcpy((void*) &emv, (void*) &cc_buffer[3], sizeof(emv));
 	emv.firmware = mb16_swap(emv.firmware);
+}
+
+uint8_t dcu_crc_r(uint8_t * p)
+{
+	uint8_t crc_num = 0;
+
+	for (uint8_t i = 0; i < 12; i++) {
+		crc_num += (uint8_t) p[i];
+	}
+	return crc_num;
+}
+
+uint8_t dcu_crc_a(uint8_t * p)
+{
+	uint8_t crc_num = 0;
+
+	for (uint8_t i = 0; i < 16; i++) {
+		crc_num += (uint8_t) p[i];
+	}
+	return crc_num;
 }

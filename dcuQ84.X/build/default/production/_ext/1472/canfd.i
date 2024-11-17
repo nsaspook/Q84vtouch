@@ -41199,7 +41199,30 @@ void delay_ms(const uint16_t);
  extern B_type B;
 # 20 "../canfd.h" 2
 # 1 "../modbus_master.h" 1
-# 89 "../modbus_master.h"
+# 86 "../modbus_master.h"
+ typedef struct P_data {
+  uint8_t addr2, addr1, addr0;
+  uint8_t action1, action0;
+  uint8_t para2, para1, para0;
+  uint8_t dl1, dl0;
+  uint8_t data1, data0;
+  uint8_t crc2, crc1, crc0;
+  uint8_t cr;
+ } P_data;
+
+ typedef struct P_data_r {
+  uint8_t addr2, addr1, addr0;
+  uint8_t action1, action0;
+  uint8_t para2, para1, para0;
+  uint8_t dl1, dl0;
+  uint8_t data[6];
+  uint8_t crc2, crc1, crc0;
+  uint8_t cr;
+ } P_data_r;
+
+
+
+
  typedef enum comm_type {
   CLEAR = 0,
   INIT,
@@ -41412,14 +41435,16 @@ void delay_ms(const uint16_t);
   0x44, 0x84, 0x85, 0x45, 0x87, 0x47, 0x46, 0x86, 0x82, 0x42,
   0x43, 0x83, 0x41, 0x81, 0x80, 0x40
  };
-# 319 "../modbus_master.h"
+# 339 "../modbus_master.h"
  uint16_t crc16(volatile uint8_t *, uint16_t);
  uint16_t modbus_rtu_send_msg(void *, const void *, uint16_t);
+ uint16_t modbus_dcu_send_msg(void *, const void *, uint16_t);
 
  void my_modbus_rx_32(void);
  uint8_t init_stream_params(void);
  void init_mb_master_timers(void);
  int8_t master_controller_work(C_data *);
+ int8_t master_controller_work_dcu(C_data *);
  int32_t mb32_swap(const int32_t);
  int16_t mb16_swap(const int16_t);
 
@@ -41445,6 +41470,12 @@ void delay_ms(const uint16_t);
  extern EM_data2 emt;
  extern EM_serial ems;
  extern EM_version emv;
+
+ uint8_t dcu_crc_r(uint8_t *);
+ uint8_t dcu_crc_a(uint8_t *);
+
+ extern P_data P_read;
+ extern P_data_r P_action;
 # 21 "../canfd.h" 2
 # 1 "../batmon.h" 1
 # 55 "../batmon.h"

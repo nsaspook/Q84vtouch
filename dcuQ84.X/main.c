@@ -387,7 +387,7 @@ void main(void)
 		PROG_TRACE_SetHigh(); // main loop timing
 #endif
 		// Add your application code
-		master_controller_work(&C); // master MODBUS processing
+		master_controller_work_dcu(&C); // master MODBUS processing
 
 		if (B.one_sec_flag) { // one second tasks
 			eaDogM_Scroll_Task();
@@ -429,11 +429,14 @@ void main(void)
 					}
 				} else {
 					M.error = 0;
-					snprintf(buffer, MAX_B_BUF, "DCU 1");
-					eaDogM_WriteStringAtPos(1, 0, buffer);
-					snprintf(buffer, MAX_B_BUF, "DCU 0");
+					snprintf(buffer, MAX_B_BUF, "DCU 0  %03d          ", C.trace);
 					eaDogM_WriteStringAtPos(0, 0, buffer);
-
+					snprintf(buffer, MAX_B_BUF, "DCU 1  %03d          ", M.recv_count);
+					eaDogM_WriteStringAtPos(1, 0, buffer);
+					snprintf(buffer, MAX_B_BUF, "DCU 2, %03d          ", dcu_crc_r((uint8_t*) & P_read));
+					eaDogM_WriteStringAtPos(2, 0, buffer);
+					snprintf(buffer, MAX_B_BUF, "DCU 3, %03d          ", dcu_crc_a((uint8_t*) & P_action));
+					eaDogM_WriteStringAtPos(3, 0, buffer);
 				}
 			}
 		}

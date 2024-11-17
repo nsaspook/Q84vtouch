@@ -922,7 +922,14 @@ static int dtoa(FILE *fp, vfpf_sint_t d)
 
 
     s = d < 0 ? 1 : 0;
-# 533 "/opt/microchip/xc8/v2.46/pic/sources/c99/common/doprnt.c"
+
+
+
+
+    if (!(prec < 0)) {
+        flags &= ~(1 << 1);
+    }
+
     p = (0 <= prec) ? prec : 1;
 
     w = width;
@@ -944,7 +951,7 @@ static int dtoa(FILE *fp, vfpf_sint_t d)
 
 
 
-
+    || ((0 < w) && (flags & (1 << 1)))
 
     )) {
         --i;
@@ -1176,7 +1183,16 @@ static int efgtoa(FILE *fp, long double f, char c)
  memcpy(&dbuf[i-n], &dbuf[0], (size_t)n);
  n = i-n;
  i = sign == 0 ? 0 : 1;
-# 861 "/opt/microchip/xc8/v2.46/pic/sources/c99/common/doprnt.c"
+
+
+ if (flags & (1 << 1)) {
+  while (w > i && n > i) {
+   dbuf[--n] = '0';
+   w--;
+  }
+ }
+
+
  if (sign) {
   dbuf[--n] = sign;
  }
@@ -1250,7 +1266,17 @@ static int utoa(FILE *fp, vfpf_uint_t d)
     int i, w;
 
  int p;
-# 1017 "/opt/microchip/xc8/v2.46/pic/sources/c99/common/doprnt.c"
+
+
+
+
+
+
+
+    if (!(prec < 0)) {
+        flags &= ~(1 << 1);
+    }
+
     p = (0 <= prec) ? prec : 1;
 
     w = width;
@@ -1265,7 +1291,7 @@ static int utoa(FILE *fp, vfpf_uint_t d)
 
 
 
-
+    || ((0 < w) && (flags & (1 << 1)))
 
     )) {
         --i;
@@ -1300,7 +1326,11 @@ static int xtoa(FILE *fp, vfpf_uint_t d)
     int i, w;
 
  int p;
-# 1080 "/opt/microchip/xc8/v2.46/pic/sources/c99/common/doprnt.c"
+# 1076 "/opt/microchip/xc8/v2.46/pic/sources/c99/common/doprnt.c"
+    if (!(prec < 0)) {
+        flags &= ~(1 << 1);
+    }
+
     p = (0 <= prec) ? prec : 1;
 
     w = width;
@@ -1314,7 +1344,7 @@ static int xtoa(FILE *fp, vfpf_uint_t d)
 
 
 
-
+    || ((0 < w) && (flags & (1 << 1)))
 
     )) {
         --i;
@@ -1384,6 +1414,29 @@ vfpfcnvrt(FILE *fp, char *fmt[], va_list ap)
 
         flags = width = 0;
         prec = -1;
+
+
+
+        done = 0;
+        while (!done) {
+            switch ((*fmt)[0]) {
+
+
+
+
+
+
+
+                case '0' :
+                    flags |= (1 << 1);
+                    ++*fmt;
+                    break;
+# 1242 "/opt/microchip/xc8/v2.46/pic/sources/c99/common/doprnt.c"
+                default:
+                    done = 1;
+                    break;
+            }
+        }
 # 1256 "/opt/microchip/xc8/v2.46/pic/sources/c99/common/doprnt.c"
   width = read_prec_or_width(fmt, ap);
   if (width < 0) {

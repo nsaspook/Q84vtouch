@@ -5,24 +5,24 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v F24584 `(v ~T0 @X0 0 tf ]
 "55 ../batmon.h
 [; ;../batmon.h: 55:  typedef struct EB_data {
-[s S3309 `uc 1 `uc 1 `uc 1 `a 1 `f 1 `f 1 `f 1 `f 1 `f 1 `f 1 `f 1 `f 1 `f 1 `f 1 `f 1 `us 1 `us 1 `us 1 `us 1 `us 1 `ul 1 `ul 1 `us 1 ]
-[n S3309 EB_data checkmark version alt_display loaded FMw FMpv FMa FMbv ENw ENva ENvar ENac volt_whole bat_amp_whole bat_energy cc_mode bat_cycles bat_mode time date bat_time fm80_time crc ]
+[s S3311 `uc 1 `uc 1 `uc 1 `a 1 `f 1 `f 1 `f 1 `f 1 `f 1 `f 1 `f 1 `f 1 `f 1 `f 1 `f 1 `us 1 `us 1 `us 1 `us 1 `us 1 `ul 1 `ul 1 `us 1 ]
+[n S3311 EB_data checkmark version alt_display loaded FMw FMpv FMa FMbv ENw ENva ENvar ENac volt_whole bat_amp_whole bat_energy cc_mode bat_cycles bat_mode time date bat_time fm80_time crc ]
 "108
 [; ;../batmon.h: 108:  uint8_t DATAEE_ReadByte(const uint16_t);
 [v _DATAEE_ReadByte `(uc ~T0 @X0 0 ef1`Cus ]
-"319 ../modbus_master.h
-[; ;../modbus_master.h: 319:  uint16_t crc16(volatile uint8_t *, uint16_t);
+"339 ../modbus_master.h
+[; ;../modbus_master.h: 339:  uint16_t crc16(volatile uint8_t *, uint16_t);
 [v _crc16 `(us ~T0 @X0 0 ef2`*Vuc`us ]
 "107 ../batmon.h
 [; ;../batmon.h: 107:  void DATAEE_WriteByte(const uint16_t, const uint8_t);
 [v _DATAEE_WriteByte `(v ~T0 @X0 0 ef2`Cus`Cuc ]
-"194 ../modbus_master.h
-[; ;../modbus_master.h: 194:  typedef __pack struct EM_data1 {
-[s S3300 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vs 1 `Vs 1 `Vs 1 `Vs 1 `Vs 1 `Vs 1 ]
-[n S3300 EM_data1 vl1n vl2n vl3n vl1l2 vl2l3 vl3l1 al1 al2 al3 wl1 wl2 wl3 val1 val2 val3 varl1 varl2 varl3 vlnsys vllsys wsys vasys varsys pfl1 pfl2 pfl3 pfsys phaseseq hz ]
-"347
-[; ;../modbus_master.h: 347:  extern EM_data1 em;
-[v _em `QS3300 ~T0 @X0 0 e ]
+"214 ../modbus_master.h
+[; ;../modbus_master.h: 214:  typedef __pack struct EM_data1 {
+[s S3302 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vs 1 `Vs 1 `Vs 1 `Vs 1 `Vs 1 `Vs 1 ]
+[n S3302 EM_data1 vl1n vl2n vl3n vl1l2 vl2l3 vl3l1 al1 al2 al3 wl1 wl2 wl3 val1 val2 val3 varl1 varl2 varl3 vlnsys vllsys wsys vasys varsys pfl1 pfl2 pfl3 pfsys phaseseq hz ]
+"369
+[; ;../modbus_master.h: 369:  extern EM_data1 em;
+[v _em `QS3302 ~T0 @X0 0 e ]
 "90 ../qconfig.h
 [; ;../qconfig.h: 90: extern uint16_t panel_watts, volt_whole, bat_amp_whole, volt_fract, vw;
 [v _panel_watts `us ~T0 @X0 0 e ]
@@ -39,15 +39,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _UART2_is_rx_ready `(a ~T0 @X0 0 ef ]
 "106 ../dcuQ84.X/mxcmd.h
 [; ;../dcuQ84.X/mxcmd.h: 106:  typedef struct {
-[s S3307 `uc 1 `s 1 `s 1 `s 1 `s 1 `s 1 `s 1 `s 1 `s 1 `s 1 `s 1 `uc 1 ]
-[n S3307 . type day amp_hours kilowatt_hours volts_peak amps_peak kilowatts_peak bat_min bat_max absorb_time float_time select ]
+[s S3309 `uc 1 `s 1 `s 1 `s 1 `s 1 `s 1 `s 1 `s 1 `s 1 `s 1 `s 1 `uc 1 ]
+[n S3309 . type day amp_hours kilowatt_hours volts_peak amps_peak kilowatts_peak bat_min bat_max absorb_time float_time select ]
 "121
 [; ;../dcuQ84.X/mxcmd.h: 121:  typedef struct B_type {
-[s S3308 `Va 1 `Va 1 `Va 1 `Va 1 `Va 1 `Va 1 `Va -> 3 `i `Va -> 3 `i `Va -> 3 `i `Vus 1 `Vus 1 `Vus 1 `Vus 1 `Vus 1 `Vus 1 `Vus 1 `Va 1 `Va 1 `Va 1 `Va 1 `Va 1 `Vuc 1 `Vuc 1 `Vuc 1 `Vuc -> 3 `i `f 1 `f 1 `us -> 10 `i `us -> 3 `i `S3307 1 ]
-[n S3308 B_type ten_sec_flag one_sec_flag FM80_charged pv_high pv_update once a_switch a_trigger a_type pacing rx_count flush pv_prev day_check node_id dim_delay FM80_online FM80_io LOG display_dim display_update canbus_online modbus_online alt_display a_pin run_time net_balance mui fwrev log ]
+[s S3310 `Va 1 `Va 1 `Va 1 `Va 1 `Va 1 `Va 1 `Va -> 3 `i `Va -> 3 `i `Va -> 3 `i `Vus 1 `Vus 1 `Vus 1 `Vus 1 `Vus 1 `Vus 1 `Vus 1 `Va 1 `Va 1 `Va 1 `Va 1 `Va 1 `Vuc 1 `Vuc 1 `Vuc 1 `Vuc -> 3 `i `f 1 `f 1 `us -> 10 `i `us -> 3 `i `S3309 1 ]
+[n S3310 B_type ten_sec_flag one_sec_flag FM80_charged pv_high pv_update once a_switch a_trigger a_type pacing rx_count flush pv_prev day_check node_id dim_delay FM80_online FM80_io LOG display_dim display_update canbus_online modbus_online alt_display a_pin run_time net_balance mui fwrev log ]
 "145
 [; ;../dcuQ84.X/mxcmd.h: 145:  extern B_type B;
-[v _B `S3308 ~T0 @X0 0 e ]
+[v _B `S3310 ~T0 @X0 0 e ]
 "356 ../dcuQ84.X/mcc_generated_files/uart2.h
 [; ;../dcuQ84.X/mcc_generated_files/uart2.h: 356: uint8_t UART2_Read(void);
 [v _UART2_Read `(uc ~T0 @X0 0 ef ]
@@ -67,20 +67,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 "121 ./../eadog.h
 [; ;./../eadog.h: 121:  char * eaDogM_Scroll_String(char *);
 [v _eaDogM_Scroll_String `(*uc ~T0 @X0 0 ef1`*uc ]
-"219 ../modbus_master.h
-[; ;../modbus_master.h: 219:  typedef __pack struct EM_serial {
-[s S3302 `Vuc -> 14 `i `Vs 1 ]
-[n S3302 EM_serial serial year ]
-"349
-[; ;../modbus_master.h: 349:  extern EM_serial ems;
-[v _ems `QS3302 ~T0 @X0 0 e ]
-"224
-[; ;../modbus_master.h: 224:  typedef __pack struct EM_version {
-[s S3303 `Vs 1 ]
-[n S3303 EM_version firmware ]
-"350
-[; ;../modbus_master.h: 350:  extern EM_version emv;
-[v _emv `QS3303 ~T0 @X0 0 e ]
+"239 ../modbus_master.h
+[; ;../modbus_master.h: 239:  typedef __pack struct EM_serial {
+[s S3304 `Vuc -> 14 `i `Vs 1 ]
+[n S3304 EM_serial serial year ]
+"371
+[; ;../modbus_master.h: 371:  extern EM_serial ems;
+[v _ems `QS3304 ~T0 @X0 0 e ]
+"244
+[; ;../modbus_master.h: 244:  typedef __pack struct EM_version {
+[s S3305 `Vs 1 ]
+[n S3305 EM_version firmware ]
+"372
+[; ;../modbus_master.h: 372:  extern EM_version emv;
+[v _emv `QS3305 ~T0 @X0 0 e ]
 "117 /opt/microchip/xc8/v2.46/pic/include/c99/stdio.h
 [; ;/opt/microchip/xc8/v2.46/pic/include/c99/stdio.h: 117: int printf(const char *restrict, ...);
 [v _printf `(i ~T0 @X0 0 ev`*Cuc ]
@@ -106,8 +106,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _all_relays_off `(v ~T0 @X0 0 ef ]
 "213 ../batmon.c
 [; ;../batmon.c: 213:   if ((cc_mode == STATUS_FLOATING) && ((EB->FMw > 200.0f) || (EB->FMpv > 120.0f)) && (EB->ENw > 200.0f)) {
-[c E25071 0 1 2 3 4 5 .. ]
-[n E25071 status_type STATUS_SLEEPING STATUS_FLOATING STATUS_BULK STATUS_ABSORB STATUS_EQUALIZE STATUS_LAST  ]
+[c E25118 0 1 2 3 4 5 .. ]
+[n E25118 status_type STATUS_SLEEPING STATUS_FLOATING STATUS_BULK STATUS_ABSORB STATUS_EQUALIZE STATUS_LAST  ]
 "162 /opt/microchip/xc8/v2.46/pic/include/c99/math.h
 [; ;/opt/microchip/xc8/v2.46/pic/include/c99/math.h: 162: float fabsf(float);
 [v _fabsf `(f ~T0 @X0 0 ef1`f ]
@@ -3892,8 +3892,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "535
 [; ;../dcuQ84.X/mcc_generated_files/uart5.h: 535: void (*UART5_TxInterruptHandler)(void);
 [v _UART5_TxInterruptHandler `*F24584 ~T0 @X0 1 e ]
-"243 ../modbus_master.h
-[; ;../modbus_master.h: 243:  static const uint8_t table_crc_hi[] = {
+"263 ../modbus_master.h
+[; ;../modbus_master.h: 263:  static const uint8_t table_crc_hi[] = {
 [v _table_crc_hi `Cuc ~T0 @X0 -> 256 `i s ]
 [i _table_crc_hi
 :U ..
@@ -4155,8 +4155,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 64 `i `uc
 ..
 ]
-"273
-[; ;../modbus_master.h: 273:  static const uint8_t table_crc_lo[] = {
+"293
+[; ;../modbus_master.h: 293:  static const uint8_t table_crc_lo[] = {
 [v _table_crc_lo `Cuc ~T0 @X0 -> 256 `i s ]
 [i _table_crc_lo
 :U ..
@@ -4654,10 +4654,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `i `us
 ..
 ]
-[v F25079 `Cuc ~T0 @X0 -> 12 `i t ]
+[v F25126 `Cuc ~T0 @X0 -> 12 `i t ]
 "74
 [; ;../dcuQ84.X/mxcmd.h: 74:  const char state_name [][12] = {
-[v _state_name `F25079 ~T0 @X0 -> 6 `i e ]
+[v _state_name `F25126 ~T0 @X0 -> 6 `i e ]
 [i _state_name
 :U ..
 :U ..
@@ -4719,10 +4719,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-[v F25081 `Cuc ~T0 @X0 -> 12 `i t ]
+[v F25128 `Cuc ~T0 @X0 -> 12 `i t ]
 "83
 [; ;../dcuQ84.X/mxcmd.h: 83:  const char FM80_name [][12] = {
-[v _FM80_name `F25081 ~T0 @X0 -> 2 `i e ]
+[v _FM80_name `F25128 ~T0 @X0 -> 2 `i e ]
 [i _FM80_name
 :U ..
 :U ..
@@ -4749,10 +4749,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-[v F25083 `Cuc ~T0 @X0 -> 12 `i t ]
+[v F25130 `Cuc ~T0 @X0 -> 12 `i t ]
 "88
 [; ;../dcuQ84.X/mxcmd.h: 88:  const char canbus_name [][12] = {
-[v _canbus_name `F25083 ~T0 @X0 -> 2 `i e ]
+[v _canbus_name `F25130 ~T0 @X0 -> 2 `i e ]
 [i _canbus_name
 :U ..
 :U ..
@@ -4779,10 +4779,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-[v F25085 `Cuc ~T0 @X0 -> 12 `i t ]
+[v F25132 `Cuc ~T0 @X0 -> 12 `i t ]
 "93
 [; ;../dcuQ84.X/mxcmd.h: 93:  const char modbus_name [][12] = {
-[v _modbus_name `F25085 ~T0 @X0 -> 2 `i e ]
+[v _modbus_name `F25132 ~T0 @X0 -> 2 `i e ]
 [i _modbus_name
 :U ..
 :U ..
@@ -4922,10 +4922,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> 0 `c
 ..
 ]
-[v F25187 `Cul ~T0 @X0 -> 2 `i t ]
+[v F25234 `Cul ~T0 @X0 -> 2 `i t ]
 "74
 [; ;../batmon.h: 74:  const uint32_t BVSOC_TABLE[12][2] = {
-[v _BVSOC_TABLE `F25187 ~T0 @X0 -> 12 `i e ]
+[v _BVSOC_TABLE `F25234 ~T0 @X0 -> 12 `i e ]
 [i _BVSOC_TABLE
 :U ..
 :U ..
@@ -4980,7 +4980,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 ]
 "4 ../batmon.c
 [; ;../batmon.c: 4: EB_data EBD = {
-[v _EBD `S3309 ~T0 @X0 1 e ]
+[v _EBD `S3311 ~T0 @X0 1 e ]
 [i _EBD
 :U ..
 :U ..
@@ -5036,7 +5036,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 ]
 "22
 [; ;../batmon.c: 22: EB_data *get_EEPROM(void)
-[v _get_EEPROM `(*S3309 ~T0 @X0 1 ef ]
+[v _get_EEPROM `(*S3311 ~T0 @X0 1 ef ]
 "23
 [; ;../batmon.c: 23: {
 {
@@ -5045,10 +5045,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "24
 [; ;../batmon.c: 24:  return &EBD;
 [e ) &U _EBD ]
-[e $UE 3310  ]
+[e $UE 3312  ]
 "25
 [; ;../batmon.c: 25: }
-[e :UE 3310 ]
+[e :UE 3312 ]
 }
 "30
 [; ;../batmon.c: 30: _Bool initbm_data(uint8_t * EB)
@@ -5065,11 +5065,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "32
 [; ;../batmon.c: 32:  EB_data *ebd = (EB_data*) EB;
-[v _ebd `*S3309 ~T0 @X0 1 a ]
-[e = _ebd -> _EB `*S3309 ]
+[v _ebd `*S3311 ~T0 @X0 1 a ]
+[e = _ebd -> _EB `*S3311 ]
 "34
 [; ;../batmon.c: 34:  if (DATAEE_ReadByte(0) != 0x57+1) {
-[e $ ! != -> ( _DATAEE_ReadByte (1 -> -> 0 `i `us `i + -> 87 `i -> 1 `i 3312  ]
+[e $ ! != -> ( _DATAEE_ReadByte (1 -> -> 0 `i `us `i + -> 87 `i -> 1 `i 3314  ]
 {
 "35
 [; ;../batmon.c: 35:   ebd->loaded = 0;
@@ -5077,21 +5077,21 @@ Version 4.0 HI-TECH Software Intermediate Code
 "36
 [; ;../batmon.c: 36:   return 0;
 [e ) -> -> 0 `i `a ]
-[e $UE 3311  ]
+[e $UE 3313  ]
 "37
 [; ;../batmon.c: 37:  } else {
 }
-[e $U 3313  ]
-[e :U 3312 ]
+[e $U 3315  ]
+[e :U 3314 ]
 {
 "38
 [; ;../batmon.c: 38:   for (uint16_t i = 0; i < sizeof(EB_data); i++) {
 {
 [v _i `us ~T0 @X0 1 a ]
 [e = _i -> -> 0 `i `us ]
-[e $ < -> _i `ui -> # `S3309 `ui 3314  ]
-[e $U 3315  ]
-[e :U 3314 ]
+[e $ < -> _i `ui -> # `S3311 `ui 3316  ]
+[e $U 3317  ]
+[e :U 3316 ]
 {
 "39
 [; ;../batmon.c: 39:    EB[i] = DATAEE_ReadByte(i);
@@ -5100,8 +5100,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;../batmon.c: 40:   }
 }
 [e ++ _i -> -> 1 `i `us ]
-[e $ < -> _i `ui -> # `S3309 `ui 3314  ]
-[e :U 3315 ]
+[e $ < -> _i `ui -> # `S3311 `ui 3316  ]
+[e :U 3317 ]
 }
 "41
 [; ;../batmon.c: 41:   ebd->loaded = 1;
@@ -5109,14 +5109,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 "42
 [; ;../batmon.c: 42:  }
 }
-[e :U 3313 ]
+[e :U 3315 ]
 "43
 [; ;../batmon.c: 43:  return 1;
 [e ) -> -> 1 `i `a ]
-[e $UE 3311  ]
+[e $UE 3313  ]
 "44
 [; ;../batmon.c: 44: }
-[e :UE 3311 ]
+[e :UE 3313 ]
 }
 "49
 [; ;../batmon.c: 49: void wr_bm_data(uint8_t * EB)
@@ -5133,8 +5133,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "51
 [; ;../batmon.c: 51:  EB_data *ebd = (EB_data*) EB;
-[v _ebd `*S3309 ~T0 @X0 1 a ]
-[e = _ebd -> _EB `*S3309 ]
+[v _ebd `*S3311 ~T0 @X0 1 a ]
+[e = _ebd -> _EB `*S3311 ]
 "53
 [; ;../batmon.c: 53:  EB[0] = 0x57+1;
 [e = *U + _EB * -> -> 0 `i `x -> -> # *U _EB `i `x -> + -> 87 `i -> 1 `i `uc ]
@@ -5143,13 +5143,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . *U _ebd 22 -> -> 0 `i `us ]
 "55
 [; ;../batmon.c: 55:  ebd->crc = crc16(EB, sizeof(EB_data) - 2);
-[e = . *U _ebd 22 ( _crc16 (2 , -> _EB `*Vuc -> - -> # `S3309 `ui -> -> 2 `i `ui `us ]
+[e = . *U _ebd 22 ( _crc16 (2 , -> _EB `*Vuc -> - -> # `S3311 `ui -> -> 2 `i `ui `us ]
 "56
 [; ;../batmon.c: 56:  ebd->bat_time = ++ebd->bat_time;
 [e = . *U _ebd 20 =+ . *U _ebd 20 -> -> -> 1 `i `l `ul ]
 "58
 [; ;../batmon.c: 58:  if ((ebd->bat_time) % 8 == 0) {
-[e $ ! == % . *U _ebd 20 -> -> -> 8 `i `l `ul -> -> -> 0 `i `l `ul 3318  ]
+[e $ ! == % . *U _ebd 20 -> -> -> 8 `i `l `ul -> -> -> 0 `i `l `ul 3320  ]
 {
 "59
 [; ;../batmon.c: 59:   ebd->bat_cycles++;
@@ -5157,15 +5157,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 "60
 [; ;../batmon.c: 60:  }
 }
-[e :U 3318 ]
+[e :U 3320 ]
 "62
 [; ;../batmon.c: 62:  for (uint16_t i = 0; i < sizeof(EB_data); i++) {
 {
 [v _i `us ~T0 @X0 1 a ]
 [e = _i -> -> 0 `i `us ]
-[e $ < -> _i `ui -> # `S3309 `ui 3319  ]
-[e $U 3320  ]
-[e :U 3319 ]
+[e $ < -> _i `ui -> # `S3311 `ui 3321  ]
+[e $U 3322  ]
+[e :U 3321 ]
 {
 "63
 [; ;../batmon.c: 63:   DATAEE_WriteByte(i, EB[i]);
@@ -5174,23 +5174,23 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;../batmon.c: 64:  }
 }
 [e ++ _i -> -> 1 `i `us ]
-[e $ < -> _i `ui -> # `S3309 `ui 3319  ]
-[e :U 3320 ]
+[e $ < -> _i `ui -> # `S3311 `ui 3321  ]
+[e :U 3322 ]
 }
 "65
 [; ;../batmon.c: 65: }
-[e :UE 3317 ]
+[e :UE 3319 ]
 }
 "72
 [; ;../batmon.c: 72: void get_bm_data(EB_data * EB)
-[v _get_bm_data `(v ~T0 @X0 1 ef1`*S3309 ]
+[v _get_bm_data `(v ~T0 @X0 1 ef1`*S3311 ]
 "73
 [; ;../batmon.c: 73: {
 {
 [e :U _get_bm_data ]
 "72
 [; ;../batmon.c: 72: void get_bm_data(EB_data * EB)
-[v _EB `*S3309 ~T0 @X0 1 r1 ]
+[v _EB `*S3311 ~T0 @X0 1 r1 ]
 "73
 [; ;../batmon.c: 73: {
 [f ]
@@ -5230,11 +5230,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . *U _EB 12 -> _vw `f ]
 "91
 [; ;../batmon.c: 91:  if (UART2_is_rx_ready() || B.LOG) {
-[e $ ! || != -> ( _UART2_is_rx_ready ..  `i -> 0 `i != -> . _B 18 `i -> 0 `i 3323  ]
+[e $ ! || != -> ( _UART2_is_rx_ready ..  `i -> 0 `i != -> . _B 18 `i -> 0 `i 3325  ]
 {
 "92
 [; ;../batmon.c: 92:   if (B.LOG) {
-[e $ ! != -> . _B 18 `i -> 0 `i 3324  ]
+[e $ ! != -> . _B 18 `i -> 0 `i 3326  ]
 {
 "93
 [; ;../batmon.c: 93:    B.LOG = 0;
@@ -5245,8 +5245,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "95
 [; ;../batmon.c: 95:   } else {
 }
-[e $U 3325  ]
-[e :U 3324 ]
+[e $U 3327  ]
+[e :U 3326 ]
 {
 "96
 [; ;../batmon.c: 96:    rxData = UART2_Read();
@@ -5254,26 +5254,26 @@ Version 4.0 HI-TECH Software Intermediate Code
 "97
 [; ;../batmon.c: 97:   }
 }
-[e :U 3325 ]
+[e :U 3327 ]
 "98
 [; ;../batmon.c: 98:   switch (rxData) {
-[e $U 3327  ]
+[e $U 3329  ]
 {
 "99
 [; ;../batmon.c: 99:   case 'A':
-[e :U 3328 ]
+[e :U 3330 ]
 "100
 [; ;../batmon.c: 100:    B.alt_display = 3;
 [e = . _B 23 -> -> 3 `i `uc ]
 "101
 [; ;../batmon.c: 101:   case 'a':
-[e :U 3329 ]
+[e :U 3331 ]
 "102
 [; ;../batmon.c: 102:    B.alt_display++;
 [e ++ . _B 23 -> -> 1 `i `Vuc ]
 "103
 [; ;../batmon.c: 103:    if (B.alt_display > 3) {
-[e $ ! > -> . _B 23 `i -> 3 `i 3330  ]
+[e $ ! > -> . _B 23 `i -> 3 `i 3332  ]
 {
 "104
 [; ;../batmon.c: 104:     B.alt_display = 0;
@@ -5281,19 +5281,19 @@ Version 4.0 HI-TECH Software Intermediate Code
 "105
 [; ;../batmon.c: 105:    }
 }
-[e :U 3330 ]
+[e :U 3332 ]
 "106
 [; ;../batmon.c: 106:    EB->alt_display = B.alt_display;
 [e = . *U _EB 2 . _B 23 ]
 "107
 [; ;../batmon.c: 107:    break;
-[e $U 3326  ]
+[e $U 3328  ]
 "108
 [; ;../batmon.c: 108:   case 'D':
-[e :U 3331 ]
+[e :U 3333 ]
 "109
 [; ;../batmon.c: 109:   case 'd':
-[e :U 3332 ]
+[e :U 3334 ]
 "110
 [; ;../batmon.c: 110:    snprintf(s_buffer, 21, "%s", asctime(can_newtime));
 [e ( _snprintf (2 , (. , , &U _s_buffer -> -> 21 `i `ui :s 1C ( _asctime (1 -> _can_newtime `*CS3277 ]
@@ -5302,13 +5302,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _eaDogM_Scroll_String (1 &U _s_buffer ]
 "112
 [; ;../batmon.c: 112:    break;
-[e $U 3326  ]
+[e $U 3328  ]
 "113
 [; ;../batmon.c: 113:   case 'f':
-[e :U 3333 ]
+[e :U 3335 ]
 "114
 [; ;../batmon.c: 114:   case 'F':
-[e :U 3334 ]
+[e :U 3336 ]
 "115
 [; ;../batmon.c: 115:    EB->bat_energy = 25.6f*200.0f*360.0f;
 [e = . *U _EB 14 * * -> .25.6 `f -> .200.0 `f -> .360.0 `f ]
@@ -5317,13 +5317,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ++ . *U _EB 16 -> -> 1 `i `us ]
 "117
 [; ;../batmon.c: 117:    break;
-[e $U 3326  ]
+[e $U 3328  ]
 "118
 [; ;../batmon.c: 118:   case 'e':
-[e :U 3335 ]
+[e :U 3337 ]
 "119
 [; ;../batmon.c: 119:   case 'E':
-[e :U 3336 ]
+[e :U 3338 ]
 "120
 [; ;../batmon.c: 120:    EB->bat_energy = 1;
 [e = . *U _EB 14 -> -> 1 `i `f ]
@@ -5332,13 +5332,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ++ . *U _EB 16 -> -> 1 `i `us ]
 "122
 [; ;../batmon.c: 122:    break;
-[e $U 3326  ]
+[e $U 3328  ]
 "123
 [; ;../batmon.c: 123:   case 'i':
-[e :U 3337 ]
+[e :U 3339 ]
 "124
 [; ;../batmon.c: 124:   case 'I':
-[e :U 3338 ]
+[e :U 3340 ]
 "125
 [; ;../batmon.c: 125:    snprintf(s_buffer, 21, "%s %u                  ", ems.serial, ems.year);
 [e ( _snprintf (2 , , (. , , &U _s_buffer -> -> 21 `i `ui :s 2C &U . _ems 0 -> . _ems 1 `i ]
@@ -5365,22 +5365,22 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _eaDogM_Scroll_String (1 &U _s_buffer ]
 "133
 [; ;../batmon.c: 133:    break;
-[e $U 3326  ]
+[e $U 3328  ]
 "134
 [; ;../batmon.c: 134:   case 'R':
-[e :U 3339 ]
+[e :U 3341 ]
 "135
 [; ;../batmon.c: 135:   case 'r':
-[e :U 3340 ]
+[e :U 3342 ]
 "136
 [; ;../batmon.c: 136:    B.log.select = 0;
 [e = . . _B 29 11 -> -> 0 `i `uc ]
 "137
 [; ;../batmon.c: 137:   case 'L':
-[e :U 3341 ]
+[e :U 3343 ]
 "138
 [; ;../batmon.c: 138:   case 'l':
-[e :U 3342 ]
+[e :U 3344 ]
 "139
 [; ;../batmon.c: 139:    B.log.select++;
 [e ++ . . _B 29 11 -> -> 1 `i `uc ]
@@ -5392,7 +5392,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _eaDogM_Scroll_String (1 &U _s_buffer ]
 "142
 [; ;../batmon.c: 142:    if (rxData == 'L') {
-[e $ ! == -> _rxData `ui -> 76 `ui 3343  ]
+[e $ ! == -> _rxData `ui -> 76 `ui 3345  ]
 {
 "143
 [; ;../batmon.c: 143:     snprintf(s_buffer, 21, "#,%5.2f,%5.2f,", (float) B.log.kilowatts_peak / 1000.0, (float) B.log.kilowatt_hours / 10.0);
@@ -5403,7 +5403,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "145
 [; ;../batmon.c: 145:    }
 }
-[e :U 3343 ]
+[e :U 3345 ]
 "146
 [; ;../batmon.c: 146:    snprintf(s_buffer, 21, "Chg F%imin A%imin                ", B.log.float_time, B.log.absorb_time);
 [e ( _snprintf (2 , , (. , , &U _s_buffer -> -> 21 `i `ui :s 9C -> . . _B 29 10 `i -> . . _B 29 9 `i ]
@@ -5412,7 +5412,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _eaDogM_Scroll_String (1 &U _s_buffer ]
 "148
 [; ;../batmon.c: 148:    if (rxData == 'L') {
-[e $ ! == -> _rxData `ui -> 76 `ui 3344  ]
+[e $ ! == -> _rxData `ui -> 76 `ui 3346  ]
 {
 "149
 [; ;../batmon.c: 149:     snprintf(s_buffer, 21, "%i,%i,", B.log.float_time, B.log.absorb_time);
@@ -5423,7 +5423,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "151
 [; ;../batmon.c: 151:    }
 }
-[e :U 3344 ]
+[e :U 3346 ]
 "152
 [; ;../batmon.c: 152:    snprintf(s_buffer, 21, "%iVpk %4.1fApk %iAh       ", B.log.volts_peak, (float) B.log.amps_peak / 10.0, B.log.amp_hours);
 [e ( _snprintf (2 , , , (. , , &U _s_buffer -> -> 21 `i `ui :s 12C -> . . _B 29 4 `i / -> -> . . _B 29 5 `f `d .10.0 -> . . _B 29 2 `i ]
@@ -5432,7 +5432,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _eaDogM_Scroll_String (1 &U _s_buffer ]
 "154
 [; ;../batmon.c: 154:    if (rxData == 'L') {
-[e $ ! == -> _rxData `ui -> 76 `ui 3345  ]
+[e $ ! == -> _rxData `ui -> 76 `ui 3347  ]
 {
 "155
 [; ;../batmon.c: 155:     snprintf(s_buffer, 21, "%i,%4.1f,%i,", B.log.volts_peak, (float) B.log.amps_peak / 10.0, B.log.amp_hours);
@@ -5443,7 +5443,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "157
 [; ;../batmon.c: 157:    }
 }
-[e :U 3345 ]
+[e :U 3347 ]
 "158
 [; ;../batmon.c: 158:    snprintf(s_buffer, 21, "%4.1fV %4.1fV :Day %i       ", (float) B.log.bat_max / 10.0, (float) B.log.bat_min / 10.0, B.log.day);
 [e ( _snprintf (2 , , , (. , , &U _s_buffer -> -> 21 `i `ui :s 15C / -> -> . . _B 29 8 `f `d .10.0 / -> -> . . _B 29 7 `f `d .10.0 -> . . _B 29 1 `i ]
@@ -5452,7 +5452,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _eaDogM_Scroll_String (1 &U _s_buffer ]
 "160
 [; ;../batmon.c: 160:    if (rxData == 'L') {
-[e $ ! == -> _rxData `ui -> 76 `ui 3346  ]
+[e $ ! == -> _rxData `ui -> 76 `ui 3348  ]
 {
 "161
 [; ;../batmon.c: 161:     snprintf(s_buffer, 21, "%4.1f,%4.1f,%i,", (float) B.log.bat_max / 10.0, (float) B.log.bat_min / 10.0, B.log.day);
@@ -5463,114 +5463,114 @@ Version 4.0 HI-TECH Software Intermediate Code
 "163
 [; ;../batmon.c: 163:    }
 }
-[e :U 3346 ]
+[e :U 3348 ]
 "164
 [; ;../batmon.c: 164:    break;
-[e $U 3326  ]
+[e $U 3328  ]
 "165
 [; ;../batmon.c: 165:   case 'W':
-[e :U 3347 ]
+[e :U 3349 ]
 "166
 [; ;../batmon.c: 166:   case 'w':
-[e :U 3348 ]
+[e :U 3350 ]
 "167
 [; ;../batmon.c: 167:    wr_bm_data((void*) EB);
 [e ( _wr_bm_data (1 -> -> _EB `*v `*uc ]
 "168
 [; ;../batmon.c: 168:    do { LATBbits.LATB1 = 1; } while(0);
-[e :U 3351 ]
+[e :U 3353 ]
 {
 [e = . . _LATBbits 0 1 -> -> 1 `i `uc ]
 }
-[e :U 3350 ]
+[e :U 3352 ]
 "169
 [; ;../batmon.c: 169:    break;
-[e $U 3326  ]
+[e $U 3328  ]
 "170
 [; ;../batmon.c: 170:   case 'V':
-[e :U 3352 ]
+[e :U 3354 ]
 "171
 [; ;../batmon.c: 171:    do { LATEbits.LATE2 = 1; } while(0);
-[e :U 3355 ]
+[e :U 3357 ]
 {
 [e = . . _LATEbits 0 2 -> -> 1 `i `uc ]
 }
-[e :U 3354 ]
+[e :U 3356 ]
 "172
 [; ;../batmon.c: 172:    break;
-[e $U 3326  ]
+[e $U 3328  ]
 "173
 [; ;../batmon.c: 173:   case 'v':
-[e :U 3356 ]
+[e :U 3358 ]
 "174
 [; ;../batmon.c: 174:    do { LATEbits.LATE2 = 0; } while(0);
-[e :U 3359 ]
+[e :U 3361 ]
 {
 [e = . . _LATEbits 0 2 -> -> 0 `i `uc ]
 }
-[e :U 3358 ]
+[e :U 3360 ]
 "175
 [; ;../batmon.c: 175:    break;
-[e $U 3326  ]
+[e $U 3328  ]
 "176
 [; ;../batmon.c: 176:   case '!':
-[e :U 3360 ]
+[e :U 3362 ]
 "177
 [; ;../batmon.c: 177:    all_relays_off();
 [e ( _all_relays_off ..  ]
 "178
 [; ;../batmon.c: 178:    break;
-[e $U 3326  ]
+[e $U 3328  ]
 "179
 [; ;../batmon.c: 179:   default:
-[e :U 3361 ]
+[e :U 3363 ]
 "180
 [; ;../batmon.c: 180:    break;
-[e $U 3326  ]
+[e $U 3328  ]
 "181
 [; ;../batmon.c: 181:   }
 }
-[e $U 3326  ]
-[e :U 3327 ]
-[e [\ _rxData , $ -> -> 65 `ui `i 3328
- , $ -> -> 97 `ui `i 3329
- , $ -> -> 68 `ui `i 3331
- , $ -> -> 100 `ui `i 3332
- , $ -> -> 102 `ui `i 3333
- , $ -> -> 70 `ui `i 3334
- , $ -> -> 101 `ui `i 3335
- , $ -> -> 69 `ui `i 3336
- , $ -> -> 105 `ui `i 3337
- , $ -> -> 73 `ui `i 3338
- , $ -> -> 82 `ui `i 3339
- , $ -> -> 114 `ui `i 3340
- , $ -> -> 76 `ui `i 3341
- , $ -> -> 108 `ui `i 3342
- , $ -> -> 87 `ui `i 3347
- , $ -> -> 119 `ui `i 3348
- , $ -> -> 86 `ui `i 3352
- , $ -> -> 118 `ui `i 3356
- , $ -> -> 33 `ui `i 3360
- 3361 ]
-[e :U 3326 ]
+[e $U 3328  ]
+[e :U 3329 ]
+[e [\ _rxData , $ -> -> 65 `ui `i 3330
+ , $ -> -> 97 `ui `i 3331
+ , $ -> -> 68 `ui `i 3333
+ , $ -> -> 100 `ui `i 3334
+ , $ -> -> 102 `ui `i 3335
+ , $ -> -> 70 `ui `i 3336
+ , $ -> -> 101 `ui `i 3337
+ , $ -> -> 69 `ui `i 3338
+ , $ -> -> 105 `ui `i 3339
+ , $ -> -> 73 `ui `i 3340
+ , $ -> -> 82 `ui `i 3341
+ , $ -> -> 114 `ui `i 3342
+ , $ -> -> 76 `ui `i 3343
+ , $ -> -> 108 `ui `i 3344
+ , $ -> -> 87 `ui `i 3349
+ , $ -> -> 119 `ui `i 3350
+ , $ -> -> 86 `ui `i 3354
+ , $ -> -> 118 `ui `i 3358
+ , $ -> -> 33 `ui `i 3362
+ 3363 ]
+[e :U 3328 ]
 "182
 [; ;../batmon.c: 182:  }
 }
-[e :U 3323 ]
+[e :U 3325 ]
 "183
 [; ;../batmon.c: 183: }
-[e :UE 3322 ]
+[e :UE 3324 ]
 }
 "192
 [; ;../batmon.c: 192: void compute_bm_data(EB_data * EB)
-[v _compute_bm_data `(v ~T0 @X0 1 ef1`*S3309 ]
+[v _compute_bm_data `(v ~T0 @X0 1 ef1`*S3311 ]
 "193
 [; ;../batmon.c: 193: {
 {
 [e :U _compute_bm_data ]
 "192
 [; ;../batmon.c: 192: void compute_bm_data(EB_data * EB)
-[v _EB `*S3309 ~T0 @X0 1 r1 ]
+[v _EB `*S3311 ~T0 @X0 1 r1 ]
 "193
 [; ;../batmon.c: 193: {
 [f ]
@@ -5589,7 +5589,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _net_balance - . *U _EB 4 * . *U _EB 8 -> .1.06 `f ]
 "200
 [; ;../batmon.c: 200:  if (net_balance > 0.0001f) {
-[e $ ! > _net_balance -> .0.0001 `f 3363  ]
+[e $ ! > _net_balance -> .0.0001 `f 3365  ]
 {
 "201
 [; ;../batmon.c: 201:   net_balance = net_balance * 0.985f;
@@ -5602,7 +5602,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . _B 25 / / . *U _EB 14 -> .360.0 `f -> .10.0 `f ]
 "204
 [; ;../batmon.c: 204:   if (B.run_time > 280.0f) {
-[e $ ! > . _B 25 -> .280.0 `f 3364  ]
+[e $ ! > . _B 25 -> .280.0 `f 3366  ]
 {
 "205
 [; ;../batmon.c: 205:    B.run_time = 280.0f;
@@ -5610,10 +5610,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "206
 [; ;../batmon.c: 206:   }
 }
-[e :U 3364 ]
+[e :U 3366 ]
 "207
 [; ;../batmon.c: 207:   if (B.run_time < 0.0001f) {
-[e $ ! < . _B 25 -> .0.0001 `f 3365  ]
+[e $ ! < . _B 25 -> .0.0001 `f 3367  ]
 {
 "208
 [; ;../batmon.c: 208:    B.run_time = 0.0001f;
@@ -5621,14 +5621,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 "209
 [; ;../batmon.c: 209:   }
 }
-[e :U 3365 ]
+[e :U 3367 ]
 "213
 [; ;../batmon.c: 213:   if ((cc_mode == STATUS_FLOATING) && ((EB->FMw > 200.0f) || (EB->FMpv > 120.0f)) && (EB->ENw > 200.0f)) {
-[e $ ! && && == -> _cc_mode `ui -> . `E25071 1 `ui || > . *U _EB 4 -> .200.0 `f > . *U _EB 5 -> .120.0 `f > . *U _EB 8 -> .200.0 `f 3366  ]
+[e $ ! && && == -> _cc_mode `ui -> . `E25118 1 `ui || > . *U _EB 4 -> .200.0 `f > . *U _EB 5 -> .120.0 `f > . *U _EB 8 -> .200.0 `f 3368  ]
 {
 "214
 [; ;../batmon.c: 214:    if (!B.FM80_charged) {
-[e $ ! ! != -> . _B 2 `i -> 0 `i 3367  ]
+[e $ ! ! != -> . _B 2 `i -> 0 `i 3369  ]
 {
 "215
 [; ;../batmon.c: 215:     B.FM80_charged = 1;
@@ -5639,16 +5639,16 @@ Version 4.0 HI-TECH Software Intermediate Code
 "217
 [; ;../batmon.c: 217:    }
 }
-[e :U 3367 ]
+[e :U 3369 ]
 "218
 [; ;../batmon.c: 218:   }
 }
-[e :U 3366 ]
+[e :U 3368 ]
 "219
 [; ;../batmon.c: 219:  } else {
 }
-[e $U 3368  ]
-[e :U 3363 ]
+[e $U 3370  ]
+[e :U 3365 ]
 {
 "220
 [; ;../batmon.c: 220:   net_balance = net_balance;
@@ -5661,7 +5661,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . _B 25 / / . *U _EB 14 -> .360.0 `f ( _fabsf (1 _net_balance ]
 "223
 [; ;../batmon.c: 223:   if (B.run_time > 280.0f) {
-[e $ ! > . _B 25 -> .280.0 `f 3369  ]
+[e $ ! > . _B 25 -> .280.0 `f 3371  ]
 {
 "224
 [; ;../batmon.c: 224:    B.run_time = 280.0f;
@@ -5669,10 +5669,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "225
 [; ;../batmon.c: 225:   }
 }
-[e :U 3369 ]
+[e :U 3371 ]
 "226
 [; ;../batmon.c: 226:   if (B.run_time < 0.0001f) {
-[e $ ! < . _B 25 -> .0.0001 `f 3370  ]
+[e $ ! < . _B 25 -> .0.0001 `f 3372  ]
 {
 "227
 [; ;../batmon.c: 227:    B.run_time = 0.0001f;
@@ -5680,14 +5680,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 "228
 [; ;../batmon.c: 228:   }
 }
-[e :U 3370 ]
+[e :U 3372 ]
 "232
 [; ;../batmon.c: 232:   if (cc_mode != STATUS_FLOATING) {
-[e $ ! != -> _cc_mode `ui -> . `E25071 1 `ui 3371  ]
+[e $ ! != -> _cc_mode `ui -> . `E25118 1 `ui 3373  ]
 {
 "233
 [; ;../batmon.c: 233:    if (B.FM80_charged && (EB->bat_energy < 25.6f*200.0f*360.0f*0.5f)) {
-[e $ ! && != -> . _B 2 `i -> 0 `i < . *U _EB 14 * * * -> .25.6 `f -> .200.0 `f -> .360.0 `f -> .0.5 `f 3372  ]
+[e $ ! && != -> . _B 2 `i -> 0 `i < . *U _EB 14 * * * -> .25.6 `f -> .200.0 `f -> .360.0 `f -> .0.5 `f 3374  ]
 {
 "234
 [; ;../batmon.c: 234:     B.FM80_charged = 0;
@@ -5695,15 +5695,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 "235
 [; ;../batmon.c: 235:    }
 }
-[e :U 3372 ]
+[e :U 3374 ]
 "236
 [; ;../batmon.c: 236:   }
 }
-[e :U 3371 ]
+[e :U 3373 ]
 "237
 [; ;../batmon.c: 237:  }
 }
-[e :U 3368 ]
+[e :U 3370 ]
 "238
 [; ;../batmon.c: 238:  net_energy = EB->bat_energy + net_balance;
 [e = _net_energy + . *U _EB 14 _net_balance ]
@@ -5712,7 +5712,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . *U _EB 14 - _net_energy -> .10.0 `f ]
 "244
 [; ;../batmon.c: 244:  if (EB->bat_energy > 25.6f*200.0f*360.0f) {
-[e $ ! > . *U _EB 14 * * -> .25.6 `f -> .200.0 `f -> .360.0 `f 3373  ]
+[e $ ! > . *U _EB 14 * * -> .25.6 `f -> .200.0 `f -> .360.0 `f 3375  ]
 {
 "245
 [; ;../batmon.c: 245:   EB->bat_energy = 25.6f*200.0f*360.0f;
@@ -5720,10 +5720,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "246
 [; ;../batmon.c: 246:  }
 }
-[e :U 3373 ]
+[e :U 3375 ]
 "247
 [; ;../batmon.c: 247:  if (EB->bat_energy <= 0.0001f) {
-[e $ ! <= . *U _EB 14 -> .0.0001 `f 3374  ]
+[e $ ! <= . *U _EB 14 -> .0.0001 `f 3376  ]
 {
 "248
 [; ;../batmon.c: 248:   EB->bat_energy = 0.0001f;
@@ -5731,17 +5731,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 "249
 [; ;../batmon.c: 249:  }
 }
-[e :U 3374 ]
+[e :U 3376 ]
 "251
 [; ;../batmon.c: 251:  if (B.pv_update) {
-[e $ ! != -> . _B 4 `i -> 0 `i 3375  ]
+[e $ ! != -> . _B 4 `i -> 0 `i 3377  ]
 {
 "252
 [; ;../batmon.c: 252:   B.pv_update = 0;
 [e = . _B 4 -> -> 0 `i `a ]
 "253
 [; ;../batmon.c: 253:   if (B.pv_prev == STATUS_SLEEPING) {
-[e $ ! == -> . _B 12 `ui -> . `E25071 0 `ui 3376  ]
+[e $ ! == -> . _B 12 `ui -> . `E25118 0 `ui 3378  ]
 {
 "254
 [; ;../batmon.c: 254:    run_day_to_night();
@@ -5749,8 +5749,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "255
 [; ;../batmon.c: 255:   } else {
 }
-[e $U 3377  ]
-[e :U 3376 ]
+[e $U 3379  ]
+[e :U 3378 ]
 {
 "256
 [; ;../batmon.c: 256:    pv_Wh_daily_prev = pv_Wh_daily;
@@ -5770,14 +5770,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 "261
 [; ;../batmon.c: 261:   }
 }
-[e :U 3377 ]
+[e :U 3379 ]
 "262
 [; ;../batmon.c: 262:  }
 }
-[e :U 3375 ]
+[e :U 3377 ]
 "263
 [; ;../batmon.c: 263: }
-[e :UE 3362 ]
+[e :UE 3364 ]
 }
 "265
 [; ;../batmon.c: 265: void DATAEE_WriteByte(const uint16_t bAdd, const uint8_t bData)
@@ -5826,11 +5826,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _NVMCON0bits 0 0 -> -> 1 `i `uc ]
 "289
 [; ;../batmon.c: 289:  while (NVMCON0bits.GO);
-[e $U 3379  ]
-[e :U 3380 ]
-[e :U 3379 ]
-[e $ != -> . . _NVMCON0bits 0 0 `i -> 0 `i 3380  ]
+[e $U 3381  ]
+[e :U 3382 ]
 [e :U 3381 ]
+[e $ != -> . . _NVMCON0bits 0 0 `i -> 0 `i 3382  ]
+[e :U 3383 ]
 "292
 [; ;../batmon.c: 292:  INTCON0bits.GIE = GIEBitValue;
 [e = . . _INTCON0bits 0 6 _GIEBitValue ]
@@ -5839,7 +5839,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _NVMCON1bits 1 0 -> -> 0 `i `uc ]
 "296
 [; ;../batmon.c: 296: }
-[e :UE 3378 ]
+[e :UE 3380 ]
 }
 "298
 [; ;../batmon.c: 298: uint8_t DATAEE_ReadByte(const uint16_t bAdd)
@@ -5872,10 +5872,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "309
 [; ;../batmon.c: 309:  return NVMDATL;
 [e ) _NVMDATL ]
-[e $UE 3382  ]
+[e $UE 3384  ]
 "310
 [; ;../batmon.c: 310: }
-[e :UE 3382 ]
+[e :UE 3384 ]
 }
 "315
 [; ;../batmon.c: 315: uint16_t Volts_to_SOC(const uint16_t bvw, const uint16_t bvf)
@@ -5902,13 +5902,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;../batmon.c: 323:  for (slot = 0; slot < 12; slot++) {
 {
 [e = _slot -> -> 0 `i `uc ]
-[e $ < -> _slot `i -> 12 `i 3384  ]
-[e $U 3385  ]
-[e :U 3384 ]
+[e $ < -> _slot `i -> 12 `i 3386  ]
+[e $U 3387  ]
+[e :U 3386 ]
 {
 "324
 [; ;../batmon.c: 324:   if ((bvw * 1000 + bvf * 100) > BVSOC_TABLE[slot][0]) {
-[e $ ! > -> + * -> _bvw `ui -> -> 1000 `i `ui * -> _bvf `ui -> -> 100 `i `ui `ul *U + &U *U + &U _BVSOC_TABLE * -> _slot `ux -> * -> # *U &U *U &U _BVSOC_TABLE `ui -> -> 2 `i `ui `ux * -> -> -> 0 `i `ui `ux -> -> # *U &U *U + &U _BVSOC_TABLE * -> _slot `ux -> * -> # *U &U *U &U _BVSOC_TABLE `ui -> -> 2 `i `ui `ux `ui `ux 3387  ]
+[e $ ! > -> + * -> _bvw `ui -> -> 1000 `i `ui * -> _bvf `ui -> -> 100 `i `ui `ul *U + &U *U + &U _BVSOC_TABLE * -> _slot `ux -> * -> # *U &U *U &U _BVSOC_TABLE `ui -> -> 2 `i `ui `ux * -> -> -> 0 `i `ui `ux -> -> # *U &U *U + &U _BVSOC_TABLE * -> _slot `ux -> * -> # *U &U *U &U _BVSOC_TABLE `ui -> -> 2 `i `ui `ux `ui `ux 3389  ]
 {
 "325
 [; ;../batmon.c: 325:    soc = (uint16_t) BVSOC_TABLE[slot][1];
@@ -5916,21 +5916,21 @@ Version 4.0 HI-TECH Software Intermediate Code
 "326
 [; ;../batmon.c: 326:   }
 }
-[e :U 3387 ]
+[e :U 3389 ]
 "327
 [; ;../batmon.c: 327:  }
 }
 [e ++ _slot -> -> 1 `i `uc ]
-[e $ < -> _slot `i -> 12 `i 3384  ]
-[e :U 3385 ]
+[e $ < -> _slot `i -> 12 `i 3386  ]
+[e :U 3387 ]
 }
 "328
 [; ;../batmon.c: 328:  return soc;
 [e ) _soc ]
-[e $UE 3383  ]
+[e $UE 3385  ]
 "329
 [; ;../batmon.c: 329: }
-[e :UE 3383 ]
+[e :UE 3385 ]
 }
 "331
 [; ;../batmon.c: 331: device_id_data_t DeviceID_Read(device_id_address_t address)
@@ -5985,14 +5985,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 "358
 [; ;../batmon.c: 358:  return deviceID;
 [e ) _deviceID ]
-[e $UE 3388  ]
+[e $UE 3390  ]
 "359
 [; ;../batmon.c: 359: }
-[e :UE 3388 ]
+[e :UE 3390 ]
 }
 "364
 [; ;../batmon.c: 364: void update_time(struct tm * ts, EB_data * EB)
-[v _update_time `(v ~T0 @X0 1 ef2`*S3277`*S3309 ]
+[v _update_time `(v ~T0 @X0 1 ef2`*S3277`*S3311 ]
 "365
 [; ;../batmon.c: 365: {
 {
@@ -6000,7 +6000,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "364
 [; ;../batmon.c: 364: void update_time(struct tm * ts, EB_data * EB)
 [v _ts `*S3277 ~T0 @X0 1 r1 ]
-[v _EB `*S3309 ~T0 @X0 1 r2 ]
+[v _EB `*S3311 ~T0 @X0 1 r2 ]
 "365
 [; ;../batmon.c: 365: {
 [f ]
@@ -6012,7 +6012,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . *U _EB 19 -> | | -> -> << & - . *U _ts 5 -> 2000 `i -> 127 `i -> 9 `i `us `ui -> -> << & . *U _ts 4 -> 15 `i -> 5 `i `us `ui -> -> & . *U _ts 3 -> 31 `i `us `ui `us ]
 "376
 [; ;../batmon.c: 376: }
-[e :UE 3389 ]
+[e :UE 3391 ]
 }
 [p f _printf 8650752 ]
 [p f _snprintf 10855552 ]
