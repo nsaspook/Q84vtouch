@@ -40841,9 +40841,9 @@ void delay_ms(const uint16_t);
 volatile uint8_t cc_stream_file, cc_buffer[240], cc_buffer_tx[240];
 
 P_data P_read = {
- .addr2 = '1',
- .addr1 = '2',
- .addr0 = '3',
+ .addr2 = '0',
+ .addr1 = '0',
+ .addr0 = '1',
  .action1 = '0',
  .action0 = '0',
  .para2 = '3',
@@ -40853,16 +40853,16 @@ P_data P_read = {
  .dl0 = '2',
  .data1 = '=',
  .data0 = '?',
- .crc2 = '1',
- .crc1 = '1',
- .crc0 = '2',
+ .crc2 = '0',
+ .crc1 = '0',
+ .crc0 = '0',
  .cr = 13,
 };
 
 P_data_r P_action = {
  .addr2 = '0',
- .addr1 = '4',
- .addr0 = '2',
+ .addr1 = '0',
+ .addr0 = '1',
  .action1 = '1',
  .action0 = '0',
  .para2 = '0',
@@ -40877,8 +40877,8 @@ P_data_r P_action = {
  .data[1] = '1',
  .data[0] = '1',
  .crc2 = '0',
- .crc1 = '2',
- .crc0 = '4',
+ .crc1 = '0',
+ .crc0 = '0',
  .cr = 13,
 };
 
@@ -40989,9 +40989,25 @@ static uint16_t modbus_rtu_send_msg_crc(volatile uint8_t *req, uint16_t req_leng
 
 uint16_t modbus_dcu_send_msg(void *cc_buffer, const void *modbus_cc_mode, uint16_t req_length)
 {
+ char tmp_crc[6];
+
  memcpy((void*) cc_buffer, (const void *) modbus_cc_mode, req_length);
 
 
+
+
+ if (req_length == 16) {
+  snprintf(tmp_crc, 4, "%03d", dcu_crc_r(cc_buffer));
+  P_read.crc2 = tmp_crc[0];
+  P_read.crc1 = tmp_crc[1];
+  P_read.crc0 = tmp_crc[2];
+ }
+ if (req_length == 20) {
+  snprintf(tmp_crc, 4, "%03d", dcu_crc_a(cc_buffer));
+  P_action.crc2 = tmp_crc[0];
+  P_action.crc1 = tmp_crc[1];
+  P_action.crc0 = tmp_crc[2];
+ }
 
  return req_length;
 }
@@ -41085,7 +41101,7 @@ static void log_crc_error(const uint16_t c_crc, const uint16_t c_crc_rec)
  M.crc_error++;
  M.error++;
 }
-# 264 "../modbus_master.c"
+# 280 "../modbus_master.c"
 int32_t mb32_swap(const int32_t value)
 {
  uint8_t i;
@@ -41542,7 +41558,7 @@ void timer_2ms_tick(void)
  MT.clock_500hz++;
  MT.clock_500ahz++;
 }
-# 734 "../modbus_master.c"
+# 750 "../modbus_master.c"
 static _Bool serial_trmt(void)
 {
  return !(UART5_is_tx_done);
