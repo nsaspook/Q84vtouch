@@ -435,6 +435,10 @@ void main(void)
 					snprintf(buffer, MAX_B_BUF, "MDrv %s %s           ", C.link, C.current);
 					eaDogM_WriteStringAtPos(1, 0, buffer);
 					snprintf(buffer, MAX_B_BUF, "Cont %s %s           ", C.dname, C.dsoft);
+					if (C.dcu_online) {
+						C.dcu_online = false;
+						buffer[19] = spinners(4, false);
+					}
 					eaDogM_WriteStringAtPos(2, 0, buffer);
 					snprintf(buffer, MAX_B_BUF, "Speed %s Hz          ", C.speed);
 					eaDogM_WriteStringAtPos(3, 0, buffer);

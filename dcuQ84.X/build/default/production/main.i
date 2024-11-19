@@ -41475,6 +41475,7 @@ void delay_ms(const uint16_t);
   uint32_t data_count, data_prev;
   volatile M_data M;
   uint8_t speed[12], mon[12], current[12], accel[12], dname[12], dsoft[12], link[12];
+  _Bool dcu_online;
  } C_data;
 
 
@@ -41587,7 +41588,7 @@ void delay_ms(const uint16_t);
   0x44, 0x84, 0x85, 0x45, 0x87, 0x47, 0x46, 0x86, 0x82, 0x42,
   0x43, 0x83, 0x41, 0x81, 0x80, 0x40
  };
-# 343 "./../modbus_master.h"
+# 344 "./../modbus_master.h"
  uint16_t crc16(volatile uint8_t *, uint16_t);
  uint16_t modbus_rtu_send_msg(void *, const void *, uint16_t);
  uint16_t modbus_dcu_send_msg(void *, const void *, uint16_t);
@@ -41755,7 +41756,7 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[512] = "Boot Init Display   ", info_buffer[512], log_buffer[512];
-const char *build_date = "Nov 19 2024", *build_time = "14:38:51";
+const char *build_date = "Nov 19 2024", *build_time = "15:24:20";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
@@ -41962,6 +41963,10 @@ void main(void)
      snprintf(buffer, 512, "MDrv %s %s           ", C.link, C.current);
      eaDogM_WriteStringAtPos(1, 0, buffer);
      snprintf(buffer, 512, "Cont %s %s           ", C.dname, C.dsoft);
+     if (C.dcu_online) {
+      C.dcu_online = 0;
+      buffer[19] = spinners(4, 0);
+     }
      eaDogM_WriteStringAtPos(2, 0, buffer);
      snprintf(buffer, 512, "Speed %s Hz          ", C.speed);
      eaDogM_WriteStringAtPos(3, 0, buffer);

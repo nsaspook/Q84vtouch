@@ -173,6 +173,7 @@ C_data C = {
 	.dname = "OFFLINE",
 	.dsoft = "OFFLINE",
 	.link = "OFFLINE",
+	.dcu_online = false,
 };
 
 volatile struct V_type V = {
@@ -730,6 +731,7 @@ static bool modbus_read_dcu_check(C_data * client, bool* cstate, const uint16_t 
 			}
 			MM_ERROR_C;
 			*cstate = true;
+			client->dcu_online = true;
 		} else {
 			MM_ERROR_S;
 			*cstate = false;

@@ -210,6 +210,7 @@ extern "C" {
 		uint32_t data_count, data_prev;
 		volatile M_data M;
 		uint8_t speed[12], mon[12], current[12], accel[12], dname[12], dsoft[12], link[12];
+		bool dcu_online;
 	} C_data;
 
 	/*

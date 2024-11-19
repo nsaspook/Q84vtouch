@@ -40681,6 +40681,7 @@ void delay_ms(const uint16_t);
   uint32_t data_count, data_prev;
   volatile M_data M;
   uint8_t speed[12], mon[12], current[12], accel[12], dname[12], dsoft[12], link[12];
+  _Bool dcu_online;
  } C_data;
 
 
@@ -40793,7 +40794,7 @@ void delay_ms(const uint16_t);
   0x44, 0x84, 0x85, 0x45, 0x87, 0x47, 0x46, 0x86, 0x82, 0x42,
   0x43, 0x83, 0x41, 0x81, 0x80, 0x40
  };
-# 343 "../modbus_master.h"
+# 344 "../modbus_master.h"
  uint16_t crc16(volatile uint8_t *, uint16_t);
  uint16_t modbus_rtu_send_msg(void *, const void *, uint16_t);
  uint16_t modbus_dcu_send_msg(void *, const void *, uint16_t);
@@ -41013,6 +41014,7 @@ C_data C = {
  .dname = "OFFLINE",
  .dsoft = "OFFLINE",
  .link = "OFFLINE",
+ .dcu_online = 0,
 };
 
 volatile struct V_type V = {
@@ -41192,7 +41194,7 @@ static void log_crc_error(const uint16_t c_crc, const uint16_t c_crc_rec)
  M.crc_error++;
  M.error++;
 }
-# 366 "../modbus_master.c"
+# 367 "../modbus_master.c"
 int32_t mb32_swap(const int32_t value)
 {
  uint8_t i;
@@ -41453,7 +41455,7 @@ void timer_2ms_tick(void)
  MT.clock_500hz++;
  MT.clock_500ahz++;
 }
-# 640 "../modbus_master.c"
+# 641 "../modbus_master.c"
 static _Bool serial_trmt(void)
 {
  return !(UART5_is_tx_done);
@@ -41547,6 +41549,7 @@ static _Bool modbus_read_dcu_check(C_data * client, _Bool* cstate, const uint16_
    }
    do { LATBbits.LATB1 = 0; } while(0);
    *cstate = 1;
+   client->dcu_online = 1;
   } else {
    do { LATBbits.LATB1 = 1; } while(0);
    *cstate = 0;
