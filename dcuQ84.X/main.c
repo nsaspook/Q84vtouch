@@ -434,9 +434,9 @@ void main(void)
 					eaDogM_WriteStringAtPos(0, 0, buffer);
 					snprintf(buffer, MAX_B_BUF, "DCU 1  %03d          ", M.recv_count);
 					eaDogM_WriteStringAtPos(1, 0, buffer);
-					snprintf(buffer, MAX_B_BUF, "DCU 2, %03d          ", dcu_crc_r((uint8_t*) & P_read));
+					snprintf(buffer, MAX_B_BUF, "Motor %s          ", C.mon);
 					eaDogM_WriteStringAtPos(2, 0, buffer);
-					snprintf(buffer, MAX_B_BUF, "DCU 3, %03d          ", dcu_crc_a((uint8_t*) & P_action));
+					snprintf(buffer, MAX_B_BUF, "Speed %s Hz          ", C.speed);
 					eaDogM_WriteStringAtPos(3, 0, buffer);
 				}
 			}

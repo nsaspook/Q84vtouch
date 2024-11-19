@@ -79,7 +79,7 @@ extern "C" {
 #define NHD_BL_LOW	2
 #define NHD_BL_MED	5
 #define NHD_BL_HIGH	8
-#define NHD_CONT	50
+#define NHD_CONT	35
 
 #define NHD_T_DELAY	8
 #define NHD_S_DELAY	200

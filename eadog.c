@@ -84,7 +84,7 @@ bool init_display(void)
 	DMAnCON0bits.EN = 1; /* enable DMA */
 	SPI1INTFbits.SPI1TXUIF = 1;
 	send_lcd_cmd_dma(LCD_CMD_BRI); // set back-light level
-	send_lcd_data_dma(NHD_BL_HIGH);
+	send_lcd_data_dma(NHD_BL_MED);
 	send_lcd_cmd_dma(LCD_CMD_CONT); // set display contrast
 	send_lcd_data_dma(NHD_CONT);
 	send_lcd_cmd_dma(LCD_CMD_ON); // display on

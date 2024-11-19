@@ -3,7 +3,7 @@
 #define	ON	1
 #define	OFF	0
 
-volatile uint8_t cc_stream_file, cc_buffer[MAX_DATA], cc_buffer_tx[MAX_DATA], dcu_data[MAX_DATA]; // RX and TX command buffers
+volatile uint8_t cc_stream_file, cc_buffer[MAX_DATA], cc_buffer_tx[MAX_DATA], dcu_data[MAX_DATA] = "OFFLINE"; // RX and TX command buffers
 
 P_data P_read = {
 	.addr2 = '0',
@@ -71,6 +71,8 @@ C_data C = {
 	.M.blink_lock = false,
 	.M.power_on = true,
 	.tm_ok = false,
+	.speed = "OFFLINE",
+	.mon = "OFFLINE",
 };
 
 volatile struct V_type V = {
@@ -141,13 +143,13 @@ uint16_t modbus_dcu_send_msg(void *cc_buffer, const void *modbus_cc_mode, uint16
 	 * add the checksum
 	 */
 
-	if (req_length == 16) { // data request
+	if (req_length == sizeof(P_read)) { // data request
 		snprintf(tmp_chk, 4, "%03d", dcu_crc_r(cc_buffer));
 		P_read.chk2 = tmp_chk[0];
 		P_read.chk1 = tmp_chk[1];
 		P_read.chk0 = tmp_chk[2];
 	}
-	if (req_length == 20) { // position request
+	if (req_length == sizeof(P_action)) { // position request
 		snprintf(tmp_chk, 4, "%03d", dcu_crc_a(cc_buffer));
 		P_action.chk2 = tmp_chk[0];
 		P_action.chk1 = tmp_chk[1];
@@ -605,8 +607,22 @@ static bool modbus_read_dcu_check(C_data * client, bool* cstate, const uint16_t 
 		}
 
 		if (DBUG_R c_crc == c_crc_rec) {
+			/*
+			 * parse commands and save data 
+			 */
+			if (dcu_param_num((uint8_t *) cc_buffer) == ActualSpd) {
+				for (uint8_t i = 0; i < data_len; i++) {
+					client->speed[i] = cc_buffer[10 + i];
+				}
+				client->speed[data_len] = 0;
+			}
+			if (dcu_param_num((uint8_t *) cc_buffer) == MotorPump) {
+				for (uint8_t i = 0; i < data_len; i++) {
+					client->mon[i] = cc_buffer[10 + i];
+				}
+				client->mon[data_len] = 0;
+			}
 			MM_ERROR_C;
-			client->id_ok = true;
 			*cstate = true;
 		} else {
 			MM_ERROR_S;
@@ -688,4 +704,18 @@ uint8_t dcu_buffer_len(uint8_t * p)
 	len_num = (uint8_t) atoi(tmp_len);
 
 	return len_num;
+}
+
+uint16_t dcu_param_num(uint8_t * p)
+{
+	uint16_t chk_num = 0;
+	char tmp_chk[6] = "000";
+
+	tmp_chk[0] = p[5];
+	tmp_chk[1] = p[6];
+	tmp_chk[2] = p[7];
+
+	chk_num = (uint16_t) atoi(tmp_chk);
+
+	return chk_num;
 }

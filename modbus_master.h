@@ -77,6 +77,9 @@ extern "C" {
 #define Serror		UART5_get_last_status
 #define Sread		UART5_Read
 #define Srbuffer	U5RXB
+	
+#define ActualSpd	309
+#define MotorPump	023
 
 	typedef struct P_data { // DCU vacuum protocol tx read format
 		uint8_t addr2, addr1, addr0;
@@ -201,6 +204,7 @@ extern "C" {
 		bool id_ok, passwd_ok, config_ok, data_ok, light_ok, serial_ok, version_ok, tm_ok;
 		uint32_t data_count, data_prev;
 		volatile M_data M;
+		uint8_t speed[12], mon[12];
 	} C_data;
 
 	/*
@@ -369,10 +373,12 @@ extern "C" {
 	uint8_t dcu_crc_r(uint8_t *);
 	uint8_t dcu_crc_a(uint8_t *);
 	uint8_t dcu_chk_buffer(uint8_t *, uint8_t);
-	uint8_t dcu_buffer_len(uint8_t * p);
+	uint8_t dcu_buffer_len(uint8_t *);
+	uint16_t dcu_param_num(uint8_t *);
 
 	extern P_data P_read;
 	extern P_data_r P_action;
+	extern volatile uint8_t dcu_data[MAX_DATA];
 #ifdef	__cplusplus
 }
 #endif
