@@ -6,10 +6,9 @@
  */
 
 /*
- * Simple MODBUS data polling master for using MCC
+ * Simple RS485 data polling master for using MCC
  * the USART port uses interrupt driven buffered I/O
- * hard coded for data collection from a EM540 3-phase power monitor
- * https://www.gavazzionline.com/pdf/EM540_DS_ENG.pdf
+ * hard coded for data collection from a DCU compatible Pfeiffer device
  */
 
 
@@ -29,10 +28,6 @@ extern "C" {
 #define EM_DATA_LEN1	52	// 16-bit words returned
 #define EM_DATA_LEN2	64	// 16-bit words returned
 #define SERIAL_DATA_LEN	8
-	/*
-	 * setup options on the EM540 from the factor defaults
-	 * 115200 baud, measurement mode C for bidirectional values
-	 */
 
 	/*
 	 * fake good received bytes from client

@@ -191,7 +191,7 @@
 // Use project enums instead of #define for ON and OFF.
 
 /*
- * this is the mateQ84 version that used CANbus to connect to the remote and Linux server
+ * this is the DCUQ84 version that uses RS485
  */
 
 #include <xc.h>
@@ -315,6 +315,7 @@ void main(void)
 
 	/*
 	 * complete and correct the MCC CANBUS configuration
+	 * controller is hang if this is not run
 	 */
 	can_setup();
 
@@ -387,7 +388,7 @@ void main(void)
 		PROG_TRACE_SetHigh(); // main loop timing
 #endif
 		// Add your application code
-		master_controller_work_dcu(&C); // master MODBUS processing
+		master_controller_work_dcu(&C); // master PVP processing
 
 		if (B.one_sec_flag) { // one second tasks
 			eaDogM_Scroll_Task();
@@ -484,58 +485,6 @@ static void volt_f(const uint16_t voltage)
 {
 	volt_fract = (uint16_t) abs(voltage % 10);
 	volt_whole = voltage / 10;
-}
-
-/*
- * transmit the cmd data
- */
-static void send_mx_cmd(const uint16_t * cmd)
-{
-	if (FM_tx_empty()) {
-		if (B.pacing++ > PACE) {
-			FM_tx(cmd, CMD_LEN); // send 9-bit command data stream
-			B.pacing = 0;
-		}
-	}
-}
-
-/*
- * process received data from the FM80 9n1 serial in abuf 16-bit buffer array with callbacks
- */
-static void rec_mx_cmd(void (* DataHandler)(void), const uint8_t rec_len)
-{
-	static uint16_t online_count = 0;
-
-	if (FM_rx_ready()) {
-		if (FM_rx_count() >= rec_len) {
-			online_count = 0;
-			if (rec_len == REC_LOG_LEN) {
-				FM_rx(cbuf);
-			} else {
-				FM_rx(abuf);
-			}
-			B.FM80_io = false;
-			DataHandler(); // execute callback to process data in abuf
-		} else {
-			if (online_count++ > ONLINE_TIMEOUT) {
-				online_count = 0;
-				B.FM80_online = false;
-				B.FM80_io = false;
-				cc_mode = STATUS_LAST;
-				state = state_init;
-			}
-		}
-	}
-	if ((B.FM80_online == false) && online_count++ > ONLINE_TIMEOUT) {
-		online_count = 0;
-		B.FM80_online = false;
-		B.FM80_io = false;
-		cc_mode = STATUS_LAST;
-		state = state_watts;
-		mx_code = 0x0;
-		DataHandler();
-	}
-
 }
 
 /* Misc ACSII spinner character generator, stores position for each shape */

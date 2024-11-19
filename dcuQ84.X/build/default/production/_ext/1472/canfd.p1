@@ -54,21 +54,21 @@ Version 4.0 HI-TECH Software Intermediate Code
 "279 ../dcuQ84.X/mcc_generated_files/can1.h
 [; ;../dcuQ84.X/mcc_generated_files/can1.h: 279: _Bool CAN1_ReceiveFrom(const CAN1_RX_FIFO_CHANNELS fifoChannel, CAN_MSG_OBJ *rxCanMsg);
 [v _CAN1_ReceiveFrom `(a ~T0 @X0 0 ef2`CE24673`*S3291 ]
-"27 /opt/microchip/xc8/v2.50/pic/include/c99/string.h
-[; ;/opt/microchip/xc8/v2.50/pic/include/c99/string.h: 27: void *memcpy (void *restrict, const void *restrict, size_t);
+"27 /opt/microchip/xc8/v2.46/pic/include/c99/string.h
+[; ;/opt/microchip/xc8/v2.46/pic/include/c99/string.h: 27: void *memcpy (void *restrict, const void *restrict, size_t);
 [v _memcpy `(*v ~T0 @X0 0 ef3`*v`*Cv`ui ]
 "77 ../canfd.h
 [; ;../canfd.h: 77:  extern time_t can_timer;
 [v _can_timer `ul ~T0 @X0 0 e ]
-"40 /opt/microchip/xc8/v2.50/pic/include/c99/time.h
-[; ;/opt/microchip/xc8/v2.50/pic/include/c99/time.h: 40: struct tm {
+"40 /opt/microchip/xc8/v2.46/pic/include/c99/time.h
+[; ;/opt/microchip/xc8/v2.46/pic/include/c99/time.h: 40: struct tm {
 [s S3277 `i 1 `i 1 `i 1 `i 1 `i 1 `i 1 `i 1 `i 1 `i 1 `l 1 `*Cuc 1 ]
 [n S3277 tm tm_sec tm_min tm_hour tm_mday tm_mon tm_year tm_wday tm_yday tm_isdst __tm_gmtoff __tm_zone ]
 "78 ../canfd.h
 [; ;../canfd.h: 78:  extern struct tm *can_newtime;
 [v _can_newtime `*S3277 ~T0 @X0 0 e ]
-"60 /opt/microchip/xc8/v2.50/pic/include/c99/time.h
-[; ;/opt/microchip/xc8/v2.50/pic/include/c99/time.h: 60: struct tm *localtime (const time_t *);
+"60 /opt/microchip/xc8/v2.46/pic/include/c99/time.h
+[; ;/opt/microchip/xc8/v2.46/pic/include/c99/time.h: 60: struct tm *localtime (const time_t *);
 [v _localtime `(*S3277 ~T0 @X0 0 ef1`*Cul ]
 "104 ../batmon.h
 [; ;../batmon.h: 104:  void update_time(struct tm *, EB_data *);
@@ -93,16 +93,16 @@ Version 4.0 HI-TECH Software Intermediate Code
 [n E24981 comm_type CLEAR INIT SEND RECV  ]
 [c E24987 0 1 2 3 4 5 6 7 8 .. ]
 [n E24987 cmd_type G_ID G_DATA1 G_DATA2 G_CONFIG G_PASSWD G_LIGHT G_VERSION G_SERIAL G_LAST  ]
-"186 ../modbus_master.h
-[; ;../modbus_master.h: 186:  typedef struct M_data {
+"181 ../modbus_master.h
+[; ;../modbus_master.h: 181:  typedef struct M_data {
 [s S3305 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 `uc 1 `uc 1 `uc 1 `us 1 `us 1 `us 1 `ul 1 `ul 1 `ul 1 `Va 1 ]
 [n S3305 M_data blink_lock config stable boot_code power_on send_count recv_count pwm_volts error crc_data crc_calc crc_error to_error sends rx ]
-"200
-[; ;../modbus_master.h: 200:  typedef struct C_data {
+"195
+[; ;../modbus_master.h: 195:  typedef struct C_data {
 [s S3306 `uc 1 `E24981 1 `E24987 1 `us 1 `c 1 `a 1 `a 1 `a 1 `a 1 `a 1 `a 1 `a 1 `a 1 `ul 1 `ul 1 `VS3305 1 ]
 [n S3306 C_data mcmd cstate modbus_command req_length trace id_ok passwd_ok config_ok data_ok light_ok serial_ok version_ok tm_ok data_count data_prev M ]
-"366
-[; ;../modbus_master.h: 366:  extern C_data C;
+"361
+[; ;../modbus_master.h: 361:  extern C_data C;
 [v _C `S3306 ~T0 @X0 0 e ]
 "187 ../canfd.c
 [; ;../canfd.c: 187:  Transmission.field.brs = CAN_BRS_MODE;
@@ -146,22 +146,22 @@ Version 4.0 HI-TECH Software Intermediate Code
 "83 ../canfd.h
 [; ;../canfd.h: 83:  extern char info_buffer[512], log_buffer[512];
 [v _info_buffer `uc ~T0 @X0 -> 0 `x e ]
-"123 /opt/microchip/xc8/v2.50/pic/include/c99/stdio.h
-[; ;/opt/microchip/xc8/v2.50/pic/include/c99/stdio.h: 123: int snprintf(char *restrict, size_t, const char *restrict, ...);
+"123 /opt/microchip/xc8/v2.46/pic/include/c99/stdio.h
+[; ;/opt/microchip/xc8/v2.46/pic/include/c99/stdio.h: 123: int snprintf(char *restrict, size_t, const char *restrict, ...);
 [v _snprintf `(i ~T0 @X0 0 e2v`*uc`ui`*Cuc ]
-"239 ../modbus_master.h
-[; ;../modbus_master.h: 239:  typedef __pack struct EM_serial {
+"234 ../modbus_master.h
+[; ;../modbus_master.h: 234:  typedef __pack struct EM_serial {
 [s S3309 `Vuc -> 14 `i `Vs 1 ]
 [n S3309 EM_serial serial year ]
-"371
-[; ;../modbus_master.h: 371:  extern EM_serial ems;
+"366
+[; ;../modbus_master.h: 366:  extern EM_serial ems;
 [v _ems `QS3309 ~T0 @X0 0 e ]
-"244
-[; ;../modbus_master.h: 244:  typedef __pack struct EM_version {
+"239
+[; ;../modbus_master.h: 239:  typedef __pack struct EM_version {
 [s S3310 `Vs 1 ]
 [n S3310 EM_version firmware ]
-"372
-[; ;../modbus_master.h: 372:  extern EM_version emv;
+"367
+[; ;../modbus_master.h: 367:  extern EM_version emv;
 [v _emv `QS3310 ~T0 @X0 0 e ]
 "3808 /root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.25.433/xc8/pic/include/proc/pic18f47q84.h
 [v _LATE `Vuc ~T0 @X0 0 e@1218 ]
@@ -4376,8 +4376,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"263 ../modbus_master.h
-[; ;../modbus_master.h: 263:  static const uint8_t table_crc_hi[] = {
+"258 ../modbus_master.h
+[; ;../modbus_master.h: 258:  static const uint8_t table_crc_hi[] = {
 [v _table_crc_hi `Cuc ~T0 @X0 -> 256 `i s ]
 [i _table_crc_hi
 :U ..
@@ -4639,8 +4639,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 64 `i `uc
 ..
 ]
-"293
-[; ;../modbus_master.h: 293:  static const uint8_t table_crc_lo[] = {
+"288
+[; ;../modbus_master.h: 288:  static const uint8_t table_crc_lo[] = {
 [v _table_crc_lo `Cuc ~T0 @X0 -> 256 `i s ]
 [i _table_crc_lo
 :U ..

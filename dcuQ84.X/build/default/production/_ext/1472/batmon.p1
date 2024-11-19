@@ -10,18 +10,18 @@ Version 4.0 HI-TECH Software Intermediate Code
 "108
 [; ;../batmon.h: 108:  uint8_t DATAEE_ReadByte(const uint16_t);
 [v _DATAEE_ReadByte `(uc ~T0 @X0 0 ef1`Cus ]
-"339 ../modbus_master.h
-[; ;../modbus_master.h: 339:  uint16_t crc16(volatile uint8_t *, uint16_t);
+"334 ../modbus_master.h
+[; ;../modbus_master.h: 334:  uint16_t crc16(volatile uint8_t *, uint16_t);
 [v _crc16 `(us ~T0 @X0 0 ef2`*Vuc`us ]
 "107 ../batmon.h
 [; ;../batmon.h: 107:  void DATAEE_WriteByte(const uint16_t, const uint8_t);
 [v _DATAEE_WriteByte `(v ~T0 @X0 0 ef2`Cus`Cuc ]
-"214 ../modbus_master.h
-[; ;../modbus_master.h: 214:  typedef __pack struct EM_data1 {
+"209 ../modbus_master.h
+[; ;../modbus_master.h: 209:  typedef __pack struct EM_data1 {
 [s S3302 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vs 1 `Vs 1 `Vs 1 `Vs 1 `Vs 1 `Vs 1 ]
 [n S3302 EM_data1 vl1n vl2n vl3n vl1l2 vl2l3 vl3l1 al1 al2 al3 wl1 wl2 wl3 val1 val2 val3 varl1 varl2 varl3 vlnsys vllsys wsys vasys varsys pfl1 pfl2 pfl3 pfsys phaseseq hz ]
-"369
-[; ;../modbus_master.h: 369:  extern EM_data1 em;
+"364
+[; ;../modbus_master.h: 364:  extern EM_data1 em;
 [v _em `QS3302 ~T0 @X0 0 e ]
 "90 ../qconfig.h
 [; ;../qconfig.h: 90: extern uint16_t panel_watts, volt_whole, bat_amp_whole, volt_fract, vw;
@@ -51,15 +51,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 "356 ../dcuQ84.X/mcc_generated_files/uart2.h
 [; ;../dcuQ84.X/mcc_generated_files/uart2.h: 356: uint8_t UART2_Read(void);
 [v _UART2_Read `(uc ~T0 @X0 0 ef ]
-"123 /opt/microchip/xc8/v2.50/pic/include/c99/stdio.h
-[; ;/opt/microchip/xc8/v2.50/pic/include/c99/stdio.h: 123: int snprintf(char *restrict, size_t, const char *restrict, ...);
+"123 /opt/microchip/xc8/v2.46/pic/include/c99/stdio.h
+[; ;/opt/microchip/xc8/v2.46/pic/include/c99/stdio.h: 123: int snprintf(char *restrict, size_t, const char *restrict, ...);
 [v _snprintf `(i ~T0 @X0 0 e2v`*uc`ui`*Cuc ]
-"40 /opt/microchip/xc8/v2.50/pic/include/c99/time.h
-[; ;/opt/microchip/xc8/v2.50/pic/include/c99/time.h: 40: struct tm {
+"40 /opt/microchip/xc8/v2.46/pic/include/c99/time.h
+[; ;/opt/microchip/xc8/v2.46/pic/include/c99/time.h: 40: struct tm {
 [s S3277 `i 1 `i 1 `i 1 `i 1 `i 1 `i 1 `i 1 `i 1 `i 1 `l 1 `*Cuc 1 ]
 [n S3277 tm tm_sec tm_min tm_hour tm_mday tm_mon tm_year tm_wday tm_yday tm_isdst __tm_gmtoff __tm_zone ]
 "61
-[; ;/opt/microchip/xc8/v2.50/pic/include/c99/time.h: 61: char *asctime (const struct tm *);
+[; ;/opt/microchip/xc8/v2.46/pic/include/c99/time.h: 61: char *asctime (const struct tm *);
 [v _asctime `(*uc ~T0 @X0 0 ef1`*CS3277 ]
 "95 ../batmon.h
 [; ;../batmon.h: 95:  extern struct tm *can_newtime;
@@ -67,22 +67,22 @@ Version 4.0 HI-TECH Software Intermediate Code
 "121 ./../eadog.h
 [; ;./../eadog.h: 121:  char * eaDogM_Scroll_String(char *);
 [v _eaDogM_Scroll_String `(*uc ~T0 @X0 0 ef1`*uc ]
-"239 ../modbus_master.h
-[; ;../modbus_master.h: 239:  typedef __pack struct EM_serial {
+"234 ../modbus_master.h
+[; ;../modbus_master.h: 234:  typedef __pack struct EM_serial {
 [s S3304 `Vuc -> 14 `i `Vs 1 ]
 [n S3304 EM_serial serial year ]
-"371
-[; ;../modbus_master.h: 371:  extern EM_serial ems;
+"366
+[; ;../modbus_master.h: 366:  extern EM_serial ems;
 [v _ems `QS3304 ~T0 @X0 0 e ]
-"244
-[; ;../modbus_master.h: 244:  typedef __pack struct EM_version {
+"239
+[; ;../modbus_master.h: 239:  typedef __pack struct EM_version {
 [s S3305 `Vs 1 ]
 [n S3305 EM_version firmware ]
-"372
-[; ;../modbus_master.h: 372:  extern EM_version emv;
+"367
+[; ;../modbus_master.h: 367:  extern EM_version emv;
 [v _emv `QS3305 ~T0 @X0 0 e ]
-"117 /opt/microchip/xc8/v2.50/pic/include/c99/stdio.h
-[; ;/opt/microchip/xc8/v2.50/pic/include/c99/stdio.h: 117: int printf(const char *restrict, ...);
+"117 /opt/microchip/xc8/v2.46/pic/include/c99/stdio.h
+[; ;/opt/microchip/xc8/v2.46/pic/include/c99/stdio.h: 117: int printf(const char *restrict, ...);
 [v _printf `(i ~T0 @X0 0 ev`*Cuc ]
 "3628 /root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.25.433/xc8/pic/include/proc/pic18f47q84.h
 [s S3154 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -108,8 +108,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;../batmon.c: 213:   if ((cc_mode == STATUS_FLOATING) && ((EB->FMw > 200.0f) || (EB->FMpv > 120.0f)) && (EB->ENw > 200.0f)) {
 [c E25123 0 1 2 3 4 5 .. ]
 [n E25123 status_type STATUS_SLEEPING STATUS_FLOATING STATUS_BULK STATUS_ABSORB STATUS_EQUALIZE STATUS_LAST  ]
-"162 /opt/microchip/xc8/v2.50/pic/include/c99/math.h
-[; ;/opt/microchip/xc8/v2.50/pic/include/c99/math.h: 162: float fabsf(float);
+"162 /opt/microchip/xc8/v2.46/pic/include/c99/math.h
+[; ;/opt/microchip/xc8/v2.46/pic/include/c99/math.h: 162: float fabsf(float);
 [v _fabsf `(f ~T0 @X0 0 ef1`f ]
 "98 ../batmon.h
 [; ;../batmon.h: 98:  extern void run_day_to_night(void);
@@ -3892,8 +3892,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "535
 [; ;../dcuQ84.X/mcc_generated_files/uart5.h: 535: void (*UART5_TxInterruptHandler)(void);
 [v _UART5_TxInterruptHandler `*F24584 ~T0 @X0 1 e ]
-"263 ../modbus_master.h
-[; ;../modbus_master.h: 263:  static const uint8_t table_crc_hi[] = {
+"258 ../modbus_master.h
+[; ;../modbus_master.h: 258:  static const uint8_t table_crc_hi[] = {
 [v _table_crc_hi `Cuc ~T0 @X0 -> 256 `i s ]
 [i _table_crc_hi
 :U ..
@@ -4155,8 +4155,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 64 `i `uc
 ..
 ]
-"293
-[; ;../modbus_master.h: 293:  static const uint8_t table_crc_lo[] = {
+"288
+[; ;../modbus_master.h: 288:  static const uint8_t table_crc_lo[] = {
 [v _table_crc_lo `Cuc ~T0 @X0 -> 256 `i s ]
 [i _table_crc_lo
 :U ..
