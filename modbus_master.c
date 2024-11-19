@@ -3,7 +3,7 @@
 #define	ON	1
 #define	OFF	0
 
-volatile uint8_t cc_stream_file, cc_buffer[MAX_DATA], cc_buffer_tx[MAX_DATA]; // RX and TX command buffers
+volatile uint8_t cc_stream_file, cc_buffer[MAX_DATA], cc_buffer_tx[MAX_DATA], dcu_data[MAX_DATA]; // RX and TX command buffers
 
 P_data P_read = {
 	.addr2 = '0',
@@ -18,9 +18,9 @@ P_data P_read = {
 	.dl0 = '2',
 	.data1 = '=',
 	.data0 = '?',
-	.crc2 = '0',
-	.crc1 = '0',
-	.crc0 = '0',
+	.chk2 = '0',
+	.chk1 = '0',
+	.chk0 = '0',
 	.cr = 13, // EOF CR
 };
 
@@ -41,9 +41,9 @@ P_data_r P_action = {
 	.data[2] = '1',
 	.data[1] = '1',
 	.data[0] = '1',
-	.crc2 = '0',
-	.crc1 = '0',
-	.crc0 = '0',
+	.chk2 = '0',
+	.chk1 = '0',
+	.chk0 = '0',
 	.cr = 13, // EOF CR
 };
 
@@ -150,28 +150,28 @@ static uint16_t modbus_rtu_send_msg_crc(volatile uint8_t *req, uint16_t req_leng
 }
 
 /*
- * constructs a properly formatted DCU message with CRC from a program memory array to the data memory array buffer
+ * constructs a properly formatted DCU message with CHK from a program memory array to the data memory array buffer
  */
 uint16_t modbus_dcu_send_msg(void *cc_buffer, const void *modbus_cc_mode, uint16_t req_length)
 {
-	char tmp_crc[6];
+	char tmp_chk[6];
 
 	memcpy((void*) cc_buffer, (const void *) modbus_cc_mode, req_length);
 	/*
-	 * add the CRC and increase message size by two bytes for the CRC16
+	 * add the checksum
 	 */
 
 	if (req_length == 16) { // data request
-		snprintf(tmp_crc, 4, "%03d", dcu_crc_r(cc_buffer));
-		P_read.crc2 = tmp_crc[0];
-		P_read.crc1 = tmp_crc[1];
-		P_read.crc0 = tmp_crc[2];
+		snprintf(tmp_chk, 4, "%03d", dcu_crc_r(cc_buffer));
+		P_read.chk2 = tmp_chk[0];
+		P_read.chk1 = tmp_chk[1];
+		P_read.chk0 = tmp_chk[2];
 	}
 	if (req_length == 20) { // position request
-		snprintf(tmp_crc, 4, "%03d", dcu_crc_a(cc_buffer));
-		P_action.crc2 = tmp_crc[0];
-		P_action.crc1 = tmp_crc[1];
-		P_action.crc0 = tmp_crc[2];
+		snprintf(tmp_chk, 4, "%03d", dcu_crc_a(cc_buffer));
+		P_action.chk2 = tmp_chk[0];
+		P_action.chk1 = tmp_chk[1];
+		P_action.chk0 = tmp_chk[2];
 	}
 
 	return req_length;
@@ -470,169 +470,6 @@ int8_t master_controller_work_dcu(C_data * client)
 }
 
 /*
- * Simple MODBUS master state machine
- * this needs to run in the main programming loop
- * to handle RS485 serial I/O exchanges
- */
-int8_t master_controller_work(C_data * client)
-{
-	static uint32_t spacing = 0;
-
-	if (spacing++ <SPACING && !M.rx) {
-		return T_spacing;
-	}
-	spacing = 0;
-
-	client->trace = T_begin;
-	switch (client->cstate) {
-	case CLEAR:
-		client->trace = T_clear;
-		clear_2hz();
-		clear_500ahz();
-		client->cstate = INIT;
-		client->modbus_command = client->mcmd++; // sequence modbus commands to client
-		if (client->modbus_command == G_CONFIG && client->config_ok) { // skip if we have valid data from client
-			client->modbus_command = client->mcmd++;
-		}
-		if (client->modbus_command == G_PASSWD && client->passwd_ok) { // skip if we have valid data from client
-			client->modbus_command = client->mcmd++;
-		}
-		if (client->modbus_command == G_LIGHT && client->light_ok) { // skip if we have valid data from client
-			client->modbus_command = client->mcmd++;
-		}
-		if (client->modbus_command == G_VERSION && client->version_ok) { // skip if we have valid data from client
-			client->modbus_command = client->mcmd++;
-		}
-		if (client->modbus_command == G_SERIAL && client->serial_ok) { // skip if we have valid data from client
-			client->modbus_command = client->mcmd++;
-		}
-		if (client->mcmd > G_LAST) {
-			client->mcmd = G_ID;
-		}
-		/*
-		 * command specific tx buffer setup
-		 */
-		switch (client->modbus_command) {
-		case G_VERSION: // write code request
-			client->trace = T_version;
-			client->req_length = modbus_rtu_send_msg((void*) cc_buffer_tx, (const void *) modbus_em_version, sizeof(modbus_em_version));
-			break;
-		case G_SERIAL: // write code request
-			client->trace = T_serial;
-			client->req_length = modbus_rtu_send_msg((void*) cc_buffer_tx, (const void *) modbus_em_serial, sizeof(modbus_em_serial));
-			break;
-		case G_LIGHT: // write code request
-			client->trace = T_light;
-			client->req_length = modbus_rtu_send_msg((void*) cc_buffer_tx, (const void *) modbus_em_light, sizeof(modbus_em_light));
-			break;
-		case G_PASSWD: // write code request
-			client->trace = T_passwd;
-			client->req_length = modbus_rtu_send_msg((void*) cc_buffer_tx, (const void *) modbus_em_passwd, sizeof(modbus_em_passwd));
-			break;
-		case G_CONFIG: // write code request
-			client->trace = T_config;
-			client->req_length = modbus_rtu_send_msg((void*) cc_buffer_tx, (const void *) modbus_em_config, sizeof(modbus_em_config));
-			break;
-		case G_DATA1: // read code request
-			client->trace = T_data;
-			client->req_length = modbus_rtu_send_msg((void*) cc_buffer_tx, (const void *) modbus_em_data1, sizeof(modbus_em_data1));
-			break;
-		case G_DATA2: // read code request
-			client->trace = T_data;
-			client->req_length = modbus_rtu_send_msg((void*) cc_buffer_tx, (const void *) modbus_em_data2, sizeof(modbus_em_data2));
-			break;
-		case G_LAST: // end of command sequences
-			client->cstate = CLEAR;
-			client->mcmd = G_ID; // what do we run next
-			break;
-		case G_ID: // operating mode request
-			client->trace = T_id;
-		default:
-			client->req_length = modbus_rtu_send_msg((void*) cc_buffer_tx, (const void *) modbus_em_id, sizeof(modbus_em_id));
-			break;
-		}
-		break;
-	case INIT:
-		client->trace = T_init;
-		/*
-		 * MODBUS master query speed
-		 */
-#ifdef	FASTQ
-		if (get_500ahz(false) >= CDELAY) {
-#else
-		if (get_2hz(false) >= QDELAY) {
-#endif
-			half_dup_tx(false); // no delays here
-			M.recv_count = 0;
-			client->cstate = SEND;
-			clear_500hz();
-			client->trace = T_init_d;
-		}
-		break;
-	case SEND:
-		client->trace = T_send;
-		if (get_500hz(false) >= TEDELAY) {
-			for (uint8_t i = 0; i < client->req_length; i++) {
-				Swrite(cc_buffer_tx[i]);
-			}
-			client->cstate = RECV;
-			clear_500hz(); // state machine execute background timer clear
-			client->trace = T_send_d;
-			M.sends++;
-			M.rx = false;
-			if (serial_trmt()) { // check for serial UART transmit shift register and buffer empty
-				clear_500hz(); // clear timer until buffer empty
-			}
-			delay_ms(TDELAY);
-			DERE_SetLow(); // enable modbus receiver
-		}
-		break;
-	case RECV:
-		client->trace = T_recv;
-		if (get_500hz(false) >= TEDELAY) { // state machine execute timer test
-
-			client->trace = T_recv_r;
-			half_dup_rx(false); // no delays here
-
-			/*
-			 * check received response data for size and format for each command sent
-			 */
-			switch (client->modbus_command) {
-			case G_LIGHT: // check for controller back-light codes
-				modbus_write_check(client, &client->light_ok, sizeof(em_light));
-				break;
-			case G_PASSWD: // check for controller password codes
-				modbus_write_check(client, &client->passwd_ok, sizeof(em_passwd));
-				break;
-			case G_CONFIG: // check for controller configuration codes
-				modbus_write_check(client, &client->config_ok, sizeof(em_config));
-				break;
-			case G_DATA1: // check for controller data1 codes
-				modbus_read_check(client, &client->data_ok, sizeof(em_data1), em_data_handler);
-				break;
-			case G_DATA2: // check for controller data2 codes
-				modbus_read_check(client, &client->data_ok, sizeof(em_data2), emt_data_handler);
-				break;
-			case G_VERSION: // check for controller EM540 firmware codes
-				modbus_read_check(client, &client->version_ok, sizeof(em_version), emv_data_handler);
-				break;
-			case G_SERIAL: // check for controller EM540 serial codes
-				modbus_read_check(client, &client->serial_ok, sizeof(em_serial), ems_data_handler);
-				break;
-			case G_ID: // check for client module type
-			default:
-				modbus_read_id_check(client, &client->id_ok, sizeof(em_id));
-				break;
-			}
-		}
-		break;
-	default:
-		break;
-	}
-	return client->trace;
-}
-
-/*
  * state machine no busy wait timers
  */
 void clear_2hz(void)
@@ -917,12 +754,18 @@ static bool modbus_read_id_check(C_data * client, bool* cstate, const uint16_t r
 
 static bool modbus_read_dcu_check(C_data * client, bool* cstate, const uint16_t rec_length)
 {
-	uint16_t c_crc, c_crc_rec;
+	uint16_t c_crc = 0, c_crc_rec = 1; // mismatch by default
+	uint8_t data_len;
 
 	client->req_length = rec_length;
 	if (DBUG_R((M.recv_count >= client->req_length))) {
-		c_crc = dcu_crc_r((uint8_t*) & P_read); // use data from crc from rec buffer crc data
-		c_crc_rec = dcu_crc_a((uint8_t*) cc_buffer); // from computed data from total rec buffer
+
+		data_len = dcu_buffer_len((uint8_t *) cc_buffer);
+		if (data_len == 6) {
+			c_crc = dcu_chk_buffer((uint8_t*) cc_buffer, (uint8_t) rec_length); // use data from crc from rec buffer crc data
+			c_crc_rec = dcu_crc_a((uint8_t*) cc_buffer); // from computed data from total rec buffer
+		}
+
 		if (DBUG_R c_crc == c_crc_rec) {
 			MM_ERROR_C;
 			client->id_ok = true;
@@ -1074,4 +917,34 @@ uint8_t dcu_crc_a(uint8_t * p)
 		crc_num += (uint8_t) p[i];
 	}
 	return crc_num;
+}
+
+uint8_t dcu_chk_buffer(uint8_t * p, uint8_t count)
+{
+	uint8_t chk_num = 0;
+	char tmp_chk[6] = "000";
+
+	tmp_chk[0] = p[count - 4];
+	tmp_chk[1] = p[count - 3];
+	tmp_chk[2] = p[count - 2];
+
+	chk_num = (uint8_t) atoi(tmp_chk);
+
+	return chk_num;
+}
+
+/*
+ * length of returned data string
+ */
+uint8_t dcu_buffer_len(uint8_t * p)
+{
+	uint8_t len_num = 0;
+	char tmp_len[6] = "00";
+
+	tmp_len[0] = p[8];
+	tmp_len[1] = p[9];
+
+	len_num = (uint8_t) atoi(tmp_len);
+
+	return len_num;
 }

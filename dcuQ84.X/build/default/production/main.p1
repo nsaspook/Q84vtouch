@@ -9,10 +9,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [n E24857 status_type STATUS_SLEEPING STATUS_FLOATING STATUS_BULK STATUS_ABSORB STATUS_EQUALIZE STATUS_LAST  ]
 "229
 [; ;main.c: 229: volatile enum state_type state = state_init;
-[c E25302 0 1 2 3 4 5 6 7 8 9 10 11 12 .. ]
-[n E25302 state_type state_init state_status state_panel state_batteryv state_batterya state_watts state_fwrev state_time state_date state_mx_log state_misc state_mx_status state_last  ]
-"40 /opt/microchip/xc8/v2.46/pic/include/c99/time.h
-[; ;/opt/microchip/xc8/v2.46/pic/include/c99/time.h: 40: struct tm {
+[c E25307 0 1 2 3 4 5 6 7 8 9 10 11 12 .. ]
+[n E25307 state_type state_init state_status state_panel state_batteryv state_batterya state_watts state_fwrev state_time state_date state_mx_log state_misc state_mx_status state_last  ]
+"40 /opt/microchip/xc8/v2.50/pic/include/c99/time.h
+[; ;/opt/microchip/xc8/v2.50/pic/include/c99/time.h: 40: struct tm {
 [s S3288 `i 1 `i 1 `i 1 `i 1 `i 1 `i 1 `i 1 `i 1 `i 1 `l 1 `*Cuc 1 ]
 [n S3288 tm tm_sec tm_min tm_hour tm_mday tm_mon tm_year tm_wday tm_yday tm_isdst __tm_gmtoff __tm_zone ]
 "106 ./../dcuQ84.X/mxcmd.h
@@ -108,8 +108,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "101 ./../eadog.h
 [; ;./../eadog.h: 101:  _Bool init_display(void);
 [v _init_display `(a ~T0 @X0 0 ef ]
-"123 /opt/microchip/xc8/v2.46/pic/include/c99/stdio.h
-[; ;/opt/microchip/xc8/v2.46/pic/include/c99/stdio.h: 123: int snprintf(char *restrict, size_t, const char *restrict, ...);
+"123 /opt/microchip/xc8/v2.50/pic/include/c99/stdio.h
+[; ;/opt/microchip/xc8/v2.50/pic/include/c99/stdio.h: 123: int snprintf(char *restrict, size_t, const char *restrict, ...);
 [v _snprintf `(i ~T0 @X0 0 e2v`*uc`ui`*Cuc ]
 "115 ./../eadog.h
 [; ;./../eadog.h: 115:  void eaDogM_WriteStringAtPos(const uint8_t, const uint8_t, char *);
@@ -130,8 +130,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "121 ./../eadog.h
 [; ;./../eadog.h: 121:  char * eaDogM_Scroll_String(char *);
 [v _eaDogM_Scroll_String `(*uc ~T0 @X0 0 ef1`*uc ]
-"60 /opt/microchip/xc8/v2.46/pic/include/c99/time.h
-[; ;/opt/microchip/xc8/v2.46/pic/include/c99/time.h: 60: struct tm *localtime (const time_t *);
+"60 /opt/microchip/xc8/v2.50/pic/include/c99/time.h
+[; ;/opt/microchip/xc8/v2.50/pic/include/c99/time.h: 60: struct tm *localtime (const time_t *);
 [v _localtime `(*S3288 ~T0 @X0 0 ef1`*Cul ]
 "3752 /root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.25.433/xc8/pic/include/proc/pic18f47q84.h
 [; ;/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.25.433/xc8/pic/include/proc/pic18f47q84.h: 3752:         unsigned SDOP :1;
@@ -203,9 +203,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "86
 [; ;./../modbus_master.h: 86:  typedef struct P_data {
 [s S3297 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 ]
-[n S3297 P_data addr2 addr1 addr0 action1 action0 para2 para1 para0 dl1 dl0 data1 data0 crc2 crc1 crc0 cr ]
-"377
-[; ;./../modbus_master.h: 377:  extern P_data P_read;
+[n S3297 P_data addr2 addr1 addr0 action1 action0 para2 para1 para0 dl1 dl0 data1 data0 chk2 chk1 chk0 cr ]
+"379
+[; ;./../modbus_master.h: 379:  extern P_data P_read;
 [v _P_read `S3297 ~T0 @X0 0 e ]
 "375
 [; ;./../modbus_master.h: 375:  uint8_t dcu_crc_a(uint8_t *);
@@ -213,9 +213,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "96
 [; ;./../modbus_master.h: 96:  typedef struct P_data_r {
 [s S3298 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc -> 6 `i `uc 1 `uc 1 `uc 1 `uc 1 ]
-[n S3298 P_data_r addr2 addr1 addr0 action1 action0 para2 para1 para0 dl1 dl0 data crc2 crc1 crc0 cr ]
-"378
-[; ;./../modbus_master.h: 378:  extern P_data_r P_action;
+[n S3298 P_data_r addr2 addr1 addr0 action1 action0 para2 para1 para0 dl1 dl0 data chk2 chk1 chk0 cr ]
+"380
+[; ;./../modbus_master.h: 380:  extern P_data_r P_action;
 [v _P_action `S3298 ~T0 @X0 0 e ]
 "446 main.c
 [; ;main.c: 446:   if (B.a_switch[D_SW_A]) {
@@ -230,23 +230,23 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3639
 [; ;/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.25.433/xc8/pic/include/proc/pic18f47q84.h: 3639: extern volatile unsigned char SPI1TCNTL __attribute__((address(0x082)));
 [v _LATBbits `VS3153 ~T0 @X0 0 e@1215 ]
-"78 /opt/microchip/xc8/v2.46/pic/include/c99/stdlib.h
-[; ;/opt/microchip/xc8/v2.46/pic/include/c99/stdlib.h: 78: int abs (int);
+"78 /opt/microchip/xc8/v2.50/pic/include/c99/stdlib.h
+[; ;/opt/microchip/xc8/v2.50/pic/include/c99/stdlib.h: 78: int abs (int);
 [v _abs `(i ~T0 @X0 0 ef1`i ]
 "136 ./../dcuQ84.X/mxcmd.h
 [v _FM_tx_empty `(a ~T0 @X0 0 ef ]
 "135
 [v _FM_tx `(uc ~T0 @X0 0 ef2`*Cus`Cuc ]
-[v F25383 `(v ~T0 @X0 0 tf ]
-[v F25385 `(v ~T0 @X0 0 tf ]
+[v F25388 `(v ~T0 @X0 0 tf ]
+[v F25390 `(v ~T0 @X0 0 tf ]
 "138
 [v _FM_rx_ready `(a ~T0 @X0 0 ef ]
 "139
 [v _FM_rx_count `(uc ~T0 @X0 0 ef ]
 "137
 [v _FM_rx `(uc ~T0 @X0 0 ef1`*us ]
-"54 /opt/microchip/xc8/v2.46/pic/include/c99/string.h
-[; ;/opt/microchip/xc8/v2.46/pic/include/c99/string.h: 54: size_t strlen (const char *);
+"54 /opt/microchip/xc8/v2.50/pic/include/c99/string.h
+[; ;/opt/microchip/xc8/v2.50/pic/include/c99/string.h: 54: size_t strlen (const char *);
 [v _strlen `(ui ~T0 @X0 0 ef1`*Cuc ]
 "96 ./../batmon.h
 [; ;./../batmon.h: 96:  extern float pv_Wh_daily, pv_Wh_daily_prev, ac_Wh_daily, ac_Wh_daily_prev;
@@ -5126,10 +5126,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> 0 `c
 ..
 ]
-[v F25234 `Cul ~T0 @X0 -> 2 `i t ]
+[v F25239 `Cul ~T0 @X0 -> 2 `i t ]
 "74
 [; ;./../batmon.h: 74:  const uint32_t BVSOC_TABLE[12][2] = {
-[v _BVSOC_TABLE `F25234 ~T0 @X0 -> 12 `i e ]
+[v _BVSOC_TABLE `F25239 ~T0 @X0 -> 12 `i e ]
 [i _BVSOC_TABLE
 :U ..
 :U ..
@@ -5209,9 +5209,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _vw `us ~T0 @X0 1 e ]
 "229
 [; ;main.c: 229: volatile enum state_type state = state_init;
-[v _state `VE25302 ~T0 @X0 1 e ]
+[v _state `VE25307 ~T0 @X0 1 e ]
 [i _state
-. `E25302 0
+. `E25307 0
 ]
 "230
 [; ;main.c: 230: char buffer[512] = "Boot Init Display   ", info_buffer[512], log_buffer[512];
@@ -5244,7 +5244,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _info_buffer `uc ~T0 @X0 -> 512 `i e ]
 [v _log_buffer `uc ~T0 @X0 -> 512 `i e ]
 "231
-[; ;main.c: 231: const char *build_date = "Nov 17 2024", *build_time = "17:22:28";
+[; ;main.c: 231: const char *build_date = "Nov 18 2024", *build_time = "15:49:31";
 [v _build_date `*Cuc ~T0 @X0 1 e ]
 [i _build_date
 :s 1C
@@ -5625,54 +5625,54 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "405
 [; ;main.c: 405:     static uint8_t s_update = 0, e_update = 0;
-[v F25372 `uc ~T0 @X0 1 s s_update ]
-[i F25372
+[v F25377 `uc ~T0 @X0 1 s s_update ]
+[i F25377
 -> -> 0 `i `uc
 ]
-[v F25373 `uc ~T0 @X0 1 s e_update ]
-[i F25373
+[v F25378 `uc ~T0 @X0 1 s e_update ]
+[i F25378
 -> -> 0 `i `uc
 ]
 "406
 [; ;main.c: 406:     static float ac = 0.0f;
-[v F25374 `f ~T0 @X0 1 s ac ]
-[i F25374
+[v F25379 `f ~T0 @X0 1 s ac ]
+[i F25379
 -> .0.0 `f
 ]
 "407
 [; ;main.c: 407:     static float wac = 0.0f;
-[v F25375 `f ~T0 @X0 1 s wac ]
-[i F25375
+[v F25380 `f ~T0 @X0 1 s wac ]
+[i F25380
 -> .0.0 `f
 ]
 "408
 [; ;main.c: 408:     static float wva = 0.0f;
-[v F25376 `f ~T0 @X0 1 s wva ]
-[i F25376
+[v F25381 `f ~T0 @X0 1 s wva ]
+[i F25381
 -> .0.0 `f
 ]
 "409
 [; ;main.c: 409:     static uint32_t error_save = 3;
-[v F25377 `ul ~T0 @X0 1 s error_save ]
-[i F25377
+[v F25382 `ul ~T0 @X0 1 s error_save ]
+[i F25382
 -> -> -> 3 `i `l `ul
 ]
 "411
 [; ;main.c: 411:     if (s_update++ >= 5) {
-[e $ ! >= -> ++ F25372 -> -> 1 `i `uc `i -> 5 `i 3334  ]
+[e $ ! >= -> ++ F25377 -> -> 1 `i `uc `i -> 5 `i 3334  ]
 {
 "412
 [; ;main.c: 412:      ac = lp_filter(((float) em.vl1l2) / 10.0f, F_ac, 0);
-[e = F25374 ( _lp_filter (3 , , / -> . _em 3 `f -> .10.0 `f -> . `E25144 0 `uc -> -> 0 `i `c ]
+[e = F25379 ( _lp_filter (3 , , / -> . _em 3 `f -> .10.0 `f -> . `E25144 0 `uc -> -> 0 `i `c ]
 "413
 [; ;main.c: 413:      wac = lp_filter(((float) em.wl1) / 10.0f, F_wac, 0);
-[e = F25375 ( _lp_filter (3 , , / -> . _em 9 `f -> .10.0 `f -> . `E25144 1 `uc -> -> 0 `i `c ]
+[e = F25380 ( _lp_filter (3 , , / -> . _em 9 `f -> .10.0 `f -> . `E25144 1 `uc -> -> 0 `i `c ]
 "414
 [; ;main.c: 414:      wva = lp_filter(((float) em.val1) / 10.0f, F_wva, 0);
-[e = F25376 ( _lp_filter (3 , , / -> . _em 12 `f -> .10.0 `f -> . `E25144 2 `uc -> -> 0 `i `c ]
+[e = F25381 ( _lp_filter (3 , , / -> . _em 12 `f -> .10.0 `f -> . `E25144 2 `uc -> -> 0 `i `c ]
 "415
 [; ;main.c: 415:      s_update = 0;
-[e = F25372 -> -> 0 `i `uc ]
+[e = F25377 -> -> 0 `i `uc ]
 "416
 [; ;main.c: 416:     }
 }
@@ -5682,7 +5682,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _StartTimer (2 , -> . `E24823 3 `uc -> -> 200 `i `us ]
 "418
 [; ;main.c: 418:     if (C.data_ok && (M.error > error_save)) {
-[e $ ! && != -> . _C 8 `i -> 0 `i > -> . _M 8 `ul F25377 3335  ]
+[e $ ! && != -> . _C 8 `i -> 0 `i > -> . _M 8 `ul F25382 3335  ]
 {
 "419
 [; ;main.c: 419:      snprintf(buffer, 512, "DCU 1");
@@ -5695,7 +5695,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _snprintf (2 , , &U _info_buffer -> -> 512 `i `ui :s 13C ]
 "422
 [; ;main.c: 422:      if (e_update == 0) {
-[e $ ! == -> F25373 `i -> 0 `i 3336  ]
+[e $ ! == -> F25378 `i -> 0 `i 3336  ]
 {
 "423
 [; ;main.c: 423:       snprintf(buffer, 512, "C%u CRC%lu RC%u EC%u          ", C.modbus_command, M.crc_error, M.recv_count, C.req_length);
@@ -5709,14 +5709,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 3336 ]
 "426
 [; ;main.c: 426:      if (e_update++ >= 10) {
-[e $ ! >= -> ++ F25373 -> -> 1 `i `uc `i -> 10 `i 3337  ]
+[e $ ! >= -> ++ F25378 -> -> 1 `i `uc `i -> 10 `i 3337  ]
 {
 "427
 [; ;main.c: 427:       error_save = M.error + 3;
-[e = F25377 -> + -> . _M 8 `ui -> -> 3 `i `ui `ul ]
+[e = F25382 -> + -> . _M 8 `ui -> -> 3 `i `ui `ul ]
 "428
 [; ;main.c: 428:       e_update = 0;
-[e = F25373 -> -> 0 `i `uc ]
+[e = F25378 -> -> 0 `i `uc ]
 "429
 [; ;main.c: 429:      }
 }
@@ -5947,22 +5947,22 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 "505
 [; ;main.c: 505: static void rec_mx_cmd(void (* DataHandler)(void), const uint8_t rec_len)
-[v _rec_mx_cmd `(v ~T0 @X0 1 sf2`*F25383`Cuc ]
+[v _rec_mx_cmd `(v ~T0 @X0 1 sf2`*F25388`Cuc ]
 "506
 [; ;main.c: 506: {
 {
 [e :U _rec_mx_cmd ]
 "505
 [; ;main.c: 505: static void rec_mx_cmd(void (* DataHandler)(void), const uint8_t rec_len)
-[v _DataHandler `*F25385 ~T0 @X0 1 r1 ]
+[v _DataHandler `*F25390 ~T0 @X0 1 r1 ]
 [v _rec_len `Cuc ~T0 @X0 1 r2 ]
 "506
 [; ;main.c: 506: {
 [f ]
 "507
 [; ;main.c: 507:  static uint16_t online_count = 0;
-[v F25387 `us ~T0 @X0 1 s online_count ]
-[i F25387
+[v F25392 `us ~T0 @X0 1 s online_count ]
+[i F25392
 -> -> 0 `i `us
 ]
 "509
@@ -5975,7 +5975,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "511
 [; ;main.c: 511:    online_count = 0;
-[e = F25387 -> -> 0 `i `us ]
+[e = F25392 -> -> 0 `i `us ]
 "512
 [; ;main.c: 512:    if (rec_len == 17) {
 [e $ ! == -> _rec_len `i -> 17 `i 3362  ]
@@ -6010,11 +6010,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "520
 [; ;main.c: 520:    if (online_count++ > 30000) {
-[e $ ! > -> ++ F25387 -> -> 1 `i `us `ui -> -> 30000 `i `ui 3365  ]
+[e $ ! > -> ++ F25392 -> -> 1 `i `us `ui -> -> 30000 `i `ui 3365  ]
 {
 "521
 [; ;main.c: 521:     online_count = 0;
-[e = F25387 -> -> 0 `i `us ]
+[e = F25392 -> -> 0 `i `us ]
 "522
 [; ;main.c: 522:     B.FM80_online = 0;
 [e = . _B 16 -> -> 0 `i `a ]
@@ -6026,7 +6026,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _cc_mode -> . `E24857 5 `us ]
 "525
 [; ;main.c: 525:     state = state_init;
-[e = _state . `E25302 0 ]
+[e = _state . `E25307 0 ]
 "526
 [; ;main.c: 526:    }
 }
@@ -6041,11 +6041,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 3360 ]
 "529
 [; ;main.c: 529:  if ((B.FM80_online == 0) && online_count++ > 30000) {
-[e $ ! && == -> . _B 16 `i -> 0 `i > -> ++ F25387 -> -> 1 `i `us `ui -> -> 30000 `i `ui 3366  ]
+[e $ ! && == -> . _B 16 `i -> 0 `i > -> ++ F25392 -> -> 1 `i `us `ui -> -> 30000 `i `ui 3366  ]
 {
 "530
 [; ;main.c: 530:   online_count = 0;
-[e = F25387 -> -> 0 `i `us ]
+[e = F25392 -> -> 0 `i `us ]
 "531
 [; ;main.c: 531:   B.FM80_online = 0;
 [e = . _B 16 -> -> 0 `i `a ]
@@ -6057,7 +6057,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _cc_mode -> . `E24857 5 `us ]
 "534
 [; ;main.c: 534:   state = state_watts;
-[e = _state . `E25302 5 ]
+[e = _state . `E25307 5 ]
 "535
 [; ;main.c: 535:   mx_code = 0x0;
 [e = _mx_code -> -> 0 `i `us ]
@@ -6088,7 +6088,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "544
 [; ;main.c: 544:  static uint8_t s[6];
-[v F25391 `uc ~T0 @X0 -> 6 `i s s ]
+[v F25396 `uc ~T0 @X0 -> 6 `i s s ]
 "545
 [; ;main.c: 545:  char c;
 [v _c `uc ~T0 @X0 1 a ]
@@ -6104,17 +6104,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ ! != -> _reset `i -> 0 `i 3369  ]
 "550
 [; ;main.c: 550:   s[shape] = 0;
-[e = *U + &U F25391 * -> _shape `ux -> -> # *U &U F25391 `ui `ux -> -> 0 `i `uc ]
+[e = *U + &U F25396 * -> _shape `ux -> -> # *U &U F25396 `ui `ux -> -> 0 `i `uc ]
 [e :U 3369 ]
 "551
 [; ;main.c: 551:  c = spin[shape][s[shape]];
-[e = _c *U + &U *U + &U _spin * -> _shape `ux -> * -> # *U &U *U &U _spin `ui -> -> 20 `i `ui `ux * -> *U + &U F25391 * -> _shape `ux -> -> # *U &U F25391 `ui `ux `ux -> -> # *U &U *U + &U _spin * -> _shape `ux -> * -> # *U &U *U &U _spin `ui -> -> 20 `i `ui `ux `ui `ux ]
+[e = _c *U + &U *U + &U _spin * -> _shape `ux -> * -> # *U &U *U &U _spin `ui -> -> 20 `i `ui `ux * -> *U + &U F25396 * -> _shape `ux -> -> # *U &U F25396 `ui `ux `ux -> -> # *U &U *U + &U _spin * -> _shape `ux -> * -> # *U &U *U &U _spin `ui -> -> 20 `i `ui `ux `ui `ux ]
 "552
 [; ;main.c: 552:  if (++s[shape] >= strlen(spin[shape]))
-[e $ ! >= -> =+ *U + &U F25391 * -> _shape `ux -> -> # *U &U F25391 `ui `ux -> -> 1 `i `uc `ui ( _strlen (1 &U *U + &U _spin * -> _shape `ux -> * -> # *U &U *U &U _spin `ui -> -> 20 `i `ui `ux 3370  ]
+[e $ ! >= -> =+ *U + &U F25396 * -> _shape `ux -> -> # *U &U F25396 `ui `ux -> -> 1 `i `uc `ui ( _strlen (1 &U *U + &U _spin * -> _shape `ux -> * -> # *U &U *U &U _spin `ui -> -> 20 `i `ui `ux 3370  ]
 "553
 [; ;main.c: 553:   s[shape] = 0;
-[e = *U + &U F25391 * -> _shape `ux -> -> # *U &U F25391 `ui `ux -> -> 0 `i `uc ]
+[e = *U + &U F25396 * -> _shape `ux -> -> # *U &U F25396 `ui `ux -> -> 0 `i `uc ]
 [e :U 3370 ]
 "554
 [; ;main.c: 554:  return c;
@@ -6222,8 +6222,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [a 19C 37 100 32 37 115 0 ]
 [a 21C 37 115 0 ]
 [a 23C 37 115 0 ]
-[a 2C 49 55 58 50 50 58 50 56 0 ]
-[a 1C 78 111 118 32 49 55 32 50 48 50 52 0 ]
+[a 1C 78 111 118 32 49 56 32 50 48 50 52 0 ]
+[a 2C 49 53 58 52 57 58 51 49 0 ]
 [a 12C 68 67 85 32 49 0 ]
 [a 7C 37 115 32 0 ]
 [a 9C 37 115 32 0 ]

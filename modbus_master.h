@@ -89,7 +89,7 @@ extern "C" {
 		uint8_t para2, para1, para0;
 		uint8_t dl1, dl0;
 		uint8_t data1, data0;
-		uint8_t crc2, crc1, crc0;
+		uint8_t chk2, chk1, chk0;
 		uint8_t cr;
 	} P_data;
 
@@ -99,7 +99,7 @@ extern "C" {
 		uint8_t para2, para1, para0;
 		uint8_t dl1, dl0;
 		uint8_t data[6];
-		uint8_t crc2, crc1, crc0;
+		uint8_t chk2, chk1, chk0;
 		uint8_t cr;
 	} P_data_r;
 
@@ -373,6 +373,8 @@ extern "C" {
 
 	uint8_t dcu_crc_r(uint8_t *);
 	uint8_t dcu_crc_a(uint8_t *);
+	uint8_t dcu_chk_buffer(uint8_t *, uint8_t);
+	uint8_t dcu_buffer_len(uint8_t * p);
 
 	extern P_data P_read;
 	extern P_data_r P_action;
