@@ -41199,7 +41199,7 @@ void delay_ms(const uint16_t);
  extern B_type B;
 # 20 "../canfd.h" 2
 # 1 "../modbus_master.h" 1
-# 84 "../modbus_master.h"
+# 89 "../modbus_master.h"
  typedef struct P_data {
   uint8_t addr2, addr1, addr0;
   uint8_t action1, action0;
@@ -41323,7 +41323,7 @@ void delay_ms(const uint16_t);
   _Bool id_ok, passwd_ok, config_ok, data_ok, light_ok, serial_ok, version_ok, tm_ok;
   uint32_t data_count, data_prev;
   volatile M_data M;
-  uint8_t speed[12], mon[12];
+  uint8_t speed[12], mon[12], current[12], accel[12], dname[12], dsoft[12], link[12];
  } C_data;
 
 
@@ -41436,7 +41436,7 @@ void delay_ms(const uint16_t);
   0x44, 0x84, 0x85, 0x45, 0x87, 0x47, 0x46, 0x86, 0x82, 0x42,
   0x43, 0x83, 0x41, 0x81, 0x80, 0x40
  };
-# 338 "../modbus_master.h"
+# 343 "../modbus_master.h"
  uint16_t crc16(volatile uint8_t *, uint16_t);
  uint16_t modbus_rtu_send_msg(void *, const void *, uint16_t);
  uint16_t modbus_dcu_send_msg(void *, const void *, uint16_t);

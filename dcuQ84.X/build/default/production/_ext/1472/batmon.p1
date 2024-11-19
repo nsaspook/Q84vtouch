@@ -10,18 +10,18 @@ Version 4.0 HI-TECH Software Intermediate Code
 "108
 [; ;../batmon.h: 108:  uint8_t DATAEE_ReadByte(const uint16_t);
 [v _DATAEE_ReadByte `(uc ~T0 @X0 0 ef1`Cus ]
-"338 ../modbus_master.h
-[; ;../modbus_master.h: 338:  uint16_t crc16(volatile uint8_t *, uint16_t);
+"343 ../modbus_master.h
+[; ;../modbus_master.h: 343:  uint16_t crc16(volatile uint8_t *, uint16_t);
 [v _crc16 `(us ~T0 @X0 0 ef2`*Vuc`us ]
 "107 ../batmon.h
 [; ;../batmon.h: 107:  void DATAEE_WriteByte(const uint16_t, const uint8_t);
 [v _DATAEE_WriteByte `(v ~T0 @X0 0 ef2`Cus`Cuc ]
-"213 ../modbus_master.h
-[; ;../modbus_master.h: 213:  typedef __pack struct EM_data1 {
+"218 ../modbus_master.h
+[; ;../modbus_master.h: 218:  typedef __pack struct EM_data1 {
 [s S3302 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vl 1 `Vs 1 `Vs 1 `Vs 1 `Vs 1 `Vs 1 `Vs 1 ]
 [n S3302 EM_data1 vl1n vl2n vl3n vl1l2 vl2l3 vl3l1 al1 al2 al3 wl1 wl2 wl3 val1 val2 val3 varl1 varl2 varl3 vlnsys vllsys wsys vasys varsys pfl1 pfl2 pfl3 pfsys phaseseq hz ]
-"368
-[; ;../modbus_master.h: 368:  extern EM_data1 em;
+"373
+[; ;../modbus_master.h: 373:  extern EM_data1 em;
 [v _em `QS3302 ~T0 @X0 0 e ]
 "90 ../qconfig.h
 [; ;../qconfig.h: 90: extern uint16_t panel_watts, volt_whole, bat_amp_whole, volt_fract, vw;
@@ -67,19 +67,19 @@ Version 4.0 HI-TECH Software Intermediate Code
 "121 ./../eadog.h
 [; ;./../eadog.h: 121:  char * eaDogM_Scroll_String(char *);
 [v _eaDogM_Scroll_String `(*uc ~T0 @X0 0 ef1`*uc ]
-"238 ../modbus_master.h
-[; ;../modbus_master.h: 238:  typedef __pack struct EM_serial {
+"243 ../modbus_master.h
+[; ;../modbus_master.h: 243:  typedef __pack struct EM_serial {
 [s S3304 `Vuc -> 14 `i `Vs 1 ]
 [n S3304 EM_serial serial year ]
-"370
-[; ;../modbus_master.h: 370:  extern EM_serial ems;
+"375
+[; ;../modbus_master.h: 375:  extern EM_serial ems;
 [v _ems `QS3304 ~T0 @X0 0 e ]
-"243
-[; ;../modbus_master.h: 243:  typedef __pack struct EM_version {
+"248
+[; ;../modbus_master.h: 248:  typedef __pack struct EM_version {
 [s S3305 `Vs 1 ]
 [n S3305 EM_version firmware ]
-"371
-[; ;../modbus_master.h: 371:  extern EM_version emv;
+"376
+[; ;../modbus_master.h: 376:  extern EM_version emv;
 [v _emv `QS3305 ~T0 @X0 0 e ]
 "117 /opt/microchip/xc8/v2.50/pic/include/c99/stdio.h
 [; ;/opt/microchip/xc8/v2.50/pic/include/c99/stdio.h: 117: int printf(const char *restrict, ...);
@@ -106,8 +106,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _all_relays_off `(v ~T0 @X0 0 ef ]
 "213 ../batmon.c
 [; ;../batmon.c: 213:   if ((cc_mode == STATUS_FLOATING) && ((EB->FMw > 200.0f) || (EB->FMpv > 120.0f)) && (EB->ENw > 200.0f)) {
-[c E25128 0 1 2 3 4 5 .. ]
-[n E25128 status_type STATUS_SLEEPING STATUS_FLOATING STATUS_BULK STATUS_ABSORB STATUS_EQUALIZE STATUS_LAST  ]
+[c E25133 0 1 2 3 4 5 .. ]
+[n E25133 status_type STATUS_SLEEPING STATUS_FLOATING STATUS_BULK STATUS_ABSORB STATUS_EQUALIZE STATUS_LAST  ]
 "162 /opt/microchip/xc8/v2.50/pic/include/c99/math.h
 [; ;/opt/microchip/xc8/v2.50/pic/include/c99/math.h: 162: float fabsf(float);
 [v _fabsf `(f ~T0 @X0 0 ef1`f ]
@@ -3892,8 +3892,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "535
 [; ;../dcuQ84.X/mcc_generated_files/uart5.h: 535: void (*UART5_TxInterruptHandler)(void);
 [v _UART5_TxInterruptHandler `*F24584 ~T0 @X0 1 e ]
-"262 ../modbus_master.h
-[; ;../modbus_master.h: 262:  static const uint8_t table_crc_hi[] = {
+"267 ../modbus_master.h
+[; ;../modbus_master.h: 267:  static const uint8_t table_crc_hi[] = {
 [v _table_crc_hi `Cuc ~T0 @X0 -> 256 `i s ]
 [i _table_crc_hi
 :U ..
@@ -4155,8 +4155,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 64 `i `uc
 ..
 ]
-"292
-[; ;../modbus_master.h: 292:  static const uint8_t table_crc_lo[] = {
+"297
+[; ;../modbus_master.h: 297:  static const uint8_t table_crc_lo[] = {
 [v _table_crc_lo `Cuc ~T0 @X0 -> 256 `i s ]
 [i _table_crc_lo
 :U ..
@@ -4654,10 +4654,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `i `us
 ..
 ]
-[v F25136 `Cuc ~T0 @X0 -> 12 `i t ]
+[v F25141 `Cuc ~T0 @X0 -> 12 `i t ]
 "74
 [; ;../dcuQ84.X/mxcmd.h: 74:  const char state_name [][12] = {
-[v _state_name `F25136 ~T0 @X0 -> 6 `i e ]
+[v _state_name `F25141 ~T0 @X0 -> 6 `i e ]
 [i _state_name
 :U ..
 :U ..
@@ -4719,10 +4719,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-[v F25138 `Cuc ~T0 @X0 -> 12 `i t ]
+[v F25143 `Cuc ~T0 @X0 -> 12 `i t ]
 "83
 [; ;../dcuQ84.X/mxcmd.h: 83:  const char FM80_name [][12] = {
-[v _FM80_name `F25138 ~T0 @X0 -> 2 `i e ]
+[v _FM80_name `F25143 ~T0 @X0 -> 2 `i e ]
 [i _FM80_name
 :U ..
 :U ..
@@ -4749,10 +4749,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-[v F25140 `Cuc ~T0 @X0 -> 12 `i t ]
+[v F25145 `Cuc ~T0 @X0 -> 12 `i t ]
 "88
 [; ;../dcuQ84.X/mxcmd.h: 88:  const char canbus_name [][12] = {
-[v _canbus_name `F25140 ~T0 @X0 -> 2 `i e ]
+[v _canbus_name `F25145 ~T0 @X0 -> 2 `i e ]
 [i _canbus_name
 :U ..
 :U ..
@@ -4779,10 +4779,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-[v F25142 `Cuc ~T0 @X0 -> 12 `i t ]
+[v F25147 `Cuc ~T0 @X0 -> 12 `i t ]
 "93
 [; ;../dcuQ84.X/mxcmd.h: 93:  const char modbus_name [][12] = {
-[v _modbus_name `F25142 ~T0 @X0 -> 2 `i e ]
+[v _modbus_name `F25147 ~T0 @X0 -> 2 `i e ]
 [i _modbus_name
 :U ..
 :U ..
@@ -4922,10 +4922,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> 0 `c
 ..
 ]
-[v F25244 `Cul ~T0 @X0 -> 2 `i t ]
+[v F25249 `Cul ~T0 @X0 -> 2 `i t ]
 "74
 [; ;../batmon.h: 74:  const uint32_t BVSOC_TABLE[12][2] = {
-[v _BVSOC_TABLE `F25244 ~T0 @X0 -> 12 `i e ]
+[v _BVSOC_TABLE `F25249 ~T0 @X0 -> 12 `i e ]
 [i _BVSOC_TABLE
 :U ..
 :U ..
@@ -5624,7 +5624,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 3367 ]
 "213
 [; ;../batmon.c: 213:   if ((cc_mode == STATUS_FLOATING) && ((EB->FMw > 200.0f) || (EB->FMpv > 120.0f)) && (EB->ENw > 200.0f)) {
-[e $ ! && && == -> _cc_mode `ui -> . `E25128 1 `ui || > . *U _EB 4 -> .200.0 `f > . *U _EB 5 -> .120.0 `f > . *U _EB 8 -> .200.0 `f 3368  ]
+[e $ ! && && == -> _cc_mode `ui -> . `E25133 1 `ui || > . *U _EB 4 -> .200.0 `f > . *U _EB 5 -> .120.0 `f > . *U _EB 8 -> .200.0 `f 3368  ]
 {
 "214
 [; ;../batmon.c: 214:    if (!B.FM80_charged) {
@@ -5683,7 +5683,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 3372 ]
 "232
 [; ;../batmon.c: 232:   if (cc_mode != STATUS_FLOATING) {
-[e $ ! != -> _cc_mode `ui -> . `E25128 1 `ui 3373  ]
+[e $ ! != -> _cc_mode `ui -> . `E25133 1 `ui 3373  ]
 {
 "233
 [; ;../batmon.c: 233:    if (B.FM80_charged && (EB->bat_energy < 25.6f*200.0f*360.0f*0.5f)) {
@@ -5741,7 +5741,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . _B 4 -> -> 0 `i `a ]
 "253
 [; ;../batmon.c: 253:   if (B.pv_prev == STATUS_SLEEPING) {
-[e $ ! == -> . _B 12 `ui -> . `E25128 0 `ui 3378  ]
+[e $ ! == -> . _B 12 `ui -> . `E25133 0 `ui 3378  ]
 {
 "254
 [; ;../batmon.c: 254:    run_day_to_night();

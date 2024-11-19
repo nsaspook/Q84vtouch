@@ -3,7 +3,7 @@
 #define	ON	1
 #define	OFF	0
 
-volatile uint8_t cc_stream_file, cc_buffer[MAX_DATA], cc_buffer_tx[MAX_DATA], dcu_data[MAX_DATA] = "OFFLINE"; // RX and TX command buffers
+volatile uint8_t cc_stream_file, cc_buffer[MAX_DATA], cc_buffer_tx[MAX_DATA]; // RX and TX command buffers
 
 P_data P_read = {
 	.addr2 = '0',
@@ -14,6 +14,101 @@ P_data P_read = {
 	.para2 = '3',
 	.para1 = '0',
 	.para0 = '9',
+	.dl1 = '0',
+	.dl0 = '2',
+	.data1 = '=',
+	.data0 = '?',
+	.chk2 = '0',
+	.chk1 = '0',
+	.chk0 = '0',
+	.cr = 13, // EOF CR
+};
+
+P_data P_read_I = {
+	.addr2 = '0',
+	.addr1 = '0',
+	.addr0 = '1',
+	.action1 = '0',
+	.action0 = '0',
+	.para2 = '3',
+	.para1 = '1',
+	.para0 = '0',
+	.dl1 = '0',
+	.dl0 = '2',
+	.data1 = '=',
+	.data0 = '?',
+	.chk2 = '0',
+	.chk1 = '0',
+	.chk0 = '0',
+	.cr = 13, // EOF CR
+};
+
+P_data P_read_A = {
+	.addr2 = '0',
+	.addr1 = '0',
+	.addr0 = '1',
+	.action1 = '0',
+	.action0 = '0',
+	.para2 = '3',
+	.para1 = '0',
+	.para0 = '7',
+	.dl1 = '0',
+	.dl0 = '2',
+	.data1 = '=',
+	.data0 = '?',
+	.chk2 = '0',
+	.chk1 = '0',
+	.chk0 = '0',
+	.cr = 13, // EOF CR
+};
+
+P_data P_read_L = {// Link Voltage
+	.addr2 = '0',
+	.addr1 = '0',
+	.addr0 = '1',
+	.action1 = '0',
+	.action0 = '0',
+	.para2 = '3',
+	.para1 = '1',
+	.para0 = '3',
+	.dl1 = '0',
+	.dl0 = '2',
+	.data1 = '=',
+	.data0 = '?',
+	.chk2 = '0',
+	.chk1 = '0',
+	.chk0 = '0',
+	.cr = 13, // EOF CR
+};
+
+P_data P_read_N = {
+	.addr2 = '0',
+	.addr1 = '0',
+	.addr0 = '1',
+	.action1 = '0',
+	.action0 = '0',
+	.para2 = '3',
+	.para1 = '4',
+	.para0 = '9',
+	.dl1 = '0',
+	.dl0 = '2',
+	.data1 = '=',
+	.data0 = '?',
+	.chk2 = '0',
+	.chk1 = '0',
+	.chk0 = '0',
+	.cr = 13, // EOF CR
+};
+
+P_data P_read_V = {
+	.addr2 = '0',
+	.addr1 = '0',
+	.addr0 = '1',
+	.action1 = '0',
+	.action0 = '0',
+	.para2 = '3',
+	.para1 = '1',
+	.para0 = '2',
 	.dl1 = '0',
 	.dl0 = '2',
 	.data1 = '=',
@@ -73,6 +168,11 @@ C_data C = {
 	.tm_ok = false,
 	.speed = "OFFLINE",
 	.mon = "OFFLINE",
+	.current = "OFFLINE",
+	.accel = "OFFLINE",
+	.dname = "OFFLINE",
+	.dsoft = "OFFLINE",
+	.link = "OFFLINE",
 };
 
 volatile struct V_type V = {
@@ -137,23 +237,27 @@ static uint16_t modbus_rtu_send_msg_crc(volatile uint8_t *req, uint16_t req_leng
 uint16_t modbus_dcu_send_msg(void *cc_buffer, const void *modbus_cc_mode, uint16_t req_length)
 {
 	char tmp_chk[6];
+	P_data *P_ptr;
+	P_data_r *P_ptr_r;
 
 	memcpy((void*) cc_buffer, (const void *) modbus_cc_mode, req_length);
-	/*
-	 * add the checksum
-	 */
 
+	/*
+	 * add the checksum to the 'telegram'
+	 */
 	if (req_length == sizeof(P_read)) { // data request
+		P_ptr = cc_buffer;
 		snprintf(tmp_chk, 4, "%03d", dcu_crc_r(cc_buffer));
-		P_read.chk2 = tmp_chk[0];
-		P_read.chk1 = tmp_chk[1];
-		P_read.chk0 = tmp_chk[2];
+		P_ptr->chk2 = tmp_chk[0];
+		P_ptr->chk1 = tmp_chk[1];
+		P_ptr->chk0 = tmp_chk[2];
 	}
 	if (req_length == sizeof(P_action)) { // position request
+		P_ptr_r = cc_buffer;
 		snprintf(tmp_chk, 4, "%03d", dcu_crc_a(cc_buffer));
-		P_action.chk2 = tmp_chk[0];
-		P_action.chk1 = tmp_chk[1];
-		P_action.chk0 = tmp_chk[2];
+		P_ptr_r->chk2 = tmp_chk[0];
+		P_ptr_r->chk1 = tmp_chk[1];
+		P_ptr_r->chk0 = tmp_chk[2];
 	}
 
 	return req_length;
@@ -310,21 +414,6 @@ int8_t master_controller_work_dcu(C_data * client)
 		clear_500ahz();
 		client->cstate = INIT;
 		client->modbus_command = client->mcmd++; // sequence modbus commands to client
-		if (client->modbus_command == G_CONFIG && client->config_ok) { // skip if we have valid data from client
-			client->modbus_command = client->mcmd++;
-		}
-		if (client->modbus_command == G_PASSWD && client->passwd_ok) { // skip if we have valid data from client
-			client->modbus_command = client->mcmd++;
-		}
-		if (client->modbus_command == G_LIGHT && client->light_ok) { // skip if we have valid data from client
-			client->modbus_command = client->mcmd++;
-		}
-		if (client->modbus_command == G_VERSION && client->version_ok) { // skip if we have valid data from client
-			client->modbus_command = client->mcmd++;
-		}
-		if (client->modbus_command == G_SERIAL && client->serial_ok) { // skip if we have valid data from client
-			client->modbus_command = client->mcmd++;
-		}
 		if (client->mcmd > G_LAST) {
 			client->mcmd = G_ID;
 		}
@@ -332,33 +421,25 @@ int8_t master_controller_work_dcu(C_data * client)
 		 * command specific tx buffer setup
 		 */
 		switch (client->modbus_command) {
-		case G_VERSION: // write code request
-			client->trace = T_version;
-			client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_action, sizeof(P_action));
-			break;
-		case G_SERIAL: // write code request
-			client->trace = T_serial;
-			client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_action, sizeof(P_action));
-			break;
-		case G_LIGHT: // write code request
-			client->trace = T_light;
-			client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_action, sizeof(P_action));
-			break;
-		case G_PASSWD: // write code request
-			client->trace = T_passwd;
-			client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_action, sizeof(P_action));
-			break;
 		case G_CONFIG: // write code request
 			client->trace = T_config;
-			client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_action, sizeof(P_action));
+			client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_read_N, sizeof(P_read_N));
 			break;
 		case G_DATA1: // read code request
 			client->trace = T_data;
-			client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_action, sizeof(P_action));
+			client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_read_I, sizeof(P_read_I));
 			break;
 		case G_DATA2: // read code request
 			client->trace = T_data;
-			client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_action, sizeof(P_action));
+			client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_read_A, sizeof(P_read_A));
+			break;
+		case G_LIGHT: // read code request
+			client->trace = T_light;
+			client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_read_L, sizeof(P_read_L));
+			break;
+		case G_VERSION: // read code request
+			client->trace = T_version;
+			client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_read_V, sizeof(P_read_V));
 			break;
 		case G_LAST: // end of command sequences
 			client->cstate = CLEAR;
@@ -413,11 +494,11 @@ int8_t master_controller_work_dcu(C_data * client)
 			 * check received response data for size and format for each command sent
 			 */
 			switch (client->modbus_command) {
-			case G_LIGHT: // c
-				modbus_read_dcu_check(client, &client->light_ok, sizeof(P_action));
+			case G_VERSION: // 
+				modbus_read_dcu_check(client, &client->version_ok, sizeof(P_action));
 				break;
-			case G_PASSWD: // 
-				modbus_read_dcu_check(client, &client->passwd_ok, sizeof(P_action));
+			case G_LIGHT: // 
+				modbus_read_dcu_check(client, &client->version_ok, sizeof(P_action));
 				break;
 			case G_CONFIG: // 
 				modbus_read_dcu_check(client, &client->config_ok, sizeof(P_action));
@@ -427,12 +508,6 @@ int8_t master_controller_work_dcu(C_data * client)
 				break;
 			case G_DATA2: // 
 				modbus_read_dcu_check(client, &client->data_ok, sizeof(P_action));
-				break;
-			case G_VERSION: // 
-				modbus_read_dcu_check(client, &client->version_ok, sizeof(P_action));
-				break;
-			case G_SERIAL: // 
-				modbus_read_dcu_check(client, &client->serial_ok, sizeof(P_action));
 				break;
 			case G_ID: // check for client module type
 			default:
@@ -621,6 +696,37 @@ static bool modbus_read_dcu_check(C_data * client, bool* cstate, const uint16_t 
 					client->mon[i] = cc_buffer[10 + i];
 				}
 				client->mon[data_len] = 0;
+			}
+			if (dcu_param_num((uint8_t *) cc_buffer) == DrvCurrent) {
+				for (uint8_t i = 0; i < data_len; i++) {
+					client->current[i] = cc_buffer[10 + i];
+				}
+				client->current[data_len] = 0;
+			}
+			if (dcu_param_num((uint8_t *) cc_buffer) == TMP_DClink) {
+				for (uint8_t i = 0; i < data_len; i++) {
+					client->link[i] = cc_buffer[10 + i];
+				}
+				client->link[data_len] = 0;
+			}
+			if (dcu_param_num((uint8_t *) cc_buffer) == AccelDecel) {
+				for (uint8_t i = 0; i < data_len; i++) {
+					client->accel[i] = cc_buffer[10 + i];
+				}
+				client->accel[data_len] = 0;
+			}
+
+			if (dcu_param_num((uint8_t *) cc_buffer) == DrvName) {
+				for (uint8_t i = 0; i < data_len; i++) {
+					client->dname[i] = cc_buffer[10 + i];
+				}
+				client->dname[data_len] = 0;
+			}
+			if (dcu_param_num((uint8_t *) cc_buffer) == DrvSoftw) {
+				for (uint8_t i = 0; i < data_len; i++) {
+					client->dsoft[i] = cc_buffer[10 + i];
+				}
+				client->dsoft[data_len] = 0;
 			}
 			MM_ERROR_C;
 			*cstate = true;

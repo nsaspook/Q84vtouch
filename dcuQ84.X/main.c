@@ -430,11 +430,11 @@ void main(void)
 					}
 				} else {
 					M.error = 0;
-					snprintf(buffer, MAX_B_BUF, "DCU 0  %03d          ", C.trace);
+					snprintf(buffer, MAX_B_BUF, "Accel %s RPM/S       ", C.accel);
 					eaDogM_WriteStringAtPos(0, 0, buffer);
-					snprintf(buffer, MAX_B_BUF, "DCU 1  %03d          ", M.recv_count);
+					snprintf(buffer, MAX_B_BUF, "MDrv %s %s           ", C.link, C.current);
 					eaDogM_WriteStringAtPos(1, 0, buffer);
-					snprintf(buffer, MAX_B_BUF, "Motor %s          ", C.mon);
+					snprintf(buffer, MAX_B_BUF, "Cont %s %s           ", C.dname, C.dsoft);
 					eaDogM_WriteStringAtPos(2, 0, buffer);
 					snprintf(buffer, MAX_B_BUF, "Speed %s Hz          ", C.speed);
 					eaDogM_WriteStringAtPos(3, 0, buffer);
