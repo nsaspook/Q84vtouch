@@ -26,5 +26,4 @@ mcc_generated_files/spi1.h  \
 ../dio.h  \
 ../timers.h  \
 ../modbus_master.h  \
-../canfd.h  \
-../batmon.h 
+../canfd.h 

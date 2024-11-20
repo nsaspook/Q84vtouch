@@ -32,7 +32,7 @@ union {
 	} structBytes;
 } myVar;
 
-static EB_data *EB = &EBD;
+//static EB_data *EB = &EBD;
 
 #ifdef CAN_REMOTE
 static volatile char s_buffer[CAN_MIRRORS][LCD_BUF_SIZ + 1] = {
@@ -95,20 +95,20 @@ void Can1FIFO1NotEmptyHandler(void)
 			}
 			if ((msg[MIRR0R_BUF].msgId & 0xf) == EMON_TM) {
 				memcpy((void *) &can_timer, msg[MIRR0R_BUF].data, sizeof(time_t)); // load 32-bit linux time from canbus packet
-				EB->fm80_time = can_timer; // save remote Unix time from canbus packets
+//				EB->fm80_time = can_timer; // save remote Unix time from canbus packets
 				can_newtime = localtime(&can_timer);
-				update_time(can_newtime, EB);
+//				update_time(can_newtime, EB);
 				/*
 				 * update the FM80 time and data message values with a proper checksum
 				 * this is sent to the FM80 but am unsure if it changes anything on the device
 				 */
-				myVar.Word = EB->time;
+//				myVar.Word = EB->time;
 				cmd_time[5] = myVar.structBytes.Byte1; // store time
 				cmd_time[4] = myVar.structBytes.Byte2;
 				myVar.Word = calc_checksum((uint8_t *) & cmd_time[1], CMD_CRC_LEN);
 				cmd_time[7] = myVar.structBytes.Byte1; // store crc
 				cmd_time[6] = myVar.structBytes.Byte2;
-				myVar.Word = EB->date;
+//				myVar.Word = EB->date;
 				cmd_date[5] = myVar.structBytes.Byte1;
 				cmd_date[4] = myVar.structBytes.Byte2;
 				myVar.Word = calc_checksum((uint8_t *) & cmd_date[1], CMD_CRC_LEN);
@@ -218,7 +218,7 @@ void can_fd_tx(void)
 
 	if (C.serial_ok && C.version_ok) {
 		Transmission.msgId = (EMON_CO); // config packet type ID
-		snprintf(info_buffer, MAX_B_BUF, "SN: %s %u FW: 0X%X,%X", ems.serial, ems.year, emv.firmware, LATE);
+//		snprintf(info_buffer, MAX_B_BUF, "SN: %s %u FW: 0X%X,%X", ems.serial, ems.year, emv.firmware, LATE);
 		Transmission.data = (uint8_t*) info_buffer; //transmit the data from the data bytes
 		if (CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(FIFO3) & CAN_TX_FIFO_AVAILABLE))//ensure that the FIFO has space for a message
 		{

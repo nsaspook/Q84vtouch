@@ -18,7 +18,7 @@ extern "C" {
 #include "qconfig.h"
 #include "dcuQ84.X/mxcmd.h"
 #include "modbus_master.h"
-#include "batmon.h"
+//#include "batmon.h"
 
 #define DATA_DEBUG
 #define NO_NODE_ID

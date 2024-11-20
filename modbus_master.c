@@ -3,8 +3,10 @@
 #define	ON	1
 #define	OFF	0
 
-volatile uint8_t cc_stream_file, cc_buffer[MAX_DATA], cc_buffer_tx[MAX_DATA]; // RX and TX command buffers
-
+volatile uint8_t cc_stream_file, cc_buffer[MAX_DATA], cc_buffer_tx[MAX_DATA], dcu_data[MAX_DATA]; // RX and TX command buffers
+/*
+ * various PVP protocol read-only messages
+ */
 P_data P_read = {
 	.addr2 = '0',
 	.addr1 = '0',
@@ -119,6 +121,9 @@ P_data P_read_V = {
 	.cr = 13, // EOF CR
 };
 
+/*
+ * PVP position set/read messages
+ */
 P_data_r P_action = {
 	.addr2 = '0',
 	.addr1 = '0',
@@ -162,7 +167,7 @@ C_data C = {
 	.config_ok = false,
 	.id_ok = false,
 	.passwd_ok = false,
-	.light_ok = false,
+	.link_ok = false,
 	.M.blink_lock = false,
 	.M.power_on = true,
 	.tm_ok = false,
@@ -191,12 +196,6 @@ volatile struct V_type V = {
  * send and receive Pfeiffer Vacuum Protocol messages
  */
 
-
-EM_data1 em;
-EM_data2 emt;
-EM_serial ems;
-EM_version emv;
-
 static void half_dup_tx(const bool);
 static void half_dup_rx(const bool);
 static bool serial_trmt(void);
@@ -217,20 +216,6 @@ static void emv_data_handler(void);
 
 static bool modbus_read_dcu_check(C_data *, bool*, uint16_t);
 static bool modbus_action_dcu_check(C_data *, bool*, uint16_t);
-
-/*
- * add the required CRC bytes to a MODBUS message
- */
-static uint16_t modbus_rtu_send_msg_crc(volatile uint8_t *req, uint16_t req_length)
-{
-	uint16_t crc;
-
-	crc = crc16(req, req_length);
-	req[req_length++] = crc >> (uint16_t) 8;
-	req[req_length++] = crc & 0x00FF;
-
-	return req_length;
-}
 
 /*
  * constructs a properly formatted DCU message with CHK from a program memory array to the data memory array buffer
@@ -262,18 +247,6 @@ uint16_t modbus_dcu_send_msg(void *cc_buffer, const void *modbus_cc_mode, uint16
 	}
 
 	return req_length;
-}
-
-/*
- * constructs a properly formatted RTU message with CRC from a program memory array to the data memory array buffer
- */
-uint16_t modbus_rtu_send_msg(void *cc_buffer, const void *modbus_cc_mode, uint16_t req_length)
-{
-	memcpy((void*) cc_buffer, (const void *) modbus_cc_mode, req_length);
-	/*
-	 * add the CRC and increase message size by two bytes for the CRC16
-	 */
-	return modbus_rtu_send_msg_crc((volatile uint8_t *) cc_buffer, req_length);
 }
 
 /*
@@ -434,8 +407,8 @@ int8_t master_controller_work_dcu(C_data * client)
 			client->trace = T_data;
 			client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_read_A, sizeof(P_read_A));
 			break;
-		case G_LIGHT: // read code request
-			client->trace = T_light;
+		case G_LINK: // read code request
+			client->trace = T_link;
 			client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_read_L, sizeof(P_read_L));
 			break;
 		case G_VERSION: // read code request
@@ -498,7 +471,7 @@ int8_t master_controller_work_dcu(C_data * client)
 			case G_VERSION: // 
 				modbus_read_dcu_check(client, &client->version_ok, sizeof(P_action));
 				break;
-			case G_LIGHT: // 
+			case G_LINK: // 
 				modbus_read_dcu_check(client, &client->version_ok, sizeof(P_action));
 				break;
 			case G_CONFIG: // 
@@ -739,7 +712,7 @@ static bool modbus_read_dcu_check(C_data * client, bool* cstate, const uint16_t 
 			client->config_ok = false;
 			client->passwd_ok = false;
 			client->data_ok = false;
-			client->light_ok = false;
+			client->link_ok = false;
 			client->version_ok = false;
 			client->serial_ok = false;
 			log_crc_error(c_crc, c_crc_rec);
@@ -756,7 +729,7 @@ static bool modbus_read_dcu_check(C_data * client, bool* cstate, const uint16_t 
 			client->config_ok = false;
 			client->passwd_ok = false;
 			client->data_ok = false;
-			client->light_ok = false;
+			client->link_ok = false;
 			client->version_ok = false;
 			client->serial_ok = false;
 		}

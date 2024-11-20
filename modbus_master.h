@@ -79,7 +79,7 @@ extern "C" {
 #define Srbuffer	U5RXB
 
 #define ActualSpd	309
-#define MotorPump	 23
+#define MotorPump	 23	// set/read motor on
 #define DrvCurrent	310
 #define AccelDecel	307
 #define DrvName		349
@@ -125,7 +125,7 @@ extern "C" {
 		G_DATA2,
 		G_CONFIG, // keep sequence
 		G_PASSWD, // keep sequence
-		G_LIGHT,
+		G_LINK,
 		G_VERSION,
 		G_SERIAL,
 		G_LAST,
@@ -150,7 +150,7 @@ extern "C" {
 		T_misc2,
 		T_misc3,
 		T_spacing,
-		T_light,
+		T_link,
 	} trace_type;
 
 	struct V_type {
@@ -206,7 +206,7 @@ extern "C" {
 		cmd_type modbus_command;
 		uint16_t req_length;
 		int8_t trace;
-		bool id_ok, passwd_ok, config_ok, data_ok, light_ok, serial_ok, version_ok, tm_ok;
+		bool id_ok, passwd_ok, config_ok, data_ok, link_ok, serial_ok, version_ok, tm_ok;
 		uint32_t data_count, data_prev;
 		volatile M_data M;
 		uint8_t speed[12], mon[12], current[12], accel[12], dname[12], dsoft[12], link[12];

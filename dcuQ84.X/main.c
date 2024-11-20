@@ -199,13 +199,14 @@
 #include "../timers.h"
 #include "../modbus_master.h"
 #include "../canfd.h"
-#include "../batmon.h"
 
 #define PACE            31000	// commands delay in count units
 #define CMD_LEN         8
 #define REC_LEN         5
 #define REC_STATUS_LEN	16
 #define REC_LOG_LEN     17
+
+#define MAX_ALT_DIS	3
 
 enum state_type {
 	state_init,
@@ -234,6 +235,10 @@ uint8_t fw_state = 0;
 
 time_t can_timer = 1694196350; /* default epoch time */
 struct tm *can_newtime;
+
+typedef uint16_t device_id_data_t;
+typedef uint24_t device_id_address_t;
+device_id_data_t DeviceID_Read(device_id_address_t);
 
 #ifdef DATA_DEBUG
 bool show_can;
@@ -264,7 +269,7 @@ B_type B = {
  */
 union blob_log *mxlog_ptr = (void*) & B.log;
 
-static EB_data *EB = &EBD;
+//static EB_data *EB = &EBD;
 
 /*
  * show fixed point fractions
@@ -347,13 +352,10 @@ void main(void)
 	eaDogM_WriteStringAtPos(0, 0, buffer);
 	snprintf(buffer, MAX_B_BUF, "%s   ", build_date);
 	eaDogM_WriteStringAtPos(1, 0, buffer);
-	if (initbm_data((void*) EB)) {
-		B.alt_display = EB->alt_display;
-		snprintf(buffer, MAX_B_BUF, "Battery data loaded   ");
-	} else {
-		/* display build time and boot status codes 67 34 07, WDT reset 67 24 07 */
-		snprintf(buffer, MAX_B_BUF, "%s B:%X %X %X   ", build_time, STATUS, PCON0, PCON1);
-	}
+
+	/* display build time and boot status codes 67 34 07, WDT reset 67 24 07 */
+	snprintf(buffer, MAX_B_BUF, "%s B:%X %X %X   ", build_time, STATUS, PCON0, PCON1);
+
 	eaDogM_WriteStringAtPos(2, 0, buffer);
 
 	snprintf(buffer, MAX_B_BUF, "%s ", "Start Up            ");
@@ -404,15 +406,9 @@ void main(void)
 #define E_UPDATE	10
 #define E_SAVE		3
 				static uint8_t s_update = 0, e_update = 0;
-				static float ac = 0.0f;
-				static float wac = 0.0f;
-				static float wva = 0.0f;
 				static uint32_t error_save = E_SAVE;
 
 				if (s_update++ >= SPIN_VAL_UPDATE) {
-					ac = lp_filter(((float) em.vl1l2) / 10.0f, F_ac, false);
-					wac = lp_filter(((float) em.wl1) / 10.0f, F_wac, false);
-					wva = lp_filter(((float) em.val1) / 10.0f, F_wva, false);
 					s_update = 0;
 				}
 				StartTimer(TMR_SPIN, SPINNER_SPEED);
@@ -455,7 +451,6 @@ void main(void)
 			if (B.alt_display > MAX_ALT_DIS) {
 				B.alt_display = 0;
 			}
-			EB->alt_display = B.alt_display;
 			snprintf(buffer, MAX_B_BUF, "%d %s", B.alt_display, "Alt Button \337\364       ");
 			eaDogM_WriteStringAtPos(2, 0, buffer);
 			B.display_update = true;
@@ -507,32 +502,34 @@ char spinners(uint8_t shape, const uint8_t reset)
 	return c;
 }
 
-void run_day_to_night(void)
+device_id_data_t DeviceID_Read(device_id_address_t address)
 {
-	char s_buffer[22];
+	device_id_data_t deviceID;
 
-	snprintf(s_buffer, 21, "DN %.1fWh PV        ", pv_Wh_daily);
-	eaDogM_Scroll_String(s_buffer);
-	snprintf(s_buffer, 21, "DN %.1fWh AC        ", ac_Wh_daily);
-	eaDogM_Scroll_String(s_buffer);
-	eaDogM_Scroll_String(s_buffer);
-	eaDogM_Scroll_String(s_buffer);
-	DAY_RELAY_OFF;
-	NIGHT_RELAY_ON;
-}
+	//Save the table pointer
+	uint32_t tablePointer = ((uint32_t) TBLPTRU << 16) | ((uint32_t) TBLPTRH << 8) | ((uint32_t) TBLPTRL);
 
-void run_night_to_day(void)
-{
-	char s_buffer[22];
+	//Load table pointer with Device ID address
+	TBLPTRU = (uint8_t) (address >> 16);
+	TBLPTRH = (uint8_t) (address >> 8);
+	TBLPTRL = (uint8_t) address;
 
-	snprintf(s_buffer, 21, "ND %.1fWh PV        ", pv_Wh_daily_prev);
-	eaDogM_Scroll_String(s_buffer);
-	snprintf(s_buffer, 21, "ND %.1fWh AC        ", ac_Wh_daily_prev);
-	eaDogM_Scroll_String(s_buffer);
-	eaDogM_Scroll_String(s_buffer);
-	eaDogM_Scroll_String(s_buffer);
-	NIGHT_RELAY_OFF;
-	DAY_RELAY_ON;
+	//Execute table read and increment table pointer
+	asm("TBLRD*+");
+
+	deviceID = (device_id_data_t) TABLAT;
+
+	//Execute table read
+	asm("TBLRD*");
+
+	deviceID |= (device_id_data_t) (TABLAT << 8);
+
+	//Restore the table pointer
+	TBLPTRU = (uint8_t) (tablePointer >> 16);
+	TBLPTRH = (uint8_t) (tablePointer >> 8);
+	TBLPTRL = (uint8_t) tablePointer;
+
+	return deviceID;
 }
 /**
  End of File

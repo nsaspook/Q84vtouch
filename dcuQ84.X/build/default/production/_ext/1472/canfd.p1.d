@@ -26,5 +26,4 @@ mcc_generated_files/mcc.h  \
 ../dcuQ84.X/mcc_generated_files/spi1.h  \
 ../eadog.h  \
 ../timers.h  \
-../modbus_master.h  \
-../batmon.h 
+../modbus_master.h 
