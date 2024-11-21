@@ -121,6 +121,25 @@ P_data P_read_V = {
 	.cr = 13, // EOF CR
 };
 
+P_data P_read_E = {
+	.addr2 = '0',
+	.addr1 = '0',
+	.addr0 = '1',
+	.action1 = '0',
+	.action0 = '0',
+	.para2 = '3',
+	.para1 = '0',
+	.para0 = '3',
+	.dl1 = '0',
+	.dl0 = '2',
+	.data1 = '=',
+	.data0 = '?',
+	.chk2 = '0',
+	.chk1 = '0',
+	.chk0 = '0',
+	.cr = 13, // EOF CR
+};
+
 /*
  * PVP position set/read messages
  */
@@ -178,6 +197,7 @@ C_data C = {
 	.dname = "OFFLINE",
 	.dsoft = "OFFLINE",
 	.link = "OFFLINE",
+	.error = "OFFLINE",
 	.dcu_online = false,
 };
 
@@ -415,6 +435,10 @@ int8_t master_controller_work_dcu(C_data * client)
 			client->trace = T_version;
 			client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_read_V, sizeof(P_read_V));
 			break;
+		case G_PASSWD: // read code request
+			client->trace = T_version;
+			client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_read_E, sizeof(P_read_E));
+			break;
 		case G_LAST: // end of command sequences
 			client->cstate = CLEAR;
 			client->mcmd = G_ID; // what do we run next
@@ -471,8 +495,11 @@ int8_t master_controller_work_dcu(C_data * client)
 			case G_VERSION: // 
 				modbus_read_dcu_check(client, &client->version_ok, sizeof(P_action));
 				break;
+			case G_PASSWD: // 
+				modbus_read_dcu_check(client, &client->passwd_ok, sizeof(P_action));
+				break;
 			case G_LINK: // 
-				modbus_read_dcu_check(client, &client->version_ok, sizeof(P_action));
+				modbus_read_dcu_check(client, &client->link_ok, sizeof(P_action));
 				break;
 			case G_CONFIG: // 
 				modbus_read_dcu_check(client, &client->config_ok, sizeof(P_action));
@@ -659,6 +686,12 @@ static bool modbus_read_dcu_check(C_data * client, bool* cstate, const uint16_t 
 			/*
 			 * parse commands and save data 
 			 */
+			if (dcu_param_num((uint8_t *) cc_buffer) == Error_code) {
+				for (uint8_t i = 0; i < data_len; i++) {
+					client->error[i] = cc_buffer[10 + i];
+				}
+				client->error[data_len] = 0;
+			}
 			if (dcu_param_num((uint8_t *) cc_buffer) == ActualSpd) {
 				for (uint8_t i = 0; i < data_len; i++) {
 					client->speed[i] = cc_buffer[10 + i];
@@ -688,6 +721,7 @@ static bool modbus_read_dcu_check(C_data * client, bool* cstate, const uint16_t 
 					client->accel[i] = cc_buffer[10 + i];
 				}
 				client->accel[data_len] = 0;
+				client->accel[1] = 0; // shortened to single boolean char
 			}
 
 			if (dcu_param_num((uint8_t *) cc_buffer) == DrvName) {

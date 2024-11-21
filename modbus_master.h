@@ -85,6 +85,8 @@ extern "C" {
 #define DrvName		349
 #define DrvSoftw	312
 #define TMP_DClink	313
+#define Error_code	303
+
 
 	typedef struct P_data { // DCU vacuum protocol tx read format
 		uint8_t addr2, addr1, addr0;
@@ -209,7 +211,7 @@ extern "C" {
 		bool id_ok, passwd_ok, config_ok, data_ok, link_ok, serial_ok, version_ok, tm_ok;
 		uint32_t data_count, data_prev;
 		volatile M_data M;
-		uint8_t speed[12], mon[12], current[12], accel[12], dname[12], dsoft[12], link[12];
+		uint8_t speed[12], mon[12], current[12], accel[12], dname[12], dsoft[12], link[12], error[12];
 		bool dcu_online;
 	} C_data;
 

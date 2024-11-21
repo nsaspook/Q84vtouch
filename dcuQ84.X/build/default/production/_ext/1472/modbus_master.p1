@@ -3,47 +3,47 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v F23903 `(v ~T0 @X0 0 tf ]
 [v F23978 `(v ~T0 @X0 0 tf ]
 [v F23980 `(v ~T0 @X0 0 tf ]
-"89 ../modbus_master.h
-[; ;../modbus_master.h: 89:  typedef struct P_data {
+"91 ../modbus_master.h
+[; ;../modbus_master.h: 91:  typedef struct P_data {
 [s S3287 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 ]
 [n S3287 P_data addr2 addr1 addr0 action1 action0 para2 para1 para0 dl1 dl0 data1 data0 chk2 chk1 chk0 cr ]
-"99
-[; ;../modbus_master.h: 99:  typedef struct P_data_r {
+"101
+[; ;../modbus_master.h: 101:  typedef struct P_data_r {
 [s S3288 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc -> 6 `i `uc 1 `uc 1 `uc 1 `uc 1 ]
 [n S3288 P_data_r addr2 addr1 addr0 action1 action0 para2 para1 para0 dl1 dl0 data chk2 chk1 chk0 cr ]
-"189
-[; ;../modbus_master.h: 189:  typedef struct M_data {
+"191
+[; ;../modbus_master.h: 191:  typedef struct M_data {
 [s S3295 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 `uc 1 `uc 1 `uc 1 `us 1 `us 1 `us 1 `ul 1 `ul 1 `ul 1 `Va 1 ]
 [n S3295 M_data blink_lock config stable boot_code power_on send_count recv_count pwm_volts error crc_data crc_calc crc_error to_error sends rx ]
-"183
-[; ;../modbus_master.h: 183:  typedef struct M_time_data {
+"185
+[; ;../modbus_master.h: 185:  typedef struct M_time_data {
 [s S3294 `ul 1 `ul 1 `ul 1 ]
 [n S3294 M_time_data clock_500hz clock_500ahz clock_2hz ]
-"161 ../modbus_master.c
-[; ;../modbus_master.c: 161: C_data C = {
+"180 ../modbus_master.c
+[; ;../modbus_master.c: 180: C_data C = {
 [c E24226 0 1 2 3 .. ]
 [n E24226 comm_type CLEAR INIT SEND RECV  ]
 [c E24232 0 1 2 3 4 5 6 7 8 .. ]
 [n E24232 cmd_type G_ID G_DATA1 G_DATA2 G_CONFIG G_PASSWD G_LINK G_VERSION G_SERIAL G_LAST  ]
-"203 ../modbus_master.h
-[; ;../modbus_master.h: 203:  typedef struct C_data {
-[s S3296 `uc 1 `E24226 1 `E24232 1 `us 1 `c 1 `a 1 `a 1 `a 1 `a 1 `a 1 `a 1 `a 1 `a 1 `ul 1 `ul 1 `VS3295 1 `uc -> 12 `i `uc -> 12 `i `uc -> 12 `i `uc -> 12 `i `uc -> 12 `i `uc -> 12 `i `uc -> 12 `i `a 1 ]
-[n S3296 C_data mcmd cstate modbus_command req_length trace id_ok passwd_ok config_ok data_ok link_ok serial_ok version_ok tm_ok data_count data_prev M speed mon current accel dname dsoft link dcu_online ]
-"156
-[; ;../modbus_master.h: 156:  struct V_type {
+"205 ../modbus_master.h
+[; ;../modbus_master.h: 205:  typedef struct C_data {
+[s S3296 `uc 1 `E24226 1 `E24232 1 `us 1 `c 1 `a 1 `a 1 `a 1 `a 1 `a 1 `a 1 `a 1 `a 1 `ul 1 `ul 1 `VS3295 1 `uc -> 12 `i `uc -> 12 `i `uc -> 12 `i `uc -> 12 `i `uc -> 12 `i `uc -> 12 `i `uc -> 12 `i `uc -> 12 `i `a 1 ]
+[n S3296 C_data mcmd cstate modbus_command req_length trace id_ok passwd_ok config_ok data_ok link_ok serial_ok version_ok tm_ok data_count data_prev M speed mon current accel dname dsoft link error dcu_online ]
+"158
+[; ;../modbus_master.h: 158:  struct V_type {
 [s S3289 `ul 1 `ul 1 `Vul 1 `Vul 1 `Vul 1 `Vul 1 `Vul 1 `Vul 1 `Vul 1 `Vul 1 `l 1 `Va 1 `Va 1 ]
 [n S3289 V_type StartTime TimeUsed pacing pwm_update pwm_stop fault_count fault_ticks fault_source modbus_rx modbus_tx motor_speed fault_active dmt_sosc_flag ]
-"27 /opt/microchip/xc8/v2.46/pic/include/c99/string.h
-[; ;/opt/microchip/xc8/v2.46/pic/include/c99/string.h: 27: void *memcpy (void *restrict, const void *restrict, size_t);
+"27 /opt/microchip/xc8/v2.50/pic/include/c99/string.h
+[; ;/opt/microchip/xc8/v2.50/pic/include/c99/string.h: 27: void *memcpy (void *restrict, const void *restrict, size_t);
 [v _memcpy `(*v ~T0 @X0 0 ef3`*v`*Cv`ui ]
-"123 /opt/microchip/xc8/v2.46/pic/include/c99/stdio.h
-[; ;/opt/microchip/xc8/v2.46/pic/include/c99/stdio.h: 123: int snprintf(char *restrict, size_t, const char *restrict, ...);
+"123 /opt/microchip/xc8/v2.50/pic/include/c99/stdio.h
+[; ;/opt/microchip/xc8/v2.50/pic/include/c99/stdio.h: 123: int snprintf(char *restrict, size_t, const char *restrict, ...);
 [v _snprintf `(i ~T0 @X0 0 e2v`*uc`ui`*Cuc ]
-"379 ../modbus_master.h
-[; ;../modbus_master.h: 379:  uint8_t dcu_crc_r(uint8_t *);
+"381 ../modbus_master.h
+[; ;../modbus_master.h: 381:  uint8_t dcu_crc_r(uint8_t *);
 [v _dcu_crc_r `(uc ~T0 @X0 0 ef1`*uc ]
-"380
-[; ;../modbus_master.h: 380:  uint8_t dcu_crc_a(uint8_t *);
+"382
+[; ;../modbus_master.h: 382:  uint8_t dcu_crc_a(uint8_t *);
 [v _dcu_crc_a `(uc ~T0 @X0 0 ef1`*uc ]
 "3628 /root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.25.433/xc8/pic/include/proc/pic18f47q84.h
 [s S3154 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -61,8 +61,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "368 ../dcuQ84.X/mcc_generated_files/tmr5.h
 [; ;../dcuQ84.X/mcc_generated_files/tmr5.h: 368:  void TMR5_SetInterruptHandler(void (* InterruptHandler)(void));
 [v _TMR5_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F23577 ]
-"363 ../modbus_master.h
-[; ;../modbus_master.h: 363:  void timer_500ms_tick(void);
+"365 ../modbus_master.h
+[; ;../modbus_master.h: 365:  void timer_500ms_tick(void);
 [v _timer_500ms_tick `(v ~T0 @X0 0 ef ]
 "129 ../dcuQ84.X/mcc_generated_files/tmr5.h
 [; ;../dcuQ84.X/mcc_generated_files/tmr5.h: 129: void TMR5_StartTimer(void);
@@ -71,47 +71,47 @@ Version 4.0 HI-TECH Software Intermediate Code
 "877 ../dcuQ84.X/mcc_generated_files/tmr6.h
 [; ;../dcuQ84.X/mcc_generated_files/tmr6.h: 877:  void TMR6_SetInterruptHandler(void (* InterruptHandler)(void));
 [v _TMR6_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F23665 ]
-"364 ../modbus_master.h
-[; ;../modbus_master.h: 364:  void timer_2ms_tick(void);
+"366 ../modbus_master.h
+[; ;../modbus_master.h: 366:  void timer_2ms_tick(void);
 [v _timer_2ms_tick `(v ~T0 @X0 0 ef ]
 "542 ../dcuQ84.X/mcc_generated_files/tmr6.h
 [; ;../dcuQ84.X/mcc_generated_files/tmr6.h: 542: void TMR6_StartTimer(void);
 [v _TMR6_StartTimer `(v ~T0 @X0 0 ef ]
-"173 ../modbus_master.h
-[; ;../modbus_master.h: 173:  union MREG32 {
+"175 ../modbus_master.h
+[; ;../modbus_master.h: 175:  union MREG32 {
 [u S3292 `l 1 `uc -> 4 `i ]
 [n S3292 MREG32 value bytes ]
-"168
-[; ;../modbus_master.h: 168:  union MREG {
+"170
+[; ;../modbus_master.h: 170:  union MREG {
 [u S3291 `s 1 `uc -> 2 `i ]
 [n S3291 MREG value bytes ]
-"379 ../modbus_master.c
-[; ;../modbus_master.c: 379:   return T_spacing;
+"399 ../modbus_master.c
+[; ;../modbus_master.c: 399:   return T_spacing;
 [c E24243 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 .. ]
 [n E24243 trace_type T_begin T_clear T_passwd T_config T_data T_id T_serial T_version T_init T_init_d T_send T_send_d T_recv T_recv_r T_misc1 T_misc2 T_misc3 T_spacing T_link  ]
-"356 ../modbus_master.h
-[; ;../modbus_master.h: 356:  void clear_2hz(void);
-[v _clear_2hz `(v ~T0 @X0 0 ef ]
-"357
-[; ;../modbus_master.h: 357:  void clear_500ahz(void);
-[v _clear_500ahz `(v ~T0 @X0 0 ef ]
-"360
-[; ;../modbus_master.h: 360:  uint32_t get_500ahz(const uint8_t);
-[v _get_500ahz `(ul ~T0 @X0 0 ef1`Cuc ]
-"199 ../modbus_master.c
-[; ;../modbus_master.c: 199: static void half_dup_tx(const _Bool);
-[v _half_dup_tx `(v ~T0 @X0 0 sf1`Ca ]
 "358 ../modbus_master.h
-[; ;../modbus_master.h: 358:  void clear_500hz(void);
+[; ;../modbus_master.h: 358:  void clear_2hz(void);
+[v _clear_2hz `(v ~T0 @X0 0 ef ]
+"359
+[; ;../modbus_master.h: 359:  void clear_500ahz(void);
+[v _clear_500ahz `(v ~T0 @X0 0 ef ]
+"362
+[; ;../modbus_master.h: 362:  uint32_t get_500ahz(const uint8_t);
+[v _get_500ahz `(ul ~T0 @X0 0 ef1`Cuc ]
+"219 ../modbus_master.c
+[; ;../modbus_master.c: 219: static void half_dup_tx(const _Bool);
+[v _half_dup_tx `(v ~T0 @X0 0 sf1`Ca ]
+"360 ../modbus_master.h
+[; ;../modbus_master.h: 360:  void clear_500hz(void);
 [v _clear_500hz `(v ~T0 @X0 0 ef ]
-"361
-[; ;../modbus_master.h: 361:  uint32_t get_500hz(const uint8_t);
+"363
+[; ;../modbus_master.h: 363:  uint32_t get_500hz(const uint8_t);
 [v _get_500hz `(ul ~T0 @X0 0 ef1`Cuc ]
 "380 ../dcuQ84.X/mcc_generated_files/uart5.h
 [; ;../dcuQ84.X/mcc_generated_files/uart5.h: 380: void UART5_Write(uint8_t txData);
 [v _UART5_Write `(v ~T0 @X0 0 ef1`uc ]
-"201 ../modbus_master.c
-[; ;../modbus_master.c: 201: static _Bool serial_trmt(void);
+"221 ../modbus_master.c
+[; ;../modbus_master.c: 221: static _Bool serial_trmt(void);
 [v _serial_trmt `(a ~T0 @X0 0 sf ]
 "30 ../timers.h
 [; ;../timers.h: 30: void delay_ms(const uint16_t);
@@ -126,11 +126,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [n S3155 . . ]
 "3701
 [v _LATCbits `VS3155 ~T0 @X0 0 e@1216 ]
-"200 ../modbus_master.c
-[; ;../modbus_master.c: 200: static void half_dup_rx(const _Bool);
+"220 ../modbus_master.c
+[; ;../modbus_master.c: 220: static void half_dup_rx(const _Bool);
 [v _half_dup_rx `(v ~T0 @X0 0 sf1`Ca ]
-"217
-[; ;../modbus_master.c: 217: static _Bool modbus_read_dcu_check(C_data *, _Bool*, uint16_t);
+"237
+[; ;../modbus_master.c: 237: static _Bool modbus_read_dcu_check(C_data *, _Bool*, uint16_t);
 [v _modbus_read_dcu_check `(a ~T0 @X0 0 sf3`*S3296`*a`us ]
 "4250 /root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.25.433/xc8/pic/include/proc/pic18f47q84.h
 [s S3176 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -143,7 +143,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "258 ../dcuQ84.X/mcc_generated_files/uart5.h
 [; ;../dcuQ84.X/mcc_generated_files/uart5.h: 258: _Bool UART5_is_tx_done(void);
 [v _UART5_is_tx_done `(a ~T0 @X0 0 ef ]
-[v F24585 `(a ~T0 @X0 0 tf ]
+[v F24587 `(a ~T0 @X0 0 tf ]
 [v F23932 `(v ~T0 @X0 0 tf ]
 "414 ../dcuQ84.X/mcc_generated_files/uart1.h
 [; ;../dcuQ84.X/mcc_generated_files/uart1.h: 414: void UART1_SetFramingErrorHandler(void (* interruptHandler)(void));
@@ -156,17 +156,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 "450
 [; ;../dcuQ84.X/mcc_generated_files/uart1.h: 450: void UART1_SetErrorHandler(void (* interruptHandler)(void));
 [v _UART1_SetErrorHandler `(v ~T0 @X0 0 ef1`*F23940 ]
-"382 ../modbus_master.h
-[; ;../modbus_master.h: 382:  uint8_t dcu_buffer_len(uint8_t *);
+"384 ../modbus_master.h
+[; ;../modbus_master.h: 384:  uint8_t dcu_buffer_len(uint8_t *);
 [v _dcu_buffer_len `(uc ~T0 @X0 0 ef1`*uc ]
-"381
-[; ;../modbus_master.h: 381:  uint8_t dcu_chk_buffer(uint8_t *, uint8_t);
-[v _dcu_chk_buffer `(uc ~T0 @X0 0 ef2`*uc`uc ]
 "383
-[; ;../modbus_master.h: 383:  uint16_t dcu_param_num(uint8_t *);
+[; ;../modbus_master.h: 383:  uint8_t dcu_chk_buffer(uint8_t *, uint8_t);
+[v _dcu_chk_buffer `(uc ~T0 @X0 0 ef2`*uc`uc ]
+"385
+[; ;../modbus_master.h: 385:  uint16_t dcu_param_num(uint8_t *);
 [v _dcu_param_num `(us ~T0 @X0 0 ef1`*uc ]
-"23 /opt/microchip/xc8/v2.46/pic/include/c99/stdlib.h
-[; ;/opt/microchip/xc8/v2.46/pic/include/c99/stdlib.h: 23: int atoi (const char *);
+"23 /opt/microchip/xc8/v2.50/pic/include/c99/stdlib.h
+[; ;/opt/microchip/xc8/v2.50/pic/include/c99/stdlib.h: 23: int atoi (const char *);
 [v _atoi `(i ~T0 @X0 0 ef1`*Cuc ]
 "362 /root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.25.433/xc8/pic/include/proc/pic18f47q84.h
 [; ;/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.25.433/xc8/pic/include/proc/pic18f47q84.h: 362: __asm("BOOTREG equ 038h");
@@ -3790,8 +3790,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 1 `i `uc
 ..
 ]
-"268 ../modbus_master.h
-[; ;../modbus_master.h: 268:  static const uint8_t table_crc_hi[] = {
+"270 ../modbus_master.h
+[; ;../modbus_master.h: 270:  static const uint8_t table_crc_hi[] = {
 [v _table_crc_hi `Cuc ~T0 @X0 -> 256 `i s ]
 [i _table_crc_hi
 :U ..
@@ -4053,8 +4053,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 64 `i `uc
 ..
 ]
-"298
-[; ;../modbus_master.h: 298:  static const uint8_t table_crc_lo[] = {
+"300
+[; ;../modbus_master.h: 300:  static const uint8_t table_crc_lo[] = {
 [v _table_crc_lo `Cuc ~T0 @X0 -> 256 `i s ]
 [i _table_crc_lo
 :U ..
@@ -4472,8 +4472,33 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"127
-[; ;../modbus_master.c: 127: P_data_r P_action = {
+"124
+[; ;../modbus_master.c: 124: P_data P_read_E = {
+[v _P_read_E `S3287 ~T0 @X0 1 e ]
+[i _P_read_E
+:U ..
+:U ..
+-> -> 48 `ui `uc
+-> -> 48 `ui `uc
+-> -> 49 `ui `uc
+-> -> 48 `ui `uc
+-> -> 48 `ui `uc
+-> -> 51 `ui `uc
+-> -> 48 `ui `uc
+-> -> 51 `ui `uc
+-> -> 48 `ui `uc
+-> -> 50 `ui `uc
+-> -> 61 `ui `uc
+-> -> 63 `ui `uc
+-> -> 48 `ui `uc
+-> -> 48 `ui `uc
+-> -> 48 `ui `uc
+-> -> 13 `i `uc
+..
+..
+]
+"146
+[; ;../modbus_master.c: 146: P_data_r P_action = {
 [v _P_action `S3288 ~T0 @X0 1 e ]
 [i _P_action
 :U ..
@@ -4503,8 +4528,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"150
-[; ;../modbus_master.c: 150: volatile M_data M = {
+"169
+[; ;../modbus_master.c: 169: volatile M_data M = {
 [v _M `VS3295 ~T0 @X0 1 e ]
 [i _M
 :U ..
@@ -4517,8 +4542,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"155
-[; ;../modbus_master.c: 155: volatile M_time_data MT = {
+"174
+[; ;../modbus_master.c: 174: volatile M_time_data MT = {
 [v _MT `VS3294 ~T0 @X0 1 e ]
 [i _MT
 :U ..
@@ -4529,8 +4554,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"161
-[; ;../modbus_master.c: 161: C_data C = {
+"180
+[; ;../modbus_master.c: 180: C_data C = {
 [v _C `S3296 ~T0 @X0 1 e ]
 [i _C
 :U ..
@@ -4629,12 +4654,22 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> 69 `c
 -> 0 `c
 ..
+:U ..
+-> 79 `c
+-> 70 `c
+-> 70 `c
+-> 76 `c
+-> 73 `c
+-> 78 `c
+-> 69 `c
+-> 0 `c
+..
 -> -> 0 `i `a
 ..
 ..
 ]
-"184
-[; ;../modbus_master.c: 184: volatile struct V_type V = {
+"204
+[; ;../modbus_master.c: 204: volatile struct V_type V = {
 [v _V `VS3289 ~T0 @X0 1 e ]
 [i _V
 :U ..
@@ -4655,543 +4690,555 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"223
-[; ;../modbus_master.c: 223: uint16_t modbus_dcu_send_msg(void *cc_buffer, const void *modbus_cc_mode, uint16_t req_length)
+"243
+[; ;../modbus_master.c: 243: uint16_t modbus_dcu_send_msg(void *cc_buffer, const void *modbus_cc_mode, uint16_t req_length)
 [v _modbus_dcu_send_msg `(us ~T0 @X0 1 ef3`*v`*Cv`us ]
-"224
-[; ;../modbus_master.c: 224: {
+"244
+[; ;../modbus_master.c: 244: {
 {
 [e :U _modbus_dcu_send_msg ]
-"223
-[; ;../modbus_master.c: 223: uint16_t modbus_dcu_send_msg(void *cc_buffer, const void *modbus_cc_mode, uint16_t req_length)
+"243
+[; ;../modbus_master.c: 243: uint16_t modbus_dcu_send_msg(void *cc_buffer, const void *modbus_cc_mode, uint16_t req_length)
 [v _cc_buffer `*v ~T0 @X0 1 r1 ]
 [v _modbus_cc_mode `*Cv ~T0 @X0 1 r2 ]
 [v _req_length `us ~T0 @X0 1 r3 ]
-"224
-[; ;../modbus_master.c: 224: {
+"244
+[; ;../modbus_master.c: 244: {
 [f ]
-"225
-[; ;../modbus_master.c: 225:  char tmp_chk[6];
+"245
+[; ;../modbus_master.c: 245:  char tmp_chk[6];
 [v _tmp_chk `uc ~T0 @X0 -> 6 `i a ]
-"226
-[; ;../modbus_master.c: 226:  P_data *P_ptr;
+"246
+[; ;../modbus_master.c: 246:  P_data *P_ptr;
 [v _P_ptr `*S3287 ~T0 @X0 1 a ]
-"227
-[; ;../modbus_master.c: 227:  P_data_r *P_ptr_r;
+"247
+[; ;../modbus_master.c: 247:  P_data_r *P_ptr_r;
 [v _P_ptr_r `*S3288 ~T0 @X0 1 a ]
-"229
-[; ;../modbus_master.c: 229:  memcpy((void*) cc_buffer, (const void *) modbus_cc_mode, req_length);
+"249
+[; ;../modbus_master.c: 249:  memcpy((void*) cc_buffer, (const void *) modbus_cc_mode, req_length);
 [e ( _memcpy (3 , , _cc_buffer _modbus_cc_mode -> _req_length `ui ]
-"234
-[; ;../modbus_master.c: 234:  if (req_length == sizeof(P_read)) {
+"254
+[; ;../modbus_master.c: 254:  if (req_length == sizeof(P_read)) {
 [e $ ! == -> _req_length `ui -> # _P_read `ui 3302  ]
 {
-"235
-[; ;../modbus_master.c: 235:   P_ptr = cc_buffer;
+"255
+[; ;../modbus_master.c: 255:   P_ptr = cc_buffer;
 [e = _P_ptr -> _cc_buffer `*S3287 ]
-"236
-[; ;../modbus_master.c: 236:   snprintf(tmp_chk, 4, "%03d", dcu_crc_r(cc_buffer));
+"256
+[; ;../modbus_master.c: 256:   snprintf(tmp_chk, 4, "%03d", dcu_crc_r(cc_buffer));
 [e ( _snprintf (2 , (. , , &U _tmp_chk -> -> 4 `i `ui :s 1C -> ( _dcu_crc_r (1 -> _cc_buffer `*uc `i ]
-"237
-[; ;../modbus_master.c: 237:   P_ptr->chk2 = tmp_chk[0];
+"257
+[; ;../modbus_master.c: 257:   P_ptr->chk2 = tmp_chk[0];
 [e = . *U _P_ptr 12 -> *U + &U _tmp_chk * -> -> -> 0 `i `ui `ux -> -> # *U &U _tmp_chk `ui `ux `uc ]
-"238
-[; ;../modbus_master.c: 238:   P_ptr->chk1 = tmp_chk[1];
+"258
+[; ;../modbus_master.c: 258:   P_ptr->chk1 = tmp_chk[1];
 [e = . *U _P_ptr 13 -> *U + &U _tmp_chk * -> -> -> 1 `i `ui `ux -> -> # *U &U _tmp_chk `ui `ux `uc ]
-"239
-[; ;../modbus_master.c: 239:   P_ptr->chk0 = tmp_chk[2];
+"259
+[; ;../modbus_master.c: 259:   P_ptr->chk0 = tmp_chk[2];
 [e = . *U _P_ptr 14 -> *U + &U _tmp_chk * -> -> -> 2 `i `ui `ux -> -> # *U &U _tmp_chk `ui `ux `uc ]
-"240
-[; ;../modbus_master.c: 240:  }
+"260
+[; ;../modbus_master.c: 260:  }
 }
 [e :U 3302 ]
-"241
-[; ;../modbus_master.c: 241:  if (req_length == sizeof(P_action)) {
+"261
+[; ;../modbus_master.c: 261:  if (req_length == sizeof(P_action)) {
 [e $ ! == -> _req_length `ui -> # _P_action `ui 3303  ]
 {
-"242
-[; ;../modbus_master.c: 242:   P_ptr_r = cc_buffer;
+"262
+[; ;../modbus_master.c: 262:   P_ptr_r = cc_buffer;
 [e = _P_ptr_r -> _cc_buffer `*S3288 ]
-"243
-[; ;../modbus_master.c: 243:   snprintf(tmp_chk, 4, "%03d", dcu_crc_a(cc_buffer));
-[e ( _snprintf (2 , (. , , &U _tmp_chk -> -> 4 `i `ui :s 2C -> ( _dcu_crc_a (1 -> _cc_buffer `*uc `i ]
-"244
-[; ;../modbus_master.c: 244:   P_ptr_r->chk2 = tmp_chk[0];
-[e = . *U _P_ptr_r 11 -> *U + &U _tmp_chk * -> -> -> 0 `i `ui `ux -> -> # *U &U _tmp_chk `ui `ux `uc ]
-"245
-[; ;../modbus_master.c: 245:   P_ptr_r->chk1 = tmp_chk[1];
-[e = . *U _P_ptr_r 12 -> *U + &U _tmp_chk * -> -> -> 1 `i `ui `ux -> -> # *U &U _tmp_chk `ui `ux `uc ]
-"246
-[; ;../modbus_master.c: 246:   P_ptr_r->chk0 = tmp_chk[2];
-[e = . *U _P_ptr_r 13 -> *U + &U _tmp_chk * -> -> -> 2 `i `ui `ux -> -> # *U &U _tmp_chk `ui `ux `uc ]
-"247
-[; ;../modbus_master.c: 247:  }
-}
-[e :U 3303 ]
-"249
-[; ;../modbus_master.c: 249:  return req_length;
-[e ) _req_length ]
-[e $UE 3301  ]
-"250
-[; ;../modbus_master.c: 250: }
-[e :UE 3301 ]
-}
-"255
-[; ;../modbus_master.c: 255: uint16_t crc16(volatile uint8_t *buffer, uint16_t buffer_length)
-[v _crc16 `(us ~T0 @X0 1 ef2`*Vuc`us ]
-"256
-[; ;../modbus_master.c: 256: {
-{
-[e :U _crc16 ]
-"255
-[; ;../modbus_master.c: 255: uint16_t crc16(volatile uint8_t *buffer, uint16_t buffer_length)
-[v _buffer `*Vuc ~T0 @X0 1 r1 ]
-[v _buffer_length `us ~T0 @X0 1 r2 ]
-"256
-[; ;../modbus_master.c: 256: {
-[f ]
-"257
-[; ;../modbus_master.c: 257:  uint8_t crc_hi = 0xFF;
-[v _crc_hi `uc ~T0 @X0 1 a ]
-[e = _crc_hi -> -> 255 `i `uc ]
-"258
-[; ;../modbus_master.c: 258:  uint8_t crc_lo = 0xFF;
-[v _crc_lo `uc ~T0 @X0 1 a ]
-[e = _crc_lo -> -> 255 `i `uc ]
-"259
-[; ;../modbus_master.c: 259:  uint8_t i;
-[v _i `uc ~T0 @X0 1 a ]
-"260
-[; ;../modbus_master.c: 260:  uint16_t crc16t;
-[v _crc16t `us ~T0 @X0 1 a ]
 "263
-[; ;../modbus_master.c: 263:  while (buffer_length--) {
-[e $U 3305  ]
-[e :U 3306 ]
-{
+[; ;../modbus_master.c: 263:   snprintf(tmp_chk, 4, "%03d", dcu_crc_a(cc_buffer));
+[e ( _snprintf (2 , (. , , &U _tmp_chk -> -> 4 `i `ui :s 2C -> ( _dcu_crc_a (1 -> _cc_buffer `*uc `i ]
 "264
-[; ;../modbus_master.c: 264:   i = crc_hi ^ *buffer++;
-[e = _i -> ^ -> _crc_hi `i -> *U ++ _buffer * -> -> 1 `i `x -> -> # *U _buffer `i `x `i `uc ]
+[; ;../modbus_master.c: 264:   P_ptr_r->chk2 = tmp_chk[0];
+[e = . *U _P_ptr_r 11 -> *U + &U _tmp_chk * -> -> -> 0 `i `ui `ux -> -> # *U &U _tmp_chk `ui `ux `uc ]
 "265
-[; ;../modbus_master.c: 265:   crc_hi = crc_lo ^ table_crc_hi[i];
-[e = _crc_hi -> ^ -> _crc_lo `i -> *U + &U _table_crc_hi * -> _i `ux -> -> # *U &U _table_crc_hi `ui `ux `i `uc ]
+[; ;../modbus_master.c: 265:   P_ptr_r->chk1 = tmp_chk[1];
+[e = . *U _P_ptr_r 12 -> *U + &U _tmp_chk * -> -> -> 1 `i `ui `ux -> -> # *U &U _tmp_chk `ui `ux `uc ]
 "266
-[; ;../modbus_master.c: 266:   crc_lo = table_crc_lo[i];
-[e = _crc_lo *U + &U _table_crc_lo * -> _i `ux -> -> # *U &U _table_crc_lo `ui `ux ]
+[; ;../modbus_master.c: 266:   P_ptr_r->chk0 = tmp_chk[2];
+[e = . *U _P_ptr_r 13 -> *U + &U _tmp_chk * -> -> -> 2 `i `ui `ux -> -> # *U &U _tmp_chk `ui `ux `uc ]
 "267
 [; ;../modbus_master.c: 267:  }
 }
+[e :U 3303 ]
+"269
+[; ;../modbus_master.c: 269:  return req_length;
+[e ) _req_length ]
+[e $UE 3301  ]
+"270
+[; ;../modbus_master.c: 270: }
+[e :UE 3301 ]
+}
+"275
+[; ;../modbus_master.c: 275: uint16_t crc16(volatile uint8_t *buffer, uint16_t buffer_length)
+[v _crc16 `(us ~T0 @X0 1 ef2`*Vuc`us ]
+"276
+[; ;../modbus_master.c: 276: {
+{
+[e :U _crc16 ]
+"275
+[; ;../modbus_master.c: 275: uint16_t crc16(volatile uint8_t *buffer, uint16_t buffer_length)
+[v _buffer `*Vuc ~T0 @X0 1 r1 ]
+[v _buffer_length `us ~T0 @X0 1 r2 ]
+"276
+[; ;../modbus_master.c: 276: {
+[f ]
+"277
+[; ;../modbus_master.c: 277:  uint8_t crc_hi = 0xFF;
+[v _crc_hi `uc ~T0 @X0 1 a ]
+[e = _crc_hi -> -> 255 `i `uc ]
+"278
+[; ;../modbus_master.c: 278:  uint8_t crc_lo = 0xFF;
+[v _crc_lo `uc ~T0 @X0 1 a ]
+[e = _crc_lo -> -> 255 `i `uc ]
+"279
+[; ;../modbus_master.c: 279:  uint8_t i;
+[v _i `uc ~T0 @X0 1 a ]
+"280
+[; ;../modbus_master.c: 280:  uint16_t crc16t;
+[v _crc16t `us ~T0 @X0 1 a ]
+"283
+[; ;../modbus_master.c: 283:  while (buffer_length--) {
+[e $U 3305  ]
+[e :U 3306 ]
+{
+"284
+[; ;../modbus_master.c: 284:   i = crc_hi ^ *buffer++;
+[e = _i -> ^ -> _crc_hi `i -> *U ++ _buffer * -> -> 1 `i `x -> -> # *U _buffer `i `x `i `uc ]
+"285
+[; ;../modbus_master.c: 285:   crc_hi = crc_lo ^ table_crc_hi[i];
+[e = _crc_hi -> ^ -> _crc_lo `i -> *U + &U _table_crc_hi * -> _i `ux -> -> # *U &U _table_crc_hi `ui `ux `i `uc ]
+"286
+[; ;../modbus_master.c: 286:   crc_lo = table_crc_lo[i];
+[e = _crc_lo *U + &U _table_crc_lo * -> _i `ux -> -> # *U &U _table_crc_lo `ui `ux ]
+"287
+[; ;../modbus_master.c: 287:  }
+}
 [e :U 3305 ]
-"263
-[; ;../modbus_master.c: 263:  while (buffer_length--) {
+"283
+[; ;../modbus_master.c: 283:  while (buffer_length--) {
 [e $ != -> -- _buffer_length -> -> 1 `i `us `ui -> -> 0 `i `ui 3306  ]
 [e :U 3307 ]
-"269
-[; ;../modbus_master.c: 269:  crc16t = (uint16_t) crc_hi << (uint16_t) 8 | (uint16_t) crc_lo;
+"289
+[; ;../modbus_master.c: 289:  crc16t = (uint16_t) crc_hi << (uint16_t) 8 | (uint16_t) crc_lo;
 [e = _crc16t -> | << -> -> _crc_hi `us `ui -> -> -> 8 `i `us `ui -> -> _crc_lo `us `ui `us ]
-"270
-[; ;../modbus_master.c: 270:  return crc16t;
+"290
+[; ;../modbus_master.c: 290:  return crc16t;
 [e ) _crc16t ]
 [e $UE 3304  ]
-"271
-[; ;../modbus_master.c: 271: }
+"291
+[; ;../modbus_master.c: 291: }
 [e :UE 3304 ]
 }
-"277
-[; ;../modbus_master.c: 277: void my_modbus_rx_32(void)
+"297
+[; ;../modbus_master.c: 297: void my_modbus_rx_32(void)
 [v _my_modbus_rx_32 `(v ~T0 @X0 1 ef ]
-"278
-[; ;../modbus_master.c: 278: {
+"298
+[; ;../modbus_master.c: 298: {
 {
 [e :U _my_modbus_rx_32 ]
 [f ]
-"279
-[; ;../modbus_master.c: 279:  static uint8_t m_data = 0;
-[v F24541 `uc ~T0 @X0 1 s m_data ]
-[i F24541
+"299
+[; ;../modbus_master.c: 299:  static uint8_t m_data = 0;
+[v F24543 `uc ~T0 @X0 1 s m_data ]
+[i F24543
 -> -> 0 `i `uc
 ]
-"281
-[; ;../modbus_master.c: 281:  do { LATBbits.LATB6 = ~LATBbits.LATB6; } while(0);
+"301
+[; ;../modbus_master.c: 301:  do { LATBbits.LATB6 = ~LATBbits.LATB6; } while(0);
 [e :U 3311 ]
 {
 [e = . . _LATBbits 0 6 -> ~ -> . . _LATBbits 0 6 `i `uc ]
 }
 [e :U 3310 ]
-"282
-[; ;../modbus_master.c: 282:  M.rx = 1;
+"302
+[; ;../modbus_master.c: 302:  M.rx = 1;
 [e = . _M 14 -> -> 1 `i `a ]
-"286
-[; ;../modbus_master.c: 286:  m_data = U5RXB;
-[e = F24541 _U5RXB ]
-"287
-[; ;../modbus_master.c: 287:  cc_buffer[M.recv_count] = m_data;
-[e = *U + &U _cc_buffer * -> . _M 6 `ux -> -> # *U &U _cc_buffer `ui `ux F24541 ]
-"288
-[; ;../modbus_master.c: 288:  if (++M.recv_count >= 240) {
+"306
+[; ;../modbus_master.c: 306:  m_data = U5RXB;
+[e = F24543 _U5RXB ]
+"307
+[; ;../modbus_master.c: 307:  cc_buffer[M.recv_count] = m_data;
+[e = *U + &U _cc_buffer * -> . _M 6 `ux -> -> # *U &U _cc_buffer `ui `ux F24543 ]
+"308
+[; ;../modbus_master.c: 308:  if (++M.recv_count >= 240) {
 [e $ ! >= -> =+ . _M 6 -> -> 1 `i `Vuc `i -> 240 `i 3312  ]
 {
-"289
-[; ;../modbus_master.c: 289:   M.recv_count = 0;
+"309
+[; ;../modbus_master.c: 309:   M.recv_count = 0;
 [e = . _M 6 -> -> 0 `i `uc ]
-"290
-[; ;../modbus_master.c: 290:  }
+"310
+[; ;../modbus_master.c: 310:  }
 }
 [e :U 3312 ]
-"291
-[; ;../modbus_master.c: 291: }
+"311
+[; ;../modbus_master.c: 311: }
 [e :UE 3308 ]
 }
-"293
-[; ;../modbus_master.c: 293: uint8_t init_stream_params(void)
+"313
+[; ;../modbus_master.c: 313: uint8_t init_stream_params(void)
 [v _init_stream_params `(uc ~T0 @X0 1 ef ]
-"294
-[; ;../modbus_master.c: 294: {
+"314
+[; ;../modbus_master.c: 314: {
 {
 [e :U _init_stream_params ]
 [f ]
-"295
-[; ;../modbus_master.c: 295:  M.config = 0;
+"315
+[; ;../modbus_master.c: 315:  M.config = 0;
 [e = . _M 1 -> -> 0 `i `uc ]
-"296
-[; ;../modbus_master.c: 296:  return 0;
+"316
+[; ;../modbus_master.c: 316:  return 0;
 [e ) -> -> 0 `i `uc ]
 [e $UE 3313  ]
-"297
-[; ;../modbus_master.c: 297: }
+"317
+[; ;../modbus_master.c: 317: }
 [e :UE 3313 ]
 }
-"302
-[; ;../modbus_master.c: 302: void init_mb_master_timers(void)
+"322
+[; ;../modbus_master.c: 322: void init_mb_master_timers(void)
 [v _init_mb_master_timers `(v ~T0 @X0 1 ef ]
-"303
-[; ;../modbus_master.c: 303: {
+"323
+[; ;../modbus_master.c: 323: {
 {
 [e :U _init_mb_master_timers ]
 [f ]
-"304
-[; ;../modbus_master.c: 304:  TMR5_SetInterruptHandler(timer_500ms_tick);
-[e ( _TMR5_SetInterruptHandler (1 &U _timer_500ms_tick ]
-"305
-[; ;../modbus_master.c: 305:  TMR5_StartTimer();
-[e ( _TMR5_StartTimer ..  ]
-"306
-[; ;../modbus_master.c: 306:  TMR6_SetInterruptHandler(timer_2ms_tick);
-[e ( _TMR6_SetInterruptHandler (1 &U _timer_2ms_tick ]
-"307
-[; ;../modbus_master.c: 307:  TMR6_StartTimer();
-[e ( _TMR6_StartTimer ..  ]
-"308
-[; ;../modbus_master.c: 308: }
-[e :UE 3314 ]
-}
-"314
-[; ;../modbus_master.c: 314: static uint16_t crc16_receive(C_data * client)
-[v _crc16_receive `(us ~T0 @X0 1 sf1`*S3296 ]
-"315
-[; ;../modbus_master.c: 315: {
-{
-[e :U _crc16_receive ]
-"314
-[; ;../modbus_master.c: 314: static uint16_t crc16_receive(C_data * client)
-[v _client `*S3296 ~T0 @X0 1 r1 ]
-"315
-[; ;../modbus_master.c: 315: {
-[f ]
-"316
-[; ;../modbus_master.c: 316:  uint16_t crc16r;
-[v _crc16r `us ~T0 @X0 1 a ]
-"318
-[; ;../modbus_master.c: 318:  crc16r = ((uint16_t) cc_buffer[client->req_length - 2] << (uint16_t) 8) | ((uint16_t) cc_buffer[client->req_length - 1] & 0x00ff);
-[e = _crc16r -> | << -> -> *U + &U _cc_buffer * -> - -> . *U _client 3 `ui -> -> 2 `i `ui `ux -> -> # *U &U _cc_buffer `ui `ux `us `ui -> -> -> 8 `i `us `ui & -> -> *U + &U _cc_buffer * -> - -> . *U _client 3 `ui -> -> 1 `i `ui `ux -> -> # *U &U _cc_buffer `ui `ux `us `ui -> -> 255 `i `ui `us ]
-"319
-[; ;../modbus_master.c: 319:  return crc16r;
-[e ) _crc16r ]
-[e $UE 3315  ]
-"320
-[; ;../modbus_master.c: 320: }
-[e :UE 3315 ]
-}
-"322
-[; ;../modbus_master.c: 322: static void log_crc_error(const uint16_t c_crc, const uint16_t c_crc_rec)
-[v _log_crc_error `(v ~T0 @X0 1 sf2`Cus`Cus ]
-"323
-[; ;../modbus_master.c: 323: {
-{
-[e :U _log_crc_error ]
-"322
-[; ;../modbus_master.c: 322: static void log_crc_error(const uint16_t c_crc, const uint16_t c_crc_rec)
-[v _c_crc `Cus ~T0 @X0 1 r1 ]
-[v _c_crc_rec `Cus ~T0 @X0 1 r2 ]
-"323
-[; ;../modbus_master.c: 323: {
-[f ]
 "324
-[; ;../modbus_master.c: 324:  M.crc_calc = c_crc;
-[e = . _M 10 _c_crc ]
+[; ;../modbus_master.c: 324:  TMR5_SetInterruptHandler(timer_500ms_tick);
+[e ( _TMR5_SetInterruptHandler (1 &U _timer_500ms_tick ]
 "325
-[; ;../modbus_master.c: 325:  M.crc_data = c_crc_rec;
-[e = . _M 9 _c_crc_rec ]
+[; ;../modbus_master.c: 325:  TMR5_StartTimer();
+[e ( _TMR5_StartTimer ..  ]
 "326
-[; ;../modbus_master.c: 326:  M.crc_error++;
-[e ++ . _M 11 -> -> 1 `i `Vul ]
+[; ;../modbus_master.c: 326:  TMR6_SetInterruptHandler(timer_2ms_tick);
+[e ( _TMR6_SetInterruptHandler (1 &U _timer_2ms_tick ]
 "327
-[; ;../modbus_master.c: 327:  M.error++;
-[e ++ . _M 8 -> -> 1 `i `Vus ]
+[; ;../modbus_master.c: 327:  TMR6_StartTimer();
+[e ( _TMR6_StartTimer ..  ]
 "328
 [; ;../modbus_master.c: 328: }
+[e :UE 3314 ]
+}
+"334
+[; ;../modbus_master.c: 334: static uint16_t crc16_receive(C_data * client)
+[v _crc16_receive `(us ~T0 @X0 1 sf1`*S3296 ]
+"335
+[; ;../modbus_master.c: 335: {
+{
+[e :U _crc16_receive ]
+"334
+[; ;../modbus_master.c: 334: static uint16_t crc16_receive(C_data * client)
+[v _client `*S3296 ~T0 @X0 1 r1 ]
+"335
+[; ;../modbus_master.c: 335: {
+[f ]
+"336
+[; ;../modbus_master.c: 336:  uint16_t crc16r;
+[v _crc16r `us ~T0 @X0 1 a ]
+"338
+[; ;../modbus_master.c: 338:  crc16r = ((uint16_t) cc_buffer[client->req_length - 2] << (uint16_t) 8) | ((uint16_t) cc_buffer[client->req_length - 1] & 0x00ff);
+[e = _crc16r -> | << -> -> *U + &U _cc_buffer * -> - -> . *U _client 3 `ui -> -> 2 `i `ui `ux -> -> # *U &U _cc_buffer `ui `ux `us `ui -> -> -> 8 `i `us `ui & -> -> *U + &U _cc_buffer * -> - -> . *U _client 3 `ui -> -> 1 `i `ui `ux -> -> # *U &U _cc_buffer `ui `ux `us `ui -> -> 255 `i `ui `us ]
+"339
+[; ;../modbus_master.c: 339:  return crc16r;
+[e ) _crc16r ]
+[e $UE 3315  ]
+"340
+[; ;../modbus_master.c: 340: }
+[e :UE 3315 ]
+}
+"342
+[; ;../modbus_master.c: 342: static void log_crc_error(const uint16_t c_crc, const uint16_t c_crc_rec)
+[v _log_crc_error `(v ~T0 @X0 1 sf2`Cus`Cus ]
+"343
+[; ;../modbus_master.c: 343: {
+{
+[e :U _log_crc_error ]
+"342
+[; ;../modbus_master.c: 342: static void log_crc_error(const uint16_t c_crc, const uint16_t c_crc_rec)
+[v _c_crc `Cus ~T0 @X0 1 r1 ]
+[v _c_crc_rec `Cus ~T0 @X0 1 r2 ]
+"343
+[; ;../modbus_master.c: 343: {
+[f ]
+"344
+[; ;../modbus_master.c: 344:  M.crc_calc = c_crc;
+[e = . _M 10 _c_crc ]
+"345
+[; ;../modbus_master.c: 345:  M.crc_data = c_crc_rec;
+[e = . _M 9 _c_crc_rec ]
+"346
+[; ;../modbus_master.c: 346:  M.crc_error++;
+[e ++ . _M 11 -> -> 1 `i `Vul ]
+"347
+[; ;../modbus_master.c: 347:  M.error++;
+[e ++ . _M 8 -> -> 1 `i `Vus ]
+"348
+[; ;../modbus_master.c: 348: }
 [e :UE 3316 ]
 }
-"340
-[; ;../modbus_master.c: 340: int32_t mb32_swap(const int32_t value)
+"360
+[; ;../modbus_master.c: 360: int32_t mb32_swap(const int32_t value)
 [v _mb32_swap `(l ~T0 @X0 1 ef1`Cl ]
-"341
-[; ;../modbus_master.c: 341: {
+"361
+[; ;../modbus_master.c: 361: {
 {
 [e :U _mb32_swap ]
-"340
-[; ;../modbus_master.c: 340: int32_t mb32_swap(const int32_t value)
+"360
+[; ;../modbus_master.c: 360: int32_t mb32_swap(const int32_t value)
 [v _value `Cl ~T0 @X0 1 r1 ]
-"341
-[; ;../modbus_master.c: 341: {
+"361
+[; ;../modbus_master.c: 361: {
 [f ]
-"342
-[; ;../modbus_master.c: 342:  uint8_t i;
+"362
+[; ;../modbus_master.c: 362:  uint8_t i;
 [v _i `uc ~T0 @X0 1 a ]
-"343
-[; ;../modbus_master.c: 343:  union MREG32 dvalue;
+"363
+[; ;../modbus_master.c: 363:  union MREG32 dvalue;
 [v _dvalue `S3292 ~T0 @X0 1 a ]
-"346
-[; ;../modbus_master.c: 346:  dvalue.value = value;
+"366
+[; ;../modbus_master.c: 366:  dvalue.value = value;
 [e = . _dvalue 0 _value ]
-"347
-[; ;../modbus_master.c: 347:  i = dvalue.bytes[0];
+"367
+[; ;../modbus_master.c: 367:  i = dvalue.bytes[0];
 [e = _i -> *U + &U . _dvalue 1 * -> -> -> 0 `i `ui `ux -> -> # *U &U . _dvalue 1 `ui `ux `uc ]
-"348
-[; ;../modbus_master.c: 348:  dvalue.bytes[0] = dvalue.bytes[1];
+"368
+[; ;../modbus_master.c: 368:  dvalue.bytes[0] = dvalue.bytes[1];
 [e = *U + &U . _dvalue 1 * -> -> -> 0 `i `ui `ux -> -> # *U &U . _dvalue 1 `ui `ux *U + &U . _dvalue 1 * -> -> -> 1 `i `ui `ux -> -> # *U &U . _dvalue 1 `ui `ux ]
-"349
-[; ;../modbus_master.c: 349:  dvalue.bytes[1] = i;
+"369
+[; ;../modbus_master.c: 369:  dvalue.bytes[1] = i;
 [e = *U + &U . _dvalue 1 * -> -> -> 1 `i `ui `ux -> -> # *U &U . _dvalue 1 `ui `ux -> _i `uc ]
-"350
-[; ;../modbus_master.c: 350:  i = dvalue.bytes[2];
+"370
+[; ;../modbus_master.c: 370:  i = dvalue.bytes[2];
 [e = _i -> *U + &U . _dvalue 1 * -> -> -> 2 `i `ui `ux -> -> # *U &U . _dvalue 1 `ui `ux `uc ]
-"351
-[; ;../modbus_master.c: 351:  dvalue.bytes[2] = dvalue.bytes[3];
+"371
+[; ;../modbus_master.c: 371:  dvalue.bytes[2] = dvalue.bytes[3];
 [e = *U + &U . _dvalue 1 * -> -> -> 2 `i `ui `ux -> -> # *U &U . _dvalue 1 `ui `ux *U + &U . _dvalue 1 * -> -> -> 3 `i `ui `ux -> -> # *U &U . _dvalue 1 `ui `ux ]
-"352
-[; ;../modbus_master.c: 352:  dvalue.bytes[3] = i;
+"372
+[; ;../modbus_master.c: 372:  dvalue.bytes[3] = i;
 [e = *U + &U . _dvalue 1 * -> -> -> 3 `i `ui `ux -> -> # *U &U . _dvalue 1 `ui `ux -> _i `uc ]
-"353
-[; ;../modbus_master.c: 353:  return dvalue.value;
+"373
+[; ;../modbus_master.c: 373:  return dvalue.value;
 [e ) . _dvalue 0 ]
 [e $UE 3317  ]
-"354
-[; ;../modbus_master.c: 354: }
+"374
+[; ;../modbus_master.c: 374: }
 [e :UE 3317 ]
 }
-"356
-[; ;../modbus_master.c: 356: int16_t mb16_swap(const int16_t value)
+"376
+[; ;../modbus_master.c: 376: int16_t mb16_swap(const int16_t value)
 [v _mb16_swap `(s ~T0 @X0 1 ef1`Cs ]
-"357
-[; ;../modbus_master.c: 357: {
+"377
+[; ;../modbus_master.c: 377: {
 {
 [e :U _mb16_swap ]
-"356
-[; ;../modbus_master.c: 356: int16_t mb16_swap(const int16_t value)
+"376
+[; ;../modbus_master.c: 376: int16_t mb16_swap(const int16_t value)
 [v _value `Cs ~T0 @X0 1 r1 ]
-"357
-[; ;../modbus_master.c: 357: {
+"377
+[; ;../modbus_master.c: 377: {
 [f ]
-"358
-[; ;../modbus_master.c: 358:  uint8_t i;
+"378
+[; ;../modbus_master.c: 378:  uint8_t i;
 [v _i `uc ~T0 @X0 1 a ]
-"359
-[; ;../modbus_master.c: 359:  union MREG dvalue;
+"379
+[; ;../modbus_master.c: 379:  union MREG dvalue;
 [v _dvalue `S3291 ~T0 @X0 1 a ]
-"362
-[; ;../modbus_master.c: 362:  dvalue.value = value;
+"382
+[; ;../modbus_master.c: 382:  dvalue.value = value;
 [e = . _dvalue 0 _value ]
-"363
-[; ;../modbus_master.c: 363:  i = dvalue.bytes[0];
+"383
+[; ;../modbus_master.c: 383:  i = dvalue.bytes[0];
 [e = _i -> *U + &U . _dvalue 1 * -> -> -> 0 `i `ui `ux -> -> # *U &U . _dvalue 1 `ui `ux `uc ]
-"364
-[; ;../modbus_master.c: 364:  dvalue.bytes[0] = dvalue.bytes[1];
+"384
+[; ;../modbus_master.c: 384:  dvalue.bytes[0] = dvalue.bytes[1];
 [e = *U + &U . _dvalue 1 * -> -> -> 0 `i `ui `ux -> -> # *U &U . _dvalue 1 `ui `ux *U + &U . _dvalue 1 * -> -> -> 1 `i `ui `ux -> -> # *U &U . _dvalue 1 `ui `ux ]
-"365
-[; ;../modbus_master.c: 365:  dvalue.bytes[1] = i;
+"385
+[; ;../modbus_master.c: 385:  dvalue.bytes[1] = i;
 [e = *U + &U . _dvalue 1 * -> -> -> 1 `i `ui `ux -> -> # *U &U . _dvalue 1 `ui `ux -> _i `uc ]
-"366
-[; ;../modbus_master.c: 366:  return dvalue.value;
+"386
+[; ;../modbus_master.c: 386:  return dvalue.value;
 [e ) . _dvalue 0 ]
 [e $UE 3318  ]
-"367
-[; ;../modbus_master.c: 367: }
+"387
+[; ;../modbus_master.c: 387: }
 [e :UE 3318 ]
 }
-"374
-[; ;../modbus_master.c: 374: int8_t master_controller_work_dcu(C_data * client)
+"394
+[; ;../modbus_master.c: 394: int8_t master_controller_work_dcu(C_data * client)
 [v _master_controller_work_dcu `(c ~T0 @X0 1 ef1`*S3296 ]
-"375
-[; ;../modbus_master.c: 375: {
+"395
+[; ;../modbus_master.c: 395: {
 {
 [e :U _master_controller_work_dcu ]
-"374
-[; ;../modbus_master.c: 374: int8_t master_controller_work_dcu(C_data * client)
+"394
+[; ;../modbus_master.c: 394: int8_t master_controller_work_dcu(C_data * client)
 [v _client `*S3296 ~T0 @X0 1 r1 ]
-"375
-[; ;../modbus_master.c: 375: {
+"395
+[; ;../modbus_master.c: 395: {
 [f ]
-"376
-[; ;../modbus_master.c: 376:  static uint32_t spacing = 0;
-[v F24562 `ul ~T0 @X0 1 s spacing ]
-[i F24562
+"396
+[; ;../modbus_master.c: 396:  static uint32_t spacing = 0;
+[v F24564 `ul ~T0 @X0 1 s spacing ]
+[i F24564
 -> -> -> 0 `i `l `ul
 ]
-"378
-[; ;../modbus_master.c: 378:  if (spacing++ <40 && !M.rx) {
-[e $ ! && < ++ F24562 -> -> -> 1 `i `l `ul -> -> -> 40 `i `l `ul ! != -> . _M 14 `i -> 0 `i 3320  ]
+"398
+[; ;../modbus_master.c: 398:  if (spacing++ <40 && !M.rx) {
+[e $ ! && < ++ F24564 -> -> -> 1 `i `l `ul -> -> -> 40 `i `l `ul ! != -> . _M 14 `i -> 0 `i 3320  ]
 {
-"379
-[; ;../modbus_master.c: 379:   return T_spacing;
+"399
+[; ;../modbus_master.c: 399:   return T_spacing;
 [e ) -> . `E24243 17 `c ]
 [e $UE 3319  ]
-"380
-[; ;../modbus_master.c: 380:  }
+"400
+[; ;../modbus_master.c: 400:  }
 }
 [e :U 3320 ]
-"381
-[; ;../modbus_master.c: 381:  spacing = 0;
-[e = F24562 -> -> -> 0 `i `l `ul ]
-"383
-[; ;../modbus_master.c: 383:  client->trace = T_begin;
+"401
+[; ;../modbus_master.c: 401:  spacing = 0;
+[e = F24564 -> -> -> 0 `i `l `ul ]
+"403
+[; ;../modbus_master.c: 403:  client->trace = T_begin;
 [e = . *U _client 4 -> . `E24243 0 `c ]
-"384
-[; ;../modbus_master.c: 384:  switch (client->cstate) {
+"404
+[; ;../modbus_master.c: 404:  switch (client->cstate) {
 [e $U 3322  ]
 {
-"385
-[; ;../modbus_master.c: 385:  case CLEAR:
+"405
+[; ;../modbus_master.c: 405:  case CLEAR:
 [e :U 3323 ]
-"386
-[; ;../modbus_master.c: 386:   client->trace = T_clear;
+"406
+[; ;../modbus_master.c: 406:   client->trace = T_clear;
 [e = . *U _client 4 -> . `E24243 1 `c ]
-"387
-[; ;../modbus_master.c: 387:   clear_2hz();
+"407
+[; ;../modbus_master.c: 407:   clear_2hz();
 [e ( _clear_2hz ..  ]
-"388
-[; ;../modbus_master.c: 388:   clear_500ahz();
+"408
+[; ;../modbus_master.c: 408:   clear_500ahz();
 [e ( _clear_500ahz ..  ]
-"389
-[; ;../modbus_master.c: 389:   client->cstate = INIT;
+"409
+[; ;../modbus_master.c: 409:   client->cstate = INIT;
 [e = . *U _client 1 . `E24226 1 ]
-"390
-[; ;../modbus_master.c: 390:   client->modbus_command = client->mcmd++;
+"410
+[; ;../modbus_master.c: 410:   client->modbus_command = client->mcmd++;
 [e = . *U _client 2 -> ++ . *U _client 0 -> -> 1 `i `uc `E24232 ]
-"391
-[; ;../modbus_master.c: 391:   if (client->mcmd > G_LAST) {
+"411
+[; ;../modbus_master.c: 411:   if (client->mcmd > G_LAST) {
 [e $ ! > -> . *U _client 0 `i -> . `E24232 8 `i 3324  ]
 {
-"392
-[; ;../modbus_master.c: 392:    client->mcmd = G_ID;
+"412
+[; ;../modbus_master.c: 412:    client->mcmd = G_ID;
 [e = . *U _client 0 -> . `E24232 0 `uc ]
-"393
-[; ;../modbus_master.c: 393:   }
+"413
+[; ;../modbus_master.c: 413:   }
 }
 [e :U 3324 ]
-"397
-[; ;../modbus_master.c: 397:   switch (client->modbus_command) {
+"417
+[; ;../modbus_master.c: 417:   switch (client->modbus_command) {
 [e $U 3326  ]
 {
-"398
-[; ;../modbus_master.c: 398:   case G_CONFIG:
-[e :U 3327 ]
-"399
-[; ;../modbus_master.c: 399:    client->trace = T_config;
-[e = . *U _client 4 -> . `E24243 3 `c ]
-"400
-[; ;../modbus_master.c: 400:    client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_read_N, sizeof(P_read_N));
-[e = . *U _client 3 ( _modbus_dcu_send_msg (3 , , -> &U _cc_buffer_tx `*v -> &U _P_read_N `*Cv -> -> # _P_read_N `ui `us ]
-"401
-[; ;../modbus_master.c: 401:    break;
-[e $U 3325  ]
-"402
-[; ;../modbus_master.c: 402:   case G_DATA1:
-[e :U 3328 ]
-"403
-[; ;../modbus_master.c: 403:    client->trace = T_data;
-[e = . *U _client 4 -> . `E24243 4 `c ]
-"404
-[; ;../modbus_master.c: 404:    client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_read_I, sizeof(P_read_I));
-[e = . *U _client 3 ( _modbus_dcu_send_msg (3 , , -> &U _cc_buffer_tx `*v -> &U _P_read_I `*Cv -> -> # _P_read_I `ui `us ]
-"405
-[; ;../modbus_master.c: 405:    break;
-[e $U 3325  ]
-"406
-[; ;../modbus_master.c: 406:   case G_DATA2:
-[e :U 3329 ]
-"407
-[; ;../modbus_master.c: 407:    client->trace = T_data;
-[e = . *U _client 4 -> . `E24243 4 `c ]
-"408
-[; ;../modbus_master.c: 408:    client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_read_A, sizeof(P_read_A));
-[e = . *U _client 3 ( _modbus_dcu_send_msg (3 , , -> &U _cc_buffer_tx `*v -> &U _P_read_A `*Cv -> -> # _P_read_A `ui `us ]
-"409
-[; ;../modbus_master.c: 409:    break;
-[e $U 3325  ]
-"410
-[; ;../modbus_master.c: 410:   case G_LINK:
-[e :U 3330 ]
-"411
-[; ;../modbus_master.c: 411:    client->trace = T_link;
-[e = . *U _client 4 -> . `E24243 18 `c ]
-"412
-[; ;../modbus_master.c: 412:    client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_read_L, sizeof(P_read_L));
-[e = . *U _client 3 ( _modbus_dcu_send_msg (3 , , -> &U _cc_buffer_tx `*v -> &U _P_read_L `*Cv -> -> # _P_read_L `ui `us ]
-"413
-[; ;../modbus_master.c: 413:    break;
-[e $U 3325  ]
-"414
-[; ;../modbus_master.c: 414:   case G_VERSION:
-[e :U 3331 ]
-"415
-[; ;../modbus_master.c: 415:    client->trace = T_version;
-[e = . *U _client 4 -> . `E24243 7 `c ]
-"416
-[; ;../modbus_master.c: 416:    client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_read_V, sizeof(P_read_V));
-[e = . *U _client 3 ( _modbus_dcu_send_msg (3 , , -> &U _cc_buffer_tx `*v -> &U _P_read_V `*Cv -> -> # _P_read_V `ui `us ]
-"417
-[; ;../modbus_master.c: 417:    break;
-[e $U 3325  ]
 "418
-[; ;../modbus_master.c: 418:   case G_LAST:
-[e :U 3332 ]
+[; ;../modbus_master.c: 418:   case G_CONFIG:
+[e :U 3327 ]
 "419
-[; ;../modbus_master.c: 419:    client->cstate = CLEAR;
-[e = . *U _client 1 . `E24226 0 ]
+[; ;../modbus_master.c: 419:    client->trace = T_config;
+[e = . *U _client 4 -> . `E24243 3 `c ]
 "420
-[; ;../modbus_master.c: 420:    client->mcmd = G_ID;
-[e = . *U _client 0 -> . `E24232 0 `uc ]
+[; ;../modbus_master.c: 420:    client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_read_N, sizeof(P_read_N));
+[e = . *U _client 3 ( _modbus_dcu_send_msg (3 , , -> &U _cc_buffer_tx `*v -> &U _P_read_N `*Cv -> -> # _P_read_N `ui `us ]
 "421
 [; ;../modbus_master.c: 421:    break;
 [e $U 3325  ]
 "422
-[; ;../modbus_master.c: 422:   case G_ID:
-[e :U 3333 ]
+[; ;../modbus_master.c: 422:   case G_DATA1:
+[e :U 3328 ]
 "423
-[; ;../modbus_master.c: 423:    client->trace = T_id;
-[e = . *U _client 4 -> . `E24243 5 `c ]
+[; ;../modbus_master.c: 423:    client->trace = T_data;
+[e = . *U _client 4 -> . `E24243 4 `c ]
 "424
-[; ;../modbus_master.c: 424:   default:
-[e :U 3334 ]
+[; ;../modbus_master.c: 424:    client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_read_I, sizeof(P_read_I));
+[e = . *U _client 3 ( _modbus_dcu_send_msg (3 , , -> &U _cc_buffer_tx `*v -> &U _P_read_I `*Cv -> -> # _P_read_I `ui `us ]
 "425
-[; ;../modbus_master.c: 425:    client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_read, sizeof(P_read));
-[e = . *U _client 3 ( _modbus_dcu_send_msg (3 , , -> &U _cc_buffer_tx `*v -> &U _P_read `*Cv -> -> # _P_read `ui `us ]
-"426
-[; ;../modbus_master.c: 426:    break;
+[; ;../modbus_master.c: 425:    break;
 [e $U 3325  ]
+"426
+[; ;../modbus_master.c: 426:   case G_DATA2:
+[e :U 3329 ]
 "427
-[; ;../modbus_master.c: 427:   }
+[; ;../modbus_master.c: 427:    client->trace = T_data;
+[e = . *U _client 4 -> . `E24243 4 `c ]
+"428
+[; ;../modbus_master.c: 428:    client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_read_A, sizeof(P_read_A));
+[e = . *U _client 3 ( _modbus_dcu_send_msg (3 , , -> &U _cc_buffer_tx `*v -> &U _P_read_A `*Cv -> -> # _P_read_A `ui `us ]
+"429
+[; ;../modbus_master.c: 429:    break;
+[e $U 3325  ]
+"430
+[; ;../modbus_master.c: 430:   case G_LINK:
+[e :U 3330 ]
+"431
+[; ;../modbus_master.c: 431:    client->trace = T_link;
+[e = . *U _client 4 -> . `E24243 18 `c ]
+"432
+[; ;../modbus_master.c: 432:    client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_read_L, sizeof(P_read_L));
+[e = . *U _client 3 ( _modbus_dcu_send_msg (3 , , -> &U _cc_buffer_tx `*v -> &U _P_read_L `*Cv -> -> # _P_read_L `ui `us ]
+"433
+[; ;../modbus_master.c: 433:    break;
+[e $U 3325  ]
+"434
+[; ;../modbus_master.c: 434:   case G_VERSION:
+[e :U 3331 ]
+"435
+[; ;../modbus_master.c: 435:    client->trace = T_version;
+[e = . *U _client 4 -> . `E24243 7 `c ]
+"436
+[; ;../modbus_master.c: 436:    client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_read_V, sizeof(P_read_V));
+[e = . *U _client 3 ( _modbus_dcu_send_msg (3 , , -> &U _cc_buffer_tx `*v -> &U _P_read_V `*Cv -> -> # _P_read_V `ui `us ]
+"437
+[; ;../modbus_master.c: 437:    break;
+[e $U 3325  ]
+"438
+[; ;../modbus_master.c: 438:   case G_PASSWD:
+[e :U 3332 ]
+"439
+[; ;../modbus_master.c: 439:    client->trace = T_version;
+[e = . *U _client 4 -> . `E24243 7 `c ]
+"440
+[; ;../modbus_master.c: 440:    client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_read_E, sizeof(P_read_E));
+[e = . *U _client 3 ( _modbus_dcu_send_msg (3 , , -> &U _cc_buffer_tx `*v -> &U _P_read_E `*Cv -> -> # _P_read_E `ui `us ]
+"441
+[; ;../modbus_master.c: 441:    break;
+[e $U 3325  ]
+"442
+[; ;../modbus_master.c: 442:   case G_LAST:
+[e :U 3333 ]
+"443
+[; ;../modbus_master.c: 443:    client->cstate = CLEAR;
+[e = . *U _client 1 . `E24226 0 ]
+"444
+[; ;../modbus_master.c: 444:    client->mcmd = G_ID;
+[e = . *U _client 0 -> . `E24232 0 `uc ]
+"445
+[; ;../modbus_master.c: 445:    break;
+[e $U 3325  ]
+"446
+[; ;../modbus_master.c: 446:   case G_ID:
+[e :U 3334 ]
+"447
+[; ;../modbus_master.c: 447:    client->trace = T_id;
+[e = . *U _client 4 -> . `E24243 5 `c ]
+"448
+[; ;../modbus_master.c: 448:   default:
+[e :U 3335 ]
+"449
+[; ;../modbus_master.c: 449:    client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_read, sizeof(P_read));
+[e = . *U _client 3 ( _modbus_dcu_send_msg (3 , , -> &U _cc_buffer_tx `*v -> &U _P_read `*Cv -> -> # _P_read `ui `us ]
+"450
+[; ;../modbus_master.c: 450:    break;
+[e $U 3325  ]
+"451
+[; ;../modbus_master.c: 451:   }
 }
 [e $U 3325  ]
 [e :U 3326 ]
@@ -5200,1159 +5247,1203 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> . `E24232 2 `ui 3329
  , $ -> . `E24232 5 `ui 3330
  , $ -> . `E24232 6 `ui 3331
- , $ -> . `E24232 8 `ui 3332
- , $ -> . `E24232 0 `ui 3333
- 3334 ]
+ , $ -> . `E24232 4 `ui 3332
+ , $ -> . `E24232 8 `ui 3333
+ , $ -> . `E24232 0 `ui 3334
+ 3335 ]
 [e :U 3325 ]
-"428
-[; ;../modbus_master.c: 428:   break;
+"452
+[; ;../modbus_master.c: 452:   break;
 [e $U 3321  ]
-"429
-[; ;../modbus_master.c: 429:  case INIT:
-[e :U 3335 ]
-"430
-[; ;../modbus_master.c: 430:   client->trace = T_init;
-[e = . *U _client 4 -> . `E24243 8 `c ]
-"434
-[; ;../modbus_master.c: 434:   if (get_500ahz(0) >= 40) {
-[e $ ! >= ( _get_500ahz (1 -> -> 0 `i `uc -> -> -> 40 `i `l `ul 3336  ]
-{
-"435
-[; ;../modbus_master.c: 435:    half_dup_tx(0);
-[e ( _half_dup_tx (1 -> -> 0 `i `a ]
-"436
-[; ;../modbus_master.c: 436:    M.recv_count = 0;
-[e = . _M 6 -> -> 0 `i `uc ]
-"437
-[; ;../modbus_master.c: 437:    client->cstate = SEND;
-[e = . *U _client 1 . `E24226 2 ]
-"438
-[; ;../modbus_master.c: 438:    clear_500hz();
-[e ( _clear_500hz ..  ]
-"439
-[; ;../modbus_master.c: 439:    client->trace = T_init_d;
-[e = . *U _client 4 -> . `E24243 9 `c ]
-"440
-[; ;../modbus_master.c: 440:   }
-}
+"453
+[; ;../modbus_master.c: 453:  case INIT:
 [e :U 3336 ]
-"441
-[; ;../modbus_master.c: 441:   break;
-[e $U 3321  ]
-"442
-[; ;../modbus_master.c: 442:  case SEND:
-[e :U 3337 ]
-"443
-[; ;../modbus_master.c: 443:   client->trace = T_send;
-[e = . *U _client 4 -> . `E24243 10 `c ]
-"444
-[; ;../modbus_master.c: 444:   if (get_500hz(0) >= 1) {
-[e $ ! >= ( _get_500hz (1 -> -> 0 `i `uc -> -> -> 1 `i `l `ul 3338  ]
+"454
+[; ;../modbus_master.c: 454:   client->trace = T_init;
+[e = . *U _client 4 -> . `E24243 8 `c ]
+"458
+[; ;../modbus_master.c: 458:   if (get_500ahz(0) >= 40) {
+[e $ ! >= ( _get_500ahz (1 -> -> 0 `i `uc -> -> -> 40 `i `l `ul 3337  ]
 {
-"445
-[; ;../modbus_master.c: 445:    for (uint8_t i = 0; i < client->req_length; i++) {
+"459
+[; ;../modbus_master.c: 459:    half_dup_tx(0);
+[e ( _half_dup_tx (1 -> -> 0 `i `a ]
+"460
+[; ;../modbus_master.c: 460:    M.recv_count = 0;
+[e = . _M 6 -> -> 0 `i `uc ]
+"461
+[; ;../modbus_master.c: 461:    client->cstate = SEND;
+[e = . *U _client 1 . `E24226 2 ]
+"462
+[; ;../modbus_master.c: 462:    clear_500hz();
+[e ( _clear_500hz ..  ]
+"463
+[; ;../modbus_master.c: 463:    client->trace = T_init_d;
+[e = . *U _client 4 -> . `E24243 9 `c ]
+"464
+[; ;../modbus_master.c: 464:   }
+}
+[e :U 3337 ]
+"465
+[; ;../modbus_master.c: 465:   break;
+[e $U 3321  ]
+"466
+[; ;../modbus_master.c: 466:  case SEND:
+[e :U 3338 ]
+"467
+[; ;../modbus_master.c: 467:   client->trace = T_send;
+[e = . *U _client 4 -> . `E24243 10 `c ]
+"468
+[; ;../modbus_master.c: 468:   if (get_500hz(0) >= 1) {
+[e $ ! >= ( _get_500hz (1 -> -> 0 `i `uc -> -> -> 1 `i `l `ul 3339  ]
+{
+"469
+[; ;../modbus_master.c: 469:    for (uint8_t i = 0; i < client->req_length; i++) {
 {
 [v _i `uc ~T0 @X0 1 a ]
 [e = _i -> -> 0 `i `uc ]
-[e $U 3342  ]
-[e :U 3339 ]
+[e $U 3343  ]
+[e :U 3340 ]
 {
-"446
-[; ;../modbus_master.c: 446:     UART5_Write(cc_buffer_tx[i]);
+"470
+[; ;../modbus_master.c: 470:     UART5_Write(cc_buffer_tx[i]);
 [e ( _UART5_Write (1 *U + &U _cc_buffer_tx * -> _i `ux -> -> # *U &U _cc_buffer_tx `ui `ux ]
-"447
-[; ;../modbus_master.c: 447:    }
+"471
+[; ;../modbus_master.c: 471:    }
 }
 [e ++ _i -> -> 1 `i `uc ]
-[e :U 3342 ]
-[e $ < -> _i `ui -> . *U _client 3 `ui 3339  ]
-[e :U 3340 ]
-}
-"448
-[; ;../modbus_master.c: 448:    client->cstate = RECV;
-[e = . *U _client 1 . `E24226 3 ]
-"449
-[; ;../modbus_master.c: 449:    clear_500hz();
-[e ( _clear_500hz ..  ]
-"450
-[; ;../modbus_master.c: 450:    client->trace = T_send_d;
-[e = . *U _client 4 -> . `E24243 11 `c ]
-"451
-[; ;../modbus_master.c: 451:    M.sends++;
-[e ++ . _M 13 -> -> 1 `i `Vul ]
-"452
-[; ;../modbus_master.c: 452:    M.rx = 0;
-[e = . _M 14 -> -> 0 `i `a ]
-"453
-[; ;../modbus_master.c: 453:    if (serial_trmt()) {
-[e $ ! != -> ( _serial_trmt ..  `i -> 0 `i 3343  ]
-{
-"454
-[; ;../modbus_master.c: 454:     clear_500hz();
-[e ( _clear_500hz ..  ]
-"455
-[; ;../modbus_master.c: 455:    }
-}
 [e :U 3343 ]
-"456
-[; ;../modbus_master.c: 456:    delay_ms(3 + client->req_length);
+[e $ < -> _i `ui -> . *U _client 3 `ui 3340  ]
+[e :U 3341 ]
+}
+"472
+[; ;../modbus_master.c: 472:    client->cstate = RECV;
+[e = . *U _client 1 . `E24226 3 ]
+"473
+[; ;../modbus_master.c: 473:    clear_500hz();
+[e ( _clear_500hz ..  ]
+"474
+[; ;../modbus_master.c: 474:    client->trace = T_send_d;
+[e = . *U _client 4 -> . `E24243 11 `c ]
+"475
+[; ;../modbus_master.c: 475:    M.sends++;
+[e ++ . _M 13 -> -> 1 `i `Vul ]
+"476
+[; ;../modbus_master.c: 476:    M.rx = 0;
+[e = . _M 14 -> -> 0 `i `a ]
+"477
+[; ;../modbus_master.c: 477:    if (serial_trmt()) {
+[e $ ! != -> ( _serial_trmt ..  `i -> 0 `i 3344  ]
+{
+"478
+[; ;../modbus_master.c: 478:     clear_500hz();
+[e ( _clear_500hz ..  ]
+"479
+[; ;../modbus_master.c: 479:    }
+}
+[e :U 3344 ]
+"480
+[; ;../modbus_master.c: 480:    delay_ms(3 + client->req_length);
 [e ( _delay_ms (1 -> + -> -> 3 `i `ui -> . *U _client 3 `ui `us ]
-"457
-[; ;../modbus_master.c: 457:    do { LATCbits.LATC2 = 0; } while(0);
-[e :U 3346 ]
+"481
+[; ;../modbus_master.c: 481:    do { LATCbits.LATC2 = 0; } while(0);
+[e :U 3347 ]
 {
 [e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
 }
-[e :U 3345 ]
-"458
-[; ;../modbus_master.c: 458:   }
-}
-[e :U 3338 ]
-"459
-[; ;../modbus_master.c: 459:   break;
-[e $U 3321  ]
-"460
-[; ;../modbus_master.c: 460:  case RECV:
-[e :U 3347 ]
-"461
-[; ;../modbus_master.c: 461:   client->trace = T_recv;
-[e = . *U _client 4 -> . `E24243 12 `c ]
-"462
-[; ;../modbus_master.c: 462:   if (get_500hz(0) >= 1) {
-[e $ ! >= ( _get_500hz (1 -> -> 0 `i `uc -> -> -> 1 `i `l `ul 3348  ]
-{
-"464
-[; ;../modbus_master.c: 464:    client->trace = T_recv_r;
-[e = . *U _client 4 -> . `E24243 13 `c ]
-"465
-[; ;../modbus_master.c: 465:    half_dup_rx(0);
-[e ( _half_dup_rx (1 -> -> 0 `i `a ]
-"470
-[; ;../modbus_master.c: 470:    switch (client->modbus_command) {
-[e $U 3350  ]
-{
-"471
-[; ;../modbus_master.c: 471:    case G_VERSION:
-[e :U 3351 ]
-"472
-[; ;../modbus_master.c: 472:     modbus_read_dcu_check(client, &client->version_ok, sizeof(P_action));
-[e ( _modbus_read_dcu_check (3 , , _client &U . *U _client 11 -> -> # _P_action `ui `us ]
-"473
-[; ;../modbus_master.c: 473:     break;
-[e $U 3349  ]
-"474
-[; ;../modbus_master.c: 474:    case G_LINK:
-[e :U 3352 ]
-"475
-[; ;../modbus_master.c: 475:     modbus_read_dcu_check(client, &client->version_ok, sizeof(P_action));
-[e ( _modbus_read_dcu_check (3 , , _client &U . *U _client 11 -> -> # _P_action `ui `us ]
-"476
-[; ;../modbus_master.c: 476:     break;
-[e $U 3349  ]
-"477
-[; ;../modbus_master.c: 477:    case G_CONFIG:
-[e :U 3353 ]
-"478
-[; ;../modbus_master.c: 478:     modbus_read_dcu_check(client, &client->config_ok, sizeof(P_action));
-[e ( _modbus_read_dcu_check (3 , , _client &U . *U _client 7 -> -> # _P_action `ui `us ]
-"479
-[; ;../modbus_master.c: 479:     break;
-[e $U 3349  ]
-"480
-[; ;../modbus_master.c: 480:    case G_DATA1:
-[e :U 3354 ]
-"481
-[; ;../modbus_master.c: 481:     modbus_read_dcu_check(client, &client->data_ok, sizeof(P_action));
-[e ( _modbus_read_dcu_check (3 , , _client &U . *U _client 8 -> -> # _P_action `ui `us ]
+[e :U 3346 ]
 "482
-[; ;../modbus_master.c: 482:     break;
-[e $U 3349  ]
+[; ;../modbus_master.c: 482:   }
+}
+[e :U 3339 ]
 "483
-[; ;../modbus_master.c: 483:    case G_DATA2:
-[e :U 3355 ]
+[; ;../modbus_master.c: 483:   break;
+[e $U 3321  ]
 "484
-[; ;../modbus_master.c: 484:     modbus_read_dcu_check(client, &client->data_ok, sizeof(P_action));
-[e ( _modbus_read_dcu_check (3 , , _client &U . *U _client 8 -> -> # _P_action `ui `us ]
-"485
-[; ;../modbus_master.c: 485:     break;
-[e $U 3349  ]
-"486
-[; ;../modbus_master.c: 486:    case G_ID:
-[e :U 3356 ]
-"487
-[; ;../modbus_master.c: 487:    default:
-[e :U 3357 ]
-"488
-[; ;../modbus_master.c: 488:     modbus_read_dcu_check(client, &client->id_ok, sizeof(P_action));
-[e ( _modbus_read_dcu_check (3 , , _client &U . *U _client 5 -> -> # _P_action `ui `us ]
-"489
-[; ;../modbus_master.c: 489:     break;
-[e $U 3349  ]
-"490
-[; ;../modbus_master.c: 490:    }
-}
-[e $U 3349  ]
-[e :U 3350 ]
-[e [\ -> . *U _client 2 `ui , $ -> . `E24232 6 `ui 3351
- , $ -> . `E24232 5 `ui 3352
- , $ -> . `E24232 3 `ui 3353
- , $ -> . `E24232 1 `ui 3354
- , $ -> . `E24232 2 `ui 3355
- , $ -> . `E24232 0 `ui 3356
- 3357 ]
-[e :U 3349 ]
-"491
-[; ;../modbus_master.c: 491:   }
-}
+[; ;../modbus_master.c: 484:  case RECV:
 [e :U 3348 ]
-"492
-[; ;../modbus_master.c: 492:   break;
-[e $U 3321  ]
-"493
-[; ;../modbus_master.c: 493:  default:
-[e :U 3358 ]
+"485
+[; ;../modbus_master.c: 485:   client->trace = T_recv;
+[e = . *U _client 4 -> . `E24243 12 `c ]
+"486
+[; ;../modbus_master.c: 486:   if (get_500hz(0) >= 1) {
+[e $ ! >= ( _get_500hz (1 -> -> 0 `i `uc -> -> -> 1 `i `l `ul 3349  ]
+{
+"488
+[; ;../modbus_master.c: 488:    client->trace = T_recv_r;
+[e = . *U _client 4 -> . `E24243 13 `c ]
+"489
+[; ;../modbus_master.c: 489:    half_dup_rx(0);
+[e ( _half_dup_rx (1 -> -> 0 `i `a ]
 "494
-[; ;../modbus_master.c: 494:   break;
-[e $U 3321  ]
+[; ;../modbus_master.c: 494:    switch (client->modbus_command) {
+[e $U 3351  ]
+{
 "495
-[; ;../modbus_master.c: 495:  }
+[; ;../modbus_master.c: 495:    case G_VERSION:
+[e :U 3352 ]
+"496
+[; ;../modbus_master.c: 496:     modbus_read_dcu_check(client, &client->version_ok, sizeof(P_action));
+[e ( _modbus_read_dcu_check (3 , , _client &U . *U _client 11 -> -> # _P_action `ui `us ]
+"497
+[; ;../modbus_master.c: 497:     break;
+[e $U 3350  ]
+"498
+[; ;../modbus_master.c: 498:    case G_PASSWD:
+[e :U 3353 ]
+"499
+[; ;../modbus_master.c: 499:     modbus_read_dcu_check(client, &client->passwd_ok, sizeof(P_action));
+[e ( _modbus_read_dcu_check (3 , , _client &U . *U _client 6 -> -> # _P_action `ui `us ]
+"500
+[; ;../modbus_master.c: 500:     break;
+[e $U 3350  ]
+"501
+[; ;../modbus_master.c: 501:    case G_LINK:
+[e :U 3354 ]
+"502
+[; ;../modbus_master.c: 502:     modbus_read_dcu_check(client, &client->link_ok, sizeof(P_action));
+[e ( _modbus_read_dcu_check (3 , , _client &U . *U _client 9 -> -> # _P_action `ui `us ]
+"503
+[; ;../modbus_master.c: 503:     break;
+[e $U 3350  ]
+"504
+[; ;../modbus_master.c: 504:    case G_CONFIG:
+[e :U 3355 ]
+"505
+[; ;../modbus_master.c: 505:     modbus_read_dcu_check(client, &client->config_ok, sizeof(P_action));
+[e ( _modbus_read_dcu_check (3 , , _client &U . *U _client 7 -> -> # _P_action `ui `us ]
+"506
+[; ;../modbus_master.c: 506:     break;
+[e $U 3350  ]
+"507
+[; ;../modbus_master.c: 507:    case G_DATA1:
+[e :U 3356 ]
+"508
+[; ;../modbus_master.c: 508:     modbus_read_dcu_check(client, &client->data_ok, sizeof(P_action));
+[e ( _modbus_read_dcu_check (3 , , _client &U . *U _client 8 -> -> # _P_action `ui `us ]
+"509
+[; ;../modbus_master.c: 509:     break;
+[e $U 3350  ]
+"510
+[; ;../modbus_master.c: 510:    case G_DATA2:
+[e :U 3357 ]
+"511
+[; ;../modbus_master.c: 511:     modbus_read_dcu_check(client, &client->data_ok, sizeof(P_action));
+[e ( _modbus_read_dcu_check (3 , , _client &U . *U _client 8 -> -> # _P_action `ui `us ]
+"512
+[; ;../modbus_master.c: 512:     break;
+[e $U 3350  ]
+"513
+[; ;../modbus_master.c: 513:    case G_ID:
+[e :U 3358 ]
+"514
+[; ;../modbus_master.c: 514:    default:
+[e :U 3359 ]
+"515
+[; ;../modbus_master.c: 515:     modbus_read_dcu_check(client, &client->id_ok, sizeof(P_action));
+[e ( _modbus_read_dcu_check (3 , , _client &U . *U _client 5 -> -> # _P_action `ui `us ]
+"516
+[; ;../modbus_master.c: 516:     break;
+[e $U 3350  ]
+"517
+[; ;../modbus_master.c: 517:    }
+}
+[e $U 3350  ]
+[e :U 3351 ]
+[e [\ -> . *U _client 2 `ui , $ -> . `E24232 6 `ui 3352
+ , $ -> . `E24232 4 `ui 3353
+ , $ -> . `E24232 5 `ui 3354
+ , $ -> . `E24232 3 `ui 3355
+ , $ -> . `E24232 1 `ui 3356
+ , $ -> . `E24232 2 `ui 3357
+ , $ -> . `E24232 0 `ui 3358
+ 3359 ]
+[e :U 3350 ]
+"518
+[; ;../modbus_master.c: 518:   }
+}
+[e :U 3349 ]
+"519
+[; ;../modbus_master.c: 519:   break;
+[e $U 3321  ]
+"520
+[; ;../modbus_master.c: 520:  default:
+[e :U 3360 ]
+"521
+[; ;../modbus_master.c: 521:   break;
+[e $U 3321  ]
+"522
+[; ;../modbus_master.c: 522:  }
 }
 [e $U 3321  ]
 [e :U 3322 ]
 [e [\ -> . *U _client 1 `ui , $ -> . `E24226 0 `ui 3323
- , $ -> . `E24226 1 `ui 3335
- , $ -> . `E24226 2 `ui 3337
- , $ -> . `E24226 3 `ui 3347
- 3358 ]
+ , $ -> . `E24226 1 `ui 3336
+ , $ -> . `E24226 2 `ui 3338
+ , $ -> . `E24226 3 `ui 3348
+ 3360 ]
 [e :U 3321 ]
-"496
-[; ;../modbus_master.c: 496:  return client->trace;
+"523
+[; ;../modbus_master.c: 523:  return client->trace;
 [e ) . *U _client 4 ]
 [e $UE 3319  ]
-"497
-[; ;../modbus_master.c: 497: }
+"524
+[; ;../modbus_master.c: 524: }
 [e :UE 3319 ]
 }
-"502
-[; ;../modbus_master.c: 502: void clear_2hz(void)
+"529
+[; ;../modbus_master.c: 529: void clear_2hz(void)
 [v _clear_2hz `(v ~T0 @X0 1 ef ]
-"503
-[; ;../modbus_master.c: 503: {
+"530
+[; ;../modbus_master.c: 530: {
 {
 [e :U _clear_2hz ]
 [f ]
-"504
-[; ;../modbus_master.c: 504:  MT.clock_2hz = 0;
+"531
+[; ;../modbus_master.c: 531:  MT.clock_2hz = 0;
 [e = . _MT 2 -> -> -> 0 `i `l `ul ]
-"505
-[; ;../modbus_master.c: 505: }
-[e :UE 3359 ]
+"532
+[; ;../modbus_master.c: 532: }
+[e :UE 3361 ]
 }
-"507
-[; ;../modbus_master.c: 507: void clear_500ahz(void)
+"534
+[; ;../modbus_master.c: 534: void clear_500ahz(void)
 [v _clear_500ahz `(v ~T0 @X0 1 ef ]
-"508
-[; ;../modbus_master.c: 508: {
+"535
+[; ;../modbus_master.c: 535: {
 {
 [e :U _clear_500ahz ]
 [f ]
-"509
-[; ;../modbus_master.c: 509:  MT.clock_500ahz = 0;
+"536
+[; ;../modbus_master.c: 536:  MT.clock_500ahz = 0;
 [e = . _MT 1 -> -> -> 0 `i `l `ul ]
-"510
-[; ;../modbus_master.c: 510: }
-[e :UE 3360 ]
+"537
+[; ;../modbus_master.c: 537: }
+[e :UE 3362 ]
 }
-"512
-[; ;../modbus_master.c: 512: void clear_500hz(void)
+"539
+[; ;../modbus_master.c: 539: void clear_500hz(void)
 [v _clear_500hz `(v ~T0 @X0 1 ef ]
-"513
-[; ;../modbus_master.c: 513: {
+"540
+[; ;../modbus_master.c: 540: {
 {
 [e :U _clear_500hz ]
 [f ]
-"514
-[; ;../modbus_master.c: 514:  MT.clock_500hz = 0;
+"541
+[; ;../modbus_master.c: 541:  MT.clock_500hz = 0;
 [e = . _MT 0 -> -> -> 0 `i `l `ul ]
-"515
-[; ;../modbus_master.c: 515: }
-[e :UE 3361 ]
+"542
+[; ;../modbus_master.c: 542: }
+[e :UE 3363 ]
 }
-"517
-[; ;../modbus_master.c: 517: uint32_t get_2hz(const uint8_t mode)
+"544
+[; ;../modbus_master.c: 544: uint32_t get_2hz(const uint8_t mode)
 [v _get_2hz `(ul ~T0 @X0 1 ef1`Cuc ]
-"518
-[; ;../modbus_master.c: 518: {
+"545
+[; ;../modbus_master.c: 545: {
 {
 [e :U _get_2hz ]
-"517
-[; ;../modbus_master.c: 517: uint32_t get_2hz(const uint8_t mode)
+"544
+[; ;../modbus_master.c: 544: uint32_t get_2hz(const uint8_t mode)
 [v _mode `Cuc ~T0 @X0 1 r1 ]
-"518
-[; ;../modbus_master.c: 518: {
+"545
+[; ;../modbus_master.c: 545: {
 [f ]
-"519
-[; ;../modbus_master.c: 519:  static uint32_t tmp = 0;
-[v F24569 `ul ~T0 @X0 1 s tmp ]
-[i F24569
+"546
+[; ;../modbus_master.c: 546:  static uint32_t tmp = 0;
+[v F24571 `ul ~T0 @X0 1 s tmp ]
+[i F24571
 -> -> -> 0 `i `l `ul
 ]
-"521
-[; ;../modbus_master.c: 521:  if (mode) {
-[e $ ! != -> _mode `i -> 0 `i 3363  ]
-{
-"522
-[; ;../modbus_master.c: 522:   return tmp;
-[e ) F24569 ]
-[e $UE 3362  ]
-"523
-[; ;../modbus_master.c: 523:  }
-}
-[e :U 3363 ]
-"525
-[; ;../modbus_master.c: 525:  tmp = MT.clock_2hz;
-[e = F24569 . _MT 2 ]
-"526
-[; ;../modbus_master.c: 526:  return tmp;
-[e ) F24569 ]
-[e $UE 3362  ]
-"527
-[; ;../modbus_master.c: 527: }
-[e :UE 3362 ]
-}
-"533
-[; ;../modbus_master.c: 533: uint32_t get_500ahz(const uint8_t mode)
-[v _get_500ahz `(ul ~T0 @X0 1 ef1`Cuc ]
-"534
-[; ;../modbus_master.c: 534: {
-{
-[e :U _get_500ahz ]
-"533
-[; ;../modbus_master.c: 533: uint32_t get_500ahz(const uint8_t mode)
-[v _mode `Cuc ~T0 @X0 1 r1 ]
-"534
-[; ;../modbus_master.c: 534: {
-[f ]
-"535
-[; ;../modbus_master.c: 535:  static uint32_t tmp = 0;
-[v F24572 `ul ~T0 @X0 1 s tmp ]
-[i F24572
--> -> -> 0 `i `l `ul
-]
-"537
-[; ;../modbus_master.c: 537:  if (mode) {
+"548
+[; ;../modbus_master.c: 548:  if (mode) {
 [e $ ! != -> _mode `i -> 0 `i 3365  ]
 {
-"538
-[; ;../modbus_master.c: 538:   return tmp;
-[e ) F24572 ]
+"549
+[; ;../modbus_master.c: 549:   return tmp;
+[e ) F24571 ]
 [e $UE 3364  ]
-"539
-[; ;../modbus_master.c: 539:  }
+"550
+[; ;../modbus_master.c: 550:  }
 }
 [e :U 3365 ]
-"541
-[; ;../modbus_master.c: 541:  tmp = MT.clock_500ahz;
-[e = F24572 . _MT 1 ]
-"542
-[; ;../modbus_master.c: 542:  return tmp;
-[e ) F24572 ]
+"552
+[; ;../modbus_master.c: 552:  tmp = MT.clock_2hz;
+[e = F24571 . _MT 2 ]
+"553
+[; ;../modbus_master.c: 553:  return tmp;
+[e ) F24571 ]
 [e $UE 3364  ]
-"543
-[; ;../modbus_master.c: 543: }
+"554
+[; ;../modbus_master.c: 554: }
 [e :UE 3364 ]
 }
-"545
-[; ;../modbus_master.c: 545: uint32_t get_500hz(const uint8_t mode)
-[v _get_500hz `(ul ~T0 @X0 1 ef1`Cuc ]
-"546
-[; ;../modbus_master.c: 546: {
+"560
+[; ;../modbus_master.c: 560: uint32_t get_500ahz(const uint8_t mode)
+[v _get_500ahz `(ul ~T0 @X0 1 ef1`Cuc ]
+"561
+[; ;../modbus_master.c: 561: {
 {
-[e :U _get_500hz ]
-"545
-[; ;../modbus_master.c: 545: uint32_t get_500hz(const uint8_t mode)
+[e :U _get_500ahz ]
+"560
+[; ;../modbus_master.c: 560: uint32_t get_500ahz(const uint8_t mode)
 [v _mode `Cuc ~T0 @X0 1 r1 ]
-"546
-[; ;../modbus_master.c: 546: {
+"561
+[; ;../modbus_master.c: 561: {
 [f ]
-"547
-[; ;../modbus_master.c: 547:  static uint32_t tmp = 0;
-[v F24575 `ul ~T0 @X0 1 s tmp ]
-[i F24575
+"562
+[; ;../modbus_master.c: 562:  static uint32_t tmp = 0;
+[v F24574 `ul ~T0 @X0 1 s tmp ]
+[i F24574
 -> -> -> 0 `i `l `ul
 ]
-"549
-[; ;../modbus_master.c: 549:  if (mode) {
+"564
+[; ;../modbus_master.c: 564:  if (mode) {
 [e $ ! != -> _mode `i -> 0 `i 3367  ]
 {
-"550
-[; ;../modbus_master.c: 550:   return tmp;
-[e ) F24575 ]
+"565
+[; ;../modbus_master.c: 565:   return tmp;
+[e ) F24574 ]
 [e $UE 3366  ]
-"551
-[; ;../modbus_master.c: 551:  }
+"566
+[; ;../modbus_master.c: 566:  }
 }
 [e :U 3367 ]
-"553
-[; ;../modbus_master.c: 553:  tmp = MT.clock_500hz;
-[e = F24575 . _MT 0 ]
-"554
-[; ;../modbus_master.c: 554:  return tmp;
-[e ) F24575 ]
+"568
+[; ;../modbus_master.c: 568:  tmp = MT.clock_500ahz;
+[e = F24574 . _MT 1 ]
+"569
+[; ;../modbus_master.c: 569:  return tmp;
+[e ) F24574 ]
 [e $UE 3366  ]
-"555
-[; ;../modbus_master.c: 555: }
+"570
+[; ;../modbus_master.c: 570: }
 [e :UE 3366 ]
 }
-"559
-[; ;../modbus_master.c: 559: static void half_dup_tx(const _Bool delay)
-[v _half_dup_tx `(v ~T0 @X0 1 sf1`Ca ]
-"560
-[; ;../modbus_master.c: 560: {
+"572
+[; ;../modbus_master.c: 572: uint32_t get_500hz(const uint8_t mode)
+[v _get_500hz `(ul ~T0 @X0 1 ef1`Cuc ]
+"573
+[; ;../modbus_master.c: 573: {
 {
-[e :U _half_dup_tx ]
-"559
-[; ;../modbus_master.c: 559: static void half_dup_tx(const _Bool delay)
-[v _delay `Ca ~T0 @X0 1 r1 ]
-"560
-[; ;../modbus_master.c: 560: {
+[e :U _get_500hz ]
+"572
+[; ;../modbus_master.c: 572: uint32_t get_500hz(const uint8_t mode)
+[v _mode `Cuc ~T0 @X0 1 r1 ]
+"573
+[; ;../modbus_master.c: 573: {
 [f ]
-"561
-[; ;../modbus_master.c: 561:  if (PORTCbits.RC2) {
-[e $ ! != -> . . _PORTCbits 0 2 `i -> 0 `i 3369  ]
+"574
+[; ;../modbus_master.c: 574:  static uint32_t tmp = 0;
+[v F24577 `ul ~T0 @X0 1 s tmp ]
+[i F24577
+-> -> -> 0 `i `l `ul
+]
+"576
+[; ;../modbus_master.c: 576:  if (mode) {
+[e $ ! != -> _mode `i -> 0 `i 3369  ]
 {
-"562
-[; ;../modbus_master.c: 562:   return;
+"577
+[; ;../modbus_master.c: 577:   return tmp;
+[e ) F24577 ]
 [e $UE 3368  ]
-"563
-[; ;../modbus_master.c: 563:  }
+"578
+[; ;../modbus_master.c: 578:  }
 }
 [e :U 3369 ]
-"564
-[; ;../modbus_master.c: 564:  do { LATCbits.LATC2 = 1; } while(0);
-[e :U 3372 ]
-{
-[e = . . _LATCbits 0 2 -> -> 1 `i `uc ]
-}
-[e :U 3371 ]
-"566
-[; ;../modbus_master.c: 566:  if (delay) {
-[e $ ! != -> _delay `i -> 0 `i 3373  ]
-{
-"567
-[; ;../modbus_master.c: 567:   delay_ms(2);
-[e ( _delay_ms (1 -> -> 2 `i `us ]
-"568
-[; ;../modbus_master.c: 568:  }
-}
-[e :U 3373 ]
-"569
-[; ;../modbus_master.c: 569: }
-[e :UE 3368 ]
-}
-"573
-[; ;../modbus_master.c: 573: static void half_dup_rx(const _Bool delay)
-[v _half_dup_rx `(v ~T0 @X0 1 sf1`Ca ]
-"574
-[; ;../modbus_master.c: 574: {
-{
-[e :U _half_dup_rx ]
-"573
-[; ;../modbus_master.c: 573: static void half_dup_rx(const _Bool delay)
-[v _delay `Ca ~T0 @X0 1 r1 ]
-"574
-[; ;../modbus_master.c: 574: {
-[f ]
-"575
-[; ;../modbus_master.c: 575:  if (!PORTCbits.RC2) {
-[e $ ! ! != -> . . _PORTCbits 0 2 `i -> 0 `i 3375  ]
-{
-"576
-[; ;../modbus_master.c: 576:   return;
-[e $UE 3374  ]
-"577
-[; ;../modbus_master.c: 577:  }
-}
-[e :U 3375 ]
-"578
-[; ;../modbus_master.c: 578:  if (delay) {
-[e $ ! != -> _delay `i -> 0 `i 3376  ]
-{
-"579
-[; ;../modbus_master.c: 579:   delay_ms(2);
-[e ( _delay_ms (1 -> -> 2 `i `us ]
 "580
-[; ;../modbus_master.c: 580:  }
-}
-[e :U 3376 ]
+[; ;../modbus_master.c: 580:  tmp = MT.clock_500hz;
+[e = F24577 . _MT 0 ]
 "581
-[; ;../modbus_master.c: 581:  do { LATCbits.LATC2 = 0; } while(0);
-[e :U 3379 ]
-{
-[e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
-}
-[e :U 3378 ]
+[; ;../modbus_master.c: 581:  return tmp;
+[e ) F24577 ]
+[e $UE 3368  ]
 "582
 [; ;../modbus_master.c: 582: }
-[e :UE 3374 ]
+[e :UE 3368 ]
 }
 "586
-[; ;../modbus_master.c: 586: void timer_500ms_tick(void)
-[v _timer_500ms_tick `(v ~T0 @X0 1 ef ]
+[; ;../modbus_master.c: 586: static void half_dup_tx(const _Bool delay)
+[v _half_dup_tx `(v ~T0 @X0 1 sf1`Ca ]
 "587
 [; ;../modbus_master.c: 587: {
 {
-[e :U _timer_500ms_tick ]
+[e :U _half_dup_tx ]
+"586
+[; ;../modbus_master.c: 586: static void half_dup_tx(const _Bool delay)
+[v _delay `Ca ~T0 @X0 1 r1 ]
+"587
+[; ;../modbus_master.c: 587: {
 [f ]
 "588
-[; ;../modbus_master.c: 588:  do { LATBbits.LATB6 = ~LATBbits.LATB6; } while(0);
-[e :U 3383 ]
+[; ;../modbus_master.c: 588:  if (PORTCbits.RC2) {
+[e $ ! != -> . . _PORTCbits 0 2 `i -> 0 `i 3371  ]
+{
+"589
+[; ;../modbus_master.c: 589:   return;
+[e $UE 3370  ]
+"590
+[; ;../modbus_master.c: 590:  }
+}
+[e :U 3371 ]
+"591
+[; ;../modbus_master.c: 591:  do { LATCbits.LATC2 = 1; } while(0);
+[e :U 3374 ]
+{
+[e = . . _LATCbits 0 2 -> -> 1 `i `uc ]
+}
+[e :U 3373 ]
+"593
+[; ;../modbus_master.c: 593:  if (delay) {
+[e $ ! != -> _delay `i -> 0 `i 3375  ]
+{
+"594
+[; ;../modbus_master.c: 594:   delay_ms(2);
+[e ( _delay_ms (1 -> -> 2 `i `us ]
+"595
+[; ;../modbus_master.c: 595:  }
+}
+[e :U 3375 ]
+"596
+[; ;../modbus_master.c: 596: }
+[e :UE 3370 ]
+}
+"600
+[; ;../modbus_master.c: 600: static void half_dup_rx(const _Bool delay)
+[v _half_dup_rx `(v ~T0 @X0 1 sf1`Ca ]
+"601
+[; ;../modbus_master.c: 601: {
+{
+[e :U _half_dup_rx ]
+"600
+[; ;../modbus_master.c: 600: static void half_dup_rx(const _Bool delay)
+[v _delay `Ca ~T0 @X0 1 r1 ]
+"601
+[; ;../modbus_master.c: 601: {
+[f ]
+"602
+[; ;../modbus_master.c: 602:  if (!PORTCbits.RC2) {
+[e $ ! ! != -> . . _PORTCbits 0 2 `i -> 0 `i 3377  ]
+{
+"603
+[; ;../modbus_master.c: 603:   return;
+[e $UE 3376  ]
+"604
+[; ;../modbus_master.c: 604:  }
+}
+[e :U 3377 ]
+"605
+[; ;../modbus_master.c: 605:  if (delay) {
+[e $ ! != -> _delay `i -> 0 `i 3378  ]
+{
+"606
+[; ;../modbus_master.c: 606:   delay_ms(2);
+[e ( _delay_ms (1 -> -> 2 `i `us ]
+"607
+[; ;../modbus_master.c: 607:  }
+}
+[e :U 3378 ]
+"608
+[; ;../modbus_master.c: 608:  do { LATCbits.LATC2 = 0; } while(0);
+[e :U 3381 ]
+{
+[e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
+}
+[e :U 3380 ]
+"609
+[; ;../modbus_master.c: 609: }
+[e :UE 3376 ]
+}
+"613
+[; ;../modbus_master.c: 613: void timer_500ms_tick(void)
+[v _timer_500ms_tick `(v ~T0 @X0 1 ef ]
+"614
+[; ;../modbus_master.c: 614: {
+{
+[e :U _timer_500ms_tick ]
+[f ]
+"615
+[; ;../modbus_master.c: 615:  do { LATBbits.LATB6 = ~LATBbits.LATB6; } while(0);
+[e :U 3385 ]
 {
 [e = . . _LATBbits 0 6 -> ~ -> . . _LATBbits 0 6 `i `uc ]
 }
-[e :U 3382 ]
-"589
-[; ;../modbus_master.c: 589:  MT.clock_2hz++;
+[e :U 3384 ]
+"616
+[; ;../modbus_master.c: 616:  MT.clock_2hz++;
 [e ++ . _MT 2 -> -> 1 `i `Vul ]
-"590
-[; ;../modbus_master.c: 590: }
-[e :UE 3380 ]
+"617
+[; ;../modbus_master.c: 617: }
+[e :UE 3382 ]
 }
-"594
-[; ;../modbus_master.c: 594: void timer_2ms_tick(void)
+"621
+[; ;../modbus_master.c: 621: void timer_2ms_tick(void)
 [v _timer_2ms_tick `(v ~T0 @X0 1 ef ]
-"595
-[; ;../modbus_master.c: 595: {
+"622
+[; ;../modbus_master.c: 622: {
 {
 [e :U _timer_2ms_tick ]
 [f ]
-"596
-[; ;../modbus_master.c: 596:  do { LATBbits.LATB6 = ~LATBbits.LATB6; } while(0);
-[e :U 3387 ]
+"623
+[; ;../modbus_master.c: 623:  do { LATBbits.LATB6 = ~LATBbits.LATB6; } while(0);
+[e :U 3389 ]
 {
 [e = . . _LATBbits 0 6 -> ~ -> . . _LATBbits 0 6 `i `uc ]
 }
-[e :U 3386 ]
-"597
-[; ;../modbus_master.c: 597:  MT.clock_500hz++;
+[e :U 3388 ]
+"624
+[; ;../modbus_master.c: 624:  MT.clock_500hz++;
 [e ++ . _MT 0 -> -> 1 `i `Vul ]
-"598
-[; ;../modbus_master.c: 598:  MT.clock_500ahz++;
+"625
+[; ;../modbus_master.c: 625:  MT.clock_500ahz++;
 [e ++ . _MT 1 -> -> 1 `i `Vul ]
-"599
-[; ;../modbus_master.c: 599: }
-[e :UE 3384 ]
+"626
+[; ;../modbus_master.c: 626: }
+[e :UE 3386 ]
 }
-"614
-[; ;../modbus_master.c: 614: static _Bool serial_trmt(void)
+"641
+[; ;../modbus_master.c: 641: static _Bool serial_trmt(void)
 [v _serial_trmt `(a ~T0 @X0 1 sf ]
-"615
-[; ;../modbus_master.c: 615: {
+"642
+[; ;../modbus_master.c: 642: {
 {
 [e :U _serial_trmt ]
 [f ]
-"616
-[; ;../modbus_master.c: 616:  return !(UART5_is_tx_done);
-[e ) -> -> ! != &U _UART5_is_tx_done -> -> 0 `i `*F24585 `i `a ]
-[e $UE 3388  ]
-"617
-[; ;../modbus_master.c: 617: }
-[e :UE 3388 ]
+"643
+[; ;../modbus_master.c: 643:  return !(UART5_is_tx_done);
+[e ) -> -> ! != &U _UART5_is_tx_done -> -> 0 `i `*F24587 `i `a ]
+[e $UE 3390  ]
+"644
+[; ;../modbus_master.c: 644: }
+[e :UE 3390 ]
 }
-"619
-[; ;../modbus_master.c: 619: static void UART1_DefaultFramingErrorHandler_mb(void)
+"646
+[; ;../modbus_master.c: 646: static void UART1_DefaultFramingErrorHandler_mb(void)
 [v _UART1_DefaultFramingErrorHandler_mb `(v ~T0 @X0 1 sf ]
-"620
-[; ;../modbus_master.c: 620: {
+"647
+[; ;../modbus_master.c: 647: {
 {
 [e :U _UART1_DefaultFramingErrorHandler_mb ]
 [f ]
-"621
-[; ;../modbus_master.c: 621:  do { LATBbits.LATB6 = ~LATBbits.LATB6; } while(0);
-[e :U 3392 ]
+"648
+[; ;../modbus_master.c: 648:  do { LATBbits.LATB6 = ~LATBbits.LATB6; } while(0);
+[e :U 3394 ]
 {
 [e = . . _LATBbits 0 6 -> ~ -> . . _LATBbits 0 6 `i `uc ]
 }
-[e :U 3391 ]
-"622
-[; ;../modbus_master.c: 622:  do { LATBbits.LATB1 = 1; } while(0);
-[e :U 3395 ]
+[e :U 3393 ]
+"649
+[; ;../modbus_master.c: 649:  do { LATBbits.LATB1 = 1; } while(0);
+[e :U 3397 ]
 {
 [e = . . _LATBbits 0 1 -> -> 1 `i `uc ]
 }
-[e :U 3394 ]
-"623
-[; ;../modbus_master.c: 623: }
-[e :UE 3389 ]
+[e :U 3396 ]
+"650
+[; ;../modbus_master.c: 650: }
+[e :UE 3391 ]
 }
-"625
-[; ;../modbus_master.c: 625: static void UART1_DefaultOverrunErrorHandler_mb(void)
+"652
+[; ;../modbus_master.c: 652: static void UART1_DefaultOverrunErrorHandler_mb(void)
 [v _UART1_DefaultOverrunErrorHandler_mb `(v ~T0 @X0 1 sf ]
-"626
-[; ;../modbus_master.c: 626: {
+"653
+[; ;../modbus_master.c: 653: {
 {
 [e :U _UART1_DefaultOverrunErrorHandler_mb ]
 [f ]
-"627
-[; ;../modbus_master.c: 627:  do { LATBbits.LATB6 = ~LATBbits.LATB6; } while(0);
-[e :U 3399 ]
+"654
+[; ;../modbus_master.c: 654:  do { LATBbits.LATB6 = ~LATBbits.LATB6; } while(0);
+[e :U 3401 ]
 {
 [e = . . _LATBbits 0 6 -> ~ -> . . _LATBbits 0 6 `i `uc ]
 }
-[e :U 3398 ]
-"628
-[; ;../modbus_master.c: 628:  do { LATBbits.LATB1 = 1; } while(0);
-[e :U 3402 ]
+[e :U 3400 ]
+"655
+[; ;../modbus_master.c: 655:  do { LATBbits.LATB1 = 1; } while(0);
+[e :U 3404 ]
 {
 [e = . . _LATBbits 0 1 -> -> 1 `i `uc ]
 }
-[e :U 3401 ]
-"629
-[; ;../modbus_master.c: 629: }
-[e :UE 3396 ]
+[e :U 3403 ]
+"656
+[; ;../modbus_master.c: 656: }
+[e :UE 3398 ]
 }
-"631
-[; ;../modbus_master.c: 631: static void UART1_DefaultErrorHandler_mb(void)
+"658
+[; ;../modbus_master.c: 658: static void UART1_DefaultErrorHandler_mb(void)
 [v _UART1_DefaultErrorHandler_mb `(v ~T0 @X0 1 sf ]
-"632
-[; ;../modbus_master.c: 632: {
+"659
+[; ;../modbus_master.c: 659: {
 {
 [e :U _UART1_DefaultErrorHandler_mb ]
 [f ]
-"633
-[; ;../modbus_master.c: 633:  do { LATBbits.LATB6 = ~LATBbits.LATB6; } while(0);
-[e :U 3406 ]
+"660
+[; ;../modbus_master.c: 660:  do { LATBbits.LATB6 = ~LATBbits.LATB6; } while(0);
+[e :U 3408 ]
 {
 [e = . . _LATBbits 0 6 -> ~ -> . . _LATBbits 0 6 `i `uc ]
 }
-[e :U 3405 ]
-"634
-[; ;../modbus_master.c: 634:  do { LATBbits.LATB1 = 1; } while(0);
-[e :U 3409 ]
+[e :U 3407 ]
+"661
+[; ;../modbus_master.c: 661:  do { LATBbits.LATB1 = 1; } while(0);
+[e :U 3411 ]
 {
 [e = . . _LATBbits 0 1 -> -> 1 `i `uc ]
 }
-[e :U 3408 ]
-"635
-[; ;../modbus_master.c: 635: }
-[e :UE 3403 ]
+[e :U 3410 ]
+"662
+[; ;../modbus_master.c: 662: }
+[e :UE 3405 ]
 }
-"637
-[; ;../modbus_master.c: 637: void mb_setup(void)
+"664
+[; ;../modbus_master.c: 664: void mb_setup(void)
 [v _mb_setup `(v ~T0 @X0 1 ef ]
-"638
-[; ;../modbus_master.c: 638: {
+"665
+[; ;../modbus_master.c: 665: {
 {
 [e :U _mb_setup ]
 [f ]
-"639
-[; ;../modbus_master.c: 639:  UART1_SetFramingErrorHandler(UART1_DefaultFramingErrorHandler_mb);
+"666
+[; ;../modbus_master.c: 666:  UART1_SetFramingErrorHandler(UART1_DefaultFramingErrorHandler_mb);
 [e ( _UART1_SetFramingErrorHandler (1 &U _UART1_DefaultFramingErrorHandler_mb ]
-"640
-[; ;../modbus_master.c: 640:  UART1_SetOverrunErrorHandler(UART1_DefaultOverrunErrorHandler_mb);
+"667
+[; ;../modbus_master.c: 667:  UART1_SetOverrunErrorHandler(UART1_DefaultOverrunErrorHandler_mb);
 [e ( _UART1_SetOverrunErrorHandler (1 &U _UART1_DefaultOverrunErrorHandler_mb ]
-"641
-[; ;../modbus_master.c: 641:  UART1_SetErrorHandler(UART1_DefaultErrorHandler_mb);
+"668
+[; ;../modbus_master.c: 668:  UART1_SetErrorHandler(UART1_DefaultErrorHandler_mb);
 [e ( _UART1_SetErrorHandler (1 &U _UART1_DefaultErrorHandler_mb ]
-"642
-[; ;../modbus_master.c: 642: }
-[e :UE 3410 ]
+"669
+[; ;../modbus_master.c: 669: }
+[e :UE 3412 ]
 }
-"644
-[; ;../modbus_master.c: 644: static _Bool modbus_read_dcu_check(C_data * client, _Bool* cstate, const uint16_t rec_length)
+"671
+[; ;../modbus_master.c: 671: static _Bool modbus_read_dcu_check(C_data * client, _Bool* cstate, const uint16_t rec_length)
 [v _modbus_read_dcu_check `(a ~T0 @X0 1 sf3`*S3296`*a`us ]
-"645
-[; ;../modbus_master.c: 645: {
+"672
+[; ;../modbus_master.c: 672: {
 {
 [e :U _modbus_read_dcu_check ]
-"644
-[; ;../modbus_master.c: 644: static _Bool modbus_read_dcu_check(C_data * client, _Bool* cstate, const uint16_t rec_length)
+"671
+[; ;../modbus_master.c: 671: static _Bool modbus_read_dcu_check(C_data * client, _Bool* cstate, const uint16_t rec_length)
 [v _client `*S3296 ~T0 @X0 1 r1 ]
 [v _cstate `*a ~T0 @X0 1 r2 ]
 [v _rec_length `Cus ~T0 @X0 1 r3 ]
-"645
-[; ;../modbus_master.c: 645: {
+"672
+[; ;../modbus_master.c: 672: {
 [f ]
-"646
-[; ;../modbus_master.c: 646:  uint16_t c_crc = 0, c_crc_rec = 1;
+"673
+[; ;../modbus_master.c: 673:  uint16_t c_crc = 0, c_crc_rec = 1;
 [v _c_crc `us ~T0 @X0 1 a ]
 [e = _c_crc -> -> 0 `i `us ]
 [v _c_crc_rec `us ~T0 @X0 1 a ]
 [e = _c_crc_rec -> -> 1 `i `us ]
-"647
-[; ;../modbus_master.c: 647:  uint8_t data_len;
-[v _data_len `uc ~T0 @X0 1 a ]
-"649
-[; ;../modbus_master.c: 649:  client->req_length = rec_length;
-[e = . *U _client 3 _rec_length ]
-"650
-[; ;../modbus_master.c: 650:  if (((M.recv_count >= client->req_length))) {
-[e $ ! >= -> . _M 6 `ui -> . *U _client 3 `ui 3412  ]
-{
-"652
-[; ;../modbus_master.c: 652:   data_len = dcu_buffer_len((uint8_t *) cc_buffer);
-[e = _data_len ( _dcu_buffer_len (1 -> &U _cc_buffer `*uc ]
-"653
-[; ;../modbus_master.c: 653:   if (data_len == 6) {
-[e $ ! == -> _data_len `i -> 6 `i 3413  ]
-{
-"654
-[; ;../modbus_master.c: 654:    c_crc = dcu_chk_buffer((uint8_t*) cc_buffer, (uint8_t) rec_length);
-[e = _c_crc -> ( _dcu_chk_buffer (2 , -> &U _cc_buffer `*uc -> _rec_length `uc `us ]
-"655
-[; ;../modbus_master.c: 655:    c_crc_rec = dcu_crc_a((uint8_t*) cc_buffer);
-[e = _c_crc_rec -> ( _dcu_crc_a (1 -> &U _cc_buffer `*uc `us ]
-"656
-[; ;../modbus_master.c: 656:   }
-}
-[e :U 3413 ]
-"658
-[; ;../modbus_master.c: 658:   if ( c_crc == c_crc_rec) {
-[e $ ! == -> _c_crc `ui -> _c_crc_rec `ui 3414  ]
-{
-"662
-[; ;../modbus_master.c: 662:    if (dcu_param_num((uint8_t *) cc_buffer) == 309) {
-[e $ ! == -> ( _dcu_param_num (1 -> &U _cc_buffer `*uc `ui -> -> 309 `i `ui 3415  ]
-{
-"663
-[; ;../modbus_master.c: 663:     for (uint8_t i = 0; i < data_len; i++) {
-{
-[v _i `uc ~T0 @X0 1 a ]
-[e = _i -> -> 0 `i `uc ]
-[e $U 3419  ]
-[e :U 3416 ]
-{
-"664
-[; ;../modbus_master.c: 664:      client->speed[i] = cc_buffer[10 + i];
-[e = *U + &U . *U _client 16 * -> _i `ux -> -> # *U &U . *U _client 16 `ui `ux *U + &U _cc_buffer * -> -> + -> 10 `i -> _i `i `ui `ux -> -> # *U &U _cc_buffer `ui `ux ]
-"665
-[; ;../modbus_master.c: 665:     }
-}
-[e ++ _i -> -> 1 `i `uc ]
-[e :U 3419 ]
-[e $ < -> _i `i -> _data_len `i 3416  ]
-[e :U 3417 ]
-}
-"666
-[; ;../modbus_master.c: 666:     client->speed[data_len] = 0;
-[e = *U + &U . *U _client 16 * -> _data_len `ux -> -> # *U &U . *U _client 16 `ui `ux -> -> 0 `i `uc ]
-"667
-[; ;../modbus_master.c: 667:    }
-}
-[e :U 3415 ]
-"668
-[; ;../modbus_master.c: 668:    if (dcu_param_num((uint8_t *) cc_buffer) == 23) {
-[e $ ! == -> ( _dcu_param_num (1 -> &U _cc_buffer `*uc `ui -> -> 23 `i `ui 3420  ]
-{
-"669
-[; ;../modbus_master.c: 669:     for (uint8_t i = 0; i < data_len; i++) {
-{
-[v _i `uc ~T0 @X0 1 a ]
-[e = _i -> -> 0 `i `uc ]
-[e $U 3424  ]
-[e :U 3421 ]
-{
-"670
-[; ;../modbus_master.c: 670:      client->mon[i] = cc_buffer[10 + i];
-[e = *U + &U . *U _client 17 * -> _i `ux -> -> # *U &U . *U _client 17 `ui `ux *U + &U _cc_buffer * -> -> + -> 10 `i -> _i `i `ui `ux -> -> # *U &U _cc_buffer `ui `ux ]
-"671
-[; ;../modbus_master.c: 671:     }
-}
-[e ++ _i -> -> 1 `i `uc ]
-[e :U 3424 ]
-[e $ < -> _i `i -> _data_len `i 3421  ]
-[e :U 3422 ]
-}
-"672
-[; ;../modbus_master.c: 672:     client->mon[data_len] = 0;
-[e = *U + &U . *U _client 17 * -> _data_len `ux -> -> # *U &U . *U _client 17 `ui `ux -> -> 0 `i `uc ]
-"673
-[; ;../modbus_master.c: 673:    }
-}
-[e :U 3420 ]
 "674
-[; ;../modbus_master.c: 674:    if (dcu_param_num((uint8_t *) cc_buffer) == 310) {
-[e $ ! == -> ( _dcu_param_num (1 -> &U _cc_buffer `*uc `ui -> -> 310 `i `ui 3425  ]
-{
-"675
-[; ;../modbus_master.c: 675:     for (uint8_t i = 0; i < data_len; i++) {
-{
-[v _i `uc ~T0 @X0 1 a ]
-[e = _i -> -> 0 `i `uc ]
-[e $U 3429  ]
-[e :U 3426 ]
-{
+[; ;../modbus_master.c: 674:  uint8_t data_len;
+[v _data_len `uc ~T0 @X0 1 a ]
 "676
-[; ;../modbus_master.c: 676:      client->current[i] = cc_buffer[10 + i];
-[e = *U + &U . *U _client 18 * -> _i `ux -> -> # *U &U . *U _client 18 `ui `ux *U + &U _cc_buffer * -> -> + -> 10 `i -> _i `i `ui `ux -> -> # *U &U _cc_buffer `ui `ux ]
+[; ;../modbus_master.c: 676:  client->req_length = rec_length;
+[e = . *U _client 3 _rec_length ]
 "677
-[; ;../modbus_master.c: 677:     }
-}
-[e ++ _i -> -> 1 `i `uc ]
-[e :U 3429 ]
-[e $ < -> _i `i -> _data_len `i 3426  ]
-[e :U 3427 ]
-}
-"678
-[; ;../modbus_master.c: 678:     client->current[data_len] = 0;
-[e = *U + &U . *U _client 18 * -> _data_len `ux -> -> # *U &U . *U _client 18 `ui `ux -> -> 0 `i `uc ]
+[; ;../modbus_master.c: 677:  if (((M.recv_count >= client->req_length))) {
+[e $ ! >= -> . _M 6 `ui -> . *U _client 3 `ui 3414  ]
+{
 "679
-[; ;../modbus_master.c: 679:    }
-}
-[e :U 3425 ]
+[; ;../modbus_master.c: 679:   data_len = dcu_buffer_len((uint8_t *) cc_buffer);
+[e = _data_len ( _dcu_buffer_len (1 -> &U _cc_buffer `*uc ]
 "680
-[; ;../modbus_master.c: 680:    if (dcu_param_num((uint8_t *) cc_buffer) == 313) {
-[e $ ! == -> ( _dcu_param_num (1 -> &U _cc_buffer `*uc `ui -> -> 313 `i `ui 3430  ]
+[; ;../modbus_master.c: 680:   if (data_len == 6) {
+[e $ ! == -> _data_len `i -> 6 `i 3415  ]
 {
 "681
-[; ;../modbus_master.c: 681:     for (uint8_t i = 0; i < data_len; i++) {
-{
-[v _i `uc ~T0 @X0 1 a ]
-[e = _i -> -> 0 `i `uc ]
-[e $U 3434  ]
-[e :U 3431 ]
-{
+[; ;../modbus_master.c: 681:    c_crc = dcu_chk_buffer((uint8_t*) cc_buffer, (uint8_t) rec_length);
+[e = _c_crc -> ( _dcu_chk_buffer (2 , -> &U _cc_buffer `*uc -> _rec_length `uc `us ]
 "682
-[; ;../modbus_master.c: 682:      client->link[i] = cc_buffer[10 + i];
-[e = *U + &U . *U _client 22 * -> _i `ux -> -> # *U &U . *U _client 22 `ui `ux *U + &U _cc_buffer * -> -> + -> 10 `i -> _i `i `ui `ux -> -> # *U &U _cc_buffer `ui `ux ]
+[; ;../modbus_master.c: 682:    c_crc_rec = dcu_crc_a((uint8_t*) cc_buffer);
+[e = _c_crc_rec -> ( _dcu_crc_a (1 -> &U _cc_buffer `*uc `us ]
 "683
-[; ;../modbus_master.c: 683:     }
+[; ;../modbus_master.c: 683:   }
 }
-[e ++ _i -> -> 1 `i `uc ]
-[e :U 3434 ]
-[e $ < -> _i `i -> _data_len `i 3431  ]
-[e :U 3432 ]
-}
-"684
-[; ;../modbus_master.c: 684:     client->link[data_len] = 0;
-[e = *U + &U . *U _client 22 * -> _data_len `ux -> -> # *U &U . *U _client 22 `ui `ux -> -> 0 `i `uc ]
+[e :U 3415 ]
 "685
-[; ;../modbus_master.c: 685:    }
-}
-[e :U 3430 ]
-"686
-[; ;../modbus_master.c: 686:    if (dcu_param_num((uint8_t *) cc_buffer) == 307) {
-[e $ ! == -> ( _dcu_param_num (1 -> &U _cc_buffer `*uc `ui -> -> 307 `i `ui 3435  ]
+[; ;../modbus_master.c: 685:   if ( c_crc == c_crc_rec) {
+[e $ ! == -> _c_crc `ui -> _c_crc_rec `ui 3416  ]
 {
-"687
-[; ;../modbus_master.c: 687:     for (uint8_t i = 0; i < data_len; i++) {
-{
-[v _i `uc ~T0 @X0 1 a ]
-[e = _i -> -> 0 `i `uc ]
-[e $U 3439  ]
-[e :U 3436 ]
-{
-"688
-[; ;../modbus_master.c: 688:      client->accel[i] = cc_buffer[10 + i];
-[e = *U + &U . *U _client 19 * -> _i `ux -> -> # *U &U . *U _client 19 `ui `ux *U + &U _cc_buffer * -> -> + -> 10 `i -> _i `i `ui `ux -> -> # *U &U _cc_buffer `ui `ux ]
 "689
-[; ;../modbus_master.c: 689:     }
-}
-[e ++ _i -> -> 1 `i `uc ]
-[e :U 3439 ]
-[e $ < -> _i `i -> _data_len `i 3436  ]
-[e :U 3437 ]
-}
+[; ;../modbus_master.c: 689:    if (dcu_param_num((uint8_t *) cc_buffer) == 303) {
+[e $ ! == -> ( _dcu_param_num (1 -> &U _cc_buffer `*uc `ui -> -> 303 `i `ui 3417  ]
+{
 "690
-[; ;../modbus_master.c: 690:     client->accel[data_len] = 0;
-[e = *U + &U . *U _client 19 * -> _data_len `ux -> -> # *U &U . *U _client 19 `ui `ux -> -> 0 `i `uc ]
+[; ;../modbus_master.c: 690:     for (uint8_t i = 0; i < data_len; i++) {
+{
+[v _i `uc ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `uc ]
+[e $U 3421  ]
+[e :U 3418 ]
+{
 "691
-[; ;../modbus_master.c: 691:    }
+[; ;../modbus_master.c: 691:      client->error[i] = cc_buffer[10 + i];
+[e = *U + &U . *U _client 23 * -> _i `ux -> -> # *U &U . *U _client 23 `ui `ux *U + &U _cc_buffer * -> -> + -> 10 `i -> _i `i `ui `ux -> -> # *U &U _cc_buffer `ui `ux ]
+"692
+[; ;../modbus_master.c: 692:     }
 }
-[e :U 3435 ]
+[e ++ _i -> -> 1 `i `uc ]
+[e :U 3421 ]
+[e $ < -> _i `i -> _data_len `i 3418  ]
+[e :U 3419 ]
+}
 "693
-[; ;../modbus_master.c: 693:    if (dcu_param_num((uint8_t *) cc_buffer) == 349) {
-[e $ ! == -> ( _dcu_param_num (1 -> &U _cc_buffer `*uc `ui -> -> 349 `i `ui 3440  ]
-{
+[; ;../modbus_master.c: 693:     client->error[data_len] = 0;
+[e = *U + &U . *U _client 23 * -> _data_len `ux -> -> # *U &U . *U _client 23 `ui `ux -> -> 0 `i `uc ]
 "694
-[; ;../modbus_master.c: 694:     for (uint8_t i = 0; i < data_len; i++) {
-{
-[v _i `uc ~T0 @X0 1 a ]
-[e = _i -> -> 0 `i `uc ]
-[e $U 3444  ]
-[e :U 3441 ]
-{
+[; ;../modbus_master.c: 694:    }
+}
+[e :U 3417 ]
 "695
-[; ;../modbus_master.c: 695:      client->dname[i] = cc_buffer[10 + i];
-[e = *U + &U . *U _client 20 * -> _i `ux -> -> # *U &U . *U _client 20 `ui `ux *U + &U _cc_buffer * -> -> + -> 10 `i -> _i `i `ui `ux -> -> # *U &U _cc_buffer `ui `ux ]
-"696
-[; ;../modbus_master.c: 696:     }
-}
-[e ++ _i -> -> 1 `i `uc ]
-[e :U 3444 ]
-[e $ < -> _i `i -> _data_len `i 3441  ]
-[e :U 3442 ]
-}
-"697
-[; ;../modbus_master.c: 697:     client->dname[data_len] = 0;
-[e = *U + &U . *U _client 20 * -> _data_len `ux -> -> # *U &U . *U _client 20 `ui `ux -> -> 0 `i `uc ]
-"698
-[; ;../modbus_master.c: 698:    }
-}
-[e :U 3440 ]
-"699
-[; ;../modbus_master.c: 699:    if (dcu_param_num((uint8_t *) cc_buffer) == 312) {
-[e $ ! == -> ( _dcu_param_num (1 -> &U _cc_buffer `*uc `ui -> -> 312 `i `ui 3445  ]
+[; ;../modbus_master.c: 695:    if (dcu_param_num((uint8_t *) cc_buffer) == 309) {
+[e $ ! == -> ( _dcu_param_num (1 -> &U _cc_buffer `*uc `ui -> -> 309 `i `ui 3422  ]
 {
-"700
-[; ;../modbus_master.c: 700:     for (uint8_t i = 0; i < data_len; i++) {
+"696
+[; ;../modbus_master.c: 696:     for (uint8_t i = 0; i < data_len; i++) {
 {
 [v _i `uc ~T0 @X0 1 a ]
 [e = _i -> -> 0 `i `uc ]
-[e $U 3449  ]
-[e :U 3446 ]
+[e $U 3426  ]
+[e :U 3423 ]
 {
-"701
-[; ;../modbus_master.c: 701:      client->dsoft[i] = cc_buffer[10 + i];
-[e = *U + &U . *U _client 21 * -> _i `ux -> -> # *U &U . *U _client 21 `ui `ux *U + &U _cc_buffer * -> -> + -> 10 `i -> _i `i `ui `ux -> -> # *U &U _cc_buffer `ui `ux ]
-"702
-[; ;../modbus_master.c: 702:     }
+"697
+[; ;../modbus_master.c: 697:      client->speed[i] = cc_buffer[10 + i];
+[e = *U + &U . *U _client 16 * -> _i `ux -> -> # *U &U . *U _client 16 `ui `ux *U + &U _cc_buffer * -> -> + -> 10 `i -> _i `i `ui `ux -> -> # *U &U _cc_buffer `ui `ux ]
+"698
+[; ;../modbus_master.c: 698:     }
 }
 [e ++ _i -> -> 1 `i `uc ]
-[e :U 3449 ]
-[e $ < -> _i `i -> _data_len `i 3446  ]
-[e :U 3447 ]
+[e :U 3426 ]
+[e $ < -> _i `i -> _data_len `i 3423  ]
+[e :U 3424 ]
 }
+"699
+[; ;../modbus_master.c: 699:     client->speed[data_len] = 0;
+[e = *U + &U . *U _client 16 * -> _data_len `ux -> -> # *U &U . *U _client 16 `ui `ux -> -> 0 `i `uc ]
+"700
+[; ;../modbus_master.c: 700:    }
+}
+[e :U 3422 ]
+"701
+[; ;../modbus_master.c: 701:    if (dcu_param_num((uint8_t *) cc_buffer) == 23) {
+[e $ ! == -> ( _dcu_param_num (1 -> &U _cc_buffer `*uc `ui -> -> 23 `i `ui 3427  ]
+{
+"702
+[; ;../modbus_master.c: 702:     for (uint8_t i = 0; i < data_len; i++) {
+{
+[v _i `uc ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `uc ]
+[e $U 3431  ]
+[e :U 3428 ]
+{
 "703
-[; ;../modbus_master.c: 703:     client->dsoft[data_len] = 0;
-[e = *U + &U . *U _client 21 * -> _data_len `ux -> -> # *U &U . *U _client 21 `ui `ux -> -> 0 `i `uc ]
+[; ;../modbus_master.c: 703:      client->mon[i] = cc_buffer[10 + i];
+[e = *U + &U . *U _client 17 * -> _i `ux -> -> # *U &U . *U _client 17 `ui `ux *U + &U _cc_buffer * -> -> + -> 10 `i -> _i `i `ui `ux -> -> # *U &U _cc_buffer `ui `ux ]
 "704
-[; ;../modbus_master.c: 704:    }
+[; ;../modbus_master.c: 704:     }
 }
-[e :U 3445 ]
+[e ++ _i -> -> 1 `i `uc ]
+[e :U 3431 ]
+[e $ < -> _i `i -> _data_len `i 3428  ]
+[e :U 3429 ]
+}
 "705
-[; ;../modbus_master.c: 705:    do { LATBbits.LATB1 = 0; } while(0);
+[; ;../modbus_master.c: 705:     client->mon[data_len] = 0;
+[e = *U + &U . *U _client 17 * -> _data_len `ux -> -> # *U &U . *U _client 17 `ui `ux -> -> 0 `i `uc ]
+"706
+[; ;../modbus_master.c: 706:    }
+}
+[e :U 3427 ]
+"707
+[; ;../modbus_master.c: 707:    if (dcu_param_num((uint8_t *) cc_buffer) == 310) {
+[e $ ! == -> ( _dcu_param_num (1 -> &U _cc_buffer `*uc `ui -> -> 310 `i `ui 3432  ]
+{
+"708
+[; ;../modbus_master.c: 708:     for (uint8_t i = 0; i < data_len; i++) {
+{
+[v _i `uc ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `uc ]
+[e $U 3436  ]
+[e :U 3433 ]
+{
+"709
+[; ;../modbus_master.c: 709:      client->current[i] = cc_buffer[10 + i];
+[e = *U + &U . *U _client 18 * -> _i `ux -> -> # *U &U . *U _client 18 `ui `ux *U + &U _cc_buffer * -> -> + -> 10 `i -> _i `i `ui `ux -> -> # *U &U _cc_buffer `ui `ux ]
+"710
+[; ;../modbus_master.c: 710:     }
+}
+[e ++ _i -> -> 1 `i `uc ]
+[e :U 3436 ]
+[e $ < -> _i `i -> _data_len `i 3433  ]
+[e :U 3434 ]
+}
+"711
+[; ;../modbus_master.c: 711:     client->current[data_len] = 0;
+[e = *U + &U . *U _client 18 * -> _data_len `ux -> -> # *U &U . *U _client 18 `ui `ux -> -> 0 `i `uc ]
+"712
+[; ;../modbus_master.c: 712:    }
+}
+[e :U 3432 ]
+"713
+[; ;../modbus_master.c: 713:    if (dcu_param_num((uint8_t *) cc_buffer) == 313) {
+[e $ ! == -> ( _dcu_param_num (1 -> &U _cc_buffer `*uc `ui -> -> 313 `i `ui 3437  ]
+{
+"714
+[; ;../modbus_master.c: 714:     for (uint8_t i = 0; i < data_len; i++) {
+{
+[v _i `uc ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `uc ]
+[e $U 3441  ]
+[e :U 3438 ]
+{
+"715
+[; ;../modbus_master.c: 715:      client->link[i] = cc_buffer[10 + i];
+[e = *U + &U . *U _client 22 * -> _i `ux -> -> # *U &U . *U _client 22 `ui `ux *U + &U _cc_buffer * -> -> + -> 10 `i -> _i `i `ui `ux -> -> # *U &U _cc_buffer `ui `ux ]
+"716
+[; ;../modbus_master.c: 716:     }
+}
+[e ++ _i -> -> 1 `i `uc ]
+[e :U 3441 ]
+[e $ < -> _i `i -> _data_len `i 3438  ]
+[e :U 3439 ]
+}
+"717
+[; ;../modbus_master.c: 717:     client->link[data_len] = 0;
+[e = *U + &U . *U _client 22 * -> _data_len `ux -> -> # *U &U . *U _client 22 `ui `ux -> -> 0 `i `uc ]
+"718
+[; ;../modbus_master.c: 718:    }
+}
+[e :U 3437 ]
+"719
+[; ;../modbus_master.c: 719:    if (dcu_param_num((uint8_t *) cc_buffer) == 307) {
+[e $ ! == -> ( _dcu_param_num (1 -> &U _cc_buffer `*uc `ui -> -> 307 `i `ui 3442  ]
+{
+"720
+[; ;../modbus_master.c: 720:     for (uint8_t i = 0; i < data_len; i++) {
+{
+[v _i `uc ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `uc ]
+[e $U 3446  ]
+[e :U 3443 ]
+{
+"721
+[; ;../modbus_master.c: 721:      client->accel[i] = cc_buffer[10 + i];
+[e = *U + &U . *U _client 19 * -> _i `ux -> -> # *U &U . *U _client 19 `ui `ux *U + &U _cc_buffer * -> -> + -> 10 `i -> _i `i `ui `ux -> -> # *U &U _cc_buffer `ui `ux ]
+"722
+[; ;../modbus_master.c: 722:     }
+}
+[e ++ _i -> -> 1 `i `uc ]
+[e :U 3446 ]
+[e $ < -> _i `i -> _data_len `i 3443  ]
+[e :U 3444 ]
+}
+"723
+[; ;../modbus_master.c: 723:     client->accel[data_len] = 0;
+[e = *U + &U . *U _client 19 * -> _data_len `ux -> -> # *U &U . *U _client 19 `ui `ux -> -> 0 `i `uc ]
+"724
+[; ;../modbus_master.c: 724:     client->accel[1] = 0;
+[e = *U + &U . *U _client 19 * -> -> -> 1 `i `ui `ux -> -> # *U &U . *U _client 19 `ui `ux -> -> 0 `i `uc ]
+"725
+[; ;../modbus_master.c: 725:    }
+}
+[e :U 3442 ]
+"727
+[; ;../modbus_master.c: 727:    if (dcu_param_num((uint8_t *) cc_buffer) == 349) {
+[e $ ! == -> ( _dcu_param_num (1 -> &U _cc_buffer `*uc `ui -> -> 349 `i `ui 3447  ]
+{
+"728
+[; ;../modbus_master.c: 728:     for (uint8_t i = 0; i < data_len; i++) {
+{
+[v _i `uc ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `uc ]
+[e $U 3451  ]
+[e :U 3448 ]
+{
+"729
+[; ;../modbus_master.c: 729:      client->dname[i] = cc_buffer[10 + i];
+[e = *U + &U . *U _client 20 * -> _i `ux -> -> # *U &U . *U _client 20 `ui `ux *U + &U _cc_buffer * -> -> + -> 10 `i -> _i `i `ui `ux -> -> # *U &U _cc_buffer `ui `ux ]
+"730
+[; ;../modbus_master.c: 730:     }
+}
+[e ++ _i -> -> 1 `i `uc ]
+[e :U 3451 ]
+[e $ < -> _i `i -> _data_len `i 3448  ]
+[e :U 3449 ]
+}
+"731
+[; ;../modbus_master.c: 731:     client->dname[data_len] = 0;
+[e = *U + &U . *U _client 20 * -> _data_len `ux -> -> # *U &U . *U _client 20 `ui `ux -> -> 0 `i `uc ]
+"732
+[; ;../modbus_master.c: 732:    }
+}
+[e :U 3447 ]
+"733
+[; ;../modbus_master.c: 733:    if (dcu_param_num((uint8_t *) cc_buffer) == 312) {
+[e $ ! == -> ( _dcu_param_num (1 -> &U _cc_buffer `*uc `ui -> -> 312 `i `ui 3452  ]
+{
+"734
+[; ;../modbus_master.c: 734:     for (uint8_t i = 0; i < data_len; i++) {
+{
+[v _i `uc ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `uc ]
+[e $U 3456  ]
+[e :U 3453 ]
+{
+"735
+[; ;../modbus_master.c: 735:      client->dsoft[i] = cc_buffer[10 + i];
+[e = *U + &U . *U _client 21 * -> _i `ux -> -> # *U &U . *U _client 21 `ui `ux *U + &U _cc_buffer * -> -> + -> 10 `i -> _i `i `ui `ux -> -> # *U &U _cc_buffer `ui `ux ]
+"736
+[; ;../modbus_master.c: 736:     }
+}
+[e ++ _i -> -> 1 `i `uc ]
+[e :U 3456 ]
+[e $ < -> _i `i -> _data_len `i 3453  ]
+[e :U 3454 ]
+}
+"737
+[; ;../modbus_master.c: 737:     client->dsoft[data_len] = 0;
+[e = *U + &U . *U _client 21 * -> _data_len `ux -> -> # *U &U . *U _client 21 `ui `ux -> -> 0 `i `uc ]
+"738
+[; ;../modbus_master.c: 738:    }
+}
 [e :U 3452 ]
+"739
+[; ;../modbus_master.c: 739:    do { LATBbits.LATB1 = 0; } while(0);
+[e :U 3459 ]
 {
 [e = . . _LATBbits 0 1 -> -> 0 `i `uc ]
 }
-[e :U 3451 ]
-"706
-[; ;../modbus_master.c: 706:    *cstate = 1;
+[e :U 3458 ]
+"740
+[; ;../modbus_master.c: 740:    *cstate = 1;
 [e = *U _cstate -> -> 1 `i `a ]
-"707
-[; ;../modbus_master.c: 707:    client->dcu_online = 1;
-[e = . *U _client 23 -> -> 1 `i `a ]
-"708
-[; ;../modbus_master.c: 708:   } else {
+"741
+[; ;../modbus_master.c: 741:    client->dcu_online = 1;
+[e = . *U _client 24 -> -> 1 `i `a ]
+"742
+[; ;../modbus_master.c: 742:   } else {
 }
-[e $U 3453  ]
-[e :U 3414 ]
+[e $U 3460  ]
+[e :U 3416 ]
 {
-"709
-[; ;../modbus_master.c: 709:    do { LATBbits.LATB1 = 1; } while(0);
-[e :U 3456 ]
+"743
+[; ;../modbus_master.c: 743:    do { LATBbits.LATB1 = 1; } while(0);
+[e :U 3463 ]
 {
 [e = . . _LATBbits 0 1 -> -> 1 `i `uc ]
 }
-[e :U 3455 ]
-"710
-[; ;../modbus_master.c: 710:    *cstate = 0;
+[e :U 3462 ]
+"744
+[; ;../modbus_master.c: 744:    *cstate = 0;
 [e = *U _cstate -> -> 0 `i `a ]
-"711
-[; ;../modbus_master.c: 711:    client->id_ok = 0;
+"745
+[; ;../modbus_master.c: 745:    client->id_ok = 0;
 [e = . *U _client 5 -> -> 0 `i `a ]
-"712
-[; ;../modbus_master.c: 712:    client->config_ok = 0;
+"746
+[; ;../modbus_master.c: 746:    client->config_ok = 0;
 [e = . *U _client 7 -> -> 0 `i `a ]
-"713
-[; ;../modbus_master.c: 713:    client->passwd_ok = 0;
+"747
+[; ;../modbus_master.c: 747:    client->passwd_ok = 0;
 [e = . *U _client 6 -> -> 0 `i `a ]
-"714
-[; ;../modbus_master.c: 714:    client->data_ok = 0;
+"748
+[; ;../modbus_master.c: 748:    client->data_ok = 0;
 [e = . *U _client 8 -> -> 0 `i `a ]
-"715
-[; ;../modbus_master.c: 715:    client->link_ok = 0;
+"749
+[; ;../modbus_master.c: 749:    client->link_ok = 0;
 [e = . *U _client 9 -> -> 0 `i `a ]
-"716
-[; ;../modbus_master.c: 716:    client->version_ok = 0;
+"750
+[; ;../modbus_master.c: 750:    client->version_ok = 0;
 [e = . *U _client 11 -> -> 0 `i `a ]
-"717
-[; ;../modbus_master.c: 717:    client->serial_ok = 0;
+"751
+[; ;../modbus_master.c: 751:    client->serial_ok = 0;
 [e = . *U _client 10 -> -> 0 `i `a ]
-"718
-[; ;../modbus_master.c: 718:    log_crc_error(c_crc, c_crc_rec);
+"752
+[; ;../modbus_master.c: 752:    log_crc_error(c_crc, c_crc_rec);
 [e ( _log_crc_error (2 , _c_crc _c_crc_rec ]
-"719
-[; ;../modbus_master.c: 719:   }
+"753
+[; ;../modbus_master.c: 753:   }
 }
-[e :U 3453 ]
-"720
-[; ;../modbus_master.c: 720:   client->cstate = CLEAR;
+[e :U 3460 ]
+"754
+[; ;../modbus_master.c: 754:   client->cstate = CLEAR;
 [e = . *U _client 1 . `E24226 0 ]
-"721
-[; ;../modbus_master.c: 721:  } else {
+"755
+[; ;../modbus_master.c: 755:  } else {
 }
-[e $U 3457  ]
-[e :U 3412 ]
+[e $U 3464  ]
+[e :U 3414 ]
 {
-"722
-[; ;../modbus_master.c: 722:   if (get_500hz(0) >= 200) {
-[e $ ! >= ( _get_500hz (1 -> -> 0 `i `uc -> -> -> 200 `i `l `ul 3458  ]
+"756
+[; ;../modbus_master.c: 756:   if (get_500hz(0) >= 200) {
+[e $ ! >= ( _get_500hz (1 -> -> 0 `i `uc -> -> -> 200 `i `l `ul 3465  ]
 {
-"723
-[; ;../modbus_master.c: 723:    client->cstate = CLEAR;
+"757
+[; ;../modbus_master.c: 757:    client->cstate = CLEAR;
 [e = . *U _client 1 . `E24226 0 ]
-"724
-[; ;../modbus_master.c: 724:    client->mcmd = G_ID;
+"758
+[; ;../modbus_master.c: 758:    client->mcmd = G_ID;
 [e = . *U _client 0 -> . `E24232 0 `uc ]
-"725
-[; ;../modbus_master.c: 725:    M.to_error++;
+"759
+[; ;../modbus_master.c: 759:    M.to_error++;
 [e ++ . _M 12 -> -> 1 `i `Vul ]
-"726
-[; ;../modbus_master.c: 726:    M.error++;
+"760
+[; ;../modbus_master.c: 760:    M.error++;
 [e ++ . _M 8 -> -> 1 `i `Vus ]
-"727
-[; ;../modbus_master.c: 727:    client->id_ok = 0;
+"761
+[; ;../modbus_master.c: 761:    client->id_ok = 0;
 [e = . *U _client 5 -> -> 0 `i `a ]
-"728
-[; ;../modbus_master.c: 728:    *cstate = 0;
+"762
+[; ;../modbus_master.c: 762:    *cstate = 0;
 [e = *U _cstate -> -> 0 `i `a ]
-"729
-[; ;../modbus_master.c: 729:    client->config_ok = 0;
+"763
+[; ;../modbus_master.c: 763:    client->config_ok = 0;
 [e = . *U _client 7 -> -> 0 `i `a ]
-"730
-[; ;../modbus_master.c: 730:    client->passwd_ok = 0;
+"764
+[; ;../modbus_master.c: 764:    client->passwd_ok = 0;
 [e = . *U _client 6 -> -> 0 `i `a ]
-"731
-[; ;../modbus_master.c: 731:    client->data_ok = 0;
+"765
+[; ;../modbus_master.c: 765:    client->data_ok = 0;
 [e = . *U _client 8 -> -> 0 `i `a ]
-"732
-[; ;../modbus_master.c: 732:    client->link_ok = 0;
+"766
+[; ;../modbus_master.c: 766:    client->link_ok = 0;
 [e = . *U _client 9 -> -> 0 `i `a ]
-"733
-[; ;../modbus_master.c: 733:    client->version_ok = 0;
+"767
+[; ;../modbus_master.c: 767:    client->version_ok = 0;
 [e = . *U _client 11 -> -> 0 `i `a ]
-"734
-[; ;../modbus_master.c: 734:    client->serial_ok = 0;
+"768
+[; ;../modbus_master.c: 768:    client->serial_ok = 0;
 [e = . *U _client 10 -> -> 0 `i `a ]
-"735
-[; ;../modbus_master.c: 735:   }
+"769
+[; ;../modbus_master.c: 769:   }
 }
-[e :U 3458 ]
-"736
-[; ;../modbus_master.c: 736:  }
+[e :U 3465 ]
+"770
+[; ;../modbus_master.c: 770:  }
 }
-[e :U 3457 ]
-"737
-[; ;../modbus_master.c: 737:  return *cstate;
+[e :U 3464 ]
+"771
+[; ;../modbus_master.c: 771:  return *cstate;
 [e ) *U _cstate ]
-[e $UE 3411  ]
-"738
-[; ;../modbus_master.c: 738: }
-[e :UE 3411 ]
+[e $UE 3413  ]
+"772
+[; ;../modbus_master.c: 772: }
+[e :UE 3413 ]
 }
-"740
-[; ;../modbus_master.c: 740: uint8_t dcu_crc_r(uint8_t * p)
+"774
+[; ;../modbus_master.c: 774: uint8_t dcu_crc_r(uint8_t * p)
 [v _dcu_crc_r `(uc ~T0 @X0 1 ef1`*uc ]
-"741
-[; ;../modbus_master.c: 741: {
+"775
+[; ;../modbus_master.c: 775: {
 {
 [e :U _dcu_crc_r ]
-"740
-[; ;../modbus_master.c: 740: uint8_t dcu_crc_r(uint8_t * p)
+"774
+[; ;../modbus_master.c: 774: uint8_t dcu_crc_r(uint8_t * p)
 [v _p `*uc ~T0 @X0 1 r1 ]
-"741
-[; ;../modbus_master.c: 741: {
+"775
+[; ;../modbus_master.c: 775: {
 [f ]
-"742
-[; ;../modbus_master.c: 742:  uint8_t crc_num = 0;
+"776
+[; ;../modbus_master.c: 776:  uint8_t crc_num = 0;
 [v _crc_num `uc ~T0 @X0 1 a ]
 [e = _crc_num -> -> 0 `i `uc ]
-"744
-[; ;../modbus_master.c: 744:  for (uint8_t i = 0; i < 12; i++) {
+"778
+[; ;../modbus_master.c: 778:  for (uint8_t i = 0; i < 12; i++) {
 {
 [v _i `uc ~T0 @X0 1 a ]
 [e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 12 `i 3460  ]
-[e $U 3461  ]
-[e :U 3460 ]
+[e $ < -> _i `i -> 12 `i 3467  ]
+[e $U 3468  ]
+[e :U 3467 ]
 {
-"745
-[; ;../modbus_master.c: 745:   crc_num += (uint8_t) p[i];
+"779
+[; ;../modbus_master.c: 779:   crc_num += (uint8_t) p[i];
 [e =+ _crc_num -> *U + _p * -> _i `ux -> -> # *U _p `ui `ux `uc ]
-"746
-[; ;../modbus_master.c: 746:  }
+"780
+[; ;../modbus_master.c: 780:  }
 }
 [e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 12 `i 3460  ]
-[e :U 3461 ]
+[e $ < -> _i `i -> 12 `i 3467  ]
+[e :U 3468 ]
 }
-"747
-[; ;../modbus_master.c: 747:  return crc_num;
+"781
+[; ;../modbus_master.c: 781:  return crc_num;
 [e ) _crc_num ]
-[e $UE 3459  ]
-"748
-[; ;../modbus_master.c: 748: }
-[e :UE 3459 ]
+[e $UE 3466  ]
+"782
+[; ;../modbus_master.c: 782: }
+[e :UE 3466 ]
 }
-"750
-[; ;../modbus_master.c: 750: uint8_t dcu_crc_a(uint8_t * p)
+"784
+[; ;../modbus_master.c: 784: uint8_t dcu_crc_a(uint8_t * p)
 [v _dcu_crc_a `(uc ~T0 @X0 1 ef1`*uc ]
-"751
-[; ;../modbus_master.c: 751: {
+"785
+[; ;../modbus_master.c: 785: {
 {
 [e :U _dcu_crc_a ]
-"750
-[; ;../modbus_master.c: 750: uint8_t dcu_crc_a(uint8_t * p)
+"784
+[; ;../modbus_master.c: 784: uint8_t dcu_crc_a(uint8_t * p)
 [v _p `*uc ~T0 @X0 1 r1 ]
-"751
-[; ;../modbus_master.c: 751: {
+"785
+[; ;../modbus_master.c: 785: {
 [f ]
-"752
-[; ;../modbus_master.c: 752:  uint8_t crc_num = 0;
+"786
+[; ;../modbus_master.c: 786:  uint8_t crc_num = 0;
 [v _crc_num `uc ~T0 @X0 1 a ]
 [e = _crc_num -> -> 0 `i `uc ]
-"754
-[; ;../modbus_master.c: 754:  for (uint8_t i = 0; i < 16; i++) {
+"788
+[; ;../modbus_master.c: 788:  for (uint8_t i = 0; i < 16; i++) {
 {
 [v _i `uc ~T0 @X0 1 a ]
 [e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 16 `i 3464  ]
-[e $U 3465  ]
-[e :U 3464 ]
+[e $ < -> _i `i -> 16 `i 3471  ]
+[e $U 3472  ]
+[e :U 3471 ]
 {
-"755
-[; ;../modbus_master.c: 755:   crc_num += (uint8_t) p[i];
+"789
+[; ;../modbus_master.c: 789:   crc_num += (uint8_t) p[i];
 [e =+ _crc_num -> *U + _p * -> _i `ux -> -> # *U _p `ui `ux `uc ]
-"756
-[; ;../modbus_master.c: 756:  }
+"790
+[; ;../modbus_master.c: 790:  }
 }
 [e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 16 `i 3464  ]
-[e :U 3465 ]
+[e $ < -> _i `i -> 16 `i 3471  ]
+[e :U 3472 ]
 }
-"757
-[; ;../modbus_master.c: 757:  return crc_num;
+"791
+[; ;../modbus_master.c: 791:  return crc_num;
 [e ) _crc_num ]
-[e $UE 3463  ]
-"758
-[; ;../modbus_master.c: 758: }
-[e :UE 3463 ]
+[e $UE 3470  ]
+"792
+[; ;../modbus_master.c: 792: }
+[e :UE 3470 ]
 }
-"760
-[; ;../modbus_master.c: 760: uint8_t dcu_chk_buffer(uint8_t * p, uint8_t count)
+"794
+[; ;../modbus_master.c: 794: uint8_t dcu_chk_buffer(uint8_t * p, uint8_t count)
 [v _dcu_chk_buffer `(uc ~T0 @X0 1 ef2`*uc`uc ]
-"761
-[; ;../modbus_master.c: 761: {
+"795
+[; ;../modbus_master.c: 795: {
 {
 [e :U _dcu_chk_buffer ]
-"760
-[; ;../modbus_master.c: 760: uint8_t dcu_chk_buffer(uint8_t * p, uint8_t count)
+"794
+[; ;../modbus_master.c: 794: uint8_t dcu_chk_buffer(uint8_t * p, uint8_t count)
 [v _p `*uc ~T0 @X0 1 r1 ]
 [v _count `uc ~T0 @X0 1 r2 ]
-"761
-[; ;../modbus_master.c: 761: {
+"795
+[; ;../modbus_master.c: 795: {
 [f ]
-"762
-[; ;../modbus_master.c: 762:  uint8_t chk_num = 0;
+"796
+[; ;../modbus_master.c: 796:  uint8_t chk_num = 0;
 [v _chk_num `uc ~T0 @X0 1 a ]
 [e = _chk_num -> -> 0 `i `uc ]
-[v F24619 `uc ~T0 @X0 -> 6 `i s ]
-[i F24619
+[v F24622 `uc ~T0 @X0 -> 6 `i s ]
+[i F24622
 :U ..
-"763
-[; ;../modbus_master.c: 763:  char tmp_chk[6] = "000";
+"797
+[; ;../modbus_master.c: 797:  char tmp_chk[6] = "000";
 -> 48 `c
 -> 48 `c
 -> 48 `c
@@ -6360,95 +6451,95 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 [v _tmp_chk `uc ~T0 @X0 -> 6 `i a ]
-[e = _tmp_chk F24619 ]
-"765
-[; ;../modbus_master.c: 765:  tmp_chk[0] = p[count - 4];
+[e = _tmp_chk F24622 ]
+"799
+[; ;../modbus_master.c: 799:  tmp_chk[0] = p[count - 4];
 [e = *U + &U _tmp_chk * -> -> -> 0 `i `ui `ux -> -> # *U &U _tmp_chk `ui `ux -> *U + _p * -> - -> _count `i -> 4 `i `x -> -> # *U _p `i `x `uc ]
-"766
-[; ;../modbus_master.c: 766:  tmp_chk[1] = p[count - 3];
+"800
+[; ;../modbus_master.c: 800:  tmp_chk[1] = p[count - 3];
 [e = *U + &U _tmp_chk * -> -> -> 1 `i `ui `ux -> -> # *U &U _tmp_chk `ui `ux -> *U + _p * -> - -> _count `i -> 3 `i `x -> -> # *U _p `i `x `uc ]
-"767
-[; ;../modbus_master.c: 767:  tmp_chk[2] = p[count - 2];
+"801
+[; ;../modbus_master.c: 801:  tmp_chk[2] = p[count - 2];
 [e = *U + &U _tmp_chk * -> -> -> 2 `i `ui `ux -> -> # *U &U _tmp_chk `ui `ux -> *U + _p * -> - -> _count `i -> 2 `i `x -> -> # *U _p `i `x `uc ]
-"769
-[; ;../modbus_master.c: 769:  chk_num = (uint8_t) atoi(tmp_chk);
+"803
+[; ;../modbus_master.c: 803:  chk_num = (uint8_t) atoi(tmp_chk);
 [e = _chk_num -> ( _atoi (1 -> &U _tmp_chk `*Cuc `uc ]
-"771
-[; ;../modbus_master.c: 771:  return chk_num;
+"805
+[; ;../modbus_master.c: 805:  return chk_num;
 [e ) _chk_num ]
-[e $UE 3467  ]
-"772
-[; ;../modbus_master.c: 772: }
-[e :UE 3467 ]
+[e $UE 3474  ]
+"806
+[; ;../modbus_master.c: 806: }
+[e :UE 3474 ]
 }
-"777
-[; ;../modbus_master.c: 777: uint8_t dcu_buffer_len(uint8_t * p)
+"811
+[; ;../modbus_master.c: 811: uint8_t dcu_buffer_len(uint8_t * p)
 [v _dcu_buffer_len `(uc ~T0 @X0 1 ef1`*uc ]
-"778
-[; ;../modbus_master.c: 778: {
+"812
+[; ;../modbus_master.c: 812: {
 {
 [e :U _dcu_buffer_len ]
-"777
-[; ;../modbus_master.c: 777: uint8_t dcu_buffer_len(uint8_t * p)
+"811
+[; ;../modbus_master.c: 811: uint8_t dcu_buffer_len(uint8_t * p)
 [v _p `*uc ~T0 @X0 1 r1 ]
-"778
-[; ;../modbus_master.c: 778: {
+"812
+[; ;../modbus_master.c: 812: {
 [f ]
-"779
-[; ;../modbus_master.c: 779:  uint8_t len_num = 0;
+"813
+[; ;../modbus_master.c: 813:  uint8_t len_num = 0;
 [v _len_num `uc ~T0 @X0 1 a ]
 [e = _len_num -> -> 0 `i `uc ]
-[v F24624 `uc ~T0 @X0 -> 6 `i s ]
-[i F24624
+[v F24627 `uc ~T0 @X0 -> 6 `i s ]
+[i F24627
 :U ..
-"780
-[; ;../modbus_master.c: 780:  char tmp_len[6] = "00";
+"814
+[; ;../modbus_master.c: 814:  char tmp_len[6] = "00";
 -> 48 `c
 -> 48 `c
 -> 0 `c
 ..
 ]
 [v _tmp_len `uc ~T0 @X0 -> 6 `i a ]
-[e = _tmp_len F24624 ]
-"782
-[; ;../modbus_master.c: 782:  tmp_len[0] = p[8];
+[e = _tmp_len F24627 ]
+"816
+[; ;../modbus_master.c: 816:  tmp_len[0] = p[8];
 [e = *U + &U _tmp_len * -> -> -> 0 `i `ui `ux -> -> # *U &U _tmp_len `ui `ux -> *U + _p * -> -> 8 `i `x -> -> # *U _p `i `x `uc ]
-"783
-[; ;../modbus_master.c: 783:  tmp_len[1] = p[9];
+"817
+[; ;../modbus_master.c: 817:  tmp_len[1] = p[9];
 [e = *U + &U _tmp_len * -> -> -> 1 `i `ui `ux -> -> # *U &U _tmp_len `ui `ux -> *U + _p * -> -> 9 `i `x -> -> # *U _p `i `x `uc ]
-"785
-[; ;../modbus_master.c: 785:  len_num = (uint8_t) atoi(tmp_len);
+"819
+[; ;../modbus_master.c: 819:  len_num = (uint8_t) atoi(tmp_len);
 [e = _len_num -> ( _atoi (1 -> &U _tmp_len `*Cuc `uc ]
-"787
-[; ;../modbus_master.c: 787:  return len_num;
+"821
+[; ;../modbus_master.c: 821:  return len_num;
 [e ) _len_num ]
-[e $UE 3468  ]
-"788
-[; ;../modbus_master.c: 788: }
-[e :UE 3468 ]
+[e $UE 3475  ]
+"822
+[; ;../modbus_master.c: 822: }
+[e :UE 3475 ]
 }
-"790
-[; ;../modbus_master.c: 790: uint16_t dcu_param_num(uint8_t * p)
+"824
+[; ;../modbus_master.c: 824: uint16_t dcu_param_num(uint8_t * p)
 [v _dcu_param_num `(us ~T0 @X0 1 ef1`*uc ]
-"791
-[; ;../modbus_master.c: 791: {
+"825
+[; ;../modbus_master.c: 825: {
 {
 [e :U _dcu_param_num ]
-"790
-[; ;../modbus_master.c: 790: uint16_t dcu_param_num(uint8_t * p)
+"824
+[; ;../modbus_master.c: 824: uint16_t dcu_param_num(uint8_t * p)
 [v _p `*uc ~T0 @X0 1 r1 ]
-"791
-[; ;../modbus_master.c: 791: {
+"825
+[; ;../modbus_master.c: 825: {
 [f ]
-"792
-[; ;../modbus_master.c: 792:  uint16_t chk_num = 0;
+"826
+[; ;../modbus_master.c: 826:  uint16_t chk_num = 0;
 [v _chk_num `us ~T0 @X0 1 a ]
 [e = _chk_num -> -> 0 `i `us ]
-[v F24629 `uc ~T0 @X0 -> 6 `i s ]
-[i F24629
+[v F24632 `uc ~T0 @X0 -> 6 `i s ]
+[i F24632
 :U ..
-"793
-[; ;../modbus_master.c: 793:  char tmp_chk[6] = "000";
+"827
+[; ;../modbus_master.c: 827:  char tmp_chk[6] = "000";
 -> 48 `c
 -> 48 `c
 -> 48 `c
@@ -6456,26 +6547,26 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 [v _tmp_chk `uc ~T0 @X0 -> 6 `i a ]
-[e = _tmp_chk F24629 ]
-"795
-[; ;../modbus_master.c: 795:  tmp_chk[0] = p[5];
+[e = _tmp_chk F24632 ]
+"829
+[; ;../modbus_master.c: 829:  tmp_chk[0] = p[5];
 [e = *U + &U _tmp_chk * -> -> -> 0 `i `ui `ux -> -> # *U &U _tmp_chk `ui `ux -> *U + _p * -> -> 5 `i `x -> -> # *U _p `i `x `uc ]
-"796
-[; ;../modbus_master.c: 796:  tmp_chk[1] = p[6];
+"830
+[; ;../modbus_master.c: 830:  tmp_chk[1] = p[6];
 [e = *U + &U _tmp_chk * -> -> -> 1 `i `ui `ux -> -> # *U &U _tmp_chk `ui `ux -> *U + _p * -> -> 6 `i `x -> -> # *U _p `i `x `uc ]
-"797
-[; ;../modbus_master.c: 797:  tmp_chk[2] = p[7];
+"831
+[; ;../modbus_master.c: 831:  tmp_chk[2] = p[7];
 [e = *U + &U _tmp_chk * -> -> -> 2 `i `ui `ux -> -> # *U &U _tmp_chk `ui `ux -> *U + _p * -> -> 7 `i `x -> -> # *U _p `i `x `uc ]
-"799
-[; ;../modbus_master.c: 799:  chk_num = (uint16_t) atoi(tmp_chk);
+"833
+[; ;../modbus_master.c: 833:  chk_num = (uint16_t) atoi(tmp_chk);
 [e = _chk_num -> ( _atoi (1 -> &U _tmp_chk `*Cuc `us ]
-"801
-[; ;../modbus_master.c: 801:  return chk_num;
+"835
+[; ;../modbus_master.c: 835:  return chk_num;
 [e ) _chk_num ]
-[e $UE 3469  ]
-"802
-[; ;../modbus_master.c: 802: }
-[e :UE 3469 ]
+[e $UE 3476  ]
+"836
+[; ;../modbus_master.c: 836: }
+[e :UE 3476 ]
 }
 [p f _snprintf 8421508 ]
 [a 1C 37 48 51 100 0 ]
