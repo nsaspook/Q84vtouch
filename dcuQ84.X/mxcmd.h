@@ -22,7 +22,7 @@ extern "C" {
 #include "../timers.h"
 
 #define VER	1
-	const char build_version[] = "V1.01 DCU  Q84    ";
+	const char build_version[] = "V1.02 DCU  Q84    ";
 	/*
 	 * code changes
 	 * 1.00 convert FM80 code to soft DCU for turbo pump readout
