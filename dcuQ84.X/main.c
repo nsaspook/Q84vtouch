@@ -404,29 +404,22 @@ void main(void)
 							buffer[19] = spinners(4, false);
 						}
 						eaDogM_WriteStringAtPos(2, 0, buffer);
-						snprintf(buffer, MAX_B_BUF, "Speed %s Hz          ", C.speed);
+						snprintf(buffer, MAX_B_BUF, "Spd %s %s Hz          ", C.speed, C.sspeed);
 						eaDogM_WriteStringAtPos(3, 0, buffer);
 					}
 					if (B.alt_display > 0) {
-						uint16_t vt, vw, vf;
 						M.error = 0;
-						snprintf(buffer, MAX_B_BUF, "Accel %s %s         ", C.accel, C.error);
+						snprintf(buffer, MAX_B_BUF, "0                    ");
 						eaDogM_WriteStringAtPos(0, 0, buffer);
-						vt = (uint16_t) atoi((const char *) C.link);
-						volt_f(vt);
-						vw = volt_whole;
-						vf = volt_fract;
-						vt = (uint16_t) atoi((const char *) C.current);
-						volt_f(vt);
-						snprintf(buffer, MAX_B_BUF, "MDrv %3d.%02dV %2d.%02dA          ", vw, vf, volt_whole, volt_fract);
+						snprintf(buffer, MAX_B_BUF, "1                    ");
 						eaDogM_WriteStringAtPos(1, 0, buffer);
-						snprintf(buffer, MAX_B_BUF, "Cont %s %s           ", C.dname, C.dsoft);
+						snprintf(buffer, MAX_B_BUF, "2                    ");
 						if (C.dcu_online) {
 							C.dcu_online = false;
 							buffer[19] = spinners(4, false);
 						}
 						eaDogM_WriteStringAtPos(2, 0, buffer);
-						snprintf(buffer, MAX_B_BUF, "Speed %s Hz          ", C.speed);
+						snprintf(buffer, MAX_B_BUF, "3                    ");
 						eaDogM_WriteStringAtPos(3, 0, buffer);
 					}
 				}

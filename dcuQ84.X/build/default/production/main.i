@@ -41248,7 +41248,7 @@ void delay_ms(const uint16_t);
 # 23 "./mxcmd.h" 2
 
 
- const char build_version[] = "V1.02 DCU  Q84    ";
+ const char build_version[] = "V1.03 DCU  Q84    ";
 # 51 "./mxcmd.h"
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
@@ -41393,6 +41393,7 @@ void delay_ms(const uint16_t);
   G_LINK,
   G_VERSION,
   G_SERIAL,
+  G_SSPEED,
   G_LAST,
  } cmd_type;
 
@@ -41404,6 +41405,7 @@ void delay_ms(const uint16_t);
   T_data,
   T_id,
   T_serial,
+  T_sspeed,
   T_version,
   T_init,
   T_init_d,
@@ -41471,10 +41473,10 @@ void delay_ms(const uint16_t);
   cmd_type modbus_command;
   uint16_t req_length;
   int8_t trace;
-  _Bool id_ok, passwd_ok, config_ok, data_ok, link_ok, serial_ok, version_ok, tm_ok;
+  _Bool id_ok, passwd_ok, config_ok, data_ok, link_ok, serial_ok, version_ok, tm_ok, sspeed_ok;
   uint32_t data_count, data_prev;
   volatile M_data M;
-  uint8_t speed[12], mon[12], current[12], accel[12], dname[12], dsoft[12], link[12], error[12];
+  uint8_t speed[12], mon[12], current[12], accel[12], dname[12], dsoft[12], link[12], error[12], sspeed[12];
   _Bool dcu_online;
  } C_data;
 
@@ -41588,7 +41590,7 @@ void delay_ms(const uint16_t);
   0x44, 0x84, 0x85, 0x45, 0x87, 0x47, 0x46, 0x86, 0x82, 0x42,
   0x43, 0x83, 0x41, 0x81, 0x80, 0x40
  };
-# 346 "./../modbus_master.h"
+# 348 "./../modbus_master.h"
  uint16_t crc16(volatile uint8_t *, uint16_t);
  uint16_t modbus_rtu_send_msg(void *, const void *, uint16_t);
  uint16_t modbus_dcu_send_msg(void *, const void *, uint16_t);
@@ -41696,7 +41698,7 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[512] = "Boot Init Display   ", info_buffer[512], log_buffer[512];
-const char *build_date = "Nov 21 2024", *build_time = "11:40:53";
+const char *build_date = "Nov 22 2024", *build_time = "13:44:44";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
@@ -41912,29 +41914,22 @@ void main(void)
        buffer[19] = spinners(4, 0);
       }
       eaDogM_WriteStringAtPos(2, 0, buffer);
-      snprintf(buffer, 512, "Speed %s Hz          ", C.speed);
+      snprintf(buffer, 512, "Spd %s %s Hz          ", C.speed, C.sspeed);
       eaDogM_WriteStringAtPos(3, 0, buffer);
      }
      if (B.alt_display > 0) {
-      uint16_t vt, vw, vf;
       M.error = 0;
-      snprintf(buffer, 512, "Accel %s %s         ", C.accel, C.error);
+      snprintf(buffer, 512, "0                    ");
       eaDogM_WriteStringAtPos(0, 0, buffer);
-      vt = (uint16_t) atoi((const char *) C.link);
-      volt_f(vt);
-      vw = volt_whole;
-      vf = volt_fract;
-      vt = (uint16_t) atoi((const char *) C.current);
-      volt_f(vt);
-      snprintf(buffer, 512, "MDrv %3d.%02dV %2d.%02dA          ", vw, vf, volt_whole, volt_fract);
+      snprintf(buffer, 512, "1                    ");
       eaDogM_WriteStringAtPos(1, 0, buffer);
-      snprintf(buffer, 512, "Cont %s %s           ", C.dname, C.dsoft);
+      snprintf(buffer, 512, "2                    ");
       if (C.dcu_online) {
        C.dcu_online = 0;
        buffer[19] = spinners(4, 0);
       }
       eaDogM_WriteStringAtPos(2, 0, buffer);
-      snprintf(buffer, 512, "Speed %s Hz          ", C.speed);
+      snprintf(buffer, 512, "3                    ");
       eaDogM_WriteStringAtPos(3, 0, buffer);
      }
     }
