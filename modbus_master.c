@@ -162,7 +162,109 @@ P_data P_read_E = {
 /*
  * PVP position set/read messages
  */
-P_data_r P_action = {
+P_data_r P_action1 = {
+	.addr2 = '0',
+	.addr1 = '0',
+	.addr0 = '1',
+	.action1 = '1',
+	.action0 = '0',
+	.para2 = '7',
+	.para1 = '9',
+	.para0 = '4',
+	.dl1 = '0',
+	.dl0 = '3',
+	.data[2] = '0',
+	.data[1] = '0',
+	.data[0] = '1',
+	.chk2 = '0',
+	.chk1 = '0',
+	.chk0 = '0',
+	.cr = 13, // EOF CR
+};
+
+P_data_r P_action2 = {
+	.addr2 = '0',
+	.addr1 = '0',
+	.addr0 = '1',
+	.action1 = '1',
+	.action0 = '0',
+	.para2 = '0',
+	.para1 = '2',
+	.para0 = '7',
+	.dl1 = '0',
+	.dl0 = '3',
+	.data[2] = '0',
+	.data[1] = '0',
+	.data[0] = '0',
+	.chk2 = '0',
+	.chk1 = '0',
+	.chk0 = '0',
+	.cr = 13, // EOF CR
+};
+P_data_r P_action3 = {
+	.addr2 = '0',
+	.addr1 = '0',
+	.addr0 = '1',
+	.action1 = '1',
+	.action0 = '0',
+	.para2 = '7',
+	.para1 = '0',
+	.para0 = '8',
+	.dl1 = '0',
+	.dl0 = '3',
+	.data[2] = '1',
+	.data[1] = '0',
+	.data[0] = '0',
+	.chk2 = '0',
+	.chk1 = '0',
+	.chk0 = '0',
+	.cr = 13, // EOF CR
+};
+P_data_r P_action4 = {
+	.addr2 = '0',
+	.addr1 = '0',
+	.addr0 = '1',
+	.action1 = '1',
+	.action0 = '0',
+	.para2 = '7',
+	.para1 = '0',
+	.para0 = '0',
+	.dl1 = '0',
+	.dl0 = '6',
+	.data[5] = '0',
+	.data[4] = '0',
+	.data[3] = '0',
+	.data[2] = '0',
+	.data[1] = '6',
+	.data[0] = '0',
+	.chk2 = '0',
+	.chk1 = '0',
+	.chk0 = '0',
+	.cr = 13, // EOF CR
+};
+P_data_r P_action5 = {
+	.addr2 = '0',
+	.addr1 = '0',
+	.addr0 = '1',
+	.action1 = '1',
+	.action0 = '0',
+	.para2 = '7',
+	.para1 = '0',
+	.para0 = '7',
+	.dl1 = '0',
+	.dl0 = '6',
+	.data[5] = '0',
+	.data[4] = '0',
+	.data[3] = '5',
+	.data[2] = '9',
+	.data[1] = '0',
+	.data[0] = '0',
+	.chk2 = '0',
+	.chk1 = '0',
+	.chk0 = '0',
+	.cr = 13, // EOF CR
+};
+P_data_r P_action6 = {
 	.addr2 = '0',
 	.addr1 = '0',
 	.addr0 = '1',
@@ -219,6 +321,8 @@ C_data C = {
 	.error = "OFFLINE",
 	.sspeed = "OFFLINE",
 	.dcu_online = false,
+	.dcu_setting = false,
+	.motor_run = false,
 };
 
 volatile struct V_type V = {
@@ -463,13 +567,67 @@ int8_t master_controller_work_dcu(C_data * client)
 			client->trace = T_sspeed;
 			client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_read_S, sizeof(P_read_S));
 			break;
+		case G_SET1:
+			if (client->dcu_setting) {
+				client->trace = T_set;
+				client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_action1, sizeof(P_action1));
+			} else {
+				client->cstate = CLEAR; // don't start message FSM
+				client->mcmd = G_LAST;
+			}
+			break;
+		case G_SET2:
+			if (client->dcu_setting) {
+				client->trace = T_set;
+				client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_action2, sizeof(P_action2));
+			} else {
+				client->cstate = CLEAR; // don't start message FSM
+				client->mcmd = G_LAST;
+			}
+			break;
+		case G_SET3:
+			if (client->dcu_setting) {
+				client->trace = T_set;
+				client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_action3, sizeof(P_action3));
+			} else {
+				client->cstate = CLEAR; // don't start message FSM
+				client->mcmd = G_LAST;
+			}
+			break;
+		case G_SET4:
+			if (client->dcu_setting) {
+				client->trace = T_set;
+				client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_action4, sizeof(P_action4));
+			} else {
+				client->cstate = CLEAR; // don't start message FSM
+				client->mcmd = G_LAST;
+			}
+			break;
+		case G_SET5:
+			if (client->dcu_setting) {
+				client->trace = T_set;
+				client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_action5, sizeof(P_action5));
+			} else {
+				client->cstate = CLEAR; // don't start message FSM
+				client->mcmd = G_LAST;
+			}
+			break;
+		case G_SET6:
+			if (client->dcu_setting && client->motor_run) {
+				client->trace = T_set;
+				client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_action6, sizeof(P_action6));
+			} else {
+				client->cstate = CLEAR; // don't start message FSM
+				client->mcmd = G_LAST;
+			}
+			break;
 		case G_LAST: // end of command sequences
 			client->cstate = CLEAR;
 			client->mcmd = G_ID; // what do we run next
 			break;
 		case G_ID: // operating mode request
-			client->trace = T_id;
 		default:
+			client->trace = T_id;
 			client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_read, sizeof(P_read));
 			break;
 		}

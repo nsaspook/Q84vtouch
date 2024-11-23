@@ -78,7 +78,6 @@ extern "C" {
 #define Sread		UART5_Read
 #define Srbuffer	U5RXB
 
-#define MotorPump	 23	// set/read motor on	
 #define Error_code	303
 #define ActualSpd	309
 #define SetRotSpd	308
@@ -87,6 +86,13 @@ extern "C" {
 #define DrvName		349
 #define DrvSoftw	312
 #define TMP_DClink	313
+
+#define MotorPump	 23	// set/read motor on
+#define Gas_mode	 27
+#define DrvPwr_set	708
+#define TMP_RUTime	700
+#define TMProt_set	707
+#define Param_set	794
 
 	typedef struct P_data { // DCU vacuum protocol tx read format
 		uint8_t addr2, addr1, addr0;
@@ -131,6 +137,12 @@ extern "C" {
 		G_VERSION,
 		G_SERIAL,
 		G_SSPEED,
+		G_SET1,
+		G_SET2,
+		G_SET3,
+		G_SET4,
+		G_SET5,
+		G_SET6,
 		G_LAST,
 	} cmd_type;
 
@@ -154,6 +166,7 @@ extern "C" {
 		T_misc2,
 		T_misc3,
 		T_spacing,
+		T_set,
 		T_link,
 	} trace_type;
 
@@ -214,7 +227,7 @@ extern "C" {
 		uint32_t data_count, data_prev;
 		volatile M_data M;
 		uint8_t speed[12], mon[12], current[12], accel[12], dname[12], dsoft[12], link[12], error[12], sspeed[12];
-		bool dcu_online;
+		bool dcu_online, dcu_setting, motor_run;
 	} C_data;
 
 	/*
