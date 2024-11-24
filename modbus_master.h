@@ -114,6 +114,16 @@ extern "C" {
 		uint8_t cr;
 	} P_data_r;
 
+	typedef struct P_data_r3 { // DCU vacuum protocol tx/rx data format
+		uint8_t addr2, addr1, addr0;
+		uint8_t action1, action0;
+		uint8_t para2, para1, para0;
+		uint8_t dl1, dl0;
+		uint8_t data[3];
+		uint8_t chk2, chk1, chk0;
+		uint8_t cr;
+	} P_data_r3;
+
 	/*
 	 * serial communications states
 	 */
@@ -223,7 +233,7 @@ extern "C" {
 		cmd_type modbus_command;
 		uint16_t req_length;
 		int8_t trace;
-		bool id_ok, passwd_ok, config_ok, data_ok, link_ok, serial_ok, version_ok, tm_ok, sspeed_ok;
+		bool id_ok, passwd_ok, config_ok, data_ok, link_ok, serial_ok, version_ok, tm_ok, sspeed_ok, set_ok;
 		uint32_t data_count, data_prev;
 		volatile M_data M;
 		uint8_t speed[12], mon[12], current[12], accel[12], dname[12], dsoft[12], link[12], error[12], sspeed[12];
@@ -359,13 +369,11 @@ extern "C" {
 #define MM_ERROR_C	MLED_SetLow()  // RED LED
 
 	uint16_t crc16(volatile uint8_t *, uint16_t);
-	uint16_t modbus_rtu_send_msg(void *, const void *, uint16_t);
-	uint16_t modbus_dcu_send_msg(void *, const void *, uint16_t);
+	uint16_t modbus_dcu_send_msg(void *, const void *, const uint16_t);
 
 	void my_modbus_rx_32(void);
 	uint8_t init_stream_params(void);
 	void init_mb_master_timers(void);
-	int8_t master_controller_work(C_data *);
 	int8_t master_controller_work_dcu(C_data *);
 	int32_t mb32_swap(const int32_t);
 	int16_t mb16_swap(const int16_t);
@@ -388,19 +396,17 @@ extern "C" {
 	extern C_data C; // MODBUS client state data
 	extern volatile M_data M; // MODBUS hardware state data
 	extern volatile M_time_data MT; // MODBUS sequence timers
-	extern EM_data1 em; // converted results data
-	extern EM_data2 emt; // converted results data
-	extern EM_serial ems; // converted results data
-	extern EM_version emv; // converted results data
 
 	uint8_t dcu_crc_r(uint8_t *);
 	uint8_t dcu_crc_a(uint8_t *);
+	uint8_t dcu_crc_a3(uint8_t *);
 	uint8_t dcu_chk_buffer(uint8_t *, uint8_t);
 	uint8_t dcu_buffer_len(uint8_t *);
 	uint16_t dcu_param_num(uint8_t *);
 
 	extern P_data P_read;
 	extern P_data_r P_action;
+	extern P_data_r3 P_action3;
 	extern volatile uint8_t dcu_data[MAX_DATA];
 #ifdef	__cplusplus
 }

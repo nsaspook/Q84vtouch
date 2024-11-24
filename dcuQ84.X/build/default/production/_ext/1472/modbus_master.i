@@ -40577,6 +40577,16 @@ void delay_ms(const uint16_t);
   uint8_t cr;
  } P_data_r;
 
+ typedef struct P_data_r3 {
+  uint8_t addr2, addr1, addr0;
+  uint8_t action1, action0;
+  uint8_t para2, para1, para0;
+  uint8_t dl1, dl0;
+  uint8_t data[3];
+  uint8_t chk2, chk1, chk0;
+  uint8_t cr;
+ } P_data_r3;
+
 
 
 
@@ -40686,7 +40696,7 @@ void delay_ms(const uint16_t);
   cmd_type modbus_command;
   uint16_t req_length;
   int8_t trace;
-  _Bool id_ok, passwd_ok, config_ok, data_ok, link_ok, serial_ok, version_ok, tm_ok, sspeed_ok;
+  _Bool id_ok, passwd_ok, config_ok, data_ok, link_ok, serial_ok, version_ok, tm_ok, sspeed_ok, set_ok;
   uint32_t data_count, data_prev;
   volatile M_data M;
   uint8_t speed[12], mon[12], current[12], accel[12], dname[12], dsoft[12], link[12], error[12], sspeed[12];
@@ -40803,15 +40813,13 @@ void delay_ms(const uint16_t);
   0x44, 0x84, 0x85, 0x45, 0x87, 0x47, 0x46, 0x86, 0x82, 0x42,
   0x43, 0x83, 0x41, 0x81, 0x80, 0x40
  };
-# 361 "../modbus_master.h"
+# 371 "../modbus_master.h"
  uint16_t crc16(volatile uint8_t *, uint16_t);
- uint16_t modbus_rtu_send_msg(void *, const void *, uint16_t);
- uint16_t modbus_dcu_send_msg(void *, const void *, uint16_t);
+ uint16_t modbus_dcu_send_msg(void *, const void *, const uint16_t);
 
  void my_modbus_rx_32(void);
  uint8_t init_stream_params(void);
  void init_mb_master_timers(void);
- int8_t master_controller_work(C_data *);
  int8_t master_controller_work_dcu(C_data *);
  int32_t mb32_swap(const int32_t);
  int16_t mb16_swap(const int16_t);
@@ -40834,19 +40842,17 @@ void delay_ms(const uint16_t);
  extern C_data C;
  extern volatile M_data M;
  extern volatile M_time_data MT;
- extern EM_data1 em;
- extern EM_data2 emt;
- extern EM_serial ems;
- extern EM_version emv;
 
  uint8_t dcu_crc_r(uint8_t *);
  uint8_t dcu_crc_a(uint8_t *);
+ uint8_t dcu_crc_a3(uint8_t *);
  uint8_t dcu_chk_buffer(uint8_t *, uint8_t);
  uint8_t dcu_buffer_len(uint8_t *);
  uint16_t dcu_param_num(uint8_t *);
 
  extern P_data P_read;
  extern P_data_r P_action;
+ extern P_data_r3 P_action3;
  extern volatile uint8_t dcu_data[240];
 # 2 "../modbus_master.c" 2
 
@@ -41012,7 +41018,7 @@ P_data P_read_E = {
 
 
 
-P_data_r P_action1 = {
+P_data_r3 P_action1 = {
  .addr2 = '0',
  .addr1 = '0',
  .addr0 = '1',
@@ -41032,7 +41038,7 @@ P_data_r P_action1 = {
  .cr = 13,
 };
 
-P_data_r P_action2 = {
+P_data_r3 P_action2 = {
  .addr2 = '0',
  .addr1 = '0',
  .addr0 = '1',
@@ -41051,7 +41057,7 @@ P_data_r P_action2 = {
  .chk0 = '0',
  .cr = 13,
 };
-P_data_r P_action3 = {
+P_data_r3 P_action3 = {
  .addr2 = '0',
  .addr1 = '0',
  .addr0 = '1',
@@ -41214,11 +41220,11 @@ static _Bool modbus_action_dcu_check(C_data *, _Bool*, uint16_t);
 
 
 
-uint16_t modbus_dcu_send_msg(void *cc_buffer, const void *modbus_cc_mode, uint16_t req_length)
+uint16_t modbus_dcu_send_msg(void *cc_buffer, const void *modbus_cc_mode, const uint16_t req_length)
 {
  char tmp_chk[6];
  P_data *P_ptr;
- P_data_r *P_ptr_r;
+ P_data_r *P_ptr_r, *P_ptr_r3;
 
  memcpy((void*) cc_buffer, (const void *) modbus_cc_mode, req_length);
 
@@ -41238,6 +41244,13 @@ uint16_t modbus_dcu_send_msg(void *cc_buffer, const void *modbus_cc_mode, uint16
   P_ptr_r->chk2 = tmp_chk[0];
   P_ptr_r->chk1 = tmp_chk[1];
   P_ptr_r->chk0 = tmp_chk[2];
+ }
+ if (req_length == sizeof(P_action3)) {
+  P_ptr_r3 = cc_buffer;
+  snprintf(tmp_chk, 4, "%03d", dcu_crc_a3(cc_buffer));
+  P_ptr_r3->chk2 = tmp_chk[0];
+  P_ptr_r3->chk1 = tmp_chk[1];
+  P_ptr_r3->chk0 = tmp_chk[2];
  }
 
  return req_length;
@@ -41320,7 +41333,7 @@ static void log_crc_error(const uint16_t c_crc, const uint16_t c_crc_rec)
  M.crc_error++;
  M.error++;
 }
-# 484 "../modbus_master.c"
+# 491 "../modbus_master.c"
 int32_t mb32_swap(const int32_t value)
 {
  uint8_t i;
@@ -41535,6 +41548,16 @@ int8_t master_controller_work_dcu(C_data * client)
    case G_SSPEED:
     modbus_read_dcu_check(client, &client->sspeed_ok, sizeof(P_action));
     break;
+   case G_SET1:
+   case G_SET2:
+   case G_SET3:
+    modbus_read_dcu_check(client, &client->set_ok, sizeof(P_action1));
+    break;
+   case G_SET4:
+   case G_SET5:
+   case G_SET6:
+    modbus_read_dcu_check(client, &client->set_ok, sizeof(P_action));
+    break;
    case G_ID:
    default:
     modbus_read_dcu_check(client, &client->id_ok, sizeof(P_action));
@@ -41649,7 +41672,7 @@ void timer_2ms_tick(void)
  MT.clock_500hz++;
  MT.clock_500ahz++;
 }
-# 826 "../modbus_master.c"
+# 843 "../modbus_master.c"
 static _Bool serial_trmt(void)
 {
  return !(UART5_is_tx_done);
@@ -41692,6 +41715,11 @@ static _Bool modbus_read_dcu_check(C_data * client, _Bool* cstate, const uint16_
   if (data_len == 6) {
    c_crc = dcu_chk_buffer((uint8_t*) cc_buffer, (uint8_t) rec_length);
    c_crc_rec = dcu_crc_a((uint8_t*) cc_buffer);
+  }
+
+  if (data_len == 3) {
+   c_crc = dcu_chk_buffer((uint8_t*) cc_buffer, (uint8_t) rec_length);
+   c_crc_rec = dcu_crc_a3((uint8_t*) cc_buffer);
   }
 
   if ( c_crc == c_crc_rec) {
@@ -41807,6 +41835,16 @@ uint8_t dcu_crc_a(uint8_t * p)
  uint8_t crc_num = 0;
 
  for (uint8_t i = 0; i < 16; i++) {
+  crc_num += (uint8_t) p[i];
+ }
+ return crc_num;
+}
+
+uint8_t dcu_crc_a3(uint8_t * p)
+{
+ uint8_t crc_num = 0;
+
+ for (uint8_t i = 0; i < 13; i++) {
   crc_num += (uint8_t) p[i];
  }
  return crc_num;

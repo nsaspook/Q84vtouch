@@ -41099,8 +41099,8 @@ void delay_ms(const uint16_t);
 # 23 "../dcuQ84.X/mxcmd.h" 2
 
 
- const char build_version[] = "V1.03 DCU  Q84    ";
-# 51 "../dcuQ84.X/mxcmd.h"
+ const char build_version[] = "V1.04 DCU  Q84    ";
+# 52 "../dcuQ84.X/mxcmd.h"
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
  const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};
@@ -41220,6 +41220,16 @@ void delay_ms(const uint16_t);
   uint8_t cr;
  } P_data_r;
 
+ typedef struct P_data_r3 {
+  uint8_t addr2, addr1, addr0;
+  uint8_t action1, action0;
+  uint8_t para2, para1, para0;
+  uint8_t dl1, dl0;
+  uint8_t data[3];
+  uint8_t chk2, chk1, chk0;
+  uint8_t cr;
+ } P_data_r3;
+
 
 
 
@@ -41329,7 +41339,7 @@ void delay_ms(const uint16_t);
   cmd_type modbus_command;
   uint16_t req_length;
   int8_t trace;
-  _Bool id_ok, passwd_ok, config_ok, data_ok, link_ok, serial_ok, version_ok, tm_ok, sspeed_ok;
+  _Bool id_ok, passwd_ok, config_ok, data_ok, link_ok, serial_ok, version_ok, tm_ok, sspeed_ok, set_ok;
   uint32_t data_count, data_prev;
   volatile M_data M;
   uint8_t speed[12], mon[12], current[12], accel[12], dname[12], dsoft[12], link[12], error[12], sspeed[12];
@@ -41446,15 +41456,13 @@ void delay_ms(const uint16_t);
   0x44, 0x84, 0x85, 0x45, 0x87, 0x47, 0x46, 0x86, 0x82, 0x42,
   0x43, 0x83, 0x41, 0x81, 0x80, 0x40
  };
-# 361 "../modbus_master.h"
+# 371 "../modbus_master.h"
  uint16_t crc16(volatile uint8_t *, uint16_t);
- uint16_t modbus_rtu_send_msg(void *, const void *, uint16_t);
- uint16_t modbus_dcu_send_msg(void *, const void *, uint16_t);
+ uint16_t modbus_dcu_send_msg(void *, const void *, const uint16_t);
 
  void my_modbus_rx_32(void);
  uint8_t init_stream_params(void);
  void init_mb_master_timers(void);
- int8_t master_controller_work(C_data *);
  int8_t master_controller_work_dcu(C_data *);
  int32_t mb32_swap(const int32_t);
  int16_t mb16_swap(const int16_t);
@@ -41477,19 +41485,17 @@ void delay_ms(const uint16_t);
  extern C_data C;
  extern volatile M_data M;
  extern volatile M_time_data MT;
- extern EM_data1 em;
- extern EM_data2 emt;
- extern EM_serial ems;
- extern EM_version emv;
 
  uint8_t dcu_crc_r(uint8_t *);
  uint8_t dcu_crc_a(uint8_t *);
+ uint8_t dcu_crc_a3(uint8_t *);
  uint8_t dcu_chk_buffer(uint8_t *, uint8_t);
  uint8_t dcu_buffer_len(uint8_t *);
  uint16_t dcu_param_num(uint8_t *);
 
  extern P_data P_read;
  extern P_data_r P_action;
+ extern P_data_r3 P_action3;
  extern volatile uint8_t dcu_data[240];
 # 21 "../canfd.h" 2
 # 56 "../canfd.h"

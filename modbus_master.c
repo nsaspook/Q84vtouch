@@ -162,7 +162,7 @@ P_data P_read_E = {
 /*
  * PVP position set/read messages
  */
-P_data_r P_action1 = {
+P_data_r3 P_action1 = {
 	.addr2 = '0',
 	.addr1 = '0',
 	.addr0 = '1',
@@ -182,7 +182,7 @@ P_data_r P_action1 = {
 	.cr = 13, // EOF CR
 };
 
-P_data_r P_action2 = {
+P_data_r3 P_action2 = {
 	.addr2 = '0',
 	.addr1 = '0',
 	.addr0 = '1',
@@ -201,7 +201,7 @@ P_data_r P_action2 = {
 	.chk0 = '0',
 	.cr = 13, // EOF CR
 };
-P_data_r P_action3 = {
+P_data_r3 P_action3 = {
 	.addr2 = '0',
 	.addr1 = '0',
 	.addr0 = '1',
@@ -364,11 +364,11 @@ static bool modbus_action_dcu_check(C_data *, bool*, uint16_t);
 /*
  * constructs a properly formatted DCU message with CHK from a program memory array to the data memory array buffer
  */
-uint16_t modbus_dcu_send_msg(void *cc_buffer, const void *modbus_cc_mode, uint16_t req_length)
+uint16_t modbus_dcu_send_msg(void *cc_buffer, const void *modbus_cc_mode, const uint16_t req_length)
 {
 	char tmp_chk[6];
 	P_data *P_ptr;
-	P_data_r *P_ptr_r;
+	P_data_r *P_ptr_r, *P_ptr_r3;
 
 	memcpy((void*) cc_buffer, (const void *) modbus_cc_mode, req_length);
 
@@ -388,6 +388,13 @@ uint16_t modbus_dcu_send_msg(void *cc_buffer, const void *modbus_cc_mode, uint16
 		P_ptr_r->chk2 = tmp_chk[0];
 		P_ptr_r->chk1 = tmp_chk[1];
 		P_ptr_r->chk0 = tmp_chk[2];
+	}
+	if (req_length == sizeof(P_action3)) { // position request
+		P_ptr_r3 = cc_buffer;
+		snprintf(tmp_chk, 4, "%03d", dcu_crc_a3(cc_buffer));
+		P_ptr_r3->chk2 = tmp_chk[0];
+		P_ptr_r3->chk1 = tmp_chk[1];
+		P_ptr_r3->chk0 = tmp_chk[2];
 	}
 
 	return req_length;
@@ -695,6 +702,16 @@ int8_t master_controller_work_dcu(C_data * client)
 			case G_SSPEED: // 
 				modbus_read_dcu_check(client, &client->sspeed_ok, sizeof(P_action));
 				break;
+			case G_SET1: // 
+			case G_SET2:
+			case G_SET3:
+				modbus_read_dcu_check(client, &client->set_ok, sizeof(P_action1));
+				break;
+			case G_SET4: // 
+			case G_SET5:
+			case G_SET6:
+				modbus_read_dcu_check(client, &client->set_ok, sizeof(P_action));
+				break;
 			case G_ID: // check for client module type
 			default:
 				modbus_read_dcu_check(client, &client->id_ok, sizeof(P_action));
@@ -867,6 +884,11 @@ static bool modbus_read_dcu_check(C_data * client, bool* cstate, const uint16_t 
 			c_crc_rec = dcu_crc_a((uint8_t*) cc_buffer); // from computed data from total rec buffer
 		}
 
+		if (data_len == 3) { // check returned data length for P_data_r3 setting commands
+			c_crc = dcu_chk_buffer((uint8_t*) cc_buffer, (uint8_t) rec_length); // use data from crc from rec buffer crc data
+			c_crc_rec = dcu_crc_a3((uint8_t*) cc_buffer); // from computed data from total rec buffer
+		}
+
 		if (DBUG_R c_crc == c_crc_rec) {
 			/*
 			 * parse commands and save data 
@@ -980,6 +1002,16 @@ uint8_t dcu_crc_a(uint8_t * p)
 	uint8_t crc_num = 0;
 
 	for (uint8_t i = 0; i < 16; i++) {
+		crc_num += (uint8_t) p[i];
+	}
+	return crc_num;
+}
+
+uint8_t dcu_crc_a3(uint8_t * p)
+{
+	uint8_t crc_num = 0;
+
+	for (uint8_t i = 0; i < 13; i++) {
 		crc_num += (uint8_t) p[i];
 	}
 	return crc_num;
