@@ -41493,7 +41493,7 @@ void delay_ms(const uint16_t);
   _Bool id_ok, passwd_ok, config_ok, data_ok, link_ok, serial_ok, version_ok, tm_ok, sspeed_ok, set_ok;
   uint32_t data_count, data_prev;
   volatile M_data M;
-  uint8_t speed[12], mon[12], current[12], accel[12], dname[12], dsoft[12], link[12], error[12], sspeed[12];
+  uint8_t speed[12], mon[12], current[12], accel[12], dname[12], dsoft[12], link[12], error[12], sspeed[12], set[12];
   _Bool dcu_online, dcu_setting, motor_run;
  } C_data;
 
@@ -41711,7 +41711,7 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[512] = "Boot Init Display   ", info_buffer[512], log_buffer[512];
-const char *build_date = "Nov 23 2024", *build_time = "18:44:50";
+const char *build_date = "Nov 24 2024", *build_time = "11:14:55";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
@@ -41932,9 +41932,9 @@ void main(void)
      }
      if (B.alt_display > 0) {
       M.error = 0;
-      snprintf(buffer, 512, "0                    ");
+      snprintf(buffer, 512, "Set Flags %d %d            ", C.dcu_setting, C.motor_run);
       eaDogM_WriteStringAtPos(0, 0, buffer);
-      snprintf(buffer, 512, "1                    ");
+      snprintf(buffer, 512, "Set Msg %s                 ", C.set);
       eaDogM_WriteStringAtPos(1, 0, buffer);
       snprintf(buffer, 512, "2                    ");
       if (C.dcu_online) {
@@ -41942,7 +41942,7 @@ void main(void)
        buffer[19] = spinners(4, 0);
       }
       eaDogM_WriteStringAtPos(2, 0, buffer);
-      snprintf(buffer, 512, "3                    ");
+      snprintf(buffer, 512, "Set Mode %d                 ", B.alt_display);
       eaDogM_WriteStringAtPos(3, 0, buffer);
      }
     }
@@ -41961,6 +41961,22 @@ void main(void)
    snprintf(buffer, 512, "%d %s", B.alt_display, "Alt Button \337\364       ");
    eaDogM_WriteStringAtPos(2, 0, buffer);
    B.display_update = 1;
+   switch (B.alt_display) {
+   case 1:
+    C.dcu_setting = 1;
+    break;
+   case 2:
+    C.dcu_setting = 1;
+    C.motor_run = 1;
+    break;
+   case 3:
+    B.alt_display = 0;
+   case 0:
+   default:
+    C.dcu_setting = 0;
+    C.motor_run = 0;
+    break;
+   }
   }
   if (B.a_switch[D_SW_L]) {
    do { LATBbits.LATB1 = 1; } while(0);

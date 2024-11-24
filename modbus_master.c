@@ -320,6 +320,7 @@ C_data C = {
 	.link = "OFFLINE",
 	.error = "OFFLINE",
 	.sspeed = "OFFLINE",
+	.set = "OFFLINE",
 	.dcu_online = false,
 	.dcu_setting = false,
 	.motor_run = false,
@@ -705,7 +706,7 @@ int8_t master_controller_work_dcu(C_data * client)
 			case G_SET1: // 
 			case G_SET2:
 			case G_SET3:
-				modbus_read_dcu_check(client, &client->set_ok, sizeof(P_action1));
+				modbus_read_dcu_check(client, &client->set_ok, sizeof(P_action1)); // need to check for returned data format
 				break;
 			case G_SET4: // 
 			case G_SET5:
@@ -933,7 +934,7 @@ static bool modbus_read_dcu_check(C_data * client, bool* cstate, const uint16_t 
 				for (uint8_t i = 0; i < data_len; i++) {
 					client->accel[i] = cc_buffer[10 + i];
 				}
-				client->accel[data_len] = 0;
+//				client->accel[data_len] = 0;
 				client->accel[1] = 0; // shortened to single boolean char
 			}
 
@@ -948,6 +949,12 @@ static bool modbus_read_dcu_check(C_data * client, bool* cstate, const uint16_t 
 					client->dsoft[i] = cc_buffer[10 + i];
 				}
 				client->dsoft[data_len] = 0;
+			}
+			if (dcu_param_num((uint8_t *) cc_buffer) == Param_set) {
+				for (uint8_t i = 0; i < data_len; i++) {
+					client->set[i] = cc_buffer[10 + i];
+				}
+				client->set[data_len] = 0;
 			}
 			MM_ERROR_C;
 			*cstate = true;

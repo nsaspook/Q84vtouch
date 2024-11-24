@@ -409,9 +409,9 @@ void main(void)
 					}
 					if (B.alt_display > 0) {
 						M.error = 0;
-						snprintf(buffer, MAX_B_BUF, "0                    ");
+						snprintf(buffer, MAX_B_BUF, "Set Flags %d %d            ", C.dcu_setting, C.motor_run);
 						eaDogM_WriteStringAtPos(0, 0, buffer);
-						snprintf(buffer, MAX_B_BUF, "1                    ");
+						snprintf(buffer, MAX_B_BUF, "Set Msg %s                 ", C.set);
 						eaDogM_WriteStringAtPos(1, 0, buffer);
 						snprintf(buffer, MAX_B_BUF, "2                    ");
 						if (C.dcu_online) {
@@ -419,7 +419,7 @@ void main(void)
 							buffer[19] = spinners(4, false);
 						}
 						eaDogM_WriteStringAtPos(2, 0, buffer);
-						snprintf(buffer, MAX_B_BUF, "3                    ");
+						snprintf(buffer, MAX_B_BUF, "Set Mode %d                 ", B.alt_display);
 						eaDogM_WriteStringAtPos(3, 0, buffer);
 					}
 				}
@@ -438,6 +438,22 @@ void main(void)
 			snprintf(buffer, MAX_B_BUF, "%d %s", B.alt_display, "Alt Button \337\364       ");
 			eaDogM_WriteStringAtPos(2, 0, buffer);
 			B.display_update = true;
+			switch (B.alt_display) {
+			case 1:
+				C.dcu_setting = true;
+				break;
+			case 2:
+				C.dcu_setting = true;
+				C.motor_run = true;
+				break;
+			case 3:
+				B.alt_display = 0;
+			case 0:
+			default:
+				C.dcu_setting = false;
+				C.motor_run = false;
+				break;
+			}
 		}
 		if (B.a_switch[D_SW_L]) {
 			MM_ERROR_S;

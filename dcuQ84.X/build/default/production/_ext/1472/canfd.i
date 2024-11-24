@@ -41342,7 +41342,7 @@ void delay_ms(const uint16_t);
   _Bool id_ok, passwd_ok, config_ok, data_ok, link_ok, serial_ok, version_ok, tm_ok, sspeed_ok, set_ok;
   uint32_t data_count, data_prev;
   volatile M_data M;
-  uint8_t speed[12], mon[12], current[12], accel[12], dname[12], dsoft[12], link[12], error[12], sspeed[12];
+  uint8_t speed[12], mon[12], current[12], accel[12], dname[12], dsoft[12], link[12], error[12], sspeed[12], set[12];
   _Bool dcu_online, dcu_setting, motor_run;
  } C_data;
 

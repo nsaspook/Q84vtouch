@@ -40699,7 +40699,7 @@ void delay_ms(const uint16_t);
   _Bool id_ok, passwd_ok, config_ok, data_ok, link_ok, serial_ok, version_ok, tm_ok, sspeed_ok, set_ok;
   uint32_t data_count, data_prev;
   volatile M_data M;
-  uint8_t speed[12], mon[12], current[12], accel[12], dname[12], dsoft[12], link[12], error[12], sspeed[12];
+  uint8_t speed[12], mon[12], current[12], accel[12], dname[12], dsoft[12], link[12], error[12], sspeed[12], set[12];
   _Bool dcu_online, dcu_setting, motor_run;
  } C_data;
 
@@ -41176,6 +41176,7 @@ C_data C = {
  .link = "OFFLINE",
  .error = "OFFLINE",
  .sspeed = "OFFLINE",
+ .set = "OFFLINE",
  .dcu_online = 0,
  .dcu_setting = 0,
  .motor_run = 0,
@@ -41333,7 +41334,7 @@ static void log_crc_error(const uint16_t c_crc, const uint16_t c_crc_rec)
  M.crc_error++;
  M.error++;
 }
-# 491 "../modbus_master.c"
+# 492 "../modbus_master.c"
 int32_t mb32_swap(const int32_t value)
 {
  uint8_t i;
@@ -41672,7 +41673,7 @@ void timer_2ms_tick(void)
  MT.clock_500hz++;
  MT.clock_500ahz++;
 }
-# 843 "../modbus_master.c"
+# 844 "../modbus_master.c"
 static _Bool serial_trmt(void)
 {
  return !(UART5_is_tx_done);
@@ -41766,7 +41767,7 @@ static _Bool modbus_read_dcu_check(C_data * client, _Bool* cstate, const uint16_
     for (uint8_t i = 0; i < data_len; i++) {
      client->accel[i] = cc_buffer[10 + i];
     }
-    client->accel[data_len] = 0;
+
     client->accel[1] = 0;
    }
 
@@ -41781,6 +41782,12 @@ static _Bool modbus_read_dcu_check(C_data * client, _Bool* cstate, const uint16_
      client->dsoft[i] = cc_buffer[10 + i];
     }
     client->dsoft[data_len] = 0;
+   }
+   if (dcu_param_num((uint8_t *) cc_buffer) == 794) {
+    for (uint8_t i = 0; i < data_len; i++) {
+     client->set[i] = cc_buffer[10 + i];
+    }
+    client->set[data_len] = 0;
    }
    do { LATBbits.LATB1 = 0; } while(0);
    *cstate = 1;
