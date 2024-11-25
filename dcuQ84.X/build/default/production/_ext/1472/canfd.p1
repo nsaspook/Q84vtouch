@@ -83,16 +83,16 @@ Version 4.0 HI-TECH Software Intermediate Code
 [n E24998 comm_type CLEAR INIT SEND RECV  ]
 [c E25004 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 .. ]
 [n E25004 cmd_type G_ID G_DATA1 G_DATA2 G_CONFIG G_PASSWD G_LINK G_VERSION G_SERIAL G_SSPEED G_SET1 G_SET2 G_SET3 G_SET4 G_SET5 G_SET6 G_LAST  ]
-"216 ../modbus_master.h
-[; ;../modbus_master.h: 216:  typedef struct M_data {
+"217 ../modbus_master.h
+[; ;../modbus_master.h: 217:  typedef struct M_data {
 [s S3306 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 `uc 1 `uc 1 `uc 1 `us 1 `us 1 `us 1 `ul 1 `ul 1 `ul 1 `Va 1 ]
 [n S3306 M_data blink_lock config stable boot_code power_on send_count recv_count pwm_volts error crc_data crc_calc crc_error to_error sends rx ]
-"230
-[; ;../modbus_master.h: 230:  typedef struct C_data {
+"231
+[; ;../modbus_master.h: 231:  typedef struct C_data {
 [s S3307 `uc 1 `E24998 1 `E25004 1 `us 1 `c 1 `a 1 `a 1 `a 1 `a 1 `a 1 `a 1 `a 1 `a 1 `a 1 `a 1 `ul 1 `ul 1 `VS3306 1 `uc -> 12 `i `uc -> 12 `i `uc -> 12 `i `uc -> 12 `i `uc -> 12 `i `uc -> 12 `i `uc -> 12 `i `uc -> 12 `i `uc -> 12 `i `uc -> 12 `i `a 1 `a 1 `a 1 ]
 [n S3307 C_data mcmd cstate modbus_command req_length trace id_ok passwd_ok config_ok data_ok link_ok serial_ok version_ok tm_ok sspeed_ok set_ok data_count data_prev M speed mon current accel dname dsoft link error sspeed set dcu_online dcu_setting motor_run ]
-"396
-[; ;../modbus_master.h: 396:  extern C_data C;
+"397
+[; ;../modbus_master.h: 397:  extern C_data C;
 [v _C `S3307 ~T0 @X0 0 e ]
 "187 ../canfd.c
 [; ;../canfd.c: 187:  Transmission.field.brs = CAN_BRS_MODE;
@@ -4347,8 +4347,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"295 ../modbus_master.h
-[; ;../modbus_master.h: 295:  static const uint8_t table_crc_hi[] = {
+"296 ../modbus_master.h
+[; ;../modbus_master.h: 296:  static const uint8_t table_crc_hi[] = {
 [v _table_crc_hi `Cuc ~T0 @X0 -> 256 `i s ]
 [i _table_crc_hi
 :U ..
@@ -4610,8 +4610,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 64 `i `uc
 ..
 ]
-"325
-[; ;../modbus_master.h: 325:  static const uint8_t table_crc_lo[] = {
+"326
+[; ;../modbus_master.h: 326:  static const uint8_t table_crc_lo[] = {
 [v _table_crc_lo `Cuc ~T0 @X0 -> 256 `i s ]
 [i _table_crc_lo
 :U ..

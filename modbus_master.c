@@ -642,34 +642,34 @@ int8_t master_controller_work_dcu(C_data * client)
 		break;
 	case INIT:
 		client->trace = T_init;
-		/*
-		 * MODBUS master query speed
-		 */
-		if (get_500ahz(false) >= CDELAY) {
-			half_dup_tx(false); // no delays here
-			M.recv_count = 0;
-			client->cstate = SEND;
-			clear_500hz();
-			client->trace = T_init_d;
-		}
+			/*
+			 * MODBUS master query speed
+			 */
+			if (get_500ahz(false) >= CDELAY) {
+				half_dup_tx(false); // no delays here
+				M.recv_count = 0;
+				client->cstate = SEND;
+				clear_500hz();
+				client->trace = T_init_d;
+			}
 		break;
 	case SEND:
 		client->trace = T_send;
-		if (get_500hz(false) >= TEDELAY) {
-			for (uint8_t i = 0; i < client->req_length; i++) {
-				Swrite(cc_buffer_tx[i]);
+			if (get_500hz(false) >= TEDELAY) {
+				for (uint8_t i = 0; i < client->req_length; i++) {
+					Swrite(cc_buffer_tx[i]);
+				}
+				client->cstate = RECV;
+				clear_500hz(); // state machine execute background timer clear
+				client->trace = T_send_d;
+				M.sends++;
+				M.rx = false;
+				if (serial_trmt()) { // check for serial UART transmit shift register and buffer empty
+					clear_500hz(); // clear timer until buffer empty
+				}
+				delay_ms(TDELAY + client->req_length);
+				DERE_SetLow(); // enable modbus receiver
 			}
-			client->cstate = RECV;
-			clear_500hz(); // state machine execute background timer clear
-			client->trace = T_send_d;
-			M.sends++;
-			M.rx = false;
-			if (serial_trmt()) { // check for serial UART transmit shift register and buffer empty
-				clear_500hz(); // clear timer until buffer empty
-			}
-			delay_ms(TDELAY + client->req_length);
-			DERE_SetLow(); // enable modbus receiver
-		}
 		break;
 	case RECV:
 		client->trace = T_recv;
@@ -934,7 +934,7 @@ static bool modbus_read_dcu_check(C_data * client, bool* cstate, const uint16_t 
 				for (uint8_t i = 0; i < data_len; i++) {
 					client->accel[i] = cc_buffer[10 + i];
 				}
-//				client->accel[data_len] = 0;
+				//				client->accel[data_len] = 0;
 				client->accel[1] = 0; // shortened to single boolean char
 			}
 

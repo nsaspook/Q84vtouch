@@ -22,4 +22,6 @@ build/default/production/_ext/1472/modbus_master.p1:  \
 ../dcuQ84.X/mcc_generated_files/spi1.h  \
 ../timers.h  \
 ../dio.h  \
-../trace.h 
+../trace.h  \
+../eadog.h  \
+../qconfig.h 

@@ -47,6 +47,7 @@ extern "C" {
 #include "dcuQ84.X/mcc_generated_files/mcc.h"
 #include "timers.h"
 #include "trace.h"
+#include "eadog.h"
 
 #ifdef TRACE
 #define INT_TRACE	INT_TRACE_Toggle() // EXT_IO pin 5

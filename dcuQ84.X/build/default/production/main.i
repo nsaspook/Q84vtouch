@@ -41350,7 +41350,7 @@ void delay_ms(const uint16_t);
 
 
 # 1 "./../modbus_master.h" 1
-# 97 "./../modbus_master.h"
+# 98 "./../modbus_master.h"
  typedef struct P_data {
   uint8_t addr2, addr1, addr0;
   uint8_t action1, action0;
@@ -41607,7 +41607,7 @@ void delay_ms(const uint16_t);
   0x44, 0x84, 0x85, 0x45, 0x87, 0x47, 0x46, 0x86, 0x82, 0x42,
   0x43, 0x83, 0x41, 0x81, 0x80, 0x40
  };
-# 371 "./../modbus_master.h"
+# 372 "./../modbus_master.h"
  uint16_t crc16(volatile uint8_t *, uint16_t);
  uint16_t modbus_dcu_send_msg(void *, const void *, const uint16_t);
 
@@ -41711,7 +41711,7 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[512] = "Boot Init Display   ", info_buffer[512], log_buffer[512];
-const char *build_date = "Nov 24 2024", *build_time = "11:14:55";
+const char *build_date = "Nov 24 2024", *build_time = "17:01:09";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
@@ -41908,42 +41908,44 @@ void main(void)
       e_update = 0;
      }
     } else {
-     if (B.alt_display == 0) {
-      uint16_t vt, vw, vf;
-      M.error = 0;
-      snprintf(buffer, 512, "Accel %s %s         ", C.accel, C.error);
-      eaDogM_WriteStringAtPos(0, 0, buffer);
-      vt = (uint16_t) atoi((const char *) C.link);
-      volt_f(vt);
-      vw = volt_whole;
-      vf = volt_fract;
-      vt = (uint16_t) atoi((const char *) C.current);
-      volt_f(vt);
-      snprintf(buffer, 512, "MDrv %3d.%02dV %2d.%02dA          ", vw, vf, volt_whole, volt_fract);
-      eaDogM_WriteStringAtPos(1, 0, buffer);
-      snprintf(buffer, 512, "Cont %s %s           ", C.dname, C.dsoft);
-      if (C.dcu_online) {
-       C.dcu_online = 0;
-       buffer[19] = spinners(4, 0);
+     if (C.cstate == RECV) {
+      if (B.alt_display == 0) {
+       uint16_t vt, vw, vf;
+       M.error = 0;
+       snprintf(buffer, 512, "Accel %s %s         ", C.accel, C.error);
+       eaDogM_WriteStringAtPos(0, 0, buffer);
+       vt = (uint16_t) atoi((const char *) C.link);
+       volt_f(vt);
+       vw = volt_whole;
+       vf = volt_fract;
+       vt = (uint16_t) atoi((const char *) C.current);
+       volt_f(vt);
+       snprintf(buffer, 512, "MDrv %3d.%02dV %2d.%02dA          ", vw, vf, volt_whole, volt_fract);
+       eaDogM_WriteStringAtPos(1, 0, buffer);
+       snprintf(buffer, 512, "Cont %s %s           ", C.dname, C.dsoft);
+       if (C.dcu_online) {
+        C.dcu_online = 0;
+        buffer[19] = spinners(4, 0);
+       }
+       eaDogM_WriteStringAtPos(2, 0, buffer);
+       snprintf(buffer, 512, "Spd %s %s Hz          ", C.speed, C.sspeed);
+       eaDogM_WriteStringAtPos(3, 0, buffer);
       }
-      eaDogM_WriteStringAtPos(2, 0, buffer);
-      snprintf(buffer, 512, "Spd %s %s Hz          ", C.speed, C.sspeed);
-      eaDogM_WriteStringAtPos(3, 0, buffer);
-     }
-     if (B.alt_display > 0) {
-      M.error = 0;
-      snprintf(buffer, 512, "Set Flags %d %d            ", C.dcu_setting, C.motor_run);
-      eaDogM_WriteStringAtPos(0, 0, buffer);
-      snprintf(buffer, 512, "Set Msg %s                 ", C.set);
-      eaDogM_WriteStringAtPos(1, 0, buffer);
-      snprintf(buffer, 512, "2                    ");
-      if (C.dcu_online) {
-       C.dcu_online = 0;
-       buffer[19] = spinners(4, 0);
+      if (B.alt_display > 0) {
+       M.error = 0;
+       snprintf(buffer, 512, "Set Flags %d %d            ", C.dcu_setting, C.motor_run);
+       eaDogM_WriteStringAtPos(0, 0, buffer);
+       snprintf(buffer, 512, "Set Msg %s                 ", C.set);
+       eaDogM_WriteStringAtPos(1, 0, buffer);
+       snprintf(buffer, 512, "2                    ");
+       if (C.dcu_online) {
+        C.dcu_online = 0;
+        buffer[19] = spinners(4, 0);
+       }
+       eaDogM_WriteStringAtPos(2, 0, buffer);
+       snprintf(buffer, 512, "Set Mode %d                 ", B.alt_display);
+       eaDogM_WriteStringAtPos(3, 0, buffer);
       }
-      eaDogM_WriteStringAtPos(2, 0, buffer);
-      snprintf(buffer, 512, "Set Mode %d                 ", B.alt_display);
-      eaDogM_WriteStringAtPos(3, 0, buffer);
      }
     }
    }
