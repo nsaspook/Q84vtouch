@@ -162,20 +162,19 @@ P_data P_read_E = {
 /*
  * PVP position set/read messages
  */
-P_data_r3 P_action1 = {
+P_data P_action1 = {
 	.addr2 = '0',
 	.addr1 = '0',
 	.addr0 = '1',
 	.action1 = '1',
 	.action0 = '0',
-	.para2 = '7',
-	.para1 = '9',
-	.para0 = '4',
+	.para2 = '3',
+	.para1 = '3',
+	.para0 = '1',
 	.dl1 = '0',
-	.dl0 = '3',
-	.data[2] = '1',
-	.data[1] = '0',
-	.data[0] = '0',
+	.dl0 = '2',
+	.data1 = '=',
+	.data0 = '?',
 	.chk2 = '0',
 	.chk1 = '0',
 	.chk0 = '0',
@@ -311,6 +310,7 @@ C_data C = {
 	.M.blink_lock = false,
 	.M.power_on = true,
 	.tm_ok = false,
+	.set_ok = false,
 	.speed = "OFFLINE",
 	.mon = "OFFLINE",
 	.current = "OFFLINE",
@@ -321,6 +321,7 @@ C_data C = {
 	.error = "OFFLINE",
 	.sspeed = "OFFLINE",
 	.set = "OFFLINE",
+	.tmsc = "OFFLINE",
 	.dcu_online = false,
 	.dcu_setting = false,
 	.motor_run = false,
@@ -578,13 +579,8 @@ int8_t master_controller_work_dcu(C_data * client)
 			client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_read_S, sizeof(P_read_S));
 			break;
 		case G_SET1:
-			if (client->dcu_setting) {
-				client->trace = T_set;
-				client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_action1, sizeof(P_action1));
-			} else {
-				client->cstate = CLEAR; // don't start message FSM
-				client->mcmd = G_LAST;
-			}
+			client->trace = T_set;
+			client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_action1, sizeof(P_action1));
 			break;
 		case G_SET2:
 			if (client->dcu_setting) {
@@ -706,6 +702,8 @@ int8_t master_controller_work_dcu(C_data * client)
 				modbus_read_dcu_check(client, &client->sspeed_ok, sizeof(P_action));
 				break;
 			case G_SET1: // 
+				modbus_read_dcu_check(client, &client->set_ok, sizeof(P_action));
+				break;
 			case G_SET2:
 			case G_SET3:
 				modbus_read_dcu_check(client, &client->set_ok, sizeof(P_action1)); // need to check for returned data format
@@ -891,10 +889,10 @@ static bool modbus_read_dcu_check(C_data * client, bool* cstate, const uint16_t 
 			c_crc = dcu_chk_buffer((uint8_t*) cc_buffer, (uint8_t) rec_length); // use data from crc from rec buffer crc data
 			c_crc_rec = dcu_crc_a3((uint8_t*) cc_buffer); // from computed data from total rec buffer
 		}
-		
-		if (data_len >3) {
-			c_crc_rec=c_crc;
-			data_len=6;
+
+		if (data_len > 3) {
+			c_crc_rec = c_crc;
+			data_len = 6;
 		}
 
 		if (DBUG_R c_crc == c_crc_rec) {
@@ -906,6 +904,12 @@ static bool modbus_read_dcu_check(C_data * client, bool* cstate, const uint16_t 
 					client->error[i] = cc_buffer[10 + i];
 				}
 				client->error[data_len] = 0;
+			}
+			if (dcu_param_num((uint8_t *) cc_buffer) == TMS_ActTmp) {
+				for (uint8_t i = 0; i < data_len; i++) {
+					client->tmsc[i] = cc_buffer[10 + i];
+				}
+				client->tmsc[data_len] = 0;
 			}
 			if (dcu_param_num((uint8_t *) cc_buffer) == ActualSpd) {
 				for (uint8_t i = 0; i < data_len; i++) {

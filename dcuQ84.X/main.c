@@ -385,11 +385,11 @@ void main(void)
 						e_update = 0;
 					}
 				} else {
-					if (C.cstate == RECV) { // don't block RS485 I/O timing
+					if (C.cstate == RECV || C.cstate == CLEAR) { // don't block RS485 I/O timing
 						if (B.alt_display == 0) {
 							uint16_t vt, vw, vf;
 							M.error = 0;
-							snprintf(buffer, MAX_B_BUF, "Accel %s %s         ", C.accel, C.error);
+							snprintf(buffer, MAX_B_BUF, "Acc %s %s %sC          ", C.accel, C.error, C.tmsc);
 							eaDogM_WriteStringAtPos(0, 0, buffer);
 							vt = (uint16_t) atoi((const char *) C.link);
 							volt_f(vt);

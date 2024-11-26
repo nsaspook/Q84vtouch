@@ -93,7 +93,7 @@ extern "C" {
 #define DrvPwr_set	708
 #define TMP_RUTime	700
 #define TMProt_set	707
-#define Param_set	794
+#define TMS_ActTmp	331
 
 #define MAX_MSG_DATA	32
 
@@ -240,7 +240,7 @@ extern "C" {
 		uint32_t data_count, data_prev;
 		volatile M_data M;
 		uint8_t speed[MAX_MSG_DATA], mon[MAX_MSG_DATA], current[MAX_MSG_DATA], accel[MAX_MSG_DATA], dname[MAX_MSG_DATA], dsoft[MAX_MSG_DATA], link[MAX_MSG_DATA],
-		error[MAX_MSG_DATA], sspeed[MAX_MSG_DATA], set[MAX_MSG_DATA];
+		error[MAX_MSG_DATA], sspeed[MAX_MSG_DATA], set[MAX_MSG_DATA], tmsc[MAX_MSG_DATA];
 		bool dcu_online, dcu_setting, motor_run;
 	} C_data;
 
