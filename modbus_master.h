@@ -95,6 +95,8 @@ extern "C" {
 #define TMProt_set	707
 #define Param_set	794
 
+#define MAX_MSG_DATA	32
+
 	typedef struct P_data { // DCU vacuum protocol tx read format
 		uint8_t addr2, addr1, addr0;
 		uint8_t action1, action0;
@@ -232,12 +234,13 @@ extern "C" {
 		uint8_t mcmd;
 		comm_type cstate;
 		cmd_type modbus_command;
-		uint16_t req_length;
+		uint16_t req_length, crc_err;
 		int8_t trace;
 		bool id_ok, passwd_ok, config_ok, data_ok, link_ok, serial_ok, version_ok, tm_ok, sspeed_ok, set_ok;
 		uint32_t data_count, data_prev;
 		volatile M_data M;
-		uint8_t speed[12], mon[12], current[12], accel[12], dname[12], dsoft[12], link[12], error[12], sspeed[12], set[12];
+		uint8_t speed[MAX_MSG_DATA], mon[MAX_MSG_DATA], current[MAX_MSG_DATA], accel[MAX_MSG_DATA], dname[MAX_MSG_DATA], dsoft[MAX_MSG_DATA], link[MAX_MSG_DATA],
+		error[MAX_MSG_DATA], sspeed[MAX_MSG_DATA], set[MAX_MSG_DATA];
 		bool dcu_online, dcu_setting, motor_run;
 	} C_data;
 

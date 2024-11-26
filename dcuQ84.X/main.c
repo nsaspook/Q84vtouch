@@ -414,7 +414,7 @@ void main(void)
 							eaDogM_WriteStringAtPos(0, 0, buffer);
 							snprintf(buffer, MAX_B_BUF, "Set Msg %s                 ", C.set);
 							eaDogM_WriteStringAtPos(1, 0, buffer);
-							snprintf(buffer, MAX_B_BUF, "2                    ");
+							snprintf(buffer, MAX_B_BUF, "CK ER %d %d %d               ", C.crc_err, C.req_length, M.recv_count);
 							if (C.dcu_online) {
 								C.dcu_online = false;
 								buffer[19] = spinners(4, false);

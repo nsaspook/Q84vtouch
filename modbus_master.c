@@ -173,9 +173,9 @@ P_data_r3 P_action1 = {
 	.para0 = '4',
 	.dl1 = '0',
 	.dl0 = '3',
-	.data[2] = '0',
+	.data[2] = '1',
 	.data[1] = '0',
-	.data[0] = '1',
+	.data[0] = '0',
 	.chk2 = '0',
 	.chk1 = '0',
 	.chk0 = '0',
@@ -212,8 +212,8 @@ P_data_r3 P_action3 = {
 	.para0 = '8',
 	.dl1 = '0',
 	.dl0 = '3',
-	.data[2] = '1',
-	.data[1] = '0',
+	.data[2] = '5',
+	.data[1] = '9',
 	.data[0] = '0',
 	.chk2 = '0',
 	.chk1 = '0',
@@ -232,10 +232,10 @@ P_data_r P_action4 = {
 	.dl1 = '0',
 	.dl0 = '6',
 	.data[5] = '0',
-	.data[4] = '0',
+	.data[4] = '6',
 	.data[3] = '0',
 	.data[2] = '0',
-	.data[1] = '6',
+	.data[1] = '0',
 	.data[0] = '0',
 	.chk2 = '0',
 	.chk1 = '0',
@@ -324,6 +324,7 @@ C_data C = {
 	.dcu_online = false,
 	.dcu_setting = false,
 	.motor_run = false,
+	.crc_err = 0,
 };
 
 volatile struct V_type V = {
@@ -369,7 +370,8 @@ uint16_t modbus_dcu_send_msg(void *cc_buffer, const void *modbus_cc_mode, const 
 {
 	char tmp_chk[6];
 	P_data *P_ptr;
-	P_data_r *P_ptr_r, *P_ptr_r3;
+	P_data_r *P_ptr_r;
+	P_data_r3 *P_ptr_r3;
 
 	memcpy((void*) cc_buffer, (const void *) modbus_cc_mode, req_length);
 
@@ -642,34 +644,34 @@ int8_t master_controller_work_dcu(C_data * client)
 		break;
 	case INIT:
 		client->trace = T_init;
-			/*
-			 * MODBUS master query speed
-			 */
-			if (get_500ahz(false) >= CDELAY) {
-				half_dup_tx(false); // no delays here
-				M.recv_count = 0;
-				client->cstate = SEND;
-				clear_500hz();
-				client->trace = T_init_d;
-			}
+		/*
+		 * MODBUS master query speed
+		 */
+		if (get_500ahz(false) >= CDELAY) {
+			half_dup_tx(false); // no delays here
+			M.recv_count = 0;
+			client->cstate = SEND;
+			clear_500hz();
+			client->trace = T_init_d;
+		}
 		break;
 	case SEND:
 		client->trace = T_send;
-			if (get_500hz(false) >= TEDELAY) {
-				for (uint8_t i = 0; i < client->req_length; i++) {
-					Swrite(cc_buffer_tx[i]);
-				}
-				client->cstate = RECV;
-				clear_500hz(); // state machine execute background timer clear
-				client->trace = T_send_d;
-				M.sends++;
-				M.rx = false;
-				if (serial_trmt()) { // check for serial UART transmit shift register and buffer empty
-					clear_500hz(); // clear timer until buffer empty
-				}
-				delay_ms(TDELAY + client->req_length);
-				DERE_SetLow(); // enable modbus receiver
+		if (get_500hz(false) >= TEDELAY) {
+			for (uint8_t i = 0; i < client->req_length; i++) {
+				Swrite(cc_buffer_tx[i]);
 			}
+			client->cstate = RECV;
+			clear_500hz(); // state machine execute background timer clear
+			client->trace = T_send_d;
+			M.sends++;
+			M.rx = false;
+			if (serial_trmt()) { // check for serial UART transmit shift register and buffer empty
+				clear_500hz(); // clear timer until buffer empty
+			}
+			delay_ms(TDELAY + client->req_length);
+			DERE_SetLow(); // enable modbus receiver
+		}
 		break;
 	case RECV:
 		client->trace = T_recv;
@@ -889,6 +891,11 @@ static bool modbus_read_dcu_check(C_data * client, bool* cstate, const uint16_t 
 			c_crc = dcu_chk_buffer((uint8_t*) cc_buffer, (uint8_t) rec_length); // use data from crc from rec buffer crc data
 			c_crc_rec = dcu_crc_a3((uint8_t*) cc_buffer); // from computed data from total rec buffer
 		}
+		
+		if (data_len >3) {
+			c_crc_rec=c_crc;
+			data_len=6;
+		}
 
 		if (DBUG_R c_crc == c_crc_rec) {
 			/*
@@ -950,7 +957,7 @@ static bool modbus_read_dcu_check(C_data * client, bool* cstate, const uint16_t 
 				}
 				client->dsoft[data_len] = 0;
 			}
-			if (dcu_param_num((uint8_t *) cc_buffer) == Param_set) {
+			if (dcu_param_num((uint8_t *) cc_buffer) == Gas_mode) {
 				for (uint8_t i = 0; i < data_len; i++) {
 					client->set[i] = cc_buffer[10 + i];
 				}
@@ -971,6 +978,7 @@ static bool modbus_read_dcu_check(C_data * client, bool* cstate, const uint16_t 
 			client->version_ok = false;
 			client->serial_ok = false;
 			log_crc_error(c_crc, c_crc_rec);
+			client->crc_err = dcu_param_num((uint8_t *) cc_buffer);
 			MLED_SetHigh();
 		}
 		client->cstate = CLEAR;
@@ -988,6 +996,7 @@ static bool modbus_read_dcu_check(C_data * client, bool* cstate, const uint16_t 
 			client->link_ok = false;
 			client->version_ok = false;
 			client->serial_ok = false;
+			client->crc_err = dcu_param_num((uint8_t *) cc_buffer);
 			MLED_SetHigh();
 		}
 	}
