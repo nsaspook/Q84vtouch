@@ -229,34 +229,10 @@ B_type B = {
  */
 union blob_log *mxlog_ptr = (void*) & B.log;
 
-//static EB_data *EB = &EBD;
-
 /*
  * show fixed point fractions
  */
 static void volt_f(const uint16_t);
-
-/*
- * FM80 send/recv functions
- */
-static void send_mx_cmd(const uint16_t *);
-static void rec_mx_cmd(void (* DataHandler)(void), const uint8_t);
-
-/*
- * callbacks to handle FM80 register data
- */
-void state_init_cb(void);
-void state_status_cb(void);
-void state_panelv_cb(void);
-void state_batteryv_cb(void);
-void state_batterya_cb(void);
-void state_watts_cb(void);
-void state_misc_cb(void);
-void state_mx_status_cb(void);
-void state_mx_log_cb(void);
-static void state_fwrev_cb(void);
-static void state_time_cb(void);
-static void state_date_cb(void);
 
 /*
  * busy loop delay with WDT reset
@@ -389,7 +365,7 @@ void main(void)
 						if (B.alt_display == 0) {
 							uint16_t vt, vw, vf;
 							M.error = 0;
-							snprintf(buffer, MAX_B_BUF, "Acc %s %s %sC          ", C.accel, C.error, C.tmsc);
+							snprintf(buffer, MAX_B_BUF, "Acc %s%s %s %sC          ", C.aset, C.accel, C.error, C.tmsc);
 							eaDogM_WriteStringAtPos(0, 0, buffer);
 							vt = (uint16_t) atoi((const char *) C.link);
 							volt_f(vt);

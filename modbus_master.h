@@ -20,14 +20,6 @@ extern "C" {
 #endif
 
 #define MB_MASTER
-#define MB_EM540
-#define MB_EM540_ID_H	0x06
-#define MB_EM540_ID_L	0xE0
-#define SWMBMVER	0X0033	// master SW version
-#define MADDR		0x01 // modbus client address
-#define EM_DATA_LEN1	52	// 16-bit words returned
-#define EM_DATA_LEN2	64	// 16-bit words returned
-#define SERIAL_DATA_LEN	8
 
 	/*
 	 * fake good received bytes from client
@@ -84,6 +76,7 @@ extern "C" {
 #define SetRotSpd	308
 #define DrvCurrent	310
 #define AccelDecel	307
+#define AttainedSet	302 
 #define DrvName		349
 #define DrvSoftw	312
 #define TMP_DClink	313
@@ -144,6 +137,7 @@ extern "C" {
 		G_ID = 0,
 		G_DATA1,
 		G_DATA2,
+		G_DATA3,
 		G_CONFIG, // keep sequence
 		G_PASSWD, // keep sequence
 		G_LINK,
@@ -240,7 +234,7 @@ extern "C" {
 		uint32_t data_count, data_prev;
 		volatile M_data M;
 		uint8_t speed[MAX_MSG_DATA], mon[MAX_MSG_DATA], current[MAX_MSG_DATA], accel[MAX_MSG_DATA], dname[MAX_MSG_DATA], dsoft[MAX_MSG_DATA], link[MAX_MSG_DATA],
-		error[MAX_MSG_DATA], sspeed[MAX_MSG_DATA], set[MAX_MSG_DATA], tmsc[MAX_MSG_DATA];
+		error[MAX_MSG_DATA], sspeed[MAX_MSG_DATA], set[MAX_MSG_DATA], tmsc[MAX_MSG_DATA], aset[MAX_MSG_DATA];
 		bool dcu_online, dcu_setting, motor_run;
 	} C_data;
 
