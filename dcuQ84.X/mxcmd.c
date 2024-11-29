@@ -1,10 +1,5 @@
 #include "mxcmd.h"
 
-static volatile uint8_t data = 0x00, dcount = 0, dstart = 0, rdstart = 0;
-static volatile uint16_t tbuf[FM_BUFFER + 1], rbuf[FM_BUFFER + 1];
-static uint16_t *p_tbuf = (uint16_t*) tbuf, *p_rbuf = (uint16_t*) rbuf;
-static volatile uint8_t pace = 0; // the charge controller doesn't like back to back bytes
-
 /*
  * calls the timer.h software timers ISR
  */
@@ -25,7 +20,7 @@ void onesec_io(void)
 void tensec_io(void)
 {
 	INT_TRACE; // GPIO interrupt scope trace
-	DLED1_Toggle();
+	DLED1_Toggle(); // tied to DLED, set to input
 	DLED_Toggle();
 	MLED_SetLow();
 	B.ten_sec_flag = true;
@@ -57,6 +52,9 @@ float lp_filter(const float new, const uint8_t bn, const int8_t slow)
 	return smooth[bn] = smooth[bn] + ((new - smooth[bn]) * lp_speed);
 }
 
+/*
+ * simple additive checksum
+ */
 uint16_t calc_checksum(uint8_t* data, const uint8_t len)
 {
 	uint16_t sum = 0;

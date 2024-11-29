@@ -4131,237 +4131,199 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"3 mxcmd.c
-[; ;mxcmd.c: 3: static volatile uint8_t data = 0x00, dcount = 0, dstart = 0, rdstart = 0;
-[v _data `Vuc ~T0 @X0 1 s ]
-[i _data
--> -> 0 `i `uc
-]
-[v _dcount `Vuc ~T0 @X0 1 s ]
-[i _dcount
--> -> 0 `i `uc
-]
-[v _dstart `Vuc ~T0 @X0 1 s ]
-[i _dstart
--> -> 0 `i `uc
-]
-[v _rdstart `Vuc ~T0 @X0 1 s ]
-[i _rdstart
--> -> 0 `i `uc
-]
-"4
-[; ;mxcmd.c: 4: static volatile uint16_t tbuf[32 + 1], rbuf[32 + 1];
-[v _tbuf `Vus ~T0 @X0 -> 33 `i s ]
-[v _rbuf `Vus ~T0 @X0 -> 33 `i s ]
-"5
-[; ;mxcmd.c: 5: static uint16_t *p_tbuf = (uint16_t*) tbuf, *p_rbuf = (uint16_t*) rbuf;
-[v _p_tbuf `*us ~T0 @X0 1 s ]
-[i _p_tbuf
--> &U _tbuf `*us
-]
-[v _p_rbuf `*us ~T0 @X0 1 s ]
-[i _p_rbuf
--> &U _rbuf `*us
-]
-"6
-[; ;mxcmd.c: 6: static volatile uint8_t pace = 0;
-[v _pace `Vuc ~T0 @X0 1 s ]
-[i _pace
--> -> 0 `i `uc
-]
-"11
-[; ;mxcmd.c: 11: void FM_io(void)
+"6 mxcmd.c
+[; ;mxcmd.c: 6: void FM_io(void)
 [v _FM_io `(v ~T0 @X0 1 ef ]
-"12
-[; ;mxcmd.c: 12: {
+"7
+[; ;mxcmd.c: 7: {
 {
 [e :U _FM_io ]
 [f ]
-"13
-[; ;mxcmd.c: 13:  do { LATBbits.LATB6 = ~LATBbits.LATB6; } while(0);
+"8
+[; ;mxcmd.c: 8:  do { LATBbits.LATB6 = ~LATBbits.LATB6; } while(0);
 [e :U 3300 ]
 {
 [e = . . _LATBbits 0 6 -> ~ -> . . _LATBbits 0 6 `i `uc ]
 }
 [e :U 3299 ]
-"14
-[; ;mxcmd.c: 14:  timer_ms_tick(0, 0);
+"9
+[; ;mxcmd.c: 9:  timer_ms_tick(0, 0);
 [e ( _timer_ms_tick (2 , -> -> -> 0 `i `l `ul -> -> -> 0 `i `m `um ]
-"15
-[; ;mxcmd.c: 15: }
+"10
+[; ;mxcmd.c: 10: }
 [e :UE 3297 ]
 }
-"17
-[; ;mxcmd.c: 17: void onesec_io(void)
+"12
+[; ;mxcmd.c: 12: void onesec_io(void)
 [v _onesec_io `(v ~T0 @X0 1 ef ]
-"18
-[; ;mxcmd.c: 18: {
+"13
+[; ;mxcmd.c: 13: {
 {
 [e :U _onesec_io ]
 [f ]
-"19
-[; ;mxcmd.c: 19:  do { LATBbits.LATB6 = ~LATBbits.LATB6; } while(0);
+"14
+[; ;mxcmd.c: 14:  do { LATBbits.LATB6 = ~LATBbits.LATB6; } while(0);
 [e :U 3304 ]
 {
 [e = . . _LATBbits 0 6 -> ~ -> . . _LATBbits 0 6 `i `uc ]
 }
 [e :U 3303 ]
-"20
-[; ;mxcmd.c: 20:  do { LATBbits.LATB2 = ~LATBbits.LATB2; } while(0);
+"15
+[; ;mxcmd.c: 15:  do { LATBbits.LATB2 = ~LATBbits.LATB2; } while(0);
 [e :U 3307 ]
 {
 [e = . . _LATBbits 0 2 -> ~ -> . . _LATBbits 0 2 `i `uc ]
 }
 [e :U 3306 ]
-"21
-[; ;mxcmd.c: 21:  do { LATBbits.LATB1 = 0; } while(0);
+"16
+[; ;mxcmd.c: 16:  do { LATBbits.LATB1 = 0; } while(0);
 [e :U 3310 ]
 {
 [e = . . _LATBbits 0 1 -> -> 0 `i `uc ]
 }
 [e :U 3309 ]
-"22
-[; ;mxcmd.c: 22:  B.one_sec_flag = 1;
+"17
+[; ;mxcmd.c: 17:  B.one_sec_flag = 1;
 [e = . _B 1 -> -> 1 `i `a ]
-"23
-[; ;mxcmd.c: 23: }
+"18
+[; ;mxcmd.c: 18: }
 [e :UE 3301 ]
 }
-"25
-[; ;mxcmd.c: 25: void tensec_io(void)
+"20
+[; ;mxcmd.c: 20: void tensec_io(void)
 [v _tensec_io `(v ~T0 @X0 1 ef ]
-"26
-[; ;mxcmd.c: 26: {
+"21
+[; ;mxcmd.c: 21: {
 {
 [e :U _tensec_io ]
 [f ]
-"27
-[; ;mxcmd.c: 27:  do { LATBbits.LATB6 = ~LATBbits.LATB6; } while(0);
+"22
+[; ;mxcmd.c: 22:  do { LATBbits.LATB6 = ~LATBbits.LATB6; } while(0);
 [e :U 3314 ]
 {
 [e = . . _LATBbits 0 6 -> ~ -> . . _LATBbits 0 6 `i `uc ]
 }
 [e :U 3313 ]
-"28
-[; ;mxcmd.c: 28:  do { LATBbits.LATB3 = ~LATBbits.LATB3; } while(0);
+"23
+[; ;mxcmd.c: 23:  do { LATBbits.LATB3 = ~LATBbits.LATB3; } while(0);
 [e :U 3317 ]
 {
 [e = . . _LATBbits 0 3 -> ~ -> . . _LATBbits 0 3 `i `uc ]
 }
 [e :U 3316 ]
-"29
-[; ;mxcmd.c: 29:  do { LATDbits.LATD4 = ~LATDbits.LATD4; } while(0);
+"24
+[; ;mxcmd.c: 24:  do { LATDbits.LATD4 = ~LATDbits.LATD4; } while(0);
 [e :U 3320 ]
 {
 [e = . . _LATDbits 0 4 -> ~ -> . . _LATDbits 0 4 `i `uc ]
 }
 [e :U 3319 ]
-"30
-[; ;mxcmd.c: 30:  do { LATBbits.LATB1 = 0; } while(0);
+"25
+[; ;mxcmd.c: 25:  do { LATBbits.LATB1 = 0; } while(0);
 [e :U 3323 ]
 {
 [e = . . _LATBbits 0 1 -> -> 0 `i `uc ]
 }
 [e :U 3322 ]
-"31
-[; ;mxcmd.c: 31:  B.ten_sec_flag = 1;
+"26
+[; ;mxcmd.c: 26:  B.ten_sec_flag = 1;
 [e = . _B 0 -> -> 1 `i `a ]
-"32
-[; ;mxcmd.c: 32: }
+"27
+[; ;mxcmd.c: 27: }
 [e :UE 3311 ]
 }
-"38
-[; ;mxcmd.c: 38: float lp_filter(const float new, const uint8_t bn, const int8_t slow)
+"33
+[; ;mxcmd.c: 33: float lp_filter(const float new, const uint8_t bn, const int8_t slow)
 [v _lp_filter `(f ~T0 @X0 1 ef3`Cf`Cuc`Cc ]
-"39
-[; ;mxcmd.c: 39: {
+"34
+[; ;mxcmd.c: 34: {
 {
 [e :U _lp_filter ]
-"38
-[; ;mxcmd.c: 38: float lp_filter(const float new, const uint8_t bn, const int8_t slow)
+"33
+[; ;mxcmd.c: 33: float lp_filter(const float new, const uint8_t bn, const int8_t slow)
 [v _new `Cf ~T0 @X0 1 r1 ]
 [v _bn `Cuc ~T0 @X0 1 r2 ]
 [v _slow `Cc ~T0 @X0 1 r3 ]
-"39
-[; ;mxcmd.c: 39: {
+"34
+[; ;mxcmd.c: 34: {
 [f ]
-"40
-[; ;mxcmd.c: 40:  static float smooth[9];
-[v F24953 `f ~T0 @X0 -> 9 `i s smooth ]
-"41
-[; ;mxcmd.c: 41:  float lp_speed;
+"35
+[; ;mxcmd.c: 35:  static float smooth[9];
+[v F24944 `f ~T0 @X0 -> 9 `i s smooth ]
+"36
+[; ;mxcmd.c: 36:  float lp_speed;
 [v _lp_speed `f ~T0 @X0 1 a ]
-"43
-[; ;mxcmd.c: 43:  if (bn >= 9)
+"38
+[; ;mxcmd.c: 38:  if (bn >= 9)
 [e $ ! >= -> _bn `i -> 9 `i 3325  ]
-"44
-[; ;mxcmd.c: 44:   return new;
+"39
+[; ;mxcmd.c: 39:   return new;
 [e ) _new ]
 [e $UE 3324  ]
 [e :U 3325 ]
-"46
-[; ;mxcmd.c: 46:  if (slow == (-1)) {
+"41
+[; ;mxcmd.c: 41:  if (slow == (-1)) {
 [e $ ! == -> _slow `i -U -> 1 `i 3326  ]
 {
-"47
-[; ;mxcmd.c: 47:   smooth[bn] = 0.0f;
-[e = *U + &U F24953 * -> _bn `ux -> -> # *U &U F24953 `ui `ux -> .0.0 `f ]
-"48
-[; ;mxcmd.c: 48:   return new;
+"42
+[; ;mxcmd.c: 42:   smooth[bn] = 0.0f;
+[e = *U + &U F24944 * -> _bn `ux -> -> # *U &U F24944 `ui `ux -> .0.0 `f ]
+"43
+[; ;mxcmd.c: 43:   return new;
 [e ) _new ]
 [e $UE 3324  ]
-"49
-[; ;mxcmd.c: 49:  }
+"44
+[; ;mxcmd.c: 44:  }
 }
 [e :U 3326 ]
-"51
-[; ;mxcmd.c: 51:  if (slow) {
+"46
+[; ;mxcmd.c: 46:  if (slow) {
 [e $ ! != -> _slow `i -> 0 `i 3327  ]
 {
-"52
-[; ;mxcmd.c: 52:   lp_speed = 0.0333f;
+"47
+[; ;mxcmd.c: 47:   lp_speed = 0.0333f;
 [e = _lp_speed -> .0.0333 `f ]
-"53
-[; ;mxcmd.c: 53:  } else {
+"48
+[; ;mxcmd.c: 48:  } else {
 }
 [e $U 3328  ]
 [e :U 3327 ]
 {
-"54
-[; ;mxcmd.c: 54:   lp_speed = 0.1f;
+"49
+[; ;mxcmd.c: 49:   lp_speed = 0.1f;
 [e = _lp_speed -> .0.1 `f ]
-"55
-[; ;mxcmd.c: 55:  }
+"50
+[; ;mxcmd.c: 50:  }
 }
 [e :U 3328 ]
-"57
-[; ;mxcmd.c: 57:  return smooth[bn] = smooth[bn] + ((new - smooth[bn]) * lp_speed);
-[e ) = *U + &U F24953 * -> _bn `ux -> -> # *U &U F24953 `ui `ux + *U + &U F24953 * -> _bn `ux -> -> # *U &U F24953 `ui `ux * - _new *U + &U F24953 * -> _bn `ux -> -> # *U &U F24953 `ui `ux _lp_speed ]
+"52
+[; ;mxcmd.c: 52:  return smooth[bn] = smooth[bn] + ((new - smooth[bn]) * lp_speed);
+[e ) = *U + &U F24944 * -> _bn `ux -> -> # *U &U F24944 `ui `ux + *U + &U F24944 * -> _bn `ux -> -> # *U &U F24944 `ui `ux * - _new *U + &U F24944 * -> _bn `ux -> -> # *U &U F24944 `ui `ux _lp_speed ]
 [e $UE 3324  ]
-"58
-[; ;mxcmd.c: 58: }
+"53
+[; ;mxcmd.c: 53: }
 [e :UE 3324 ]
 }
-"60
-[; ;mxcmd.c: 60: uint16_t calc_checksum(uint8_t* data, const uint8_t len)
+"58
+[; ;mxcmd.c: 58: uint16_t calc_checksum(uint8_t* data, const uint8_t len)
 [v _calc_checksum `(us ~T0 @X0 1 ef2`*uc`Cuc ]
-"61
-[; ;mxcmd.c: 61: {
+"59
+[; ;mxcmd.c: 59: {
 {
 [e :U _calc_checksum ]
-"60
-[; ;mxcmd.c: 60: uint16_t calc_checksum(uint8_t* data, const uint8_t len)
+"58
+[; ;mxcmd.c: 58: uint16_t calc_checksum(uint8_t* data, const uint8_t len)
 [v _data `*uc ~T0 @X0 1 r1 ]
 [v _len `Cuc ~T0 @X0 1 r2 ]
-"61
-[; ;mxcmd.c: 61: {
+"59
+[; ;mxcmd.c: 59: {
 [f ]
-"62
-[; ;mxcmd.c: 62:  uint16_t sum = 0;
+"60
+[; ;mxcmd.c: 60:  uint16_t sum = 0;
 [v _sum `us ~T0 @X0 1 a ]
 [e = _sum -> -> 0 `i `us ]
-"63
-[; ;mxcmd.c: 63:  for (int i = 0; i < len; i++) {
+"61
+[; ;mxcmd.c: 61:  for (int i = 0; i < len; i++) {
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
@@ -4369,21 +4331,21 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $U 3331  ]
 [e :U 3330 ]
 {
-"64
-[; ;mxcmd.c: 64:   sum += data[i];
+"62
+[; ;mxcmd.c: 62:   sum += data[i];
 [e =+ _sum -> *U + _data * -> _i `x -> -> # *U _data `i `x `us ]
-"65
-[; ;mxcmd.c: 65:  }
+"63
+[; ;mxcmd.c: 63:  }
 }
 [e ++ _i -> 1 `i ]
 [e $ < _i -> _len `i 3330  ]
 [e :U 3331 ]
 }
-"66
-[; ;mxcmd.c: 66:  return sum;
+"64
+[; ;mxcmd.c: 64:  return sum;
 [e ) _sum ]
 [e $UE 3329  ]
-"67
-[; ;mxcmd.c: 67: }
+"65
+[; ;mxcmd.c: 65: }
 [e :UE 3329 ]
 }

@@ -4234,46 +4234,32 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;../timers.c: 47: 
 [e -- *U + &U _tickCount * -> _i `ux -> -> # *U &U _tickCount `ui `ux -> -> 1 `i `us ]
 "48
-[; ;../timers.c: 48: 
+[; ;../timers.c: 48: void delay_ms(const uint16_t ms)
 }
 [e :U 3308 ]
 "49
-[; ;../timers.c: 49: 
+[; ;../timers.c: 49: {
 }
 [e ++ _i -> -> 1 `i `us ]
 [e $ < -> _i `ui -> . `E24005 5 `ui 3305  ]
 [e :U 3306 ]
 }
 "53
-[; ;../timers.c: 53: {
 [e ( _button_press_check ..  ]
 "54
-[; ;../timers.c: 54: }
 [e :UE 3304 ]
 }
-"60
-[v _delay_us `(v ~T0 @X0 1 ef1`ul ]
-"61
-{
-[e :U _delay_us ]
-"60
-[v _us `ul ~T0 @X0 1 r1 ]
-"61
-[f ]
-"62
-[e :UE 3309 ]
-}
-"64
+"56
 [v _delay_ms `(v ~T0 @X0 1 ef1`Cus ]
-"65
+"57
 {
 [e :U _delay_ms ]
-"64
+"56
 [v _ms `Cus ~T0 @X0 1 r1 ]
-"65
+"57
 [f ]
-"66
+"58
 [e ( _WaitMs (1 _ms ]
-"67
-[e :UE 3310 ]
+"59
+[e :UE 3309 ]
 }

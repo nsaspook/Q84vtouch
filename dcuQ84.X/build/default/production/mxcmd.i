@@ -41180,11 +41180,6 @@ void delay_ms(const uint16_t);
  extern B_type B;
 # 2 "mxcmd.c" 2
 
-static volatile uint8_t data = 0x00, dcount = 0, dstart = 0, rdstart = 0;
-static volatile uint16_t tbuf[32 + 1], rbuf[32 + 1];
-static uint16_t *p_tbuf = (uint16_t*) tbuf, *p_rbuf = (uint16_t*) rbuf;
-static volatile uint8_t pace = 0;
-
 
 
 
@@ -41236,6 +41231,9 @@ float lp_filter(const float new, const uint8_t bn, const int8_t slow)
 
  return smooth[bn] = smooth[bn] + ((new - smooth[bn]) * lp_speed);
 }
+
+
+
 
 uint16_t calc_checksum(uint8_t* data, const uint8_t len)
 {

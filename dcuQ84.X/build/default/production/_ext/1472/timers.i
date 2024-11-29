@@ -41272,14 +41272,6 @@ void timer_ms_tick(const uint32_t status, const uintptr_t context)
  button_press_check();
 }
 
-
-
-
-
-void delay_us(uint32_t us)
-{
-}
-
 void delay_ms(const uint16_t ms)
 {
  WaitMs(ms);

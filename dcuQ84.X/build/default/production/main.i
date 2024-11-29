@@ -41686,28 +41686,10 @@ void delay_ms(const uint16_t);
  _Bool get_blob_rx(void);
 # 160 "main.c" 2
 # 170 "main.c"
-enum state_type {
- state_init,
- state_status,
- state_panel,
- state_batteryv,
- state_batterya,
- state_watts,
- state_fwrev,
- state_time,
- state_date,
- state_mx_log,
- state_misc,
- state_mx_status,
- state_last,
-};
-
-static uint16_t abuf[32], cbuf[32 + 2];
 volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
-volatile enum state_type state = state_init;
 char buffer[512] = "Boot Init Display   ", info_buffer[512], log_buffer[512];
-const char *build_date = "Nov 28 2024", *build_time = "18:41:48";
+const char *build_date = "Nov 29 2024", *build_time = "10:16:25";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
@@ -41779,6 +41761,7 @@ void main(void)
 
  can_setup();
 
+ do { TRISBbits.TRISB3 = 1; } while(0);
 
  (INTCON0bits.GIEH = 1);
 
@@ -41800,6 +41783,7 @@ void main(void)
  StartTimer(TMR_MBTEST, 20);
  mb_setup();
 
+
  StartTimer(TMR_SPIN, 200);
 
  init_display();
@@ -41810,14 +41794,15 @@ void main(void)
 
 
  snprintf(buffer, 512, "%s B:%X %X %X   ", build_time, STATUS, PCON0, PCON1);
-
  eaDogM_WriteStringAtPos(2, 0, buffer);
 
  snprintf(buffer, 512, "%s ", "Start Up            ");
  eaDogM_WriteStringAtPos(3, 0, buffer);
  wdtdelay(1000000);
+
  snprintf(buffer, 512, "%s ", "Polling Pump        ");
  eaDogM_WriteStringAtPos(2, 0, buffer);
+ wdtdelay(500000);
 
 
 
@@ -41998,6 +41983,9 @@ char spinners(uint8_t shape, const uint8_t reset)
   s[shape] = 0;
  return c;
 }
+
+
+
 
 device_id_data_t DeviceID_Read(device_id_address_t address)
 {

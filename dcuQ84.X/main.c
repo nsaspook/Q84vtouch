@@ -167,26 +167,8 @@
 
 #define MAX_ALT_DIS	3
 
-enum state_type {
-	state_init,
-	state_status,
-	state_panel,
-	state_batteryv,
-	state_batterya,
-	state_watts,
-	state_fwrev,
-	state_time,
-	state_date,
-	state_mx_log,
-	state_misc,
-	state_mx_status,
-	state_last,
-};
-
-static uint16_t abuf[FM_BUFFER], cbuf[FM_BUFFER + 2];
 volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = AMP_WHOLE_ZERO, panel_watts, volt_fract, vf, vw;
-volatile enum state_type state = state_init;
 char buffer[MAX_B_BUF] = "Boot Init Display   ", info_buffer[MAX_B_BUF], log_buffer[MAX_B_BUF];
 const char *build_date = __DATE__, *build_time = __TIME__;
 volatile uint16_t tickCount[TMR_COUNT];
@@ -256,10 +238,11 @@ void main(void)
 
 	/*
 	 * complete and correct the MCC CANBUS configuration
-	 * controller is hang if this is not run
+	 * controller WILL hang if this is not run
 	 */
 	can_setup();
 
+	DLED1_SetDigitalInput(); // DLED and DLED are tied together, make one an input
 	// Enable high priority global interrupts
 	INTERRUPT_GlobalInterruptHighEnable();
 
@@ -281,6 +264,7 @@ void main(void)
 	StartTimer(TMR_MBTEST, 20);
 	mb_setup(); // serial error handlers
 
+	// ACSII character spinner shift timer
 	StartTimer(TMR_SPIN, SPINNER_SPEED);
 
 	init_display();
@@ -291,14 +275,15 @@ void main(void)
 
 	/* display build time and boot status codes 67 34 07, WDT reset 67 24 07 */
 	snprintf(buffer, MAX_B_BUF, "%s B:%X %X %X   ", build_time, STATUS, PCON0, PCON1);
-
 	eaDogM_WriteStringAtPos(2, 0, buffer);
 
 	snprintf(buffer, MAX_B_BUF, "%s ", "Start Up            ");
 	eaDogM_WriteStringAtPos(3, 0, buffer);
 	wdtdelay(1000000);
+
 	snprintf(buffer, MAX_B_BUF, "%s ", "Polling Pump        ");
 	eaDogM_WriteStringAtPos(2, 0, buffer);
+	wdtdelay(500000);
 
 	/*
 	 * read and store the CPU_ID for PCB tracing
@@ -480,6 +465,9 @@ char spinners(uint8_t shape, const uint8_t reset)
 	return c;
 }
 
+/*
+ * read the factory chip ID from the CPUID table area
+ */
 device_id_data_t DeviceID_Read(device_id_address_t address)
 {
 	device_id_data_t deviceID;
