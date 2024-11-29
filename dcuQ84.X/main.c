@@ -365,7 +365,7 @@ void main(void)
 						if (B.alt_display == 0) {
 							uint16_t vt, vw, vf;
 							M.error = 0;
-							snprintf(buffer, MAX_B_BUF, "Acc %s%s %s %sC          ", C.aset, C.accel, C.error, C.tmsc);
+							snprintf(buffer, MAX_B_BUF, "Acc S%sA%s %s %sC          ", C.aset, C.accel, C.error, C.tmsc);
 							eaDogM_WriteStringAtPos(0, 0, buffer);
 							vt = (uint16_t) atoi((const char *) C.link);
 							volt_f(vt);

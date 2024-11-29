@@ -41126,8 +41126,8 @@ extern char spinners(uint8_t, const uint8_t);
 
 
 
- const char build_version[] = "V1.06 DCU  Q84    ";
-# 54 "../dcuQ84.X/mxcmd.h"
+ const char build_version[] = "V1.07 DCU  Q84    ";
+# 55 "../dcuQ84.X/mxcmd.h"
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
  const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};

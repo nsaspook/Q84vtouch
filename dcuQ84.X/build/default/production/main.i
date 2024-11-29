@@ -41248,8 +41248,8 @@ void delay_ms(const uint16_t);
 # 23 "./mxcmd.h" 2
 
 
- const char build_version[] = "V1.06 DCU  Q84    ";
-# 54 "./mxcmd.h"
+ const char build_version[] = "V1.07 DCU  Q84    ";
+# 55 "./mxcmd.h"
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
  const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};
@@ -41707,7 +41707,7 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[512] = "Boot Init Display   ", info_buffer[512], log_buffer[512];
-const char *build_date = "Nov 28 2024", *build_time = "18:07:50";
+const char *build_date = "Nov 28 2024", *build_time = "18:41:48";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
@@ -41884,7 +41884,7 @@ void main(void)
       if (B.alt_display == 0) {
        uint16_t vt, vw, vf;
        M.error = 0;
-       snprintf(buffer, 512, "Acc %s%s %s %sC          ", C.aset, C.accel, C.error, C.tmsc);
+       snprintf(buffer, 512, "Acc S%sA%s %s %sC          ", C.aset, C.accel, C.error, C.tmsc);
        eaDogM_WriteStringAtPos(0, 0, buffer);
        vt = (uint16_t) atoi((const char *) C.link);
        volt_f(vt);
