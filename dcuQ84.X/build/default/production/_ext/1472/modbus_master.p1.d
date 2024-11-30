@@ -11,8 +11,8 @@ build/default/production/_ext/1472/modbus_master.p1:  \
 ../dcuQ84.X/mcc_generated_files/tmr6.h  \
 ../dcuQ84.X/mcc_generated_files/tmr4.h  \
 ../dcuQ84.X/mcc_generated_files/tmr2.h  \
-../dcuQ84.X/mcc_generated_files/clc8.h  \
 ../dcuQ84.X/mcc_generated_files/tmr0.h  \
+../dcuQ84.X/mcc_generated_files/clc8.h  \
 ../dcuQ84.X/mcc_generated_files/clc7.h  \
 ../dcuQ84.X/mcc_generated_files/uart2.h  \
 ../dcuQ84.X/mcc_generated_files/uart1.h  \

@@ -74,7 +74,7 @@ extern char * __intlo_stack_hi;
 #pragma config ODCON = OFF
 
 
-#pragma config CP = OFF
+#pragma config CP = ON
 
 
 #pragma config BOOTSCEN = OFF

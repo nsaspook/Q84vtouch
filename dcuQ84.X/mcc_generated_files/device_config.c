@@ -101,7 +101,7 @@
 #pragma config ODCON = OFF    // CRC on boot output pin open drain bit->Pin drives both high-going and low-going signals
 
 // CONFIG10
-#pragma config CP = OFF    // PFM and Data EEPROM Code Protection bit->PFM and Data EEPROM code protection disabled
+#pragma config CP = ON    // PFM and Data EEPROM Code Protection bit->PFM and Data EEPROM code protection enabled
 
 // CONFIG11
 #pragma config BOOTSCEN = OFF    // CRC on boot scan enable for boot area->CRC on boot will not include the boot area of program memory in its calculation
