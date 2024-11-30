@@ -360,7 +360,7 @@ void main(void)
 							volt_f(vt);
 							snprintf(buffer, MAX_B_BUF, "MDrv %3d.%02dV %2d.%02dA          ", vw, vf, volt_whole, volt_fract);
 							eaDogM_WriteStringAtPos(1, 0, buffer);
-							snprintf(buffer, MAX_B_BUF, "Cont %s %s           ", C.dname, C.dsoft);
+							snprintf(buffer, MAX_B_BUF, "Ctrl %s %s           ", C.dname, C.dsoft);
 							if (C.dcu_online) {
 								C.dcu_online = false;
 								buffer[19] = spinners(4, false);

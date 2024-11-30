@@ -41689,7 +41689,7 @@ void delay_ms(const uint16_t);
 volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 char buffer[512] = "Boot Init Display   ", info_buffer[512], log_buffer[512];
-const char *build_date = "Nov 29 2024", *build_time = "10:16:25";
+const char *build_date = "Nov 30 2024", *build_time = "09:26:37";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
@@ -41879,7 +41879,7 @@ void main(void)
        volt_f(vt);
        snprintf(buffer, 512, "MDrv %3d.%02dV %2d.%02dA          ", vw, vf, volt_whole, volt_fract);
        eaDogM_WriteStringAtPos(1, 0, buffer);
-       snprintf(buffer, 512, "Cont %s %s           ", C.dname, C.dsoft);
+       snprintf(buffer, 512, "Ctrl %s %s           ", C.dname, C.dsoft);
        if (C.dcu_online) {
         C.dcu_online = 0;
         buffer[19] = spinners(4, 0);
