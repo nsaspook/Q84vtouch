@@ -83,6 +83,25 @@ P_data P_read_A = {
 	.cr = 13, // EOF CR
 };
 
+P_data P_read_P = {
+	.addr2 = '0',
+	.addr1 = '0',
+	.addr0 = '1',
+	.action1 = '0',
+	.action0 = '0',
+	.para2 = '3',
+	.para1 = '0',
+	.para0 = '2',
+	.dl1 = '0',
+	.dl0 = '2',
+	.data1 = '=',
+	.data0 = '?',
+	.chk2 = '0',
+	.chk1 = '0',
+	.chk0 = '0',
+	.cr = 13, // EOF CR
+};
+
 P_data P_read_L = {// Link Voltage
 	.addr2 = '0',
 	.addr1 = '0',
@@ -314,14 +333,15 @@ C_data C = {
 	.speed = "OFFLINE",
 	.mon = "OFFLINE",
 	.current = "OFFLINE",
-	.accel = "OFFLINE",
+	.accel = " ",
 	.dname = "OFFLINE",
-	.dsoft = "OFFLINE",
+	.dsoft = " ",
 	.link = "OFFLINE",
 	.error = "OFFLINE",
-	.sspeed = "OFFLINE",
+	.sspeed = " ",
 	.set = "OFFLINE",
-	.tmsc = "OFFLINE",
+	.tmsc = " ",
+	.aset = " ",
 	.dcu_online = false,
 	.dcu_setting = false,
 	.motor_run = false,
@@ -562,6 +582,10 @@ int8_t master_controller_work_dcu(C_data * client)
 			client->trace = T_data;
 			client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_read_A, sizeof(P_read_A));
 			break;
+		case G_DATA3: // read code request
+			client->trace = T_data;
+			client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_read_P, sizeof(P_read_P));
+			break;
 		case G_LINK: // read code request
 			client->trace = T_link;
 			client->req_length = modbus_dcu_send_msg((void*) cc_buffer_tx, (const void *) &P_read_L, sizeof(P_read_L));
@@ -696,6 +720,9 @@ int8_t master_controller_work_dcu(C_data * client)
 				modbus_read_dcu_check(client, &client->data_ok, sizeof(P_action));
 				break;
 			case G_DATA2: // 
+				modbus_read_dcu_check(client, &client->data_ok, sizeof(P_action));
+				break;
+			case G_DATA3: // 
 				modbus_read_dcu_check(client, &client->data_ok, sizeof(P_action));
 				break;
 			case G_SSPEED: // 
@@ -945,8 +972,13 @@ static bool modbus_read_dcu_check(C_data * client, bool* cstate, const uint16_t 
 				for (uint8_t i = 0; i < data_len; i++) {
 					client->accel[i] = cc_buffer[10 + i];
 				}
-				//				client->accel[data_len] = 0;
 				client->accel[1] = 0; // shortened to single boolean char
+			}
+			if (dcu_param_num((uint8_t *) cc_buffer) == AttainedSet) {
+				for (uint8_t i = 0; i < data_len; i++) {
+					client->aset[i] = cc_buffer[10 + i];
+				}
+				client->aset[1] = 0; // shortened to single boolean char
 			}
 
 			if (dcu_param_num((uint8_t *) cc_buffer) == DrvName) {

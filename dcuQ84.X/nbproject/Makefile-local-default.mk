@@ -30,7 +30,14 @@ DEP_GEN=${MP_JAVA_PATH}java -jar "/opt/microchip/mplabx/v6.20/mplab_platform/pla
 MP_CC_DIR="/opt/microchip/xc8/v2.50/bin"
 # MP_CPPC_DIR is not defined
 # MP_BC_DIR is not defined
+<<<<<<< HEAD
 MP_AS_DIR="/opt/microchip/xc8/v2.50/bin"
 MP_LD_DIR="/opt/microchip/xc8/v2.50/bin"
 MP_AR_DIR="/opt/microchip/xc8/v2.50/bin"
 DFP_DIR=/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.25.433
+=======
+MP_AS_DIR="/opt/microchip/xc8/v2.46/bin"
+MP_LD_DIR="/opt/microchip/xc8/v2.46/bin"
+MP_AR_DIR="/opt/microchip/xc8/v2.46/bin"
+DFP_DIR=/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.26.442
+>>>>>>> 58ce7a7bd35529495d4be20ede7a7d98c03f400f

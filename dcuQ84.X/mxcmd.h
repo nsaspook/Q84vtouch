@@ -22,13 +22,15 @@ extern "C" {
 #include "../timers.h"
 
 #define VER	1
-	const char build_version[] = "V1.05 DCU  Q84    ";
+	const char build_version[] = "V1.07 DCU  Q84    ";
 	/*
 	 * code changes
 	 * 1.00 convert FM80 code to soft DCU for turbo pump readout
 	 * 1.01 raw data query and display to LCD screen
 	 * 1.02-1.04 setting messages and data handling functions
 	 * 1.05 actual online turbo data testing
+	 * 1.06 clean-up old and not needed code
+	 * 1.07 BETA
 	 */
 
 #define MAX_B_BUF	512
@@ -135,12 +137,6 @@ extern "C" {
 	extern void onesec_io(void);
 	extern void tensec_io(void);
 	extern void FM_io(void);
-	extern uint8_t FM_tx(const uint16_t *, const uint8_t);
-	extern bool FM_tx_empty(void);
-	extern uint8_t FM_rx(uint16_t *);
-	extern bool FM_rx_ready(void);
-	extern uint8_t FM_rx_count(void);
-	extern void FM_restart(void);
 	extern void wdtdelay(const uint32_t);
 	extern float lp_filter(const float, const uint8_t, const int8_t);
 	extern uint16_t calc_checksum(uint8_t*, const uint8_t);
