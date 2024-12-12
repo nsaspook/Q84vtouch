@@ -972,25 +972,25 @@ static bool modbus_read_dcu_check(C_data * client, bool* cstate, const uint16_t 
 				for (uint8_t i = 0; i < data_len; i++) {
 					client->accel[i] = cc_buffer[10 + i];
 				}
+				if (client->accel[1] == '1') {
+					client->accel[0] = spinners(3, false);
+					client->accel[1] = 0;
+				} else {
+					client->accel[1] = 0; // shortened to single boolean char
+				}
 			}
-			if (client->accel[1] == '1') {
-				client->accel[0] = spinners(3, false);
-				client->accel[1] = 0;
-			} else {
-				client->accel[1] = 0; // shortened to single boolean char
-			}
-		}
-		if (dcu_param_num((uint8_t *) cc_buffer) == AttainedSet) {
-			for (uint8_t i = 0; i < data_len; i++) {
-				client->aset[i] = cc_buffer[10 + i];
-			}
-			if (client->aset[1] == '1') {
-				client->aset[0] = ' ';
-				client->aset[1] = 'O';
-				client->aset[2] = 'K';
-				client->aset[3] = 0;
-			} else {
-				client->aset[1] = 0; // shortened to single boolean char
+			if (dcu_param_num((uint8_t *) cc_buffer) == AttainedSet) {
+				for (uint8_t i = 0; i < data_len; i++) {
+					client->aset[i] = cc_buffer[10 + i];
+				}
+				if (client->aset[1] == '1') {
+					client->aset[0] = ' ';
+					client->aset[1] = 'O';
+					client->aset[2] = 'K';
+					client->aset[3] = 0;
+				} else {
+					client->aset[1] = 0; // shortened to single boolean char
+				}
 			}
 
 			if (dcu_param_num((uint8_t *) cc_buffer) == DrvName) {

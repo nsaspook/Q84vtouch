@@ -37,11 +37,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;../modbus_master.h: 180:  struct V_type {
 [s S3296 `ul 1 `ul 1 `Vul 1 `Vul 1 `Vul 1 `Vul 1 `Vul 1 `Vul 1 `Vul 1 `Vul 1 `l 1 `Va 1 `Va 1 ]
 [n S3296 V_type StartTime TimeUsed pacing pwm_update pwm_stop fault_count fault_ticks fault_source modbus_rx modbus_tx motor_speed fault_active dmt_sosc_flag ]
-"27 /opt/microchip/xc8/v2.46/pic/include/c99/string.h
-[; ;/opt/microchip/xc8/v2.46/pic/include/c99/string.h: 27: void *memcpy (void *restrict, const void *restrict, size_t);
+"27 /opt/microchip/xc8/v2.50/pic/include/c99/string.h
+[; ;/opt/microchip/xc8/v2.50/pic/include/c99/string.h: 27: void *memcpy (void *restrict, const void *restrict, size_t);
 [v _memcpy `(*v ~T0 @X0 0 ef3`*v`*Cv`ui ]
-"123 /opt/microchip/xc8/v2.46/pic/include/c99/stdio.h
-[; ;/opt/microchip/xc8/v2.46/pic/include/c99/stdio.h: 123: int snprintf(char *restrict, size_t, const char *restrict, ...);
+"123 /opt/microchip/xc8/v2.50/pic/include/c99/stdio.h
+[; ;/opt/microchip/xc8/v2.50/pic/include/c99/stdio.h: 123: int snprintf(char *restrict, size_t, const char *restrict, ...);
 [v _snprintf `(i ~T0 @X0 0 e2v`*uc`ui`*Cuc ]
 "398 ../modbus_master.h
 [; ;../modbus_master.h: 398:  uint8_t dcu_crc_r(uint8_t *);
@@ -178,8 +178,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "91 ../qconfig.h
 [; ;../qconfig.h: 91: extern char spinners(uint8_t, const uint8_t);
 [v _spinners `(uc ~T0 @X0 0 ef2`uc`Cuc ]
-"23 /opt/microchip/xc8/v2.46/pic/include/c99/stdlib.h
-[; ;/opt/microchip/xc8/v2.46/pic/include/c99/stdlib.h: 23: int atoi (const char *);
+"23 /opt/microchip/xc8/v2.50/pic/include/c99/stdlib.h
+[; ;/opt/microchip/xc8/v2.50/pic/include/c99/stdlib.h: 23: int atoi (const char *);
 [v _atoi `(i ~T0 @X0 0 ef1`*Cuc ]
 "362 /root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.26.442/xc8/pic/include/proc/pic18f47q84.h
 [; ;/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.26.442/xc8/pic/include/proc/pic18f47q84.h: 362: __asm("BOOTREG equ 038h");
@@ -6824,88 +6824,88 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 3490 ]
 }
 "975
-[; ;../modbus_master.c: 975:    }
-}
-[e :U 3488 ]
-"976
-[; ;../modbus_master.c: 976:    if (client->accel[1] == '1') {
+[; ;../modbus_master.c: 975:     if (client->accel[1] == '1') {
 [e $ ! == -> *U + &U . *U _client 22 * -> -> -> 1 `i `ui `ux -> -> # *U &U . *U _client 22 `ui `ux `ui -> 49 `ui 3493  ]
 {
-"977
-[; ;../modbus_master.c: 977:     client->accel[0] = spinners(3, 0);
+"976
+[; ;../modbus_master.c: 976:      client->accel[0] = spinners(3, 0);
 [e = *U + &U . *U _client 22 * -> -> -> 0 `i `ui `ux -> -> # *U &U . *U _client 22 `ui `ux -> ( _spinners (2 , -> -> 3 `i `uc -> -> 0 `i `uc `uc ]
-"978
-[; ;../modbus_master.c: 978:     client->accel[1] = 0;
+"977
+[; ;../modbus_master.c: 977:      client->accel[1] = 0;
 [e = *U + &U . *U _client 22 * -> -> -> 1 `i `ui `ux -> -> # *U &U . *U _client 22 `ui `ux -> -> 0 `i `uc ]
-"979
-[; ;../modbus_master.c: 979:    } else {
+"978
+[; ;../modbus_master.c: 978:     } else {
 }
 [e $U 3494  ]
 [e :U 3493 ]
 {
-"980
-[; ;../modbus_master.c: 980:     client->accel[1] = 0;
+"979
+[; ;../modbus_master.c: 979:      client->accel[1] = 0;
 [e = *U + &U . *U _client 22 * -> -> -> 1 `i `ui `ux -> -> # *U &U . *U _client 22 `ui `ux -> -> 0 `i `uc ]
+"980
+[; ;../modbus_master.c: 980:     }
+}
+[e :U 3494 ]
 "981
 [; ;../modbus_master.c: 981:    }
 }
-[e :U 3494 ]
+[e :U 3488 ]
 "982
-[; ;../modbus_master.c: 982:   }
-}
-[e :U 3452 ]
-"983
-[; ;../modbus_master.c: 983:   if (dcu_param_num((uint8_t *) cc_buffer) == 302) {
+[; ;../modbus_master.c: 982:    if (dcu_param_num((uint8_t *) cc_buffer) == 302) {
 [e $ ! == -> ( _dcu_param_num (1 -> &U _cc_buffer `*uc `ui -> -> 302 `i `ui 3495  ]
 {
-"984
-[; ;../modbus_master.c: 984:    for (uint8_t i = 0; i < data_len; i++) {
+"983
+[; ;../modbus_master.c: 983:     for (uint8_t i = 0; i < data_len; i++) {
 {
 [v _i `uc ~T0 @X0 1 a ]
 [e = _i -> -> 0 `i `uc ]
 [e $U 3499  ]
 [e :U 3496 ]
 {
-"985
-[; ;../modbus_master.c: 985:     client->aset[i] = cc_buffer[10 + i];
+"984
+[; ;../modbus_master.c: 984:      client->aset[i] = cc_buffer[10 + i];
 [e = *U + &U . *U _client 30 * -> _i `ux -> -> # *U &U . *U _client 30 `ui `ux *U + &U _cc_buffer * -> -> + -> 10 `i -> _i `i `ui `ux -> -> # *U &U _cc_buffer `ui `ux ]
-"986
-[; ;../modbus_master.c: 986:    }
+"985
+[; ;../modbus_master.c: 985:     }
 }
 [e ++ _i -> -> 1 `i `uc ]
 [e :U 3499 ]
 [e $ < -> _i `i -> _data_len `i 3496  ]
 [e :U 3497 ]
 }
-"987
-[; ;../modbus_master.c: 987:    if (client->aset[1] == '1') {
+"986
+[; ;../modbus_master.c: 986:     if (client->aset[1] == '1') {
 [e $ ! == -> *U + &U . *U _client 30 * -> -> -> 1 `i `ui `ux -> -> # *U &U . *U _client 30 `ui `ux `ui -> 49 `ui 3500  ]
 {
-"988
-[; ;../modbus_master.c: 988:     client->aset[0] = ' ';
+"987
+[; ;../modbus_master.c: 987:      client->aset[0] = ' ';
 [e = *U + &U . *U _client 30 * -> -> -> 0 `i `ui `ux -> -> # *U &U . *U _client 30 `ui `ux -> -> 32 `ui `uc ]
-"989
-[; ;../modbus_master.c: 989:     client->aset[1] = 'O';
+"988
+[; ;../modbus_master.c: 988:      client->aset[1] = 'O';
 [e = *U + &U . *U _client 30 * -> -> -> 1 `i `ui `ux -> -> # *U &U . *U _client 30 `ui `ux -> -> 79 `ui `uc ]
-"990
-[; ;../modbus_master.c: 990:     client->aset[2] = 'K';
+"989
+[; ;../modbus_master.c: 989:      client->aset[2] = 'K';
 [e = *U + &U . *U _client 30 * -> -> -> 2 `i `ui `ux -> -> # *U &U . *U _client 30 `ui `ux -> -> 75 `ui `uc ]
-"991
-[; ;../modbus_master.c: 991:     client->aset[3] = 0;
+"990
+[; ;../modbus_master.c: 990:      client->aset[3] = 0;
 [e = *U + &U . *U _client 30 * -> -> -> 3 `i `ui `ux -> -> # *U &U . *U _client 30 `ui `ux -> -> 0 `i `uc ]
-"992
-[; ;../modbus_master.c: 992:    } else {
+"991
+[; ;../modbus_master.c: 991:     } else {
 }
 [e $U 3501  ]
 [e :U 3500 ]
 {
-"993
-[; ;../modbus_master.c: 993:     client->aset[1] = 0;
+"992
+[; ;../modbus_master.c: 992:      client->aset[1] = 0;
 [e = *U + &U . *U _client 30 * -> -> -> 1 `i `ui `ux -> -> # *U &U . *U _client 30 `ui `ux -> -> 0 `i `uc ]
+"993
+[; ;../modbus_master.c: 993:     }
+}
+[e :U 3501 ]
 "994
 [; ;../modbus_master.c: 994:    }
 }
-[e :U 3501 ]
+[e :U 3495 ]
 "996
 [; ;../modbus_master.c: 996:    if (dcu_param_num((uint8_t *) cc_buffer) == 349) {
 [e $ ! == -> ( _dcu_param_num (1 -> &U _cc_buffer `*uc `ui -> -> 349 `i `ui 3502  ]
@@ -7020,7 +7020,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;../modbus_master.c: 1018:   } else {
 }
 [e $U 3523  ]
-[e :U 3495 ]
+[e :U 3452 ]
 {
 "1019
 [; ;../modbus_master.c: 1019:    do { LATBbits.LATB1 = 1; } while(0);
