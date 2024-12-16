@@ -14332,7 +14332,7 @@ Source: &lt;a href="https://www.te.com/commerce/DocumentDelivery/DDEController?A
 </classes>
 <parts>
 <part name="VDD1" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VDD" device=""/>
-<part name="PVP" library="con-kycon" library_urn="urn:adsk.eagle:library:157" deviceset="GLX-S-88M" device="" package3d_urn="urn:adsk.eagle:package:7680/1"/>
+<part name="PVP_90" library="con-kycon" library_urn="urn:adsk.eagle:library:157" deviceset="GLX-S-88M" device="" package3d_urn="urn:adsk.eagle:package:7680/1"/>
 <part name="OS1_10MHZ" library="IQD-Frequency-Products" library_urn="urn:adsk.eagle:library:90" deviceset="OSC-OE" device="-CFPS-72" package3d_urn="urn:adsk.eagle:package:3365/1"/>
 <part name="VDD3" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VDD" device=""/>
 <part name="VSS4" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VSS" device=""/>
@@ -14437,7 +14437,7 @@ Source: &lt;a href="https://www.te.com/commerce/DocumentDelivery/DDEController?A
 <part name="R2" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-US_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="680"/>
 <part name="VSS2" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VSS" device=""/>
 <part name="VDD13" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VDD" device=""/>
-<part name="J1" library="3-1734577-4" deviceset="3-1734577-4" device=""/>
+<part name="PVP_0" library="3-1734577-4" deviceset="3-1734577-4" device=""/>
 <part name="VSS47" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VSS" device=""/>
 <part name="VSS48" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VSS" device=""/>
 </parts>
@@ -14449,7 +14449,7 @@ Source: &lt;a href="https://www.te.com/commerce/DocumentDelivery/DDEController?A
 <instance part="VDD1" gate="G$1" x="93.98" y="0" smashed="yes">
 <attribute name="VALUE" x="101.6" y="0" size="1.778" layer="96" rot="R180"/>
 </instance>
-<instance part="PVP" gate="G$1" x="10.16" y="-20.32" smashed="yes">
+<instance part="PVP_90" gate="G$1" x="10.16" y="-20.32" smashed="yes">
 <attribute name="NAME" x="13.97" y="-9.652" size="1.778" layer="95"/>
 <attribute name="VALUE" x="13.97" y="-31.242" size="1.778" layer="96"/>
 </instance>
@@ -14817,9 +14817,9 @@ Source: &lt;a href="https://www.te.com/commerce/DocumentDelivery/DDEController?A
 <instance part="VDD13" gate="G$1" x="137.16" y="91.44" smashed="yes" rot="R180">
 <attribute name="VALUE" x="134.62" y="86.36" size="1.778" layer="96"/>
 </instance>
-<instance part="J1" gate="G$1" x="45.72" y="12.7" smashed="yes">
-<attribute name="NAME" x="64.77" y="20.32" size="1.778" layer="95" align="center-left"/>
-<attribute name="VALUE" x="64.77" y="17.78" size="1.778" layer="96" align="center-left"/>
+<instance part="PVP_0" gate="G$1" x="45.72" y="12.7" smashed="yes">
+<attribute name="NAME" x="54.61" y="20.32" size="1.778" layer="95" align="center-left"/>
+<attribute name="VALUE" x="46.99" y="-2.54" size="1.778" layer="96" align="center-left"/>
 </instance>
 <instance part="VSS47" gate="G$1" x="68.58" y="0" smashed="yes">
 <attribute name="VALUE" x="71.12" y="-5.08" size="1.778" layer="96" rot="R180"/>
@@ -15219,19 +15219,19 @@ Source: &lt;a href="https://www.te.com/commerce/DocumentDelivery/DDEController?A
 <junction x="223.52" y="40.64"/>
 </segment>
 <segment>
-<pinref part="PVP" gate="G$1" pin="6"/>
+<pinref part="PVP_90" gate="G$1" pin="6"/>
 <pinref part="VSS44" gate="G$1" pin="VSS"/>
 <wire x1="0" y1="-22.86" x2="7.62" y2="-22.86" width="0.1524" layer="91"/>
 <junction x="7.62" y="-22.86"/>
 <junction x="0" y="-22.86"/>
 </segment>
 <segment>
-<pinref part="PVP" gate="G$1" pin="S2"/>
+<pinref part="PVP_90" gate="G$1" pin="S2"/>
 <pinref part="VSS45" gate="G$1" pin="VSS"/>
 <junction x="12.7" y="-33.02"/>
 </segment>
 <segment>
-<pinref part="PVP" gate="G$1" pin="S1"/>
+<pinref part="PVP_90" gate="G$1" pin="S1"/>
 <pinref part="VSS46" gate="G$1" pin="VSS"/>
 <junction x="10.16" y="-33.02"/>
 </segment>
@@ -15247,18 +15247,18 @@ Source: &lt;a href="https://www.te.com/commerce/DocumentDelivery/DDEController?A
 </segment>
 <segment>
 <wire x1="68.58" y1="12.7" x2="76.2" y2="12.7" width="0.1524" layer="91"/>
-<pinref part="J1" gate="G$1" pin="6"/>
+<pinref part="PVP_0" gate="G$1" pin="6"/>
 <junction x="68.58" y="12.7"/>
 <junction x="76.2" y="12.7"/>
 <label x="78.74" y="12.7" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="J1" gate="G$1" pin="MH2"/>
+<pinref part="PVP_0" gate="G$1" pin="MH2"/>
 <pinref part="VSS47" gate="G$1" pin="VSS"/>
 <junction x="68.58" y="2.54"/>
 </segment>
 <segment>
-<pinref part="J1" gate="G$1" pin="MH1"/>
+<pinref part="PVP_0" gate="G$1" pin="MH1"/>
 <pinref part="VSS48" gate="G$1" pin="VSS"/>
 <junction x="68.58" y="5.08"/>
 </segment>
@@ -16069,7 +16069,7 @@ Source: &lt;a href="https://www.te.com/commerce/DocumentDelivery/DDEController?A
 <pinref part="SUPPLY3" gate="1" pin="V+"/>
 </segment>
 <segment>
-<pinref part="PVP" gate="G$1" pin="2"/>
+<pinref part="PVP_90" gate="G$1" pin="2"/>
 <pinref part="SUPPLY1" gate="1" pin="V+"/>
 <wire x1="0" y1="-12.7" x2="7.62" y2="-12.7" width="0.1524" layer="91"/>
 <junction x="7.62" y="-12.7"/>
@@ -16077,7 +16077,7 @@ Source: &lt;a href="https://www.te.com/commerce/DocumentDelivery/DDEController?A
 </segment>
 <segment>
 <wire x1="38.1" y1="10.16" x2="45.72" y2="10.16" width="0.1524" layer="91"/>
-<pinref part="J1" gate="G$1" pin="2"/>
+<pinref part="PVP_0" gate="G$1" pin="2"/>
 <junction x="45.72" y="10.16"/>
 <junction x="38.1" y="10.16"/>
 <label x="33.02" y="10.16" size="1.778" layer="95"/>
@@ -16346,7 +16346,7 @@ Source: &lt;a href="https://www.te.com/commerce/DocumentDelivery/DDEController?A
 <segment>
 <pinref part="A+REV" gate="1" pin="1"/>
 <wire x1="-17.78" y1="-25.4" x2="-15.24" y2="-25.4" width="0.1524" layer="91"/>
-<pinref part="PVP" gate="G$1" pin="7"/>
+<pinref part="PVP_90" gate="G$1" pin="7"/>
 <pinref part="B-NORM" gate="1" pin="1"/>
 <wire x1="-15.24" y1="-25.4" x2="7.62" y2="-25.4" width="0.1524" layer="91"/>
 <wire x1="-17.78" y1="-12.7" x2="-15.24" y2="-12.7" width="0.1524" layer="91"/>
@@ -16359,7 +16359,7 @@ Source: &lt;a href="https://www.te.com/commerce/DocumentDelivery/DDEController?A
 </segment>
 <segment>
 <wire x1="68.58" y1="10.16" x2="91.44" y2="10.16" width="0.1524" layer="91"/>
-<pinref part="J1" gate="G$1" pin="7"/>
+<pinref part="PVP_0" gate="G$1" pin="7"/>
 <junction x="68.58" y="10.16"/>
 <junction x="91.44" y="10.16"/>
 <label x="81.28" y="10.16" size="1.778" layer="95"/>
@@ -16369,7 +16369,7 @@ Source: &lt;a href="https://www.te.com/commerce/DocumentDelivery/DDEController?A
 <segment>
 <pinref part="A+NORM" gate="1" pin="1"/>
 <wire x1="-17.78" y1="-20.32" x2="-12.7" y2="-20.32" width="0.1524" layer="91"/>
-<pinref part="PVP" gate="G$1" pin="5"/>
+<pinref part="PVP_90" gate="G$1" pin="5"/>
 <wire x1="-12.7" y1="-20.32" x2="7.62" y2="-20.32" width="0.1524" layer="91"/>
 <junction x="-12.7" y="-20.32"/>
 <wire x1="-12.7" y1="-20.32" x2="-12.7" y2="-7.62" width="0.1524" layer="91"/>
@@ -16382,7 +16382,7 @@ Source: &lt;a href="https://www.te.com/commerce/DocumentDelivery/DDEController?A
 </segment>
 <segment>
 <wire x1="25.4" y1="2.54" x2="45.72" y2="2.54" width="0.1524" layer="91"/>
-<pinref part="J1" gate="G$1" pin="5"/>
+<pinref part="PVP_0" gate="G$1" pin="5"/>
 <junction x="45.72" y="2.54"/>
 <junction x="25.4" y="2.54"/>
 <label x="30.48" y="2.54" size="1.778" layer="95"/>
