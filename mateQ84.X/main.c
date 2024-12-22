@@ -596,13 +596,17 @@ void main(void)
 			snprintf(buffer, MAX_B_BUF, "%s", "Log Button Pressed        ");
 			eaDogM_WriteStringAtPos(2, 0, buffer);
 			B.LOG = true;
+			snprintf(buffer, MAX_B_BUF, "CAN RX %lu TX %lu       ", can_packets.rec_count, can_packets.tx_count);
+			eaDogM_WriteStringAtPos(3, 0, buffer);
 			B.display_update = true;
 		}
 		if (B.a_switch[D_SW_M]) {
 			MM_ERROR_S;
 			B.a_switch[D_SW_M] = false;
-			snprintf(buffer, MAX_B_BUF, "%s", "MISC Button Pressed        ");
+			snprintf(buffer, MAX_B_BUF, "%s", "CAN  Button Pressed        ");
 			eaDogM_WriteStringAtPos(2, 0, buffer);
+			snprintf(buffer, MAX_B_BUF, "CAN RX %lu TX %lu       ", can_packets.rec_count, can_packets.tx_count);
+			eaDogM_WriteStringAtPos(3, 0, buffer);
 			B.display_update = true;
 		}
 #ifdef LCD_MIRROR

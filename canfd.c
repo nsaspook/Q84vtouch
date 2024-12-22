@@ -8,6 +8,11 @@ volatile uint8_t rxMsgData[CAN_REC_BUFFERS][CANFD_BYTES] = {
 	" no info2           ",
 };
 
+volatile can_frames_t can_packets = {
+	.rec_count = 0,
+	.tx_count = 0,
+};
+
 static blob_type blob = {
 	.blob = 0,
 },
@@ -55,6 +60,7 @@ void Can1FIFO1NotEmptyHandler(void)
 	static uint8_t half = CAN_LOW_BUF;
 
 	INT_TRACE; // GPIO interrupt scope trace
+	can_packets.rec_count++;
 
 	while (true) {
 		can_rec_count.rec_count++;
@@ -194,18 +200,21 @@ void can_fd_tx(void)
 	if (CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(TXQ) & CAN_TX_FIFO_AVAILABLE))//ensure that the FIFO has space for a message
 	{
 		CAN1_Transmit(TXQ, &Transmission); //transmit frame
+		can_packets.tx_count++;
 	}
 	Transmission.msgId = (EMON_SU);
 	Transmission.data = (uint8_t*) log_buffer + CANFD_BYTES; //transmit the data from the data bytes
 	if (CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(TXQ) & CAN_TX_FIFO_AVAILABLE))//ensure that the FIFO has space for a message
 	{
 		CAN1_Transmit(TXQ, &Transmission); //transmit frame
+		can_packets.tx_count++;
 	}
 	Transmission.msgId = (EMON_DA + (B.node_id << NODE_ID_SHIFT)); // BLOB data packet type ID
 	Transmission.data = (uint8_t*) & blob; //transmit the data from the data bytes
 	if (CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(FIFO3) & CAN_TX_FIFO_AVAILABLE))//ensure that the FIFO has space for a message
 	{
 		CAN1_Transmit(FIFO3, &Transmission); //transmit frame
+		can_packets.tx_count++;
 	}
 	blob.tx_flag = false;
 
@@ -214,6 +223,7 @@ void can_fd_tx(void)
 	if (CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(FIFO3) & CAN_TX_FIFO_AVAILABLE))//ensure that the FIFO has space for a message
 	{
 		CAN1_Transmit(FIFO3, &Transmission); //transmit frame
+		can_packets.tx_count++;
 	}
 
 	if (C.serial_ok && C.version_ok) {
@@ -223,6 +233,7 @@ void can_fd_tx(void)
 		if (CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(FIFO3) & CAN_TX_FIFO_AVAILABLE))//ensure that the FIFO has space for a message
 		{
 			CAN1_Transmit(FIFO3, &Transmission); //transmit frame
+			can_packets.tx_count++;
 		}
 	}
 #ifdef CAN_REMOTE_ERR
@@ -303,12 +314,14 @@ void can_fd_lcd_mirror(const uint8_t r, char *strPtr)
 		if (CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(TXQ) & CAN_TX_FIFO_AVAILABLE))//ensure that the FIFO has space for a message
 		{
 			CAN1_Transmit(TXQ, &Transmission); //transmit frame
+			can_packets.tx_count++;
 		}
 		Transmission.msgId = (EMON_DA + (B.node_id << NODE_ID_SHIFT)); // BLOB data packet type ID
 		Transmission.data = (uint8_t*) & blob; //transmit the data from the data bytes
 		if (CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(FIFO3) & CAN_TX_FIFO_AVAILABLE))//ensure that the FIFO has space for a message
 		{
 			CAN1_Transmit(FIFO3, &Transmission); //transmit frame
+			can_packets.tx_count++;
 		}
 		blob.tx_flag = false;
 	}

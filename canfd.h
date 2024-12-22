@@ -59,6 +59,10 @@ extern "C" {
 	} can_rec_count_t;
 
 	typedef struct {
+		uint32_t rec_count, tx_count;
+	} can_frames_t;
+
+	typedef struct {
 		volatile uint8_t blob[CANFD_BYTES];
 		volatile bool tx_flag, rx_flag;
 	} blob_type;
@@ -76,6 +80,7 @@ extern "C" {
 	extern volatile uint8_t rxMsgData[CAN_REC_BUFFERS][CANFD_BYTES];
 	extern time_t can_timer;
 	extern struct tm *can_newtime;
+	extern volatile can_frames_t can_packets;
 
 	void TXQNotFullHandler(void);
 	void Can1FIFO1NotEmptyHandler(void);
