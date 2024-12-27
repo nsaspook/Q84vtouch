@@ -41107,8 +41107,8 @@ void delay_ms(const uint16_t);
 # 23 "../dcuQ84.X/mxcmd.h" 2
 
 
- const char build_version[] = "V1.08 DCU  Q84    ";
-# 56 "../dcuQ84.X/mxcmd.h"
+ const char build_version[] = "V1.09 DCU  Q84    ";
+# 57 "../dcuQ84.X/mxcmd.h"
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
  const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};

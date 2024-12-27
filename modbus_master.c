@@ -923,6 +923,11 @@ static bool modbus_read_dcu_check(C_data * client, bool* cstate, const uint16_t 
 		}
 
 		if (DBUG_R c_crc == c_crc_rec) {
+
+			DLED1_Toggle(); // tied to DLED, set to input
+			DLED_Toggle();
+			MLED_SetLow();
+
 			/*
 			 * parse commands and save data 
 			 */
