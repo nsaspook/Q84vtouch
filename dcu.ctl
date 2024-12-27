@@ -17,7 +17,7 @@
   ; Preferred Directions:
 
   PrefDir.1       = *
-  PrefDir.2       = 0
+  PrefDir.2       = *
   PrefDir.3       = 0
   PrefDir.4       = 0
   PrefDir.5       = 0
@@ -30,7 +30,7 @@
   PrefDir.12      = 0
   PrefDir.13      = 0
   PrefDir.14      = 0
-  PrefDir.15      = 0
+  PrefDir.15      = *
   PrefDir.16      = *
 
   Active          =    1
