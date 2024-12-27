@@ -41248,8 +41248,8 @@ void delay_ms(const uint16_t);
 # 23 "./mxcmd.h" 2
 
 
- const char build_version[] = "V1.08 DCU  Q84    ";
-# 56 "./mxcmd.h"
+ const char build_version[] = "V1.09 DCU  Q84    ";
+# 57 "./mxcmd.h"
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
  const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};
@@ -41689,7 +41689,7 @@ void delay_ms(const uint16_t);
 volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 char buffer[512] = "Boot Init Display   ", info_buffer[512], log_buffer[512];
-const char *build_date = "Dec 26 2024", *build_time = "10:42:10";
+const char *build_date = "Dec 27 2024", *build_time = "12:22:42";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
