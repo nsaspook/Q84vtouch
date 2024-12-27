@@ -42303,6 +42303,11 @@ static _Bool modbus_read_dcu_check(C_data * client, _Bool* cstate, const uint16_
 
   if ( c_crc == c_crc_rec) {
 
+   do { LATBbits.LATB3 = ~LATBbits.LATB3; } while(0);
+   do { LATDbits.LATD4 = ~LATDbits.LATD4; } while(0);
+   do { LATBbits.LATB1 = 0; } while(0);
+
+
 
 
    if (dcu_param_num((uint8_t *) cc_buffer) == 303) {

@@ -41689,7 +41689,7 @@ void delay_ms(const uint16_t);
 volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 char buffer[512] = "Boot Init Display   ", info_buffer[512], log_buffer[512];
-const char *build_date = "Dec 12 2024", *build_time = "14:18:28";
+const char *build_date = "Dec 26 2024", *build_time = "10:42:10";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
