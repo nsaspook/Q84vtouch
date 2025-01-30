@@ -263,7 +263,7 @@ B_type B = {
 /*
  * testing blob data feature for logs
  */
-union blob_log *mxlog_ptr = (void*) & B.log;
+//union blob_log *mxlog_ptr = (void*) & B.log;
 
 static EB_data *EB = &EBD;
 
@@ -822,7 +822,7 @@ void state_mx_log_cb(void)
 
 	cmd_mx_log[5] = B.log.select;
 	cmd_mx_log[7] = 0x16 + B.log.select; // update the checksum
-	mxlog_ptr->log.type = 1;
+//	mxlog_ptr->log.type = 1;
 
 	state = state_mx_status;
 }

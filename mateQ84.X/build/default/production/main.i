@@ -1,11 +1,11 @@
 # 1 "main.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
-# 288 "<built-in>" 3
+# 285 "<built-in>" 3
 # 1 "<command line>" 1
 # 1 "<built-in>" 2
-# 1 "/opt/microchip/xc8/v2.46/pic/include/language_support.h" 1 3
-# 68 "/opt/microchip/xc8/v2.46/pic/include/language_support.h" 3
+# 1 "/opt/microchip/xc8/v3.00/pic/include/language_support.h" 1 3
+# 46 "/opt/microchip/xc8/v3.00/pic/include/language_support.h" 3
 extern char * __stack_lo;
 extern char * __stack_hi;
 
@@ -166,43 +166,49 @@ extern char * __intlo_stack_hi;
 
 
 #pragma config CRCERESL = hFF
-# 197 "main.c"
-# 1 "/opt/microchip/xc8/v2.46/pic/include/xc.h" 1 3
-# 18 "/opt/microchip/xc8/v2.46/pic/include/xc.h" 3
+
+
+
+
+
+
+
+
+# 1 "/opt/microchip/xc8/v3.00/pic/include/xc.h" 1 3
+# 18 "/opt/microchip/xc8/v3.00/pic/include/xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
 
 extern double __fpnormalize(double);
 
 
-
-# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/xc8debug.h" 1 3
-
-
-
-# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/stdlib.h" 1 3
+# 1 "/opt/microchip/xc8/v3.00/pic/include/c99/xc8debug.h" 1 3
 
 
 
-# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/musl_xc8.h" 1 3
-# 5 "/opt/microchip/xc8/v2.46/pic/include/c99/stdlib.h" 2 3
+# 1 "/opt/microchip/xc8/v3.00/pic/include/c99/stdlib.h" 1 3
 
+
+
+# 1 "/opt/microchip/xc8/v3.00/pic/include/c99/musl_xc8.h" 1 3
+# 5 "/opt/microchip/xc8/v3.00/pic/include/c99/stdlib.h" 2 3
 
 
 
 
-# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/features.h" 1 3
-# 11 "/opt/microchip/xc8/v2.46/pic/include/c99/stdlib.h" 2 3
-# 21 "/opt/microchip/xc8/v2.46/pic/include/c99/stdlib.h" 3
-# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 1 3
-# 24 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 3
+
+# 1 "/opt/microchip/xc8/v3.00/pic/include/c99/features.h" 1 3
+# 11 "/opt/microchip/xc8/v3.00/pic/include/c99/stdlib.h" 2 3
+# 21 "/opt/microchip/xc8/v3.00/pic/include/c99/stdlib.h" 3
+# 1 "/opt/microchip/xc8/v3.00/pic/include/c99/bits/alltypes.h" 1 3
+# 24 "/opt/microchip/xc8/v3.00/pic/include/c99/bits/alltypes.h" 3
 typedef long int wchar_t;
-# 128 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 3
+# 128 "/opt/microchip/xc8/v3.00/pic/include/c99/bits/alltypes.h" 3
 typedef unsigned size_t;
-# 174 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 3
+# 174 "/opt/microchip/xc8/v3.00/pic/include/c99/bits/alltypes.h" 3
 typedef __int24 int24_t;
-# 210 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 3
+# 210 "/opt/microchip/xc8/v3.00/pic/include/c99/bits/alltypes.h" 3
 typedef __uint24 uint24_t;
-# 22 "/opt/microchip/xc8/v2.46/pic/include/c99/stdlib.h" 2 3
+# 22 "/opt/microchip/xc8/v3.00/pic/include/c99/stdlib.h" 2 3
 
 int atoi (const char *);
 long atol (const char *);
@@ -228,7 +234,7 @@ unsigned long long strtoull (const char *restrict, char **restrict, int);
 unsigned long __strtoxl(const char * s, char ** endptr, int base, char is_signed);
 
 unsigned long long __strtoxll(const char * s, char ** endptr, int base, char is_signed);
-# 55 "/opt/microchip/xc8/v2.46/pic/include/c99/stdlib.h" 3
+# 55 "/opt/microchip/xc8/v3.00/pic/include/c99/stdlib.h" 3
 int rand (void);
 void srand (unsigned);
 
@@ -274,7 +280,7 @@ typedef struct { unsigned int quot, rem; } udiv_t;
 typedef struct { unsigned long quot, rem; } uldiv_t;
 udiv_t udiv (unsigned int, unsigned int);
 uldiv_t uldiv (unsigned long, unsigned long);
-# 5 "/opt/microchip/xc8/v2.46/pic/include/c99/xc8debug.h" 2 3
+# 5 "/opt/microchip/xc8/v3.00/pic/include/c99/xc8debug.h" 2 3
 
 
 
@@ -284,26 +290,26 @@ uldiv_t uldiv (unsigned long, unsigned long);
 
 #pragma intrinsic(__builtin_software_breakpoint)
 extern void __builtin_software_breakpoint(void);
-# 24 "/opt/microchip/xc8/v2.46/pic/include/xc.h" 2 3
-# 1 "/opt/microchip/xc8/v2.46/pic/include/builtins.h" 1 3
+# 24 "/opt/microchip/xc8/v3.00/pic/include/xc.h" 2 3
+# 1 "/opt/microchip/xc8/v3.00/pic/include/builtins.h" 1 3
 
 
 
-# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/stdint.h" 1 3
-# 26 "/opt/microchip/xc8/v2.46/pic/include/c99/stdint.h" 3
-# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 1 3
-# 133 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 3
+# 1 "/opt/microchip/xc8/v3.00/pic/include/c99/stdint.h" 1 3
+# 26 "/opt/microchip/xc8/v3.00/pic/include/c99/stdint.h" 3
+# 1 "/opt/microchip/xc8/v3.00/pic/include/c99/bits/alltypes.h" 1 3
+# 133 "/opt/microchip/xc8/v3.00/pic/include/c99/bits/alltypes.h" 3
 typedef unsigned __int24 uintptr_t;
-# 148 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 3
+# 148 "/opt/microchip/xc8/v3.00/pic/include/c99/bits/alltypes.h" 3
 typedef __int24 intptr_t;
-# 164 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 3
+# 164 "/opt/microchip/xc8/v3.00/pic/include/c99/bits/alltypes.h" 3
 typedef signed char int8_t;
 
 
 
 
 typedef short int16_t;
-# 179 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 3
+# 179 "/opt/microchip/xc8/v3.00/pic/include/c99/bits/alltypes.h" 3
 typedef long int32_t;
 
 
@@ -311,7 +317,7 @@ typedef long int32_t;
 
 
 typedef long long int64_t;
-# 194 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 3
+# 194 "/opt/microchip/xc8/v3.00/pic/include/c99/bits/alltypes.h" 3
 typedef long long intmax_t;
 
 
@@ -324,7 +330,7 @@ typedef unsigned char uint8_t;
 
 
 typedef unsigned short uint16_t;
-# 215 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 3
+# 215 "/opt/microchip/xc8/v3.00/pic/include/c99/bits/alltypes.h" 3
 typedef unsigned long uint32_t;
 
 
@@ -332,9 +338,9 @@ typedef unsigned long uint32_t;
 
 
 typedef unsigned long long uint64_t;
-# 235 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 3
+# 235 "/opt/microchip/xc8/v3.00/pic/include/c99/bits/alltypes.h" 3
 typedef unsigned long long uintmax_t;
-# 27 "/opt/microchip/xc8/v2.46/pic/include/c99/stdint.h" 2 3
+# 27 "/opt/microchip/xc8/v3.00/pic/include/c99/stdint.h" 2 3
 
 typedef int8_t int_fast8_t;
 
@@ -366,14 +372,14 @@ typedef uint24_t uint_fast24_t;
 typedef uint32_t uint_least32_t;
 
 typedef uint64_t uint_least64_t;
-# 148 "/opt/microchip/xc8/v2.46/pic/include/c99/stdint.h" 3
-# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/stdint.h" 1 3
+# 148 "/opt/microchip/xc8/v3.00/pic/include/c99/stdint.h" 3
+# 1 "/opt/microchip/xc8/v3.00/pic/include/c99/bits/stdint.h" 1 3
 typedef int16_t int_fast16_t;
 typedef int32_t int_fast32_t;
 typedef uint16_t uint_fast16_t;
 typedef uint32_t uint_fast32_t;
-# 149 "/opt/microchip/xc8/v2.46/pic/include/c99/stdint.h" 2 3
-# 5 "/opt/microchip/xc8/v2.46/pic/include/builtins.h" 2 3
+# 149 "/opt/microchip/xc8/v3.00/pic/include/c99/stdint.h" 2 3
+# 5 "/opt/microchip/xc8/v3.00/pic/include/builtins.h" 2 3
 
 
 #pragma intrinsic(__nop)
@@ -395,7 +401,7 @@ extern __attribute__((nonreentrant)) void _delaywdt(uint32_t);
 
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(uint8_t);
-# 25 "/opt/microchip/xc8/v2.46/pic/include/xc.h" 2 3
+# 25 "/opt/microchip/xc8/v3.00/pic/include/xc.h" 2 3
 
 
 
@@ -409,12 +415,15 @@ extern __attribute__((nonreentrant)) void _delay3(uint8_t);
 
 
 
-# 1 "/opt/microchip/xc8/v2.46/pic/include/htc.h" 1 3
+# 1 "/opt/microchip/xc8/v3.00/pic/include/htc.h" 1 3
 
 
 
-# 1 "/opt/microchip/xc8/v2.46/pic/include/xc.h" 1 3
-# 5 "/opt/microchip/xc8/v2.46/pic/include/htc.h" 2 3
+
+
+
+# 1 "/opt/microchip/xc8/v3.00/pic/include/xc.h" 1 3
+# 8 "/opt/microchip/xc8/v3.00/pic/include/htc.h" 2 3
 # 6 "/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.26.442/xc8/pic/include/pic18.h" 2 3
 
 
@@ -422,7 +431,7 @@ extern __attribute__((nonreentrant)) void _delay3(uint8_t);
 # 284 "/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.26.442/xc8/pic/include/pic18_chip_select.h" 3
 # 1 "/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.26.442/xc8/pic/include/proc/pic18f47q84.h" 1 3
 # 44 "/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.26.442/xc8/pic/include/proc/pic18f47q84.h" 3
-# 1 "/opt/microchip/xc8/v2.46/pic/include/__at.h" 1 3
+# 1 "/opt/microchip/xc8/v3.00/pic/include/__at.h" 1 3
 # 45 "/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.26.442/xc8/pic/include/proc/pic18f47q84.h" 2 3
 # 360 "/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.26.442/xc8/pic/include/proc/pic18f47q84.h" 3
 extern volatile unsigned char BOOTREG __attribute__((address(0x038)));
@@ -38844,8 +38853,7 @@ __attribute__((__unsupported__("The " "EraseFlash" " routine is no longer suppor
 
 
 
-
-# 1 "/opt/microchip/xc8/v2.46/pic/include/errata.h" 1 3
+# 1 "/opt/microchip/xc8/v3.00/pic/include/errata.h" 1 3
 # 28 "/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.26.442/xc8/pic/include/pic18.h" 2 3
 # 156 "/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.26.442/xc8/pic/include/pic18.h" 3
 __attribute__((__unsupported__("The " "Read_b_eep" " routine is no longer supported. Please use the MPLAB X MCC."))) unsigned char Read_b_eep(unsigned int badd);
@@ -38856,39 +38864,38 @@ __attribute__((__unsupported__("The READTIMER" "0" "() macro is not available wi
 # 192 "/root/.mchp_packs/Microchip/PIC18F-Q_DFP/1.26.442/xc8/pic/include/pic18.h" 3
 unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
-# 34 "/opt/microchip/xc8/v2.46/pic/include/xc.h" 2 3
-# 197 "main.c" 2
-
+# 34 "/opt/microchip/xc8/v3.00/pic/include/xc.h" 2 3
+# 198 "main.c" 2
 # 1 "./mxcmd.h" 1
 # 15 "./mxcmd.h"
-# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/stddef.h" 1 3
-# 19 "/opt/microchip/xc8/v2.46/pic/include/c99/stddef.h" 3
-# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 1 3
-# 138 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 3
+# 1 "/opt/microchip/xc8/v3.00/pic/include/c99/stddef.h" 1 3
+# 19 "/opt/microchip/xc8/v3.00/pic/include/c99/stddef.h" 3
+# 1 "/opt/microchip/xc8/v3.00/pic/include/c99/bits/alltypes.h" 1 3
+# 138 "/opt/microchip/xc8/v3.00/pic/include/c99/bits/alltypes.h" 3
 typedef int ptrdiff_t;
-# 20 "/opt/microchip/xc8/v2.46/pic/include/c99/stddef.h" 2 3
+# 20 "/opt/microchip/xc8/v3.00/pic/include/c99/stddef.h" 2 3
 # 16 "./mxcmd.h" 2
-# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/stdbool.h" 1 3
+# 1 "/opt/microchip/xc8/v3.00/pic/include/c99/stdbool.h" 1 3
 # 17 "./mxcmd.h" 2
 
-# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/stdio.h" 1 3
-# 24 "/opt/microchip/xc8/v2.46/pic/include/c99/stdio.h" 3
-# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 1 3
-# 12 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 3
+# 1 "/opt/microchip/xc8/v3.00/pic/include/c99/stdio.h" 1 3
+# 24 "/opt/microchip/xc8/v3.00/pic/include/c99/stdio.h" 3
+# 1 "/opt/microchip/xc8/v3.00/pic/include/c99/bits/alltypes.h" 1 3
+# 12 "/opt/microchip/xc8/v3.00/pic/include/c99/bits/alltypes.h" 3
 typedef void * va_list[1];
 
 
 
 
 typedef void * __isoc_va_list[1];
-# 143 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 3
+# 143 "/opt/microchip/xc8/v3.00/pic/include/c99/bits/alltypes.h" 3
 typedef __int24 ssize_t;
-# 255 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 3
+# 255 "/opt/microchip/xc8/v3.00/pic/include/c99/bits/alltypes.h" 3
 typedef long long off_t;
-# 409 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 3
+# 409 "/opt/microchip/xc8/v3.00/pic/include/c99/bits/alltypes.h" 3
 typedef struct _IO_FILE FILE;
-# 25 "/opt/microchip/xc8/v2.46/pic/include/c99/stdio.h" 2 3
-# 52 "/opt/microchip/xc8/v2.46/pic/include/c99/stdio.h" 3
+# 25 "/opt/microchip/xc8/v3.00/pic/include/c99/stdio.h" 2 3
+# 52 "/opt/microchip/xc8/v3.00/pic/include/c99/stdio.h" 3
 typedef union _G_fpos64_t {
  char __opaque[16];
  double __align;
@@ -39024,12 +39031,12 @@ char *ctermid(char *);
 
 char *tempnam(const char *, const char *);
 # 19 "./mxcmd.h" 2
-# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/string.h" 1 3
-# 25 "/opt/microchip/xc8/v2.46/pic/include/c99/string.h" 3
-# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 1 3
-# 421 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 3
+# 1 "/opt/microchip/xc8/v3.00/pic/include/c99/string.h" 1 3
+# 25 "/opt/microchip/xc8/v3.00/pic/include/c99/string.h" 3
+# 1 "/opt/microchip/xc8/v3.00/pic/include/c99/bits/alltypes.h" 1 3
+# 421 "/opt/microchip/xc8/v3.00/pic/include/c99/bits/alltypes.h" 3
 typedef struct __locale_struct * locale_t;
-# 26 "/opt/microchip/xc8/v2.46/pic/include/c99/string.h" 2 3
+# 26 "/opt/microchip/xc8/v3.00/pic/include/c99/string.h" 2 3
 
 void *memcpy (void *restrict, const void *restrict, size_t);
 void *memmove (void *, const void *, size_t);
@@ -39085,8 +39092,7 @@ void *memccpy (void *restrict, const void *restrict, int, size_t);
 # 1 "./mcc_generated_files/mcc.h" 1
 # 50 "./mcc_generated_files/mcc.h"
 # 1 "./mcc_generated_files/device_config.h" 1
-# 50 "./mcc_generated_files/mcc.h" 2
-
+# 51 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/pin_manager.h" 1
 # 634 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
@@ -39114,18 +39120,15 @@ void IOCAF5_SetInterruptHandler(void (* InterruptHandler)(void));
 extern void (*IOCAF5_InterruptHandler)(void);
 # 887 "./mcc_generated_files/pin_manager.h"
 void IOCAF5_DefaultInterruptHandler(void);
-# 51 "./mcc_generated_files/mcc.h" 2
+# 52 "./mcc_generated_files/mcc.h" 2
 
 
-
-# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/conio.h" 1 3
-# 54 "./mcc_generated_files/mcc.h" 2
-
+# 1 "/opt/microchip/xc8/v3.00/pic/include/c99/conio.h" 1 3
+# 55 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/interrupt_manager.h" 1
 # 109 "./mcc_generated_files/interrupt_manager.h"
 void INTERRUPT_Initialize (void);
-# 55 "./mcc_generated_files/mcc.h" 2
-
+# 56 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/adc.h" 1
 # 65 "./mcc_generated_files/adc.h"
 typedef uint16_t adc_result_t;
@@ -39237,8 +39240,7 @@ void ADC_SetContext2ThresholdInterruptHandler(void (* InterruptHandler)(void));
 void ADC_SetContext3ThresholdInterruptHandler(void (* InterruptHandler)(void));
 # 1132 "./mcc_generated_files/adc.h"
 void ADC_SetContext4ThresholdInterruptHandler(void (* InterruptHandler)(void));
-# 56 "./mcc_generated_files/mcc.h" 2
-
+# 57 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/dma1.h" 1
 # 55 "./mcc_generated_files/dma1.h"
 uint8_t lcd_dma_buf[32];
@@ -39369,8 +39371,7 @@ void DMA1_SetORIInterruptHandler(void (* InterruptHandler)(void));
 
 
 void DMA1_DefaultInterruptHandler(void);
-# 57 "./mcc_generated_files/mcc.h" 2
-
+# 58 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/tmr5.h" 1
 # 100 "./mcc_generated_files/tmr5.h"
 void TMR5_Initialize(void);
@@ -39394,8 +39395,7 @@ uint8_t TMR5_CheckGateValueStatus(void);
 extern void (*TMR5_InterruptHandler)(void);
 # 404 "./mcc_generated_files/tmr5.h"
 void TMR5_DefaultInterruptHandler(void);
-# 58 "./mcc_generated_files/mcc.h" 2
-
+# 59 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/tmr6.h" 1
 # 79 "./mcc_generated_files/tmr6.h"
 typedef enum
@@ -39687,8 +39687,7 @@ void TMR6_LoadPeriodRegister(uint8_t periodVal);
 extern void (*TMR6_InterruptHandler)(void);
 # 913 "./mcc_generated_files/tmr6.h"
 void TMR6_DefaultInterruptHandler(void);
-# 59 "./mcc_generated_files/mcc.h" 2
-
+# 60 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/tmr4.h" 1
 # 79 "./mcc_generated_files/tmr4.h"
 typedef enum
@@ -39980,8 +39979,7 @@ void TMR4_LoadPeriodRegister(uint8_t periodVal);
 extern void (*TMR4_InterruptHandler)(void);
 # 913 "./mcc_generated_files/tmr4.h"
 void TMR4_DefaultInterruptHandler(void);
-# 60 "./mcc_generated_files/mcc.h" 2
-
+# 61 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/tmr2.h" 1
 # 79 "./mcc_generated_files/tmr2.h"
 typedef enum
@@ -40273,8 +40271,13 @@ void TMR2_LoadPeriodRegister(uint8_t periodVal);
 extern void (*TMR2_InterruptHandler)(void);
 # 913 "./mcc_generated_files/tmr2.h"
 void TMR2_DefaultInterruptHandler(void);
-# 61 "./mcc_generated_files/mcc.h" 2
-
+# 62 "./mcc_generated_files/mcc.h" 2
+# 1 "./mcc_generated_files/clc8.h" 1
+# 91 "./mcc_generated_files/clc8.h"
+void CLC8_Initialize(void);
+# 113 "./mcc_generated_files/clc8.h"
+_Bool CLC8_OutputStatusGet(void);
+# 63 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/tmr0.h" 1
 # 100 "./mcc_generated_files/tmr0.h"
 void TMR0_Initialize(void);
@@ -40294,22 +40297,13 @@ void TMR0_Reload(uint8_t periodVal);
 extern void (*TMR0_InterruptHandler)(void);
 # 329 "./mcc_generated_files/tmr0.h"
 void TMR0_DefaultInterruptHandler(void);
-# 62 "./mcc_generated_files/mcc.h" 2
-
-# 1 "./mcc_generated_files/clc8.h" 1
-# 91 "./mcc_generated_files/clc8.h"
-void CLC8_Initialize(void);
-# 113 "./mcc_generated_files/clc8.h"
-_Bool CLC8_OutputStatusGet(void);
-# 63 "./mcc_generated_files/mcc.h" 2
-
+# 64 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/clc7.h" 1
 # 91 "./mcc_generated_files/clc7.h"
 void CLC7_Initialize(void);
 # 113 "./mcc_generated_files/clc7.h"
 _Bool CLC7_OutputStatusGet(void);
-# 64 "./mcc_generated_files/mcc.h" 2
-
+# 65 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/uart2.h" 1
 # 75 "./mcc_generated_files/uart2.h"
 typedef union {
@@ -40361,8 +40355,7 @@ void (*UART2_TxInterruptHandler)(void);
 void UART2_SetRxInterruptHandler(void (* InterruptHandler)(void));
 # 574 "./mcc_generated_files/uart2.h"
 void UART2_SetTxInterruptHandler(void (* InterruptHandler)(void));
-# 65 "./mcc_generated_files/mcc.h" 2
-
+# 66 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/uart1.h" 1
 # 74 "./mcc_generated_files/uart1.h"
 typedef union {
@@ -40396,8 +40389,7 @@ void UART1_SetFramingErrorHandler(void (* interruptHandler)(void));
 void UART1_SetOverrunErrorHandler(void (* interruptHandler)(void));
 # 450 "./mcc_generated_files/uart1.h"
 void UART1_SetErrorHandler(void (* interruptHandler)(void));
-# 66 "./mcc_generated_files/mcc.h" 2
-
+# 67 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/uart5.h" 1
 # 74 "./mcc_generated_files/uart5.h"
 typedef union {
@@ -40449,8 +40441,7 @@ void (*UART5_TxInterruptHandler)(void);
 void UART5_SetRxInterruptHandler(void (* InterruptHandler)(void));
 # 573 "./mcc_generated_files/uart5.h"
 void UART5_SetTxInterruptHandler(void (* InterruptHandler)(void));
-# 67 "./mcc_generated_files/mcc.h" 2
-
+# 68 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/can1.h" 1
 # 56 "./mcc_generated_files/can1.h"
 # 1 "./mcc_generated_files/can_types.h" 1
@@ -40555,8 +40546,7 @@ typedef enum
     DLC_48,
     DLC_64,
 } CAN_DLC;
-# 56 "./mcc_generated_files/can1.h" 2
-
+# 57 "./mcc_generated_files/can1.h" 2
 
 
 
@@ -40628,8 +40618,7 @@ void CAN1_SetTXQNotFullHandler(void (*handler)(void));
 void CAN1_SetFIFO2nullHandler(void (*handler)(void));
 # 1460 "./mcc_generated_files/can1.h"
 void CAN1_SetFIFO3nullHandler(void (*handler)(void));
-# 68 "./mcc_generated_files/mcc.h" 2
-
+# 69 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/spi1.h" 1
 # 59 "./mcc_generated_files/spi1.h"
 typedef enum {
@@ -40645,7 +40634,7 @@ void SPI1_WriteBlock(void *block, size_t blockSize);
 void SPI1_ReadBlock(void *block, size_t blockSize);
 void SPI1_WriteByte(uint8_t byte);
 uint8_t SPI1_ReadByte(void);
-# 69 "./mcc_generated_files/mcc.h" 2
+# 70 "./mcc_generated_files/mcc.h" 2
 # 84 "./mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
 # 97 "./mcc_generated_files/mcc.h"
@@ -40659,12 +40648,12 @@ void SystemArbiter_Initialize(void);
 # 26 "./../eadog.h"
 # 1 "./../qconfig.h" 1
 # 38 "./../qconfig.h"
-# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/time.h" 1 3
-# 33 "/opt/microchip/xc8/v2.46/pic/include/c99/time.h" 3
-# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 1 3
-# 82 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 3
+# 1 "/opt/microchip/xc8/v3.00/pic/include/c99/time.h" 1 3
+# 33 "/opt/microchip/xc8/v3.00/pic/include/c99/time.h" 3
+# 1 "/opt/microchip/xc8/v3.00/pic/include/c99/bits/alltypes.h" 1 3
+# 82 "/opt/microchip/xc8/v3.00/pic/include/c99/bits/alltypes.h" 3
 typedef unsigned long time_t;
-# 303 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 3
+# 303 "/opt/microchip/xc8/v3.00/pic/include/c99/bits/alltypes.h" 3
 typedef void * timer_t;
 
 
@@ -40676,7 +40665,7 @@ typedef int clockid_t;
 
 
 typedef unsigned long clock_t;
-# 323 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 3
+# 323 "/opt/microchip/xc8/v3.00/pic/include/c99/bits/alltypes.h" 3
 struct timespec { time_t tv_sec; long tv_nsec; };
 
 
@@ -40684,7 +40673,7 @@ struct timespec { time_t tv_sec; long tv_nsec; };
 
 
 typedef int pid_t;
-# 34 "/opt/microchip/xc8/v2.46/pic/include/c99/time.h" 2 3
+# 34 "/opt/microchip/xc8/v3.00/pic/include/c99/time.h" 2 3
 
 
 
@@ -40715,7 +40704,7 @@ struct tm *localtime (const time_t *);
 char *asctime (const struct tm *);
 char *ctime (const time_t *);
 int timespec_get(struct timespec *, int);
-# 73 "/opt/microchip/xc8/v2.46/pic/include/c99/time.h" 3
+# 73 "/opt/microchip/xc8/v3.00/pic/include/c99/time.h" 3
 size_t strftime_l (char * restrict, size_t, const char * restrict, const struct tm * restrict, locale_t);
 
 struct tm *gmtime_r (const time_t *restrict, struct tm *restrict);
@@ -40729,7 +40718,7 @@ struct itimerspec {
  struct timespec it_interval;
  struct timespec it_value;
 };
-# 102 "/opt/microchip/xc8/v2.46/pic/include/c99/time.h" 3
+# 102 "/opt/microchip/xc8/v3.00/pic/include/c99/time.h" 3
 int nanosleep (const struct timespec *, struct timespec *);
 int clock_getres (clockid_t, struct timespec *);
 int clock_gettime (clockid_t, struct timespec *);
@@ -40756,18 +40745,18 @@ extern long timezone;
 extern int getdate_err;
 struct tm *getdate (const char *);
 # 39 "./../qconfig.h" 2
-# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/math.h" 1 3
-# 15 "/opt/microchip/xc8/v2.46/pic/include/c99/math.h" 3
-# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 1 3
-# 39 "/opt/microchip/xc8/v2.46/pic/include/c99/bits/alltypes.h" 3
+# 1 "/opt/microchip/xc8/v3.00/pic/include/c99/math.h" 1 3
+# 15 "/opt/microchip/xc8/v3.00/pic/include/c99/math.h" 3
+# 1 "/opt/microchip/xc8/v3.00/pic/include/c99/bits/alltypes.h" 1 3
+# 39 "/opt/microchip/xc8/v3.00/pic/include/c99/bits/alltypes.h" 3
 typedef float float_t;
 
 
 
 
 typedef double double_t;
-# 16 "/opt/microchip/xc8/v2.46/pic/include/c99/math.h" 2 3
-# 42 "/opt/microchip/xc8/v2.46/pic/include/c99/math.h" 3
+# 16 "/opt/microchip/xc8/v3.00/pic/include/c99/math.h" 2 3
+# 42 "/opt/microchip/xc8/v3.00/pic/include/c99/math.h" 3
 int __fpclassifyf(float);
 
 
@@ -40777,7 +40766,7 @@ int __fpclassifyf(float);
 
 
 int __signbitf(float);
-# 59 "/opt/microchip/xc8/v2.46/pic/include/c99/math.h" 3
+# 59 "/opt/microchip/xc8/v3.00/pic/include/c99/math.h" 3
 double acos(double);
 float acosf(float);
 long double acosl(long double);
@@ -41036,7 +41025,7 @@ long double nextafterl(long double, long double);
 double nexttoward(double, long double);
 float nexttowardf(float, long double);
 long double nexttowardl(long double, long double);
-# 326 "/opt/microchip/xc8/v2.46/pic/include/c99/math.h" 3
+# 326 "/opt/microchip/xc8/v3.00/pic/include/c99/math.h" 3
 double pow(double, double);
 __attribute__((nonreentrant)) float powf(float, float);
 long double powl(long double, long double);
@@ -41118,7 +41107,7 @@ long double tgammal(long double);
 double trunc(double);
 float truncf(float);
 long double truncl(long double);
-# 431 "/opt/microchip/xc8/v2.46/pic/include/c99/math.h" 3
+# 431 "/opt/microchip/xc8/v3.00/pic/include/c99/math.h" 3
 extern int signgam;
 
 double j0(double);
@@ -41248,8 +41237,8 @@ void delay_ms(const uint16_t);
 # 23 "./mxcmd.h" 2
 
 
- const char build_version[] = "V2.02 FM80 Q84";
-# 85 "./mxcmd.h"
+ const char build_version[] = "V2.03 FM80 Q84";
+# 86 "./mxcmd.h"
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
  const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};
@@ -41346,8 +41335,7 @@ void delay_ms(const uint16_t);
  extern uint16_t calc_checksum(uint8_t*, const uint8_t);
 
  extern B_type B;
-# 198 "main.c" 2
-
+# 199 "main.c" 2
 
 # 1 "./../modbus_master.h" 1
 # 89 "./../modbus_master.h"
@@ -41596,8 +41584,7 @@ void delay_ms(const uint16_t);
  extern EM_data2 emt;
  extern EM_serial ems;
  extern EM_version emv;
-# 200 "main.c" 2
-
+# 201 "main.c" 2
 # 1 "./../canfd.h" 1
 # 21 "./../canfd.h"
 # 1 "./../batmon.h" 1
@@ -41701,8 +41688,15 @@ void delay_ms(const uint16_t);
  blob_type* can_blob_get(blob_type*);
  _Bool get_blob_tx(void);
  _Bool get_blob_rx(void);
-# 201 "main.c" 2
-# 210 "main.c"
+# 202 "main.c" 2
+
+
+
+
+
+
+
+
 enum state_type {
  state_init,
  state_status,
@@ -41724,7 +41718,7 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[512] = "Boot Init Display   ", info_buffer[512], log_buffer[512];
-const char *build_date = "Jan 30 2025", *build_time = "12:24:30";
+const char *build_date = "Jan 30 2025", *build_time = "13:59:32";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
@@ -41759,7 +41753,7 @@ B_type B = {
 
 
 
-union blob_log *mxlog_ptr = (void*) & B.log;
+
 
 static EB_data *EB = &EBD;
 
@@ -42266,7 +42260,7 @@ void state_mx_log_cb(void)
 
  cmd_mx_log[5] = B.log.select;
  cmd_mx_log[7] = 0x16 + B.log.select;
- mxlog_ptr->log.type = 1;
+
 
  state = state_mx_status;
 }

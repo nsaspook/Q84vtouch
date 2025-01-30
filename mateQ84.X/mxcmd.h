@@ -22,7 +22,7 @@ extern "C" {
 #include "../timers.h"
 
 #define VER	1
-	const char build_version[] = "V2.02 FM80 Q84";
+	const char build_version[] = "V2.03 FM80 Q84";
 	/*
 	 * code changes
 	 * 1.55 remove critical section interrupt disables for FM80 serial
@@ -61,6 +61,7 @@ extern "C" {
 	 * 2.00 add set display to 1 mode canbus command
 	 * 2.01 minor code cleanups
 	 * 2.02 LCD can rx/tx logging display
+	 * 2.03 button causing display switches while dimmed fixed, mxlog_ptr having issues with xc8 3.00
 	 */
 
 #define MAX_B_BUF	512
