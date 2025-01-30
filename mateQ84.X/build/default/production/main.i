@@ -41324,7 +41324,7 @@ void delay_ms(const uint16_t);
  typedef struct B_type {
   volatile _Bool ten_sec_flag, one_sec_flag, FM80_charged, pv_high, pv_update, once, a_switch[D_SW_COUNT], a_trigger[D_SW_COUNT], a_type[D_SW_COUNT];
   volatile uint16_t pacing, rx_count, flush, pv_prev, day_check, node_id, dim_delay;
-  volatile _Bool FM80_online, FM80_io, LOG, display_dim, display_update;
+  volatile _Bool FM80_online, FM80_io, LOG, display_dim, display_update, display_on;
   volatile uint8_t canbus_online, modbus_online, alt_display, a_pin[D_SW_COUNT];
   float run_time, net_balance;
   uint16_t mui[10];
@@ -41724,7 +41724,7 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[512] = "Boot Init Display   ", info_buffer[512], log_buffer[512];
-const char *build_date = "Dec 30 2024", *build_time = "17:46:09";
+const char *build_date = "Jan 30 2025", *build_time = "12:24:30";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
@@ -41753,6 +41753,7 @@ B_type B = {
  .display_dim = 0,
  .display_update = 0,
  .dim_delay = 6,
+ .display_on = 1,
 };
 
 
@@ -41854,7 +41855,7 @@ void main(void)
 
  }
  eaDogM_WriteStringAtPos(2, 0, buffer);
-# 372 "main.c"
+# 373 "main.c"
  eaDogM_WriteStringAtPos(2, 0, buffer);
  snprintf(buffer, 512, "%s ", "Start Up            ");
  eaDogM_WriteStringAtPos(3, 0, buffer);
@@ -42024,7 +42025,7 @@ void main(void)
      }
     } else {
      M.error = 0;
-# 570 "main.c"
+# 571 "main.c"
      snprintf(buffer, 512, "EMon  %6.1fWh   %c%c    ", EB->bat_energy / 360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
      eaDogM_WriteStringAtPos(1, 0, buffer);
      snprintf(buffer, 512, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
@@ -42039,7 +42040,9 @@ void main(void)
   if (B.a_switch[D_SW_A]) {
    do { LATBbits.LATB1 = 1; } while(0);
    B.a_switch[D_SW_A] = 0;
-   B.alt_display++;
+   if (B.display_on) {
+    B.alt_display++;
+   }
    if (B.alt_display > 3) {
     B.alt_display = 0;
    }
@@ -42173,7 +42176,7 @@ void state_status_cb(void)
 {
  static uint16_t day_clocks = 0;
  static uint8_t status_prev = STATUS_SLEEPING;
-# 733 "main.c"
+# 736 "main.c"
  if (B.day_check++ > 1200) {
   B.day_check = 0;
   B.once = 0;

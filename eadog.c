@@ -410,31 +410,9 @@ void no_dma_set_lcd(void)
 	wdtdelay(NHD_L_DELAY);
 }
 
-void check_lcd_dim(const bool dim)
-{
-	if (B.display_update) {
-		B.display_update = false;
-		B.dim_delay = 0;
-#ifdef USE_LCD_DMA
-		if (dim) {
-			send_lcd_cmd_dma(LCD_CMD_BRI); // set back-light level
-			send_lcd_data_dma(NHD_BL_OFF);
-		} else {
-			send_lcd_cmd_dma(LCD_CMD_BRI); // set back-light level
-			send_lcd_data_dma(NHD_BL_HIGH);
-		}
-#else
-		if (dim) {
-			send_lcd_cmd(LCD_CMD_BRI); // set back-light level
-			send_lcd_data(NHD_BL_LOW);
-		} else {
-			send_lcd_cmd(LCD_CMD_BRI); // set back-light level
-			send_lcd_data(NHD_BL_HIGH);
-		}
-#endif
-	}
-}
-
+/*
+ * set display for ON or OFF
+ */
 void set_lcd_dim(const bool dim)
 {
 	if (B.display_update) {
@@ -444,17 +422,53 @@ void set_lcd_dim(const bool dim)
 		if (dim) {
 			send_lcd_cmd_dma(LCD_CMD_BRI); // set back-light level
 			send_lcd_data_dma(NHD_BL_OFF);
+			B.display_on=false;
 		} else {
 			send_lcd_cmd_dma(LCD_CMD_BRI); // set back-light level
 			send_lcd_data_dma(NHD_BL_HIGH);
+			B.display_on=true;
 		}
 #else
 		if (dim) {
 			send_lcd_cmd(LCD_CMD_BRI); // set back-light level
 			send_lcd_data(NHD_BL_LOW);
+			B.display_on=false;
 		} else {
 			send_lcd_cmd(LCD_CMD_BRI); // set back-light level
 			send_lcd_data(NHD_BL_HIGH);
+			B.display_on=true;
+		}
+#endif
+	}
+}
+
+/*
+ * check timeout for display on BRIGHT
+ */
+void check_lcd_dim(const bool dim)
+{
+	if (B.display_update) {
+		B.display_update = false;
+		B.dim_delay = 0;
+#ifdef USE_LCD_DMA
+		if (dim) {
+			send_lcd_cmd_dma(LCD_CMD_BRI); // set back-light level
+			send_lcd_data_dma(NHD_BL_OFF);
+			B.display_on=false;
+		} else {
+			send_lcd_cmd_dma(LCD_CMD_BRI); // set back-light level
+			send_lcd_data_dma(NHD_BL_HIGH);
+			B.display_on=true;
+		}
+#else
+		if (dim) {
+			send_lcd_cmd(LCD_CMD_BRI); // set back-light level
+			send_lcd_data(NHD_BL_LOW);
+			B.display_on=false;
+		} else {
+			send_lcd_cmd(LCD_CMD_BRI); // set back-light level
+			send_lcd_data(NHD_BL_HIGH);
+			B.display_on=true;
 		}
 #endif
 	}
@@ -464,9 +478,11 @@ void set_lcd_dim(const bool dim)
 #ifdef USE_LCD_DMA
 		send_lcd_cmd_dma(LCD_CMD_BRI); // set back-light level
 		send_lcd_data_dma(NHD_BL_OFF);
+		B.display_on=false;
 #else
 		send_lcd_cmd(LCD_CMD_BRI); // set back-light level
 		send_lcd_data(NHD_BL_LOW);
+		B.display_on=false;
 #endif
 	}
 }

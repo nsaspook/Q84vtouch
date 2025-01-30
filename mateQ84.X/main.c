@@ -257,6 +257,7 @@ B_type B = {
 	.display_dim = false,
 	.display_update = false,
 	.dim_delay = DIM_DELAY,
+	.display_on = true,
 };
 
 /*
@@ -581,7 +582,9 @@ void main(void)
 		if (B.a_switch[D_SW_A]) {
 			MM_ERROR_S;
 			B.a_switch[D_SW_A] = false;
-			B.alt_display++;
+			if (B.display_on) { // only switch if the display is NOT off
+				B.alt_display++;
+			}
 			if (B.alt_display > MAX_ALT_DIS) {
 				B.alt_display = 0;
 			}
