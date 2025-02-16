@@ -426,6 +426,7 @@ void set_lcd_dim(const bool dim)
 		} else {
 			send_lcd_cmd_dma(LCD_CMD_BRI); // set back-light level
 			send_lcd_data_dma(NHD_BL_HIGH);
+			eaDogM_CursorOff();
 			B.display_on=true;
 		}
 #else
@@ -436,6 +437,7 @@ void set_lcd_dim(const bool dim)
 		} else {
 			send_lcd_cmd(LCD_CMD_BRI); // set back-light level
 			send_lcd_data(NHD_BL_HIGH);
+			eaDogM_CursorOff();
 			B.display_on=true;
 		}
 #endif

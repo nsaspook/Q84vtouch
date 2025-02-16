@@ -44,9 +44,9 @@ extern char * __intlo_stack_hi;
 #pragma config MCLRE = EXTMCLR
 #pragma config PWRTS = PWRT_OFF
 #pragma config MVECEN = ON
-#pragma config IVT1WAY = ON
+#pragma config IVT1WAY = OFF
 #pragma config LPBOREN = OFF
-#pragma config BOREN = SBORDIS
+#pragma config BOREN = OFF
 
 
 #pragma config BORV = VBOR_1P9
@@ -39156,7 +39156,7 @@ typedef enum
 
 typedef enum
 {
-    CONTEXT_1,
+    mTouchContext,
 } ADC_context_t;
 # 114 "./mcc_generated_files/adc.h"
 void ADC_Initialize(void);
@@ -40272,12 +40272,6 @@ extern void (*TMR2_InterruptHandler)(void);
 # 913 "./mcc_generated_files/tmr2.h"
 void TMR2_DefaultInterruptHandler(void);
 # 62 "./mcc_generated_files/mcc.h" 2
-# 1 "./mcc_generated_files/clc8.h" 1
-# 91 "./mcc_generated_files/clc8.h"
-void CLC8_Initialize(void);
-# 113 "./mcc_generated_files/clc8.h"
-_Bool CLC8_OutputStatusGet(void);
-# 63 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/tmr0.h" 1
 # 100 "./mcc_generated_files/tmr0.h"
 void TMR0_Initialize(void);
@@ -40297,6 +40291,12 @@ void TMR0_Reload(uint8_t periodVal);
 extern void (*TMR0_InterruptHandler)(void);
 # 329 "./mcc_generated_files/tmr0.h"
 void TMR0_DefaultInterruptHandler(void);
+# 63 "./mcc_generated_files/mcc.h" 2
+# 1 "./mcc_generated_files/clc8.h" 1
+# 91 "./mcc_generated_files/clc8.h"
+void CLC8_Initialize(void);
+# 113 "./mcc_generated_files/clc8.h"
+_Bool CLC8_OutputStatusGet(void);
 # 64 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/clc7.h" 1
 # 91 "./mcc_generated_files/clc7.h"
@@ -41718,7 +41718,7 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[512] = "Boot Init Display   ", info_buffer[512], log_buffer[512];
-const char *build_date = "Jan 30 2025", *build_time = "13:59:32";
+const char *build_date = "Feb 15 2025", *build_time = "15:41:35";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 

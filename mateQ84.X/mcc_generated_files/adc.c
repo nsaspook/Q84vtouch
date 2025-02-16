@@ -166,6 +166,8 @@ void ADC_Initialize(void)
     //Clear ADC Context Threshold Interrupt Flag
     PIR2bits.ADCH1IF = 0;
     
+    //Set ADC Context-1 threshold interrupt enable bit
+    PIE2bits.ADCH1IE = 1;
 
     //Configure interrupt handlers
     ADC_SetADIInterruptHandler(ADC_DefaultADI_ISR);
@@ -200,7 +202,7 @@ void ADC_EnableChannelScan(ADC_context_t context)
 {
     switch (context)
     {
-    case CONTEXT_1:
+    case mTouchContext:
         ADCSEL1bits.CHEN = 1;
         break;
     default:
@@ -212,7 +214,7 @@ void ADC_DisableChannelScan(ADC_context_t context)
 {
     switch (context)
     {
-    case CONTEXT_1:
+    case mTouchContext:
         ADCSEL1bits.CHEN = 0;
         break;
     default:

@@ -87,7 +87,7 @@ typedef enum
  */
 typedef enum
 {
-    CONTEXT_1,
+    mTouchContext,
 } ADC_context_t;
 
 /**

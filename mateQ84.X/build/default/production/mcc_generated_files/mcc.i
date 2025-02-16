@@ -38939,7 +38939,7 @@ typedef enum
 
 typedef enum
 {
-    CONTEXT_1,
+    mTouchContext,
 } ADC_context_t;
 # 114 "mcc_generated_files/adc.h"
 void ADC_Initialize(void);
@@ -40055,12 +40055,6 @@ extern void (*TMR2_InterruptHandler)(void);
 # 913 "mcc_generated_files/tmr2.h"
 void TMR2_DefaultInterruptHandler(void);
 # 62 "mcc_generated_files/mcc.h" 2
-# 1 "mcc_generated_files/clc8.h" 1
-# 91 "mcc_generated_files/clc8.h"
-void CLC8_Initialize(void);
-# 113 "mcc_generated_files/clc8.h"
-_Bool CLC8_OutputStatusGet(void);
-# 63 "mcc_generated_files/mcc.h" 2
 # 1 "mcc_generated_files/tmr0.h" 1
 # 100 "mcc_generated_files/tmr0.h"
 void TMR0_Initialize(void);
@@ -40080,6 +40074,12 @@ void TMR0_Reload(uint8_t periodVal);
 extern void (*TMR0_InterruptHandler)(void);
 # 329 "mcc_generated_files/tmr0.h"
 void TMR0_DefaultInterruptHandler(void);
+# 63 "mcc_generated_files/mcc.h" 2
+# 1 "mcc_generated_files/clc8.h" 1
+# 91 "mcc_generated_files/clc8.h"
+void CLC8_Initialize(void);
+# 113 "mcc_generated_files/clc8.h"
+_Bool CLC8_OutputStatusGet(void);
 # 64 "mcc_generated_files/mcc.h" 2
 # 1 "mcc_generated_files/clc7.h" 1
 # 91 "mcc_generated_files/clc7.h"

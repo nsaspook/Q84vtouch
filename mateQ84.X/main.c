@@ -64,9 +64,9 @@
 #pragma config MCLRE = EXTMCLR  // MCLR Enable bit (If LVP = 0, MCLR pin is MCLR; If LVP = 1, RE3 pin function is MCLR )
 #pragma config PWRTS = PWRT_OFF // Power-up timer selection bits (PWRT is disabled)
 #pragma config MVECEN = ON      // Multi-vector enable bit (Multi-vector enabled, Vector table used for interrupts)
-#pragma config IVT1WAY = ON     // IVTLOCK bit One-way set enable bit (IVTLOCKED bit can be cleared and set only once)
+#pragma config IVT1WAY = OFF     // IVTLOCK bit One-way set enable bit (IVTLOCKED bit can be cleared and set only once)
 #pragma config LPBOREN = OFF    // Low Power BOR Enable bit (Low-Power BOR disabled)
-#pragma config BOREN = SBORDIS  // Brown-out Reset Enable bits (Brown-out Reset enabled , SBOREN bit is ignored)
+#pragma config BOREN = OFF  // Brown-out Reset Enable bits (Brown-out Reset enabled , SBOREN bit is ignored)
 
 // CONFIG4
 #pragma config BORV = VBOR_1P9  // Brown-out Reset Voltage Selection bits (Brown-out Reset Voltage (VBOR) set to 1.9V)
