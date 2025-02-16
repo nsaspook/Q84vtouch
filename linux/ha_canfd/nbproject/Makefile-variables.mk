@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=GNU-Linux
 CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-Linux
-CND_ARTIFACT_NAME_Debug=matesocketcan
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux/matesocketcan
+CND_ARTIFACT_NAME_Debug=ha_canfd
+CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux/ha_canfd
 CND_PACKAGE_DIR_Debug=dist/Debug/GNU-Linux/package
-CND_PACKAGE_NAME_Debug=matesocketcan.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux/package/matesocketcan.tar
+CND_PACKAGE_NAME_Debug=hacanfd.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux/package/hacanfd.tar
 # Release configuration
 CND_PLATFORM_Release=GNU-Linux
 CND_ARTIFACT_DIR_Release=dist/Release/GNU-Linux
-CND_ARTIFACT_NAME_Release=matesocketcan
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux/matesocketcan
+CND_ARTIFACT_NAME_Release=ha_canfd
+CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux/ha_canfd
 CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux/package
-CND_PACKAGE_NAME_Release=matesocketcan.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux/package/matesocketcan.tar
+CND_PACKAGE_NAME_Release=hacanfd.tar
+CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux/package/hacanfd.tar
 #
 # include compiler specific variables
 #

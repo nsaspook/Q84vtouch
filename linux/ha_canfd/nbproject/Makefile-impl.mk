@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=matesocketcan
+PROJECTNAME=ha_canfd
 
 # Active Configuration
 DEFAULTCONF=Debug

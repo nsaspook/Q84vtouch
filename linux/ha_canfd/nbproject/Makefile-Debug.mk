@@ -23,7 +23,7 @@ AS=as
 # Macros
 CND_PLATFORM=GNU-Linux
 CND_DLIB_EXT=so
-CND_CONF=Release
+CND_CONF=Debug
 CND_DISTDIR=dist
 CND_BUILDDIR=build
 
@@ -35,7 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/_ext/5c0/raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.o
+	${OBJECTDIR}/_ext/5c0/ha_canfd.o
 
 
 # C Compiler Flags
@@ -52,20 +52,20 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=`pkg-config --libs libcjson` -lpaho-mqtt3c  
+LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/matesocketcan
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ha_canfd
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/matesocketcan: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ha_canfd: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/matesocketcan ${OBJECTFILES} ${LDLIBSOPTIONS} -s
+	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ha_canfd ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/_ext/5c0/raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.o: ../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c
+${OBJECTDIR}/_ext/5c0/ha_canfd.o: ../ha_canfd.c
 	${MKDIR} -p ${OBJECTDIR}/_ext/5c0
 	${RM} "$@.d"
-	$(COMPILE.c) -O3 -s `pkg-config --cflags libcjson`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5c0/raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.o ../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c
+	$(COMPILE.c) -O3 -Wall -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5c0/ha_canfd.o ../ha_canfd.c
 
 # Subprojects
 .build-subprojects:

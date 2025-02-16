@@ -1,24 +1,11 @@
-/* SPDX-License-Identifier: GPL-2.0-only */
-/*
- * canfdtest.c - Full-duplex test program (DUT and host part)
- *
- * (C) 2009 by Vladislav Gribov, IXXAT Automation GmbH, <gribov@ixxat.de>
- * (C) 2009 Wolfgang Grandegger <wg@grandegger.com>
- * (C) 2021 Jean Gressmann, IAV GmbH, <jean.steven.gressmann@iav.de>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the version 2 of the GNU General Public License
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
- *
- * Send feedback to <linux-can@vger.kernel.org>
- */
+
 
 /*
+ * HA_CANFD
+ * the mateq84 board sends the collected solar energy data via canbus
+ * to the PU2CANFD USB adapter on the Linux HA server. This program
+ * posts JSON formatted data the the Home Assistant MQTT server
+ * 
  * Logging only version for EM540 data from the mateQ84 controller module
  * presets have been defaulted for proper CANFD operation using the
  * PU2CANFD USB adapter with 64 byte payloads
@@ -30,84 +17,8 @@
  */
 
 #define _DEFAULT_SOURCE
-#include <errno.h>
-#include <getopt.h>
-#include <libgen.h>
-#include <limits.h>
-#include <sched.h>
-#include <signal.h>
-#include <stdint.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdbool.h>
-#include <time.h>
-#include <unistd.h>
-#include <sys/stat.h>
-#include <syslog.h>
-
-#include <arpa/inet.h>
-#include <netdb.h>
-#include <ifaddrs.h>
-#include <net/if.h>
-#include <sys/ioctl.h>
-#include <sys/socket.h>
-#include <sys/time.h>
-#include <sys/types.h>
-#include <cjson/cJSON.h>
+#include "ha_canfd/ha_canfd.h"
 #include "MQTTClient.h"
-
-#include <linux/can.h>
-#include <linux/can/raw.h>
-
-#include <sys/stat.h>
-#include <syslog.h>
-
-#define LOG_TO_FILE         "/store/logs/canfd.log"
-
-#define CAN_MSG_ID_PING  0x80000002
-#define CAN_MSG_ID_PING_X 0x80000003
-#define EMON_SL   0x80000002 // config reporting
-#define EMON_SU   0x80000003 // config reporting
-#define EMON_SH   0x80000004 // config reporting
-#define EMON_DM   0x8000000E // set display to mode 1
-#define EMON_ER   0x8000000F // error reporting
-#define EMON_CO   0x8000000C // config reporting
-#define EMON_DA   0x8000000D // blob reporting
-#define EMON_TM   0x8000000A // send time to mateQ84
-#define CAN_MSG_ID_PONG  0x3
-#define CAN_MSG_LEN 64
-#define CAN_FULL_BUFFER CAN_MSG_LEN+CAN_MSG_LEN+CAN_MSG_LEN+1
-#define CAN_MSG_COUNT 1
-#define CAN_MSG_WAIT 27
-#define CAN_TM_TIME 30
-#define HR_SEC  3600
-#define DAY_SEC  HR_SEC*24
-
-#define LOG_VERSION     "v1.14"
-#define MQTT_VERSION    "V3.11"
-#ifdef __amd64
-#define ADDRESS         "tcp://10.1.1.172:1883"
-#else
-#define ADDRESS         "tcp://10.1.1.30:1883"
-#endif
-#define CLIENTID        "MateQ84_Mqtt"
-#define TOPIC_P         "mateq84/data/solar"
-#define TOPIC_S         "mateq84/data/solar/sub"
-#define QOS             1
-#define TIMEOUT         10000L
-#define SPACING_USEC    500 * 1000
-#define MQTT_TIMEOUT    150
-
-#define E_MONTH         2266.0f // Kwh
-#define G_MONTH         1000.0f // kWh
-#define E_DAYS          31.0f
-#define E_PER_DAY       E_MONTH/E_DAYS
-#define E_PER_HOUR      E_PER_DAY/24.0f
-#define G_PER_DAY       G_MONTH/E_DAYS
-#define G_PER_HOUR      G_PER_DAY/24.0f
-
-#define PGE_ZERO
 
 static int running = 1;
 static int verbose = 2;
@@ -128,7 +39,6 @@ uint8_t full_buffer[CAN_FULL_BUFFER], data_buffer[CAN_FULL_BUFFER];
 int32_t sec_30;
 char *token;
 cJSON *json;
-
 FILE* fout;
 
 volatile MQTTClient_deliveryToken deliveredtoken, receivedtoken = false;
@@ -275,6 +185,9 @@ static void print_usage(char *prg)
 	exit(1);
 }
 
+/*
+ * read the canbus data, format to json and post to the MQtt topic
+ */
 static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 {
 	int32_t i;
@@ -615,13 +528,7 @@ static int can_echo_dut(void)
 			print_frame(frame.can_id, frame.data, frame.len, 0);
 		}
 
-		//		err = check_frame(&frame);
 		inc_frame(&frame);
-		/*
-		 * don't echo or send canbus frames
-		 */
-		//		if (send_frame(&frame))
-		//			return -1;
 
 		/*
 		 * to force a interlacing of the frames send by DUT and PC
@@ -715,8 +622,9 @@ static int can_echo_gen(void)
 			}
 
 			loops++;
-			if (test_loops && loops >= test_loops)
+			if (test_loops && loops >= test_loops) {
 				break;
+			}
 
 			unprocessed--;
 		}
