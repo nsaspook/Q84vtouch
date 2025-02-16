@@ -228,12 +228,15 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 				day_time += HR_SEC; // add a hour of seconds to the day variable
 				if (day_time >= DAY_SEC) { // check for a day of seconds
 					day_time = 0;
+#ifdef PGE_ZERO
+					gridin = 0.0f;
+#else
 					gridin = 0.001f;
+#endif
 					gasenergy = 0.001f;
 				}
 			}
 #ifdef PGE_ZERO
-			gridin = 0.0f;
 			gridout = 0.0f;
 #endif
 			fprintf(fout, "%s log %s", log_time(false), data_buffer);
@@ -344,7 +347,7 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 			if (token != NULL) {
 				fprintf(fout, "%s %s ", log_time(false), token);
 				token = strtok(NULL, ",");
-				fprintf(fout, " relay outputs: %s\r\n", token);
+				fprintf(fout, " relay outputs: %s Software Version: %s %s %s\r\n", token, LOG_VERSION, FW_Date, FW_Time);
 			}
 		}
 
@@ -868,8 +871,6 @@ int main(int argc, char *argv[])
 	}
 
 	if ((argc - optind) != 1) {
-		//		print_usage(basename(argv[0]));
-		// default to can0 on the USB interface
 	} else {
 		intf_name = argv[optind];
 	}

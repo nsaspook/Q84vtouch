@@ -2,19 +2,19 @@
 <results version="2">
     <cppcheck version="2.10"/>
     <errors>
-        <error id="redundantAssignment" severity="style" msg="Variable &amp;#039;gridin&amp;#039; is reassigned a value before the old one has been used." verbose="Variable &amp;#039;gridin&amp;#039; is reassigned a value before the old one has been used." cwe="563" file0="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" sinceDate="M/d/yy">
-            <location file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="282" info="gridin is overwritten"/>
-            <location file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="272" info="gridin is assigned"/>
+        <error id="redundantAssignment" severity="style" msg="Variable &amp;#039;gridin&amp;#039; is reassigned a value before the old one has been used." verbose="Variable &amp;#039;gridin&amp;#039; is reassigned a value before the old one has been used." cwe="563" file0="../ha_canfd.c" sinceDate="M/d/yy">
+            <location file="../ha_canfd.c" line="236" info="gridin is overwritten"/>
+            <location file="../ha_canfd.c" line="226" info="gridin is assigned"/>
         </error>
-        <error id="shadowVariable" severity="style" msg="Local variable &amp;#039;json&amp;#039; shadows outer variable" verbose="Local variable &amp;#039;json&amp;#039; shadows outer variable" cwe="398" file0="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" sinceDate="M/d/yy">
-            <location file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="737" info="Shadow variable"/>
-            <location file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="122" info="Shadowed declaration"/>
+        <error id="shadowVariable" severity="style" msg="Local variable &amp;#039;json&amp;#039; shadows outer variable" verbose="Local variable &amp;#039;json&amp;#039; shadows outer variable" cwe="398" file0="../ha_canfd.c" sinceDate="M/d/yy">
+            <location file="../ha_canfd.c" line="683" info="Shadow variable"/>
+            <location file="../ha_canfd.c" line="41" info="Shadowed declaration"/>
         </error>
         <error id="unusedFunction" severity="style" msg="The function &amp;#039;check_frame&amp;#039; is never used." verbose="The function &amp;#039;check_frame&amp;#039; is never used." cwe="561" sinceDate="M/d/yy">
-            <location file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="526"/>
+            <location file="../ha_canfd.c" line="482"/>
         </error>
         <error id="unusedFunction" severity="style" msg="The function &amp;#039;current_timestamp&amp;#039; is never used." verbose="The function &amp;#039;current_timestamp&amp;#039; is never used." cwe="561" sinceDate="M/d/yy">
-            <location file="../raw.githubusercontent.com_linux-can_can-utils_master_canfdtest.c" line="1007"/>
+            <location file="../ha_canfd.c" line="956"/>
         </error>
         <error id="ConfigurationNotChecked" severity="information" msg="Skipping configuration &amp;#039;MBEDTLS_ERR_SSL_ASYNC_IN_PROGRESS;MQTT_USE_MBEDTLS&amp;#039; since the value of &amp;#039;MBEDTLS_ERR_SSL_ASYNC_IN_PROGRESS&amp;#039; is unknown. Use -D if you want to check it. You can use -U to skip it explicitly." verbose="Skipping configuration &amp;#039;MBEDTLS_ERR_SSL_ASYNC_IN_PROGRESS;MQTT_USE_MBEDTLS&amp;#039; since the value of &amp;#039;MBEDTLS_ERR_SSL_ASYNC_IN_PROGRESS&amp;#039; is unknown. Use -D if you want to check it. You can use -U to skip it explicitly." sinceDate="M/d/yy">
             <location file="mqtt_pal.c" line="60"/>

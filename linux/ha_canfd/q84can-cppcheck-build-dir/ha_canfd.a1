@@ -1,0 +1,239 @@
+<?xml version="1.0"?>
+<analyzerinfo hash="12481053505102125184">
+        <error id="redundantAssignment" severity="style" msg="Variable &apos;gridin&apos; is reassigned a value before the old one has been used." verbose="Variable &apos;gridin&apos; is reassigned a value before the old one has been used." cwe="563" file0="../ha_canfd.c">
+            <location file="../ha_canfd.c" line="236" column="11" info="gridin is overwritten"/>
+            <location file="../ha_canfd.c" line="226" column="12" info="gridin is assigned"/>
+            <symbol>gridin</symbol>
+        </error>
+        <error id="redundantAssignment" severity="style" msg="Variable &apos;gridin&apos; is reassigned a value before the old one has been used." verbose="Variable &apos;gridin&apos; is reassigned a value before the old one has been used." cwe="563" file0="../ha_canfd.c">
+            <location file="../ha_canfd.c" line="236" column="11" info="gridin is overwritten"/>
+            <location file="../ha_canfd.c" line="231" column="13" info="gridin is assigned"/>
+            <symbol>gridin</symbol>
+        </error>
+        <error id="shadowVariable" severity="style" msg="Local variable &apos;json&apos; shadows outer variable" verbose="Local variable &apos;json&apos; shadows outer variable" cwe="398" file0="../ha_canfd.c">
+            <location file="../ha_canfd.c" line="683" column="9" info="Shadow variable"/>
+            <location file="../ha_canfd.c" line="41" column="8" info="Shadowed declaration"/>
+            <symbol>json</symbol>
+        </error>
+  <FileInfo check="ctu">
+<function-call call-id="../ha_canfd.c:191:13" call-funcname="print_frame" call-argnr="4" file="../ha_canfd.c" line="370" col="13" call-argexpr="0" call-argvaluetype="0" call-argvalue="0"/><function-call call-id="../ha_canfd.c:428:12" call-funcname="recv_frame" call-argnr="1" file="../ha_canfd.c" line="521" col="17" call-argexpr="&amp;frame" call-argvaluetype="7" call-argvalue="0"/><function-call call-id="../ha_canfd.c:191:13" call-funcname="print_frame" call-argnr="4" file="../ha_canfd.c" line="528" col="15" call-argexpr="0" call-argvaluetype="0" call-argvalue="0"/><function-call call-id="../ha_canfd.c:499:13" call-funcname="inc_frame" call-argnr="1" file="../ha_canfd.c" line="531" col="12" call-argexpr="&amp;frame" call-argvaluetype="7" call-argvalue="0"/><function-call call-id="../ha_canfd.c:428:12" call-funcname="recv_frame" call-argnr="1" file="../ha_canfd.c" line="598" col="18" call-argexpr="&amp;rx_frame" call-argvaluetype="7" call-argvalue="0"/><function-call call-id="../ha_canfd.c:191:13" call-funcname="print_frame" call-argnr="4" file="../ha_canfd.c" line="604" col="16" call-argexpr="0" call-argvaluetype="0" call-argvalue="0"/><function-call call-id="../ha_canfd.c:373:12" call-funcname="compare_frame" call-argnr="2" file="../ha_canfd.c" line="609" col="24" call-argexpr="&amp;rx_frame" call-argvaluetype="7" call-argvalue="0"/><function-call call-id="../ha_canfd.c:373:12" call-funcname="compare_frame" call-argnr="3" file="../ha_canfd.c" line="609" col="24" call-argexpr="0" call-argvaluetype="0" call-argvalue="0"/><function-call call-id="../ha_canfd.c:373:12" call-funcname="compare_frame" call-argnr="2" file="../ha_canfd.c" line="618" col="23" call-argexpr="&amp;rx_frame" call-argvaluetype="7" call-argvalue="0"/><function-call call-id="../ha_canfd.c:191:13" call-funcname="print_frame" call-argnr="2" file="../ha_canfd.c" line="368" col="2" my-id="../ha_canfd.c:358:13" my-argnr="2"/>
+<function-call call-id="../ha_canfd.c:191:13" call-funcname="print_frame" call-argnr="2" file="../ha_canfd.c" line="370" col="2" my-id="../ha_canfd.c:358:13" my-argnr="5"/>
+  </FileInfo>
+  <FileInfo check="Null pointer">
+    <unsafe-usage my-id="../ha_canfd.c:153:13" my-argnr="1" my-argname="prg" file="../ha_canfd.c" line="183" col="3" value="0"/>
+    <unsafe-usage my-id="../ha_canfd.c:482:12" my-argnr="1" my-argname="frame" file="../ha_canfd.c" line="486" col="6" value="0"/>
+    <unsafe-usage my-id="../ha_canfd.c:64:9" my-argnr="4" my-argname="message" file="../ha_canfd.c" line="676" col="15" value="0"/>
+    <unsafe-usage my-id="../ha_canfd.c:65:6" my-argnr="2" my-argname="cause" file="../ha_canfd.c" line="708" col="36" value="0"/>
+  </FileInfo>
+  <FileInfo check="Uninitialized variables">
+    <unsafe-usage my-id="../ha_canfd.c:482:12" my-argnr="1" my-argname="frame" file="../ha_canfd.c" line="486" col="6" value="0"/>
+    <unsafe-usage my-id="../ha_canfd.c:64:9" my-argnr="4" my-argname="message" file="../ha_canfd.c" line="676" col="15" value="0"/>
+  </FileInfo>
+  <FileInfo check="ctu">
+<function-call call-id="../ha_canfd.c:191:13" call-funcname="print_frame" call-argnr="4" file="../ha_canfd.c" line="370" col="13" call-argexpr="0" call-argvaluetype="0" call-argvalue="0"/><function-call call-id="../ha_canfd.c:428:12" call-funcname="recv_frame" call-argnr="1" file="../ha_canfd.c" line="521" col="17" call-argexpr="&amp;frame" call-argvaluetype="7" call-argvalue="0"/><function-call call-id="../ha_canfd.c:191:13" call-funcname="print_frame" call-argnr="4" file="../ha_canfd.c" line="528" col="15" call-argexpr="0" call-argvaluetype="0" call-argvalue="0"/><function-call call-id="../ha_canfd.c:499:13" call-funcname="inc_frame" call-argnr="1" file="../ha_canfd.c" line="531" col="12" call-argexpr="&amp;frame" call-argvaluetype="7" call-argvalue="0"/><function-call call-id="../ha_canfd.c:428:12" call-funcname="recv_frame" call-argnr="1" file="../ha_canfd.c" line="598" col="18" call-argexpr="&amp;rx_frame" call-argvaluetype="7" call-argvalue="0"/><function-call call-id="../ha_canfd.c:191:13" call-funcname="print_frame" call-argnr="4" file="../ha_canfd.c" line="604" col="16" call-argexpr="0" call-argvaluetype="0" call-argvalue="0"/><function-call call-id="../ha_canfd.c:373:12" call-funcname="compare_frame" call-argnr="2" file="../ha_canfd.c" line="609" col="24" call-argexpr="&amp;rx_frame" call-argvaluetype="7" call-argvalue="0"/><function-call call-id="../ha_canfd.c:373:12" call-funcname="compare_frame" call-argnr="3" file="../ha_canfd.c" line="609" col="24" call-argexpr="0" call-argvaluetype="0" call-argvalue="0"/><function-call call-id="../ha_canfd.c:373:12" call-funcname="compare_frame" call-argnr="2" file="../ha_canfd.c" line="618" col="23" call-argexpr="&amp;rx_frame" call-argvaluetype="7" call-argvalue="0"/><function-call call-id="../ha_canfd.c:191:13" call-funcname="print_frame" call-argnr="2" file="../ha_canfd.c" line="368" col="2" my-id="../ha_canfd.c:358:13" my-argnr="2"/>
+<function-call call-id="../ha_canfd.c:191:13" call-funcname="print_frame" call-argnr="2" file="../ha_canfd.c" line="370" col="2" my-id="../ha_canfd.c:358:13" my-argnr="5"/>
+  </FileInfo>
+  <FileInfo check="Null pointer">
+    <unsafe-usage my-id="../ha_canfd.c:153:13" my-argnr="1" my-argname="prg" file="../ha_canfd.c" line="183" col="3" value="0"/>
+    <unsafe-usage my-id="../ha_canfd.c:482:12" my-argnr="1" my-argname="frame" file="../ha_canfd.c" line="486" col="6" value="0"/>
+    <unsafe-usage my-id="../ha_canfd.c:64:9" my-argnr="4" my-argname="message" file="../ha_canfd.c" line="676" col="15" value="0"/>
+    <unsafe-usage my-id="../ha_canfd.c:65:6" my-argnr="2" my-argname="cause" file="../ha_canfd.c" line="708" col="36" value="0"/>
+  </FileInfo>
+  <FileInfo check="Uninitialized variables">
+    <unsafe-usage my-id="../ha_canfd.c:482:12" my-argnr="1" my-argname="frame" file="../ha_canfd.c" line="486" col="6" value="0"/>
+    <unsafe-usage my-id="../ha_canfd.c:64:9" my-argnr="4" my-argname="message" file="../ha_canfd.c" line="676" col="15" value="0"/>
+  </FileInfo>
+  <FileInfo check="ctu">
+<function-call call-id="../ha_canfd.c:191:13" call-funcname="print_frame" call-argnr="4" file="../ha_canfd.c" line="370" col="13" call-argexpr="0" call-argvaluetype="0" call-argvalue="0"/><function-call call-id="../ha_canfd.c:428:12" call-funcname="recv_frame" call-argnr="1" file="../ha_canfd.c" line="521" col="17" call-argexpr="&amp;frame" call-argvaluetype="7" call-argvalue="0"/><function-call call-id="../ha_canfd.c:191:13" call-funcname="print_frame" call-argnr="4" file="../ha_canfd.c" line="528" col="15" call-argexpr="0" call-argvaluetype="0" call-argvalue="0"/><function-call call-id="../ha_canfd.c:499:13" call-funcname="inc_frame" call-argnr="1" file="../ha_canfd.c" line="531" col="12" call-argexpr="&amp;frame" call-argvaluetype="7" call-argvalue="0"/><function-call call-id="../ha_canfd.c:428:12" call-funcname="recv_frame" call-argnr="1" file="../ha_canfd.c" line="598" col="18" call-argexpr="&amp;rx_frame" call-argvaluetype="7" call-argvalue="0"/><function-call call-id="../ha_canfd.c:191:13" call-funcname="print_frame" call-argnr="4" file="../ha_canfd.c" line="604" col="16" call-argexpr="0" call-argvaluetype="0" call-argvalue="0"/><function-call call-id="../ha_canfd.c:373:12" call-funcname="compare_frame" call-argnr="2" file="../ha_canfd.c" line="609" col="24" call-argexpr="&amp;rx_frame" call-argvaluetype="7" call-argvalue="0"/><function-call call-id="../ha_canfd.c:373:12" call-funcname="compare_frame" call-argnr="3" file="../ha_canfd.c" line="609" col="24" call-argexpr="0" call-argvaluetype="0" call-argvalue="0"/><function-call call-id="../ha_canfd.c:373:12" call-funcname="compare_frame" call-argnr="2" file="../ha_canfd.c" line="618" col="23" call-argexpr="&amp;rx_frame" call-argvaluetype="7" call-argvalue="0"/><function-call call-id="../ha_canfd.c:191:13" call-funcname="print_frame" call-argnr="2" file="../ha_canfd.c" line="368" col="2" my-id="../ha_canfd.c:358:13" my-argnr="2"/>
+<function-call call-id="../ha_canfd.c:191:13" call-funcname="print_frame" call-argnr="2" file="../ha_canfd.c" line="370" col="2" my-id="../ha_canfd.c:358:13" my-argnr="5"/>
+  </FileInfo>
+  <FileInfo check="Null pointer">
+    <unsafe-usage my-id="../ha_canfd.c:153:13" my-argnr="1" my-argname="prg" file="../ha_canfd.c" line="183" col="3" value="0"/>
+    <unsafe-usage my-id="../ha_canfd.c:482:12" my-argnr="1" my-argname="frame" file="../ha_canfd.c" line="486" col="6" value="0"/>
+    <unsafe-usage my-id="../ha_canfd.c:64:9" my-argnr="4" my-argname="message" file="../ha_canfd.c" line="676" col="15" value="0"/>
+    <unsafe-usage my-id="../ha_canfd.c:65:6" my-argnr="2" my-argname="cause" file="../ha_canfd.c" line="708" col="36" value="0"/>
+  </FileInfo>
+  <FileInfo check="Uninitialized variables">
+    <unsafe-usage my-id="../ha_canfd.c:482:12" my-argnr="1" my-argname="frame" file="../ha_canfd.c" line="486" col="6" value="0"/>
+    <unsafe-usage my-id="../ha_canfd.c:64:9" my-argnr="4" my-argname="message" file="../ha_canfd.c" line="676" col="15" value="0"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl functionName="showIP" lineNumber="70"/>
+    <functiondecl functionName="skeleton_daemon" lineNumber="102"/>
+    <functiondecl functionName="print_usage" lineNumber="153"/>
+    <functiondecl functionName="print_frame" lineNumber="191"/>
+    <functiondecl functionName="print_compare" lineNumber="358"/>
+    <functiondecl functionName="compare_frame" lineNumber="373"/>
+    <functiondecl functionName="millisleep" lineNumber="395"/>
+    <functiondecl functionName="echo_progress" lineNumber="414"/>
+    <functiondecl functionName="signal_handler" lineNumber="421"/>
+    <functiondecl functionName="recv_frame" lineNumber="428"/>
+    <functiondecl functionName="send_frame" lineNumber="451"/>
+    <functiondecl functionName="check_frame" lineNumber="482"/>
+    <functiondecl functionName="inc_frame" lineNumber="499"/>
+    <functiondecl functionName="can_echo_dut" lineNumber="514"/>
+    <functiondecl functionName="can_echo_gen" lineNumber="546"/>
+    <functiondecl functionName="timer_callback" lineNumber="650"/>
+    <functiondecl functionName="delivered" lineNumber="659"/>
+    <functiondecl functionName="msgarrvd" lineNumber="667"/>
+    <functiondecl functionName="connlost" lineNumber="705"/>
+    <functiondecl functionName="log_time" lineNumber="712"/>
+    <functiondecl functionName="main" lineNumber="732"/>
+    <functiondecl functionName="current_timestamp" lineNumber="956"/>
+    <functiondecl functionName="showIP" lineNumber="70"/>
+    <functiondecl functionName="skeleton_daemon" lineNumber="102"/>
+    <functiondecl functionName="print_usage" lineNumber="153"/>
+    <functiondecl functionName="print_frame" lineNumber="191"/>
+    <functiondecl functionName="print_compare" lineNumber="358"/>
+    <functiondecl functionName="compare_frame" lineNumber="373"/>
+    <functiondecl functionName="millisleep" lineNumber="395"/>
+    <functiondecl functionName="echo_progress" lineNumber="414"/>
+    <functiondecl functionName="signal_handler" lineNumber="421"/>
+    <functiondecl functionName="recv_frame" lineNumber="428"/>
+    <functiondecl functionName="send_frame" lineNumber="451"/>
+    <functiondecl functionName="check_frame" lineNumber="482"/>
+    <functiondecl functionName="inc_frame" lineNumber="499"/>
+    <functiondecl functionName="can_echo_dut" lineNumber="514"/>
+    <functiondecl functionName="can_echo_gen" lineNumber="546"/>
+    <functiondecl functionName="timer_callback" lineNumber="650"/>
+    <functiondecl functionName="delivered" lineNumber="659"/>
+    <functiondecl functionName="msgarrvd" lineNumber="667"/>
+    <functiondecl functionName="connlost" lineNumber="705"/>
+    <functiondecl functionName="log_time" lineNumber="712"/>
+    <functiondecl functionName="main" lineNumber="732"/>
+    <functiondecl functionName="current_timestamp" lineNumber="956"/>
+    <functiondecl functionName="showIP" lineNumber="70"/>
+    <functiondecl functionName="skeleton_daemon" lineNumber="102"/>
+    <functiondecl functionName="print_usage" lineNumber="153"/>
+    <functiondecl functionName="print_frame" lineNumber="191"/>
+    <functiondecl functionName="print_compare" lineNumber="358"/>
+    <functiondecl functionName="compare_frame" lineNumber="373"/>
+    <functiondecl functionName="millisleep" lineNumber="395"/>
+    <functiondecl functionName="echo_progress" lineNumber="414"/>
+    <functiondecl functionName="signal_handler" lineNumber="421"/>
+    <functiondecl functionName="recv_frame" lineNumber="428"/>
+    <functiondecl functionName="send_frame" lineNumber="451"/>
+    <functiondecl functionName="check_frame" lineNumber="482"/>
+    <functiondecl functionName="inc_frame" lineNumber="499"/>
+    <functiondecl functionName="can_echo_dut" lineNumber="514"/>
+    <functiondecl functionName="can_echo_gen" lineNumber="546"/>
+    <functiondecl functionName="timer_callback" lineNumber="650"/>
+    <functiondecl functionName="delivered" lineNumber="659"/>
+    <functiondecl functionName="msgarrvd" lineNumber="667"/>
+    <functiondecl functionName="connlost" lineNumber="705"/>
+    <functiondecl functionName="log_time" lineNumber="712"/>
+    <functiondecl functionName="main" lineNumber="732"/>
+    <functiondecl functionName="current_timestamp" lineNumber="956"/>
+    <functioncall functionName="CANFD_MAX_DLEN"/>
+    <functioncall functionName="CAN_MAX_DLEN"/>
+    <functioncall functionName="CAN_RAW"/>
+    <functioncall functionName="CAN_RAW_FD_FRAMES"/>
+    <functioncall functionName="CAN_RAW_FILTER"/>
+    <functioncall functionName="CAN_RAW_RECV_OWN_MSGS"/>
+    <functioncall functionName="CAN_SFF_MASK"/>
+    <functioncall functionName="CLOCK_MONOTONIC"/>
+    <functioncall functionName="EXIT_FAILURE"/>
+    <functioncall functionName="EXIT_SUCCESS"/>
+    <functioncall functionName="LOG_ERR"/>
+    <functioncall functionName="LOG_NOTICE"/>
+    <functioncall functionName="MQTTCLIENT_PERSISTENCE_NONE"/>
+    <functioncall functionName="MQTTClient_connect"/>
+    <functioncall functionName="MQTTClient_connectOptions_initializer"/>
+    <functioncall functionName="MQTTClient_create"/>
+    <functioncall functionName="MQTTClient_deliveryToken"/>
+    <functioncall functionName="MQTTClient_free"/>
+    <functioncall functionName="MQTTClient_freeMessage"/>
+    <functioncall functionName="MQTTClient_message_initializer"/>
+    <functioncall functionName="MQTTClient_publishMessage"/>
+    <functioncall functionName="MQTTClient_setCallbacks"/>
+    <functioncall functionName="MQTTClient_subscribe"/>
+    <functioncall functionName="NI_MAXHOST"/>
+    <functioncall functionName="NI_NUMERICHOST"/>
+    <functioncall functionName="NULL"/>
+    <functioncall functionName="PF_CAN"/>
+    <functioncall functionName="SIGHUP"/>
+    <functioncall functionName="SOCK_RAW"/>
+    <functioncall functionName="SOL_CAN_RAW"/>
+    <functioncall functionName="_SC_OPEN_MAX"/>
+    <functioncall functionName="atof"/>
+    <functioncall functionName="atoi"/>
+    <functioncall functionName="basename"/>
+    <functioncall functionName="bind"/>
+    <functioncall functionName="cJSON_AddNumberToObject"/>
+    <functioncall functionName="cJSON_AddStringToObject"/>
+    <functioncall functionName="cJSON_CreateObject"/>
+    <functioncall functionName="cJSON_Delete"/>
+    <functioncall functionName="cJSON_GetErrorPtr"/>
+    <functioncall functionName="cJSON_ParseWithLength"/>
+    <functioncall functionName="cJSON_Print"/>
+    <functioncall functionName="cJSON_free"/>
+    <functioncall functionName="calloc"/>
+    <functioncall functionName="can_echo_dut"/>
+    <functioncall functionName="can_echo_gen"/>
+    <functioncall functionName="chdir"/>
+    <functioncall functionName="clock_nanosleep"/>
+    <functioncall functionName="close"/>
+    <functioncall functionName="compare_frame"/>
+    <functioncall functionName="connlost"/>
+    <functioncall functionName="ctime"/>
+    <functioncall functionName="data"/>
+    <functioncall functionName="delivered"/>
+    <functioncall functionName="echo_progress"/>
+    <functioncall functionName="errno"/>
+    <functioncall functionName="error_exit"/>
+    <functioncall functionName="exit"/>
+    <functioncall functionName="false"/>
+    <functioncall functionName="fflush"/>
+    <functioncall functionName="fopen"/>
+    <functioncall functionName="fork"/>
+    <functioncall functionName="fprintf"/>
+    <functioncall functionName="free"/>
+    <functioncall functionName="freeifaddrs"/>
+    <functioncall functionName="getifaddrs"/>
+    <functioncall functionName="getnameinfo"/>
+    <functioncall functionName="getopt"/>
+    <functioncall functionName="gettimeofday"/>
+    <functioncall functionName="if_nametoindex"/>
+    <functioncall functionName="inc_frame"/>
+    <functioncall functionName="localtime"/>
+    <functioncall functionName="log_time"/>
+    <functioncall functionName="memcpy"/>
+    <functioncall functionName="millisleep"/>
+    <functioncall functionName="msgarrvd"/>
+    <functioncall functionName="optarg"/>
+    <functioncall functionName="optind"/>
+    <functioncall functionName="out_free"/>
+    <functioncall functionName="out_free_tx_frames"/>
+    <functioncall functionName="perror"/>
+    <functioncall functionName="print_compare"/>
+    <functioncall functionName="print_frame"/>
+    <functioncall functionName="print_usage"/>
+    <functioncall functionName="printf"/>
+    <functioncall functionName="recv"/>
+    <functioncall functionName="recv_frame"/>
+    <functioncall functionName="send"/>
+    <functioncall functionName="send_frame"/>
+    <functioncall functionName="setsid"/>
+    <functioncall functionName="setsockopt"/>
+    <functioncall functionName="showIP"/>
+    <functioncall functionName="signal"/>
+    <functioncall functionName="signal_handler"/>
+    <functioncall functionName="skeleton_daemon"/>
+    <functioncall functionName="snprintf"/>
+    <functioncall functionName="socket"/>
+    <functioncall functionName="sprintf"/>
+    <functioncall functionName="strerror"/>
+    <functioncall functionName="strlen"/>
+    <functioncall functionName="strtok"/>
+    <functioncall functionName="strtoul"/>
+    <functioncall functionName="sysconf"/>
+    <functioncall functionName="syslog"/>
+    <functioncall functionName="time"/>
+    <functioncall functionName="timegm"/>
+    <functioncall functionName="timer_callback"/>
+    <functioncall functionName="true"/>
+    <functioncall functionName="tzset"/>
+    <functioncall functionName="umask"/>
+    <functioncall functionName="usleep"/>
+  </FileInfo>
+</analyzerinfo>
