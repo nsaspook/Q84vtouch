@@ -822,7 +822,7 @@ void state_mx_log_cb(void)
 
 	cmd_mx_log[5] = B.log.select;
 	cmd_mx_log[7] = 0x16 + B.log.select; // update the checksum
-//	mxlog_ptr->log.type = 1;
+	//	mxlog_ptr->log.type = 1;
 
 	state = state_mx_status;
 }
@@ -844,7 +844,9 @@ void state_mx_status_cb(void)
 	printf("%5d: %3x %3x %3x %3x %3x  SDATA: FM80 Data mode %3x %3x %3x %3x %3x %3x %3x %3x %3x\r\n",
 		rx_count++, abuf[0], abuf[1], abuf[2], abuf[3], abuf[4], abuf[5], abuf[6], abuf[7], abuf[8], abuf[9], abuf[10], abuf[11], abuf[12], abuf[13]);
 #endif
+#ifndef CAN_REMOTE
 	check_lcd_dim(false);
+#endif
 
 	if (B.ten_sec_flag) {
 		B.ten_sec_flag = false;
@@ -862,7 +864,9 @@ void state_mx_status_cb(void)
 				bat_amp_whole = abuf[3] - 128;
 			}
 
+#ifndef CAN_REMOTE
 			set_lcd_dim(false);
+#endif
 
 			switch (B.alt_display) {
 			case 3:

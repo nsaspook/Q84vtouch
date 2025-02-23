@@ -41718,7 +41718,7 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[512] = "Boot Init Display   ", info_buffer[512], log_buffer[512];
-const char *build_date = "Feb 15 2025", *build_time = "15:41:35";
+const char *build_date = "Feb 23 2025", *build_time = "09:29:26";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
@@ -42282,7 +42282,9 @@ void state_mx_status_cb(void)
 
 
 
+
  check_lcd_dim(0);
+
 
  if (B.ten_sec_flag) {
   B.ten_sec_flag = 0;
@@ -42300,7 +42302,9 @@ void state_mx_status_cb(void)
     bat_amp_whole = abuf[3] - 128;
    }
 
+
    set_lcd_dim(0);
+
 
    switch (B.alt_display) {
    case 3:
