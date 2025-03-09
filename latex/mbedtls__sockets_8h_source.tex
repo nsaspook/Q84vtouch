@@ -1,0 +1,159 @@
+\doxysection{mbedtls\+\_\+sockets.\+h}
+\hypertarget{mbedtls__sockets_8h_source}{}\label{mbedtls__sockets_8h_source}\index{linux/matesocketcan/templates/mbedtls\_sockets.h@{linux/matesocketcan/templates/mbedtls\_sockets.h}}
+\mbox{\hyperlink{mbedtls__sockets_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#if\ !defined(\_\_MBEDTLS\_SOCKET\_TEMPLATE\_H\_\_)}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_MBEDTLS\_SOCKET\_TEMPLATE\_H\_\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <inttypes.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <unistd.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <mbedtls/error.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <mbedtls/entropy.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <mbedtls/ctr\_drbg.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <mbedtls/net\_sockets.h>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <mbedtls/ssl.h>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#if\ !defined(MBEDTLS\_NET\_POLL\_READ)}}
+\DoxyCodeLine{00016\ \textcolor{comment}{/*\ compat\ for\ older\ mbedtls\ */}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ MBEDTLS\_NET\_POLL\_READ\ \ \ 1}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ MBEDTLS\_NET\_POLL\_WRITE\ \ 1}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00021\ \mbox{\hyperlink{mbedtls__sockets_8h_ab91fb801098214f91e032866d7493494}{mbedtls\_net\_poll}}(mbedtls\_net\_context\ *\ ctx,\ uint32\_t\ rw,\ uint32\_t\ timeout)}
+\DoxyCodeLine{00022\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{comment}{/*\ XXX\ this\ is\ not\ ideal\ but\ good\ enough\ for\ an\ example\ */}}
+\DoxyCodeLine{00024\ \ \ \ \ usleep(300);}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00026\ \}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structmbedtls__context}{mbedtls\_context}}\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ mbedtls\_net\_context\ \mbox{\hyperlink{structmbedtls__context_a5241b50edcedcd3bc13f6b3b20ac7f3d}{net\_ctx}};}
+\DoxyCodeLine{00031\ \ \ \ \ mbedtls\_ssl\_context\ \mbox{\hyperlink{structmbedtls__context_ae07e15e6db1ee98f0b345ca7cdfa8701}{ssl\_ctx}};}
+\DoxyCodeLine{00032\ \ \ \ \ mbedtls\_ssl\_config\ \mbox{\hyperlink{structmbedtls__context_aa36c8f3e974af26593f4c3251540675c}{ssl\_conf}};}
+\DoxyCodeLine{00033\ \ \ \ \ mbedtls\_x509\_crt\ \mbox{\hyperlink{structmbedtls__context_ad1e43d8a7f02007e495d0e340cdf1297}{ca\_crt}};}
+\DoxyCodeLine{00034\ \ \ \ \ mbedtls\_entropy\_context\ \mbox{\hyperlink{structmbedtls__context_abc51c0d7b06e9526ce1e8f581cab543f}{entropy}};}
+\DoxyCodeLine{00035\ \ \ \ \ mbedtls\_ctr\_drbg\_context\ \mbox{\hyperlink{structmbedtls__context_a8cd92353613502fb837c645e6e72076b}{ctr\_drbg}};}
+\DoxyCodeLine{00036\ \};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{mbedtls__sockets_8h_af42b8c4606cebe58b226d2a125241ca6}{failed}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *fn,\ \textcolor{keywordtype}{int}\ rv);}
+\DoxyCodeLine{00039\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{mbedtls__sockets_8h_ac3d484b8aeb642c50d1a135c3adced4f}{cert\_verify\_failed}}(uint32\_t\ rv);}
+\DoxyCodeLine{00040\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{mbedtls__sockets_8h_a62af1ea8cc9ed47a2f911803835e9b59}{open\_nb\_socket}}(\textcolor{keyword}{struct}\ \mbox{\hyperlink{structmbedtls__context}{mbedtls\_context}}\ *ctx,}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *hostname,}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{mqtt__pub_8c_ad723da1801ae1586eb330380e2d9a912}{port}},}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *ca\_file);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{mbedtls__sockets_8h_af42b8c4606cebe58b226d2a125241ca6}{failed}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *fn,\ \textcolor{keywordtype}{int}\ rv)\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{char}\ buf[100];}
+\DoxyCodeLine{00048\ \ \ \ \ mbedtls\_strerror(rv,\ buf,\ \textcolor{keyword}{sizeof}(buf));}
+\DoxyCodeLine{00049\ \ \ \ \ printf(\textcolor{stringliteral}{"{}\%s\ failed\ with\ \%x\ (\%s)\(\backslash\)n"{}},\ fn,\ -\/rv,\ buf);}
+\DoxyCodeLine{00050\ \ \ \ \ exit(1);}
+\DoxyCodeLine{00051\ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{mbedtls__sockets_8h_ac3d484b8aeb642c50d1a135c3adced4f}{cert\_verify\_failed}}(uint32\_t\ rv)\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{char}\ buf[512];}
+\DoxyCodeLine{00055\ \ \ \ \ mbedtls\_x509\_crt\_verify\_info(buf,\ \textcolor{keyword}{sizeof}(buf),\ \textcolor{stringliteral}{"{}\(\backslash\)t"{}},\ rv);}
+\DoxyCodeLine{00056\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Certificate\ verification\ failed\ (\%0"{}}\ PRIx32\ \textcolor{stringliteral}{"{})\(\backslash\)n\%s\(\backslash\)n"{}},\ rv,\ buf);}
+\DoxyCodeLine{00057\ \ \ \ \ exit(1);}
+\DoxyCodeLine{00058\ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00061\ \textcolor{comment}{\ \ \ \ A\ template\ for\ opening\ a\ non-\/blocking\ mbed\ TLS\ connection.}}
+\DoxyCodeLine{00062\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00063\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{mbedtls__sockets_8h_a62af1ea8cc9ed47a2f911803835e9b59}{open\_nb\_socket}}(\textcolor{keyword}{struct}\ \mbox{\hyperlink{structmbedtls__context}{mbedtls\_context}}\ *ctx,}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *hostname,}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{mqtt__pub_8c_ad723da1801ae1586eb330380e2d9a912}{port}},}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *ca\_file)\ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *additional\ =\ (\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *)\textcolor{stringliteral}{"{}MQTT-\/C"{}};}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ additional\_len\ =\ 6;}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{int}\ rv;}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ mbedtls\_net\_context\ *net\_ctx\ =\ \&ctx-\/>\mbox{\hyperlink{structmbedtls__context_a5241b50edcedcd3bc13f6b3b20ac7f3d}{net\_ctx}};}
+\DoxyCodeLine{00072\ \ \ \ \ mbedtls\_ssl\_context\ *ssl\_ctx\ =\ \&ctx-\/>\mbox{\hyperlink{structmbedtls__context_ae07e15e6db1ee98f0b345ca7cdfa8701}{ssl\_ctx}};}
+\DoxyCodeLine{00073\ \ \ \ \ mbedtls\_ssl\_config\ *ssl\_conf\ =\ \&ctx-\/>\mbox{\hyperlink{structmbedtls__context_aa36c8f3e974af26593f4c3251540675c}{ssl\_conf}};}
+\DoxyCodeLine{00074\ \ \ \ \ mbedtls\_x509\_crt\ *ca\_crt\ =\ \&ctx-\/>\mbox{\hyperlink{structmbedtls__context_ad1e43d8a7f02007e495d0e340cdf1297}{ca\_crt}};}
+\DoxyCodeLine{00075\ \ \ \ \ mbedtls\_entropy\_context\ *entropy\ =\ \&ctx-\/>\mbox{\hyperlink{structmbedtls__context_abc51c0d7b06e9526ce1e8f581cab543f}{entropy}};}
+\DoxyCodeLine{00076\ \ \ \ \ mbedtls\_ctr\_drbg\_context\ *ctr\_drbg\ =\ \&ctx-\/>\mbox{\hyperlink{structmbedtls__context_a8cd92353613502fb837c645e6e72076b}{ctr\_drbg}};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ mbedtls\_entropy\_init(entropy);}
+\DoxyCodeLine{00079\ \ \ \ \ mbedtls\_ctr\_drbg\_init(ctr\_drbg);}
+\DoxyCodeLine{00080\ \ \ \ \ rv\ =\ mbedtls\_ctr\_drbg\_seed(ctr\_drbg,\ mbedtls\_entropy\_func,\ entropy,}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ additional,\ additional\_len);}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordflow}{if}\ (rv\ !=\ 0)\ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mbedtls__sockets_8h_af42b8c4606cebe58b226d2a125241ca6}{failed}}(\textcolor{stringliteral}{"{}mbedtls\_ctr\_drbg\_seed"{}},\ rv);}
+\DoxyCodeLine{00084\ \ \ \ \ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ mbedtls\_x509\_crt\_init(ca\_crt);}
+\DoxyCodeLine{00087\ \ \ \ \ rv\ =\ mbedtls\_x509\_crt\_parse\_file(ca\_crt,\ ca\_file);}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordflow}{if}\ (rv\ !=\ 0)\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mbedtls__sockets_8h_af42b8c4606cebe58b226d2a125241ca6}{failed}}(\textcolor{stringliteral}{"{}mbedtls\_x509\_crt\_parse\_file"{}},\ rv);}
+\DoxyCodeLine{00090\ \ \ \ \ \}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ mbedtls\_ssl\_config\_init(ssl\_conf);}
+\DoxyCodeLine{00093\ \ \ \ \ rv\ =\ mbedtls\_ssl\_config\_defaults(ssl\_conf,\ \ MBEDTLS\_SSL\_IS\_CLIENT,}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MBEDTLS\_SSL\_TRANSPORT\_STREAM,}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MBEDTLS\_SSL\_PRESET\_DEFAULT);}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordflow}{if}\ (rv\ !=\ 0)\ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mbedtls__sockets_8h_af42b8c4606cebe58b226d2a125241ca6}{failed}}(\textcolor{stringliteral}{"{}mbedtls\_ssl\_config\_defaults"{}},\ rv);}
+\DoxyCodeLine{00098\ \ \ \ \ \}}
+\DoxyCodeLine{00099\ \ \ \ \ mbedtls\_ssl\_conf\_ca\_chain(ssl\_conf,\ ca\_crt,\ NULL);}
+\DoxyCodeLine{00100\ \ \ \ \ mbedtls\_ssl\_conf\_authmode(ssl\_conf,\ MBEDTLS\_SSL\_VERIFY\_OPTIONAL);}
+\DoxyCodeLine{00101\ \ \ \ \ mbedtls\_ssl\_conf\_rng(ssl\_conf,\ mbedtls\_ctr\_drbg\_random,\ ctr\_drbg);}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ mbedtls\_net\_init(net\_ctx);}
+\DoxyCodeLine{00104\ \ \ \ \ rv\ =\ mbedtls\_net\_connect(net\_ctx,\ hostname,\ \mbox{\hyperlink{mqtt__pub_8c_ad723da1801ae1586eb330380e2d9a912}{port}},\ MBEDTLS\_NET\_PROTO\_TCP);}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordflow}{if}\ (rv\ !=\ 0)\ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mbedtls__sockets_8h_af42b8c4606cebe58b226d2a125241ca6}{failed}}(\textcolor{stringliteral}{"{}mbedtls\_net\_connect"{}},\ rv);}
+\DoxyCodeLine{00107\ \ \ \ \ \}}
+\DoxyCodeLine{00108\ \ \ \ \ rv\ =\ mbedtls\_net\_set\_nonblock(net\_ctx);}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordflow}{if}\ (rv\ !=\ 0)\ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mbedtls__sockets_8h_af42b8c4606cebe58b226d2a125241ca6}{failed}}(\textcolor{stringliteral}{"{}mbedtls\_net\_set\_nonblock"{}},\ rv);}
+\DoxyCodeLine{00111\ \ \ \ \ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ mbedtls\_ssl\_init(ssl\_ctx);}
+\DoxyCodeLine{00114\ \ \ \ \ rv\ =\ mbedtls\_ssl\_setup(ssl\_ctx,\ ssl\_conf);}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordflow}{if}\ (rv\ !=\ 0)\ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mbedtls__sockets_8h_af42b8c4606cebe58b226d2a125241ca6}{failed}}(\textcolor{stringliteral}{"{}mbedtls\_ssl\_setup"{}},\ rv);}
+\DoxyCodeLine{00117\ \ \ \ \ \}}
+\DoxyCodeLine{00118\ \ \ \ \ rv\ =\ mbedtls\_ssl\_set\_hostname(ssl\_ctx,\ hostname);}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordflow}{if}\ (rv\ !=\ 0)\ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mbedtls__sockets_8h_af42b8c4606cebe58b226d2a125241ca6}{failed}}(\textcolor{stringliteral}{"{}mbedtls\_ssl\_set\_hostname"{}},\ rv);}
+\DoxyCodeLine{00121\ \ \ \ \ \}}
+\DoxyCodeLine{00122\ \ \ \ \ mbedtls\_ssl\_set\_bio(ssl\_ctx,\ net\_ctx,}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mbedtls\_net\_send,\ mbedtls\_net\_recv,\ NULL);}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordflow}{for}\ (;;)\ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ rv\ =\ mbedtls\_ssl\_handshake(ssl\_ctx);}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ uint32\_t\ want\ =\ 0;}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rv\ ==\ MBEDTLS\_ERR\_SSL\_WANT\_READ)\ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ want\ |=\ \mbox{\hyperlink{mbedtls__sockets_8h_a7315a36b5a33a0ebc630315bde70c05c}{MBEDTLS\_NET\_POLL\_READ}};}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (rv\ ==\ MBEDTLS\_ERR\_SSL\_WANT\_WRITE)\ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ want\ |=\ \mbox{\hyperlink{mbedtls__sockets_8h_a78ab08a462896b76aa4edeefe57e9c59}{MBEDTLS\_NET\_POLL\_WRITE}};}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ rv\ =\ \mbox{\hyperlink{mbedtls__sockets_8h_ab91fb801098214f91e032866d7493494}{mbedtls\_net\_poll}}(net\_ctx,\ want,\ (uint32\_t)-\/1);}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rv\ <\ 0)\ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mbedtls__sockets_8h_af42b8c4606cebe58b226d2a125241ca6}{failed}}(\textcolor{stringliteral}{"{}mbedtls\_net\_poll"{}},\ rv);}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00139\ \ \ \ \ \}}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordflow}{if}\ (rv\ !=\ 0)\ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mbedtls__sockets_8h_af42b8c4606cebe58b226d2a125241ca6}{failed}}(\textcolor{stringliteral}{"{}mbedtls\_ssl\_handshake"{}},\ rv);}
+\DoxyCodeLine{00142\ \ \ \ \ \}}
+\DoxyCodeLine{00143\ \ \ \ \ uint32\_t\ result\ =\ mbedtls\_ssl\_get\_verify\_result(ssl\_ctx);}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ !=\ 0)\ \{}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ ==\ (uint32\_t)-\/1)\ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mbedtls__sockets_8h_af42b8c4606cebe58b226d2a125241ca6}{failed}}(\textcolor{stringliteral}{"{}mbedtls\_ssl\_get\_verify\_result"{}},\ (\textcolor{keywordtype}{int})result);}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mbedtls__sockets_8h_ac3d484b8aeb642c50d1a135c3adced4f}{cert\_verify\_failed}}(result);}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00150\ \ \ \ \ \}}
+\DoxyCodeLine{00151\ \}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

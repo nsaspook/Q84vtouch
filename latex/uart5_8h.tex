@@ -1,0 +1,486 @@
+\doxysection{mate\+Q84.\+X/mcc\+\_\+generated\+\_\+files/uart5.h File Reference}
+\hypertarget{uart5_8h}{}\label{uart5_8h}\index{mateQ84.X/mcc\_generated\_files/uart5.h@{mateQ84.X/mcc\_generated\_files/uart5.h}}
+{\ttfamily \#include $<$xc.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+Include dependency graph for uart5.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=269pt]{uart5_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{uart5_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+union \mbox{\hyperlink{unionuart5__status__t}{uart5\+\_\+status\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{uart5_8h_a84f20757cbdaad21efa1cd4585d8dbcd}{UART5\+\_\+\+Data\+Ready}}~(\mbox{\hyperlink{uart5_8c_a580c388f7b852d1a939cdb9b65df67a6}{UART5\+\_\+is\+\_\+rx\+\_\+ready}}())
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{uart5_8h_a990372f1e7e95df18123e9d524721f68}{UART5\+\_\+\+Initialize}} (void)
+\item 
+bool \mbox{\hyperlink{uart5_8h_a580c388f7b852d1a939cdb9b65df67a6}{UART5\+\_\+is\+\_\+rx\+\_\+ready}} (void)
+\item 
+bool \mbox{\hyperlink{uart5_8h_a412d2b12f20e46ad4d956fa92f3e0c16}{UART5\+\_\+is\+\_\+tx\+\_\+ready}} (void)
+\item 
+bool \mbox{\hyperlink{uart5_8h_aa2c255ad0516c10a12dec8fc4b3e73f2}{UART5\+\_\+is\+\_\+tx\+\_\+done}} (void)
+\item 
+\mbox{\hyperlink{unionuart5__status__t}{uart5\+\_\+status\+\_\+t}} \mbox{\hyperlink{uart5_8h_a40ac5813391ea36a98b40d958207e05d}{UART5\+\_\+get\+\_\+last\+\_\+status}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{uart5_8h_af2eaec0a40ded07b2b73f8ed6a0fb181}{UART5\+\_\+\+Read}} (void)
+\item 
+void \mbox{\hyperlink{uart5_8h_a249390b845af6d29d434413ac7190eba}{UART5\+\_\+\+Write}} (uint8\+\_\+t tx\+Data)
+\item 
+void \mbox{\hyperlink{uart5_8h_a85abc651b78d6a725ff4a086297f002f}{UART5\+\_\+\+Transmit\+\_\+\+ISR}} (void)
+\item 
+void \mbox{\hyperlink{uart5_8h_a4b9dca4919c942a727bfb05d0be240ee}{UART5\+\_\+\+Receive\+\_\+\+ISR}} (void)
+\item 
+void \mbox{\hyperlink{uart5_8h_a7b12c4f1a7addfa0a27718f1a843d2c9}{UART5\+\_\+\+Rx\+Data\+Handler}} (void)
+\item 
+void \mbox{\hyperlink{uart5_8h_a6ce1302f8a43f189c7fd1df4854f9b3b}{UART5\+\_\+\+Set\+Framing\+Error\+Handler}} (void(\texorpdfstring{$\ast$}{*}interrupt\+Handler)(void))
+\item 
+void \mbox{\hyperlink{uart5_8h_a727f3ee471075b3c13cce61d0e7bc75a}{UART5\+\_\+\+Set\+Overrun\+Error\+Handler}} (void(\texorpdfstring{$\ast$}{*}interrupt\+Handler)(void))
+\item 
+void \mbox{\hyperlink{uart5_8h_ab7362dbf9e375e5b9348908406fe8863}{UART5\+\_\+\+Set\+Error\+Handler}} (void(\texorpdfstring{$\ast$}{*}interrupt\+Handler)(void))
+\item 
+void \mbox{\hyperlink{uart5_8h_a8c465d87741b7570c0ad3a999c4e2c8b}{UART5\+\_\+\+Set\+Rx\+Interrupt\+Handler}} (void(\texorpdfstring{$\ast$}{*}Interrupt\+Handler)(void))
+\item 
+void \mbox{\hyperlink{uart5_8h_ae1a5412d6d6287586f05b0ff39065bf7}{UART5\+\_\+\+Set\+Tx\+Interrupt\+Handler}} (void(\texorpdfstring{$\ast$}{*}Interrupt\+Handler)(void))
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+volatile uint8\+\_\+t \mbox{\hyperlink{uart5_8h_ad26928b90624caf36199ba272a9fa0af}{uart5\+Tx\+Buffer\+Remaining}}
+\item 
+volatile uint8\+\_\+t \mbox{\hyperlink{uart5_8h_af3b77d67effd15ef6a952eac3c5e92c2}{uart5\+Rx\+Count}}
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{uart5_8h_ade8a2effc85fdff2d7741250f7f0dfee}{UART5\+\_\+\+Rx\+Interrupt\+Handler}} )(void)
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{uart5_8h_a207be5e9a4ecdca3ce6dac1812b65204}{UART5\+\_\+\+Tx\+Interrupt\+Handler}} )(void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{uart5_8h_a84f20757cbdaad21efa1cd4585d8dbcd}\index{uart5.h@{uart5.h}!UART5\_DataReady@{UART5\_DataReady}}
+\index{UART5\_DataReady@{UART5\_DataReady}!uart5.h@{uart5.h}}
+\doxysubsubsection{\texorpdfstring{UART5\_DataReady}{UART5\_DataReady}}
+{\footnotesize\ttfamily \label{uart5_8h_a84f20757cbdaad21efa1cd4585d8dbcd} 
+\#define UART5\+\_\+\+Data\+Ready~(\mbox{\hyperlink{uart5_8c_a580c388f7b852d1a939cdb9b65df67a6}{UART5\+\_\+is\+\_\+rx\+\_\+ready}}())}
+
+UART5 Generated Driver API Header File
+
+@\+Company Microchip Technology Inc.
+
+@\+File Name \doxylink{uart5_8h}{uart5.\+h}
+
+@\+Summary This is the generated header file for the UART5 driver using PIC10 / PIC12 / PIC16 / PIC18 MCUs
+
+@\+Description This header file provides APIs for driver for UART5. Generation Information \+: Product Revision \+: PIC10 / PIC12 / PIC16 / PIC18 MCUs -\/ 1.\+81.\+8 Device \+: PIC18\+F47\+Q84 Driver Version \+: 2.\+4.\+1 The generated drivers are tested against the following\+: Compiler \+: XC8 2.\+36 and above MPLAB \+: MPLAB X 6.\+00 Section\+: Included Files Section\+: Macro Declarations 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{uart5_8h_a40ac5813391ea36a98b40d958207e05d}\index{uart5.h@{uart5.h}!UART5\_get\_last\_status@{UART5\_get\_last\_status}}
+\index{UART5\_get\_last\_status@{UART5\_get\_last\_status}!uart5.h@{uart5.h}}
+\doxysubsubsection{\texorpdfstring{UART5\_get\_last\_status()}{UART5\_get\_last\_status()}}
+{\footnotesize\ttfamily \label{uart5_8h_a40ac5813391ea36a98b40d958207e05d} 
+\mbox{\hyperlink{unionuart5__status__t}{uart5\+\_\+status\+\_\+t}} UART5\+\_\+get\+\_\+last\+\_\+status (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+@\+Summary Gets the error status of the last read byte.
+
+@\+Description This routine gets the error status of the last read byte.
+
+@\+Preconditions \doxylink{uart5_8h_a990372f1e7e95df18123e9d524721f68}{UART5\+\_\+\+Initialize()} function should have been called before calling this function. The returned value is only updated after a read is called.
+
+@\+Param None
+
+@\+Returns the status of the last read byte
+
+@\+Example {\ttfamily  void \doxylink{main_8c_a6288eba0f8e8ad3ab1544ad731eb7667}{main(void)} \{ volatile uint8\+\_\+t rx\+Data; volatile \doxylink{unionuart5__status__t}{uart5\+\_\+status\+\_\+t} rx\+Status;}
+
+{\ttfamily Initialize the device \doxylink{mcc_8c_a5e8391114a0cf91ac20002be25e3d352}{SYSTEM\+\_\+\+Initialize()};}
+
+{\ttfamily Enable the Global Interrupts INTERRUPT\+\_\+\+Global\+Interrupt\+Enable();}
+
+{\ttfamily  while(1) \{ Logic to echo received data if(\+UART5\+\_\+is\+\_\+rx\+\_\+ready()) \{ rx\+Data = \doxylink{uart5_8h_af2eaec0a40ded07b2b73f8ed6a0fb181}{UART5\+\_\+\+Read()}; rx\+Status = \doxylink{uart5_8h_a40ac5813391ea36a98b40d958207e05d}{UART5\+\_\+get\+\_\+last\+\_\+status()}; if(rx\+Status.\+ferr)\{ LED\+\_\+0\+\_\+\+Set\+High(); \} \} \} \} } \Hypertarget{uart5_8h_a990372f1e7e95df18123e9d524721f68}\index{uart5.h@{uart5.h}!UART5\_Initialize@{UART5\_Initialize}}
+\index{UART5\_Initialize@{UART5\_Initialize}!uart5.h@{uart5.h}}
+\doxysubsubsection{\texorpdfstring{UART5\_Initialize()}{UART5\_Initialize()}}
+{\footnotesize\ttfamily \label{uart5_8h_a990372f1e7e95df18123e9d524721f68} 
+void UART5\+\_\+\+Initialize (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Section\+: UART5 APIs @\+Summary Initialization routine that takes inputs from the UART5 GUI.
+
+@\+Description This routine initializes the UART5 driver. This routine must be called before any other UART5 routine is called.
+
+@\+Preconditions None
+
+@\+Param None
+
+@\+Returns None
+
+@\+Comment
+
+@\+Example Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{uart5_8h_a990372f1e7e95df18123e9d524721f68_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{uart5_8h_a990372f1e7e95df18123e9d524721f68_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{uart5_8h_a580c388f7b852d1a939cdb9b65df67a6}\index{uart5.h@{uart5.h}!UART5\_is\_rx\_ready@{UART5\_is\_rx\_ready}}
+\index{UART5\_is\_rx\_ready@{UART5\_is\_rx\_ready}!uart5.h@{uart5.h}}
+\doxysubsubsection{\texorpdfstring{UART5\_is\_rx\_ready()}{UART5\_is\_rx\_ready()}}
+{\footnotesize\ttfamily \label{uart5_8h_a580c388f7b852d1a939cdb9b65df67a6} 
+bool UART5\+\_\+is\+\_\+rx\+\_\+ready (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+@\+Summary Checks if the UART5 receiver ready for reading
+
+@\+Description This routine checks if UART5 receiver has received data and ready to be read
+
+@\+Preconditions \doxylink{uart5_8h_a990372f1e7e95df18123e9d524721f68}{UART5\+\_\+\+Initialize()} function should be called before calling this function UART5 receiver should be enabled before calling this function
+
+@\+Param None
+
+@\+Returns Status of UART5 receiver TRUE\+: UART5 receiver is ready for reading FALSE\+: UART5 receiver is not ready for reading
+
+@\+Example {\ttfamily  void \doxylink{main_8c_a6288eba0f8e8ad3ab1544ad731eb7667}{main(void)} \{ volatile uint8\+\_\+t rx\+Data;}
+
+{\ttfamily Initialize the device \doxylink{mcc_8c_a5e8391114a0cf91ac20002be25e3d352}{SYSTEM\+\_\+\+Initialize()};}
+
+{\ttfamily  while(1) \{ Logic to echo received data if(\+UART5\+\_\+is\+\_\+rx\+\_\+ready()) \{ rx\+Data = \doxylink{uart5_8h_af2eaec0a40ded07b2b73f8ed6a0fb181}{UART5\+\_\+\+Read()}; if(\+UART5\+\_\+is\+\_\+tx\+\_\+ready()) \{ UART5\+\_\+\+Write(rx\+Data); \} \} \} \} } \Hypertarget{uart5_8h_aa2c255ad0516c10a12dec8fc4b3e73f2}\index{uart5.h@{uart5.h}!UART5\_is\_tx\_done@{UART5\_is\_tx\_done}}
+\index{UART5\_is\_tx\_done@{UART5\_is\_tx\_done}!uart5.h@{uart5.h}}
+\doxysubsubsection{\texorpdfstring{UART5\_is\_tx\_done()}{UART5\_is\_tx\_done()}}
+{\footnotesize\ttfamily \label{uart5_8h_aa2c255ad0516c10a12dec8fc4b3e73f2} 
+bool UART5\+\_\+is\+\_\+tx\+\_\+done (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+@\+Summary Checks if UART5 data is transmitted
+
+@\+Description This function return the status of transmit shift register
+
+@\+Preconditions \doxylink{uart5_8h_a990372f1e7e95df18123e9d524721f68}{UART5\+\_\+\+Initialize()} function should be called before calling this function UART5 transmitter should be enabled and UART5\+\_\+\+Write should be called before calling this function
+
+@\+Param None
+
+@\+Returns Status of UART5 transmit shift register TRUE\+: Data completely shifted out if the UART shift register FALSE\+: Data is not completely shifted out of the shift register
+
+@\+Example {\ttfamily  void \doxylink{main_8c_a6288eba0f8e8ad3ab1544ad731eb7667}{main(void)} \{ volatile uint8\+\_\+t rx\+Data;}
+
+{\ttfamily Initialize the device \doxylink{mcc_8c_a5e8391114a0cf91ac20002be25e3d352}{SYSTEM\+\_\+\+Initialize()};}
+
+{\ttfamily  while(1) \{ if(\+UART5\+\_\+is\+\_\+tx\+\_\+ready()) \{ LED\+\_\+0\+\_\+\+Set\+High(); UART5\+Write(rx\+Data); \} if(\doxylink{uart5_8h_aa2c255ad0516c10a12dec8fc4b3e73f2}{UART5\+\_\+is\+\_\+tx\+\_\+done()} \{ LED\+\_\+0\+\_\+\+Set\+Low(); \} \} \} } \Hypertarget{uart5_8h_a412d2b12f20e46ad4d956fa92f3e0c16}\index{uart5.h@{uart5.h}!UART5\_is\_tx\_ready@{UART5\_is\_tx\_ready}}
+\index{UART5\_is\_tx\_ready@{UART5\_is\_tx\_ready}!uart5.h@{uart5.h}}
+\doxysubsubsection{\texorpdfstring{UART5\_is\_tx\_ready()}{UART5\_is\_tx\_ready()}}
+{\footnotesize\ttfamily \label{uart5_8h_a412d2b12f20e46ad4d956fa92f3e0c16} 
+bool UART5\+\_\+is\+\_\+tx\+\_\+ready (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+@\+Summary Checks if the UART5 transmitter is ready to transmit data
+
+@\+Description This routine checks if UART5 transmitter is ready to accept and transmit data byte
+
+@\+Preconditions \doxylink{uart5_8h_a990372f1e7e95df18123e9d524721f68}{UART5\+\_\+\+Initialize()} function should have been called before calling this function. UART5 transmitter should be enabled before calling this function
+
+@\+Param None
+
+@\+Returns Status of UART5 transmitter TRUE\+: UART5 transmitter is ready FALSE\+: UART5 transmitter is not ready
+
+@\+Example {\ttfamily  void \doxylink{main_8c_a6288eba0f8e8ad3ab1544ad731eb7667}{main(void)} \{ volatile uint8\+\_\+t rx\+Data;}
+
+{\ttfamily Initialize the device \doxylink{mcc_8c_a5e8391114a0cf91ac20002be25e3d352}{SYSTEM\+\_\+\+Initialize()};}
+
+{\ttfamily  while(1) \{ Logic to echo received data if(\+UART5\+\_\+is\+\_\+rx\+\_\+ready()) \{ rx\+Data = \doxylink{uart5_8h_af2eaec0a40ded07b2b73f8ed6a0fb181}{UART5\+\_\+\+Read()}; if(\+UART5\+\_\+is\+\_\+tx\+\_\+ready()) \{ UART5\+\_\+\+Write(rx\+Data); \} \} \} \} } Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{uart5_8h_a412d2b12f20e46ad4d956fa92f3e0c16_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{uart5_8h_af2eaec0a40ded07b2b73f8ed6a0fb181}\index{uart5.h@{uart5.h}!UART5\_Read@{UART5\_Read}}
+\index{UART5\_Read@{UART5\_Read}!uart5.h@{uart5.h}}
+\doxysubsubsection{\texorpdfstring{UART5\_Read()}{UART5\_Read()}}
+{\footnotesize\ttfamily \label{uart5_8h_af2eaec0a40ded07b2b73f8ed6a0fb181} 
+uint8\+\_\+t UART5\+\_\+\+Read (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+@\+Summary Read a byte of data from the UART5.
+
+@\+Description This routine reads a byte of data from the UART5.
+
+@\+Preconditions \doxylink{uart5_8h_a990372f1e7e95df18123e9d524721f68}{UART5\+\_\+\+Initialize()} function should have been called before calling this function. The transfer status should be checked to see if the receiver is not empty before calling this function.
+
+UART5\+\_\+\+Data\+Ready is a macro which checks if any byte is received. Call this macro before using this function.
+
+@\+Param None
+
+@\+Returns A data byte received by the driver.
+
+@\+Example {\ttfamily  void \doxylink{main_8c_a6288eba0f8e8ad3ab1544ad731eb7667}{main(void)} \{ initialize the device \doxylink{mcc_8c_a5e8391114a0cf91ac20002be25e3d352}{SYSTEM\+\_\+\+Initialize()}; uint8\+\_\+t data;}
+
+{\ttfamily Enable the Global Interrupts INTERRUPT\+\_\+\+Global\+Interrupt\+Enable();}
+
+{\ttfamily Enable the Peripheral Interrupts INTERRUPT\+\_\+\+Peripheral\+Interrupt\+Enable();}
+
+{\ttfamily  printf("{}\textbackslash{}t\textbackslash{}t\+TEST CODE\textbackslash{}n\textbackslash{}r"{}); //\+Enable redirect STDIO to USART before using printf statements printf("{}\textbackslash{}t\textbackslash{}t-\/-\/-\/-\/ -\/-\/-\/-\/\textbackslash{}n\textbackslash{}r"{}); printf("{}\textbackslash{}t\textbackslash{}t\+ECHO TEST\textbackslash{}n\textbackslash{}r"{}); printf("{}\textbackslash{}t\textbackslash{}t-\/-\/-\/-\/ -\/-\/-\/-\/\textbackslash{}n\textbackslash{}n\textbackslash{}r"{}); printf("{}\+Enter any string\+: "{}); do\{ data = \doxylink{uart5_8h_af2eaec0a40ded07b2b73f8ed6a0fb181}{UART5\+\_\+\+Read()}; // Read data received UART5\+\_\+\+Write(data); // Echo back the data received \}while(!\+UART5\+\_\+\+Data\+Ready); //check if any data is received}
+
+{\ttfamily  \} } \Hypertarget{uart5_8h_a4b9dca4919c942a727bfb05d0be240ee}\index{uart5.h@{uart5.h}!UART5\_Receive\_ISR@{UART5\_Receive\_ISR}}
+\index{UART5\_Receive\_ISR@{UART5\_Receive\_ISR}!uart5.h@{uart5.h}}
+\doxysubsubsection{\texorpdfstring{UART5\_Receive\_ISR()}{UART5\_Receive\_ISR()}}
+{\footnotesize\ttfamily \label{uart5_8h_a4b9dca4919c942a727bfb05d0be240ee} 
+void UART5\+\_\+\+Receive\+\_\+\+ISR (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+@\+Summary Maintains the driver\textquotesingle{}s receiver state machine and implements its ISR
+
+@\+Description This routine is used to maintain the driver\textquotesingle{}s internal receiver state machine.\+This interrupt service routine is called when the state of the receiver needs to be maintained in a non polled manner.
+
+@\+Preconditions \doxylink{uart5_8h_a990372f1e7e95df18123e9d524721f68}{UART5\+\_\+\+Initialize()} function should have been called for the ISR to execute correctly.
+
+@\+Param None
+
+@\+Returns None Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{uart5_8h_a4b9dca4919c942a727bfb05d0be240ee_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{uart5_8h_a4b9dca4919c942a727bfb05d0be240ee_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{uart5_8h_a7b12c4f1a7addfa0a27718f1a843d2c9}\index{uart5.h@{uart5.h}!UART5\_RxDataHandler@{UART5\_RxDataHandler}}
+\index{UART5\_RxDataHandler@{UART5\_RxDataHandler}!uart5.h@{uart5.h}}
+\doxysubsubsection{\texorpdfstring{UART5\_RxDataHandler()}{UART5\_RxDataHandler()}}
+{\footnotesize\ttfamily \label{uart5_8h_a7b12c4f1a7addfa0a27718f1a843d2c9} 
+void UART5\+\_\+\+Rx\+Data\+Handler (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+@\+Summary Maintains the driver\textquotesingle{}s receiver state machine
+
+@\+Description This routine is called by the receive state routine and is used to maintain the driver\textquotesingle{}s internal receiver state machine. It should be called by a custom ISR to maintain normal behavior
+
+@\+Preconditions \doxylink{uart5_8h_a990372f1e7e95df18123e9d524721f68}{UART5\+\_\+\+Initialize()} function should have been called for the ISR to execute correctly.
+
+@\+Param None
+
+@\+Returns None Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{uart5_8h_a7b12c4f1a7addfa0a27718f1a843d2c9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{uart5_8h_ab7362dbf9e375e5b9348908406fe8863}\index{uart5.h@{uart5.h}!UART5\_SetErrorHandler@{UART5\_SetErrorHandler}}
+\index{UART5\_SetErrorHandler@{UART5\_SetErrorHandler}!uart5.h@{uart5.h}}
+\doxysubsubsection{\texorpdfstring{UART5\_SetErrorHandler()}{UART5\_SetErrorHandler()}}
+{\footnotesize\ttfamily \label{uart5_8h_ab7362dbf9e375e5b9348908406fe8863} 
+void UART5\+\_\+\+Set\+Error\+Handler (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{interrupt\+Handler~}{)(void)}\end{DoxyParamCaption})}
+
+@\+Summary Set UART5 Error Handler
+
+@\+Description This API sets the function to be called upon UART5 error
+
+@\+Preconditions Initialize the UART5 module before calling this API
+
+@\+Param Address of function to be set as error handler
+
+@\+Returns None Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{uart5_8h_ab7362dbf9e375e5b9348908406fe8863_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{uart5_8h_a6ce1302f8a43f189c7fd1df4854f9b3b}\index{uart5.h@{uart5.h}!UART5\_SetFramingErrorHandler@{UART5\_SetFramingErrorHandler}}
+\index{UART5\_SetFramingErrorHandler@{UART5\_SetFramingErrorHandler}!uart5.h@{uart5.h}}
+\doxysubsubsection{\texorpdfstring{UART5\_SetFramingErrorHandler()}{UART5\_SetFramingErrorHandler()}}
+{\footnotesize\ttfamily \label{uart5_8h_a6ce1302f8a43f189c7fd1df4854f9b3b} 
+void UART5\+\_\+\+Set\+Framing\+Error\+Handler (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{interrupt\+Handler~}{)(void)}\end{DoxyParamCaption})}
+
+@\+Summary Set UART5 Framing Error Handler
+
+@\+Description This API sets the function to be called upon UART5 framing error
+
+@\+Preconditions Initialize the UART5 before calling this API
+
+@\+Param Address of function to be set as framing error handler
+
+@\+Returns None Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{uart5_8h_a6ce1302f8a43f189c7fd1df4854f9b3b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{uart5_8h_a727f3ee471075b3c13cce61d0e7bc75a}\index{uart5.h@{uart5.h}!UART5\_SetOverrunErrorHandler@{UART5\_SetOverrunErrorHandler}}
+\index{UART5\_SetOverrunErrorHandler@{UART5\_SetOverrunErrorHandler}!uart5.h@{uart5.h}}
+\doxysubsubsection{\texorpdfstring{UART5\_SetOverrunErrorHandler()}{UART5\_SetOverrunErrorHandler()}}
+{\footnotesize\ttfamily \label{uart5_8h_a727f3ee471075b3c13cce61d0e7bc75a} 
+void UART5\+\_\+\+Set\+Overrun\+Error\+Handler (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{interrupt\+Handler~}{)(void)}\end{DoxyParamCaption})}
+
+@\+Summary Set UART5 Overrun Error Handler
+
+@\+Description This API sets the function to be called upon UART5 overrun error
+
+@\+Preconditions Initialize the UART5 module before calling this API
+
+@\+Param Address of function to be set as overrun error handler
+
+@\+Returns None Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{uart5_8h_a727f3ee471075b3c13cce61d0e7bc75a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{uart5_8h_a8c465d87741b7570c0ad3a999c4e2c8b}\index{uart5.h@{uart5.h}!UART5\_SetRxInterruptHandler@{UART5\_SetRxInterruptHandler}}
+\index{UART5\_SetRxInterruptHandler@{UART5\_SetRxInterruptHandler}!uart5.h@{uart5.h}}
+\doxysubsubsection{\texorpdfstring{UART5\_SetRxInterruptHandler()}{UART5\_SetRxInterruptHandler()}}
+{\footnotesize\ttfamily \label{uart5_8h_a8c465d87741b7570c0ad3a999c4e2c8b} 
+void UART5\+\_\+\+Set\+Rx\+Interrupt\+Handler (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{Interrupt\+Handler~}{)(void)}\end{DoxyParamCaption})}
+
+@\+Summary Set UART5 Receive Interrupt Handler
+
+@\+Description This API sets the function to be called upon UART5 receive interrupt
+
+@\+Preconditions Initialize the UART5 module with receive interrupt enabled before calling this API
+
+@\+Param Address of function to be set as receive interrupt handler
+
+@\+Returns None Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{uart5_8h_a8c465d87741b7570c0ad3a999c4e2c8b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{uart5_8h_ae1a5412d6d6287586f05b0ff39065bf7}\index{uart5.h@{uart5.h}!UART5\_SetTxInterruptHandler@{UART5\_SetTxInterruptHandler}}
+\index{UART5\_SetTxInterruptHandler@{UART5\_SetTxInterruptHandler}!uart5.h@{uart5.h}}
+\doxysubsubsection{\texorpdfstring{UART5\_SetTxInterruptHandler()}{UART5\_SetTxInterruptHandler()}}
+{\footnotesize\ttfamily \label{uart5_8h_ae1a5412d6d6287586f05b0ff39065bf7} 
+void UART5\+\_\+\+Set\+Tx\+Interrupt\+Handler (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{Interrupt\+Handler~}{)(void)}\end{DoxyParamCaption})}
+
+@\+Summary Set UART5 Transmit Interrupt Handler
+
+@\+Description This API sets the function to be called upon UART5 transmit interrupt
+
+@\+Preconditions Initialize the UART5 module with transmit interrupt enabled before calling this API
+
+@\+Param Address of function to be set as transmit interrupt handler
+
+@\+Returns None Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{uart5_8h_ae1a5412d6d6287586f05b0ff39065bf7_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{uart5_8h_a85abc651b78d6a725ff4a086297f002f}\index{uart5.h@{uart5.h}!UART5\_Transmit\_ISR@{UART5\_Transmit\_ISR}}
+\index{UART5\_Transmit\_ISR@{UART5\_Transmit\_ISR}!uart5.h@{uart5.h}}
+\doxysubsubsection{\texorpdfstring{UART5\_Transmit\_ISR()}{UART5\_Transmit\_ISR()}}
+{\footnotesize\ttfamily \label{uart5_8h_a85abc651b78d6a725ff4a086297f002f} 
+void UART5\+\_\+\+Transmit\+\_\+\+ISR (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+@\+Summary Maintains the driver\textquotesingle{}s transmitter state machine and implements its ISR.
+
+@\+Description This routine is used to maintain the driver\textquotesingle{}s internal transmitter state machine.\+This interrupt service routine is called when the state of the transmitter needs to be maintained in a non polled manner.
+
+@\+Preconditions \doxylink{uart5_8h_a990372f1e7e95df18123e9d524721f68}{UART5\+\_\+\+Initialize()} function should have been called for the ISR to execute correctly.
+
+@\+Param None
+
+@\+Returns None Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{uart5_8h_a85abc651b78d6a725ff4a086297f002f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{uart5_8h_a249390b845af6d29d434413ac7190eba}\index{uart5.h@{uart5.h}!UART5\_Write@{UART5\_Write}}
+\index{UART5\_Write@{UART5\_Write}!uart5.h@{uart5.h}}
+\doxysubsubsection{\texorpdfstring{UART5\_Write()}{UART5\_Write()}}
+{\footnotesize\ttfamily \label{uart5_8h_a249390b845af6d29d434413ac7190eba} 
+void UART5\+\_\+\+Write (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{tx\+Data}{}\end{DoxyParamCaption})}
+
+@\+Summary Writes a byte of data to the UART5.
+
+@\+Description This routine writes a byte of data to the UART5.
+
+@\+Preconditions \doxylink{uart5_8h_a990372f1e7e95df18123e9d524721f68}{UART5\+\_\+\+Initialize()} function should have been called before calling this function. The transfer status should be checked to see if transmitter is not busy before calling this function.
+
+@\+Param tx\+Data -\/ Data byte to write to the UART5
+
+@\+Returns None
+
+@\+Example {\ttfamily  Refer to \doxylink{uart5_8h_af2eaec0a40ded07b2b73f8ed6a0fb181}{UART5\+\_\+\+Read()} for an example ~\newline
+ } 
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{uart5_8h_ade8a2effc85fdff2d7741250f7f0dfee}\index{uart5.h@{uart5.h}!UART5\_RxInterruptHandler@{UART5\_RxInterruptHandler}}
+\index{UART5\_RxInterruptHandler@{UART5\_RxInterruptHandler}!uart5.h@{uart5.h}}
+\doxysubsubsection{\texorpdfstring{UART5\_RxInterruptHandler}{UART5\_RxInterruptHandler}}
+{\footnotesize\ttfamily \label{uart5_8h_ade8a2effc85fdff2d7741250f7f0dfee} 
+void(\texorpdfstring{$\ast$}{*} UART5\+\_\+\+Rx\+Interrupt\+Handler) (void) (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+@\+Summary UART5 Receive Interrupt Handler
+
+@\+Description This is a pointer to the function that will be called upon UART5 receive interrupt
+
+@\+Preconditions Initialize the UART5 module with receive interrupt enabled
+
+@\+Param None
+
+@\+Returns None \Hypertarget{uart5_8h_a207be5e9a4ecdca3ce6dac1812b65204}\index{uart5.h@{uart5.h}!UART5\_TxInterruptHandler@{UART5\_TxInterruptHandler}}
+\index{UART5\_TxInterruptHandler@{UART5\_TxInterruptHandler}!uart5.h@{uart5.h}}
+\doxysubsubsection{\texorpdfstring{UART5\_TxInterruptHandler}{UART5\_TxInterruptHandler}}
+{\footnotesize\ttfamily \label{uart5_8h_a207be5e9a4ecdca3ce6dac1812b65204} 
+void(\texorpdfstring{$\ast$}{*} UART5\+\_\+\+Tx\+Interrupt\+Handler) (void) (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+@\+Summary UART5 Transmit Interrupt Handler
+
+@\+Description This is a pointer to the function that will be called upon UART5 transmit interrupt
+
+@\+Preconditions Initialize the UART5 module with transmit interrupt enabled
+
+@\+Param None
+
+@\+Returns None \Hypertarget{uart5_8h_af3b77d67effd15ef6a952eac3c5e92c2}\index{uart5.h@{uart5.h}!uart5RxCount@{uart5RxCount}}
+\index{uart5RxCount@{uart5RxCount}!uart5.h@{uart5.h}}
+\doxysubsubsection{\texorpdfstring{uart5RxCount}{uart5RxCount}}
+{\footnotesize\ttfamily \label{uart5_8h_af3b77d67effd15ef6a952eac3c5e92c2} 
+volatile uint8\+\_\+t uart5\+Rx\+Count\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{uart5_8h_ad26928b90624caf36199ba272a9fa0af}\index{uart5.h@{uart5.h}!uart5TxBufferRemaining@{uart5TxBufferRemaining}}
+\index{uart5TxBufferRemaining@{uart5TxBufferRemaining}!uart5.h@{uart5.h}}
+\doxysubsubsection{\texorpdfstring{uart5TxBufferRemaining}{uart5TxBufferRemaining}}
+{\footnotesize\ttfamily \label{uart5_8h_ad26928b90624caf36199ba272a9fa0af} 
+volatile uint8\+\_\+t uart5\+Tx\+Buffer\+Remaining\hspace{0.3cm}{\ttfamily [extern]}}
+
+Section\+: Global variables 

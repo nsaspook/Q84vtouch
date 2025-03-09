@@ -1,0 +1,37 @@
+\doxysection{timers.\+h}
+\hypertarget{timers_8h_source}{}\label{timers_8h_source}\mbox{\hyperlink{timers_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ TIMERS\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ TIMERS\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{mcc_8h}{mateQ84.X/mcc\_generated\_files/mcc.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{dio_8h}{dio.h}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{comment}{//Software\ timers\ -\/\ use\ these\ to\ refer\ to\ timers\ rather\ than}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//integers.\ \ Add\ more\ as\ needed.}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//NOTE:\ 32767\ ms\ max\ delay}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{timers_8h_ad499250d949643c5a12161767059a3d2}{APP\_TIMERS}}\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{timers_8h_ad499250d949643c5a12161767059a3d2a95f189072d8491e8a3e20a94728abbfc}{TMR\_INTERNAL}}\ =\ 0,\ \textcolor{comment}{//Used\ in\ timers.c\ -\/\ do\ not\ remove\ or\ use\ elsewhere}}
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{timers_8h_ad499250d949643c5a12161767059a3d2a62a949824562bbb82a8ea08ae7ee931c}{TMR\_MBMASTER}},}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{timers_8h_ad499250d949643c5a12161767059a3d2a69e9bf91e45d432f79f46d3b6eb5efa9}{TMR\_MBTEST}},}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{timers_8h_ad499250d949643c5a12161767059a3d2a12e24117d5bf79dd0b7357e6b96e541e}{TMR\_SPIN}},}
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{timers_8h_ad499250d949643c5a12161767059a3d2a84ac59e83d705b7fcfc20fb278e570fd}{TMR\_DERE}},}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{comment}{//(Add\ timers\ here\ as\ needed)}}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{timers_8h_ad499250d949643c5a12161767059a3d2abaa7883f9d3702d4c1fba3442fec0595}{TMR\_COUNT}}\ \textcolor{comment}{//number\ of\ timers\ -\/\ always\ keep\ at\ end\ of\ enum!}}
+\DoxyCodeLine{00023\ \};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{timers_8h_aa7ec4ef9616686e41f92a928010bc44f}{StartTimer}}(\textcolor{keyword}{const}\ uint8\_t\ timer,\ \textcolor{keyword}{const}\ uint16\_t\ count);}
+\DoxyCodeLine{00026\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{timers_8h_a6002dd7c7cad6fa060da2c3a93a481e9}{TimerDone}}(\textcolor{keyword}{const}\ uint8\_t\ timer);}
+\DoxyCodeLine{00027\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{timers_8h_adcd4fad73c37c6d61e3087e1201a33e7}{WaitMs}}(\textcolor{keyword}{const}\ uint16\_t\ numMilliseconds);}
+\DoxyCodeLine{00028\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{timers_8h_ae92252e85ef5408ff27c2f3d0e32f6d8}{timer\_ms\_tick}}(\textcolor{keyword}{const}\ uint32\_t,\ \textcolor{keyword}{const}\ uintptr\_t);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{timers_8h_a69b9c70237a6daf8af8753b1b91c6779}{delay\_ms}}(\textcolor{keyword}{const}\ uint16\_t);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//TIMERS\_H}}
+
+\end{DoxyCode}

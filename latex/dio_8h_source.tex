@@ -1,0 +1,88 @@
+\doxysection{dio.\+h}
+\hypertarget{dio_8h_source}{}\label{dio_8h_source}\mbox{\hyperlink{dio_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ File:\ \ \ dio.h}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ Author:\ root}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ Created\ on\ October\ 13,\ 2023,\ 9:29\ AM}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ DIO\_H}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ DIO\_H}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#ifdef\ \ \_\_cplusplus}}
+\DoxyCodeLine{00012\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <xc.h>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{pin__manager_8h}{mateQ84.X/mcc\_generated\_files/pin\_manager.h}}"{}}}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ \ \ \ \ *\ MISC\_IO\ header}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ \ \ \ \ *\ pin\ 3,\ CHARGER}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ \ \ \ \ *\ pin\ 2,\ MISC}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ \ \ \ \ *\ pin\ 1,\ RELAY}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ \ \ \ \ *}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ \ \ \ \ *\ DIGITAL\ header}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ \ \ \ \ *}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ \ \ \ \ *\ pin\ 2,\ DB1}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ \ \ \ \ *\ pin\ 1,\ DB0}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ DAY\_RELAY\_ON\ \ \ \ \ \ \ \ \ \ \ \ RELAY\_SetHigh()}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ DAY\_RELAY\_OFF\ \ \ \ \ \ \ \ \ \ \ RELAY\_SetLow()}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ NIGHT\_RELAY\_ON\ \ \ \ \ \ \ \ \ \ MISC\_SetHigh()}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ NIGHT\_RELAY\_OFF\ \ \ \ \ \ \ \ \ MISC\_SetLow()}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ CHARGER\_RELAY\_ON\ \ \ \ \ \ \ \ CHARGER\_SetHigh()}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ CHARGER\_RELAY\_OFF\ \ \ \ \ \ \ CHARGER\_SetLow()}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00037\ \textcolor{comment}{\ \ \ \ \ *\ assign\ a\ physical\ pin\ for\ each\ switch}}
+\DoxyCodeLine{00038\ \textcolor{comment}{\ \ \ \ \ *\ ANALOG\ header}}
+\DoxyCodeLine{00039\ \textcolor{comment}{\ \ \ \ \ *\ A:\ pin\ 5}}
+\DoxyCodeLine{00040\ \textcolor{comment}{\ \ \ \ \ *\ L:\ pin\ 2}}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ \ \ \ \ *\ M:\ pin\ 1}}
+\DoxyCodeLine{00042\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ D\_SW\_A\_PIN\ \ A\_SWITCH\_GetValue()}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ D\_SW\_L\_PIN\ \ L\_SWITCH\_GetValue()}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ D\_SW\_M\_PIN\ \ M\_SWITCH\_GetValue()}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ debounce\_time\ \ \ 300\ }\textcolor{comment}{//\ debounce\ counts,\ at\ least\ a\ few\ tens\ of\ milliseconds\ for\ a\ typical\ switch}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ SW\_NO\ \ \ 0\ \ \ }\textcolor{comment}{//\ switch,\ normally\ open}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ SW\_NC\ \ \ 1\ \ \ }\textcolor{comment}{//\ switch,\ normally\ closed}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00053\ \textcolor{comment}{\ \ \ \ \ *\ switch\ inputs\ and\ flags,\ uses\ the\ IOC\ interrupt\ and\ the\ software\ }}
+\DoxyCodeLine{00054\ \textcolor{comment}{\ \ \ \ \ *\ timing\ ISR\ for\ processing}}
+\DoxyCodeLine{00055\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{dio_8h_ae885e7cc1ca1c0d01d42f26535be391b}{D\_SW}}\ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{dio_8h_ae885e7cc1ca1c0d01d42f26535be391bada29d98d0f1eb9a3d34c91c9044aaec3}{D\_SW\_A}}\ =\ 0,\ \ \ \textcolor{comment}{//\ alternate\ LCD\ display}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{dio_8h_ae885e7cc1ca1c0d01d42f26535be391baa91ebd4a40143436aa84b63ce3baad7b}{D\_SW\_L}},\ \ \ \ \ \ \ \textcolor{comment}{//\ history\ logging\ from\ FM80}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{dio_8h_ae885e7cc1ca1c0d01d42f26535be391ba51ad5e48bfcffaf4eb99277b1e81cfed}{D\_SW\_M}},}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{dio_8h_ae885e7cc1ca1c0d01d42f26535be391ba2d73b4d069d82eda0584a85bd26862ea}{D\_SW\_COUNT}}\ \textcolor{comment}{//\ one\ extra\ for\ number\ of\ switches\ to\ check}}
+\DoxyCodeLine{00061\ \ \ \ \ \};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00064\ \textcolor{comment}{\ \ \ \ \ *\ contact\ type\ per\ configured\ switch}}
+\DoxyCodeLine{00065\ \textcolor{comment}{\ \ \ \ \ *\ used\ to\ verify\ the\ de-\/bounced\ switch\ condition\ for\ setting\ the\ button\ flag}}
+\DoxyCodeLine{00066\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ \mbox{\hyperlink{dio_8h_aa04abdd98fbfff4cd5b0cb7c2df7d6ea}{sw\_contact\_types}}[\mbox{\hyperlink{dio_8h_ae885e7cc1ca1c0d01d42f26535be391ba2d73b4d069d82eda0584a85bd26862ea}{D\_SW\_COUNT}}]\ =\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{dio_8h_a6f706f87759e55127c8fcf826e044883}{SW\_NO}},}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{dio_8h_a6f706f87759e55127c8fcf826e044883}{SW\_NO}},}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{dio_8h_a7713b5979dca206a0758cb0d37d7d2d7}{SW\_NC}},}
+\DoxyCodeLine{00071\ \ \ \ \ \};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dio_8h_a8e8a491c2fda49a610570061bffcd31c}{init\_all\_switch}}(\textcolor{keywordtype}{void});\ \textcolor{comment}{//\ setup\ data\ and\ interrupt\ functions\ for\ each\ switch}}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dio_8h_a0d4d72f387de2149313602eb6d76d819}{button\_press\_check}}(\textcolor{keywordtype}{void});\ \textcolor{comment}{//\ for\ de-\/bounce\ timer\ ISR}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dio_8h_ad9bdab99bc48edead8e806b4c62eed43}{all\_relays\_off}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#ifdef\ \ \_\_cplusplus}}
+\DoxyCodeLine{00079\ \}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{/*\ DIO\_H\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00083\ }
+
+\end{DoxyCode}

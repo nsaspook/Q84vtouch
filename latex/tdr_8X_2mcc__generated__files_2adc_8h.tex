@@ -1,0 +1,181 @@
+\doxysection{tdr.\+X/mcc\+\_\+generated\+\_\+files/adc.h File Reference}
+\hypertarget{tdr_8X_2mcc__generated__files_2adc_8h}{}\label{tdr_8X_2mcc__generated__files_2adc_8h}\index{tdr.X/mcc\_generated\_files/adc.h@{tdr.X/mcc\_generated\_files/adc.h}}
+{\ttfamily \#include $<$xc.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+Include dependency graph for adc.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=269pt]{tdr_8X_2mcc__generated__files_2adc_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{tdr_8X_2mcc__generated__files_2adc_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structadc__sync__double__result__t}{adc\+\_\+sync\+\_\+double\+\_\+result\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{tdr_8X_2mcc__generated__files_2adc_8h_aafc4060027875f8fe46242b0656d7814}{adc\+\_\+channel\+\_\+t}} \{ \mbox{\hyperlink{tdr_8X_2mcc__generated__files_2adc_8h_aafc4060027875f8fe46242b0656d7814a74d80800d9ff3e8d3d1beed59517acaa}{channel\+\_\+\+AN0}} = 0x0
+, \mbox{\hyperlink{tdr_8X_2mcc__generated__files_2adc_8h_aafc4060027875f8fe46242b0656d7814ab37ab6ae208999d317cdc19b5f8d0328}{channel\+\_\+\+CTMU}} = 0x1D
+, \mbox{\hyperlink{tdr_8X_2mcc__generated__files_2adc_8h_aafc4060027875f8fe46242b0656d7814a1803faf8301d5aa442661259085ccd07}{channel\+\_\+\+DAC}} = 0x1E
+, \mbox{\hyperlink{tdr_8X_2mcc__generated__files_2adc_8h_aafc4060027875f8fe46242b0656d7814a26819043b0a5ff81a1353455d18645b2}{channel\+\_\+\+FVRBuf2}} = 0x1F
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__adc__context__scan_gab0e0ea1662a8e789547210a2d33127e1}{ADC\+\_\+\+Initialize}} (void)
+\begin{DoxyCompactList}\small\item\em This API initializes the ADC module. This routine must be called before any other ADC routine. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{tdr_8X_2mcc__generated__files_2adc_8h_a25c0a0a9fe2bdba070f9945ca641b5e0}{ADC\+\_\+\+Select\+Channel}} (\mbox{\hyperlink{tdr_8X_2mcc__generated__files_2adc_8h_aafc4060027875f8fe46242b0656d7814}{adc\+\_\+channel\+\_\+t}} channel)
+\item 
+void \mbox{\hyperlink{tdr_8X_2mcc__generated__files_2adc_8h_af96ee69b063edcebc656d0ca0450c12c}{ADC\+\_\+\+Start\+Conversion}} (void)
+\item 
+bool \mbox{\hyperlink{group__adc__context__scan_gad5c10c1709aeacf08e783c3ea174463b}{ADC\+\_\+\+Is\+Conversion\+Done}} (void)
+\begin{DoxyCompactList}\small\item\em This API checks if ongoing A/D conversion is complete. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__adc__context__scan_gac5362ae65441a5027b4b9b1bf1b573aa}{adc\+\_\+result\+\_\+t}} \mbox{\hyperlink{group__adc__context__scan_ga9650956bd92194e1b9f0bfd5bb2d73dd}{ADC\+\_\+\+Get\+Conversion\+Result}} (void)
+\begin{DoxyCompactList}\small\item\em This API is used to retrieve the result of latest A/D conversion. Correct ADC context should be selected using \doxylink{group__adc__context__scan_gadba9f1e72755d06d4867b22e4235f551}{ADC\+\_\+\+Select\+Context} before calling this API. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__adc__context__scan_gac5362ae65441a5027b4b9b1bf1b573aa}{adc\+\_\+result\+\_\+t}} \mbox{\hyperlink{tdr_8X_2mcc__generated__files_2adc_8h_a81501f9b96aa9bb8dbe63b49d0f8e909}{ADC\+\_\+\+Get\+Conversion}} (\mbox{\hyperlink{tdr_8X_2mcc__generated__files_2adc_8h_aafc4060027875f8fe46242b0656d7814}{adc\+\_\+channel\+\_\+t}} channel)
+\item 
+void \mbox{\hyperlink{tdr_8X_2mcc__generated__files_2adc_8h_a46bdd78f96c668432d4ff33115c9dcd9}{ADC\+\_\+\+Temperature\+Acquisition\+Delay}} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{tdr_8X_2mcc__generated__files_2adc_8h_aafc4060027875f8fe46242b0656d7814}\index{adc.h@{adc.h}!adc\_channel\_t@{adc\_channel\_t}}
+\index{adc\_channel\_t@{adc\_channel\_t}!adc.h@{adc.h}}
+\doxysubsubsection{\texorpdfstring{adc\_channel\_t}{adc\_channel\_t}}
+{\footnotesize\ttfamily \label{tdr_8X_2mcc__generated__files_2adc_8h_aafc4060027875f8fe46242b0656d7814} 
+enum \mbox{\hyperlink{tdr_8X_2mcc__generated__files_2adc_8h_aafc4060027875f8fe46242b0656d7814}{adc\+\_\+channel\+\_\+t}}}
+
+ADC Channel Definition
+
+@\+Summary Defines the channels available for conversion.
+
+@\+Description This routine defines the channels that are available for the module to use.
+
+Remarks\+: None \begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{channel\_AN0@{channel\_AN0}!adc.h@{adc.h}}\index{adc.h@{adc.h}!channel\_AN0@{channel\_AN0}}}\Hypertarget{tdr_8X_2mcc__generated__files_2adc_8h_aafc4060027875f8fe46242b0656d7814a74d80800d9ff3e8d3d1beed59517acaa}\label{tdr_8X_2mcc__generated__files_2adc_8h_aafc4060027875f8fe46242b0656d7814a74d80800d9ff3e8d3d1beed59517acaa} 
+channel\+\_\+\+AN0&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{channel\_CTMU@{channel\_CTMU}!adc.h@{adc.h}}\index{adc.h@{adc.h}!channel\_CTMU@{channel\_CTMU}}}\Hypertarget{tdr_8X_2mcc__generated__files_2adc_8h_aafc4060027875f8fe46242b0656d7814ab37ab6ae208999d317cdc19b5f8d0328}\label{tdr_8X_2mcc__generated__files_2adc_8h_aafc4060027875f8fe46242b0656d7814ab37ab6ae208999d317cdc19b5f8d0328} 
+channel\+\_\+\+CTMU&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{channel\_DAC@{channel\_DAC}!adc.h@{adc.h}}\index{adc.h@{adc.h}!channel\_DAC@{channel\_DAC}}}\Hypertarget{tdr_8X_2mcc__generated__files_2adc_8h_aafc4060027875f8fe46242b0656d7814a1803faf8301d5aa442661259085ccd07}\label{tdr_8X_2mcc__generated__files_2adc_8h_aafc4060027875f8fe46242b0656d7814a1803faf8301d5aa442661259085ccd07} 
+channel\+\_\+\+DAC&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{channel\_FVRBuf2@{channel\_FVRBuf2}!adc.h@{adc.h}}\index{adc.h@{adc.h}!channel\_FVRBuf2@{channel\_FVRBuf2}}}\Hypertarget{tdr_8X_2mcc__generated__files_2adc_8h_aafc4060027875f8fe46242b0656d7814a26819043b0a5ff81a1353455d18645b2}\label{tdr_8X_2mcc__generated__files_2adc_8h_aafc4060027875f8fe46242b0656d7814a26819043b0a5ff81a1353455d18645b2} 
+channel\+\_\+\+FVRBuf2&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{tdr_8X_2mcc__generated__files_2adc_8h_a81501f9b96aa9bb8dbe63b49d0f8e909}\index{adc.h@{adc.h}!ADC\_GetConversion@{ADC\_GetConversion}}
+\index{ADC\_GetConversion@{ADC\_GetConversion}!adc.h@{adc.h}}
+\doxysubsubsection{\texorpdfstring{ADC\_GetConversion()}{ADC\_GetConversion()}}
+{\footnotesize\ttfamily \label{tdr_8X_2mcc__generated__files_2adc_8h_a81501f9b96aa9bb8dbe63b49d0f8e909} 
+\mbox{\hyperlink{group__adc__context__scan_gac5362ae65441a5027b4b9b1bf1b573aa}{adc\+\_\+result\+\_\+t}} ADC\+\_\+\+Get\+Conversion (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tdr_8X_2mcc__generated__files_2adc_8h_aafc4060027875f8fe46242b0656d7814}{adc\+\_\+channel\+\_\+t}}}]{channel}{}\end{DoxyParamCaption})}
+
+@\+Summary Returns the ADC conversion value also allows selection of a channel for conversion.
+
+@\+Description This routine is used to select desired channel for conversion and to get the analog to digital converted value.
+
+@\+Preconditions \doxylink{group__adc__context__scan_gab0e0ea1662a8e789547210a2d33127e1}{ADC\+\_\+\+Initialize()} function should have been called before calling this function.
+
+@\+Returns Returns the converted value.
+
+@\+Param Pass in required channel number. "{}\+For available channel refer to enum under adc.\+h file"{}
+
+@\+Example {\ttfamily  uint16\+\_\+t converted\+Value;}
+
+{\ttfamily  \doxylink{group__adc__context__scan_gab0e0ea1662a8e789547210a2d33127e1}{ADC\+\_\+\+Initialize()};}
+
+{\ttfamily  conversion = ADC\+\_\+\+Get\+Conversion(\+AN1\+\_\+\+Channel); } \Hypertarget{tdr_8X_2mcc__generated__files_2adc_8h_a25c0a0a9fe2bdba070f9945ca641b5e0}\index{adc.h@{adc.h}!ADC\_SelectChannel@{ADC\_SelectChannel}}
+\index{ADC\_SelectChannel@{ADC\_SelectChannel}!adc.h@{adc.h}}
+\doxysubsubsection{\texorpdfstring{ADC\_SelectChannel()}{ADC\_SelectChannel()}}
+{\footnotesize\ttfamily \label{tdr_8X_2mcc__generated__files_2adc_8h_a25c0a0a9fe2bdba070f9945ca641b5e0} 
+void ADC\+\_\+\+Select\+Channel (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tdr_8X_2mcc__generated__files_2adc_8h_aafc4060027875f8fe46242b0656d7814}{adc\+\_\+channel\+\_\+t}}}]{channel}{}\end{DoxyParamCaption})}
+
+@\+Summary Allows selection of a channel for conversion
+
+@\+Description This routine is used to select desired channel for conversion. available
+
+@\+Preconditions \doxylink{group__adc__context__scan_gab0e0ea1662a8e789547210a2d33127e1}{ADC\+\_\+\+Initialize()} function should have been called before calling this function.
+
+@\+Returns None
+
+@\+Param Pass in required channel number "{}\+For available channel refer to enum under adc.\+h file"{}
+
+@\+Example {\ttfamily  uint16\+\_\+t converted\+Value;}
+
+{\ttfamily  \doxylink{group__adc__context__scan_gab0e0ea1662a8e789547210a2d33127e1}{ADC\+\_\+\+Initialize()}; ADC\+\_\+\+Select\+Channel(\+AN1\+\_\+\+Channel); \doxylink{tdr_8X_2mcc__generated__files_2adc_8c_af96ee69b063edcebc656d0ca0450c12c}{ADC\+\_\+\+Start\+Conversion()}; converted\+Value = \doxylink{group__adc__context__scan_ga9650956bd92194e1b9f0bfd5bb2d73dd}{ADC\+\_\+\+Get\+Conversion\+Result()}; } Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=270pt]{tdr_8X_2mcc__generated__files_2adc_8h_a25c0a0a9fe2bdba070f9945ca641b5e0_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{tdr_8X_2mcc__generated__files_2adc_8h_af96ee69b063edcebc656d0ca0450c12c}\index{adc.h@{adc.h}!ADC\_StartConversion@{ADC\_StartConversion}}
+\index{ADC\_StartConversion@{ADC\_StartConversion}!adc.h@{adc.h}}
+\doxysubsubsection{\texorpdfstring{ADC\_StartConversion()}{ADC\_StartConversion()}}
+{\footnotesize\ttfamily \label{tdr_8X_2mcc__generated__files_2adc_8h_af96ee69b063edcebc656d0ca0450c12c} 
+void ADC\+\_\+\+Start\+Conversion (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+@\+Summary Starts conversion
+
+@\+Description This routine is used to start conversion of desired channel.
+
+@\+Preconditions \doxylink{group__adc__context__scan_gab0e0ea1662a8e789547210a2d33127e1}{ADC\+\_\+\+Initialize()} function should have been called before calling this function.
+
+@\+Returns None
+
+@\+Param None
+
+@\+Example {\ttfamily  uint16\+\_\+t converted\+Value;}
+
+{\ttfamily  \doxylink{group__adc__context__scan_gab0e0ea1662a8e789547210a2d33127e1}{ADC\+\_\+\+Initialize()}; ~\newline
+ \doxylink{tdr_8X_2mcc__generated__files_2adc_8c_af96ee69b063edcebc656d0ca0450c12c}{ADC\+\_\+\+Start\+Conversion()}; converted\+Value = \doxylink{group__adc__context__scan_ga9650956bd92194e1b9f0bfd5bb2d73dd}{ADC\+\_\+\+Get\+Conversion\+Result()}; } Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{tdr_8X_2mcc__generated__files_2adc_8h_af96ee69b063edcebc656d0ca0450c12c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{tdr_8X_2mcc__generated__files_2adc_8h_a46bdd78f96c668432d4ff33115c9dcd9}\index{adc.h@{adc.h}!ADC\_TemperatureAcquisitionDelay@{ADC\_TemperatureAcquisitionDelay}}
+\index{ADC\_TemperatureAcquisitionDelay@{ADC\_TemperatureAcquisitionDelay}!adc.h@{adc.h}}
+\doxysubsubsection{\texorpdfstring{ADC\_TemperatureAcquisitionDelay()}{ADC\_TemperatureAcquisitionDelay()}}
+{\footnotesize\ttfamily \label{tdr_8X_2mcc__generated__files_2adc_8h_a46bdd78f96c668432d4ff33115c9dcd9} 
+void ADC\+\_\+\+Temperature\+Acquisition\+Delay (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+@\+Summary Acquisition Delay for temperature sensor
+
+@\+Description This routine should be called when temperature sensor is used.
+
+@\+Preconditions \doxylink{group__adc__context__scan_gab0e0ea1662a8e789547210a2d33127e1}{ADC\+\_\+\+Initialize()} function should have been called before calling this function.
+
+@\+Returns None
+
+@\+Param None
+
+@\+Example {\ttfamily  uint16\+\_\+t converted\+Value;}
+
+{\ttfamily  \doxylink{group__adc__context__scan_gab0e0ea1662a8e789547210a2d33127e1}{ADC\+\_\+\+Initialize()}; ~\newline
+ \doxylink{tdr_8X_2mcc__generated__files_2adc_8c_af96ee69b063edcebc656d0ca0450c12c}{ADC\+\_\+\+Start\+Conversion()}; ADC\+\_\+temperature\+Acquisition\+Delay(); converted\+Value = \doxylink{group__adc__context__scan_ga9650956bd92194e1b9f0bfd5bb2d73dd}{ADC\+\_\+\+Get\+Conversion\+Result()}; } 

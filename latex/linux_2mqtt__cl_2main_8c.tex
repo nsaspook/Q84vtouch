@@ -1,0 +1,93 @@
+\doxysection{linux/mqtt\+\_\+cl/main.c File Reference}
+\hypertarget{linux_2mqtt__cl_2main_8c}{}\label{linux_2mqtt__cl_2main_8c}\index{linux/mqtt\_cl/main.c@{linux/mqtt\_cl/main.c}}
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$mqtt\+\_\+protocol.\+h$>$}\newline
+{\ttfamily \#include $<$mosquitto.\+h$>$}\newline
+{\ttfamily \#include $<$mqtt.\+h$>$}\newline
+{\ttfamily \#include $<$sockets.\+h$>$}\newline
+Include dependency graph for main.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{linux_2mqtt__cl_2main_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{linux_2mqtt__cl_2main_8c_af66dfacf80e95b6b1e7837201bcac1d6}{publish\+\_\+callback}} (void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}unused, struct \mbox{\hyperlink{structmqtt__response__publish}{mqtt\+\_\+response\+\_\+publish}} \texorpdfstring{$\ast$}{*}published)
+\begin{DoxyCompactList}\small\item\em The function that would be called whenever a PUBLISH is received. \end{DoxyCompactList}\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{linux_2mqtt__cl_2main_8c_a9bf4366fab8966bc92e6f77b1fbae83b}{client\+\_\+refresher}} (void \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}})
+\begin{DoxyCompactList}\small\item\em The client\textquotesingle{}s refresher. This function triggers back-\/end routines to handle ingress/egress traffic to the broker. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{linux_2mqtt__cl_2main_8c_a493941c7fef2c4fb92f05aec0eb00b22}{exit\+\_\+example}} (int status, int \mbox{\hyperlink{mqtt__pub_8c_ad2c8fb3df3a737e0685e902870a611d2}{sockfd}}, pthread\+\_\+t \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a1280dada964146149349cb4d78c5d734}{client\+\_\+daemon}})
+\begin{DoxyCompactList}\small\item\em Safelty closes the {\ttfamily sockfd} and cancels the {\ttfamily client\+\_\+daemon} before {\ttfamily exit}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{linux_2mqtt__cl_2main_8c_ac0f2228420376f4db7e1274f2b41667c}{main}} (int argc, const char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{linux_2mqtt__cl_2main_8c_a9bf4366fab8966bc92e6f77b1fbae83b}\index{main.c@{main.c}!client\_refresher@{client\_refresher}}
+\index{client\_refresher@{client\_refresher}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{client\_refresher()}{client\_refresher()}}
+{\footnotesize\ttfamily \label{linux_2mqtt__cl_2main_8c_a9bf4366fab8966bc92e6f77b1fbae83b} 
+void \texorpdfstring{$\ast$}{*} client\+\_\+refresher (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{client}{}\end{DoxyParamCaption})}
+
+
+
+The client\textquotesingle{}s refresher. This function triggers back-\/end routines to handle ingress/egress traffic to the broker. 
+
+\begin{DoxyNote}{Note}
+All this function needs to do is call \doxylink{group__details_ga4d50a465c684a5ecd1c000f811fa601e}{\+\_\+\+\_\+mqtt\+\_\+recv} and \doxylink{group__details_gacf553ca88f48350dbde0dc3b96e550f7}{\+\_\+\+\_\+mqtt\+\_\+send} every so often. I\textquotesingle{}ve picked 100 ms meaning that client ingress/egress traffic will be handled every 100 ms. 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=277pt]{linux_2mqtt__cl_2main_8c_a9bf4366fab8966bc92e6f77b1fbae83b_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{linux_2mqtt__cl_2main_8c_a493941c7fef2c4fb92f05aec0eb00b22}\index{main.c@{main.c}!exit\_example@{exit\_example}}
+\index{exit\_example@{exit\_example}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{exit\_example()}{exit\_example()}}
+{\footnotesize\ttfamily \label{linux_2mqtt__cl_2main_8c_a493941c7fef2c4fb92f05aec0eb00b22} 
+void exit\+\_\+example (\begin{DoxyParamCaption}\item[{int}]{status}{, }\item[{int}]{sockfd}{, }\item[{pthread\+\_\+t \texorpdfstring{$\ast$}{*}}]{client\+\_\+daemon}{}\end{DoxyParamCaption})}
+
+
+
+Safelty closes the {\ttfamily sockfd} and cancels the {\ttfamily client\+\_\+daemon} before {\ttfamily exit}. 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=240pt]{linux_2mqtt__cl_2main_8c_a493941c7fef2c4fb92f05aec0eb00b22_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{linux_2mqtt__cl_2main_8c_ac0f2228420376f4db7e1274f2b41667c}\index{main.c@{main.c}!main@{main}}
+\index{main@{main}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{linux_2mqtt__cl_2main_8c_ac0f2228420376f4db7e1274f2b41667c} 
+int main (\begin{DoxyParamCaption}\item[{int}]{argc}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{argv}{\mbox{[}$\,$\mbox{]}}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{linux_2mqtt__cl_2main_8c_ac0f2228420376f4db7e1274f2b41667c_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{linux_2mqtt__cl_2main_8c_af66dfacf80e95b6b1e7837201bcac1d6}\index{main.c@{main.c}!publish\_callback@{publish\_callback}}
+\index{publish\_callback@{publish\_callback}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{publish\_callback()}{publish\_callback()}}
+{\footnotesize\ttfamily \label{linux_2mqtt__cl_2main_8c_af66dfacf80e95b6b1e7837201bcac1d6} 
+void publish\+\_\+callback (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{unused}{, }\item[{struct \mbox{\hyperlink{structmqtt__response__publish}{mqtt\+\_\+response\+\_\+publish}} \texorpdfstring{$\ast$}{*}}]{published}{}\end{DoxyParamCaption})}
+
+
+
+The function that would be called whenever a PUBLISH is received. 
+
+\begin{DoxyNote}{Note}
+This function is not used in this example. 
+\end{DoxyNote}

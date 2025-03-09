@@ -1,0 +1,139 @@
+\doxysection{mqtt\+\_\+response\+\_\+publish Struct Reference}
+\hypertarget{structmqtt__response__publish}{}\label{structmqtt__response__publish}\index{mqtt\_response\_publish@{mqtt\_response\_publish}}
+
+
+A publish packet received from the broker.  
+
+
+
+
+{\ttfamily \#include $<$mqtt.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structmqtt__response__publish_a9825dfd93788834d25c5dd67e068aadc}{dup\+\_\+flag}}
+\begin{DoxyCompactList}\small\item\em The DUP flag. DUP flag is 0 if its the first attempt to send this publish packet. A DUP flag of 1 means that this might be a re-\/delivery of the packet. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{structmqtt__response__publish_a9d819901d7d0f5139ca4d3100af5ef11}{qos\+\_\+level}}
+\begin{DoxyCompactList}\small\item\em The quality of service level. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{structmqtt__response__publish_ac20258a37b5ef85548dab7c9ba743a69}{retain\+\_\+flag}}
+\begin{DoxyCompactList}\small\item\em The retain flag of this publish message. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{structmqtt__response__publish_afe1d8fdb0ec5705da6f5c3ed5aad83ab}{topic\+\_\+name\+\_\+size}}
+\begin{DoxyCompactList}\small\item\em Size of the topic name (number of characters). \end{DoxyCompactList}\item 
+const void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structmqtt__response__publish_a0f388655527c9be685d56d0670910524}{topic\+\_\+name}}
+\begin{DoxyCompactList}\small\item\em The topic name. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{structmqtt__response__publish_ad051e090f3817f4549df7dc178790f45}{packet\+\_\+id}}
+\begin{DoxyCompactList}\small\item\em The publish message\textquotesingle{}s packet ID. \end{DoxyCompactList}\item 
+const void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structmqtt__response__publish_a47c981a9cc2104180894a0b6d2effdf7}{application\+\_\+message}}
+\begin{DoxyCompactList}\small\item\em The publish message\textquotesingle{}s application message. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{structmqtt__response__publish_a2c5827a8beae468145ad52c623d884d8}{application\+\_\+message\+\_\+size}}
+\begin{DoxyCompactList}\small\item\em The size of the application message in bytes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Related Symbols}
+(Note that these are not member symbols.) \begin{DoxyCompactItemize}
+\item 
+ssize\+\_\+t \mbox{\hyperlink{group__unpackers_gae8ee6c1da210c4782f4f9939fe6ec828}{mqtt\+\_\+unpack\+\_\+publish\+\_\+response}} (struct \mbox{\hyperlink{structmqtt__response}{mqtt\+\_\+response}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{structmqtt__response}{mqtt\+\_\+response}}, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf)
+\begin{DoxyCompactList}\small\item\em Deserialize a publish response from {\ttfamily buf}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A publish packet received from the broker. 
+
+A publish packet is received from the broker when a client publishes to a topic that the {\itshape \{local} client\} is subscribed to.
+
+\begin{DoxySeeAlso}{See also}
+\href{http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/os/mqtt-v3.1.1-os.html\#_Toc398718037}{\texttt{ MQTT v3.\+1.\+1\+: PUBLISH -\/ Publish Message. }} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structmqtt__response__publish_a47c981a9cc2104180894a0b6d2effdf7}\index{mqtt\_response\_publish@{mqtt\_response\_publish}!application\_message@{application\_message}}
+\index{application\_message@{application\_message}!mqtt\_response\_publish@{mqtt\_response\_publish}}
+\doxysubsubsection{\texorpdfstring{application\_message}{application\_message}}
+{\footnotesize\ttfamily \label{structmqtt__response__publish_a47c981a9cc2104180894a0b6d2effdf7} 
+const void\texorpdfstring{$\ast$}{*} application\+\_\+message}
+
+
+
+The publish message\textquotesingle{}s application message. 
+
+\Hypertarget{structmqtt__response__publish_a2c5827a8beae468145ad52c623d884d8}\index{mqtt\_response\_publish@{mqtt\_response\_publish}!application\_message\_size@{application\_message\_size}}
+\index{application\_message\_size@{application\_message\_size}!mqtt\_response\_publish@{mqtt\_response\_publish}}
+\doxysubsubsection{\texorpdfstring{application\_message\_size}{application\_message\_size}}
+{\footnotesize\ttfamily \label{structmqtt__response__publish_a2c5827a8beae468145ad52c623d884d8} 
+size\+\_\+t application\+\_\+message\+\_\+size}
+
+
+
+The size of the application message in bytes. 
+
+\Hypertarget{structmqtt__response__publish_a9825dfd93788834d25c5dd67e068aadc}\index{mqtt\_response\_publish@{mqtt\_response\_publish}!dup\_flag@{dup\_flag}}
+\index{dup\_flag@{dup\_flag}!mqtt\_response\_publish@{mqtt\_response\_publish}}
+\doxysubsubsection{\texorpdfstring{dup\_flag}{dup\_flag}}
+{\footnotesize\ttfamily \label{structmqtt__response__publish_a9825dfd93788834d25c5dd67e068aadc} 
+uint8\+\_\+t dup\+\_\+flag}
+
+
+
+The DUP flag. DUP flag is 0 if its the first attempt to send this publish packet. A DUP flag of 1 means that this might be a re-\/delivery of the packet. 
+
+\Hypertarget{structmqtt__response__publish_ad051e090f3817f4549df7dc178790f45}\index{mqtt\_response\_publish@{mqtt\_response\_publish}!packet\_id@{packet\_id}}
+\index{packet\_id@{packet\_id}!mqtt\_response\_publish@{mqtt\_response\_publish}}
+\doxysubsubsection{\texorpdfstring{packet\_id}{packet\_id}}
+{\footnotesize\ttfamily \label{structmqtt__response__publish_ad051e090f3817f4549df7dc178790f45} 
+uint16\+\_\+t packet\+\_\+id}
+
+
+
+The publish message\textquotesingle{}s packet ID. 
+
+\Hypertarget{structmqtt__response__publish_a9d819901d7d0f5139ca4d3100af5ef11}\index{mqtt\_response\_publish@{mqtt\_response\_publish}!qos\_level@{qos\_level}}
+\index{qos\_level@{qos\_level}!mqtt\_response\_publish@{mqtt\_response\_publish}}
+\doxysubsubsection{\texorpdfstring{qos\_level}{qos\_level}}
+{\footnotesize\ttfamily \label{structmqtt__response__publish_a9d819901d7d0f5139ca4d3100af5ef11} 
+uint8\+\_\+t qos\+\_\+level}
+
+
+
+The quality of service level. 
+
+\begin{DoxySeeAlso}{See also}
+\href{http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/os/mqtt-v3.1.1-os.html\#_Table_3.11_-}{\texttt{ MQTT v3.\+1.\+1\+: QoS Definitions }} 
+\end{DoxySeeAlso}
+\Hypertarget{structmqtt__response__publish_ac20258a37b5ef85548dab7c9ba743a69}\index{mqtt\_response\_publish@{mqtt\_response\_publish}!retain\_flag@{retain\_flag}}
+\index{retain\_flag@{retain\_flag}!mqtt\_response\_publish@{mqtt\_response\_publish}}
+\doxysubsubsection{\texorpdfstring{retain\_flag}{retain\_flag}}
+{\footnotesize\ttfamily \label{structmqtt__response__publish_ac20258a37b5ef85548dab7c9ba743a69} 
+uint8\+\_\+t retain\+\_\+flag}
+
+
+
+The retain flag of this publish message. 
+
+\Hypertarget{structmqtt__response__publish_a0f388655527c9be685d56d0670910524}\index{mqtt\_response\_publish@{mqtt\_response\_publish}!topic\_name@{topic\_name}}
+\index{topic\_name@{topic\_name}!mqtt\_response\_publish@{mqtt\_response\_publish}}
+\doxysubsubsection{\texorpdfstring{topic\_name}{topic\_name}}
+{\footnotesize\ttfamily \label{structmqtt__response__publish_a0f388655527c9be685d56d0670910524} 
+const void\texorpdfstring{$\ast$}{*} topic\+\_\+name}
+
+
+
+The topic name. 
+
+\begin{DoxyNote}{Note}
+topic\+\_\+name is not null terminated. Therefore topic\+\_\+name\+\_\+size must be used to get the string length. 
+\end{DoxyNote}
+\Hypertarget{structmqtt__response__publish_afe1d8fdb0ec5705da6f5c3ed5aad83ab}\index{mqtt\_response\_publish@{mqtt\_response\_publish}!topic\_name\_size@{topic\_name\_size}}
+\index{topic\_name\_size@{topic\_name\_size}!mqtt\_response\_publish@{mqtt\_response\_publish}}
+\doxysubsubsection{\texorpdfstring{topic\_name\_size}{topic\_name\_size}}
+{\footnotesize\ttfamily \label{structmqtt__response__publish_afe1d8fdb0ec5705da6f5c3ed5aad83ab} 
+uint16\+\_\+t topic\+\_\+name\+\_\+size}
+
+
+
+Size of the topic name (number of characters). 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+linux/matesocketcan/\mbox{\hyperlink{mqtt_8h}{mqtt.\+h}}\end{DoxyCompactItemize}

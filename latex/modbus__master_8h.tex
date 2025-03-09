@@ -1,0 +1,1065 @@
+\doxysection{modbus\+\_\+master.\+h File Reference}
+\hypertarget{modbus__master_8h}{}\label{modbus__master_8h}\index{modbus\_master.h@{modbus\_master.h}}
+{\ttfamily \#include $<$xc.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include "{}mate\+Q84.\+X/mcc\+\_\+generated\+\_\+files/mcc.\+h"{}}\newline
+{\ttfamily \#include "{}timers.\+h"{}}\newline
+{\ttfamily \#include "{}trace.\+h"{}}\newline
+Include dependency graph for modbus\+\_\+master.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{modbus__master_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{modbus__master_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structV__type}{V\+\_\+type}}
+\item 
+union \mbox{\hyperlink{unionPWMDC}{PWMDC}}
+\item 
+union \mbox{\hyperlink{unionMREG}{MREG}}
+\item 
+union \mbox{\hyperlink{unionMREG32}{MREG32}}
+\item 
+union \mbox{\hyperlink{unionMREG64}{MREG64}}
+\item 
+struct \mbox{\hyperlink{structM__time__data}{M\+\_\+time\+\_\+data}}
+\item 
+struct \mbox{\hyperlink{structM__data}{M\+\_\+data}}
+\item 
+struct \mbox{\hyperlink{structC__data}{C\+\_\+data}}
+\item 
+struct \mbox{\hyperlink{structEM__data1}{EM\+\_\+data1}}
+\item 
+struct \mbox{\hyperlink{structEM__data2}{EM\+\_\+data2}}
+\item 
+struct \mbox{\hyperlink{structEM__serial}{EM\+\_\+serial}}
+\item 
+struct \mbox{\hyperlink{structEM__version}{EM\+\_\+version}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{modbus__master_8h_a2439eef1fc0462131eb9a6f35754ecb6}{MB\+\_\+\+MASTER}}
+\item 
+\#define \mbox{\hyperlink{modbus__master_8h_ac77945c02f27d3bbc8b032d18bc59651}{MB\+\_\+\+EM540}}
+\item 
+\#define \mbox{\hyperlink{modbus__master_8h_aaa9356c324c2f2c5edd94976983f9aff}{MB\+\_\+\+EM540\+\_\+\+ID\+\_\+H}}~0x06
+\item 
+\#define \mbox{\hyperlink{modbus__master_8h_a3edeb72741c48d6540db0444701c39c4}{MB\+\_\+\+EM540\+\_\+\+ID\+\_\+L}}~0x\+E0
+\item 
+\#define \mbox{\hyperlink{modbus__master_8h_a65b0a5f2052963d5cfbc42e7c330b0d8}{SWMBMVER}}~0\+X0033
+\item 
+\#define \mbox{\hyperlink{modbus__master_8h_a3265bbdaa9e23b3f2ff01816d3b58910}{MADDR}}~0x01
+\item 
+\#define \mbox{\hyperlink{modbus__master_8h_a9f3b33df22638a18471cea5b5138f2dc}{EM\+\_\+\+DATA\+\_\+\+LEN1}}~52
+\item 
+\#define \mbox{\hyperlink{modbus__master_8h_a2870ec6fe945c4ac12542c319b0e0163}{EM\+\_\+\+DATA\+\_\+\+LEN2}}~64
+\item 
+\#define \mbox{\hyperlink{modbus__master_8h_a73041837103445f8384e51c68c063216}{SERIAL\+\_\+\+DATA\+\_\+\+LEN}}~8
+\item 
+\#define \mbox{\hyperlink{modbus__master_8h_a20f4b8cc1fdc0a22a16eeffef6b94f4c}{DBUG\+\_\+R}}
+\item 
+\#define \mbox{\hyperlink{modbus__master_8h_a8f1d4f6a02965ad38fa568705522cd12}{INT\+\_\+\+TRACE}}~\mbox{\hyperlink{pin__manager_8h_a7cbedd789f28f0e4679f7bcd580c9e4e}{INT\+\_\+\+TRACE\+\_\+\+Toggle}}()
+\item 
+\#define \mbox{\hyperlink{modbus__master_8h_aaf06a3762adb0aa04b8a5f8f016ca5e9}{MAX\+\_\+\+DATA}}~240
+\item 
+\#define \mbox{\hyperlink{modbus__master_8h_af9c36b86b3e472fc758bcfcc8013b0eb}{FASTQ}}
+\item 
+\#define \mbox{\hyperlink{modbus__master_8h_a77725d9b114976abca698c51fd846ea1}{TDELAY}}~2
+\item 
+\#define \mbox{\hyperlink{modbus__master_8h_a4c601ed7af6a69050f5578067126fb61}{TEDELAY}}~1
+\item 
+\#define \mbox{\hyperlink{modbus__master_8h_a425bcc5937972ae1bd308bf8e6a13535}{RDELAY}}~200
+\item 
+\#define \mbox{\hyperlink{modbus__master_8h_a0fdbeddf72f3780df2f0e740ca11adb2}{CDELAY}}~40
+\item 
+\#define \mbox{\hyperlink{modbus__master_8h_a5f1d53ca2f2da7fa6c2b8eb0660f3b1f}{QDELAY}}~2
+\item 
+\#define \mbox{\hyperlink{modbus__master_8h_a97342f5cf6b60063b0212cb309b97621}{TODELAY}}~4
+\item 
+\#define \mbox{\hyperlink{modbus__master_8h_ab2dc237e07e2b4c8a52a5203c216fd37}{SPACING}}~40
+\item 
+\#define \mbox{\hyperlink{modbus__master_8h_ab83ebaee004c42a7add55f4e71c7f97a}{DUPL\+\_\+\+DELAY}}~2
+\item 
+\#define \mbox{\hyperlink{modbus__master_8h_ac9df3ac1684b80558780997a5ed4cc03}{Swrite}}~\mbox{\hyperlink{uart5_8c_a249390b845af6d29d434413ac7190eba}{UART5\+\_\+\+Write}}
+\item 
+\#define \mbox{\hyperlink{modbus__master_8h_a8ed044302995360281208fd66a5ebd08}{Strmt}}~\mbox{\hyperlink{uart5_8c_aa2c255ad0516c10a12dec8fc4b3e73f2}{UART5\+\_\+is\+\_\+tx\+\_\+done}}
+\item 
+\#define \mbox{\hyperlink{modbus__master_8h_a9d227753a7a7021a9f8f5da61dc4222d}{Serror}}~\mbox{\hyperlink{uart5_8c_a40ac5813391ea36a98b40d958207e05d}{UART5\+\_\+get\+\_\+last\+\_\+status}}
+\item 
+\#define \mbox{\hyperlink{modbus__master_8h_a40f5930d15a5b05602d2e9c8b0a9b537}{Sread}}~\mbox{\hyperlink{uart5_8c_af2eaec0a40ded07b2b73f8ed6a0fb181}{UART5\+\_\+\+Read}}
+\item 
+\#define \mbox{\hyperlink{modbus__master_8h_a9057e3ba59362641cb404ceab13a881a}{Srbuffer}}~U5\+RXB
+\item 
+\#define \mbox{\hyperlink{modbus__master_8h_a43e02d2affd736b055b1de8817d8d61b}{READ\+\_\+\+COILS}}~1
+\item 
+\#define \mbox{\hyperlink{modbus__master_8h_a2b8528449a29b7e1ed7a17f41f0f00b0}{READ\+\_\+\+DISCRETE\+\_\+\+INPUTS}}~2
+\item 
+\#define \mbox{\hyperlink{modbus__master_8h_a72629c87e1b18706ed17ee3dc768d5d1}{READ\+\_\+\+HOLDING\+\_\+\+REGISTERS}}~3
+\item 
+\#define \mbox{\hyperlink{modbus__master_8h_a860e48854b8e16a310dd29fe6e069561}{READ\+\_\+\+INPUT\+\_\+\+REGISTERS}}~4
+\item 
+\#define \mbox{\hyperlink{modbus__master_8h_a264ba45a1739807963d0404270e4b142}{WRITE\+\_\+\+SINGLE\+\_\+\+COIL}}~5
+\item 
+\#define \mbox{\hyperlink{modbus__master_8h_ae193fb8e7fb5dafe59b40642c13b4b42}{WRITE\+\_\+\+SINGLE\+\_\+\+REGISTER}}~6
+\item 
+\#define \mbox{\hyperlink{modbus__master_8h_a9f224f8960c021dd05ed3fa2cdd01284}{WRITE\+\_\+\+MULTIPLE\+\_\+\+COILS}}~15
+\item 
+\#define \mbox{\hyperlink{modbus__master_8h_a05ffcc8957228e4887e7bc18306c9934}{WRITE\+\_\+\+MULTIPLE\+\_\+\+REGISTERS}}~16
+\item 
+\#define \mbox{\hyperlink{modbus__master_8h_a1b6ff0063cfdadffcee4c23821a9f2ac}{BOFF}}~0
+\item 
+\#define \mbox{\hyperlink{modbus__master_8h_a3885dd98e70586362c2f92d6f46a1c5c}{BON}}~255
+\item 
+\#define \mbox{\hyperlink{modbus__master_8h_af17f890e8d983bab6c8b113f4a04aa82}{MM\+\_\+\+ERROR\+\_\+S}}~\mbox{\hyperlink{pin__manager_8h_acb5b467314c1fa3918be2896018392c8}{MLED\+\_\+\+Set\+High}}()
+\item 
+\#define \mbox{\hyperlink{modbus__master_8h_a0a88d1810b2c2c20957e7ecbeb3e16cd}{MM\+\_\+\+ERROR\+\_\+C}}~\mbox{\hyperlink{pin__manager_8h_ad2d3b403abee6ae22c8c286a539ed39f}{MLED\+\_\+\+Set\+Low}}()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef enum \mbox{\hyperlink{modbus__master_8h_a28c7b657e452e70df5119825602a730b}{comm\+\_\+type}} \mbox{\hyperlink{modbus__master_8h_a26a8af46c2911161a69b5be288606680}{comm\+\_\+type}}
+\item 
+typedef enum \mbox{\hyperlink{modbus__master_8h_a41a2fe54b18ab7ba405a7e7da6d041f1}{cmd\+\_\+type}} \mbox{\hyperlink{modbus__master_8h_aa87177dc9da768321c28371c5ba56921}{cmd\+\_\+type}}
+\item 
+typedef enum \mbox{\hyperlink{modbus__master_8h_a88668637ccaca17d11f722f59f59406b}{trace\+\_\+type}} \mbox{\hyperlink{modbus__master_8h_ae4222906f6783450c4ef06f4d066c2f0}{trace\+\_\+type}}
+\item 
+typedef struct M\+\_\+time\+\_\+data \mbox{\hyperlink{modbus__master_8h_aa7c8a7b379d2b6f098718b720c44ced2}{M\+\_\+time\+\_\+data}}
+\item 
+typedef struct M\+\_\+data \mbox{\hyperlink{modbus__master_8h_aad27cc8c065abbda067c44c7cbe10c2d}{M\+\_\+data}}
+\item 
+typedef struct C\+\_\+data \mbox{\hyperlink{modbus__master_8h_a59e046d6b58fc5500da55ed4aa83203c}{C\+\_\+data}}
+\item 
+typedef \+\_\+\+\_\+pack struct EM\+\_\+data1 \mbox{\hyperlink{modbus__master_8h_a938e68b46bd363141526fc3d24a368d7}{EM\+\_\+data1}}
+\item 
+typedef \+\_\+\+\_\+pack struct EM\+\_\+data2 \mbox{\hyperlink{modbus__master_8h_a3f0d571d268b7e8217c0f434b4c13c48}{EM\+\_\+data2}}
+\item 
+typedef \+\_\+\+\_\+pack struct EM\+\_\+serial \mbox{\hyperlink{modbus__master_8h_aafdc451a2715e429dbd461c41089d1e0}{EM\+\_\+serial}}
+\item 
+typedef \+\_\+\+\_\+pack struct EM\+\_\+version \mbox{\hyperlink{modbus__master_8h_a72dcd2a2db41c5175374d1681cbffe28}{EM\+\_\+version}}
+\item 
+typedef enum \mbox{\hyperlink{modbus__master_8h_ab3b7281956317556f846daaebf75de72}{filter\+\_\+type}} \mbox{\hyperlink{modbus__master_8h_a9a944c9eadd296d60cb2831bf7340bc8}{filter\+\_\+type}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{modbus__master_8h_a28c7b657e452e70df5119825602a730b}{comm\+\_\+type}} \{ \mbox{\hyperlink{modbus__master_8h_a28c7b657e452e70df5119825602a730ba1e1a4aba20a5a009e616cbc8fad33ac7}{CLEAR}} = 0
+, \mbox{\hyperlink{modbus__master_8h_a28c7b657e452e70df5119825602a730ba0cb1b2c6a7db1f1084886c98909a3f36}{INIT}}
+, \mbox{\hyperlink{modbus__master_8h_a28c7b657e452e70df5119825602a730ba67be7a5f47004345047b32fff72a2230}{SEND}}
+, \mbox{\hyperlink{modbus__master_8h_a28c7b657e452e70df5119825602a730ba586011d90be069a5203e7bdbcb760302}{RECV}}
+ \}
+\item 
+enum \mbox{\hyperlink{modbus__master_8h_a41a2fe54b18ab7ba405a7e7da6d041f1}{cmd\+\_\+type}} \{ \newline
+\mbox{\hyperlink{modbus__master_8h_a41a2fe54b18ab7ba405a7e7da6d041f1a3f3ee85dbb5a07f66918a2c73f8f710b}{G\+\_\+\+ID}} = 0
+, \mbox{\hyperlink{modbus__master_8h_a41a2fe54b18ab7ba405a7e7da6d041f1aca58b106f852727aeb67c5fd6e4d35c1}{G\+\_\+\+DATA1}}
+, \mbox{\hyperlink{modbus__master_8h_a41a2fe54b18ab7ba405a7e7da6d041f1a839282a31c77479963e03d81d645e1ae}{G\+\_\+\+DATA2}}
+, \mbox{\hyperlink{modbus__master_8h_a41a2fe54b18ab7ba405a7e7da6d041f1a7b594061680dae1b94c33e32864b3955}{G\+\_\+\+CONFIG}}
+, \newline
+\mbox{\hyperlink{modbus__master_8h_a41a2fe54b18ab7ba405a7e7da6d041f1a56c7ae339b83d67055992b781014cf28}{G\+\_\+\+PASSWD}}
+, \mbox{\hyperlink{modbus__master_8h_a41a2fe54b18ab7ba405a7e7da6d041f1a0c193b6ad1745be3f395b9fd1491c232}{G\+\_\+\+LIGHT}}
+, \mbox{\hyperlink{modbus__master_8h_a41a2fe54b18ab7ba405a7e7da6d041f1a1efe95ef80c0089ff9b95a0d8f1a6904}{G\+\_\+\+VERSION}}
+, \mbox{\hyperlink{modbus__master_8h_a41a2fe54b18ab7ba405a7e7da6d041f1aa9f3567983cbe9140ae87eebb26fe55f}{G\+\_\+\+SERIAL}}
+, \newline
+\mbox{\hyperlink{modbus__master_8h_a41a2fe54b18ab7ba405a7e7da6d041f1ae62cc2386fa8d19e7ab63a6231b9c103}{G\+\_\+\+LAST}}
+ \}
+\item 
+enum \mbox{\hyperlink{modbus__master_8h_a88668637ccaca17d11f722f59f59406b}{trace\+\_\+type}} \{ \newline
+\mbox{\hyperlink{modbus__master_8h_a88668637ccaca17d11f722f59f59406bac4b28001c0d7e597010c48083b7037e6}{T\+\_\+begin}} = 1
+, \mbox{\hyperlink{modbus__master_8h_a88668637ccaca17d11f722f59f59406baac0315db5ba608ac077eec44342eb762}{T\+\_\+clear}}
+, \mbox{\hyperlink{modbus__master_8h_a88668637ccaca17d11f722f59f59406ba4a9ea28a827a7cfbd1954dc97e507fbe}{T\+\_\+passwd}}
+, \mbox{\hyperlink{modbus__master_8h_a88668637ccaca17d11f722f59f59406bab29ee44497d477ecc3fe1dba9bf617f8}{T\+\_\+config}}
+, \newline
+\mbox{\hyperlink{modbus__master_8h_a88668637ccaca17d11f722f59f59406ba65e90cd8fe057e1446592194c607464f}{T\+\_\+data}}
+, \mbox{\hyperlink{modbus__master_8h_a88668637ccaca17d11f722f59f59406ba9055a1365cad70921ebb08db7845698d}{T\+\_\+id}}
+, \mbox{\hyperlink{modbus__master_8h_a88668637ccaca17d11f722f59f59406bafb342859b5eb752fd4d85552a48a53b8}{T\+\_\+serial}}
+, \mbox{\hyperlink{modbus__master_8h_a88668637ccaca17d11f722f59f59406baa2928e0ec138c11c33274e9e0871a281}{T\+\_\+version}}
+, \newline
+\mbox{\hyperlink{modbus__master_8h_a88668637ccaca17d11f722f59f59406badee6dc9026b40bff6c3e47c5e3fd4550}{T\+\_\+init}}
+, \mbox{\hyperlink{modbus__master_8h_a88668637ccaca17d11f722f59f59406badd638730e371ea7cd1990981284dfd66}{T\+\_\+init\+\_\+d}}
+, \mbox{\hyperlink{modbus__master_8h_a88668637ccaca17d11f722f59f59406ba6995fbc544b408719e4e69432820ca16}{T\+\_\+send}}
+, \mbox{\hyperlink{modbus__master_8h_a88668637ccaca17d11f722f59f59406ba5a23ee9d48c340848410e8c9d288ee0c}{T\+\_\+send\+\_\+d}}
+, \newline
+\mbox{\hyperlink{modbus__master_8h_a88668637ccaca17d11f722f59f59406ba6ea6fe0c3c7e665959e8f6b11a93b293}{T\+\_\+recv}}
+, \mbox{\hyperlink{modbus__master_8h_a88668637ccaca17d11f722f59f59406ba4ab957ab2e6c1044f8ff226bb87b20b3}{T\+\_\+recv\+\_\+r}}
+, \mbox{\hyperlink{modbus__master_8h_a88668637ccaca17d11f722f59f59406ba64f724317930e9c2ef63343435b65b79}{T\+\_\+misc1}}
+, \mbox{\hyperlink{modbus__master_8h_a88668637ccaca17d11f722f59f59406ba321e2095ca89e631e79589f1860177e8}{T\+\_\+misc2}}
+, \newline
+\mbox{\hyperlink{modbus__master_8h_a88668637ccaca17d11f722f59f59406bafa9eca6849113b4fae0a07e36c6fba2b}{T\+\_\+misc3}}
+, \mbox{\hyperlink{modbus__master_8h_a88668637ccaca17d11f722f59f59406ba9bf1fc535a7d229d756446bae8a5b75e}{T\+\_\+spacing}}
+, \mbox{\hyperlink{modbus__master_8h_a88668637ccaca17d11f722f59f59406ba481f9b584e431a2aa06f273a648fd3de}{T\+\_\+light}}
+ \}
+\item 
+enum \mbox{\hyperlink{modbus__master_8h_ab3b7281956317556f846daaebf75de72}{filter\+\_\+type}} \{ \newline
+\mbox{\hyperlink{modbus__master_8h_ab3b7281956317556f846daaebf75de72ae6f95d7e682203e73462a87e75f4ea18}{F\+\_\+ac}} = 0
+, \mbox{\hyperlink{modbus__master_8h_ab3b7281956317556f846daaebf75de72a836b153302582ac14b44b967acbf8599}{F\+\_\+wac}} = 1
+, \mbox{\hyperlink{modbus__master_8h_ab3b7281956317556f846daaebf75de72a22038b9ca5b6a763a116831793b61aa2}{F\+\_\+wva}} = 2
+, \mbox{\hyperlink{modbus__master_8h_ab3b7281956317556f846daaebf75de72af5d020058775abc07c23204d4bc180a0}{F\+\_\+var}} = 3
+, \newline
+\mbox{\hyperlink{modbus__master_8h_ab3b7281956317556f846daaebf75de72af25fdf167db9121ad93cdf7d0e32cd10}{F\+\_\+run}} = 4
+, \mbox{\hyperlink{modbus__master_8h_ab3b7281956317556f846daaebf75de72af1ecc2e4c4eaf5fe28f1aeaf4494c3d8}{F\+\_\+5}} = 5
+, \mbox{\hyperlink{modbus__master_8h_ab3b7281956317556f846daaebf75de72a334fce92784e49c24cf9eb6b26c32372}{F\+\_\+6}} = 6
+, \mbox{\hyperlink{modbus__master_8h_ab3b7281956317556f846daaebf75de72a1ef9542307b9d3b44e7b0ccd988d037b}{F\+\_\+7}} = 7
+, \newline
+\mbox{\hyperlink{modbus__master_8h_ab3b7281956317556f846daaebf75de72a404baa5c90a354eecebecfe7d7759bc1}{F\+\_\+8}} = 8
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{modbus__master_8h_aa4584465ac7f06c584d1909e07232cb3}{crc16}} (volatile uint8\+\_\+t \texorpdfstring{$\ast$}{*}, uint16\+\_\+t)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{modbus__master_8h_a4c378866772acce6fe409091a7377812}{modbus\+\_\+rtu\+\_\+send\+\_\+msg}} (void \texorpdfstring{$\ast$}{*}, const void \texorpdfstring{$\ast$}{*}, uint16\+\_\+t)
+\item 
+void \mbox{\hyperlink{modbus__master_8h_a9f3266015b32b55423f7ff3d32079455}{my\+\_\+modbus\+\_\+rx\+\_\+32}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{modbus__master_8h_a60e55e056abfe325744e919dc21096bb}{init\+\_\+stream\+\_\+params}} (void)
+\item 
+void \mbox{\hyperlink{modbus__master_8h_af0a79cc5a035f6c7545db9bcd27cb05b}{init\+\_\+mb\+\_\+master\+\_\+timers}} (void)
+\item 
+int8\+\_\+t \mbox{\hyperlink{modbus__master_8h_a27e81fb57791be6f738790fdc3509369}{master\+\_\+controller\+\_\+work}} (\mbox{\hyperlink{structC__data}{C\+\_\+data}} \texorpdfstring{$\ast$}{*})
+\item 
+int32\+\_\+t \mbox{\hyperlink{modbus__master_8h_aad4dcf17409e9ec538ffe9884d4c605b}{mb32\+\_\+swap}} (const int32\+\_\+t)
+\item 
+int16\+\_\+t \mbox{\hyperlink{modbus__master_8h_ab03f5973cd7c769bcfa85cc442ed78ba}{mb16\+\_\+swap}} (const int16\+\_\+t)
+\item 
+void \mbox{\hyperlink{modbus__master_8h_a1beecc83dea42956462e66ef987e88b1}{clear\+\_\+2hz}} (void)
+\item 
+void \mbox{\hyperlink{modbus__master_8h_a059b37f6d98c378242ebc40cbaf56e1c}{clear\+\_\+500ahz}} (void)
+\item 
+void \mbox{\hyperlink{modbus__master_8h_ac941be1be1f2239ffd59d96aaaa2a489}{clear\+\_\+500hz}} (void)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{modbus__master_8h_a3459a0db80472430787129b6049d0a48}{get\+\_\+2hz}} (const uint8\+\_\+t)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{modbus__master_8h_a79df67a38a844fea430959fbc3d57d04}{get\+\_\+500ahz}} (const uint8\+\_\+t)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{modbus__master_8h_a6fb62a00dff34d5d28a701a864006915}{get\+\_\+500hz}} (const uint8\+\_\+t)
+\item 
+void \mbox{\hyperlink{modbus__master_8h_adb53f8fef66c5d6886ea74067a22e345}{timer\+\_\+500ms\+\_\+tick}} (void)
+\item 
+void \mbox{\hyperlink{modbus__master_8h_a573e15ec8f774a9a092fe68ed2852e69}{timer\+\_\+2ms\+\_\+tick}} (void)
+\item 
+void \mbox{\hyperlink{modbus__master_8h_a2ec9a048919034f4daaa76c92285269d}{mb\+\_\+tx\+\_\+test}} (\mbox{\hyperlink{structC__data}{C\+\_\+data}} \texorpdfstring{$\ast$}{*})
+\item 
+void \mbox{\hyperlink{modbus__master_8h_a90eb393250f99616118f14648db15c48}{mb\+\_\+setup}} (void)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+volatile struct \mbox{\hyperlink{structV__type}{V\+\_\+type}} \mbox{\hyperlink{modbus__master_8h_a8cf8a130f4025ab462bcb83b34fd2d1a}{V}}
+\item 
+\mbox{\hyperlink{structC__data}{C\+\_\+data}} \mbox{\hyperlink{modbus__master_8h_a80e5f02bd169ef2ace6d7abee59065d8}{C}}
+\item 
+volatile \mbox{\hyperlink{structM__data}{M\+\_\+data}} \mbox{\hyperlink{modbus__master_8h_a1b2a73ecb37c4a1b837f4cb30b5ff74b}{M}}
+\item 
+volatile \mbox{\hyperlink{structM__time__data}{M\+\_\+time\+\_\+data}} \mbox{\hyperlink{modbus__master_8h_ae1bf1dae0a59fa21f7b577ea0dcd1e39}{MT}}
+\item 
+\mbox{\hyperlink{structEM__data1}{EM\+\_\+data1}} \mbox{\hyperlink{modbus__master_8h_a6b4eae00bfaa75a10707f816dcddf8a2}{em}}
+\item 
+\mbox{\hyperlink{structEM__data2}{EM\+\_\+data2}} \mbox{\hyperlink{modbus__master_8h_ad191a89afedc59648e8f67556d13375c}{emt}}
+\item 
+\mbox{\hyperlink{structEM__serial}{EM\+\_\+serial}} \mbox{\hyperlink{modbus__master_8h_a432631245393587c2229a92d6017b089}{ems}}
+\item 
+\mbox{\hyperlink{structEM__version}{EM\+\_\+version}} \mbox{\hyperlink{modbus__master_8h_a2a4878e45b9cc74051c899b7f6a98a09}{emv}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{modbus__master_8h_a1b6ff0063cfdadffcee4c23821a9f2ac}\index{modbus\_master.h@{modbus\_master.h}!BOFF@{BOFF}}
+\index{BOFF@{BOFF}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{BOFF}{BOFF}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a1b6ff0063cfdadffcee4c23821a9f2ac} 
+\#define BOFF~0}
+
+\Hypertarget{modbus__master_8h_a3885dd98e70586362c2f92d6f46a1c5c}\index{modbus\_master.h@{modbus\_master.h}!BON@{BON}}
+\index{BON@{BON}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{BON}{BON}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a3885dd98e70586362c2f92d6f46a1c5c} 
+\#define BON~255}
+
+\Hypertarget{modbus__master_8h_a0fdbeddf72f3780df2f0e740ca11adb2}\index{modbus\_master.h@{modbus\_master.h}!CDELAY@{CDELAY}}
+\index{CDELAY@{CDELAY}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{CDELAY}{CDELAY}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a0fdbeddf72f3780df2f0e740ca11adb2} 
+\#define CDELAY~40}
+
+\Hypertarget{modbus__master_8h_a20f4b8cc1fdc0a22a16eeffef6b94f4c}\index{modbus\_master.h@{modbus\_master.h}!DBUG\_R@{DBUG\_R}}
+\index{DBUG\_R@{DBUG\_R}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{DBUG\_R}{DBUG\_R}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a20f4b8cc1fdc0a22a16eeffef6b94f4c} 
+\#define DBUG\+\_\+R}
+
+\Hypertarget{modbus__master_8h_ab83ebaee004c42a7add55f4e71c7f97a}\index{modbus\_master.h@{modbus\_master.h}!DUPL\_DELAY@{DUPL\_DELAY}}
+\index{DUPL\_DELAY@{DUPL\_DELAY}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{DUPL\_DELAY}{DUPL\_DELAY}}
+{\footnotesize\ttfamily \label{modbus__master_8h_ab83ebaee004c42a7add55f4e71c7f97a} 
+\#define DUPL\+\_\+\+DELAY~2}
+
+\Hypertarget{modbus__master_8h_a9f3b33df22638a18471cea5b5138f2dc}\index{modbus\_master.h@{modbus\_master.h}!EM\_DATA\_LEN1@{EM\_DATA\_LEN1}}
+\index{EM\_DATA\_LEN1@{EM\_DATA\_LEN1}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{EM\_DATA\_LEN1}{EM\_DATA\_LEN1}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a9f3b33df22638a18471cea5b5138f2dc} 
+\#define EM\+\_\+\+DATA\+\_\+\+LEN1~52}
+
+\Hypertarget{modbus__master_8h_a2870ec6fe945c4ac12542c319b0e0163}\index{modbus\_master.h@{modbus\_master.h}!EM\_DATA\_LEN2@{EM\_DATA\_LEN2}}
+\index{EM\_DATA\_LEN2@{EM\_DATA\_LEN2}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{EM\_DATA\_LEN2}{EM\_DATA\_LEN2}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a2870ec6fe945c4ac12542c319b0e0163} 
+\#define EM\+\_\+\+DATA\+\_\+\+LEN2~64}
+
+\Hypertarget{modbus__master_8h_af9c36b86b3e472fc758bcfcc8013b0eb}\index{modbus\_master.h@{modbus\_master.h}!FASTQ@{FASTQ}}
+\index{FASTQ@{FASTQ}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{FASTQ}{FASTQ}}
+{\footnotesize\ttfamily \label{modbus__master_8h_af9c36b86b3e472fc758bcfcc8013b0eb} 
+\#define FASTQ}
+
+\Hypertarget{modbus__master_8h_a8f1d4f6a02965ad38fa568705522cd12}\index{modbus\_master.h@{modbus\_master.h}!INT\_TRACE@{INT\_TRACE}}
+\index{INT\_TRACE@{INT\_TRACE}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{INT\_TRACE}{INT\_TRACE}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a8f1d4f6a02965ad38fa568705522cd12} 
+\#define INT\+\_\+\+TRACE~\mbox{\hyperlink{pin__manager_8h_a7cbedd789f28f0e4679f7bcd580c9e4e}{INT\+\_\+\+TRACE\+\_\+\+Toggle}}()}
+
+\Hypertarget{modbus__master_8h_a3265bbdaa9e23b3f2ff01816d3b58910}\index{modbus\_master.h@{modbus\_master.h}!MADDR@{MADDR}}
+\index{MADDR@{MADDR}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{MADDR}{MADDR}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a3265bbdaa9e23b3f2ff01816d3b58910} 
+\#define MADDR~0x01}
+
+\Hypertarget{modbus__master_8h_aaf06a3762adb0aa04b8a5f8f016ca5e9}\index{modbus\_master.h@{modbus\_master.h}!MAX\_DATA@{MAX\_DATA}}
+\index{MAX\_DATA@{MAX\_DATA}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_DATA}{MAX\_DATA}}
+{\footnotesize\ttfamily \label{modbus__master_8h_aaf06a3762adb0aa04b8a5f8f016ca5e9} 
+\#define MAX\+\_\+\+DATA~240}
+
+\Hypertarget{modbus__master_8h_ac77945c02f27d3bbc8b032d18bc59651}\index{modbus\_master.h@{modbus\_master.h}!MB\_EM540@{MB\_EM540}}
+\index{MB\_EM540@{MB\_EM540}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{MB\_EM540}{MB\_EM540}}
+{\footnotesize\ttfamily \label{modbus__master_8h_ac77945c02f27d3bbc8b032d18bc59651} 
+\#define MB\+\_\+\+EM540}
+
+\Hypertarget{modbus__master_8h_aaa9356c324c2f2c5edd94976983f9aff}\index{modbus\_master.h@{modbus\_master.h}!MB\_EM540\_ID\_H@{MB\_EM540\_ID\_H}}
+\index{MB\_EM540\_ID\_H@{MB\_EM540\_ID\_H}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{MB\_EM540\_ID\_H}{MB\_EM540\_ID\_H}}
+{\footnotesize\ttfamily \label{modbus__master_8h_aaa9356c324c2f2c5edd94976983f9aff} 
+\#define MB\+\_\+\+EM540\+\_\+\+ID\+\_\+H~0x06}
+
+\Hypertarget{modbus__master_8h_a3edeb72741c48d6540db0444701c39c4}\index{modbus\_master.h@{modbus\_master.h}!MB\_EM540\_ID\_L@{MB\_EM540\_ID\_L}}
+\index{MB\_EM540\_ID\_L@{MB\_EM540\_ID\_L}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{MB\_EM540\_ID\_L}{MB\_EM540\_ID\_L}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a3edeb72741c48d6540db0444701c39c4} 
+\#define MB\+\_\+\+EM540\+\_\+\+ID\+\_\+L~0x\+E0}
+
+\Hypertarget{modbus__master_8h_a2439eef1fc0462131eb9a6f35754ecb6}\index{modbus\_master.h@{modbus\_master.h}!MB\_MASTER@{MB\_MASTER}}
+\index{MB\_MASTER@{MB\_MASTER}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{MB\_MASTER}{MB\_MASTER}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a2439eef1fc0462131eb9a6f35754ecb6} 
+\#define MB\+\_\+\+MASTER}
+
+\Hypertarget{modbus__master_8h_a0a88d1810b2c2c20957e7ecbeb3e16cd}\index{modbus\_master.h@{modbus\_master.h}!MM\_ERROR\_C@{MM\_ERROR\_C}}
+\index{MM\_ERROR\_C@{MM\_ERROR\_C}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{MM\_ERROR\_C}{MM\_ERROR\_C}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a0a88d1810b2c2c20957e7ecbeb3e16cd} 
+\#define MM\+\_\+\+ERROR\+\_\+C~\mbox{\hyperlink{pin__manager_8h_ad2d3b403abee6ae22c8c286a539ed39f}{MLED\+\_\+\+Set\+Low}}()}
+
+\Hypertarget{modbus__master_8h_af17f890e8d983bab6c8b113f4a04aa82}\index{modbus\_master.h@{modbus\_master.h}!MM\_ERROR\_S@{MM\_ERROR\_S}}
+\index{MM\_ERROR\_S@{MM\_ERROR\_S}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{MM\_ERROR\_S}{MM\_ERROR\_S}}
+{\footnotesize\ttfamily \label{modbus__master_8h_af17f890e8d983bab6c8b113f4a04aa82} 
+\#define MM\+\_\+\+ERROR\+\_\+S~\mbox{\hyperlink{pin__manager_8h_acb5b467314c1fa3918be2896018392c8}{MLED\+\_\+\+Set\+High}}()}
+
+\Hypertarget{modbus__master_8h_a5f1d53ca2f2da7fa6c2b8eb0660f3b1f}\index{modbus\_master.h@{modbus\_master.h}!QDELAY@{QDELAY}}
+\index{QDELAY@{QDELAY}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{QDELAY}{QDELAY}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a5f1d53ca2f2da7fa6c2b8eb0660f3b1f} 
+\#define QDELAY~2}
+
+\Hypertarget{modbus__master_8h_a425bcc5937972ae1bd308bf8e6a13535}\index{modbus\_master.h@{modbus\_master.h}!RDELAY@{RDELAY}}
+\index{RDELAY@{RDELAY}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{RDELAY}{RDELAY}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a425bcc5937972ae1bd308bf8e6a13535} 
+\#define RDELAY~200}
+
+\Hypertarget{modbus__master_8h_a43e02d2affd736b055b1de8817d8d61b}\index{modbus\_master.h@{modbus\_master.h}!READ\_COILS@{READ\_COILS}}
+\index{READ\_COILS@{READ\_COILS}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{READ\_COILS}{READ\_COILS}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a43e02d2affd736b055b1de8817d8d61b} 
+\#define READ\+\_\+\+COILS~1}
+
+\Hypertarget{modbus__master_8h_a2b8528449a29b7e1ed7a17f41f0f00b0}\index{modbus\_master.h@{modbus\_master.h}!READ\_DISCRETE\_INPUTS@{READ\_DISCRETE\_INPUTS}}
+\index{READ\_DISCRETE\_INPUTS@{READ\_DISCRETE\_INPUTS}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{READ\_DISCRETE\_INPUTS}{READ\_DISCRETE\_INPUTS}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a2b8528449a29b7e1ed7a17f41f0f00b0} 
+\#define READ\+\_\+\+DISCRETE\+\_\+\+INPUTS~2}
+
+\Hypertarget{modbus__master_8h_a72629c87e1b18706ed17ee3dc768d5d1}\index{modbus\_master.h@{modbus\_master.h}!READ\_HOLDING\_REGISTERS@{READ\_HOLDING\_REGISTERS}}
+\index{READ\_HOLDING\_REGISTERS@{READ\_HOLDING\_REGISTERS}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{READ\_HOLDING\_REGISTERS}{READ\_HOLDING\_REGISTERS}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a72629c87e1b18706ed17ee3dc768d5d1} 
+\#define READ\+\_\+\+HOLDING\+\_\+\+REGISTERS~3}
+
+\Hypertarget{modbus__master_8h_a860e48854b8e16a310dd29fe6e069561}\index{modbus\_master.h@{modbus\_master.h}!READ\_INPUT\_REGISTERS@{READ\_INPUT\_REGISTERS}}
+\index{READ\_INPUT\_REGISTERS@{READ\_INPUT\_REGISTERS}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{READ\_INPUT\_REGISTERS}{READ\_INPUT\_REGISTERS}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a860e48854b8e16a310dd29fe6e069561} 
+\#define READ\+\_\+\+INPUT\+\_\+\+REGISTERS~4}
+
+\Hypertarget{modbus__master_8h_a73041837103445f8384e51c68c063216}\index{modbus\_master.h@{modbus\_master.h}!SERIAL\_DATA\_LEN@{SERIAL\_DATA\_LEN}}
+\index{SERIAL\_DATA\_LEN@{SERIAL\_DATA\_LEN}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{SERIAL\_DATA\_LEN}{SERIAL\_DATA\_LEN}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a73041837103445f8384e51c68c063216} 
+\#define SERIAL\+\_\+\+DATA\+\_\+\+LEN~8}
+
+\Hypertarget{modbus__master_8h_a9d227753a7a7021a9f8f5da61dc4222d}\index{modbus\_master.h@{modbus\_master.h}!Serror@{Serror}}
+\index{Serror@{Serror}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{Serror}{Serror}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a9d227753a7a7021a9f8f5da61dc4222d} 
+\#define Serror~\mbox{\hyperlink{uart5_8c_a40ac5813391ea36a98b40d958207e05d}{UART5\+\_\+get\+\_\+last\+\_\+status}}}
+
+\Hypertarget{modbus__master_8h_ab2dc237e07e2b4c8a52a5203c216fd37}\index{modbus\_master.h@{modbus\_master.h}!SPACING@{SPACING}}
+\index{SPACING@{SPACING}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{SPACING}{SPACING}}
+{\footnotesize\ttfamily \label{modbus__master_8h_ab2dc237e07e2b4c8a52a5203c216fd37} 
+\#define SPACING~40}
+
+\Hypertarget{modbus__master_8h_a9057e3ba59362641cb404ceab13a881a}\index{modbus\_master.h@{modbus\_master.h}!Srbuffer@{Srbuffer}}
+\index{Srbuffer@{Srbuffer}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{Srbuffer}{Srbuffer}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a9057e3ba59362641cb404ceab13a881a} 
+\#define Srbuffer~U5\+RXB}
+
+\Hypertarget{modbus__master_8h_a40f5930d15a5b05602d2e9c8b0a9b537}\index{modbus\_master.h@{modbus\_master.h}!Sread@{Sread}}
+\index{Sread@{Sread}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{Sread}{Sread}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a40f5930d15a5b05602d2e9c8b0a9b537} 
+\#define Sread~\mbox{\hyperlink{uart5_8c_af2eaec0a40ded07b2b73f8ed6a0fb181}{UART5\+\_\+\+Read}}}
+
+\Hypertarget{modbus__master_8h_a8ed044302995360281208fd66a5ebd08}\index{modbus\_master.h@{modbus\_master.h}!Strmt@{Strmt}}
+\index{Strmt@{Strmt}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{Strmt}{Strmt}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a8ed044302995360281208fd66a5ebd08} 
+\#define Strmt~\mbox{\hyperlink{uart5_8c_aa2c255ad0516c10a12dec8fc4b3e73f2}{UART5\+\_\+is\+\_\+tx\+\_\+done}}}
+
+\Hypertarget{modbus__master_8h_a65b0a5f2052963d5cfbc42e7c330b0d8}\index{modbus\_master.h@{modbus\_master.h}!SWMBMVER@{SWMBMVER}}
+\index{SWMBMVER@{SWMBMVER}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{SWMBMVER}{SWMBMVER}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a65b0a5f2052963d5cfbc42e7c330b0d8} 
+\#define SWMBMVER~0\+X0033}
+
+\Hypertarget{modbus__master_8h_ac9df3ac1684b80558780997a5ed4cc03}\index{modbus\_master.h@{modbus\_master.h}!Swrite@{Swrite}}
+\index{Swrite@{Swrite}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{Swrite}{Swrite}}
+{\footnotesize\ttfamily \label{modbus__master_8h_ac9df3ac1684b80558780997a5ed4cc03} 
+\#define Swrite~\mbox{\hyperlink{uart5_8c_a249390b845af6d29d434413ac7190eba}{UART5\+\_\+\+Write}}}
+
+\Hypertarget{modbus__master_8h_a77725d9b114976abca698c51fd846ea1}\index{modbus\_master.h@{modbus\_master.h}!TDELAY@{TDELAY}}
+\index{TDELAY@{TDELAY}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{TDELAY}{TDELAY}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a77725d9b114976abca698c51fd846ea1} 
+\#define TDELAY~2}
+
+\Hypertarget{modbus__master_8h_a4c601ed7af6a69050f5578067126fb61}\index{modbus\_master.h@{modbus\_master.h}!TEDELAY@{TEDELAY}}
+\index{TEDELAY@{TEDELAY}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{TEDELAY}{TEDELAY}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a4c601ed7af6a69050f5578067126fb61} 
+\#define TEDELAY~1}
+
+\Hypertarget{modbus__master_8h_a97342f5cf6b60063b0212cb309b97621}\index{modbus\_master.h@{modbus\_master.h}!TODELAY@{TODELAY}}
+\index{TODELAY@{TODELAY}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{TODELAY}{TODELAY}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a97342f5cf6b60063b0212cb309b97621} 
+\#define TODELAY~4}
+
+\Hypertarget{modbus__master_8h_a9f224f8960c021dd05ed3fa2cdd01284}\index{modbus\_master.h@{modbus\_master.h}!WRITE\_MULTIPLE\_COILS@{WRITE\_MULTIPLE\_COILS}}
+\index{WRITE\_MULTIPLE\_COILS@{WRITE\_MULTIPLE\_COILS}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{WRITE\_MULTIPLE\_COILS}{WRITE\_MULTIPLE\_COILS}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a9f224f8960c021dd05ed3fa2cdd01284} 
+\#define WRITE\+\_\+\+MULTIPLE\+\_\+\+COILS~15}
+
+\Hypertarget{modbus__master_8h_a05ffcc8957228e4887e7bc18306c9934}\index{modbus\_master.h@{modbus\_master.h}!WRITE\_MULTIPLE\_REGISTERS@{WRITE\_MULTIPLE\_REGISTERS}}
+\index{WRITE\_MULTIPLE\_REGISTERS@{WRITE\_MULTIPLE\_REGISTERS}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{WRITE\_MULTIPLE\_REGISTERS}{WRITE\_MULTIPLE\_REGISTERS}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a05ffcc8957228e4887e7bc18306c9934} 
+\#define WRITE\+\_\+\+MULTIPLE\+\_\+\+REGISTERS~16}
+
+\Hypertarget{modbus__master_8h_a264ba45a1739807963d0404270e4b142}\index{modbus\_master.h@{modbus\_master.h}!WRITE\_SINGLE\_COIL@{WRITE\_SINGLE\_COIL}}
+\index{WRITE\_SINGLE\_COIL@{WRITE\_SINGLE\_COIL}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{WRITE\_SINGLE\_COIL}{WRITE\_SINGLE\_COIL}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a264ba45a1739807963d0404270e4b142} 
+\#define WRITE\+\_\+\+SINGLE\+\_\+\+COIL~5}
+
+\Hypertarget{modbus__master_8h_ae193fb8e7fb5dafe59b40642c13b4b42}\index{modbus\_master.h@{modbus\_master.h}!WRITE\_SINGLE\_REGISTER@{WRITE\_SINGLE\_REGISTER}}
+\index{WRITE\_SINGLE\_REGISTER@{WRITE\_SINGLE\_REGISTER}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{WRITE\_SINGLE\_REGISTER}{WRITE\_SINGLE\_REGISTER}}
+{\footnotesize\ttfamily \label{modbus__master_8h_ae193fb8e7fb5dafe59b40642c13b4b42} 
+\#define WRITE\+\_\+\+SINGLE\+\_\+\+REGISTER~6}
+
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{modbus__master_8h_a59e046d6b58fc5500da55ed4aa83203c}\index{modbus\_master.h@{modbus\_master.h}!C\_data@{C\_data}}
+\index{C\_data@{C\_data}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{C\_data}{C\_data}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a59e046d6b58fc5500da55ed4aa83203c} 
+typedef struct C\+\_\+data C\+\_\+data}
+
+\Hypertarget{modbus__master_8h_aa87177dc9da768321c28371c5ba56921}\index{modbus\_master.h@{modbus\_master.h}!cmd\_type@{cmd\_type}}
+\index{cmd\_type@{cmd\_type}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{cmd\_type}{cmd\_type}}
+{\footnotesize\ttfamily \label{modbus__master_8h_aa87177dc9da768321c28371c5ba56921} 
+typedef enum \mbox{\hyperlink{modbus__master_8h_a41a2fe54b18ab7ba405a7e7da6d041f1}{cmd\+\_\+type}} \mbox{\hyperlink{modbus__master_8h_a41a2fe54b18ab7ba405a7e7da6d041f1}{cmd\+\_\+type}}}
+
+\Hypertarget{modbus__master_8h_a26a8af46c2911161a69b5be288606680}\index{modbus\_master.h@{modbus\_master.h}!comm\_type@{comm\_type}}
+\index{comm\_type@{comm\_type}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{comm\_type}{comm\_type}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a26a8af46c2911161a69b5be288606680} 
+typedef enum \mbox{\hyperlink{modbus__master_8h_a28c7b657e452e70df5119825602a730b}{comm\+\_\+type}} \mbox{\hyperlink{modbus__master_8h_a28c7b657e452e70df5119825602a730b}{comm\+\_\+type}}}
+
+\Hypertarget{modbus__master_8h_a938e68b46bd363141526fc3d24a368d7}\index{modbus\_master.h@{modbus\_master.h}!EM\_data1@{EM\_data1}}
+\index{EM\_data1@{EM\_data1}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{EM\_data1}{EM\_data1}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a938e68b46bd363141526fc3d24a368d7} 
+typedef \+\_\+\+\_\+pack struct EM\+\_\+data1 EM\+\_\+data1}
+
+\Hypertarget{modbus__master_8h_a3f0d571d268b7e8217c0f434b4c13c48}\index{modbus\_master.h@{modbus\_master.h}!EM\_data2@{EM\_data2}}
+\index{EM\_data2@{EM\_data2}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{EM\_data2}{EM\_data2}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a3f0d571d268b7e8217c0f434b4c13c48} 
+typedef \+\_\+\+\_\+pack struct EM\+\_\+data2 EM\+\_\+data2}
+
+\Hypertarget{modbus__master_8h_aafdc451a2715e429dbd461c41089d1e0}\index{modbus\_master.h@{modbus\_master.h}!EM\_serial@{EM\_serial}}
+\index{EM\_serial@{EM\_serial}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{EM\_serial}{EM\_serial}}
+{\footnotesize\ttfamily \label{modbus__master_8h_aafdc451a2715e429dbd461c41089d1e0} 
+typedef \+\_\+\+\_\+pack struct EM\+\_\+serial EM\+\_\+serial}
+
+\Hypertarget{modbus__master_8h_a72dcd2a2db41c5175374d1681cbffe28}\index{modbus\_master.h@{modbus\_master.h}!EM\_version@{EM\_version}}
+\index{EM\_version@{EM\_version}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{EM\_version}{EM\_version}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a72dcd2a2db41c5175374d1681cbffe28} 
+typedef \+\_\+\+\_\+pack struct EM\+\_\+version EM\+\_\+version}
+
+\Hypertarget{modbus__master_8h_a9a944c9eadd296d60cb2831bf7340bc8}\index{modbus\_master.h@{modbus\_master.h}!filter\_type@{filter\_type}}
+\index{filter\_type@{filter\_type}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{filter\_type}{filter\_type}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a9a944c9eadd296d60cb2831bf7340bc8} 
+typedef enum \mbox{\hyperlink{modbus__master_8h_ab3b7281956317556f846daaebf75de72}{filter\+\_\+type}} \mbox{\hyperlink{modbus__master_8h_ab3b7281956317556f846daaebf75de72}{filter\+\_\+type}}}
+
+\Hypertarget{modbus__master_8h_aad27cc8c065abbda067c44c7cbe10c2d}\index{modbus\_master.h@{modbus\_master.h}!M\_data@{M\_data}}
+\index{M\_data@{M\_data}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{M\_data}{M\_data}}
+{\footnotesize\ttfamily \label{modbus__master_8h_aad27cc8c065abbda067c44c7cbe10c2d} 
+typedef struct M\+\_\+data M\+\_\+data}
+
+\Hypertarget{modbus__master_8h_aa7c8a7b379d2b6f098718b720c44ced2}\index{modbus\_master.h@{modbus\_master.h}!M\_time\_data@{M\_time\_data}}
+\index{M\_time\_data@{M\_time\_data}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{M\_time\_data}{M\_time\_data}}
+{\footnotesize\ttfamily \label{modbus__master_8h_aa7c8a7b379d2b6f098718b720c44ced2} 
+typedef struct M\+\_\+time\+\_\+data M\+\_\+time\+\_\+data}
+
+\Hypertarget{modbus__master_8h_ae4222906f6783450c4ef06f4d066c2f0}\index{modbus\_master.h@{modbus\_master.h}!trace\_type@{trace\_type}}
+\index{trace\_type@{trace\_type}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{trace\_type}{trace\_type}}
+{\footnotesize\ttfamily \label{modbus__master_8h_ae4222906f6783450c4ef06f4d066c2f0} 
+typedef enum \mbox{\hyperlink{modbus__master_8h_a88668637ccaca17d11f722f59f59406b}{trace\+\_\+type}} \mbox{\hyperlink{modbus__master_8h_a88668637ccaca17d11f722f59f59406b}{trace\+\_\+type}}}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{modbus__master_8h_a41a2fe54b18ab7ba405a7e7da6d041f1}\index{modbus\_master.h@{modbus\_master.h}!cmd\_type@{cmd\_type}}
+\index{cmd\_type@{cmd\_type}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{cmd\_type}{cmd\_type}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a41a2fe54b18ab7ba405a7e7da6d041f1} 
+enum \mbox{\hyperlink{modbus__master_8h_a41a2fe54b18ab7ba405a7e7da6d041f1}{cmd\+\_\+type}}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{G\_ID@{G\_ID}!modbus\_master.h@{modbus\_master.h}}\index{modbus\_master.h@{modbus\_master.h}!G\_ID@{G\_ID}}}\Hypertarget{modbus__master_8h_a41a2fe54b18ab7ba405a7e7da6d041f1a3f3ee85dbb5a07f66918a2c73f8f710b}\label{modbus__master_8h_a41a2fe54b18ab7ba405a7e7da6d041f1a3f3ee85dbb5a07f66918a2c73f8f710b} 
+G\+\_\+\+ID&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{G\_DATA1@{G\_DATA1}!modbus\_master.h@{modbus\_master.h}}\index{modbus\_master.h@{modbus\_master.h}!G\_DATA1@{G\_DATA1}}}\Hypertarget{modbus__master_8h_a41a2fe54b18ab7ba405a7e7da6d041f1aca58b106f852727aeb67c5fd6e4d35c1}\label{modbus__master_8h_a41a2fe54b18ab7ba405a7e7da6d041f1aca58b106f852727aeb67c5fd6e4d35c1} 
+G\+\_\+\+DATA1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{G\_DATA2@{G\_DATA2}!modbus\_master.h@{modbus\_master.h}}\index{modbus\_master.h@{modbus\_master.h}!G\_DATA2@{G\_DATA2}}}\Hypertarget{modbus__master_8h_a41a2fe54b18ab7ba405a7e7da6d041f1a839282a31c77479963e03d81d645e1ae}\label{modbus__master_8h_a41a2fe54b18ab7ba405a7e7da6d041f1a839282a31c77479963e03d81d645e1ae} 
+G\+\_\+\+DATA2&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{G\_CONFIG@{G\_CONFIG}!modbus\_master.h@{modbus\_master.h}}\index{modbus\_master.h@{modbus\_master.h}!G\_CONFIG@{G\_CONFIG}}}\Hypertarget{modbus__master_8h_a41a2fe54b18ab7ba405a7e7da6d041f1a7b594061680dae1b94c33e32864b3955}\label{modbus__master_8h_a41a2fe54b18ab7ba405a7e7da6d041f1a7b594061680dae1b94c33e32864b3955} 
+G\+\_\+\+CONFIG&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{G\_PASSWD@{G\_PASSWD}!modbus\_master.h@{modbus\_master.h}}\index{modbus\_master.h@{modbus\_master.h}!G\_PASSWD@{G\_PASSWD}}}\Hypertarget{modbus__master_8h_a41a2fe54b18ab7ba405a7e7da6d041f1a56c7ae339b83d67055992b781014cf28}\label{modbus__master_8h_a41a2fe54b18ab7ba405a7e7da6d041f1a56c7ae339b83d67055992b781014cf28} 
+G\+\_\+\+PASSWD&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{G\_LIGHT@{G\_LIGHT}!modbus\_master.h@{modbus\_master.h}}\index{modbus\_master.h@{modbus\_master.h}!G\_LIGHT@{G\_LIGHT}}}\Hypertarget{modbus__master_8h_a41a2fe54b18ab7ba405a7e7da6d041f1a0c193b6ad1745be3f395b9fd1491c232}\label{modbus__master_8h_a41a2fe54b18ab7ba405a7e7da6d041f1a0c193b6ad1745be3f395b9fd1491c232} 
+G\+\_\+\+LIGHT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{G\_VERSION@{G\_VERSION}!modbus\_master.h@{modbus\_master.h}}\index{modbus\_master.h@{modbus\_master.h}!G\_VERSION@{G\_VERSION}}}\Hypertarget{modbus__master_8h_a41a2fe54b18ab7ba405a7e7da6d041f1a1efe95ef80c0089ff9b95a0d8f1a6904}\label{modbus__master_8h_a41a2fe54b18ab7ba405a7e7da6d041f1a1efe95ef80c0089ff9b95a0d8f1a6904} 
+G\+\_\+\+VERSION&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{G\_SERIAL@{G\_SERIAL}!modbus\_master.h@{modbus\_master.h}}\index{modbus\_master.h@{modbus\_master.h}!G\_SERIAL@{G\_SERIAL}}}\Hypertarget{modbus__master_8h_a41a2fe54b18ab7ba405a7e7da6d041f1aa9f3567983cbe9140ae87eebb26fe55f}\label{modbus__master_8h_a41a2fe54b18ab7ba405a7e7da6d041f1aa9f3567983cbe9140ae87eebb26fe55f} 
+G\+\_\+\+SERIAL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{G\_LAST@{G\_LAST}!modbus\_master.h@{modbus\_master.h}}\index{modbus\_master.h@{modbus\_master.h}!G\_LAST@{G\_LAST}}}\Hypertarget{modbus__master_8h_a41a2fe54b18ab7ba405a7e7da6d041f1ae62cc2386fa8d19e7ab63a6231b9c103}\label{modbus__master_8h_a41a2fe54b18ab7ba405a7e7da6d041f1ae62cc2386fa8d19e7ab63a6231b9c103} 
+G\+\_\+\+LAST&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{modbus__master_8h_a28c7b657e452e70df5119825602a730b}\index{modbus\_master.h@{modbus\_master.h}!comm\_type@{comm\_type}}
+\index{comm\_type@{comm\_type}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{comm\_type}{comm\_type}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a28c7b657e452e70df5119825602a730b} 
+enum \mbox{\hyperlink{modbus__master_8h_a28c7b657e452e70df5119825602a730b}{comm\+\_\+type}}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CLEAR@{CLEAR}!modbus\_master.h@{modbus\_master.h}}\index{modbus\_master.h@{modbus\_master.h}!CLEAR@{CLEAR}}}\Hypertarget{modbus__master_8h_a28c7b657e452e70df5119825602a730ba1e1a4aba20a5a009e616cbc8fad33ac7}\label{modbus__master_8h_a28c7b657e452e70df5119825602a730ba1e1a4aba20a5a009e616cbc8fad33ac7} 
+CLEAR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INIT@{INIT}!modbus\_master.h@{modbus\_master.h}}\index{modbus\_master.h@{modbus\_master.h}!INIT@{INIT}}}\Hypertarget{modbus__master_8h_a28c7b657e452e70df5119825602a730ba0cb1b2c6a7db1f1084886c98909a3f36}\label{modbus__master_8h_a28c7b657e452e70df5119825602a730ba0cb1b2c6a7db1f1084886c98909a3f36} 
+INIT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SEND@{SEND}!modbus\_master.h@{modbus\_master.h}}\index{modbus\_master.h@{modbus\_master.h}!SEND@{SEND}}}\Hypertarget{modbus__master_8h_a28c7b657e452e70df5119825602a730ba67be7a5f47004345047b32fff72a2230}\label{modbus__master_8h_a28c7b657e452e70df5119825602a730ba67be7a5f47004345047b32fff72a2230} 
+SEND&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RECV@{RECV}!modbus\_master.h@{modbus\_master.h}}\index{modbus\_master.h@{modbus\_master.h}!RECV@{RECV}}}\Hypertarget{modbus__master_8h_a28c7b657e452e70df5119825602a730ba586011d90be069a5203e7bdbcb760302}\label{modbus__master_8h_a28c7b657e452e70df5119825602a730ba586011d90be069a5203e7bdbcb760302} 
+RECV&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{modbus__master_8h_ab3b7281956317556f846daaebf75de72}\index{modbus\_master.h@{modbus\_master.h}!filter\_type@{filter\_type}}
+\index{filter\_type@{filter\_type}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{filter\_type}{filter\_type}}
+{\footnotesize\ttfamily \label{modbus__master_8h_ab3b7281956317556f846daaebf75de72} 
+enum \mbox{\hyperlink{modbus__master_8h_ab3b7281956317556f846daaebf75de72}{filter\+\_\+type}}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{F\_ac@{F\_ac}!modbus\_master.h@{modbus\_master.h}}\index{modbus\_master.h@{modbus\_master.h}!F\_ac@{F\_ac}}}\Hypertarget{modbus__master_8h_ab3b7281956317556f846daaebf75de72ae6f95d7e682203e73462a87e75f4ea18}\label{modbus__master_8h_ab3b7281956317556f846daaebf75de72ae6f95d7e682203e73462a87e75f4ea18} 
+F\+\_\+ac&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{F\_wac@{F\_wac}!modbus\_master.h@{modbus\_master.h}}\index{modbus\_master.h@{modbus\_master.h}!F\_wac@{F\_wac}}}\Hypertarget{modbus__master_8h_ab3b7281956317556f846daaebf75de72a836b153302582ac14b44b967acbf8599}\label{modbus__master_8h_ab3b7281956317556f846daaebf75de72a836b153302582ac14b44b967acbf8599} 
+F\+\_\+wac&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{F\_wva@{F\_wva}!modbus\_master.h@{modbus\_master.h}}\index{modbus\_master.h@{modbus\_master.h}!F\_wva@{F\_wva}}}\Hypertarget{modbus__master_8h_ab3b7281956317556f846daaebf75de72a22038b9ca5b6a763a116831793b61aa2}\label{modbus__master_8h_ab3b7281956317556f846daaebf75de72a22038b9ca5b6a763a116831793b61aa2} 
+F\+\_\+wva&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{F\_var@{F\_var}!modbus\_master.h@{modbus\_master.h}}\index{modbus\_master.h@{modbus\_master.h}!F\_var@{F\_var}}}\Hypertarget{modbus__master_8h_ab3b7281956317556f846daaebf75de72af5d020058775abc07c23204d4bc180a0}\label{modbus__master_8h_ab3b7281956317556f846daaebf75de72af5d020058775abc07c23204d4bc180a0} 
+F\+\_\+var&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{F\_run@{F\_run}!modbus\_master.h@{modbus\_master.h}}\index{modbus\_master.h@{modbus\_master.h}!F\_run@{F\_run}}}\Hypertarget{modbus__master_8h_ab3b7281956317556f846daaebf75de72af25fdf167db9121ad93cdf7d0e32cd10}\label{modbus__master_8h_ab3b7281956317556f846daaebf75de72af25fdf167db9121ad93cdf7d0e32cd10} 
+F\+\_\+run&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{F\_5@{F\_5}!modbus\_master.h@{modbus\_master.h}}\index{modbus\_master.h@{modbus\_master.h}!F\_5@{F\_5}}}\Hypertarget{modbus__master_8h_ab3b7281956317556f846daaebf75de72af1ecc2e4c4eaf5fe28f1aeaf4494c3d8}\label{modbus__master_8h_ab3b7281956317556f846daaebf75de72af1ecc2e4c4eaf5fe28f1aeaf4494c3d8} 
+F\+\_\+5&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{F\_6@{F\_6}!modbus\_master.h@{modbus\_master.h}}\index{modbus\_master.h@{modbus\_master.h}!F\_6@{F\_6}}}\Hypertarget{modbus__master_8h_ab3b7281956317556f846daaebf75de72a334fce92784e49c24cf9eb6b26c32372}\label{modbus__master_8h_ab3b7281956317556f846daaebf75de72a334fce92784e49c24cf9eb6b26c32372} 
+F\+\_\+6&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{F\_7@{F\_7}!modbus\_master.h@{modbus\_master.h}}\index{modbus\_master.h@{modbus\_master.h}!F\_7@{F\_7}}}\Hypertarget{modbus__master_8h_ab3b7281956317556f846daaebf75de72a1ef9542307b9d3b44e7b0ccd988d037b}\label{modbus__master_8h_ab3b7281956317556f846daaebf75de72a1ef9542307b9d3b44e7b0ccd988d037b} 
+F\+\_\+7&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{F\_8@{F\_8}!modbus\_master.h@{modbus\_master.h}}\index{modbus\_master.h@{modbus\_master.h}!F\_8@{F\_8}}}\Hypertarget{modbus__master_8h_ab3b7281956317556f846daaebf75de72a404baa5c90a354eecebecfe7d7759bc1}\label{modbus__master_8h_ab3b7281956317556f846daaebf75de72a404baa5c90a354eecebecfe7d7759bc1} 
+F\+\_\+8&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{modbus__master_8h_a88668637ccaca17d11f722f59f59406b}\index{modbus\_master.h@{modbus\_master.h}!trace\_type@{trace\_type}}
+\index{trace\_type@{trace\_type}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{trace\_type}{trace\_type}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a88668637ccaca17d11f722f59f59406b} 
+enum \mbox{\hyperlink{modbus__master_8h_a88668637ccaca17d11f722f59f59406b}{trace\+\_\+type}}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{T\_begin@{T\_begin}!modbus\_master.h@{modbus\_master.h}}\index{modbus\_master.h@{modbus\_master.h}!T\_begin@{T\_begin}}}\Hypertarget{modbus__master_8h_a88668637ccaca17d11f722f59f59406bac4b28001c0d7e597010c48083b7037e6}\label{modbus__master_8h_a88668637ccaca17d11f722f59f59406bac4b28001c0d7e597010c48083b7037e6} 
+T\+\_\+begin&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{T\_clear@{T\_clear}!modbus\_master.h@{modbus\_master.h}}\index{modbus\_master.h@{modbus\_master.h}!T\_clear@{T\_clear}}}\Hypertarget{modbus__master_8h_a88668637ccaca17d11f722f59f59406baac0315db5ba608ac077eec44342eb762}\label{modbus__master_8h_a88668637ccaca17d11f722f59f59406baac0315db5ba608ac077eec44342eb762} 
+T\+\_\+clear&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{T\_passwd@{T\_passwd}!modbus\_master.h@{modbus\_master.h}}\index{modbus\_master.h@{modbus\_master.h}!T\_passwd@{T\_passwd}}}\Hypertarget{modbus__master_8h_a88668637ccaca17d11f722f59f59406ba4a9ea28a827a7cfbd1954dc97e507fbe}\label{modbus__master_8h_a88668637ccaca17d11f722f59f59406ba4a9ea28a827a7cfbd1954dc97e507fbe} 
+T\+\_\+passwd&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{T\_config@{T\_config}!modbus\_master.h@{modbus\_master.h}}\index{modbus\_master.h@{modbus\_master.h}!T\_config@{T\_config}}}\Hypertarget{modbus__master_8h_a88668637ccaca17d11f722f59f59406bab29ee44497d477ecc3fe1dba9bf617f8}\label{modbus__master_8h_a88668637ccaca17d11f722f59f59406bab29ee44497d477ecc3fe1dba9bf617f8} 
+T\+\_\+config&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{T\_data@{T\_data}!modbus\_master.h@{modbus\_master.h}}\index{modbus\_master.h@{modbus\_master.h}!T\_data@{T\_data}}}\Hypertarget{modbus__master_8h_a88668637ccaca17d11f722f59f59406ba65e90cd8fe057e1446592194c607464f}\label{modbus__master_8h_a88668637ccaca17d11f722f59f59406ba65e90cd8fe057e1446592194c607464f} 
+T\+\_\+data&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{T\_id@{T\_id}!modbus\_master.h@{modbus\_master.h}}\index{modbus\_master.h@{modbus\_master.h}!T\_id@{T\_id}}}\Hypertarget{modbus__master_8h_a88668637ccaca17d11f722f59f59406ba9055a1365cad70921ebb08db7845698d}\label{modbus__master_8h_a88668637ccaca17d11f722f59f59406ba9055a1365cad70921ebb08db7845698d} 
+T\+\_\+id&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{T\_serial@{T\_serial}!modbus\_master.h@{modbus\_master.h}}\index{modbus\_master.h@{modbus\_master.h}!T\_serial@{T\_serial}}}\Hypertarget{modbus__master_8h_a88668637ccaca17d11f722f59f59406bafb342859b5eb752fd4d85552a48a53b8}\label{modbus__master_8h_a88668637ccaca17d11f722f59f59406bafb342859b5eb752fd4d85552a48a53b8} 
+T\+\_\+serial&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{T\_version@{T\_version}!modbus\_master.h@{modbus\_master.h}}\index{modbus\_master.h@{modbus\_master.h}!T\_version@{T\_version}}}\Hypertarget{modbus__master_8h_a88668637ccaca17d11f722f59f59406baa2928e0ec138c11c33274e9e0871a281}\label{modbus__master_8h_a88668637ccaca17d11f722f59f59406baa2928e0ec138c11c33274e9e0871a281} 
+T\+\_\+version&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{T\_init@{T\_init}!modbus\_master.h@{modbus\_master.h}}\index{modbus\_master.h@{modbus\_master.h}!T\_init@{T\_init}}}\Hypertarget{modbus__master_8h_a88668637ccaca17d11f722f59f59406badee6dc9026b40bff6c3e47c5e3fd4550}\label{modbus__master_8h_a88668637ccaca17d11f722f59f59406badee6dc9026b40bff6c3e47c5e3fd4550} 
+T\+\_\+init&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{T\_init\_d@{T\_init\_d}!modbus\_master.h@{modbus\_master.h}}\index{modbus\_master.h@{modbus\_master.h}!T\_init\_d@{T\_init\_d}}}\Hypertarget{modbus__master_8h_a88668637ccaca17d11f722f59f59406badd638730e371ea7cd1990981284dfd66}\label{modbus__master_8h_a88668637ccaca17d11f722f59f59406badd638730e371ea7cd1990981284dfd66} 
+T\+\_\+init\+\_\+d&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{T\_send@{T\_send}!modbus\_master.h@{modbus\_master.h}}\index{modbus\_master.h@{modbus\_master.h}!T\_send@{T\_send}}}\Hypertarget{modbus__master_8h_a88668637ccaca17d11f722f59f59406ba6995fbc544b408719e4e69432820ca16}\label{modbus__master_8h_a88668637ccaca17d11f722f59f59406ba6995fbc544b408719e4e69432820ca16} 
+T\+\_\+send&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{T\_send\_d@{T\_send\_d}!modbus\_master.h@{modbus\_master.h}}\index{modbus\_master.h@{modbus\_master.h}!T\_send\_d@{T\_send\_d}}}\Hypertarget{modbus__master_8h_a88668637ccaca17d11f722f59f59406ba5a23ee9d48c340848410e8c9d288ee0c}\label{modbus__master_8h_a88668637ccaca17d11f722f59f59406ba5a23ee9d48c340848410e8c9d288ee0c} 
+T\+\_\+send\+\_\+d&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{T\_recv@{T\_recv}!modbus\_master.h@{modbus\_master.h}}\index{modbus\_master.h@{modbus\_master.h}!T\_recv@{T\_recv}}}\Hypertarget{modbus__master_8h_a88668637ccaca17d11f722f59f59406ba6ea6fe0c3c7e665959e8f6b11a93b293}\label{modbus__master_8h_a88668637ccaca17d11f722f59f59406ba6ea6fe0c3c7e665959e8f6b11a93b293} 
+T\+\_\+recv&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{T\_recv\_r@{T\_recv\_r}!modbus\_master.h@{modbus\_master.h}}\index{modbus\_master.h@{modbus\_master.h}!T\_recv\_r@{T\_recv\_r}}}\Hypertarget{modbus__master_8h_a88668637ccaca17d11f722f59f59406ba4ab957ab2e6c1044f8ff226bb87b20b3}\label{modbus__master_8h_a88668637ccaca17d11f722f59f59406ba4ab957ab2e6c1044f8ff226bb87b20b3} 
+T\+\_\+recv\+\_\+r&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{T\_misc1@{T\_misc1}!modbus\_master.h@{modbus\_master.h}}\index{modbus\_master.h@{modbus\_master.h}!T\_misc1@{T\_misc1}}}\Hypertarget{modbus__master_8h_a88668637ccaca17d11f722f59f59406ba64f724317930e9c2ef63343435b65b79}\label{modbus__master_8h_a88668637ccaca17d11f722f59f59406ba64f724317930e9c2ef63343435b65b79} 
+T\+\_\+misc1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{T\_misc2@{T\_misc2}!modbus\_master.h@{modbus\_master.h}}\index{modbus\_master.h@{modbus\_master.h}!T\_misc2@{T\_misc2}}}\Hypertarget{modbus__master_8h_a88668637ccaca17d11f722f59f59406ba321e2095ca89e631e79589f1860177e8}\label{modbus__master_8h_a88668637ccaca17d11f722f59f59406ba321e2095ca89e631e79589f1860177e8} 
+T\+\_\+misc2&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{T\_misc3@{T\_misc3}!modbus\_master.h@{modbus\_master.h}}\index{modbus\_master.h@{modbus\_master.h}!T\_misc3@{T\_misc3}}}\Hypertarget{modbus__master_8h_a88668637ccaca17d11f722f59f59406bafa9eca6849113b4fae0a07e36c6fba2b}\label{modbus__master_8h_a88668637ccaca17d11f722f59f59406bafa9eca6849113b4fae0a07e36c6fba2b} 
+T\+\_\+misc3&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{T\_spacing@{T\_spacing}!modbus\_master.h@{modbus\_master.h}}\index{modbus\_master.h@{modbus\_master.h}!T\_spacing@{T\_spacing}}}\Hypertarget{modbus__master_8h_a88668637ccaca17d11f722f59f59406ba9bf1fc535a7d229d756446bae8a5b75e}\label{modbus__master_8h_a88668637ccaca17d11f722f59f59406ba9bf1fc535a7d229d756446bae8a5b75e} 
+T\+\_\+spacing&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{T\_light@{T\_light}!modbus\_master.h@{modbus\_master.h}}\index{modbus\_master.h@{modbus\_master.h}!T\_light@{T\_light}}}\Hypertarget{modbus__master_8h_a88668637ccaca17d11f722f59f59406ba481f9b584e431a2aa06f273a648fd3de}\label{modbus__master_8h_a88668637ccaca17d11f722f59f59406ba481f9b584e431a2aa06f273a648fd3de} 
+T\+\_\+light&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{modbus__master_8h_a1beecc83dea42956462e66ef987e88b1}\index{modbus\_master.h@{modbus\_master.h}!clear\_2hz@{clear\_2hz}}
+\index{clear\_2hz@{clear\_2hz}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{clear\_2hz()}{clear\_2hz()}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a1beecc83dea42956462e66ef987e88b1} 
+void clear\+\_\+2hz (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{modbus__master_8h_a1beecc83dea42956462e66ef987e88b1_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{modbus__master_8h_a059b37f6d98c378242ebc40cbaf56e1c}\index{modbus\_master.h@{modbus\_master.h}!clear\_500ahz@{clear\_500ahz}}
+\index{clear\_500ahz@{clear\_500ahz}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{clear\_500ahz()}{clear\_500ahz()}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a059b37f6d98c378242ebc40cbaf56e1c} 
+void clear\+\_\+500ahz (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{modbus__master_8h_a059b37f6d98c378242ebc40cbaf56e1c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{modbus__master_8h_ac941be1be1f2239ffd59d96aaaa2a489}\index{modbus\_master.h@{modbus\_master.h}!clear\_500hz@{clear\_500hz}}
+\index{clear\_500hz@{clear\_500hz}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{clear\_500hz()}{clear\_500hz()}}
+{\footnotesize\ttfamily \label{modbus__master_8h_ac941be1be1f2239ffd59d96aaaa2a489} 
+void clear\+\_\+500hz (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{modbus__master_8h_ac941be1be1f2239ffd59d96aaaa2a489_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{modbus__master_8h_aa4584465ac7f06c584d1909e07232cb3}\index{modbus\_master.h@{modbus\_master.h}!crc16@{crc16}}
+\index{crc16@{crc16}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{crc16()}{crc16()}}
+{\footnotesize\ttfamily \label{modbus__master_8h_aa4584465ac7f06c584d1909e07232cb3} 
+uint16\+\_\+t crc16 (\begin{DoxyParamCaption}\item[{volatile uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{buffer}{, }\item[{uint16\+\_\+t}]{buffer\+\_\+length}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{modbus__master_8h_aa4584465ac7f06c584d1909e07232cb3_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{modbus__master_8h_a3459a0db80472430787129b6049d0a48}\index{modbus\_master.h@{modbus\_master.h}!get\_2hz@{get\_2hz}}
+\index{get\_2hz@{get\_2hz}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{get\_2hz()}{get\_2hz()}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a3459a0db80472430787129b6049d0a48} 
+uint32\+\_\+t get\+\_\+2hz (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{mode}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{modbus__master_8h_a3459a0db80472430787129b6049d0a48_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{modbus__master_8h_a79df67a38a844fea430959fbc3d57d04}\index{modbus\_master.h@{modbus\_master.h}!get\_500ahz@{get\_500ahz}}
+\index{get\_500ahz@{get\_500ahz}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{get\_500ahz()}{get\_500ahz()}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a79df67a38a844fea430959fbc3d57d04} 
+uint32\+\_\+t get\+\_\+500ahz (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{mode}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{modbus__master_8h_a79df67a38a844fea430959fbc3d57d04_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{modbus__master_8h_a6fb62a00dff34d5d28a701a864006915}\index{modbus\_master.h@{modbus\_master.h}!get\_500hz@{get\_500hz}}
+\index{get\_500hz@{get\_500hz}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{get\_500hz()}{get\_500hz()}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a6fb62a00dff34d5d28a701a864006915} 
+uint32\+\_\+t get\+\_\+500hz (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{mode}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{modbus__master_8h_a6fb62a00dff34d5d28a701a864006915_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{modbus__master_8h_af0a79cc5a035f6c7545db9bcd27cb05b}\index{modbus\_master.h@{modbus\_master.h}!init\_mb\_master\_timers@{init\_mb\_master\_timers}}
+\index{init\_mb\_master\_timers@{init\_mb\_master\_timers}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{init\_mb\_master\_timers()}{init\_mb\_master\_timers()}}
+{\footnotesize\ttfamily \label{modbus__master_8h_af0a79cc5a035f6c7545db9bcd27cb05b} 
+void init\+\_\+mb\+\_\+master\+\_\+timers (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{modbus__master_8h_af0a79cc5a035f6c7545db9bcd27cb05b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=287pt]{modbus__master_8h_af0a79cc5a035f6c7545db9bcd27cb05b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{modbus__master_8h_a60e55e056abfe325744e919dc21096bb}\index{modbus\_master.h@{modbus\_master.h}!init\_stream\_params@{init\_stream\_params}}
+\index{init\_stream\_params@{init\_stream\_params}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{init\_stream\_params()}{init\_stream\_params()}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a60e55e056abfe325744e919dc21096bb} 
+uint8\+\_\+t init\+\_\+stream\+\_\+params (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{modbus__master_8h_a27e81fb57791be6f738790fdc3509369}\index{modbus\_master.h@{modbus\_master.h}!master\_controller\_work@{master\_controller\_work}}
+\index{master\_controller\_work@{master\_controller\_work}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{master\_controller\_work()}{master\_controller\_work()}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a27e81fb57791be6f738790fdc3509369} 
+int8\+\_\+t master\+\_\+controller\+\_\+work (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structC__data}{C\+\_\+data}} \texorpdfstring{$\ast$}{*}}]{client}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{modbus__master_8h_a27e81fb57791be6f738790fdc3509369_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=289pt]{modbus__master_8h_a27e81fb57791be6f738790fdc3509369_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{modbus__master_8h_ab03f5973cd7c769bcfa85cc442ed78ba}\index{modbus\_master.h@{modbus\_master.h}!mb16\_swap@{mb16\_swap}}
+\index{mb16\_swap@{mb16\_swap}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{mb16\_swap()}{mb16\_swap()}}
+{\footnotesize\ttfamily \label{modbus__master_8h_ab03f5973cd7c769bcfa85cc442ed78ba} 
+int16\+\_\+t mb16\+\_\+swap (\begin{DoxyParamCaption}\item[{const int16\+\_\+t}]{value}{}\end{DoxyParamCaption})}
+
+\Hypertarget{modbus__master_8h_aad4dcf17409e9ec538ffe9884d4c605b}\index{modbus\_master.h@{modbus\_master.h}!mb32\_swap@{mb32\_swap}}
+\index{mb32\_swap@{mb32\_swap}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{mb32\_swap()}{mb32\_swap()}}
+{\footnotesize\ttfamily \label{modbus__master_8h_aad4dcf17409e9ec538ffe9884d4c605b} 
+int32\+\_\+t mb32\+\_\+swap (\begin{DoxyParamCaption}\item[{const int32\+\_\+t}]{value}{}\end{DoxyParamCaption})}
+
+\Hypertarget{modbus__master_8h_a90eb393250f99616118f14648db15c48}\index{modbus\_master.h@{modbus\_master.h}!mb\_setup@{mb\_setup}}
+\index{mb\_setup@{mb\_setup}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{mb\_setup()}{mb\_setup()}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a90eb393250f99616118f14648db15c48} 
+void mb\+\_\+setup (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{modbus__master_8h_a90eb393250f99616118f14648db15c48_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{modbus__master_8h_a90eb393250f99616118f14648db15c48_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{modbus__master_8h_a2ec9a048919034f4daaa76c92285269d}\index{modbus\_master.h@{modbus\_master.h}!mb\_tx\_test@{mb\_tx\_test}}
+\index{mb\_tx\_test@{mb\_tx\_test}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{mb\_tx\_test()}{mb\_tx\_test()}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a2ec9a048919034f4daaa76c92285269d} 
+void mb\+\_\+tx\+\_\+test (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structC__data}{C\+\_\+data}} \texorpdfstring{$\ast$}{*}}]{client}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=316pt]{modbus__master_8h_a2ec9a048919034f4daaa76c92285269d_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{modbus__master_8h_a4c378866772acce6fe409091a7377812}\index{modbus\_master.h@{modbus\_master.h}!modbus\_rtu\_send\_msg@{modbus\_rtu\_send\_msg}}
+\index{modbus\_rtu\_send\_msg@{modbus\_rtu\_send\_msg}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{modbus\_rtu\_send\_msg()}{modbus\_rtu\_send\_msg()}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a4c378866772acce6fe409091a7377812} 
+uint16\+\_\+t modbus\+\_\+rtu\+\_\+send\+\_\+msg (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{cc\+\_\+buffer}{, }\item[{const void \texorpdfstring{$\ast$}{*}}]{modbus\+\_\+cc\+\_\+mode}{, }\item[{uint16\+\_\+t}]{req\+\_\+length}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{modbus__master_8h_a4c378866772acce6fe409091a7377812_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{modbus__master_8h_a9f3266015b32b55423f7ff3d32079455}\index{modbus\_master.h@{modbus\_master.h}!my\_modbus\_rx\_32@{my\_modbus\_rx\_32}}
+\index{my\_modbus\_rx\_32@{my\_modbus\_rx\_32}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{my\_modbus\_rx\_32()}{my\_modbus\_rx\_32()}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a9f3266015b32b55423f7ff3d32079455} 
+void my\+\_\+modbus\+\_\+rx\+\_\+32 (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=266pt]{modbus__master_8h_a9f3266015b32b55423f7ff3d32079455_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{modbus__master_8h_a573e15ec8f774a9a092fe68ed2852e69}\index{modbus\_master.h@{modbus\_master.h}!timer\_2ms\_tick@{timer\_2ms\_tick}}
+\index{timer\_2ms\_tick@{timer\_2ms\_tick}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{timer\_2ms\_tick()}{timer\_2ms\_tick()}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a573e15ec8f774a9a092fe68ed2852e69} 
+void timer\+\_\+2ms\+\_\+tick (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{modbus__master_8h_a573e15ec8f774a9a092fe68ed2852e69_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{modbus__master_8h_adb53f8fef66c5d6886ea74067a22e345}\index{modbus\_master.h@{modbus\_master.h}!timer\_500ms\_tick@{timer\_500ms\_tick}}
+\index{timer\_500ms\_tick@{timer\_500ms\_tick}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{timer\_500ms\_tick()}{timer\_500ms\_tick()}}
+{\footnotesize\ttfamily \label{modbus__master_8h_adb53f8fef66c5d6886ea74067a22e345} 
+void timer\+\_\+500ms\+\_\+tick (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{modbus__master_8h_adb53f8fef66c5d6886ea74067a22e345_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{modbus__master_8h_a80e5f02bd169ef2ace6d7abee59065d8}\index{modbus\_master.h@{modbus\_master.h}!C@{C}}
+\index{C@{C}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{C}{C}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a80e5f02bd169ef2ace6d7abee59065d8} 
+\mbox{\hyperlink{structC__data}{C\+\_\+data}} C\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{modbus__master_8h_a6b4eae00bfaa75a10707f816dcddf8a2}\index{modbus\_master.h@{modbus\_master.h}!em@{em}}
+\index{em@{em}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{em}{em}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a6b4eae00bfaa75a10707f816dcddf8a2} 
+\mbox{\hyperlink{structEM__data1}{EM\+\_\+data1}} em\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{modbus__master_8h_a432631245393587c2229a92d6017b089}\index{modbus\_master.h@{modbus\_master.h}!ems@{ems}}
+\index{ems@{ems}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{ems}{ems}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a432631245393587c2229a92d6017b089} 
+\mbox{\hyperlink{structEM__serial}{EM\+\_\+serial}} ems\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{modbus__master_8h_ad191a89afedc59648e8f67556d13375c}\index{modbus\_master.h@{modbus\_master.h}!emt@{emt}}
+\index{emt@{emt}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{emt}{emt}}
+{\footnotesize\ttfamily \label{modbus__master_8h_ad191a89afedc59648e8f67556d13375c} 
+\mbox{\hyperlink{structEM__data2}{EM\+\_\+data2}} emt\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{modbus__master_8h_a2a4878e45b9cc74051c899b7f6a98a09}\index{modbus\_master.h@{modbus\_master.h}!emv@{emv}}
+\index{emv@{emv}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{emv}{emv}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a2a4878e45b9cc74051c899b7f6a98a09} 
+\mbox{\hyperlink{structEM__version}{EM\+\_\+version}} emv\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{modbus__master_8h_a1b2a73ecb37c4a1b837f4cb30b5ff74b}\index{modbus\_master.h@{modbus\_master.h}!M@{M}}
+\index{M@{M}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{M}{M}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a1b2a73ecb37c4a1b837f4cb30b5ff74b} 
+volatile \mbox{\hyperlink{structM__data}{M\+\_\+data}} M\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{modbus__master_8h_ae1bf1dae0a59fa21f7b577ea0dcd1e39}\index{modbus\_master.h@{modbus\_master.h}!MT@{MT}}
+\index{MT@{MT}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{MT}{MT}}
+{\footnotesize\ttfamily \label{modbus__master_8h_ae1bf1dae0a59fa21f7b577ea0dcd1e39} 
+volatile \mbox{\hyperlink{structM__time__data}{M\+\_\+time\+\_\+data}} MT\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{modbus__master_8h_a8cf8a130f4025ab462bcb83b34fd2d1a}\index{modbus\_master.h@{modbus\_master.h}!V@{V}}
+\index{V@{V}!modbus\_master.h@{modbus\_master.h}}
+\doxysubsubsection{\texorpdfstring{V}{V}}
+{\footnotesize\ttfamily \label{modbus__master_8h_a8cf8a130f4025ab462bcb83b34fd2d1a} 
+volatile struct \mbox{\hyperlink{structV__type}{V\+\_\+type}} V\hspace{0.3cm}{\ttfamily [extern]}}
+

@@ -1,0 +1,85 @@
+\doxysection{posix\+\_\+sockets.\+h}
+\hypertarget{posix__sockets_8h_source}{}\label{posix__sockets_8h_source}\index{linux/matesocketcan/templates/posix\_sockets.h@{linux/matesocketcan/templates/posix\_sockets.h}}
+\mbox{\hyperlink{posix__sockets_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#if\ !defined(\_\_POSIX\_SOCKET\_TEMPLATE\_H\_\_)}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_POSIX\_SOCKET\_TEMPLATE\_H\_\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <sys/types.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#if\ !defined(WIN32)}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <sys/socket.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <netdb.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <ws2tcpip.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#if\ defined(\_\_VMS)}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <ioctl.h>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <fcntl.h>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ \ \ \ A\ template\ for\ opening\ a\ non-\/blocking\ POSIX\ socket.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00020\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{posix__sockets_8h_a6d0c8cd1cf5ab630cdf1322ca61058c8}{open\_nb\_socket\_mqtt}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{mqtt__pub_8c_a5642146bf8774069f4d9f5de656aed90}{addr}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{mqtt__pub_8c_ad723da1801ae1586eb330380e2d9a912}{port}});}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{posix__sockets_8h_a6d0c8cd1cf5ab630cdf1322ca61058c8}{open\_nb\_socket\_mqtt}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{mqtt__pub_8c_a5642146bf8774069f4d9f5de656aed90}{addr}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{mqtt__pub_8c_ad723da1801ae1586eb330380e2d9a912}{port}})\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{struct\ }addrinfo\ hints\ =\ \{0\};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ hints.ai\_family\ =\ AF\_UNSPEC;\ \textcolor{comment}{/*\ IPv4\ or\ IPv6\ */}}
+\DoxyCodeLine{00026\ \ \ \ \ hints.ai\_socktype\ =\ SOCK\_STREAM;\ \textcolor{comment}{/*\ Must\ be\ TCP\ */}}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{mqtt__pub_8c_ad2c8fb3df3a737e0685e902870a611d2}{sockfd}}\ =\ -\/1;}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{int}\ rv;}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{struct\ }addrinfo\ *p,\ *servinfo;}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{/*\ get\ address\ information\ */}}
+\DoxyCodeLine{00032\ \ \ \ \ rv\ =\ getaddrinfo(\mbox{\hyperlink{mqtt__pub_8c_a5642146bf8774069f4d9f5de656aed90}{addr}},\ \mbox{\hyperlink{mqtt__pub_8c_ad723da1801ae1586eb330380e2d9a912}{port}},\ \&hints,\ \&servinfo);}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordflow}{if}(rv\ !=\ 0)\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}Failed\ to\ open\ socket\ (getaddrinfo):\ \%s\(\backslash\)n"{}},\ gai\_strerror(rv));}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00036\ \ \ \ \ \}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{/*\ open\ the\ first\ possible\ socket\ */}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordflow}{for}(p\ =\ servinfo;\ p\ !=\ NULL;\ p\ =\ p-\/>ai\_next)\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mqtt__pub_8c_ad2c8fb3df3a737e0685e902870a611d2}{sockfd}}\ =\ socket(p-\/>ai\_family,\ p-\/>ai\_socktype,\ p-\/>ai\_protocol);}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{mqtt__pub_8c_ad2c8fb3df3a737e0685e902870a611d2}{sockfd}}\ ==\ -\/1)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ connect\ to\ server\ */}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ rv\ =\ connect(\mbox{\hyperlink{mqtt__pub_8c_ad2c8fb3df3a737e0685e902870a611d2}{sockfd}},\ p-\/>ai\_addr,\ p-\/>ai\_addrlen);}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(rv\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ close(\mbox{\hyperlink{mqtt__pub_8c_ad2c8fb3df3a737e0685e902870a611d2}{sockfd}});}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mqtt__pub_8c_ad2c8fb3df3a737e0685e902870a611d2}{sockfd}}\ =\ -\/1;}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00051\ \ \ \ \ \}\ \ }
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{comment}{/*\ free\ servinfo\ */}}
+\DoxyCodeLine{00054\ \ \ \ \ freeaddrinfo(servinfo);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{/*\ make\ non-\/blocking\ */}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#if\ !defined(WIN32)}}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{mqtt__pub_8c_ad2c8fb3df3a737e0685e902870a611d2}{sockfd}}\ !=\ -\/1)\ fcntl(\mbox{\hyperlink{mqtt__pub_8c_ad2c8fb3df3a737e0685e902870a611d2}{sockfd}},\ F\_SETFL,\ fcntl(\mbox{\hyperlink{mqtt__pub_8c_ad2c8fb3df3a737e0685e902870a611d2}{sockfd}},\ F\_GETFL)\ |\ O\_NONBLOCK);}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{mqtt__pub_8c_ad2c8fb3df3a737e0685e902870a611d2}{sockfd}}\ !=\ INVALID\_SOCKET)\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ iMode\ =\ 1;}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ ioctlsocket(\mbox{\hyperlink{mqtt__pub_8c_ad2c8fb3df3a737e0685e902870a611d2}{sockfd}},\ FIONBIO,\ \&iMode);}
+\DoxyCodeLine{00063\ \ \ \ \ \}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#if\ defined(\_\_VMS)}}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{comment}{/*\ }}
+\DoxyCodeLine{00067\ \textcolor{comment}{\ \ \ \ \ \ \ \ OpenVMS\ only\ partially\ implements\ fcntl.\ It\ works\ on\ file\ descriptors}}
+\DoxyCodeLine{00068\ \textcolor{comment}{\ \ \ \ \ \ \ \ but\ silently\ fails\ on\ socket\ descriptors.\ So\ we\ need\ to\ fall\ back\ on}}
+\DoxyCodeLine{00069\ \textcolor{comment}{\ \ \ \ \ \ \ \ to\ the\ older\ ioctl\ system\ to\ set\ non-\/blocking\ IO}}
+\DoxyCodeLine{00070\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{int}\ on\ =\ 1;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{mqtt__pub_8c_ad2c8fb3df3a737e0685e902870a611d2}{sockfd}}\ !=\ -\/1)\ ioctl(\mbox{\hyperlink{mqtt__pub_8c_ad2c8fb3df3a737e0685e902870a611d2}{sockfd}},\ FIONBIO,\ \&on);}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{comment}{/*\ return\ the\ new\ socket\ fd\ */}}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{mqtt__pub_8c_ad2c8fb3df3a737e0685e902870a611d2}{sockfd}};}
+\DoxyCodeLine{00077\ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

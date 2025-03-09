@@ -1,0 +1,104 @@
+\doxysection{eusart1.\+h}
+\hypertarget{eusart1_8h_source}{}\label{eusart1_8h_source}\index{tdr.X/mcc\_generated\_files/eusart1.h@{tdr.X/mcc\_generated\_files/eusart1.h}}
+\mbox{\hyperlink{eusart1_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ \ \ \ (c)\ 2018\ Microchip\ Technology\ Inc.\ and\ its\ subsidiaries.\ }}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ \ \ \ }}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ \ \ \ Subject\ to\ your\ compliance\ with\ these\ terms,\ you\ may\ use\ Microchip\ software\ and\ any\ }}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ \ \ \ derivatives\ exclusively\ with\ Microchip\ products.\ It\ is\ your\ responsibility\ to\ comply\ with\ third\ party\ }}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ \ \ \ license\ terms\ applicable\ to\ your\ use\ of\ third\ party\ software\ (including\ open\ source\ software)\ that\ }}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ \ \ \ may\ accompany\ Microchip\ software.}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ \ \ \ }}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ \ \ \ THIS\ SOFTWARE\ IS\ SUPPLIED\ BY\ MICROCHIP\ "{}AS\ IS"{}.\ NO\ WARRANTIES,\ WHETHER\ }}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ \ \ \ EXPRESS,\ IMPLIED\ OR\ STATUTORY,\ APPLY\ TO\ THIS\ SOFTWARE,\ INCLUDING\ ANY\ }}
+\DoxyCodeLine{00034\ \textcolor{comment}{\ \ \ \ IMPLIED\ WARRANTIES\ OF\ NON-\/INFRINGEMENT,\ MERCHANTABILITY,\ AND\ FITNESS\ }}
+\DoxyCodeLine{00035\ \textcolor{comment}{\ \ \ \ FOR\ A\ PARTICULAR\ PURPOSE.}}
+\DoxyCodeLine{00036\ \textcolor{comment}{\ \ \ \ }}
+\DoxyCodeLine{00037\ \textcolor{comment}{\ \ \ \ IN\ NO\ EVENT\ WILL\ MICROCHIP\ BE\ LIABLE\ FOR\ ANY\ INDIRECT,\ SPECIAL,\ PUNITIVE,\ }}
+\DoxyCodeLine{00038\ \textcolor{comment}{\ \ \ \ INCIDENTAL\ OR\ CONSEQUENTIAL\ LOSS,\ DAMAGE,\ COST\ OR\ EXPENSE\ OF\ ANY\ KIND\ }}
+\DoxyCodeLine{00039\ \textcolor{comment}{\ \ \ \ WHATSOEVER\ RELATED\ TO\ THE\ SOFTWARE,\ HOWEVER\ CAUSED,\ EVEN\ IF\ MICROCHIP\ }}
+\DoxyCodeLine{00040\ \textcolor{comment}{\ \ \ \ HAS\ BEEN\ ADVISED\ OF\ THE\ POSSIBILITY\ OR\ THE\ DAMAGES\ ARE\ FORESEEABLE.\ TO\ }}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ \ \ \ THE\ FULLEST\ EXTENT\ ALLOWED\ BY\ LAW,\ MICROCHIP'S\ TOTAL\ LIABILITY\ ON\ ALL\ }}
+\DoxyCodeLine{00042\ \textcolor{comment}{\ \ \ \ CLAIMS\ IN\ ANY\ WAY\ RELATED\ TO\ THIS\ SOFTWARE\ WILL\ NOT\ EXCEED\ THE\ AMOUNT\ }}
+\DoxyCodeLine{00043\ \textcolor{comment}{\ \ \ \ OF\ FEES,\ IF\ ANY,\ THAT\ YOU\ HAVE\ PAID\ DIRECTLY\ TO\ MICROCHIP\ FOR\ THIS\ }}
+\DoxyCodeLine{00044\ \textcolor{comment}{\ \ \ \ SOFTWARE.}}
+\DoxyCodeLine{00045\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#ifndef\ EUSART1\_H}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ EUSART1\_H}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#include\ <xc.h>}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus\ \ }\textcolor{comment}{//\ Provide\ C++\ Compatibility}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ EUSART1\_DataReady\ \ (EUSART1\_is\_rx\_ready())}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{union\ }\{}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{unioneusart1__status__t_af7f1032f7b5a7f3b69827b650e1e6442}{perr}}\ :\ 1;}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{unioneusart1__status__t_ac0a53829c3a0a280025ae6bbb85e88f8}{ferr}}\ :\ 1;}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{unioneusart1__status__t_a8e7505a43bf03e13302937d789ce63ae}{oerr}}\ :\ 1;}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{unioneusart1__status__t_a6a6017ea077b575677a11d733ec137a3}{reserved}}\ :\ 5;}
+\DoxyCodeLine{00082\ \ \ \ \ \};}
+\DoxyCodeLine{00083\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{unioneusart1__status__t_ade818037fd6c985038ff29656089758d}{status}};}
+\DoxyCodeLine{00084\ \}\mbox{\hyperlink{unioneusart1__status__t}{eusart1\_status\_t}};}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00089\ \textcolor{keyword}{extern}\ \textcolor{keyword}{volatile}\ uint8\_t\ \mbox{\hyperlink{eusart1_8c_a60e1cd80da2c5389aa7458e8af1a651a}{eusart1TxBufferRemaining}};}
+\DoxyCodeLine{00090\ \textcolor{keyword}{extern}\ \textcolor{keyword}{volatile}\ uint8\_t\ \mbox{\hyperlink{eusart1_8c_ab6e9a7238b7754678619a44374419718}{eusart1RxCount}};}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00095\ \textcolor{keyword}{extern}\ void\ (*\mbox{\hyperlink{eusart1_8c_a70443f1897367ed72791d9547eb06766}{EUSART1\_TxDefaultInterruptHandler}})(void);}
+\DoxyCodeLine{00096\ \textcolor{keyword}{extern}\ void\ (*\mbox{\hyperlink{eusart1_8c_a880bcfd3bf2ca46fd0f4a14b2a0a3b9d}{EUSART1\_RxDefaultInterruptHandler}})(void);}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00118\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{eusart1_8h_a17236c1d3fc2264f13ed077b4fc6973e}{EUSART1\_Initialize}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00166\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{eusart1_8h_a3cc9de3f3d2a8588be3bd85084011a68}{EUSART1\_is\_tx\_ready}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00214\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{eusart1_8h_a51236ea81a98a25986a6733fbf291621}{EUSART1\_is\_rx\_ready}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00261\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{eusart1_8h_a7b5f2ddacf3a8b27a5edff78996e66f5}{EUSART1\_is\_tx\_done}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00309\ \mbox{\hyperlink{unioneusart1__status__t}{eusart1\_status\_t}}\ \mbox{\hyperlink{eusart1_8h_a3dc796228d84a0c6a57dc207ed14daae}{EUSART1\_get\_last\_status}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00329\ uint8\_t\ \mbox{\hyperlink{eusart1_8h_ab4dd58b431d4f59c5b78f909b0b9cb0b}{EUSART1\_Read}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00330\ }
+\DoxyCodeLine{00349\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{eusart1_8h_a6acb88a121ac046bf5ae77f9a3521350}{EUSART1\_Write}}(uint8\_t\ txData);}
+\DoxyCodeLine{00350\ }
+\DoxyCodeLine{00370\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{eusart1_8h_a5f3a2616f3513e5aa47264fa6e918104}{EUSART1\_Transmit\_ISR}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00371\ }
+\DoxyCodeLine{00391\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{eusart1_8h_af6867c294ab8008a59cdc81a74272669}{EUSART1\_Receive\_ISR}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00392\ }
+\DoxyCodeLine{00412\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{eusart1_8h_a059ef83fc11ba2fbe279fe185b0e3832}{EUSART1\_RxDataHandler}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00413\ }
+\DoxyCodeLine{00430\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{eusart1_8h_aa4a8db092efc718cf508792a0a521dba}{EUSART1\_SetFramingErrorHandler}}(\textcolor{keywordtype}{void}\ (*\ interruptHandler)(\textcolor{keywordtype}{void}));}
+\DoxyCodeLine{00431\ }
+\DoxyCodeLine{00448\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{eusart1_8h_a8129057b0391bb8de6fa1058057c589e}{EUSART1\_SetOverrunErrorHandler}}(\textcolor{keywordtype}{void}\ (*\ interruptHandler)(\textcolor{keywordtype}{void}));}
+\DoxyCodeLine{00449\ }
+\DoxyCodeLine{00466\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{eusart1_8h_a1ce96cef41cc2e985c8a600873f3d688}{EUSART1\_SetErrorHandler}}(\textcolor{keywordtype}{void}\ (*\ interruptHandler)(\textcolor{keywordtype}{void}));}
+\DoxyCodeLine{00467\ }
+\DoxyCodeLine{00486\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{eusart1_8h_a112907665b51b5eac0ef40c80a8c0847}{EUSART1\_SetTxInterruptHandler}}(\textcolor{keywordtype}{void}\ (*\ interruptHandler)(\textcolor{keywordtype}{void}));}
+\DoxyCodeLine{00487\ }
+\DoxyCodeLine{00506\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{eusart1_8h_a66a557ddf06eda003b454c56b5f6fa2b}{EUSART1\_SetRxInterruptHandler}}(\textcolor{keywordtype}{void}\ (*\ interruptHandler)(\textcolor{keywordtype}{void}));}
+\DoxyCodeLine{00507\ }
+\DoxyCodeLine{00508\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus\ \ }\textcolor{comment}{//\ Provide\ C++\ Compatibility}}
+\DoxyCodeLine{00509\ }
+\DoxyCodeLine{00510\ \ \ \ \ \}}
+\DoxyCodeLine{00511\ }
+\DoxyCodeLine{00512\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00513\ }
+\DoxyCodeLine{00514\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ EUSART1\_H}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

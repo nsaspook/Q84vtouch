@@ -1,0 +1,133 @@
+\doxysection{mqtt\+\_\+response Struct Reference}
+\hypertarget{structmqtt__response}{}\label{structmqtt__response}\index{mqtt\_response@{mqtt\_response}}
+
+
+A struct used to deserialize/interpret an incoming packet from the broker.  
+
+
+
+
+{\ttfamily \#include $<$mqtt.\+h$>$}
+
+
+
+Collaboration diagram for mqtt\+\_\+response\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structmqtt__response__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structmqtt__fixed__header}{mqtt\+\_\+fixed\+\_\+header}} \mbox{\hyperlink{structmqtt__response_ae6c74d23295042d047eda8a09cf25d20}{fixed\+\_\+header}}
+\begin{DoxyCompactList}\small\item\em The \doxylink{structmqtt__fixed__header}{mqtt\+\_\+fixed\+\_\+header} of the deserialized packet. \end{DoxyCompactList}\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>struct \mbox{\hyperlink{structmqtt__response__connack}{mqtt\_response\_connack}} \mbox{\hyperlink{structmqtt__response_a7cb148abc5684c6f9f612f9e9ff1702b}{connack}}\\
+\>struct \mbox{\hyperlink{structmqtt__response__publish}{mqtt\_response\_publish}} \mbox{\hyperlink{structmqtt__response_acd3d4d35a2e048879f9141868af039a4}{publish}}\\
+\>struct \mbox{\hyperlink{structmqtt__response__puback}{mqtt\_response\_puback}} \mbox{\hyperlink{structmqtt__response_a89984a0ee07f07a78c111ac12bdbdf91}{puback}}\\
+\>struct \mbox{\hyperlink{structmqtt__response__pubrec}{mqtt\_response\_pubrec}} \mbox{\hyperlink{structmqtt__response_adc00a0958c635933a41033b23885f588}{pubrec}}\\
+\>struct \mbox{\hyperlink{structmqtt__response__pubrel}{mqtt\_response\_pubrel}} \mbox{\hyperlink{structmqtt__response_a643f7abb9085da3ea5c2e65f28d9b9f8}{pubrel}}\\
+\>struct \mbox{\hyperlink{structmqtt__response__pubcomp}{mqtt\_response\_pubcomp}} \mbox{\hyperlink{structmqtt__response_a1b8a36de3eb0cacc048f43d10e154a86}{pubcomp}}\\
+\>struct \mbox{\hyperlink{structmqtt__response__suback}{mqtt\_response\_suback}} \mbox{\hyperlink{structmqtt__response_a0178987cd279100b014f3537733b1411}{suback}}\\
+\>struct \mbox{\hyperlink{structmqtt__response__unsuback}{mqtt\_response\_unsuback}} \mbox{\hyperlink{structmqtt__response_a1611e6afee8179b79c3f950ec504ecd8}{unsuback}}\\
+\>struct \mbox{\hyperlink{structmqtt__response__pingresp}{mqtt\_response\_pingresp}} \mbox{\hyperlink{structmqtt__response_a140ce25787d7b7d9ff2a487133671759}{pingresp}}\\
+\} \mbox{\hyperlink{structmqtt__response_a372d1eb7cefce7d97f5412388280d9a3}{decoded}}\\
+
+\end{tabbing}\begin{DoxyCompactList}\small\item\em A union of the possible responses from the broker. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Related Symbols}
+(Note that these are not member symbols.) \begin{DoxyCompactItemize}
+\item 
+ssize\+\_\+t \mbox{\hyperlink{group__unpackers_gaae124a93579dcd31e6f52411f4582fbd}{mqtt\+\_\+unpack\+\_\+response}} (struct \mbox{\hyperlink{structmqtt__response}{mqtt\+\_\+response}} \texorpdfstring{$\ast$}{*}response, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, size\+\_\+t bufsz)
+\begin{DoxyCompactList}\small\item\em Deserialize a packet from the broker. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A struct used to deserialize/interpret an incoming packet from the broker. 
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structmqtt__response_a7cb148abc5684c6f9f612f9e9ff1702b}\index{mqtt\_response@{mqtt\_response}!connack@{connack}}
+\index{connack@{connack}!mqtt\_response@{mqtt\_response}}
+\doxysubsubsection{\texorpdfstring{connack}{connack}}
+{\footnotesize\ttfamily \label{structmqtt__response_a7cb148abc5684c6f9f612f9e9ff1702b} 
+struct \mbox{\hyperlink{structmqtt__response__connack}{mqtt\+\_\+response\+\_\+connack}} connack}
+
+\Hypertarget{structmqtt__response_a372d1eb7cefce7d97f5412388280d9a3}\index{mqtt\_response@{mqtt\_response}!decoded@{decoded}}
+\index{decoded@{decoded}!mqtt\_response@{mqtt\_response}}
+\doxysubsubsection{\texorpdfstring{[union]}{[union]}}
+{\footnotesize\ttfamily \label{structmqtt__response_a372d1eb7cefce7d97f5412388280d9a3} 
+union  \{ ... \}  decoded}
+
+
+
+A union of the possible responses from the broker. 
+
+\begin{DoxyNote}{Note}
+The fixed\+\_\+header contains the control type. This control type corresponds to the member of this union that should be accessed. For example if fixed\+\_\+header\#control\+\_\+type == {\ttfamily MQTT\+\_\+\+CONTROL\+\_\+\+PUBLISH} then decoded\#publish should be accessed. 
+\end{DoxyNote}
+\Hypertarget{structmqtt__response_ae6c74d23295042d047eda8a09cf25d20}\index{mqtt\_response@{mqtt\_response}!fixed\_header@{fixed\_header}}
+\index{fixed\_header@{fixed\_header}!mqtt\_response@{mqtt\_response}}
+\doxysubsubsection{\texorpdfstring{fixed\_header}{fixed\_header}}
+{\footnotesize\ttfamily \label{structmqtt__response_ae6c74d23295042d047eda8a09cf25d20} 
+struct \mbox{\hyperlink{structmqtt__fixed__header}{mqtt\+\_\+fixed\+\_\+header}} fixed\+\_\+header}
+
+
+
+The \doxylink{structmqtt__fixed__header}{mqtt\+\_\+fixed\+\_\+header} of the deserialized packet. 
+
+\Hypertarget{structmqtt__response_a140ce25787d7b7d9ff2a487133671759}\index{mqtt\_response@{mqtt\_response}!pingresp@{pingresp}}
+\index{pingresp@{pingresp}!mqtt\_response@{mqtt\_response}}
+\doxysubsubsection{\texorpdfstring{pingresp}{pingresp}}
+{\footnotesize\ttfamily \label{structmqtt__response_a140ce25787d7b7d9ff2a487133671759} 
+struct \mbox{\hyperlink{structmqtt__response__pingresp}{mqtt\+\_\+response\+\_\+pingresp}} pingresp}
+
+\Hypertarget{structmqtt__response_a89984a0ee07f07a78c111ac12bdbdf91}\index{mqtt\_response@{mqtt\_response}!puback@{puback}}
+\index{puback@{puback}!mqtt\_response@{mqtt\_response}}
+\doxysubsubsection{\texorpdfstring{puback}{puback}}
+{\footnotesize\ttfamily \label{structmqtt__response_a89984a0ee07f07a78c111ac12bdbdf91} 
+struct \mbox{\hyperlink{structmqtt__response__puback}{mqtt\+\_\+response\+\_\+puback}} puback}
+
+\Hypertarget{structmqtt__response_a1b8a36de3eb0cacc048f43d10e154a86}\index{mqtt\_response@{mqtt\_response}!pubcomp@{pubcomp}}
+\index{pubcomp@{pubcomp}!mqtt\_response@{mqtt\_response}}
+\doxysubsubsection{\texorpdfstring{pubcomp}{pubcomp}}
+{\footnotesize\ttfamily \label{structmqtt__response_a1b8a36de3eb0cacc048f43d10e154a86} 
+struct \mbox{\hyperlink{structmqtt__response__pubcomp}{mqtt\+\_\+response\+\_\+pubcomp}} pubcomp}
+
+\Hypertarget{structmqtt__response_acd3d4d35a2e048879f9141868af039a4}\index{mqtt\_response@{mqtt\_response}!publish@{publish}}
+\index{publish@{publish}!mqtt\_response@{mqtt\_response}}
+\doxysubsubsection{\texorpdfstring{publish}{publish}}
+{\footnotesize\ttfamily \label{structmqtt__response_acd3d4d35a2e048879f9141868af039a4} 
+struct \mbox{\hyperlink{structmqtt__response__publish}{mqtt\+\_\+response\+\_\+publish}} publish}
+
+\Hypertarget{structmqtt__response_adc00a0958c635933a41033b23885f588}\index{mqtt\_response@{mqtt\_response}!pubrec@{pubrec}}
+\index{pubrec@{pubrec}!mqtt\_response@{mqtt\_response}}
+\doxysubsubsection{\texorpdfstring{pubrec}{pubrec}}
+{\footnotesize\ttfamily \label{structmqtt__response_adc00a0958c635933a41033b23885f588} 
+struct \mbox{\hyperlink{structmqtt__response__pubrec}{mqtt\+\_\+response\+\_\+pubrec}} pubrec}
+
+\Hypertarget{structmqtt__response_a643f7abb9085da3ea5c2e65f28d9b9f8}\index{mqtt\_response@{mqtt\_response}!pubrel@{pubrel}}
+\index{pubrel@{pubrel}!mqtt\_response@{mqtt\_response}}
+\doxysubsubsection{\texorpdfstring{pubrel}{pubrel}}
+{\footnotesize\ttfamily \label{structmqtt__response_a643f7abb9085da3ea5c2e65f28d9b9f8} 
+struct \mbox{\hyperlink{structmqtt__response__pubrel}{mqtt\+\_\+response\+\_\+pubrel}} pubrel}
+
+\Hypertarget{structmqtt__response_a0178987cd279100b014f3537733b1411}\index{mqtt\_response@{mqtt\_response}!suback@{suback}}
+\index{suback@{suback}!mqtt\_response@{mqtt\_response}}
+\doxysubsubsection{\texorpdfstring{suback}{suback}}
+{\footnotesize\ttfamily \label{structmqtt__response_a0178987cd279100b014f3537733b1411} 
+struct \mbox{\hyperlink{structmqtt__response__suback}{mqtt\+\_\+response\+\_\+suback}} suback}
+
+\Hypertarget{structmqtt__response_a1611e6afee8179b79c3f950ec504ecd8}\index{mqtt\_response@{mqtt\_response}!unsuback@{unsuback}}
+\index{unsuback@{unsuback}!mqtt\_response@{mqtt\_response}}
+\doxysubsubsection{\texorpdfstring{unsuback}{unsuback}}
+{\footnotesize\ttfamily \label{structmqtt__response_a1611e6afee8179b79c3f950ec504ecd8} 
+struct \mbox{\hyperlink{structmqtt__response__unsuback}{mqtt\+\_\+response\+\_\+unsuback}} unsuback}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+linux/matesocketcan/\mbox{\hyperlink{mqtt_8h}{mqtt.\+h}}\end{DoxyCompactItemize}

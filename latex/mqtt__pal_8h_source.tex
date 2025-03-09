@@ -1,0 +1,131 @@
+\doxysection{mqtt\+\_\+pal.\+h}
+\hypertarget{mqtt__pal_8h_source}{}\label{mqtt__pal_8h_source}\index{linux/matesocketcan/mqtt\_pal.h@{linux/matesocketcan/mqtt\_pal.h}}
+\mbox{\hyperlink{mqtt__pal_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#if\ !defined(\_\_MQTT\_PAL\_H\_\_)}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_MQTT\_PAL\_H\_\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00005\ \textcolor{comment}{MIT\ License}}
+\DoxyCodeLine{00006\ \textcolor{comment}{}}
+\DoxyCodeLine{00007\ \textcolor{comment}{Copyright(c)\ 2018\ Liam\ Bindle}}
+\DoxyCodeLine{00008\ \textcolor{comment}{}}
+\DoxyCodeLine{00009\ \textcolor{comment}{Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a\ copy}}
+\DoxyCodeLine{00010\ \textcolor{comment}{of\ this\ software\ and\ associated\ documentation\ files(the\ "{}Software"{}),\ to\ deal}}
+\DoxyCodeLine{00011\ \textcolor{comment}{in\ the\ Software\ without\ restriction,\ including\ without\ limitation\ the\ rights}}
+\DoxyCodeLine{00012\ \textcolor{comment}{to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,\ and/or\ sell}}
+\DoxyCodeLine{00013\ \textcolor{comment}{copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the\ Software\ is}}
+\DoxyCodeLine{00014\ \textcolor{comment}{furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions\ :}}
+\DoxyCodeLine{00015\ \textcolor{comment}{}}
+\DoxyCodeLine{00016\ \textcolor{comment}{The\ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}}
+\DoxyCodeLine{00017\ \textcolor{comment}{copies\ or\ substantial\ portions\ of\ the\ Software.}}
+\DoxyCodeLine{00018\ \textcolor{comment}{}}
+\DoxyCodeLine{00019\ \textcolor{comment}{THE\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}}
+\DoxyCodeLine{00020\ \textcolor{comment}{IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,}}
+\DoxyCodeLine{00021\ \textcolor{comment}{FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE\ AND\ NONINFRINGEMENT.IN\ NO\ EVENT\ SHALL\ THE}}
+\DoxyCodeLine{00022\ \textcolor{comment}{AUTHORS\ OR\ COPYRIGHT\ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER}}
+\DoxyCodeLine{00023\ \textcolor{comment}{LIABILITY,\ WHETHER\ IN\ AN\ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,}}
+\DoxyCodeLine{00024\ \textcolor{comment}{OUT\ OF\ OR\ IN\ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE}}
+\DoxyCodeLine{00025\ \textcolor{comment}{SOFTWARE.}}
+\DoxyCodeLine{00026\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#if\ defined(\_\_cplusplus)}}
+\DoxyCodeLine{00029\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{comment}{/*\ UNIX-\/like\ platform\ support\ */}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#if\ defined(\_\_unix\_\_)\ ||\ defined(\_\_APPLE\_\_)\ ||\ defined(\_\_NuttX\_\_)}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\ \ \ \ \#include\ <limits.h>}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\ \ \ \ \#include\ <string.h>}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\ \ \ \ \#include\ <stdarg.h>}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\ \ \ \ \#include\ <time.h>}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\ \ \ \ \#include\ <arpa/inet.h>}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\ \ \ \ \#include\ <pthread.h>}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\ \ \ \ \#define\ MQTT\_PAL\_HTONS(s)\ htons(s)}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\ \ \ \ \#define\ MQTT\_PAL\_NTOHS(s)\ ntohs(s)}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\ \ \ \ \#define\ MQTT\_PAL\_TIME()\ time(NULL)}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{typedef}\ time\_t\ mqtt\_pal\_time\_t;}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{typedef}\ pthread\_mutex\_t\ mqtt\_pal\_mutex\_t;}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\ \ \ \ \#define\ MQTT\_PAL\_MUTEX\_INIT(mtx\_ptr)\ pthread\_mutex\_init(mtx\_ptr,\ NULL)}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\ \ \ \ \#define\ MQTT\_PAL\_MUTEX\_LOCK(mtx\_ptr)\ pthread\_mutex\_lock(mtx\_ptr)}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\ \ \ \ \#define\ MQTT\_PAL\_MUTEX\_UNLOCK(mtx\_ptr)\ pthread\_mutex\_unlock(mtx\_ptr)}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\ \ \ \ \#if\ !defined(MQTT\_USE\_CUSTOM\_SOCKET\_HANDLE)}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#if\ defined(MQTT\_USE\_MBEDTLS)}}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }mbedtls\_ssl\_context;}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }mbedtls\_ssl\_context\ *mqtt\_pal\_socket\_handle;}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#elif\ defined(MQTT\_USE\_WOLFSSL)}}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \#include\ <wolfssl/ssl.h>}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ WOLFSSL*\ mqtt\_pal\_socket\_handle;}
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#elif\ defined(MQTT\_USE\_BIO)}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \#include\ <openssl/bio.h>}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ BIO*\ mqtt\_pal\_socket\_handle;}
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#elif\ defined(MQTT\_USE\_BEARSSL)}}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \#include\ <bearssl.h>}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\_bearssl\_context\ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ br\_ssl\_client\_context\ sc;}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ br\_x509\_minimal\_context\ xc;}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ br\_sslio\_context\ ioc;}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ ta\_count;}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ br\_x509\_trust\_anchor\ *anchOut;}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ fd;}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ int\ (*low\_read)(\textcolor{keywordtype}{void}\ *read\_context,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *buf,\ \textcolor{keywordtype}{size\_t}\ len);}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ int\ (*low\_write)(\textcolor{keywordtype}{void}\ *write\_context,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *buf,\ \textcolor{keywordtype}{size\_t}\ len);}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ bearssl\_context;}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ bearssl\_context*\ mqtt\_pal\_socket\_handle;}
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#else}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{int}\ mqtt\_pal\_socket\_handle;}
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endif}}
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#elif\ defined(\_MSC\_VER)\ ||\ defined(WIN32)}}
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\ \ \ \ \#include\ <limits.h>}}
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\ \ \ \ \#include\ <winsock2.h>}}
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\ \ \ \ \#include\ <windows.h>}}
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\ \ \ \ \#include\ <time.h>}}
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\ \ \ \ \#include\ <stdint.h>}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keyword}{typedef}\ SSIZE\_T\ ssize\_t;}
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\ \ \ \ \#define\ MQTT\_PAL\_HTONS(s)\ htons(s)}}
+\DoxyCodeLine{00130\ \textcolor{preprocessor}{\ \ \ \ \#define\ MQTT\_PAL\_NTOHS(s)\ ntohs(s)}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \textcolor{preprocessor}{\ \ \ \ \#define\ MQTT\_PAL\_TIME()\ time(NULL)}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keyword}{typedef}\ time\_t\ mqtt\_pal\_time\_t;}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keyword}{typedef}\ CRITICAL\_SECTION\ mqtt\_pal\_mutex\_t;}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\ \ \ \ \#define\ MQTT\_PAL\_MUTEX\_INIT(mtx\_ptr)\ InitializeCriticalSection(mtx\_ptr)}}
+\DoxyCodeLine{00138\ \textcolor{preprocessor}{\ \ \ \ \#define\ MQTT\_PAL\_MUTEX\_LOCK(mtx\_ptr)\ EnterCriticalSection(mtx\_ptr)}}
+\DoxyCodeLine{00139\ \textcolor{preprocessor}{\ \ \ \ \#define\ MQTT\_PAL\_MUTEX\_UNLOCK(mtx\_ptr)\ LeaveCriticalSection(mtx\_ptr)}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\ \ \ \ \#if\ !defined(MQTT\_USE\_CUSTOM\_SOCKET\_HANDLE)}}
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#if\ defined(MQTT\_USE\_BIO)}}
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \#include\ <openssl/bio.h>}}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ BIO*\ mqtt\_pal\_socket\_handle;}
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#else}}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ SOCKET\ mqtt\_pal\_socket\_handle;}
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endif}}
+\DoxyCodeLine{00149\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00171\ ssize\_t\ \mbox{\hyperlink{group__pal_ga9111a3f19c6ff3e5c22c93b1066898f5}{mqtt\_pal\_sendall}}(mqtt\_pal\_socket\_handle\ fd,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}*\ buf,\ \textcolor{keywordtype}{size\_t}\ len,\ \textcolor{keywordtype}{int}\ flags);}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00191\ ssize\_t\ \mbox{\hyperlink{group__pal_ga013a74368db595f9832c9fe717a84f4d}{mqtt\_pal\_recvall}}(mqtt\_pal\_socket\_handle\ fd,\ \textcolor{keywordtype}{void}*\ buf,\ \textcolor{keywordtype}{size\_t}\ bufsz,\ \textcolor{keywordtype}{int}\ flags);}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \textcolor{preprocessor}{\#if\ defined(\_\_cplusplus)}}
+\DoxyCodeLine{00194\ \}}
+\DoxyCodeLine{00195\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

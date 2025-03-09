@@ -1,0 +1,39 @@
+\doxysection{CAN-\/\+Examples Directory Reference}
+\hypertarget{dir_378f7b43f1c0b3baf3e0581cd67ebef2}{}\label{dir_378f7b43f1c0b3baf3e0581cd67ebef2}\index{CAN-\/Examples Directory Reference@{CAN-\/Examples Directory Reference}}
+\doxysubsubsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{canfilter_8c}{canfilter.\+c}}
+\item 
+file \mbox{\hyperlink{canreceive_8c}{canreceive.\+c}}
+\item 
+file \mbox{\hyperlink{cantransmit_8c}{cantransmit.\+c}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{README.md_autotoc_md0}{}\doxysubsection{\texorpdfstring{CAN-\/\+Examples}{CAN-\/\+Examples}}\label{README.md_autotoc_md0}
+Example C code for Socket\+CAN on Linux
+
+
+\begin{DoxyItemize}
+\item Based on documentation at\+: \href{https://www.kernel.org/doc/Documentation/networking/can.txt}{\texttt{ https\+://www.\+kernel.\+org/doc/\+Documentation/networking/can.\+txt}}
+\item A simplified tutorial can be found at\+: \href{https://www.beyondlogic.org/example-c-socketcan-code/}{\texttt{ https\+://www.\+beyondlogic.\+org/example-\/c-\/socketcan-\/code/}}
+\item Hardcoded to use the vcan0 virtual CAN device.
+\end{DoxyItemize}
+
+To install VCAN0\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ ip\ link\ add\ dev\ vcan0\ type\ vcan}
+
+\end{DoxyCode}
+ Use gcc to build examples\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ gcc\ cantransmit.c\ -\/o\ cantransmit}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$\ gcc\ canreceive.c\ -\/o\ canreceive}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$\ gcc\ canfilter.c\ -\/o\ canfilter}
+
+\end{DoxyCode}
+ 

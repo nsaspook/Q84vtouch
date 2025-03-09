@@ -1,0 +1,87 @@
+\doxysection{adc.\+h}
+\hypertarget{tdr_8X_2mcc__generated__files_2adc_8h_source}{}\label{tdr_8X_2mcc__generated__files_2adc_8h_source}\index{tdr.X/mcc\_generated\_files/adc.h@{tdr.X/mcc\_generated\_files/adc.h}}
+\mbox{\hyperlink{tdr_8X_2mcc__generated__files_2adc_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ \ \ \ (c)\ 2018\ Microchip\ Technology\ Inc.\ and\ its\ subsidiaries.\ }}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ \ \ \ }}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ \ \ \ Subject\ to\ your\ compliance\ with\ these\ terms,\ you\ may\ use\ Microchip\ software\ and\ any\ }}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ \ \ \ derivatives\ exclusively\ with\ Microchip\ products.\ It\ is\ your\ responsibility\ to\ comply\ with\ third\ party\ }}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ \ \ \ license\ terms\ applicable\ to\ your\ use\ of\ third\ party\ software\ (including\ open\ source\ software)\ that\ }}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ \ \ \ may\ accompany\ Microchip\ software.}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ \ \ \ }}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ \ \ \ THIS\ SOFTWARE\ IS\ SUPPLIED\ BY\ MICROCHIP\ "{}AS\ IS"{}.\ NO\ WARRANTIES,\ WHETHER\ }}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ \ \ \ EXPRESS,\ IMPLIED\ OR\ STATUTORY,\ APPLY\ TO\ THIS\ SOFTWARE,\ INCLUDING\ ANY\ }}
+\DoxyCodeLine{00034\ \textcolor{comment}{\ \ \ \ IMPLIED\ WARRANTIES\ OF\ NON-\/INFRINGEMENT,\ MERCHANTABILITY,\ AND\ FITNESS\ }}
+\DoxyCodeLine{00035\ \textcolor{comment}{\ \ \ \ FOR\ A\ PARTICULAR\ PURPOSE.}}
+\DoxyCodeLine{00036\ \textcolor{comment}{\ \ \ \ }}
+\DoxyCodeLine{00037\ \textcolor{comment}{\ \ \ \ IN\ NO\ EVENT\ WILL\ MICROCHIP\ BE\ LIABLE\ FOR\ ANY\ INDIRECT,\ SPECIAL,\ PUNITIVE,\ }}
+\DoxyCodeLine{00038\ \textcolor{comment}{\ \ \ \ INCIDENTAL\ OR\ CONSEQUENTIAL\ LOSS,\ DAMAGE,\ COST\ OR\ EXPENSE\ OF\ ANY\ KIND\ }}
+\DoxyCodeLine{00039\ \textcolor{comment}{\ \ \ \ WHATSOEVER\ RELATED\ TO\ THE\ SOFTWARE,\ HOWEVER\ CAUSED,\ EVEN\ IF\ MICROCHIP\ }}
+\DoxyCodeLine{00040\ \textcolor{comment}{\ \ \ \ HAS\ BEEN\ ADVISED\ OF\ THE\ POSSIBILITY\ OR\ THE\ DAMAGES\ ARE\ FORESEEABLE.\ TO\ }}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ \ \ \ THE\ FULLEST\ EXTENT\ ALLOWED\ BY\ LAW,\ MICROCHIP'S\ TOTAL\ LIABILITY\ ON\ ALL\ }}
+\DoxyCodeLine{00042\ \textcolor{comment}{\ \ \ \ CLAIMS\ IN\ ANY\ WAY\ RELATED\ TO\ THIS\ SOFTWARE\ WILL\ NOT\ EXCEED\ THE\ AMOUNT\ }}
+\DoxyCodeLine{00043\ \textcolor{comment}{\ \ \ \ OF\ FEES,\ IF\ ANY,\ THAT\ YOU\ HAVE\ PAID\ DIRECTLY\ TO\ MICROCHIP\ FOR\ THIS\ }}
+\DoxyCodeLine{00044\ \textcolor{comment}{\ \ \ \ SOFTWARE.}}
+\DoxyCodeLine{00045\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#ifndef\ ADC\_H}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ ADC\_H}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#include\ <xc.h>}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus\ \ }\textcolor{comment}{//\ Provide\ C++\ Compatibility}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{typedef}\ uint16\_t\ \mbox{\hyperlink{group__adc__context__scan_gac5362ae65441a5027b4b9b1bf1b573aa}{adc\_result\_t}};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00077\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00078\ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \mbox{\hyperlink{group__adc__context__scan_gac5362ae65441a5027b4b9b1bf1b573aa}{adc\_result\_t}}\ \mbox{\hyperlink{structadc__sync__double__result__t_a4a123c2396a2013b27d8d4cea6341980}{adcResult1}};}
+\DoxyCodeLine{00080\ \ \ \ \ \mbox{\hyperlink{group__adc__context__scan_gac5362ae65441a5027b4b9b1bf1b573aa}{adc\_result\_t}}\ \mbox{\hyperlink{structadc__sync__double__result__t_aedc782211c19c3e736d4b81b63d86d04}{adcResult2}};}
+\DoxyCodeLine{00081\ \}\ \mbox{\hyperlink{structadc__sync__double__result__t}{adc\_sync\_double\_result\_t}};}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00096\ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \mbox{\hyperlink{tdr_8X_2mcc__generated__files_2adc_8h_aafc4060027875f8fe46242b0656d7814a74d80800d9ff3e8d3d1beed59517acaa}{channel\_AN0}}\ =\ \ 0x0,}
+\DoxyCodeLine{00098\ \ \ \ \ \mbox{\hyperlink{tdr_8X_2mcc__generated__files_2adc_8h_aafc4060027875f8fe46242b0656d7814ab37ab6ae208999d317cdc19b5f8d0328}{channel\_CTMU}}\ =\ \ 0x1D,}
+\DoxyCodeLine{00099\ \ \ \ \ \mbox{\hyperlink{tdr_8X_2mcc__generated__files_2adc_8h_aafc4060027875f8fe46242b0656d7814a1803faf8301d5aa442661259085ccd07}{channel\_DAC}}\ =\ \ 0x1E,}
+\DoxyCodeLine{00100\ \ \ \ \ \mbox{\hyperlink{tdr_8X_2mcc__generated__files_2adc_8h_aafc4060027875f8fe46242b0656d7814a26819043b0a5ff81a1353455d18645b2}{channel\_FVRBuf2}}\ =\ \ 0x1F}
+\DoxyCodeLine{00101\ \}\ \mbox{\hyperlink{tdr_8X_2mcc__generated__files_2adc_8h_aafc4060027875f8fe46242b0656d7814}{adc\_channel\_t}};}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00136\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__adc__context__scan_gab0e0ea1662a8e789547210a2d33127e1}{ADC\_Initialize}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00166\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{tdr_8X_2mcc__generated__files_2adc_8h_a25c0a0a9fe2bdba070f9945ca641b5e0}{ADC\_SelectChannel}}(\mbox{\hyperlink{tdr_8X_2mcc__generated__files_2adc_8h_aafc4060027875f8fe46242b0656d7814}{adc\_channel\_t}}\ channel);}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00193\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{tdr_8X_2mcc__generated__files_2adc_8c_af96ee69b063edcebc656d0ca0450c12c}{ADC\_StartConversion}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00225\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__adc__context__scan_gad5c10c1709aeacf08e783c3ea174463b}{ADC\_IsConversionDone}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00258\ \mbox{\hyperlink{group__adc__context__scan_gac5362ae65441a5027b4b9b1bf1b573aa}{adc\_result\_t}}\ \mbox{\hyperlink{group__adc__context__scan_ga9650956bd92194e1b9f0bfd5bb2d73dd}{ADC\_GetConversionResult}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00288\ \mbox{\hyperlink{group__adc__context__scan_gac5362ae65441a5027b4b9b1bf1b573aa}{adc\_result\_t}}\ \mbox{\hyperlink{tdr_8X_2mcc__generated__files_2adc_8h_a81501f9b96aa9bb8dbe63b49d0f8e909}{ADC\_GetConversion}}(\mbox{\hyperlink{tdr_8X_2mcc__generated__files_2adc_8h_aafc4060027875f8fe46242b0656d7814}{adc\_channel\_t}}\ channel);}
+\DoxyCodeLine{00289\ }
+\DoxyCodeLine{00316\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{tdr_8X_2mcc__generated__files_2adc_8h_a46bdd78f96c668432d4ff33115c9dcd9}{ADC\_TemperatureAcquisitionDelay}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00317\ }
+\DoxyCodeLine{00318\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus\ \ }\textcolor{comment}{//\ Provide\ C++\ Compatibility}}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00320\ \ \ \ \ \}}
+\DoxyCodeLine{00321\ }
+\DoxyCodeLine{00322\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00324\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//ADC\_H}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00328\ }
+
+\end{DoxyCode}

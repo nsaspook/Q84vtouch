@@ -1,0 +1,594 @@
+\doxysection{batmon.\+h File Reference}
+\hypertarget{batmon_8h}{}\label{batmon_8h}\index{batmon.h@{batmon.h}}
+{\ttfamily \#include "{}qconfig.\+h"{}}\newline
+{\ttfamily \#include "{}modbus\+\_\+master.\+h"{}}\newline
+{\ttfamily \#include "{}mate\+Q84.\+X/mxcmd.\+h"{}}\newline
+Include dependency graph for batmon.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{batmon_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=296pt]{batmon_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structEB__data}{EB\+\_\+data}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{batmon_8h_a826ee84188f6bf7a43caa2e021b943e2}{CHK\+\_\+\+DAY\+\_\+\+TIME}}~1200
+\item 
+\#define \mbox{\hyperlink{batmon_8h_aa86b61c0c81d80805eda81eecc432669}{TEN\+\_\+\+SEC\+\_\+\+HOUR}}~360.\+0f
+\item 
+\#define \mbox{\hyperlink{batmon_8h_a15bc5122dbf4cb55e97b41be0a86da4a}{BM\+\_\+\+EEPROM\+\_\+\+VER}}~1
+\item 
+\#define \mbox{\hyperlink{batmon_8h_a9ffd0f3a60100ccf5f0038e42ba9d507}{BM\+\_\+\+CM}}~0x57+\mbox{\hyperlink{batmon_8h_a15bc5122dbf4cb55e97b41be0a86da4a}{BM\+\_\+\+EEPROM\+\_\+\+VER}}
+\item 
+\#define \mbox{\hyperlink{batmon_8h_a9dd78d02e4a2e1de9ea34341e9117280}{BM\+\_\+\+UPDATE}}~3600
+\item 
+\#define \mbox{\hyperlink{batmon_8h_a289713fa69b3cae431993dac11e9552d}{BM\+\_\+\+UPDATE\+\_\+\+RUN}}~1800
+\item 
+\#define \mbox{\hyperlink{batmon_8h_a8620b8d8101f67ba9c016e387acca78d}{BAT\+\_\+\+VOLT}}~25.\+6f
+\item 
+\#define \mbox{\hyperlink{batmon_8h_aa57076962d3381c151d7b6026e8fe4bc}{BAT\+\_\+\+AH}}~200.\+0f
+\item 
+\#define \mbox{\hyperlink{batmon_8h_a8d494fefcb05c5a447c0b73b15ec0740}{BAT\+\_\+\+ENERGY}}~\mbox{\hyperlink{batmon_8h_a8620b8d8101f67ba9c016e387acca78d}{BAT\+\_\+\+VOLT}}\texorpdfstring{$\ast$}{*}\mbox{\hyperlink{batmon_8h_aa57076962d3381c151d7b6026e8fe4bc}{BAT\+\_\+\+AH}}\texorpdfstring{$\ast$}{*}\mbox{\hyperlink{batmon_8h_aa86b61c0c81d80805eda81eecc432669}{TEN\+\_\+\+SEC\+\_\+\+HOUR}}
+\item 
+\#define \mbox{\hyperlink{batmon_8h_af575f3b0e7be16f9ad7cc7b0f68cbc53}{BAT\+\_\+\+ENERGY\+\_\+\+LOW}}~\mbox{\hyperlink{batmon_8h_a8d494fefcb05c5a447c0b73b15ec0740}{BAT\+\_\+\+ENERGY}}\texorpdfstring{$\ast$}{*}0.\+5f
+\item 
+\#define \mbox{\hyperlink{batmon_8h_ad51014cb88ae0e1e2de4b48a38e6f080}{BAT\+\_\+\+OVER\+\_\+\+VOLT}}~30.\+0f
+\item 
+\#define \mbox{\hyperlink{batmon_8h_afc676ba8e23df9d1f99f711364b45af1}{BAT\+\_\+\+OVER\+\_\+\+RECON}}~28.\+4f
+\item 
+\#define \mbox{\hyperlink{batmon_8h_a22a90580c5bb1b602e4a4005ac81c9a5}{BAT\+\_\+\+UNDER\+\_\+\+VOLT}}~23.\+2f
+\item 
+\#define \mbox{\hyperlink{batmon_8h_a5d78b5447befdf3d43048ce9c9aef1ce}{BAT\+\_\+\+LOW\+\_\+\+DISC}}~21.\+6f
+\item 
+\#define \mbox{\hyperlink{batmon_8h_aaf5e1be889244e679e0b13ac79d50782}{BAT\+\_\+\+LOW\+\_\+\+RECON}}~24.\+8f
+\item 
+\#define \mbox{\hyperlink{batmon_8h_ac8263b4741c4b57c2ec72022a439d1ed}{BAT\+\_\+\+EFF\+\_\+\+VAL}}~0.\+985f
+\item 
+\#define \mbox{\hyperlink{batmon_8h_a63226cf8599fd26ae71512e7c30cedfc}{BAT\+\_\+\+CYCLES}}~8
+\item 
+\#define \mbox{\hyperlink{batmon_8h_a2a4aa1e7806129b551924a85e2fb3f08}{BAT\+\_\+\+CHARGED\+\_\+W}}~\mbox{\hyperlink{batmon_8h_aa57076962d3381c151d7b6026e8fe4bc}{BAT\+\_\+\+AH}}
+\item 
+\#define \mbox{\hyperlink{batmon_8h_ac5b2949bbdd3293baa6679af92a993ed}{BAT\+\_\+\+CHARGED\+\_\+V}}~120.\+0f
+\item 
+\#define \mbox{\hyperlink{batmon_8h_a25ab35e786370cdb54a193647854f4a4}{BAT\+\_\+\+DAY\+\_\+\+COUNT}}~45
+\item 
+\#define \mbox{\hyperlink{batmon_8h_a29b4c81f013496f5f63caa15c4be26a9}{BAT\+\_\+\+NIGHT\+\_\+\+COUNT}}~90
+\item 
+\#define \mbox{\hyperlink{batmon_8h_ac115b6949b27ece7486ee361d7c938ef}{BAT\+\_\+\+RUN\+\_\+\+MAX}}~280.\+0f
+\item 
+\#define \mbox{\hyperlink{batmon_8h_ac2cc1c7a0b61434dd8a0f2789b73f27c}{IDLE\+\_\+\+DRAIN}}~10.\+0f
+\item 
+\#define \mbox{\hyperlink{batmon_8h_a1a3942d5f25bf8b7e92ed0f498a077ff}{INV\+\_\+\+EFF\+\_\+\+VAL}}~1.\+06f
+\item 
+\#define \mbox{\hyperlink{batmon_8h_aad5d2674ab552609c33cf6687cb807f2}{MAX\+\_\+\+ALT\+\_\+\+DIS}}~3
+\item 
+\#define \mbox{\hyperlink{batmon_8h_a482c5ecde1f9b7d42328bf311286bdef}{LOG\+\_\+\+VARS}}~abuf\mbox{[}3\mbox{]} -\/ 128, abuf\mbox{[}1\mbox{]}\&0x0f, \mbox{\hyperlink{mateQ84_8X_2main_8c_a0a7d1eab37aff09f0b4fcd0a3013663c}{vw}}, \mbox{\hyperlink{mateQ84_8X_2main_8c_a7eecd7139621d24f6891dba43a54cd34}{vf}}, abuf\mbox{[}2\mbox{]} -\/ 128, \mbox{\hyperlink{mateQ84_8X_2main_8c_a5428a6793379f1ef5f92afe41c67c2b9}{volt\+\_\+whole}}, \mbox{\hyperlink{mateQ84_8X_2main_8c_af6592ba43281a17840991c7b82b108de}{volt\+\_\+fract}}, \mbox{\hyperlink{mateQ84_8X_2main_8c_aa1ffff7253c4e877ed1564a008e2b3d5}{panel\+\_\+watts}}, \mbox{\hyperlink{batmon_8c_a6d4c959b440098e0b9e21564cecee331}{pv\+\_\+\+Wh\+\_\+daily}}, \mbox{\hyperlink{batmon_8c_a32b8086e52ab3581927dca7f9f1cbd53}{ac\+\_\+\+Wh\+\_\+daily}}, B.\+run\+\_\+time,  B.\+net\+\_\+balance, \mbox{\hyperlink{mateQ84_8X_2main_8c_a13b6090652ee42171ac58f007930d94a}{cc\+\_\+mode}}, ((float) em.\+wl1) / 10.\+0f, ((float) em.\+val1) / 10.\+0f, ((float) em.\+varl1) / 10.\+0f, ((float) em.\+vl1l2) / 10.\+0f, EBD.\+bat\+\_\+energy / 3600.\+0f, EBD.\+bat\+\_\+cycles, ((float) em.\+pfl1) / 1000.\+0f, ((float) emt.\+hz) / 1000.\+0f, B.\+rx\+\_\+count++,\mbox{\hyperlink{mateQ84_8X_2main_8c_acd60ad1d27dc0b60769dbbac39039d90}{buffer}}
+\item 
+\#define \mbox{\hyperlink{batmon_8h_aa30a92a619f5bd97c8469a385f693639}{BVSOC\+\_\+\+SLOTS}}~12
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct EB\+\_\+data \mbox{\hyperlink{batmon_8h_a31f98eb56801ac29aba912ffad7bfe1a}{EB\+\_\+data}}
+\item 
+typedef uint16\+\_\+t \mbox{\hyperlink{batmon_8h_ad2a35b1a4377b6b59d25fe4b683b0b94}{device\+\_\+id\+\_\+data\+\_\+t}}
+\item 
+typedef uint24\+\_\+t \mbox{\hyperlink{batmon_8h_abd4955723914b0e2686709ae05736cae}{device\+\_\+id\+\_\+address\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{batmon_8h_ad2a35b1a4377b6b59d25fe4b683b0b94}{device\+\_\+id\+\_\+data\+\_\+t}} \mbox{\hyperlink{batmon_8h_a39a1d0b1f4183eadf34e4a964c53a70a}{Device\+ID\+\_\+\+Read}} (\mbox{\hyperlink{batmon_8h_abd4955723914b0e2686709ae05736cae}{device\+\_\+id\+\_\+address\+\_\+t}})
+\item 
+void \mbox{\hyperlink{batmon_8h_a075ee7d57eabca595ad66174b39f15af}{run\+\_\+night\+\_\+to\+\_\+day}} (void)
+\item 
+void \mbox{\hyperlink{batmon_8h_a9cbf505667eb91703734b609fd3193f3}{run\+\_\+day\+\_\+to\+\_\+night}} (void)
+\item 
+bool \mbox{\hyperlink{batmon_8h_a9bd0bb4826ad1e0f9cb43ae7ad62a95a}{initbm\+\_\+data}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*})
+\item 
+void \mbox{\hyperlink{batmon_8h_a47b16823f4da92b237bb8b5a19eb8acc}{wr\+\_\+bm\+\_\+data}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*})
+\item 
+void \mbox{\hyperlink{batmon_8h_a13b4d58a94868e8e9ec436bb66e16261}{get\+\_\+bm\+\_\+data}} (\mbox{\hyperlink{structEB__data}{EB\+\_\+data}} \texorpdfstring{$\ast$}{*})
+\item 
+void \mbox{\hyperlink{batmon_8h_a05be8c7dd6283ae5a7f065d26f0d24bd}{compute\+\_\+bm\+\_\+data}} (\mbox{\hyperlink{structEB__data}{EB\+\_\+data}} \texorpdfstring{$\ast$}{*})
+\item 
+void \mbox{\hyperlink{batmon_8h_acd52e079250052fc87b5835daea13181}{update\+\_\+time}} (struct tm \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{structEB__data}{EB\+\_\+data}} \texorpdfstring{$\ast$}{*})
+\item 
+\mbox{\hyperlink{structEB__data}{EB\+\_\+data}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{batmon_8h_ad3aa99c36d34b3c5ab1dd5973a8b92af}{get\+\_\+\+EEPROM}} (void)
+\item 
+void \mbox{\hyperlink{batmon_8h_a112d1a729a5d6666e53f2f6971bcf7b9}{DATAEE\+\_\+\+Write\+Byte}} (const uint16\+\_\+t, const uint8\+\_\+t)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{batmon_8h_a5cfcf35db3a2421524591108178d3485}{DATAEE\+\_\+\+Read\+Byte}} (const uint16\+\_\+t)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{batmon_8h_a15314de4478a071b2726a550b833f18f}{Volts\+\_\+to\+\_\+\+SOC}} (const uint16\+\_\+t, const uint16\+\_\+t)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const char \mbox{\hyperlink{batmon_8h_a1734e7445d4b61031c1e954d36ee0816}{log\+\_\+format}} \mbox{[}$\,$\mbox{]} = "{}\texorpdfstring{$^\wedge$}{\string^},\%d.\%01d,\%d.\%01d,\%d,\%d.\%01d,\%d,\%.\+1f,\%.\+1f,\%.\+2f,\%.\+2f,\%d,\%.\+1f,\%.\+1f,\%.\+1f,\%4.\+1f,\%.\+2f,\%u,\%5.\+3f,\%5.\+3f,\%u,\%s,\texorpdfstring{$\sim$}{\string~}\textbackslash{}r\textbackslash{}n"{}
+\item 
+const uint32\+\_\+t \mbox{\hyperlink{batmon_8h_a60ed4fd7fcc4a3bf1399b593c56898f6}{BVSOC\+\_\+\+TABLE}} \mbox{[}\mbox{\hyperlink{batmon_8h_aa30a92a619f5bd97c8469a385f693639}{BVSOC\+\_\+\+SLOTS}}\mbox{]}\mbox{[}2\mbox{]}
+\item 
+\mbox{\hyperlink{structEB__data}{EB\+\_\+data}} \mbox{\hyperlink{batmon_8h_a1f24021d46a0b6b9a3a50effcf98d885}{EBD}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{batmon_8h_a6f0ab32b77902d82849b60327ac8e8a3}{EBD\+\_\+update}}
+\item 
+struct tm \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{batmon_8h_a6ff82a57d15d1e2c8b6aea4f501d8a0f}{can\+\_\+newtime}}
+\item 
+float \mbox{\hyperlink{batmon_8h_a6d4c959b440098e0b9e21564cecee331}{pv\+\_\+\+Wh\+\_\+daily}}
+\item 
+float \mbox{\hyperlink{batmon_8h_a9932dbc7e6df4aff32e5e0c7d3025bc5}{pv\+\_\+\+Wh\+\_\+daily\+\_\+prev}}
+\item 
+float \mbox{\hyperlink{batmon_8h_a32b8086e52ab3581927dca7f9f1cbd53}{ac\+\_\+\+Wh\+\_\+daily}}
+\item 
+float \mbox{\hyperlink{batmon_8h_adb85989b5fc1eaaac4b62235c9cf8a2a}{ac\+\_\+\+Wh\+\_\+daily\+\_\+prev}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{batmon_8h_aa57076962d3381c151d7b6026e8fe4bc}\index{batmon.h@{batmon.h}!BAT\_AH@{BAT\_AH}}
+\index{BAT\_AH@{BAT\_AH}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{BAT\_AH}{BAT\_AH}}
+{\footnotesize\ttfamily \label{batmon_8h_aa57076962d3381c151d7b6026e8fe4bc} 
+\#define BAT\+\_\+\+AH~200.\+0f}
+
+\Hypertarget{batmon_8h_ac5b2949bbdd3293baa6679af92a993ed}\index{batmon.h@{batmon.h}!BAT\_CHARGED\_V@{BAT\_CHARGED\_V}}
+\index{BAT\_CHARGED\_V@{BAT\_CHARGED\_V}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{BAT\_CHARGED\_V}{BAT\_CHARGED\_V}}
+{\footnotesize\ttfamily \label{batmon_8h_ac5b2949bbdd3293baa6679af92a993ed} 
+\#define BAT\+\_\+\+CHARGED\+\_\+V~120.\+0f}
+
+\Hypertarget{batmon_8h_a2a4aa1e7806129b551924a85e2fb3f08}\index{batmon.h@{batmon.h}!BAT\_CHARGED\_W@{BAT\_CHARGED\_W}}
+\index{BAT\_CHARGED\_W@{BAT\_CHARGED\_W}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{BAT\_CHARGED\_W}{BAT\_CHARGED\_W}}
+{\footnotesize\ttfamily \label{batmon_8h_a2a4aa1e7806129b551924a85e2fb3f08} 
+\#define BAT\+\_\+\+CHARGED\+\_\+W~\mbox{\hyperlink{batmon_8h_aa57076962d3381c151d7b6026e8fe4bc}{BAT\+\_\+\+AH}}}
+
+\Hypertarget{batmon_8h_a63226cf8599fd26ae71512e7c30cedfc}\index{batmon.h@{batmon.h}!BAT\_CYCLES@{BAT\_CYCLES}}
+\index{BAT\_CYCLES@{BAT\_CYCLES}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{BAT\_CYCLES}{BAT\_CYCLES}}
+{\footnotesize\ttfamily \label{batmon_8h_a63226cf8599fd26ae71512e7c30cedfc} 
+\#define BAT\+\_\+\+CYCLES~8}
+
+\Hypertarget{batmon_8h_a25ab35e786370cdb54a193647854f4a4}\index{batmon.h@{batmon.h}!BAT\_DAY\_COUNT@{BAT\_DAY\_COUNT}}
+\index{BAT\_DAY\_COUNT@{BAT\_DAY\_COUNT}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{BAT\_DAY\_COUNT}{BAT\_DAY\_COUNT}}
+{\footnotesize\ttfamily \label{batmon_8h_a25ab35e786370cdb54a193647854f4a4} 
+\#define BAT\+\_\+\+DAY\+\_\+\+COUNT~45}
+
+\Hypertarget{batmon_8h_ac8263b4741c4b57c2ec72022a439d1ed}\index{batmon.h@{batmon.h}!BAT\_EFF\_VAL@{BAT\_EFF\_VAL}}
+\index{BAT\_EFF\_VAL@{BAT\_EFF\_VAL}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{BAT\_EFF\_VAL}{BAT\_EFF\_VAL}}
+{\footnotesize\ttfamily \label{batmon_8h_ac8263b4741c4b57c2ec72022a439d1ed} 
+\#define BAT\+\_\+\+EFF\+\_\+\+VAL~0.\+985f}
+
+\Hypertarget{batmon_8h_a8d494fefcb05c5a447c0b73b15ec0740}\index{batmon.h@{batmon.h}!BAT\_ENERGY@{BAT\_ENERGY}}
+\index{BAT\_ENERGY@{BAT\_ENERGY}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{BAT\_ENERGY}{BAT\_ENERGY}}
+{\footnotesize\ttfamily \label{batmon_8h_a8d494fefcb05c5a447c0b73b15ec0740} 
+\#define BAT\+\_\+\+ENERGY~\mbox{\hyperlink{batmon_8h_a8620b8d8101f67ba9c016e387acca78d}{BAT\+\_\+\+VOLT}}\texorpdfstring{$\ast$}{*}\mbox{\hyperlink{batmon_8h_aa57076962d3381c151d7b6026e8fe4bc}{BAT\+\_\+\+AH}}\texorpdfstring{$\ast$}{*}\mbox{\hyperlink{batmon_8h_aa86b61c0c81d80805eda81eecc432669}{TEN\+\_\+\+SEC\+\_\+\+HOUR}}}
+
+\Hypertarget{batmon_8h_af575f3b0e7be16f9ad7cc7b0f68cbc53}\index{batmon.h@{batmon.h}!BAT\_ENERGY\_LOW@{BAT\_ENERGY\_LOW}}
+\index{BAT\_ENERGY\_LOW@{BAT\_ENERGY\_LOW}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{BAT\_ENERGY\_LOW}{BAT\_ENERGY\_LOW}}
+{\footnotesize\ttfamily \label{batmon_8h_af575f3b0e7be16f9ad7cc7b0f68cbc53} 
+\#define BAT\+\_\+\+ENERGY\+\_\+\+LOW~\mbox{\hyperlink{batmon_8h_a8d494fefcb05c5a447c0b73b15ec0740}{BAT\+\_\+\+ENERGY}}\texorpdfstring{$\ast$}{*}0.\+5f}
+
+\Hypertarget{batmon_8h_a5d78b5447befdf3d43048ce9c9aef1ce}\index{batmon.h@{batmon.h}!BAT\_LOW\_DISC@{BAT\_LOW\_DISC}}
+\index{BAT\_LOW\_DISC@{BAT\_LOW\_DISC}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{BAT\_LOW\_DISC}{BAT\_LOW\_DISC}}
+{\footnotesize\ttfamily \label{batmon_8h_a5d78b5447befdf3d43048ce9c9aef1ce} 
+\#define BAT\+\_\+\+LOW\+\_\+\+DISC~21.\+6f}
+
+\Hypertarget{batmon_8h_aaf5e1be889244e679e0b13ac79d50782}\index{batmon.h@{batmon.h}!BAT\_LOW\_RECON@{BAT\_LOW\_RECON}}
+\index{BAT\_LOW\_RECON@{BAT\_LOW\_RECON}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{BAT\_LOW\_RECON}{BAT\_LOW\_RECON}}
+{\footnotesize\ttfamily \label{batmon_8h_aaf5e1be889244e679e0b13ac79d50782} 
+\#define BAT\+\_\+\+LOW\+\_\+\+RECON~24.\+8f}
+
+\Hypertarget{batmon_8h_a29b4c81f013496f5f63caa15c4be26a9}\index{batmon.h@{batmon.h}!BAT\_NIGHT\_COUNT@{BAT\_NIGHT\_COUNT}}
+\index{BAT\_NIGHT\_COUNT@{BAT\_NIGHT\_COUNT}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{BAT\_NIGHT\_COUNT}{BAT\_NIGHT\_COUNT}}
+{\footnotesize\ttfamily \label{batmon_8h_a29b4c81f013496f5f63caa15c4be26a9} 
+\#define BAT\+\_\+\+NIGHT\+\_\+\+COUNT~90}
+
+\Hypertarget{batmon_8h_afc676ba8e23df9d1f99f711364b45af1}\index{batmon.h@{batmon.h}!BAT\_OVER\_RECON@{BAT\_OVER\_RECON}}
+\index{BAT\_OVER\_RECON@{BAT\_OVER\_RECON}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{BAT\_OVER\_RECON}{BAT\_OVER\_RECON}}
+{\footnotesize\ttfamily \label{batmon_8h_afc676ba8e23df9d1f99f711364b45af1} 
+\#define BAT\+\_\+\+OVER\+\_\+\+RECON~28.\+4f}
+
+\Hypertarget{batmon_8h_ad51014cb88ae0e1e2de4b48a38e6f080}\index{batmon.h@{batmon.h}!BAT\_OVER\_VOLT@{BAT\_OVER\_VOLT}}
+\index{BAT\_OVER\_VOLT@{BAT\_OVER\_VOLT}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{BAT\_OVER\_VOLT}{BAT\_OVER\_VOLT}}
+{\footnotesize\ttfamily \label{batmon_8h_ad51014cb88ae0e1e2de4b48a38e6f080} 
+\#define BAT\+\_\+\+OVER\+\_\+\+VOLT~30.\+0f}
+
+\Hypertarget{batmon_8h_ac115b6949b27ece7486ee361d7c938ef}\index{batmon.h@{batmon.h}!BAT\_RUN\_MAX@{BAT\_RUN\_MAX}}
+\index{BAT\_RUN\_MAX@{BAT\_RUN\_MAX}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{BAT\_RUN\_MAX}{BAT\_RUN\_MAX}}
+{\footnotesize\ttfamily \label{batmon_8h_ac115b6949b27ece7486ee361d7c938ef} 
+\#define BAT\+\_\+\+RUN\+\_\+\+MAX~280.\+0f}
+
+\Hypertarget{batmon_8h_a22a90580c5bb1b602e4a4005ac81c9a5}\index{batmon.h@{batmon.h}!BAT\_UNDER\_VOLT@{BAT\_UNDER\_VOLT}}
+\index{BAT\_UNDER\_VOLT@{BAT\_UNDER\_VOLT}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{BAT\_UNDER\_VOLT}{BAT\_UNDER\_VOLT}}
+{\footnotesize\ttfamily \label{batmon_8h_a22a90580c5bb1b602e4a4005ac81c9a5} 
+\#define BAT\+\_\+\+UNDER\+\_\+\+VOLT~23.\+2f}
+
+\Hypertarget{batmon_8h_a8620b8d8101f67ba9c016e387acca78d}\index{batmon.h@{batmon.h}!BAT\_VOLT@{BAT\_VOLT}}
+\index{BAT\_VOLT@{BAT\_VOLT}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{BAT\_VOLT}{BAT\_VOLT}}
+{\footnotesize\ttfamily \label{batmon_8h_a8620b8d8101f67ba9c016e387acca78d} 
+\#define BAT\+\_\+\+VOLT~25.\+6f}
+
+\Hypertarget{batmon_8h_a9ffd0f3a60100ccf5f0038e42ba9d507}\index{batmon.h@{batmon.h}!BM\_CM@{BM\_CM}}
+\index{BM\_CM@{BM\_CM}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{BM\_CM}{BM\_CM}}
+{\footnotesize\ttfamily \label{batmon_8h_a9ffd0f3a60100ccf5f0038e42ba9d507} 
+\#define BM\+\_\+\+CM~0x57+\mbox{\hyperlink{batmon_8h_a15bc5122dbf4cb55e97b41be0a86da4a}{BM\+\_\+\+EEPROM\+\_\+\+VER}}}
+
+\Hypertarget{batmon_8h_a15bc5122dbf4cb55e97b41be0a86da4a}\index{batmon.h@{batmon.h}!BM\_EEPROM\_VER@{BM\_EEPROM\_VER}}
+\index{BM\_EEPROM\_VER@{BM\_EEPROM\_VER}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{BM\_EEPROM\_VER}{BM\_EEPROM\_VER}}
+{\footnotesize\ttfamily \label{batmon_8h_a15bc5122dbf4cb55e97b41be0a86da4a} 
+\#define BM\+\_\+\+EEPROM\+\_\+\+VER~1}
+
+\Hypertarget{batmon_8h_a9dd78d02e4a2e1de9ea34341e9117280}\index{batmon.h@{batmon.h}!BM\_UPDATE@{BM\_UPDATE}}
+\index{BM\_UPDATE@{BM\_UPDATE}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{BM\_UPDATE}{BM\_UPDATE}}
+{\footnotesize\ttfamily \label{batmon_8h_a9dd78d02e4a2e1de9ea34341e9117280} 
+\#define BM\+\_\+\+UPDATE~3600}
+
+\Hypertarget{batmon_8h_a289713fa69b3cae431993dac11e9552d}\index{batmon.h@{batmon.h}!BM\_UPDATE\_RUN@{BM\_UPDATE\_RUN}}
+\index{BM\_UPDATE\_RUN@{BM\_UPDATE\_RUN}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{BM\_UPDATE\_RUN}{BM\_UPDATE\_RUN}}
+{\footnotesize\ttfamily \label{batmon_8h_a289713fa69b3cae431993dac11e9552d} 
+\#define BM\+\_\+\+UPDATE\+\_\+\+RUN~1800}
+
+\Hypertarget{batmon_8h_aa30a92a619f5bd97c8469a385f693639}\index{batmon.h@{batmon.h}!BVSOC\_SLOTS@{BVSOC\_SLOTS}}
+\index{BVSOC\_SLOTS@{BVSOC\_SLOTS}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{BVSOC\_SLOTS}{BVSOC\_SLOTS}}
+{\footnotesize\ttfamily \label{batmon_8h_aa30a92a619f5bd97c8469a385f693639} 
+\#define BVSOC\+\_\+\+SLOTS~12}
+
+\Hypertarget{batmon_8h_a826ee84188f6bf7a43caa2e021b943e2}\index{batmon.h@{batmon.h}!CHK\_DAY\_TIME@{CHK\_DAY\_TIME}}
+\index{CHK\_DAY\_TIME@{CHK\_DAY\_TIME}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{CHK\_DAY\_TIME}{CHK\_DAY\_TIME}}
+{\footnotesize\ttfamily \label{batmon_8h_a826ee84188f6bf7a43caa2e021b943e2} 
+\#define CHK\+\_\+\+DAY\+\_\+\+TIME~1200}
+
+\Hypertarget{batmon_8h_ac2cc1c7a0b61434dd8a0f2789b73f27c}\index{batmon.h@{batmon.h}!IDLE\_DRAIN@{IDLE\_DRAIN}}
+\index{IDLE\_DRAIN@{IDLE\_DRAIN}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{IDLE\_DRAIN}{IDLE\_DRAIN}}
+{\footnotesize\ttfamily \label{batmon_8h_ac2cc1c7a0b61434dd8a0f2789b73f27c} 
+\#define IDLE\+\_\+\+DRAIN~10.\+0f}
+
+\Hypertarget{batmon_8h_a1a3942d5f25bf8b7e92ed0f498a077ff}\index{batmon.h@{batmon.h}!INV\_EFF\_VAL@{INV\_EFF\_VAL}}
+\index{INV\_EFF\_VAL@{INV\_EFF\_VAL}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{INV\_EFF\_VAL}{INV\_EFF\_VAL}}
+{\footnotesize\ttfamily \label{batmon_8h_a1a3942d5f25bf8b7e92ed0f498a077ff} 
+\#define INV\+\_\+\+EFF\+\_\+\+VAL~1.\+06f}
+
+\Hypertarget{batmon_8h_a482c5ecde1f9b7d42328bf311286bdef}\index{batmon.h@{batmon.h}!LOG\_VARS@{LOG\_VARS}}
+\index{LOG\_VARS@{LOG\_VARS}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_VARS}{LOG\_VARS}}
+{\footnotesize\ttfamily \label{batmon_8h_a482c5ecde1f9b7d42328bf311286bdef} 
+\#define LOG\+\_\+\+VARS~abuf\mbox{[}3\mbox{]} -\/ 128, abuf\mbox{[}1\mbox{]}\&0x0f, \mbox{\hyperlink{mateQ84_8X_2main_8c_a0a7d1eab37aff09f0b4fcd0a3013663c}{vw}}, \mbox{\hyperlink{mateQ84_8X_2main_8c_a7eecd7139621d24f6891dba43a54cd34}{vf}}, abuf\mbox{[}2\mbox{]} -\/ 128, \mbox{\hyperlink{mateQ84_8X_2main_8c_a5428a6793379f1ef5f92afe41c67c2b9}{volt\+\_\+whole}}, \mbox{\hyperlink{mateQ84_8X_2main_8c_af6592ba43281a17840991c7b82b108de}{volt\+\_\+fract}}, \mbox{\hyperlink{mateQ84_8X_2main_8c_aa1ffff7253c4e877ed1564a008e2b3d5}{panel\+\_\+watts}}, \mbox{\hyperlink{batmon_8c_a6d4c959b440098e0b9e21564cecee331}{pv\+\_\+\+Wh\+\_\+daily}}, \mbox{\hyperlink{batmon_8c_a32b8086e52ab3581927dca7f9f1cbd53}{ac\+\_\+\+Wh\+\_\+daily}}, B.\+run\+\_\+time,  B.\+net\+\_\+balance, \mbox{\hyperlink{mateQ84_8X_2main_8c_a13b6090652ee42171ac58f007930d94a}{cc\+\_\+mode}}, ((float) em.\+wl1) / 10.\+0f, ((float) em.\+val1) / 10.\+0f, ((float) em.\+varl1) / 10.\+0f, ((float) em.\+vl1l2) / 10.\+0f, EBD.\+bat\+\_\+energy / 3600.\+0f, EBD.\+bat\+\_\+cycles, ((float) em.\+pfl1) / 1000.\+0f, ((float) emt.\+hz) / 1000.\+0f, B.\+rx\+\_\+count++,\mbox{\hyperlink{mateQ84_8X_2main_8c_acd60ad1d27dc0b60769dbbac39039d90}{buffer}}}
+
+\Hypertarget{batmon_8h_aad5d2674ab552609c33cf6687cb807f2}\index{batmon.h@{batmon.h}!MAX\_ALT\_DIS@{MAX\_ALT\_DIS}}
+\index{MAX\_ALT\_DIS@{MAX\_ALT\_DIS}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_ALT\_DIS}{MAX\_ALT\_DIS}}
+{\footnotesize\ttfamily \label{batmon_8h_aad5d2674ab552609c33cf6687cb807f2} 
+\#define MAX\+\_\+\+ALT\+\_\+\+DIS~3}
+
+\Hypertarget{batmon_8h_aa86b61c0c81d80805eda81eecc432669}\index{batmon.h@{batmon.h}!TEN\_SEC\_HOUR@{TEN\_SEC\_HOUR}}
+\index{TEN\_SEC\_HOUR@{TEN\_SEC\_HOUR}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{TEN\_SEC\_HOUR}{TEN\_SEC\_HOUR}}
+{\footnotesize\ttfamily \label{batmon_8h_aa86b61c0c81d80805eda81eecc432669} 
+\#define TEN\+\_\+\+SEC\+\_\+\+HOUR~360.\+0f}
+
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{batmon_8h_abd4955723914b0e2686709ae05736cae}\index{batmon.h@{batmon.h}!device\_id\_address\_t@{device\_id\_address\_t}}
+\index{device\_id\_address\_t@{device\_id\_address\_t}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{device\_id\_address\_t}{device\_id\_address\_t}}
+{\footnotesize\ttfamily \label{batmon_8h_abd4955723914b0e2686709ae05736cae} 
+typedef uint24\+\_\+t \mbox{\hyperlink{batmon_8h_abd4955723914b0e2686709ae05736cae}{device\+\_\+id\+\_\+address\+\_\+t}}}
+
+\Hypertarget{batmon_8h_ad2a35b1a4377b6b59d25fe4b683b0b94}\index{batmon.h@{batmon.h}!device\_id\_data\_t@{device\_id\_data\_t}}
+\index{device\_id\_data\_t@{device\_id\_data\_t}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{device\_id\_data\_t}{device\_id\_data\_t}}
+{\footnotesize\ttfamily \label{batmon_8h_ad2a35b1a4377b6b59d25fe4b683b0b94} 
+typedef uint16\+\_\+t \mbox{\hyperlink{batmon_8h_ad2a35b1a4377b6b59d25fe4b683b0b94}{device\+\_\+id\+\_\+data\+\_\+t}}}
+
+\Hypertarget{batmon_8h_a31f98eb56801ac29aba912ffad7bfe1a}\index{batmon.h@{batmon.h}!EB\_data@{EB\_data}}
+\index{EB\_data@{EB\_data}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{EB\_data}{EB\_data}}
+{\footnotesize\ttfamily \label{batmon_8h_a31f98eb56801ac29aba912ffad7bfe1a} 
+typedef struct EB\+\_\+data EB\+\_\+data}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{batmon_8h_a05be8c7dd6283ae5a7f065d26f0d24bd}\index{batmon.h@{batmon.h}!compute\_bm\_data@{compute\_bm\_data}}
+\index{compute\_bm\_data@{compute\_bm\_data}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{compute\_bm\_data()}{compute\_bm\_data()}}
+{\footnotesize\ttfamily \label{batmon_8h_a05be8c7dd6283ae5a7f065d26f0d24bd} 
+void compute\+\_\+bm\+\_\+data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structEB__data}{EB\+\_\+data}} \texorpdfstring{$\ast$}{*}}]{EB}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{batmon_8h_a05be8c7dd6283ae5a7f065d26f0d24bd_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{batmon_8h_a05be8c7dd6283ae5a7f065d26f0d24bd_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{batmon_8h_a5cfcf35db3a2421524591108178d3485}\index{batmon.h@{batmon.h}!DATAEE\_ReadByte@{DATAEE\_ReadByte}}
+\index{DATAEE\_ReadByte@{DATAEE\_ReadByte}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{DATAEE\_ReadByte()}{DATAEE\_ReadByte()}}
+{\footnotesize\ttfamily \label{batmon_8h_a5cfcf35db3a2421524591108178d3485} 
+uint8\+\_\+t DATAEE\+\_\+\+Read\+Byte (\begin{DoxyParamCaption}\item[{const uint16\+\_\+t}]{b\+Add}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{batmon_8h_a5cfcf35db3a2421524591108178d3485_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{batmon_8h_a112d1a729a5d6666e53f2f6971bcf7b9}\index{batmon.h@{batmon.h}!DATAEE\_WriteByte@{DATAEE\_WriteByte}}
+\index{DATAEE\_WriteByte@{DATAEE\_WriteByte}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{DATAEE\_WriteByte()}{DATAEE\_WriteByte()}}
+{\footnotesize\ttfamily \label{batmon_8h_a112d1a729a5d6666e53f2f6971bcf7b9} 
+void DATAEE\+\_\+\+Write\+Byte (\begin{DoxyParamCaption}\item[{const uint16\+\_\+t}]{b\+Add}{, }\item[{const uint8\+\_\+t}]{b\+Data}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{batmon_8h_a112d1a729a5d6666e53f2f6971bcf7b9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{batmon_8h_a39a1d0b1f4183eadf34e4a964c53a70a}\index{batmon.h@{batmon.h}!DeviceID\_Read@{DeviceID\_Read}}
+\index{DeviceID\_Read@{DeviceID\_Read}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{DeviceID\_Read()}{DeviceID\_Read()}}
+{\footnotesize\ttfamily \label{batmon_8h_a39a1d0b1f4183eadf34e4a964c53a70a} 
+\mbox{\hyperlink{batmon_8h_ad2a35b1a4377b6b59d25fe4b683b0b94}{device\+\_\+id\+\_\+data\+\_\+t}} Device\+ID\+\_\+\+Read (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{batmon_8h_abd4955723914b0e2686709ae05736cae}{device\+\_\+id\+\_\+address\+\_\+t}}}]{address}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=248pt]{batmon_8h_a39a1d0b1f4183eadf34e4a964c53a70a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{batmon_8h_a13b4d58a94868e8e9ec436bb66e16261}\index{batmon.h@{batmon.h}!get\_bm\_data@{get\_bm\_data}}
+\index{get\_bm\_data@{get\_bm\_data}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{get\_bm\_data()}{get\_bm\_data()}}
+{\footnotesize\ttfamily \label{batmon_8h_a13b4d58a94868e8e9ec436bb66e16261} 
+void get\+\_\+bm\+\_\+data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structEB__data}{EB\+\_\+data}} \texorpdfstring{$\ast$}{*}}]{EB}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{batmon_8h_a13b4d58a94868e8e9ec436bb66e16261_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{batmon_8h_a13b4d58a94868e8e9ec436bb66e16261_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{batmon_8h_ad3aa99c36d34b3c5ab1dd5973a8b92af}\index{batmon.h@{batmon.h}!get\_EEPROM@{get\_EEPROM}}
+\index{get\_EEPROM@{get\_EEPROM}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{get\_EEPROM()}{get\_EEPROM()}}
+{\footnotesize\ttfamily \label{batmon_8h_ad3aa99c36d34b3c5ab1dd5973a8b92af} 
+\mbox{\hyperlink{structEB__data}{EB\+\_\+data}} \texorpdfstring{$\ast$}{*} get\+\_\+\+EEPROM (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{batmon_8h_a9bd0bb4826ad1e0f9cb43ae7ad62a95a}\index{batmon.h@{batmon.h}!initbm\_data@{initbm\_data}}
+\index{initbm\_data@{initbm\_data}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{initbm\_data()}{initbm\_data()}}
+{\footnotesize\ttfamily \label{batmon_8h_a9bd0bb4826ad1e0f9cb43ae7ad62a95a} 
+bool initbm\+\_\+data (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{EB}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{batmon_8h_a9bd0bb4826ad1e0f9cb43ae7ad62a95a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{batmon_8h_a9bd0bb4826ad1e0f9cb43ae7ad62a95a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{batmon_8h_a9cbf505667eb91703734b609fd3193f3}\index{batmon.h@{batmon.h}!run\_day\_to\_night@{run\_day\_to\_night}}
+\index{run\_day\_to\_night@{run\_day\_to\_night}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{run\_day\_to\_night()}{run\_day\_to\_night()}}
+{\footnotesize\ttfamily \label{batmon_8h_a9cbf505667eb91703734b609fd3193f3} 
+void run\+\_\+day\+\_\+to\+\_\+night (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=340pt]{batmon_8h_a9cbf505667eb91703734b609fd3193f3_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{batmon_8h_a9cbf505667eb91703734b609fd3193f3_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{batmon_8h_a075ee7d57eabca595ad66174b39f15af}\index{batmon.h@{batmon.h}!run\_night\_to\_day@{run\_night\_to\_day}}
+\index{run\_night\_to\_day@{run\_night\_to\_day}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{run\_night\_to\_day()}{run\_night\_to\_day()}}
+{\footnotesize\ttfamily \label{batmon_8h_a075ee7d57eabca595ad66174b39f15af} 
+void run\+\_\+night\+\_\+to\+\_\+day (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=340pt]{batmon_8h_a075ee7d57eabca595ad66174b39f15af_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{batmon_8h_a075ee7d57eabca595ad66174b39f15af_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{batmon_8h_acd52e079250052fc87b5835daea13181}\index{batmon.h@{batmon.h}!update\_time@{update\_time}}
+\index{update\_time@{update\_time}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{update\_time()}{update\_time()}}
+{\footnotesize\ttfamily \label{batmon_8h_acd52e079250052fc87b5835daea13181} 
+void update\+\_\+time (\begin{DoxyParamCaption}\item[{struct tm \texorpdfstring{$\ast$}{*}}]{ts}{, }\item[{\mbox{\hyperlink{structEB__data}{EB\+\_\+data}} \texorpdfstring{$\ast$}{*}}]{EB}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{batmon_8h_acd52e079250052fc87b5835daea13181_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{batmon_8h_a15314de4478a071b2726a550b833f18f}\index{batmon.h@{batmon.h}!Volts\_to\_SOC@{Volts\_to\_SOC}}
+\index{Volts\_to\_SOC@{Volts\_to\_SOC}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{Volts\_to\_SOC()}{Volts\_to\_SOC()}}
+{\footnotesize\ttfamily \label{batmon_8h_a15314de4478a071b2726a550b833f18f} 
+uint16\+\_\+t Volts\+\_\+to\+\_\+\+SOC (\begin{DoxyParamCaption}\item[{const uint16\+\_\+t}]{bvw}{, }\item[{const uint16\+\_\+t}]{bvf}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{batmon_8h_a15314de4478a071b2726a550b833f18f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{batmon_8h_a47b16823f4da92b237bb8b5a19eb8acc}\index{batmon.h@{batmon.h}!wr\_bm\_data@{wr\_bm\_data}}
+\index{wr\_bm\_data@{wr\_bm\_data}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{wr\_bm\_data()}{wr\_bm\_data()}}
+{\footnotesize\ttfamily \label{batmon_8h_a47b16823f4da92b237bb8b5a19eb8acc} 
+void wr\+\_\+bm\+\_\+data (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{EB}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=301pt]{batmon_8h_a47b16823f4da92b237bb8b5a19eb8acc_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{batmon_8h_a47b16823f4da92b237bb8b5a19eb8acc_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{batmon_8h_a32b8086e52ab3581927dca7f9f1cbd53}\index{batmon.h@{batmon.h}!ac\_Wh\_daily@{ac\_Wh\_daily}}
+\index{ac\_Wh\_daily@{ac\_Wh\_daily}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{ac\_Wh\_daily}{ac\_Wh\_daily}}
+{\footnotesize\ttfamily \label{batmon_8h_a32b8086e52ab3581927dca7f9f1cbd53} 
+float ac\+\_\+\+Wh\+\_\+daily}
+
+\Hypertarget{batmon_8h_adb85989b5fc1eaaac4b62235c9cf8a2a}\index{batmon.h@{batmon.h}!ac\_Wh\_daily\_prev@{ac\_Wh\_daily\_prev}}
+\index{ac\_Wh\_daily\_prev@{ac\_Wh\_daily\_prev}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{ac\_Wh\_daily\_prev}{ac\_Wh\_daily\_prev}}
+{\footnotesize\ttfamily \label{batmon_8h_adb85989b5fc1eaaac4b62235c9cf8a2a} 
+float ac\+\_\+\+Wh\+\_\+daily\+\_\+prev}
+
+\Hypertarget{batmon_8h_a60ed4fd7fcc4a3bf1399b593c56898f6}\index{batmon.h@{batmon.h}!BVSOC\_TABLE@{BVSOC\_TABLE}}
+\index{BVSOC\_TABLE@{BVSOC\_TABLE}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{BVSOC\_TABLE}{BVSOC\_TABLE}}
+{\footnotesize\ttfamily \label{batmon_8h_a60ed4fd7fcc4a3bf1399b593c56898f6} 
+const uint32\+\_\+t BVSOC\+\_\+\+TABLE\mbox{[}\mbox{\hyperlink{batmon_8h_aa30a92a619f5bd97c8469a385f693639}{BVSOC\+\_\+\+SLOTS}}\mbox{]}\mbox{[}2\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 20000,\ 0,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 24000,\ 5,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 25000,\ 14,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 25600,\ 17,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 25800,\ 20,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 26000,\ 30,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 26200,\ 40,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 26400,\ 70,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 26600,\ 90,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 26800,\ 99,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 27200,\ 100,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 29200,\ 100\ }
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{batmon_8h_a6ff82a57d15d1e2c8b6aea4f501d8a0f}\index{batmon.h@{batmon.h}!can\_newtime@{can\_newtime}}
+\index{can\_newtime@{can\_newtime}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{can\_newtime}{can\_newtime}}
+{\footnotesize\ttfamily \label{batmon_8h_a6ff82a57d15d1e2c8b6aea4f501d8a0f} 
+struct tm\texorpdfstring{$\ast$}{*} can\+\_\+newtime\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{batmon_8h_a1f24021d46a0b6b9a3a50effcf98d885}\index{batmon.h@{batmon.h}!EBD@{EBD}}
+\index{EBD@{EBD}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{EBD}{EBD}}
+{\footnotesize\ttfamily \label{batmon_8h_a1f24021d46a0b6b9a3a50effcf98d885} 
+\mbox{\hyperlink{structEB__data}{EB\+\_\+data}} EBD\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{batmon_8h_a6f0ab32b77902d82849b60327ac8e8a3}\index{batmon.h@{batmon.h}!EBD\_update@{EBD\_update}}
+\index{EBD\_update@{EBD\_update}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{EBD\_update}{EBD\_update}}
+{\footnotesize\ttfamily \label{batmon_8h_a6f0ab32b77902d82849b60327ac8e8a3} 
+uint16\+\_\+t EBD\+\_\+update\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{batmon_8h_a1734e7445d4b61031c1e954d36ee0816}\index{batmon.h@{batmon.h}!log\_format@{log\_format}}
+\index{log\_format@{log\_format}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{log\_format}{log\_format}}
+{\footnotesize\ttfamily \label{batmon_8h_a1734e7445d4b61031c1e954d36ee0816} 
+const char log\+\_\+format\mbox{[}$\,$\mbox{]} = "{}\texorpdfstring{$^\wedge$}{\string^},\%d.\%01d,\%d.\%01d,\%d,\%d.\%01d,\%d,\%.\+1f,\%.\+1f,\%.\+2f,\%.\+2f,\%d,\%.\+1f,\%.\+1f,\%.\+1f,\%4.\+1f,\%.\+2f,\%u,\%5.\+3f,\%5.\+3f,\%u,\%s,\texorpdfstring{$\sim$}{\string~}\textbackslash{}r\textbackslash{}n"{}}
+
+\Hypertarget{batmon_8h_a6d4c959b440098e0b9e21564cecee331}\index{batmon.h@{batmon.h}!pv\_Wh\_daily@{pv\_Wh\_daily}}
+\index{pv\_Wh\_daily@{pv\_Wh\_daily}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{pv\_Wh\_daily}{pv\_Wh\_daily}}
+{\footnotesize\ttfamily \label{batmon_8h_a6d4c959b440098e0b9e21564cecee331} 
+float pv\+\_\+\+Wh\+\_\+daily\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{batmon_8h_a9932dbc7e6df4aff32e5e0c7d3025bc5}\index{batmon.h@{batmon.h}!pv\_Wh\_daily\_prev@{pv\_Wh\_daily\_prev}}
+\index{pv\_Wh\_daily\_prev@{pv\_Wh\_daily\_prev}!batmon.h@{batmon.h}}
+\doxysubsubsection{\texorpdfstring{pv\_Wh\_daily\_prev}{pv\_Wh\_daily\_prev}}
+{\footnotesize\ttfamily \label{batmon_8h_a9932dbc7e6df4aff32e5e0c7d3025bc5} 
+float pv\+\_\+\+Wh\+\_\+daily\+\_\+prev}
+

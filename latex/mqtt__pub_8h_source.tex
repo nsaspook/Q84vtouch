@@ -1,0 +1,50 @@
+\doxysection{mqtt\+\_\+pub.\+h}
+\hypertarget{mqtt__pub_8h_source}{}\label{mqtt__pub_8h_source}\index{linux/matesocketcan/mqtt\_pub.h@{linux/matesocketcan/mqtt\_pub.h}}
+\mbox{\hyperlink{mqtt__pub_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ File:\ \ \ mqtt\_pub.h}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ Author:\ root}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ Created\ on\ November\ 3,\ 2023,\ 8:52\ AM}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ MQTT\_PUB\_H}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ MQTT\_PUB\_H}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00012\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <unistd.h>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <pthread.h>}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{mqtt_8h}{mqtt.h}}"{}}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ MQTT\_VERSION\ \ \ \ \ \ \ \ \ \ \ \ "{}v01.2"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ DATA\_MQTT\_SOLAR\ \ \ \ \ \ \ \ \ "{}mateq84/data/solar"{}}}
+\DoxyCodeLine{00024\ \textcolor{comment}{//\#define\ DATA\_MQTT\_SOLAR\ \ \ \ \ \ \ \ \ "{}comedi/data/p8055/set"{}}}
+\DoxyCodeLine{00025\ \textcolor{comment}{//\#define\ ADDR\_MQTT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}test.mosquitto.org"{}\ //\ testing\ broker}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ ADDR\_MQTT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}10.1.1.172"{}\ \ }\textcolor{comment}{//\ local\ broker}}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{mqtt__pub_8h_a7270ac02a82b9995608e255fd162dd8d}{mqtt\_socket}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{mqtt__pub_8h_a1817f27ec0cc2d0ff1108a68a5271d67}{mqtt\_check}}(uint8\_t\ *);}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{mqtt__pub_8h_a4b28e340db0f5a4336ad4d99ab65faa4}{mqtt\_exit}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{mqtt__pub_8h_af66dfacf80e95b6b1e7837201bcac1d6}{publish\_callback}}(\textcolor{keywordtype}{void}**\ unused,\ \textcolor{keyword}{struct}\ \mbox{\hyperlink{structmqtt__response__publish}{mqtt\_response\_publish}}\ *published);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{mqtt__pub_8h_a9bf4366fab8966bc92e6f77b1fbae83b}{client\_refresher}}(\textcolor{keywordtype}{void}*\ \mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}});}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{mqtt__pub_8h_a493941c7fef2c4fb92f05aec0eb00b22}{exit\_example}}(\textcolor{keywordtype}{int}\ status,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{mqtt__pub_8c_ad2c8fb3df3a737e0685e902870a611d2}{sockfd}},\ pthread\_t\ *\mbox{\hyperlink{mqtt__pub_8c_a1280dada964146149349cb4d78c5d734}{client\_daemon}});}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00056\ \}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ MQTT\_PUB\_H\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00060\ }
+
+\end{DoxyCode}

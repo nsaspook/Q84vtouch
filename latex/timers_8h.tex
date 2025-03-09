@@ -1,0 +1,171 @@
+\doxysection{timers.\+h File Reference}
+\hypertarget{timers_8h}{}\label{timers_8h}\index{timers.h@{timers.h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include "{}mate\+Q84.\+X/mcc\+\_\+generated\+\_\+files/mcc.\+h"{}}\newline
+{\ttfamily \#include "{}dio.\+h"{}}\newline
+Include dependency graph for timers.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{timers_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{timers_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{timers_8h_ad499250d949643c5a12161767059a3d2}{APP\+\_\+\+TIMERS}} \{ \newline
+\mbox{\hyperlink{timers_8h_ad499250d949643c5a12161767059a3d2a95f189072d8491e8a3e20a94728abbfc}{TMR\+\_\+\+INTERNAL}} = 0
+, \mbox{\hyperlink{timers_8h_ad499250d949643c5a12161767059a3d2a62a949824562bbb82a8ea08ae7ee931c}{TMR\+\_\+\+MBMASTER}}
+, \mbox{\hyperlink{timers_8h_ad499250d949643c5a12161767059a3d2a69e9bf91e45d432f79f46d3b6eb5efa9}{TMR\+\_\+\+MBTEST}}
+, \mbox{\hyperlink{timers_8h_ad499250d949643c5a12161767059a3d2a12e24117d5bf79dd0b7357e6b96e541e}{TMR\+\_\+\+SPIN}}
+, \newline
+\mbox{\hyperlink{timers_8h_ad499250d949643c5a12161767059a3d2a84ac59e83d705b7fcfc20fb278e570fd}{TMR\+\_\+\+DERE}}
+, \mbox{\hyperlink{timers_8h_ad499250d949643c5a12161767059a3d2abaa7883f9d3702d4c1fba3442fec0595}{TMR\+\_\+\+COUNT}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{timers_8h_aa7ec4ef9616686e41f92a928010bc44f}{Start\+Timer}} (const uint8\+\_\+t timer, const uint16\+\_\+t count)
+\item 
+bool \mbox{\hyperlink{timers_8h_a6002dd7c7cad6fa060da2c3a93a481e9}{Timer\+Done}} (const uint8\+\_\+t timer)
+\item 
+void \mbox{\hyperlink{timers_8h_adcd4fad73c37c6d61e3087e1201a33e7}{Wait\+Ms}} (const uint16\+\_\+t num\+Milliseconds)
+\item 
+void \mbox{\hyperlink{timers_8h_ae92252e85ef5408ff27c2f3d0e32f6d8}{timer\+\_\+ms\+\_\+tick}} (const uint32\+\_\+t, const uintptr\+\_\+t)
+\item 
+void \mbox{\hyperlink{timers_8h_a69b9c70237a6daf8af8753b1b91c6779}{delay\+\_\+ms}} (const uint16\+\_\+t)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{timers_8h_ad499250d949643c5a12161767059a3d2}\index{timers.h@{timers.h}!APP\_TIMERS@{APP\_TIMERS}}
+\index{APP\_TIMERS@{APP\_TIMERS}!timers.h@{timers.h}}
+\doxysubsubsection{\texorpdfstring{APP\_TIMERS}{APP\_TIMERS}}
+{\footnotesize\ttfamily \label{timers_8h_ad499250d949643c5a12161767059a3d2} 
+enum \mbox{\hyperlink{timers_8h_ad499250d949643c5a12161767059a3d2}{APP\+\_\+\+TIMERS}}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TMR\_INTERNAL@{TMR\_INTERNAL}!timers.h@{timers.h}}\index{timers.h@{timers.h}!TMR\_INTERNAL@{TMR\_INTERNAL}}}\Hypertarget{timers_8h_ad499250d949643c5a12161767059a3d2a95f189072d8491e8a3e20a94728abbfc}\label{timers_8h_ad499250d949643c5a12161767059a3d2a95f189072d8491e8a3e20a94728abbfc} 
+TMR\+\_\+\+INTERNAL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TMR\_MBMASTER@{TMR\_MBMASTER}!timers.h@{timers.h}}\index{timers.h@{timers.h}!TMR\_MBMASTER@{TMR\_MBMASTER}}}\Hypertarget{timers_8h_ad499250d949643c5a12161767059a3d2a62a949824562bbb82a8ea08ae7ee931c}\label{timers_8h_ad499250d949643c5a12161767059a3d2a62a949824562bbb82a8ea08ae7ee931c} 
+TMR\+\_\+\+MBMASTER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TMR\_MBTEST@{TMR\_MBTEST}!timers.h@{timers.h}}\index{timers.h@{timers.h}!TMR\_MBTEST@{TMR\_MBTEST}}}\Hypertarget{timers_8h_ad499250d949643c5a12161767059a3d2a69e9bf91e45d432f79f46d3b6eb5efa9}\label{timers_8h_ad499250d949643c5a12161767059a3d2a69e9bf91e45d432f79f46d3b6eb5efa9} 
+TMR\+\_\+\+MBTEST&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TMR\_SPIN@{TMR\_SPIN}!timers.h@{timers.h}}\index{timers.h@{timers.h}!TMR\_SPIN@{TMR\_SPIN}}}\Hypertarget{timers_8h_ad499250d949643c5a12161767059a3d2a12e24117d5bf79dd0b7357e6b96e541e}\label{timers_8h_ad499250d949643c5a12161767059a3d2a12e24117d5bf79dd0b7357e6b96e541e} 
+TMR\+\_\+\+SPIN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TMR\_DERE@{TMR\_DERE}!timers.h@{timers.h}}\index{timers.h@{timers.h}!TMR\_DERE@{TMR\_DERE}}}\Hypertarget{timers_8h_ad499250d949643c5a12161767059a3d2a84ac59e83d705b7fcfc20fb278e570fd}\label{timers_8h_ad499250d949643c5a12161767059a3d2a84ac59e83d705b7fcfc20fb278e570fd} 
+TMR\+\_\+\+DERE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TMR\_COUNT@{TMR\_COUNT}!timers.h@{timers.h}}\index{timers.h@{timers.h}!TMR\_COUNT@{TMR\_COUNT}}}\Hypertarget{timers_8h_ad499250d949643c5a12161767059a3d2abaa7883f9d3702d4c1fba3442fec0595}\label{timers_8h_ad499250d949643c5a12161767059a3d2abaa7883f9d3702d4c1fba3442fec0595} 
+TMR\+\_\+\+COUNT&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{timers_8h_a69b9c70237a6daf8af8753b1b91c6779}\index{timers.h@{timers.h}!delay\_ms@{delay\_ms}}
+\index{delay\_ms@{delay\_ms}!timers.h@{timers.h}}
+\doxysubsubsection{\texorpdfstring{delay\_ms()}{delay\_ms()}}
+{\footnotesize\ttfamily \label{timers_8h_a69b9c70237a6daf8af8753b1b91c6779} 
+void delay\+\_\+ms (\begin{DoxyParamCaption}\item[{const uint16\+\_\+t}]{ms}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=339pt]{timers_8h_a69b9c70237a6daf8af8753b1b91c6779_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{timers_8h_a69b9c70237a6daf8af8753b1b91c6779_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{timers_8h_aa7ec4ef9616686e41f92a928010bc44f}\index{timers.h@{timers.h}!StartTimer@{StartTimer}}
+\index{StartTimer@{StartTimer}!timers.h@{timers.h}}
+\doxysubsubsection{\texorpdfstring{StartTimer()}{StartTimer()}}
+{\footnotesize\ttfamily \label{timers_8h_aa7ec4ef9616686e41f92a928010bc44f} 
+void Start\+Timer (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{timer}{, }\item[{const uint16\+\_\+t}]{count}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{timers_8h_aa7ec4ef9616686e41f92a928010bc44f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{timers_8h_ae92252e85ef5408ff27c2f3d0e32f6d8}\index{timers.h@{timers.h}!timer\_ms\_tick@{timer\_ms\_tick}}
+\index{timer\_ms\_tick@{timer\_ms\_tick}!timers.h@{timers.h}}
+\doxysubsubsection{\texorpdfstring{timer\_ms\_tick()}{timer\_ms\_tick()}}
+{\footnotesize\ttfamily \label{timers_8h_ae92252e85ef5408ff27c2f3d0e32f6d8} 
+void timer\+\_\+ms\+\_\+tick (\begin{DoxyParamCaption}\item[{const uint32\+\_\+t}]{status}{, }\item[{const uintptr\+\_\+t}]{context}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=315pt]{timers_8h_ae92252e85ef5408ff27c2f3d0e32f6d8_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=325pt]{timers_8h_ae92252e85ef5408ff27c2f3d0e32f6d8_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{timers_8h_a6002dd7c7cad6fa060da2c3a93a481e9}\index{timers.h@{timers.h}!TimerDone@{TimerDone}}
+\index{TimerDone@{TimerDone}!timers.h@{timers.h}}
+\doxysubsubsection{\texorpdfstring{TimerDone()}{TimerDone()}}
+{\footnotesize\ttfamily \label{timers_8h_a6002dd7c7cad6fa060da2c3a93a481e9} 
+bool Timer\+Done (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{timer}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{timers_8h_a6002dd7c7cad6fa060da2c3a93a481e9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{timers_8h_adcd4fad73c37c6d61e3087e1201a33e7}\index{timers.h@{timers.h}!WaitMs@{WaitMs}}
+\index{WaitMs@{WaitMs}!timers.h@{timers.h}}
+\doxysubsubsection{\texorpdfstring{WaitMs()}{WaitMs()}}
+{\footnotesize\ttfamily \label{timers_8h_adcd4fad73c37c6d61e3087e1201a33e7} 
+void Wait\+Ms (\begin{DoxyParamCaption}\item[{const uint16\+\_\+t}]{num\+Milliseconds}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=239pt]{timers_8h_adcd4fad73c37c6d61e3087e1201a33e7_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{timers_8h_adcd4fad73c37c6d61e3087e1201a33e7_icgraph}
+\end{center}
+\end{figure}

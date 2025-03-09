@@ -1,0 +1,740 @@
+\doxysection{linux/raw.githubusercontent.\+com\+\_\+linux-\/can\+\_\+can-\/utils\+\_\+master\+\_\+canfdtest.c File Reference}
+\hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c}{}\label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c}\index{linux/raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{linux/raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$getopt.\+h$>$}\newline
+{\ttfamily \#include $<$libgen.\+h$>$}\newline
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+{\ttfamily \#include $<$sched.\+h$>$}\newline
+{\ttfamily \#include $<$signal.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+{\ttfamily \#include $<$syslog.\+h$>$}\newline
+{\ttfamily \#include $<$net/if.\+h$>$}\newline
+{\ttfamily \#include $<$sys/ioctl.\+h$>$}\newline
+{\ttfamily \#include $<$sys/socket.\+h$>$}\newline
+{\ttfamily \#include $<$sys/time.\+h$>$}\newline
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$cjson/c\+JSON.\+h$>$}\newline
+{\ttfamily \#include "{}MQTTClient.\+h"{}}\newline
+{\ttfamily \#include $<$linux/can.\+h$>$}\newline
+{\ttfamily \#include $<$linux/can/raw.\+h$>$}\newline
+Include dependency graph for raw.\+githubusercontent.\+com\+\_\+linux-\/can\+\_\+can-\/utils\+\_\+master\+\_\+canfdtest.c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a8fb447618db946a9e2a596d9ea18763f}{\+\_\+\+DEFAULT\+\_\+\+SOURCE}}
+\item 
+\#define \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a2d9257ecbf4951d3877398f752d47ae6}{LOG\+\_\+\+TO\+\_\+\+FILE}}~"{}/store/logs/canfd.\+log"{}
+\item 
+\#define \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ad0517fb2e0b5b83c848be45e6305ff2d}{CAN\+\_\+\+MSG\+\_\+\+ID\+\_\+\+PING}}~0x80000002
+\item 
+\#define \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ae0880f1446123899ed7c29347fb9c61c}{CAN\+\_\+\+MSG\+\_\+\+ID\+\_\+\+PING\+\_\+X}}~0x80000003
+\item 
+\#define \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a0a00350f1a08b53b34d10da719e9b587}{EMON\+\_\+\+SL}}~0x80000002
+\item 
+\#define \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_abb1bd190102ddcc6238e71e023e0ac7f}{EMON\+\_\+\+SU}}~0x80000003
+\item 
+\#define \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a3af523ff07f4875fb7846edd1fe2306a}{EMON\+\_\+\+SH}}~0x80000004
+\item 
+\#define \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_af02910f716132150f79596778900a634}{EMON\+\_\+\+ER}}~0x8000000F
+\item 
+\#define \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a793129beb0d28ffcc15248a09f9d333b}{EMON\+\_\+\+CO}}~0x8000000C
+\item 
+\#define \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a7826d7b67c2425e04508f376b03ea68a}{EMON\+\_\+\+DA}}~0x8000000D
+\item 
+\#define \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a4402a37f0a16bb1c0d6535001ace8809}{EMON\+\_\+\+TM}}~0x8000000A
+\item 
+\#define \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a36ec9d0679f46ab8203b764950a379fb}{CAN\+\_\+\+MSG\+\_\+\+ID\+\_\+\+PONG}}~0x3
+\item 
+\#define \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a10ff932ae5e17a75a4f1171137a08a62}{CAN\+\_\+\+MSG\+\_\+\+LEN}}~64
+\item 
+\#define \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a8b176047ddfa87b1ef8f6731c3511d93}{CAN\+\_\+\+FULL\+\_\+\+BUFFER}}~\mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a10ff932ae5e17a75a4f1171137a08a62}{CAN\+\_\+\+MSG\+\_\+\+LEN}}+\mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a10ff932ae5e17a75a4f1171137a08a62}{CAN\+\_\+\+MSG\+\_\+\+LEN}}+\mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a10ff932ae5e17a75a4f1171137a08a62}{CAN\+\_\+\+MSG\+\_\+\+LEN}}+1
+\item 
+\#define \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a571f54453af62a939f0be8781077f015}{CAN\+\_\+\+MSG\+\_\+\+COUNT}}~1
+\item 
+\#define \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a69fbf3ca1d0351b9d8448e0e18a1d755}{CAN\+\_\+\+MSG\+\_\+\+WAIT}}~27
+\item 
+\#define \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a22df3c86277d5e70dbe7f545dcd08304}{CAN\+\_\+\+TM\+\_\+\+TIME}}~30
+\item 
+\#define \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a3f90a6e482420f828aef2ccdd79d3fb2}{HR\+\_\+\+SEC}}~3600
+\item 
+\#define \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a95bd602462264e9c6677fa810131287a}{DAY\+\_\+\+SEC}}~\mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a3f90a6e482420f828aef2ccdd79d3fb2}{HR\+\_\+\+SEC}}\texorpdfstring{$\ast$}{*}24
+\item 
+\#define \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_aa48b2017856a8a9c33a9935afe604c8d}{LOG\+\_\+\+VERSION}}~"{}v1.\+12"{}
+\item 
+\#define \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a702197a21870dfd505d92530b27754ac}{MQTT\+\_\+\+VERSION}}~"{}V3.\+11"{}
+\item 
+\#define \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a280feb883e9d4a7edcc69c8bcb9f38f2}{ADDRESS}}~"{}tcp\+://10.\+1.\+1.\+172\+:1883"{}
+\item 
+\#define \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ac341f7f366a2d62e9e6d6cd43a46d188}{CLIENTID}}~"{}Mate\+Q84\+\_\+\+Mqtt"{}
+\item 
+\#define \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a8170bc07eb3b7f53bb8bfea780ebfdd8}{TOPIC\+\_\+P}}~"{}mateq84/data/solar"{}
+\item 
+\#define \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a539f92e7558f374120fe8c16cd813982}{TOPIC\+\_\+S}}~"{}mateq84/data/\mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_afb154bc1d088c11e86459c732b458f1e}{solar}}/sub"{}
+\item 
+\#define \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a1e5759eb3f87b00bf4acf6579f9034d5}{QOS}}~1
+\item 
+\#define \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a45ba202b05caf39795aeca91b0ae547e}{TIMEOUT}}~10000L
+\item 
+\#define \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a528b7d17d2b8f25733d0629af28d929c}{SPACING\+\_\+\+USEC}}~500 \texorpdfstring{$\ast$}{*} 1000
+\item 
+\#define \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_adc31fee63bd07cbfbb61fd111b95fa99}{MQTT\+\_\+\+TIMEOUT}}~150
+\item 
+\#define \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ad71233259284af53d85289100fb89722}{E\+\_\+\+MONTH}}~2266.\+0f
+\item 
+\#define \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a55d9e8be3fc269ec6d39869c19657ee2}{G\+\_\+\+MONTH}}~1000.\+0f
+\item 
+\#define \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a89ceb195c2e4ce4d5a863aa7e251d3bb}{E\+\_\+\+DAYS}}~31.\+0f
+\item 
+\#define \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a7cd228a65468c7359eb942b63c0c30cf}{E\+\_\+\+PER\+\_\+\+DAY}}~\mbox{\hyperlink{pge_8h_ad71233259284af53d85289100fb89722}{E\+\_\+\+MONTH}}/\mbox{\hyperlink{pge_8h_a89ceb195c2e4ce4d5a863aa7e251d3bb}{E\+\_\+\+DAYS}}
+\item 
+\#define \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a423966f1defba142d7353fe3c69278c9}{E\+\_\+\+PER\+\_\+\+HOUR}}~\mbox{\hyperlink{pge_8h_a7cd228a65468c7359eb942b63c0c30cf}{E\+\_\+\+PER\+\_\+\+DAY}}/24.\+0f
+\item 
+\#define \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a1e8fd44eec8ec7870432b719f0f81f36}{G\+\_\+\+PER\+\_\+\+DAY}}~\mbox{\hyperlink{pge_8h_a55d9e8be3fc269ec6d39869c19657ee2}{G\+\_\+\+MONTH}}/\mbox{\hyperlink{pge_8h_a89ceb195c2e4ce4d5a863aa7e251d3bb}{E\+\_\+\+DAYS}}
+\item 
+\#define \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ac6f47c06c034e48c5fb3b739a7c66676}{G\+\_\+\+PER\+\_\+\+HOUR}}~\mbox{\hyperlink{pge_8h_a1e8fd44eec8ec7870432b719f0f81f36}{G\+\_\+\+PER\+\_\+\+DAY}}/24.\+0f
+\item 
+\#define \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a00aeb478faf708a9d4d04bac8bb99359}{PGE\+\_\+\+ZERO}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+long long \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ac8f24e04c0c435bf601576dee852f879}{current\+\_\+timestamp}} (void)
+\item 
+void \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a16c43fcb061651421cdf377a01de5802}{timer\+\_\+callback}} (int32\+\_\+t)
+\item 
+void \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a0f736e8daa9b3861377b54b450a1385b}{delivered}} (void \texorpdfstring{$\ast$}{*}, MQTTClient\+\_\+delivery\+Token)
+\item 
+int32\+\_\+t \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ad4ef7431b04739013aac28fb3a299a00}{msgarrvd}} (void \texorpdfstring{$\ast$}{*}, char \texorpdfstring{$\ast$}{*}, int, MQTTClient\+\_\+message \texorpdfstring{$\ast$}{*})
+\item 
+void \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_acac721db1f1fabfc32db2d76683f6584}{connlost}} (void \texorpdfstring{$\ast$}{*}, char \texorpdfstring{$\ast$}{*})
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_aa6c4cd39da4bcd29a41c0aec2fc3596b}{log\+\_\+time}} (bool)
+\item 
+int \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a458f05d63c34548cb6afb116b95148dd}{full\+\_\+buffer}} \mbox{[}\mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a8b176047ddfa87b1ef8f6731c3511d93}{CAN\+\_\+\+FULL\+\_\+\+BUFFER}}\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ae67ff1cd57fa06a9cf9e4318c0349e21}{data\+\_\+buffer}} \mbox{[}\mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a8b176047ddfa87b1ef8f6731c3511d93}{CAN\+\_\+\+FULL\+\_\+\+BUFFER}}\mbox{]}
+\item 
+int32\+\_\+t \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a62db5137ccc4f143038d95c92fd51188}{sec\+\_\+30}}
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a1d71425d9df28667d528833a4db10432}{token}}
+\item 
+c\+JSON \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a65f742e8d4496f2431894fafe695cc53}{json}}
+\item 
+FILE \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_acec19516a59050bb447192fe318e6a9c}{fout}}
+\item 
+volatile MQTTClient\+\_\+delivery\+Token \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a164b7ca0311283e307792ce80899259b}{deliveredtoken}}
+\item 
+volatile MQTTClient\+\_\+delivery\+Token \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a670671add8fb029c8a20954362a1b07a}{receivedtoken}} = false
+\item 
+volatile bool \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a795bec371994704b76801bf7d7ba28a1}{runner}} = false
+\item 
+MQTTClient \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_aaa05c2364ca8b1f85681ffc09effed80}{client}}
+\item 
+MQTTClient\+\_\+connect\+Options \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ac200940be44e837ab88a09d375d8a605}{conn\+\_\+opts}} = MQTTClient\+\_\+connect\+Options\+\_\+initializer
+\item 
+MQTTClient\+\_\+message \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a54ec132fd248befe31c04f4eb787af1c}{pubmsg}} = MQTTClient\+\_\+message\+\_\+initializer
+\item 
+MQTTClient\+\_\+delivery\+Token \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_aa4c03d83300f9b8e271cc9637deb1c8d}{mtoken}}
+\item 
+time\+\_\+t \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ad20e89e0c86aa812dc3a8e2fb7b5777b}{start\+\_\+time}} = 0
+\item 
+time\+\_\+t \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ae7667835bd2170e235f20ecac0e20b1e}{hour\+\_\+time}} = 0
+\item 
+time\+\_\+t \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ad4520d70fa3f369a26ad77dd18fc5277}{day\+\_\+time}} = 0
+\item 
+double \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a3732a925ce3b069fbdf9f8b544a094e9}{benergy}}
+\item 
+double \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a92d179f41c09deb9dee64445ae537e8d}{acenergy}}
+\item 
+double \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a8a23f389715acfc88ae4000ab00600f0}{load}}
+\item 
+double \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_afb154bc1d088c11e86459c732b458f1e}{solar}}
+\item 
+double \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a9db582b984fad694966f19eea46363c4}{bvolts}}
+\item 
+double \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ac4e9cfc807ac08ff1dedc06be6d108f4}{bamps}}
+\item 
+double \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_afa6edc2bbbe5982fe2ae771bf3f2ceed}{pvolts}}
+\item 
+double \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a27634e78f37a5dca72e68542fbd4d4f0}{pamps}}
+\item 
+double \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a0c2fae55e72ac0b49df8742e1508006d}{pwatts}}
+\item 
+double \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a01143f6725f562bed4255476fa737925}{runtime}}
+\item 
+double \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ad7f2e8897df1f26daaef52caf5ee33f4}{bat\+\_\+energy\+\_\+scaled}}
+\item 
+double \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a92d6f0c12616ef4fecac01d517264185}{bat\+\_\+energy\+\_\+kw}}
+\item 
+double \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a89904e8639223018b7997db1d35f6e8d}{acvolts}}
+\item 
+double \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_afbd7c0dc10335927fac5b4f7ffff8731}{acamps}} = 0.\+0f
+\item 
+double \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_afdd929c5f9cd3d867b03204aeb4ad7e4}{gridin}} = 0.\+001
+\item 
+double \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ac6a0effb6420a7d159f5fc06bc530585}{gridout}} = 0.\+001
+\item 
+double \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_af381c8aec7d11ee2ccf6f78ad244d639}{gasenergy}} = 0.\+001
+\item 
+double \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_af7ae7e861edb51b69d68ecbf634f9b1b}{watergal}} = 0.\+1
+\item 
+int32\+\_\+t \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a163234851ded16b88d5c6dfc7e06d5c1}{ccmode}} = 0
+\item 
+int32\+\_\+t \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a48cf416560f3d143a13db725a4a06912}{sequence}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a8fb447618db946a9e2a596d9ea18763f}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!\_DEFAULT\_SOURCE@{\_DEFAULT\_SOURCE}}
+\index{\_DEFAULT\_SOURCE@{\_DEFAULT\_SOURCE}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{\_DEFAULT\_SOURCE}{\_DEFAULT\_SOURCE}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a8fb447618db946a9e2a596d9ea18763f} 
+\#define \+\_\+\+DEFAULT\+\_\+\+SOURCE}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a280feb883e9d4a7edcc69c8bcb9f38f2}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!ADDRESS@{ADDRESS}}
+\index{ADDRESS@{ADDRESS}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{ADDRESS}{ADDRESS}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a280feb883e9d4a7edcc69c8bcb9f38f2} 
+\#define ADDRESS~"{}tcp\+://10.\+1.\+1.\+172\+:1883"{}}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a8b176047ddfa87b1ef8f6731c3511d93}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!CAN\_FULL\_BUFFER@{CAN\_FULL\_BUFFER}}
+\index{CAN\_FULL\_BUFFER@{CAN\_FULL\_BUFFER}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{CAN\_FULL\_BUFFER}{CAN\_FULL\_BUFFER}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a8b176047ddfa87b1ef8f6731c3511d93} 
+\#define CAN\+\_\+\+FULL\+\_\+\+BUFFER~\mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a10ff932ae5e17a75a4f1171137a08a62}{CAN\+\_\+\+MSG\+\_\+\+LEN}}+\mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a10ff932ae5e17a75a4f1171137a08a62}{CAN\+\_\+\+MSG\+\_\+\+LEN}}+\mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a10ff932ae5e17a75a4f1171137a08a62}{CAN\+\_\+\+MSG\+\_\+\+LEN}}+1}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a571f54453af62a939f0be8781077f015}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!CAN\_MSG\_COUNT@{CAN\_MSG\_COUNT}}
+\index{CAN\_MSG\_COUNT@{CAN\_MSG\_COUNT}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{CAN\_MSG\_COUNT}{CAN\_MSG\_COUNT}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a571f54453af62a939f0be8781077f015} 
+\#define CAN\+\_\+\+MSG\+\_\+\+COUNT~1}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ad0517fb2e0b5b83c848be45e6305ff2d}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!CAN\_MSG\_ID\_PING@{CAN\_MSG\_ID\_PING}}
+\index{CAN\_MSG\_ID\_PING@{CAN\_MSG\_ID\_PING}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{CAN\_MSG\_ID\_PING}{CAN\_MSG\_ID\_PING}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ad0517fb2e0b5b83c848be45e6305ff2d} 
+\#define CAN\+\_\+\+MSG\+\_\+\+ID\+\_\+\+PING~0x80000002}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ae0880f1446123899ed7c29347fb9c61c}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!CAN\_MSG\_ID\_PING\_X@{CAN\_MSG\_ID\_PING\_X}}
+\index{CAN\_MSG\_ID\_PING\_X@{CAN\_MSG\_ID\_PING\_X}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{CAN\_MSG\_ID\_PING\_X}{CAN\_MSG\_ID\_PING\_X}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ae0880f1446123899ed7c29347fb9c61c} 
+\#define CAN\+\_\+\+MSG\+\_\+\+ID\+\_\+\+PING\+\_\+X~0x80000003}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a36ec9d0679f46ab8203b764950a379fb}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!CAN\_MSG\_ID\_PONG@{CAN\_MSG\_ID\_PONG}}
+\index{CAN\_MSG\_ID\_PONG@{CAN\_MSG\_ID\_PONG}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{CAN\_MSG\_ID\_PONG}{CAN\_MSG\_ID\_PONG}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a36ec9d0679f46ab8203b764950a379fb} 
+\#define CAN\+\_\+\+MSG\+\_\+\+ID\+\_\+\+PONG~0x3}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a10ff932ae5e17a75a4f1171137a08a62}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!CAN\_MSG\_LEN@{CAN\_MSG\_LEN}}
+\index{CAN\_MSG\_LEN@{CAN\_MSG\_LEN}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{CAN\_MSG\_LEN}{CAN\_MSG\_LEN}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a10ff932ae5e17a75a4f1171137a08a62} 
+\#define CAN\+\_\+\+MSG\+\_\+\+LEN~64}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a69fbf3ca1d0351b9d8448e0e18a1d755}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!CAN\_MSG\_WAIT@{CAN\_MSG\_WAIT}}
+\index{CAN\_MSG\_WAIT@{CAN\_MSG\_WAIT}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{CAN\_MSG\_WAIT}{CAN\_MSG\_WAIT}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a69fbf3ca1d0351b9d8448e0e18a1d755} 
+\#define CAN\+\_\+\+MSG\+\_\+\+WAIT~27}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a22df3c86277d5e70dbe7f545dcd08304}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!CAN\_TM\_TIME@{CAN\_TM\_TIME}}
+\index{CAN\_TM\_TIME@{CAN\_TM\_TIME}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{CAN\_TM\_TIME}{CAN\_TM\_TIME}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a22df3c86277d5e70dbe7f545dcd08304} 
+\#define CAN\+\_\+\+TM\+\_\+\+TIME~30}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ac341f7f366a2d62e9e6d6cd43a46d188}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!CLIENTID@{CLIENTID}}
+\index{CLIENTID@{CLIENTID}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{CLIENTID}{CLIENTID}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ac341f7f366a2d62e9e6d6cd43a46d188} 
+\#define CLIENTID~"{}Mate\+Q84\+\_\+\+Mqtt"{}}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a95bd602462264e9c6677fa810131287a}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!DAY\_SEC@{DAY\_SEC}}
+\index{DAY\_SEC@{DAY\_SEC}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{DAY\_SEC}{DAY\_SEC}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a95bd602462264e9c6677fa810131287a} 
+\#define DAY\+\_\+\+SEC~\mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a3f90a6e482420f828aef2ccdd79d3fb2}{HR\+\_\+\+SEC}}\texorpdfstring{$\ast$}{*}24}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a89ceb195c2e4ce4d5a863aa7e251d3bb}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!E\_DAYS@{E\_DAYS}}
+\index{E\_DAYS@{E\_DAYS}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{E\_DAYS}{E\_DAYS}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a89ceb195c2e4ce4d5a863aa7e251d3bb} 
+\#define E\+\_\+\+DAYS~31.\+0f}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ad71233259284af53d85289100fb89722}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!E\_MONTH@{E\_MONTH}}
+\index{E\_MONTH@{E\_MONTH}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{E\_MONTH}{E\_MONTH}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ad71233259284af53d85289100fb89722} 
+\#define E\+\_\+\+MONTH~2266.\+0f}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a7cd228a65468c7359eb942b63c0c30cf}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!E\_PER\_DAY@{E\_PER\_DAY}}
+\index{E\_PER\_DAY@{E\_PER\_DAY}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{E\_PER\_DAY}{E\_PER\_DAY}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a7cd228a65468c7359eb942b63c0c30cf} 
+\#define E\+\_\+\+PER\+\_\+\+DAY~\mbox{\hyperlink{pge_8h_ad71233259284af53d85289100fb89722}{E\+\_\+\+MONTH}}/\mbox{\hyperlink{pge_8h_a89ceb195c2e4ce4d5a863aa7e251d3bb}{E\+\_\+\+DAYS}}}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a423966f1defba142d7353fe3c69278c9}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!E\_PER\_HOUR@{E\_PER\_HOUR}}
+\index{E\_PER\_HOUR@{E\_PER\_HOUR}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{E\_PER\_HOUR}{E\_PER\_HOUR}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a423966f1defba142d7353fe3c69278c9} 
+\#define E\+\_\+\+PER\+\_\+\+HOUR~\mbox{\hyperlink{pge_8h_a7cd228a65468c7359eb942b63c0c30cf}{E\+\_\+\+PER\+\_\+\+DAY}}/24.\+0f}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a793129beb0d28ffcc15248a09f9d333b}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!EMON\_CO@{EMON\_CO}}
+\index{EMON\_CO@{EMON\_CO}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{EMON\_CO}{EMON\_CO}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a793129beb0d28ffcc15248a09f9d333b} 
+\#define EMON\+\_\+\+CO~0x8000000C}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a7826d7b67c2425e04508f376b03ea68a}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!EMON\_DA@{EMON\_DA}}
+\index{EMON\_DA@{EMON\_DA}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{EMON\_DA}{EMON\_DA}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a7826d7b67c2425e04508f376b03ea68a} 
+\#define EMON\+\_\+\+DA~0x8000000D}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_af02910f716132150f79596778900a634}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!EMON\_ER@{EMON\_ER}}
+\index{EMON\_ER@{EMON\_ER}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{EMON\_ER}{EMON\_ER}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_af02910f716132150f79596778900a634} 
+\#define EMON\+\_\+\+ER~0x8000000F}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a3af523ff07f4875fb7846edd1fe2306a}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!EMON\_SH@{EMON\_SH}}
+\index{EMON\_SH@{EMON\_SH}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{EMON\_SH}{EMON\_SH}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a3af523ff07f4875fb7846edd1fe2306a} 
+\#define EMON\+\_\+\+SH~0x80000004}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a0a00350f1a08b53b34d10da719e9b587}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!EMON\_SL@{EMON\_SL}}
+\index{EMON\_SL@{EMON\_SL}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{EMON\_SL}{EMON\_SL}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a0a00350f1a08b53b34d10da719e9b587} 
+\#define EMON\+\_\+\+SL~0x80000002}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_abb1bd190102ddcc6238e71e023e0ac7f}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!EMON\_SU@{EMON\_SU}}
+\index{EMON\_SU@{EMON\_SU}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{EMON\_SU}{EMON\_SU}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_abb1bd190102ddcc6238e71e023e0ac7f} 
+\#define EMON\+\_\+\+SU~0x80000003}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a4402a37f0a16bb1c0d6535001ace8809}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!EMON\_TM@{EMON\_TM}}
+\index{EMON\_TM@{EMON\_TM}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{EMON\_TM}{EMON\_TM}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a4402a37f0a16bb1c0d6535001ace8809} 
+\#define EMON\+\_\+\+TM~0x8000000A}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a55d9e8be3fc269ec6d39869c19657ee2}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!G\_MONTH@{G\_MONTH}}
+\index{G\_MONTH@{G\_MONTH}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{G\_MONTH}{G\_MONTH}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a55d9e8be3fc269ec6d39869c19657ee2} 
+\#define G\+\_\+\+MONTH~1000.\+0f}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a1e8fd44eec8ec7870432b719f0f81f36}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!G\_PER\_DAY@{G\_PER\_DAY}}
+\index{G\_PER\_DAY@{G\_PER\_DAY}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{G\_PER\_DAY}{G\_PER\_DAY}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a1e8fd44eec8ec7870432b719f0f81f36} 
+\#define G\+\_\+\+PER\+\_\+\+DAY~\mbox{\hyperlink{pge_8h_a55d9e8be3fc269ec6d39869c19657ee2}{G\+\_\+\+MONTH}}/\mbox{\hyperlink{pge_8h_a89ceb195c2e4ce4d5a863aa7e251d3bb}{E\+\_\+\+DAYS}}}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ac6f47c06c034e48c5fb3b739a7c66676}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!G\_PER\_HOUR@{G\_PER\_HOUR}}
+\index{G\_PER\_HOUR@{G\_PER\_HOUR}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{G\_PER\_HOUR}{G\_PER\_HOUR}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ac6f47c06c034e48c5fb3b739a7c66676} 
+\#define G\+\_\+\+PER\+\_\+\+HOUR~\mbox{\hyperlink{pge_8h_a1e8fd44eec8ec7870432b719f0f81f36}{G\+\_\+\+PER\+\_\+\+DAY}}/24.\+0f}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a3f90a6e482420f828aef2ccdd79d3fb2}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!HR\_SEC@{HR\_SEC}}
+\index{HR\_SEC@{HR\_SEC}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{HR\_SEC}{HR\_SEC}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a3f90a6e482420f828aef2ccdd79d3fb2} 
+\#define HR\+\_\+\+SEC~3600}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a2d9257ecbf4951d3877398f752d47ae6}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!LOG\_TO\_FILE@{LOG\_TO\_FILE}}
+\index{LOG\_TO\_FILE@{LOG\_TO\_FILE}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{LOG\_TO\_FILE}{LOG\_TO\_FILE}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a2d9257ecbf4951d3877398f752d47ae6} 
+\#define LOG\+\_\+\+TO\+\_\+\+FILE~"{}/store/logs/canfd.\+log"{}}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_aa48b2017856a8a9c33a9935afe604c8d}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!LOG\_VERSION@{LOG\_VERSION}}
+\index{LOG\_VERSION@{LOG\_VERSION}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{LOG\_VERSION}{LOG\_VERSION}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_aa48b2017856a8a9c33a9935afe604c8d} 
+\#define LOG\+\_\+\+VERSION~"{}v1.\+12"{}}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_adc31fee63bd07cbfbb61fd111b95fa99}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!MQTT\_TIMEOUT@{MQTT\_TIMEOUT}}
+\index{MQTT\_TIMEOUT@{MQTT\_TIMEOUT}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{MQTT\_TIMEOUT}{MQTT\_TIMEOUT}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_adc31fee63bd07cbfbb61fd111b95fa99} 
+\#define MQTT\+\_\+\+TIMEOUT~150}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a702197a21870dfd505d92530b27754ac}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!MQTT\_VERSION@{MQTT\_VERSION}}
+\index{MQTT\_VERSION@{MQTT\_VERSION}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{MQTT\_VERSION}{MQTT\_VERSION}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a702197a21870dfd505d92530b27754ac} 
+\#define MQTT\+\_\+\+VERSION~"{}V3.\+11"{}}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a00aeb478faf708a9d4d04bac8bb99359}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!PGE\_ZERO@{PGE\_ZERO}}
+\index{PGE\_ZERO@{PGE\_ZERO}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{PGE\_ZERO}{PGE\_ZERO}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a00aeb478faf708a9d4d04bac8bb99359} 
+\#define PGE\+\_\+\+ZERO}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a1e5759eb3f87b00bf4acf6579f9034d5}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!QOS@{QOS}}
+\index{QOS@{QOS}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{QOS}{QOS}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a1e5759eb3f87b00bf4acf6579f9034d5} 
+\#define QOS~1}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a528b7d17d2b8f25733d0629af28d929c}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!SPACING\_USEC@{SPACING\_USEC}}
+\index{SPACING\_USEC@{SPACING\_USEC}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{SPACING\_USEC}{SPACING\_USEC}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a528b7d17d2b8f25733d0629af28d929c} 
+\#define SPACING\+\_\+\+USEC~500 \texorpdfstring{$\ast$}{*} 1000}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a45ba202b05caf39795aeca91b0ae547e}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!TIMEOUT@{TIMEOUT}}
+\index{TIMEOUT@{TIMEOUT}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{TIMEOUT}{TIMEOUT}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a45ba202b05caf39795aeca91b0ae547e} 
+\#define TIMEOUT~10000L}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a8170bc07eb3b7f53bb8bfea780ebfdd8}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!TOPIC\_P@{TOPIC\_P}}
+\index{TOPIC\_P@{TOPIC\_P}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{TOPIC\_P}{TOPIC\_P}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a8170bc07eb3b7f53bb8bfea780ebfdd8} 
+\#define TOPIC\+\_\+P~"{}mateq84/data/solar"{}}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a539f92e7558f374120fe8c16cd813982}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!TOPIC\_S@{TOPIC\_S}}
+\index{TOPIC\_S@{TOPIC\_S}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{TOPIC\_S}{TOPIC\_S}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a539f92e7558f374120fe8c16cd813982} 
+\#define TOPIC\+\_\+S~"{}mateq84/data/\mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_afb154bc1d088c11e86459c732b458f1e}{solar}}/sub"{}}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_acac721db1f1fabfc32db2d76683f6584}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!connlost@{connlost}}
+\index{connlost@{connlost}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{connlost()}{connlost()}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_acac721db1f1fabfc32db2d76683f6584} 
+void connlost (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{context}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{cause}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=215pt]{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_acac721db1f1fabfc32db2d76683f6584_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ac8f24e04c0c435bf601576dee852f879}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!current\_timestamp@{current\_timestamp}}
+\index{current\_timestamp@{current\_timestamp}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{current\_timestamp()}{current\_timestamp()}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ac8f24e04c0c435bf601576dee852f879} 
+long long current\+\_\+timestamp (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a0f736e8daa9b3861377b54b450a1385b}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!delivered@{delivered}}
+\index{delivered@{delivered}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{delivered()}{delivered()}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a0f736e8daa9b3861377b54b450a1385b} 
+void delivered (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{context}{, }\item[{MQTTClient\+\_\+delivery\+Token}]{dt}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=219pt]{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a0f736e8daa9b3861377b54b450a1385b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_aa6c4cd39da4bcd29a41c0aec2fc3596b}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!log\_time@{log\_time}}
+\index{log\_time@{log\_time}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{log\_time()}{log\_time()}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_aa6c4cd39da4bcd29a41c0aec2fc3596b} 
+char \texorpdfstring{$\ast$}{*} log\+\_\+time (\begin{DoxyParamCaption}\item[{bool}]{log}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=216pt]{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_aa6c4cd39da4bcd29a41c0aec2fc3596b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a0ddf1224851353fc92bfbff6f499fa97}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!main@{main}}
+\index{main@{main}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a0ddf1224851353fc92bfbff6f499fa97} 
+int main (\begin{DoxyParamCaption}\item[{int}]{argc}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{argv}{\mbox{[}$\,$\mbox{]}}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ad4ef7431b04739013aac28fb3a299a00}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!msgarrvd@{msgarrvd}}
+\index{msgarrvd@{msgarrvd}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{msgarrvd()}{msgarrvd()}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ad4ef7431b04739013aac28fb3a299a00} 
+int32\+\_\+t msgarrvd (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{context}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{topic\+Name}{, }\item[{int}]{topic\+Len}{, }\item[{MQTTClient\+\_\+message \texorpdfstring{$\ast$}{*}}]{message}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ad4ef7431b04739013aac28fb3a299a00_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a16c43fcb061651421cdf377a01de5802}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!timer\_callback@{timer\_callback}}
+\index{timer\_callback@{timer\_callback}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{timer\_callback()}{timer\_callback()}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a16c43fcb061651421cdf377a01de5802} 
+void timer\+\_\+callback (\begin{DoxyParamCaption}\item[{int32\+\_\+t}]{signum}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=169pt]{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a16c43fcb061651421cdf377a01de5802_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=169pt]{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a16c43fcb061651421cdf377a01de5802_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_afbd7c0dc10335927fac5b4f7ffff8731}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!acamps@{acamps}}
+\index{acamps@{acamps}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{acamps}{acamps}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_afbd7c0dc10335927fac5b4f7ffff8731} 
+double acamps = 0.\+0f}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a92d179f41c09deb9dee64445ae537e8d}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!acenergy@{acenergy}}
+\index{acenergy@{acenergy}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{acenergy}{acenergy}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a92d179f41c09deb9dee64445ae537e8d} 
+double acenergy}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a89904e8639223018b7997db1d35f6e8d}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!acvolts@{acvolts}}
+\index{acvolts@{acvolts}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{acvolts}{acvolts}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a89904e8639223018b7997db1d35f6e8d} 
+double acvolts}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ac4e9cfc807ac08ff1dedc06be6d108f4}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!bamps@{bamps}}
+\index{bamps@{bamps}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{bamps}{bamps}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ac4e9cfc807ac08ff1dedc06be6d108f4} 
+double bamps}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a92d6f0c12616ef4fecac01d517264185}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!bat\_energy\_kw@{bat\_energy\_kw}}
+\index{bat\_energy\_kw@{bat\_energy\_kw}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{bat\_energy\_kw}{bat\_energy\_kw}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a92d6f0c12616ef4fecac01d517264185} 
+double bat\+\_\+energy\+\_\+kw}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ad7f2e8897df1f26daaef52caf5ee33f4}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!bat\_energy\_scaled@{bat\_energy\_scaled}}
+\index{bat\_energy\_scaled@{bat\_energy\_scaled}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{bat\_energy\_scaled}{bat\_energy\_scaled}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ad7f2e8897df1f26daaef52caf5ee33f4} 
+double bat\+\_\+energy\+\_\+scaled}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a3732a925ce3b069fbdf9f8b544a094e9}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!benergy@{benergy}}
+\index{benergy@{benergy}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{benergy}{benergy}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a3732a925ce3b069fbdf9f8b544a094e9} 
+double benergy}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a9db582b984fad694966f19eea46363c4}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!bvolts@{bvolts}}
+\index{bvolts@{bvolts}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{bvolts}{bvolts}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a9db582b984fad694966f19eea46363c4} 
+double bvolts}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a163234851ded16b88d5c6dfc7e06d5c1}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!ccmode@{ccmode}}
+\index{ccmode@{ccmode}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{ccmode}{ccmode}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a163234851ded16b88d5c6dfc7e06d5c1} 
+int32\+\_\+t ccmode = 0}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_aaa05c2364ca8b1f85681ffc09effed80}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!client@{client}}
+\index{client@{client}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{client}{client}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_aaa05c2364ca8b1f85681ffc09effed80} 
+MQTTClient client}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ac200940be44e837ab88a09d375d8a605}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!conn\_opts@{conn\_opts}}
+\index{conn\_opts@{conn\_opts}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{conn\_opts}{conn\_opts}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ac200940be44e837ab88a09d375d8a605} 
+MQTTClient\+\_\+connect\+Options conn\+\_\+opts = MQTTClient\+\_\+connect\+Options\+\_\+initializer}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ae67ff1cd57fa06a9cf9e4318c0349e21}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!data\_buffer@{data\_buffer}}
+\index{data\_buffer@{data\_buffer}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{data\_buffer}{data\_buffer}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ae67ff1cd57fa06a9cf9e4318c0349e21} 
+uint8\+\_\+t data\+\_\+buffer\mbox{[}\mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a8b176047ddfa87b1ef8f6731c3511d93}{CAN\+\_\+\+FULL\+\_\+\+BUFFER}}\mbox{]}}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ad4520d70fa3f369a26ad77dd18fc5277}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!day\_time@{day\_time}}
+\index{day\_time@{day\_time}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{day\_time}{day\_time}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ad4520d70fa3f369a26ad77dd18fc5277} 
+time\+\_\+t day\+\_\+time = 0}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a164b7ca0311283e307792ce80899259b}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!deliveredtoken@{deliveredtoken}}
+\index{deliveredtoken@{deliveredtoken}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{deliveredtoken}{deliveredtoken}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a164b7ca0311283e307792ce80899259b} 
+volatile MQTTClient\+\_\+delivery\+Token deliveredtoken}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_acec19516a59050bb447192fe318e6a9c}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!fout@{fout}}
+\index{fout@{fout}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{fout}{fout}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_acec19516a59050bb447192fe318e6a9c} 
+FILE\texorpdfstring{$\ast$}{*} fout}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a458f05d63c34548cb6afb116b95148dd}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!full\_buffer@{full\_buffer}}
+\index{full\_buffer@{full\_buffer}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{full\_buffer}{full\_buffer}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a458f05d63c34548cb6afb116b95148dd} 
+uint8\+\_\+t full\+\_\+buffer\mbox{[}\mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a8b176047ddfa87b1ef8f6731c3511d93}{CAN\+\_\+\+FULL\+\_\+\+BUFFER}}\mbox{]}}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_af381c8aec7d11ee2ccf6f78ad244d639}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!gasenergy@{gasenergy}}
+\index{gasenergy@{gasenergy}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{gasenergy}{gasenergy}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_af381c8aec7d11ee2ccf6f78ad244d639} 
+double gasenergy = 0.\+001}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_afdd929c5f9cd3d867b03204aeb4ad7e4}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!gridin@{gridin}}
+\index{gridin@{gridin}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{gridin}{gridin}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_afdd929c5f9cd3d867b03204aeb4ad7e4} 
+double gridin = 0.\+001}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ac6a0effb6420a7d159f5fc06bc530585}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!gridout@{gridout}}
+\index{gridout@{gridout}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{gridout}{gridout}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ac6a0effb6420a7d159f5fc06bc530585} 
+double gridout = 0.\+001}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ae7667835bd2170e235f20ecac0e20b1e}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!hour\_time@{hour\_time}}
+\index{hour\_time@{hour\_time}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{hour\_time}{hour\_time}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ae7667835bd2170e235f20ecac0e20b1e} 
+time\+\_\+t hour\+\_\+time = 0}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a65f742e8d4496f2431894fafe695cc53}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!json@{json}}
+\index{json@{json}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{json}{json}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a65f742e8d4496f2431894fafe695cc53} 
+c\+JSON\texorpdfstring{$\ast$}{*} json}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a8a23f389715acfc88ae4000ab00600f0}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!load@{load}}
+\index{load@{load}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{load}{load}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a8a23f389715acfc88ae4000ab00600f0} 
+double load}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_aa4c03d83300f9b8e271cc9637deb1c8d}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!mtoken@{mtoken}}
+\index{mtoken@{mtoken}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{mtoken}{mtoken}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_aa4c03d83300f9b8e271cc9637deb1c8d} 
+MQTTClient\+\_\+delivery\+Token mtoken}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a27634e78f37a5dca72e68542fbd4d4f0}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!pamps@{pamps}}
+\index{pamps@{pamps}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{pamps}{pamps}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a27634e78f37a5dca72e68542fbd4d4f0} 
+double pamps}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a54ec132fd248befe31c04f4eb787af1c}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!pubmsg@{pubmsg}}
+\index{pubmsg@{pubmsg}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{pubmsg}{pubmsg}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a54ec132fd248befe31c04f4eb787af1c} 
+MQTTClient\+\_\+message pubmsg = MQTTClient\+\_\+message\+\_\+initializer}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_afa6edc2bbbe5982fe2ae771bf3f2ceed}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!pvolts@{pvolts}}
+\index{pvolts@{pvolts}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{pvolts}{pvolts}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_afa6edc2bbbe5982fe2ae771bf3f2ceed} 
+double pvolts}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a0c2fae55e72ac0b49df8742e1508006d}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!pwatts@{pwatts}}
+\index{pwatts@{pwatts}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{pwatts}{pwatts}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a0c2fae55e72ac0b49df8742e1508006d} 
+double pwatts}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a670671add8fb029c8a20954362a1b07a}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!receivedtoken@{receivedtoken}}
+\index{receivedtoken@{receivedtoken}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{receivedtoken}{receivedtoken}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a670671add8fb029c8a20954362a1b07a} 
+volatile MQTTClient\+\_\+delivery\+Token receivedtoken = false}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a795bec371994704b76801bf7d7ba28a1}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!runner@{runner}}
+\index{runner@{runner}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{runner}{runner}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a795bec371994704b76801bf7d7ba28a1} 
+volatile bool runner = false}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a01143f6725f562bed4255476fa737925}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!runtime@{runtime}}
+\index{runtime@{runtime}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{runtime}{runtime}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a01143f6725f562bed4255476fa737925} 
+double runtime}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a62db5137ccc4f143038d95c92fd51188}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!sec\_30@{sec\_30}}
+\index{sec\_30@{sec\_30}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{sec\_30}{sec\_30}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a62db5137ccc4f143038d95c92fd51188} 
+int32\+\_\+t sec\+\_\+30}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a48cf416560f3d143a13db725a4a06912}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!sequence@{sequence}}
+\index{sequence@{sequence}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{sequence}{sequence}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a48cf416560f3d143a13db725a4a06912} 
+int32\+\_\+t sequence}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_afb154bc1d088c11e86459c732b458f1e}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!solar@{solar}}
+\index{solar@{solar}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{solar}{solar}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_afb154bc1d088c11e86459c732b458f1e} 
+double solar}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ad20e89e0c86aa812dc3a8e2fb7b5777b}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!start\_time@{start\_time}}
+\index{start\_time@{start\_time}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{start\_time}{start\_time}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ad20e89e0c86aa812dc3a8e2fb7b5777b} 
+time\+\_\+t start\+\_\+time = 0}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a1d71425d9df28667d528833a4db10432}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!token@{token}}
+\index{token@{token}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{token}{token}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_a1d71425d9df28667d528833a4db10432} 
+char\texorpdfstring{$\ast$}{*} token}
+
+\Hypertarget{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_af7ae7e861edb51b69d68ecbf634f9b1b}\index{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}!watergal@{watergal}}
+\index{watergal@{watergal}!raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c@{raw.githubusercontent.com\_linux-\/can\_can-\/utils\_master\_canfdtest.c}}
+\doxysubsubsection{\texorpdfstring{watergal}{watergal}}
+{\footnotesize\ttfamily \label{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_af7ae7e861edb51b69d68ecbf634f9b1b} 
+double watergal = 0.\+1}
+

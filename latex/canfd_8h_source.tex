@@ -1,0 +1,108 @@
+\doxysection{canfd.\+h}
+\hypertarget{canfd_8h_source}{}\label{canfd_8h_source}\mbox{\hyperlink{canfd_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ File:\ \ \ canfd.h}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ Author:\ root}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ Created\ on\ June\ 16,\ 2023,\ 12:55\ PM}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ simple\ CAN\ FD\ transfers\ using\ blocking\ TX\ and\ interrupts\ for\ RX}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#ifndef\ CANFD\_H}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ CANFD\_H}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#ifdef\ \ \_\_cplusplus}}
+\DoxyCodeLine{00015\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{qconfig_8h}{qconfig.h}}"{}}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{mxcmd_8h}{mateQ84.X/mxcmd.h}}"{}}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{modbus__master_8h}{modbus\_master.h}}"{}}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{batmon_8h}{batmon.h}}"{}}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ DATA\_DEBUG}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ NO\_NODE\_ID}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ NODE\_ID\_SHIFT\ \ \ 4}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#ifdef\ CAN\_REMOTE}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ LCD\_MIRROR}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ USE\_FD\ \ }\textcolor{comment}{//\ select\ classic\ or\ FD}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ CANFD\_BYTES\ \ \ \ \ 64}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ CANFD\_NBUF\ \ \ \ \ \ 3}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ CAN\_RX\_TRIES\ \ \ \ 8}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ CAN\_REC\_BUFFERS\ 4}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ CAN\_LOW\_BUF\ \ \ \ \ 0}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ CAN\_HIGH\_BUF\ \ \ \ 1}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ CAN\_INFO\_BUF\ \ \ \ 2}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ CAN\_ERROR\_BUF\ \ \ 3}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ CAN\_MIRRORS\ 4}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ EMON\_M\ \ 0x1\ }\textcolor{comment}{//\ FM80\ host}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ EMON\_SL\ 0x2\ }\textcolor{comment}{//\ remote\ display\ lower\ data}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ EMON\_SU\ 0x3\ }\textcolor{comment}{//\ remote\ display\ upper\ data}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ EMON\_MR\ 0x4\ }\textcolor{comment}{//\ LCD\ mirror\ data\ [0..3]]}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ EMON\_TM\ 0xA\ }\textcolor{comment}{//\ remote\ time\ from\ time\ server}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ EMON\_DS\ 0xB\ }\textcolor{comment}{//\ remote\ display\ server}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ EMON\_DM\ 0xE\ }\textcolor{comment}{//\ set\ display\ mode\ to\ 1\ \ \ \ }}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ EMON\_ER\ 0xF\ }\textcolor{comment}{//\ error\ reporting}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ EMON\_CO\ 0xC\ }\textcolor{comment}{//\ configuration\ reporting}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ EMON\_DA\ 0xD\ }\textcolor{comment}{//\ 64\ byte\ binary\ blob}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ MIRR0R\_BUF\ \ CANFD\_NBUF-\/1\ }\textcolor{comment}{//\ LCD\ mirror\ CANBUS\ buffer}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ LCD\_BUF\_SIZ\ 22}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structcan__rec__count__t_a668f7a7b8e05ea8049ac05476ed8066e}{rec\_count}};}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structcan__rec__count__t_af1fd97df6728feaaa5fdc91d8beee68d}{rec\_flag}};}
+\DoxyCodeLine{00059\ \ \ \ \ \}\ \mbox{\hyperlink{structcan__rec__count__t}{can\_rec\_count\_t}};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structcan__frames__t_a668f7a7b8e05ea8049ac05476ed8066e}{rec\_count}},\ \mbox{\hyperlink{structcan__frames__t_a45c3d5f3496c906efec9da0935a6a623}{tx\_count}};}
+\DoxyCodeLine{00063\ \ \ \ \ \}\ \mbox{\hyperlink{structcan__frames__t}{can\_frames\_t}};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ \mbox{\hyperlink{structblob__type_ab8b36c3437ce469d285fd98b754bbba2}{blob}}[\mbox{\hyperlink{canfd_8h_a3c69ec33266b2d06ac84ad7a6049873e}{CANFD\_BYTES}}];}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keyword}{volatile}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structblob__type_a5e11d8e6a56f3df44d344651b25882d2}{tx\_flag}},\ \mbox{\hyperlink{structblob__type_a15791a7d318790d7885cd78e66650b8a}{rx\_flag}};}
+\DoxyCodeLine{00068\ \ \ \ \ \}\ \mbox{\hyperlink{structblob__type}{blob\_type}};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00071\ \textcolor{comment}{\ \ \ \ \ *\ testing\ blob\ data\ feature\ for\ logs}}
+\DoxyCodeLine{00072\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keyword}{union\ }\mbox{\hyperlink{unionblob__log}{blob\_log}}\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structblob__type}{blob\_type}}\ \mbox{\hyperlink{unionblob__log_af7af94b828f408ac9224f9eaa6c60083}{blob}};}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmx__logpage__t}{mx\_logpage\_t}}\ \mbox{\hyperlink{unionblob__log_a1f776f3ebe5c9253e3d05a1eba58c18b}{log}};}
+\DoxyCodeLine{00076\ \ \ \ \ \};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keyword}{volatile}\ \mbox{\hyperlink{structcan__rec__count__t}{can\_rec\_count\_t}}\ \mbox{\hyperlink{canfd_8c_a517c6622f7c90637e31ff52be0656e13}{can\_rec\_count}};}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{extern}\ \mbox{\hyperlink{structCAN__MSG__OBJ}{CAN\_MSG\_OBJ}}\ \mbox{\hyperlink{canfd_8c_a4a571b914c982845c387da16ef8efab1}{msg}}[3];}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keyword}{volatile}\ uint8\_t\ \mbox{\hyperlink{canfd_8c_a1cfda93430cb60b084a6ca848f44b3a7}{rxMsgData}}[\mbox{\hyperlink{canfd_8h_a0c8f844d74630794e991c5c714a1934c}{CAN\_REC\_BUFFERS}}][\mbox{\hyperlink{canfd_8h_a3c69ec33266b2d06ac84ad7a6049873e}{CANFD\_BYTES}}];}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{extern}\ time\_t\ \mbox{\hyperlink{canfd_8h_ac18c97a79841b0af9e0d0d378b9e721c}{can\_timer}};}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keyword}{struct\ }tm\ *\mbox{\hyperlink{batmon_8h_a6ff82a57d15d1e2c8b6aea4f501d8a0f}{can\_newtime}};}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keyword}{volatile}\ \mbox{\hyperlink{structcan__frames__t}{can\_frames\_t}}\ \mbox{\hyperlink{canfd_8c_a959d51107284735b720ea6940504fccd}{can\_packets}};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{canfd_8h_aa74b37318c7f7322c16d8df246d48e98}{TXQNotFullHandler}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{canfd_8h_a369ea76a14f2a9ac1fd1120985a5febc}{Can1FIFO1NotEmptyHandler}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{canfd_8h_a8d28894362bf5fdeb00e73d635aee010}{info\_buffer}}[\mbox{\hyperlink{mxcmd_8h_a3a898da0ee1d34f3af799123ff98a160}{MAX\_B\_BUF}}],\ \mbox{\hyperlink{canfd_8h_a6b22d01e082103d8535db39e63799b3f}{log\_buffer}}[\mbox{\hyperlink{mxcmd_8h_a3a898da0ee1d34f3af799123ff98a160}{MAX\_B\_BUF}}];}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{canfd_8h_a29a7687004bc2ca4fe3a3ad2ed5d4f6b}{can\_fd\_tx}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{canfd_8h_a09603ea6c3ec888054e217e43d2f463d}{can\_setup}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{canfd_8h_a05b74a75d1b7203983c749ca8bfcb12e}{can\_fd\_lcd\_mirror}}(\textcolor{keyword}{const}\ uint8\_t,\ \textcolor{keywordtype}{char}\ *);}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{canfd_8h_ad62faa46dc11f1a1e7b2efa6a460582f}{can\_mirror\_print}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{canfd_8h_ae62671c4f47f8858c84f147a52a44237}{can\_blob\_set}}(\mbox{\hyperlink{structblob__type}{blob\_type}}*);}
+\DoxyCodeLine{00094\ \ \ \ \ \mbox{\hyperlink{structblob__type}{blob\_type}}*\ \mbox{\hyperlink{canfd_8h_acb6bcc9bf2aa4d3a784a25705e36a822}{can\_blob\_get}}(\mbox{\hyperlink{structblob__type}{blob\_type}}*);}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{canfd_8h_a564a217e586a5d52d2a528e9dc8c0f3b}{get\_blob\_tx}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{canfd_8h_af5dbb2fdb5176f1044c8a8d206e56c57}{get\_blob\_rx}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#ifdef\ \ \_\_cplusplus}}
+\DoxyCodeLine{00099\ \}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{/*\ CANFD\_H\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00103\ }
+
+\end{DoxyCode}

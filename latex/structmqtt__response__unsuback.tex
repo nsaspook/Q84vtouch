@@ -1,0 +1,73 @@
+\doxysection{mqtt\+\_\+response\+\_\+unsuback Struct Reference}
+\hypertarget{structmqtt__response__unsuback}{}\label{structmqtt__response__unsuback}\index{mqtt\_response\_unsuback@{mqtt\_response\_unsuback}}
+
+
+The brokers response to a UNSUBSCRIBE request.  
+
+
+
+
+{\ttfamily \#include $<$mqtt.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structmqtt__response__unsuback_ad051e090f3817f4549df7dc178790f45}{packet\+\_\+id}}
+\begin{DoxyCompactList}\small\item\em The published messages packet ID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Related Symbols}
+(Note that these are not member symbols.) \begin{DoxyCompactItemize}
+\item 
+ssize\+\_\+t \mbox{\hyperlink{structmqtt__response__unsuback_af47bfa86aab0876c6855edad4d1bbbc0}{mqtt\+\_\+unpack\+\_\+unsuback\+\_\+response}} (struct \mbox{\hyperlink{structmqtt__response}{mqtt\+\_\+response}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{structmqtt__response}{mqtt\+\_\+response}}, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf)
+\begin{DoxyCompactList}\small\item\em Deserialize an UNSUBACK packet from {\ttfamily buf}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The brokers response to a UNSUBSCRIBE request. 
+
+\begin{DoxySeeAlso}{See also}
+\href{http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/os/mqtt-v3.1.1-os.html\#_Toc398718077}{\texttt{ MQTT v3.\+1.\+1\+: UNSUBACK -\/ Unsubscribe Acknowledgement. }} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Friends And Related Symbol Documentation}
+\Hypertarget{structmqtt__response__unsuback_af47bfa86aab0876c6855edad4d1bbbc0}\index{mqtt\_response\_unsuback@{mqtt\_response\_unsuback}!mqtt\_unpack\_unsuback\_response@{mqtt\_unpack\_unsuback\_response}}
+\index{mqtt\_unpack\_unsuback\_response@{mqtt\_unpack\_unsuback\_response}!mqtt\_response\_unsuback@{mqtt\_response\_unsuback}}
+\doxysubsubsection{\texorpdfstring{mqtt\_unpack\_unsuback\_response()}{mqtt\_unpack\_unsuback\_response()}}
+{\footnotesize\ttfamily \label{structmqtt__response__unsuback_af47bfa86aab0876c6855edad4d1bbbc0} 
+ssize\+\_\+t mqtt\+\_\+unpack\+\_\+unsuback\+\_\+response (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structmqtt__response}{mqtt\+\_\+response}} \texorpdfstring{$\ast$}{*}}]{mqtt\+\_\+response}{, }\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{buf}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Deserialize an UNSUBACK packet from {\ttfamily buf}. 
+
+\begin{DoxyPrecond}{Precondition}
+\doxylink{group__unpackers_gad596aa5faf7f79e05fb15da33321db10}{mqtt\+\_\+unpack\+\_\+fixed\+\_\+header} must have returned a positive value and the \doxylink{structmqtt__response}{mqtt\+\_\+response} must have a control type of {\ttfamily MQTT\+\_\+\+CONTROL\+\_\+\+UNSUBACK}.
+\end{DoxyPrecond}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em \doxylink{structmqtt__response}{mqtt\+\_\+response}} & the response that is initialized from the contents of {\ttfamily buf}. \\
+\hline
+\mbox{\texttt{ in}}  & {\em buf} & the buffer with the incoming data.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of bytes that were consumed, or 0 if the buffer does not contain enough bytes to parse the packet, or a negative value if there was a protocol violation. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structmqtt__response__unsuback_ad051e090f3817f4549df7dc178790f45}\index{mqtt\_response\_unsuback@{mqtt\_response\_unsuback}!packet\_id@{packet\_id}}
+\index{packet\_id@{packet\_id}!mqtt\_response\_unsuback@{mqtt\_response\_unsuback}}
+\doxysubsubsection{\texorpdfstring{packet\_id}{packet\_id}}
+{\footnotesize\ttfamily \label{structmqtt__response__unsuback_ad051e090f3817f4549df7dc178790f45} 
+uint16\+\_\+t packet\+\_\+id}
+
+
+
+The published messages packet ID. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+linux/matesocketcan/\mbox{\hyperlink{mqtt_8h}{mqtt.\+h}}\end{DoxyCompactItemize}

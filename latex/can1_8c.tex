@@ -1,0 +1,1053 @@
+\doxysection{mate\+Q84.\+X/mcc\+\_\+generated\+\_\+files/can1.c File Reference}
+\hypertarget{can1_8c}{}\label{can1_8c}\index{mateQ84.X/mcc\_generated\_files/can1.c@{mateQ84.X/mcc\_generated\_files/can1.c}}
+{\ttfamily \#include $<$xc.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include "{}can1.\+h"{}}\newline
+Include dependency graph for can1.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{can1_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structCAN__FIFOREG}{CAN\+\_\+\+FIFOREG}}
+\item 
+struct \mbox{\hyperlink{structCAN1__RX__FIFO}{CAN1\+\_\+\+RX\+\_\+\+FIFO}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{can1_8c_a4c3564c4510f51985e1e1077d182f675}{RX\+\_\+\+FIFO\+\_\+\+MSG\+\_\+\+DATA}}~(64U)
+\item 
+\#define \mbox{\hyperlink{can1_8c_a435e49e5459677d8b6e4a0b203949198}{NUM\+\_\+\+OF\+\_\+\+RX\+\_\+\+FIFO}}~(1U)
+\item 
+\#define \mbox{\hyperlink{can1_8c_a30bd830bbabb8c43fc9a414998f4749b}{SID\+\_\+\+LOW\+\_\+\+WIDTH}}~(8U)
+\item 
+\#define \mbox{\hyperlink{can1_8c_ae1cf901cfcd03e2616fc8797e82e0e29}{SID\+\_\+\+HIGH\+\_\+\+MASK}}~(0x07U)
+\item 
+\#define \mbox{\hyperlink{can1_8c_a400e3501d2da50e867321b74332b584c}{EID\+\_\+\+LOW\+\_\+\+WIDTH}}~(5U)
+\item 
+\#define \mbox{\hyperlink{can1_8c_a82c5908d1bb383dd2b0cc755494289a8}{EID\+\_\+\+LOW\+\_\+\+POSN}}~(3U)
+\item 
+\#define \mbox{\hyperlink{can1_8c_abbdc58cc47784d0b16da3d21d33e6119}{EID\+\_\+\+LOW\+\_\+\+MASK}}~(0x\+F8U)
+\item 
+\#define \mbox{\hyperlink{can1_8c_ab24e98aa5f78eda9f0bd4261b4e0cbb3}{EID\+\_\+\+MID\+\_\+\+WIDTH}}~(8U)
+\item 
+\#define \mbox{\hyperlink{can1_8c_a2ad215604e62507fa290c0b4b85b5d12}{EID\+\_\+\+HIGH\+\_\+\+WIDTH}}~(5U)
+\item 
+\#define \mbox{\hyperlink{can1_8c_a5f09e97ffbff14e06ae3eb7aad6b2ccf}{EID\+\_\+\+HIGH\+\_\+\+MASK}}~(0x1\+FU)
+\item 
+\#define \mbox{\hyperlink{can1_8c_aa6ca534fd917713cabf6b1e7e166b395}{IDE\+\_\+\+POSN}}~(4U)
+\item 
+\#define \mbox{\hyperlink{can1_8c_a0321562bce969a667c3b8c23b4bd55b8}{RTR\+\_\+\+POSN}}~(5U)
+\item 
+\#define \mbox{\hyperlink{can1_8c_a3b31ed73956ac9bfe4e62cfc281816a9}{BRS\+\_\+\+POSN}}~(6U)
+\item 
+\#define \mbox{\hyperlink{can1_8c_ae746beef64e06f37afbd1e25fcfdb093}{FDF\+\_\+\+POSN}}~(7U)
+\item 
+\#define \mbox{\hyperlink{can1_8c_a83dd727c7672c7bcfc3462bf539784e7}{DLCTo\+Payload\+Bytes}}(x)
+\item 
+\#define \mbox{\hyperlink{can1_8c_a958520b5f6e94f496e17a9145cb0ecbe}{PLSIZETo\+Payload\+Bytes}}(x)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{can1_8c_ad96894be14c629e4cc0b30ebca9aea5c}{CAN\+\_\+\+RX\+\_\+\+FIFO\+\_\+\+STATUS}} \{ \mbox{\hyperlink{can1_8c_ad96894be14c629e4cc0b30ebca9aea5ca67a1de8064a6e0c5971ef7b82e504fd1}{CAN\+\_\+\+RX\+\_\+\+MSG\+\_\+\+NOT\+\_\+\+AVAILABLE}} = 0U
+, \mbox{\hyperlink{can1_8c_ad96894be14c629e4cc0b30ebca9aea5ca92f060d5d17b47ffbf967465d103831e}{CAN\+\_\+\+RX\+\_\+\+MSG\+\_\+\+AVAILABLE}} = 1U
+, \mbox{\hyperlink{can1_8c_ad96894be14c629e4cc0b30ebca9aea5ca6140c9d04050e22a897d27715f2d5877}{CAN\+\_\+\+RX\+\_\+\+MSG\+\_\+\+OVERFLOW}} = 8U
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{can1_8c_a2ab3a4b1d98cfdb2679eae9cb80bfad8}{CAN1\+\_\+\+RX\+\_\+\+FIFO\+\_\+\+Reset\+Info}} (void)
+\item 
+void \mbox{\hyperlink{can1_8c_add8850a15e40f5316f9e614fd70ec956}{CAN1\+\_\+\+Initialize}} (void)
+\item 
+\mbox{\hyperlink{can__types_8h_a89d5894e1e1c614eb64d163304613f19}{CAN\+\_\+\+OP\+\_\+\+MODE\+\_\+\+STATUS}} \mbox{\hyperlink{can1_8c_ad0c8182be05f920e8eeaefe55d47ec66}{CAN1\+\_\+\+Operation\+Mode\+Set}} (const \mbox{\hyperlink{can__types_8h_adf6f08edd09adf034118a73a7acea9f9}{CAN\+\_\+\+OP\+\_\+\+MODES}} request\+Mode)
+\item 
+\mbox{\hyperlink{can__types_8h_adf6f08edd09adf034118a73a7acea9f9}{CAN\+\_\+\+OP\+\_\+\+MODES}} \mbox{\hyperlink{can1_8c_a13c7bd1d1ef21aeb5d77c4b38b4de387}{CAN1\+\_\+\+Operation\+Mode\+Get}} (void)
+\item 
+bool \mbox{\hyperlink{can1_8c_a80dd5a2837348066495899cf332b88e7}{CAN1\+\_\+\+Receive}} (\mbox{\hyperlink{structCAN__MSG__OBJ}{CAN\+\_\+\+MSG\+\_\+\+OBJ}} \texorpdfstring{$\ast$}{*}rx\+Can\+Msg)
+\item 
+bool \mbox{\hyperlink{can1_8c_ac201145a6280d9b203fab7b4a86f0b9c}{CAN1\+\_\+\+Receive\+From}} (const \mbox{\hyperlink{can1_8h_ae694b6344b5151b19c3430d420c90178}{CAN1\+\_\+\+RX\+\_\+\+FIFO\+\_\+\+CHANNELS}} channel, \mbox{\hyperlink{structCAN__MSG__OBJ}{CAN\+\_\+\+MSG\+\_\+\+OBJ}} \texorpdfstring{$\ast$}{*}rx\+Can\+Msg)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{can1_8c_ac27e97593d8d9bd7787d116910adc40d}{CAN1\+\_\+\+Received\+Message\+Count\+Get}} (void)
+\item 
+\mbox{\hyperlink{can__types_8h_ac37a68dffec74794a3a4a35ed97dc78f}{CAN\+\_\+\+TX\+\_\+\+MSG\+\_\+\+REQUEST\+\_\+\+STATUS}} \mbox{\hyperlink{can1_8c_ae913df029bccca892ab57f08d458a718}{CAN1\+\_\+\+Transmit}} (const \mbox{\hyperlink{can1_8h_ab388b6c55924e1586db7a9d6f5913754}{CAN1\+\_\+\+TX\+\_\+\+FIFO\+\_\+\+CHANNELS}} fifo\+Channel, \mbox{\hyperlink{structCAN__MSG__OBJ}{CAN\+\_\+\+MSG\+\_\+\+OBJ}} \texorpdfstring{$\ast$}{*}tx\+Can\+Msg)
+\item 
+\mbox{\hyperlink{can__types_8h_a5b83a493815db579d910f8280984c50b}{CAN\+\_\+\+TX\+\_\+\+FIFO\+\_\+\+STATUS}} \mbox{\hyperlink{can1_8c_a24602980ff517c4a7b86205254fee54a}{CAN1\+\_\+\+Transmit\+FIFOStatus\+Get}} (const \mbox{\hyperlink{can1_8h_ab388b6c55924e1586db7a9d6f5913754}{CAN1\+\_\+\+TX\+\_\+\+FIFO\+\_\+\+CHANNELS}} fifo\+Channel)
+\item 
+bool \mbox{\hyperlink{can1_8c_ac9e9e8b218ed1a35652664480d37503c}{CAN1\+\_\+\+Is\+Bus\+Off}} (void)
+\item 
+bool \mbox{\hyperlink{can1_8c_a9d993d04b570d3daac708a864b751950}{CAN1\+\_\+\+Is\+Rx\+Error\+Passive}} (void)
+\item 
+bool \mbox{\hyperlink{can1_8c_a32d1f2ea47cd724c4c278063ac5b68f3}{CAN1\+\_\+\+Is\+Rx\+Error\+Warning}} (void)
+\item 
+bool \mbox{\hyperlink{can1_8c_a6d9c583ae763f27f4010371932f3fa01}{CAN1\+\_\+\+Is\+Rx\+Error\+Active}} (void)
+\item 
+bool \mbox{\hyperlink{can1_8c_aae9b18d3820bb5869a11fc5c86b16814}{CAN1\+\_\+\+Is\+Tx\+Error\+Passive}} (void)
+\item 
+bool \mbox{\hyperlink{can1_8c_aa4f79791cf95061d42e14d6ee7b8fffa}{CAN1\+\_\+\+Is\+Tx\+Error\+Warning}} (void)
+\item 
+bool \mbox{\hyperlink{can1_8c_a316196579419bca66dce31449a5dac11}{CAN1\+\_\+\+Is\+Tx\+Error\+Active}} (void)
+\item 
+void \mbox{\hyperlink{can1_8c_a41d9a27d9d5e04efcb58c31006f43f98}{CAN1\+\_\+\+Sleep}} (void)
+\item 
+void \mbox{\hyperlink{can1_8c_a61fa4bf094f295746b4632e49d24514d}{CAN1\+\_\+\+Set\+Invalid\+Message\+Interrupt\+Handler}} (void(\texorpdfstring{$\ast$}{*}handler)(void))
+\item 
+void \mbox{\hyperlink{can1_8c_ad9b7a7c50d7ac3ef28590fcd916bb42d}{CAN1\+\_\+\+Set\+Bus\+Wake\+Up\+Activity\+Interrupt\+Handler}} (void(\texorpdfstring{$\ast$}{*}handler)(void))
+\item 
+void \mbox{\hyperlink{can1_8c_ac0e353f71ae1d417bb26ee15497d553e}{CAN1\+\_\+\+Set\+Bus\+Error\+Interrupt\+Handler}} (void(\texorpdfstring{$\ast$}{*}handler)(void))
+\item 
+void \mbox{\hyperlink{can1_8c_ac7822a59dd4bf825557bb609da828cc8}{CAN1\+\_\+\+Set\+Mode\+Change\+Interrupt\+Handler}} (void(\texorpdfstring{$\ast$}{*}handler)(void))
+\item 
+void \mbox{\hyperlink{can1_8c_a25485f398d83106a6d15548731934d52}{CAN1\+\_\+\+Set\+System\+Error\+Interrupt\+Handler}} (void(\texorpdfstring{$\ast$}{*}handler)(void))
+\item 
+void \mbox{\hyperlink{can1_8c_a093ae655e1306ceb3a9b0c43a5de7dcc}{CAN1\+\_\+\+Set\+Tx\+Attempt\+Interrupt\+Handler}} (void(\texorpdfstring{$\ast$}{*}handler)(void))
+\item 
+void \mbox{\hyperlink{can1_8c_aa17b7ffab8784720b377c7fb09ef8e3e}{CAN1\+\_\+\+Set\+Rx\+Buffer\+Over\+Flow\+Interrupt\+Handler}} (void(\texorpdfstring{$\ast$}{*}handler)(void))
+\item 
+void \mbox{\hyperlink{can1_8c_ab535798a25dee7ce24878f5a84a0a66c}{\+\_\+\+\_\+interrupt}} (irq(CAN), base(8))
+\item 
+void \mbox{\hyperlink{can1_8c_ae7a6b83df49337bb35317d11bda38692}{CAN1\+\_\+\+Set\+FIFO1\+Not\+Empty\+Handler}} (void(\texorpdfstring{$\ast$}{*}handler)(void))
+\item 
+void \mbox{\hyperlink{can1_8c_a75daa010297c42080400a5f4e7ad8bd8}{CAN1\+\_\+\+Set\+TXQNot\+Full\+Handler}} (void(\texorpdfstring{$\ast$}{*}handler)(void))
+\item 
+void \mbox{\hyperlink{can1_8c_a7e0f4d9c61c1893d32c5806849fa5c19}{\+\_\+\+\_\+interrupt}} (irq(CANRX), base(8))
+\item 
+void \mbox{\hyperlink{can1_8c_aa3121b190ed0f432354cfc224fb15c14}{\+\_\+\+\_\+interrupt}} (irq(CANTX), base(8))
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{can1_8c_a3b31ed73956ac9bfe4e62cfc281816a9}\index{can1.c@{can1.c}!BRS\_POSN@{BRS\_POSN}}
+\index{BRS\_POSN@{BRS\_POSN}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{BRS\_POSN}{BRS\_POSN}}
+{\footnotesize\ttfamily \label{can1_8c_a3b31ed73956ac9bfe4e62cfc281816a9} 
+\#define BRS\+\_\+\+POSN~(6U)}
+
+\Hypertarget{can1_8c_a83dd727c7672c7bcfc3462bf539784e7}\index{can1.c@{can1.c}!DLCToPayloadBytes@{DLCToPayloadBytes}}
+\index{DLCToPayloadBytes@{DLCToPayloadBytes}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{DLCToPayloadBytes}{DLCToPayloadBytes}}
+{\footnotesize\ttfamily \label{can1_8c_a83dd727c7672c7bcfc3462bf539784e7} 
+\#define DLCTo\+Payload\+Bytes(\begin{DoxyParamCaption}\item[{}]{x}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(DLC\_BYTES[(x)])}
+
+\end{DoxyCode}
+\Hypertarget{can1_8c_a5f09e97ffbff14e06ae3eb7aad6b2ccf}\index{can1.c@{can1.c}!EID\_HIGH\_MASK@{EID\_HIGH\_MASK}}
+\index{EID\_HIGH\_MASK@{EID\_HIGH\_MASK}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{EID\_HIGH\_MASK}{EID\_HIGH\_MASK}}
+{\footnotesize\ttfamily \label{can1_8c_a5f09e97ffbff14e06ae3eb7aad6b2ccf} 
+\#define EID\+\_\+\+HIGH\+\_\+\+MASK~(0x1\+FU)}
+
+\Hypertarget{can1_8c_a2ad215604e62507fa290c0b4b85b5d12}\index{can1.c@{can1.c}!EID\_HIGH\_WIDTH@{EID\_HIGH\_WIDTH}}
+\index{EID\_HIGH\_WIDTH@{EID\_HIGH\_WIDTH}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{EID\_HIGH\_WIDTH}{EID\_HIGH\_WIDTH}}
+{\footnotesize\ttfamily \label{can1_8c_a2ad215604e62507fa290c0b4b85b5d12} 
+\#define EID\+\_\+\+HIGH\+\_\+\+WIDTH~(5U)}
+
+\Hypertarget{can1_8c_abbdc58cc47784d0b16da3d21d33e6119}\index{can1.c@{can1.c}!EID\_LOW\_MASK@{EID\_LOW\_MASK}}
+\index{EID\_LOW\_MASK@{EID\_LOW\_MASK}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{EID\_LOW\_MASK}{EID\_LOW\_MASK}}
+{\footnotesize\ttfamily \label{can1_8c_abbdc58cc47784d0b16da3d21d33e6119} 
+\#define EID\+\_\+\+LOW\+\_\+\+MASK~(0x\+F8U)}
+
+\Hypertarget{can1_8c_a82c5908d1bb383dd2b0cc755494289a8}\index{can1.c@{can1.c}!EID\_LOW\_POSN@{EID\_LOW\_POSN}}
+\index{EID\_LOW\_POSN@{EID\_LOW\_POSN}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{EID\_LOW\_POSN}{EID\_LOW\_POSN}}
+{\footnotesize\ttfamily \label{can1_8c_a82c5908d1bb383dd2b0cc755494289a8} 
+\#define EID\+\_\+\+LOW\+\_\+\+POSN~(3U)}
+
+\Hypertarget{can1_8c_a400e3501d2da50e867321b74332b584c}\index{can1.c@{can1.c}!EID\_LOW\_WIDTH@{EID\_LOW\_WIDTH}}
+\index{EID\_LOW\_WIDTH@{EID\_LOW\_WIDTH}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{EID\_LOW\_WIDTH}{EID\_LOW\_WIDTH}}
+{\footnotesize\ttfamily \label{can1_8c_a400e3501d2da50e867321b74332b584c} 
+\#define EID\+\_\+\+LOW\+\_\+\+WIDTH~(5U)}
+
+\Hypertarget{can1_8c_ab24e98aa5f78eda9f0bd4261b4e0cbb3}\index{can1.c@{can1.c}!EID\_MID\_WIDTH@{EID\_MID\_WIDTH}}
+\index{EID\_MID\_WIDTH@{EID\_MID\_WIDTH}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{EID\_MID\_WIDTH}{EID\_MID\_WIDTH}}
+{\footnotesize\ttfamily \label{can1_8c_ab24e98aa5f78eda9f0bd4261b4e0cbb3} 
+\#define EID\+\_\+\+MID\+\_\+\+WIDTH~(8U)}
+
+\Hypertarget{can1_8c_ae746beef64e06f37afbd1e25fcfdb093}\index{can1.c@{can1.c}!FDF\_POSN@{FDF\_POSN}}
+\index{FDF\_POSN@{FDF\_POSN}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{FDF\_POSN}{FDF\_POSN}}
+{\footnotesize\ttfamily \label{can1_8c_ae746beef64e06f37afbd1e25fcfdb093} 
+\#define FDF\+\_\+\+POSN~(7U)}
+
+\Hypertarget{can1_8c_aa6ca534fd917713cabf6b1e7e166b395}\index{can1.c@{can1.c}!IDE\_POSN@{IDE\_POSN}}
+\index{IDE\_POSN@{IDE\_POSN}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{IDE\_POSN}{IDE\_POSN}}
+{\footnotesize\ttfamily \label{can1_8c_aa6ca534fd917713cabf6b1e7e166b395} 
+\#define IDE\+\_\+\+POSN~(4U)}
+
+\Hypertarget{can1_8c_a435e49e5459677d8b6e4a0b203949198}\index{can1.c@{can1.c}!NUM\_OF\_RX\_FIFO@{NUM\_OF\_RX\_FIFO}}
+\index{NUM\_OF\_RX\_FIFO@{NUM\_OF\_RX\_FIFO}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{NUM\_OF\_RX\_FIFO}{NUM\_OF\_RX\_FIFO}}
+{\footnotesize\ttfamily \label{can1_8c_a435e49e5459677d8b6e4a0b203949198} 
+\#define NUM\+\_\+\+OF\+\_\+\+RX\+\_\+\+FIFO~(1U)}
+
+\Hypertarget{can1_8c_a958520b5f6e94f496e17a9145cb0ecbe}\index{can1.c@{can1.c}!PLSIZEToPayloadBytes@{PLSIZEToPayloadBytes}}
+\index{PLSIZEToPayloadBytes@{PLSIZEToPayloadBytes}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{PLSIZEToPayloadBytes}{PLSIZEToPayloadBytes}}
+{\footnotesize\ttfamily \label{can1_8c_a958520b5f6e94f496e17a9145cb0ecbe} 
+\#define PLSIZETo\+Payload\+Bytes(\begin{DoxyParamCaption}\item[{}]{x}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{can1_8c_a83dd727c7672c7bcfc3462bf539784e7}{DLCToPayloadBytes}}(8u\ +\ (x)))}
+
+\end{DoxyCode}
+\Hypertarget{can1_8c_a0321562bce969a667c3b8c23b4bd55b8}\index{can1.c@{can1.c}!RTR\_POSN@{RTR\_POSN}}
+\index{RTR\_POSN@{RTR\_POSN}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{RTR\_POSN}{RTR\_POSN}}
+{\footnotesize\ttfamily \label{can1_8c_a0321562bce969a667c3b8c23b4bd55b8} 
+\#define RTR\+\_\+\+POSN~(5U)}
+
+\Hypertarget{can1_8c_a4c3564c4510f51985e1e1077d182f675}\index{can1.c@{can1.c}!RX\_FIFO\_MSG\_DATA@{RX\_FIFO\_MSG\_DATA}}
+\index{RX\_FIFO\_MSG\_DATA@{RX\_FIFO\_MSG\_DATA}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{RX\_FIFO\_MSG\_DATA}{RX\_FIFO\_MSG\_DATA}}
+{\footnotesize\ttfamily \label{can1_8c_a4c3564c4510f51985e1e1077d182f675} 
+\#define RX\+\_\+\+FIFO\+\_\+\+MSG\+\_\+\+DATA~(64U)}
+
+CAN1 Generated Driver File
+
+@\+Company Microchip Technology Inc.
+
+@\+File Name \doxylink{can1_8c}{can1.\+c}
+
+@\+Summary This is the generated driver implementation file for the CAN1 driver using PIC10 / PIC12 / PIC16 / PIC18 MCUs
+
+@\+Description This header file provides implementations for driver APIs for CAN1. Generation Information \+: Product Revision \+: PIC10 / PIC12 / PIC16 / PIC18 MCUs -\/ 1.\+81.\+8 Device \+: PIC18\+F47\+Q84 Driver Version \+: 1.\+1.\+1 The generated drivers are tested against the following\+: Compiler \+: XC8 2.\+36 and above or later MPLAB \+: MPLAB X 6.\+00 \Hypertarget{can1_8c_ae1cf901cfcd03e2616fc8797e82e0e29}\index{can1.c@{can1.c}!SID\_HIGH\_MASK@{SID\_HIGH\_MASK}}
+\index{SID\_HIGH\_MASK@{SID\_HIGH\_MASK}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{SID\_HIGH\_MASK}{SID\_HIGH\_MASK}}
+{\footnotesize\ttfamily \label{can1_8c_ae1cf901cfcd03e2616fc8797e82e0e29} 
+\#define SID\+\_\+\+HIGH\+\_\+\+MASK~(0x07U)}
+
+\Hypertarget{can1_8c_a30bd830bbabb8c43fc9a414998f4749b}\index{can1.c@{can1.c}!SID\_LOW\_WIDTH@{SID\_LOW\_WIDTH}}
+\index{SID\_LOW\_WIDTH@{SID\_LOW\_WIDTH}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{SID\_LOW\_WIDTH}{SID\_LOW\_WIDTH}}
+{\footnotesize\ttfamily \label{can1_8c_a30bd830bbabb8c43fc9a414998f4749b} 
+\#define SID\+\_\+\+LOW\+\_\+\+WIDTH~(8U)}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{can1_8c_ad96894be14c629e4cc0b30ebca9aea5c}\index{can1.c@{can1.c}!CAN\_RX\_FIFO\_STATUS@{CAN\_RX\_FIFO\_STATUS}}
+\index{CAN\_RX\_FIFO\_STATUS@{CAN\_RX\_FIFO\_STATUS}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{CAN\_RX\_FIFO\_STATUS}{CAN\_RX\_FIFO\_STATUS}}
+{\footnotesize\ttfamily \label{can1_8c_ad96894be14c629e4cc0b30ebca9aea5c} 
+enum \mbox{\hyperlink{can1_8c_ad96894be14c629e4cc0b30ebca9aea5c}{CAN\+\_\+\+RX\+\_\+\+FIFO\+\_\+\+STATUS}}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CAN\_RX\_MSG\_NOT\_AVAILABLE@{CAN\_RX\_MSG\_NOT\_AVAILABLE}!can1.c@{can1.c}}\index{can1.c@{can1.c}!CAN\_RX\_MSG\_NOT\_AVAILABLE@{CAN\_RX\_MSG\_NOT\_AVAILABLE}}}\Hypertarget{can1_8c_ad96894be14c629e4cc0b30ebca9aea5ca67a1de8064a6e0c5971ef7b82e504fd1}\label{can1_8c_ad96894be14c629e4cc0b30ebca9aea5ca67a1de8064a6e0c5971ef7b82e504fd1} 
+CAN\+\_\+\+RX\+\_\+\+MSG\+\_\+\+NOT\+\_\+\+AVAILABLE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CAN\_RX\_MSG\_AVAILABLE@{CAN\_RX\_MSG\_AVAILABLE}!can1.c@{can1.c}}\index{can1.c@{can1.c}!CAN\_RX\_MSG\_AVAILABLE@{CAN\_RX\_MSG\_AVAILABLE}}}\Hypertarget{can1_8c_ad96894be14c629e4cc0b30ebca9aea5ca92f060d5d17b47ffbf967465d103831e}\label{can1_8c_ad96894be14c629e4cc0b30ebca9aea5ca92f060d5d17b47ffbf967465d103831e} 
+CAN\+\_\+\+RX\+\_\+\+MSG\+\_\+\+AVAILABLE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CAN\_RX\_MSG\_OVERFLOW@{CAN\_RX\_MSG\_OVERFLOW}!can1.c@{can1.c}}\index{can1.c@{can1.c}!CAN\_RX\_MSG\_OVERFLOW@{CAN\_RX\_MSG\_OVERFLOW}}}\Hypertarget{can1_8c_ad96894be14c629e4cc0b30ebca9aea5ca6140c9d04050e22a897d27715f2d5877}\label{can1_8c_ad96894be14c629e4cc0b30ebca9aea5ca6140c9d04050e22a897d27715f2d5877} 
+CAN\+\_\+\+RX\+\_\+\+MSG\+\_\+\+OVERFLOW&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{can1_8c_ab535798a25dee7ce24878f5a84a0a66c}\index{can1.c@{can1.c}!\_\_interrupt@{\_\_interrupt}}
+\index{\_\_interrupt@{\_\_interrupt}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{\_\_interrupt()}{\_\_interrupt()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{can1_8c_ab535798a25dee7ce24878f5a84a0a66c} 
+void \+\_\+\+\_\+interrupt (\begin{DoxyParamCaption}\item[{irq(CAN)}]{}{, }\item[{base(8)}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{can1_8c_a7e0f4d9c61c1893d32c5806849fa5c19}\index{can1.c@{can1.c}!\_\_interrupt@{\_\_interrupt}}
+\index{\_\_interrupt@{\_\_interrupt}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{\_\_interrupt()}{\_\_interrupt()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{can1_8c_a7e0f4d9c61c1893d32c5806849fa5c19} 
+void \+\_\+\+\_\+interrupt (\begin{DoxyParamCaption}\item[{irq(CANRX)}]{}{, }\item[{base(8)}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{can1_8c_aa3121b190ed0f432354cfc224fb15c14}\index{can1.c@{can1.c}!\_\_interrupt@{\_\_interrupt}}
+\index{\_\_interrupt@{\_\_interrupt}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{\_\_interrupt()}{\_\_interrupt()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{can1_8c_aa3121b190ed0f432354cfc224fb15c14} 
+void \+\_\+\+\_\+interrupt (\begin{DoxyParamCaption}\item[{irq(CANTX)}]{}{, }\item[{base(8)}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{can1_8c_add8850a15e40f5316f9e614fd70ec956}\index{can1.c@{can1.c}!CAN1\_Initialize@{CAN1\_Initialize}}
+\index{CAN1\_Initialize@{CAN1\_Initialize}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{CAN1\_Initialize()}{CAN1\_Initialize()}}
+{\footnotesize\ttfamily \label{can1_8c_add8850a15e40f5316f9e614fd70ec956} 
+void CAN1\+\_\+\+Initialize (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Section\+: CAN Module APIs @\+Summary Initialization routine that takes inputs from the CAN GUI.
+
+@\+Description This routine initializes the CAN module. This routine must be called before any other CAN routine is called. This routine should only be called once during system initialization.
+
+@\+Preconditions None
+
+@\+Param None
+
+@\+Returns None
+
+@\+Example {\ttfamily  void \doxylink{main_8c_a6288eba0f8e8ad3ab1544ad731eb7667}{main(void)} \{ \doxylink{mcc_8c_a5e8391114a0cf91ac20002be25e3d352}{SYSTEM\+\_\+\+Initialize()};}
+
+{\ttfamily  while (1) \{ User Application code \} ~\newline
+ \} } Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{can1_8c_add8850a15e40f5316f9e614fd70ec956_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{can1_8c_add8850a15e40f5316f9e614fd70ec956_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{can1_8c_ac9e9e8b218ed1a35652664480d37503c}\index{can1.c@{can1.c}!CAN1\_IsBusOff@{CAN1\_IsBusOff}}
+\index{CAN1\_IsBusOff@{CAN1\_IsBusOff}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{CAN1\_IsBusOff()}{CAN1\_IsBusOff()}}
+{\footnotesize\ttfamily \label{can1_8c_ac9e9e8b218ed1a35652664480d37503c} 
+bool CAN1\+\_\+\+Is\+Bus\+Off (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+@\+Summary Checks whether the transmitter is in bus off state.
+
+@\+Description This routine checks whether the transmitter is in bus off state.
+
+@\+Preconditions CAN1\+\_\+\+Initialize function should be called before calling this function.
+
+@\+Param None
+
+@\+Returns true -\/ Transmitter in Bus Off state false -\/ Transmitter not in Bus Off state
+
+@\+Example {\ttfamily  \#define CAN\+\_\+\+TX\+\_\+\+BUFF "{}\+TEMPERATURE SENSOR ON"{}}
+
+{\ttfamily  void \doxylink{main_8c_a6288eba0f8e8ad3ab1544ad731eb7667}{main(void)} \{ \doxylink{structCAN__MSG__OBJ}{CAN\+\_\+\+MSG\+\_\+\+OBJ} msg; uint8\+\_\+t data\mbox{[}32\mbox{]} = CAN\+\_\+\+TX\+\_\+\+BUFF;}
+
+{\ttfamily  \doxylink{mcc_8c_a5e8391114a0cf91ac20002be25e3d352}{SYSTEM\+\_\+\+Initialize()};}
+
+{\ttfamily  if(CAN\+\_\+\+CONFIGURATION\+\_\+\+MODE == \doxylink{can1_8h_a13c7bd1d1ef21aeb5d77c4b38b4de387}{CAN1\+\_\+\+Operation\+Mode\+Get()}) \{ if(CAN\+\_\+\+OP\+\_\+\+MODE\+\_\+\+REQUEST\+\_\+\+SUCCESS == CAN1\+\_\+\+Operation\+Mode\+Set(\+CAN\+\_\+\+NORMAL\+\_\+\+FD\+\_\+\+MODE)) \{ msg.\+msg\+Id = 0x1\+FFFF; msg.\+field.\+format\+Type = CAN\+\_\+\+FD\+\_\+\+FORMAT; msg.\+field.\+brs = CAN\+\_\+\+NON\+\_\+\+BRS\+\_\+\+MODE; msg.\+field.\+frame\+Type = CAN\+\_\+\+FRAME\+\_\+\+DATA; msg.\+field.\+id\+Type = CAN\+\_\+\+FRAME\+\_\+\+EXT; msg.\+field.\+dlc = DLC\+\_\+32; msg.\+data = data;}
+
+{\ttfamily  if(\doxylink{can1_8h_ac9e9e8b218ed1a35652664480d37503c}{CAN1\+\_\+\+Is\+Bus\+Off()} == false) \{ if(CAN\+\_\+\+TX\+\_\+\+FIFO\+\_\+\+AVAILABLE == (CAN1\+\_\+\+Transmit\+FIFOStatus\+Get(\+CAN1\+\_\+\+TX\+\_\+\+FIFO1) \& CAN\+\_\+\+TX\+\_\+\+FIFO\+\_\+\+AVAILABLE)) \{ CAN1\+\_\+\+Transmit(\+CAN1\+\_\+\+TX\+\_\+\+FIFO1, \&msg); \} \} \} \}}
+
+{\ttfamily  while(1); \} } \Hypertarget{can1_8c_a6d9c583ae763f27f4010371932f3fa01}\index{can1.c@{can1.c}!CAN1\_IsRxErrorActive@{CAN1\_IsRxErrorActive}}
+\index{CAN1\_IsRxErrorActive@{CAN1\_IsRxErrorActive}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{CAN1\_IsRxErrorActive()}{CAN1\_IsRxErrorActive()}}
+{\footnotesize\ttfamily \label{can1_8c_a6d9c583ae763f27f4010371932f3fa01} 
+bool CAN1\+\_\+\+Is\+Rx\+Error\+Active (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+@\+Summary Checks whether the Receiver is in the error active state.
+
+@\+Description This routine checks whether the receive is in the error active state. If Receiver error counter is above 0 to below 128, then receiver error active state is set.
+
+@\+Preconditions CAN1\+\_\+\+Initialize function should be called before calling this function.
+
+@\+Param None
+
+@\+Returns true -\/ Receiver in Error active state false -\/ Receiver not in Error active state
+
+@\+Example {\ttfamily  void \doxylink{main_8c_a6288eba0f8e8ad3ab1544ad731eb7667}{main(void)} \{ \doxylink{structCAN__MSG__OBJ}{CAN\+\_\+\+MSG\+\_\+\+OBJ} msg;}
+
+{\ttfamily  \doxylink{mcc_8c_a5e8391114a0cf91ac20002be25e3d352}{SYSTEM\+\_\+\+Initialize()};}
+
+{\ttfamily  if(CAN\+\_\+\+CONFIGURATION\+\_\+\+MODE == \doxylink{can1_8h_a13c7bd1d1ef21aeb5d77c4b38b4de387}{CAN1\+\_\+\+Operation\+Mode\+Get()}) \{ if(CAN\+\_\+\+OP\+\_\+\+MODE\+\_\+\+REQUEST\+\_\+\+SUCCESS == CAN1\+\_\+\+Operation\+Mode\+Set(\+CAN\+\_\+\+NORMAL\+\_\+\+FD\+\_\+\+MODE)) \{ while(1) \{ if(\doxylink{can1_8h_a6d9c583ae763f27f4010371932f3fa01}{CAN1\+\_\+\+Is\+Rx\+Error\+Active()} == false) \{ if(\+CAN1\+\_\+\+Received\+Message\+Count\+Get() $>$ 0) \{ CAN1\+\_\+\+Receive(\&msg); \} \} \} \} \} \} } Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{can1_8c_a6d9c583ae763f27f4010371932f3fa01_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{can1_8c_a6d9c583ae763f27f4010371932f3fa01_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{can1_8c_a9d993d04b570d3daac708a864b751950}\index{can1.c@{can1.c}!CAN1\_IsRxErrorPassive@{CAN1\_IsRxErrorPassive}}
+\index{CAN1\_IsRxErrorPassive@{CAN1\_IsRxErrorPassive}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{CAN1\_IsRxErrorPassive()}{CAN1\_IsRxErrorPassive()}}
+{\footnotesize\ttfamily \label{can1_8c_a9d993d04b570d3daac708a864b751950} 
+bool CAN1\+\_\+\+Is\+Rx\+Error\+Passive (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+@\+Summary Checks whether the Receiver is in the error passive state.
+
+@\+Description This routine checks whether the receive is in the error passive state. If Receiver error counter is above 127, then receiver error passive state is set.
+
+@\+Preconditions CAN1\+\_\+\+Initialize function should be called before calling this function.
+
+@\+Param None
+
+@\+Returns true -\/ Receiver in Error passive state false -\/ Receiver not in Error passive state
+
+@\+Example {\ttfamily  void \doxylink{main_8c_a6288eba0f8e8ad3ab1544ad731eb7667}{main(void)} \{ \doxylink{structCAN__MSG__OBJ}{CAN\+\_\+\+MSG\+\_\+\+OBJ} msg;}
+
+{\ttfamily  \doxylink{mcc_8c_a5e8391114a0cf91ac20002be25e3d352}{SYSTEM\+\_\+\+Initialize()};}
+
+{\ttfamily  if(CAN\+\_\+\+CONFIGURATION\+\_\+\+MODE == \doxylink{can1_8h_a13c7bd1d1ef21aeb5d77c4b38b4de387}{CAN1\+\_\+\+Operation\+Mode\+Get()}) \{ if(CAN\+\_\+\+OP\+\_\+\+MODE\+\_\+\+REQUEST\+\_\+\+SUCCESS == CAN1\+\_\+\+Operation\+Mode\+Set(\+CAN\+\_\+\+NORMAL\+\_\+\+FD\+\_\+\+MODE)) \{ while(1) \{ if(\doxylink{can1_8h_a9d993d04b570d3daac708a864b751950}{CAN1\+\_\+\+Is\+Rx\+Error\+Passive()} == false) \{ if(\+CAN1\+\_\+\+Received\+Message\+Count\+Get() $>$ 0) \{ CAN1\+\_\+\+Receive(\&msg); \} \} \} \} \} \} } Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{can1_8c_a9d993d04b570d3daac708a864b751950_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{can1_8c_a32d1f2ea47cd724c4c278063ac5b68f3}\index{can1.c@{can1.c}!CAN1\_IsRxErrorWarning@{CAN1\_IsRxErrorWarning}}
+\index{CAN1\_IsRxErrorWarning@{CAN1\_IsRxErrorWarning}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{CAN1\_IsRxErrorWarning()}{CAN1\_IsRxErrorWarning()}}
+{\footnotesize\ttfamily \label{can1_8c_a32d1f2ea47cd724c4c278063ac5b68f3} 
+bool CAN1\+\_\+\+Is\+Rx\+Error\+Warning (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+@\+Summary Checks whether the Receiver is in the error warning state.
+
+@\+Description This routine checks whether the receive is in the error warning state. If Receiver error counter is above 95 to below 128, then receiver error warning state is set.
+
+@\+Preconditions CAN1\+\_\+\+Initialize function should be called before calling this function.
+
+@\+Param None
+
+@\+Returns true -\/ Receiver in Error warning state false -\/ Receiver not in Error warning state
+
+@\+Example {\ttfamily  void \doxylink{main_8c_a6288eba0f8e8ad3ab1544ad731eb7667}{main(void)} \{ \doxylink{structCAN__MSG__OBJ}{CAN\+\_\+\+MSG\+\_\+\+OBJ} msg;}
+
+{\ttfamily  \doxylink{mcc_8c_a5e8391114a0cf91ac20002be25e3d352}{SYSTEM\+\_\+\+Initialize()};}
+
+{\ttfamily  if(CAN\+\_\+\+CONFIGURATION\+\_\+\+MODE == \doxylink{can1_8h_a13c7bd1d1ef21aeb5d77c4b38b4de387}{CAN1\+\_\+\+Operation\+Mode\+Get()}) \{ if(CAN\+\_\+\+OP\+\_\+\+MODE\+\_\+\+REQUEST\+\_\+\+SUCCESS == CAN1\+\_\+\+Operation\+Mode\+Set(\+CAN\+\_\+\+NORMAL\+\_\+\+FD\+\_\+\+MODE)) \{ while(1) \{ if(\doxylink{can1_8h_a32d1f2ea47cd724c4c278063ac5b68f3}{CAN1\+\_\+\+Is\+Rx\+Error\+Warning()} == false) \{ if(\+CAN1\+\_\+\+Received\+Message\+Count\+Get() $>$ 0) \{ CAN1\+\_\+\+Receive(\&msg); \} \} \} \} \} \} } \Hypertarget{can1_8c_a316196579419bca66dce31449a5dac11}\index{can1.c@{can1.c}!CAN1\_IsTxErrorActive@{CAN1\_IsTxErrorActive}}
+\index{CAN1\_IsTxErrorActive@{CAN1\_IsTxErrorActive}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{CAN1\_IsTxErrorActive()}{CAN1\_IsTxErrorActive()}}
+{\footnotesize\ttfamily \label{can1_8c_a316196579419bca66dce31449a5dac11} 
+bool CAN1\+\_\+\+Is\+Tx\+Error\+Active (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+@\+Summary Checks whether the transmitter is in the error active state.
+
+@\+Description This routine checks whether the transmitter is in the error active state. If Transmitter error counter is above 0 to below 128, then transmitter error active state is set.
+
+@\+Preconditions CAN1\+\_\+\+Initialize function should be called before calling this function.
+
+@\+Param None
+
+@\+Returns true -\/ Transmitter in Error active state false -\/ Transmitter not in Error active state
+
+@\+Example {\ttfamily  \#define CAN\+\_\+\+TX\+\_\+\+BUFF "{}\+TEMPERATURE SENSOR ON"{}}
+
+{\ttfamily  void \doxylink{main_8c_a6288eba0f8e8ad3ab1544ad731eb7667}{main(void)} \{ \doxylink{structCAN__MSG__OBJ}{CAN\+\_\+\+MSG\+\_\+\+OBJ} msg; uint8\+\_\+t data\mbox{[}32\mbox{]} = CAN\+\_\+\+TX\+\_\+\+BUFF;}
+
+{\ttfamily  \doxylink{mcc_8c_a5e8391114a0cf91ac20002be25e3d352}{SYSTEM\+\_\+\+Initialize()};}
+
+{\ttfamily  if(CAN\+\_\+\+CONFIGURATION\+\_\+\+MODE == \doxylink{can1_8h_a13c7bd1d1ef21aeb5d77c4b38b4de387}{CAN1\+\_\+\+Operation\+Mode\+Get()}) \{ if(CAN\+\_\+\+OP\+\_\+\+MODE\+\_\+\+REQUEST\+\_\+\+SUCCESS == CAN1\+\_\+\+Operation\+Mode\+Set(\+CAN\+\_\+\+NORMAL\+\_\+\+FD\+\_\+\+MODE)) \{ msg.\+msg\+Id = 0x1\+FFFF; msg.\+field.\+format\+Type = CAN\+\_\+\+FD\+\_\+\+FORMAT; msg.\+field.\+brs = CAN\+\_\+\+NON\+\_\+\+BRS\+\_\+\+MODE; msg.\+field.\+frame\+Type = CAN\+\_\+\+FRAME\+\_\+\+DATA; msg.\+field.\+id\+Type = CAN\+\_\+\+FRAME\+\_\+\+EXT; msg.\+field.\+dlc = DLC\+\_\+32; msg.\+data = data;}
+
+{\ttfamily  if(\doxylink{can1_8h_a316196579419bca66dce31449a5dac11}{CAN1\+\_\+\+Is\+Tx\+Error\+Active()} == false) \{ if(CAN\+\_\+\+TX\+\_\+\+FIFO\+\_\+\+AVAILABLE == (CAN1\+\_\+\+Transmit\+FIFOStatus\+Get(\+CAN1\+\_\+\+TX\+\_\+\+FIFO1) \& CAN\+\_\+\+TX\+\_\+\+FIFO\+\_\+\+AVAILABLE)) \{ CAN1\+\_\+\+Transmit(\+CAN1\+\_\+\+TX\+\_\+\+FIFO1, \&msg); \} \} \} \}}
+
+{\ttfamily  while(1); \} } Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{can1_8c_a316196579419bca66dce31449a5dac11_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{can1_8c_aae9b18d3820bb5869a11fc5c86b16814}\index{can1.c@{can1.c}!CAN1\_IsTxErrorPassive@{CAN1\_IsTxErrorPassive}}
+\index{CAN1\_IsTxErrorPassive@{CAN1\_IsTxErrorPassive}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{CAN1\_IsTxErrorPassive()}{CAN1\_IsTxErrorPassive()}}
+{\footnotesize\ttfamily \label{can1_8c_aae9b18d3820bb5869a11fc5c86b16814} 
+bool CAN1\+\_\+\+Is\+Tx\+Error\+Passive (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+@\+Summary Checks whether the transmitter is in the error passive state.
+
+@\+Description This routine checks whether the transmitter is in the error passive state. If Transmitter error counter is above 127, then the transmitter error passive state is set.
+
+@\+Preconditions CAN1\+\_\+\+Initialize function should be called before calling this function.
+
+@\+Param None
+
+@\+Returns true -\/ Transmitter in Error Passive state false -\/ Transmitter not in Error Passive state
+
+@\+Example {\ttfamily  \#define CAN\+\_\+\+TX\+\_\+\+BUFF "{}\+TEMPERATURE SENSOR ON"{}}
+
+{\ttfamily  void \doxylink{main_8c_a6288eba0f8e8ad3ab1544ad731eb7667}{main(void)} \{ \doxylink{structCAN__MSG__OBJ}{CAN\+\_\+\+MSG\+\_\+\+OBJ} msg; uint8\+\_\+t data\mbox{[}32\mbox{]} = CAN\+\_\+\+TX\+\_\+\+BUFF;}
+
+{\ttfamily  \doxylink{mcc_8c_a5e8391114a0cf91ac20002be25e3d352}{SYSTEM\+\_\+\+Initialize()};}
+
+{\ttfamily  if(CAN\+\_\+\+CONFIGURATION\+\_\+\+MODE == \doxylink{can1_8h_a13c7bd1d1ef21aeb5d77c4b38b4de387}{CAN1\+\_\+\+Operation\+Mode\+Get()}) \{ if(CAN\+\_\+\+OP\+\_\+\+MODE\+\_\+\+REQUEST\+\_\+\+SUCCESS == CAN1\+\_\+\+Operation\+Mode\+Set(\+CAN\+\_\+\+NORMAL\+\_\+\+FD\+\_\+\+MODE)) \{ msg.\+msg\+Id = 0x1\+FFFF; msg.\+field.\+format\+Type = CAN\+\_\+\+FD\+\_\+\+FORMAT; msg.\+field.\+brs = CAN\+\_\+\+NON\+\_\+\+BRS\+\_\+\+MODE; msg.\+field.\+frame\+Type = CAN\+\_\+\+FRAME\+\_\+\+DATA; msg.\+field.\+id\+Type = CAN\+\_\+\+FRAME\+\_\+\+EXT; msg.\+field.\+dlc = DLC\+\_\+32; msg.\+data = data;}
+
+{\ttfamily  if(\doxylink{can1_8h_aae9b18d3820bb5869a11fc5c86b16814}{CAN1\+\_\+\+Is\+Tx\+Error\+Passive()} == false) \{ if(CAN\+\_\+\+TX\+\_\+\+FIFO\+\_\+\+AVAILABLE == (CAN1\+\_\+\+Transmit\+FIFOStatus\+Get(\+CAN1\+\_\+\+TX\+\_\+\+FIFO1) \& CAN\+\_\+\+TX\+\_\+\+FIFO\+\_\+\+AVAILABLE)) \{ CAN1\+\_\+\+Transmit(\+CAN1\+\_\+\+TX\+\_\+\+FIFO1, \&msg); \} \} \} \}}
+
+{\ttfamily  while(1); \} } Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{can1_8c_aae9b18d3820bb5869a11fc5c86b16814_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{can1_8c_aa4f79791cf95061d42e14d6ee7b8fffa}\index{can1.c@{can1.c}!CAN1\_IsTxErrorWarning@{CAN1\_IsTxErrorWarning}}
+\index{CAN1\_IsTxErrorWarning@{CAN1\_IsTxErrorWarning}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{CAN1\_IsTxErrorWarning()}{CAN1\_IsTxErrorWarning()}}
+{\footnotesize\ttfamily \label{can1_8c_aa4f79791cf95061d42e14d6ee7b8fffa} 
+bool CAN1\+\_\+\+Is\+Tx\+Error\+Warning (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+@\+Summary Checks whether the transmitter is in the error warning state.
+
+@\+Description This routine checks whether the transmitter is in the error warning state. If Transmitter error counter is above 95 to below 128, then transmitter error warning state is set.
+
+@\+Preconditions CAN1\+\_\+\+Initialize function should be called before calling this function.
+
+@\+Param None
+
+@\+Returns true -\/ Transmitter in Error warning state false -\/ Transmitter not in Error warning state
+
+@\+Example {\ttfamily  \#define CAN\+\_\+\+TX\+\_\+\+BUFF "{}\+TEMPERATURE SENSOR ON"{}}
+
+{\ttfamily  void \doxylink{main_8c_a6288eba0f8e8ad3ab1544ad731eb7667}{main(void)} \{ \doxylink{structCAN__MSG__OBJ}{CAN\+\_\+\+MSG\+\_\+\+OBJ} msg; uint8\+\_\+t data\mbox{[}32\mbox{]} = CAN\+\_\+\+TX\+\_\+\+BUFF;}
+
+{\ttfamily  \doxylink{mcc_8c_a5e8391114a0cf91ac20002be25e3d352}{SYSTEM\+\_\+\+Initialize()};}
+
+{\ttfamily  if(CAN\+\_\+\+CONFIGURATION\+\_\+\+MODE == \doxylink{can1_8h_a13c7bd1d1ef21aeb5d77c4b38b4de387}{CAN1\+\_\+\+Operation\+Mode\+Get()}) \{ if(CAN\+\_\+\+OP\+\_\+\+MODE\+\_\+\+REQUEST\+\_\+\+SUCCESS == CAN1\+\_\+\+Operation\+Mode\+Set(\+CAN\+\_\+\+NORMAL\+\_\+\+FD\+\_\+\+MODE)) \{ msg.\+msg\+Id = 0x1\+FFFF; msg.\+field.\+format\+Type = CAN\+\_\+\+FD\+\_\+\+FORMAT; msg.\+field.\+brs = CAN\+\_\+\+NON\+\_\+\+BRS\+\_\+\+MODE; msg.\+field.\+frame\+Type = CAN\+\_\+\+FRAME\+\_\+\+DATA; msg.\+field.\+id\+Type = CAN\+\_\+\+FRAME\+\_\+\+EXT; msg.\+field.\+dlc = DLC\+\_\+32; msg.\+data = data;}
+
+{\ttfamily  if(\doxylink{can1_8h_aa4f79791cf95061d42e14d6ee7b8fffa}{CAN1\+\_\+\+Is\+Tx\+Error\+Warning()} == false) \{ if(CAN\+\_\+\+TX\+\_\+\+FIFO\+\_\+\+AVAILABLE == (CAN1\+\_\+\+Transmit\+FIFOStatus\+Get(\+CAN1\+\_\+\+TX\+\_\+\+FIFO1) \& CAN\+\_\+\+TX\+\_\+\+FIFO\+\_\+\+AVAILABLE)) \{ CAN1\+\_\+\+Transmit(\+CAN1\+\_\+\+TX\+\_\+\+FIFO1, \&msg); \} \} \} \}}
+
+{\ttfamily  while(1); \} } \Hypertarget{can1_8c_a13c7bd1d1ef21aeb5d77c4b38b4de387}\index{can1.c@{can1.c}!CAN1\_OperationModeGet@{CAN1\_OperationModeGet}}
+\index{CAN1\_OperationModeGet@{CAN1\_OperationModeGet}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{CAN1\_OperationModeGet()}{CAN1\_OperationModeGet()}}
+{\footnotesize\ttfamily \label{can1_8c_a13c7bd1d1ef21aeb5d77c4b38b4de387} 
+\mbox{\hyperlink{can__types_8h_adf6f08edd09adf034118a73a7acea9f9}{CAN\+\_\+\+OP\+\_\+\+MODES}} CAN1\+\_\+\+Operation\+Mode\+Get (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+@\+Summary Get the CAN operation mode.
+
+@\+Description This function gets the CAN operation mode.
+
+@\+Preconditions \doxylink{can1_8h_add8850a15e40f5316f9e614fd70ec956}{CAN1\+\_\+\+Initialize()} function should be called before calling this function.
+
+@\+Param None
+
+@\+Returns Return the present CAN operation mode.
+
+@\+Example {\ttfamily  void \doxylink{main_8c_a6288eba0f8e8ad3ab1544ad731eb7667}{main(void)} \{ ~\newline
+ \doxylink{mcc_8c_a5e8391114a0cf91ac20002be25e3d352}{SYSTEM\+\_\+\+Initialize()};}
+
+{\ttfamily  if(CAN\+\_\+\+CONFIGURATION\+\_\+\+MODE == \doxylink{can1_8h_a13c7bd1d1ef21aeb5d77c4b38b4de387}{CAN1\+\_\+\+Operation\+Mode\+Get()}) \{ if(CAN\+\_\+\+OP\+\_\+\+MODE\+\_\+\+REQUEST\+\_\+\+SUCCESS == CAN1\+\_\+\+Operation\+Mode\+Set(\+CAN\+\_\+\+NORMAL\+\_\+\+FD\+\_\+\+MODE)) \{ User Application code \} \}}
+
+{\ttfamily  while (1) \{ ~\newline
+ \} \} } Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{can1_8c_a13c7bd1d1ef21aeb5d77c4b38b4de387_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{can1_8c_ad0c8182be05f920e8eeaefe55d47ec66}\index{can1.c@{can1.c}!CAN1\_OperationModeSet@{CAN1\_OperationModeSet}}
+\index{CAN1\_OperationModeSet@{CAN1\_OperationModeSet}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{CAN1\_OperationModeSet()}{CAN1\_OperationModeSet()}}
+{\footnotesize\ttfamily \label{can1_8c_ad0c8182be05f920e8eeaefe55d47ec66} 
+\mbox{\hyperlink{can__types_8h_a89d5894e1e1c614eb64d163304613f19}{CAN\+\_\+\+OP\+\_\+\+MODE\+\_\+\+STATUS}} CAN1\+\_\+\+Operation\+Mode\+Set (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{can__types_8h_adf6f08edd09adf034118a73a7acea9f9}{CAN\+\_\+\+OP\+\_\+\+MODES}}}]{reqest\+Mode}{}\end{DoxyParamCaption})}
+
+@\+Summary Set the CAN operation mode.
+
+@\+Description This function sets the CAN operation mode.
+
+@\+Preconditions \doxylink{can1_8h_add8850a15e40f5316f9e614fd70ec956}{CAN1\+\_\+\+Initialize()} function should be called before calling this function.
+
+@\+Param reqest\+Mode -\/ CAN operation mode
+
+@\+Returns CAN\+\_\+\+OP\+\_\+\+MODE\+\_\+\+REQUEST\+\_\+\+SUCCESS -\/ Requested Operation mode set successfully CAN\+\_\+\+OP\+\_\+\+MODE\+\_\+\+REQUEST\+\_\+\+FAIL -\/ Requested Operation mode set failure. Set configuration mode before setting CAN normal or debug operation mode. CAN\+\_\+\+OP\+\_\+\+MODE\+\_\+\+SYS\+\_\+\+ERROR\+\_\+\+OCCURED -\/ System error occurred while setting Operation mode.
+
+@\+Example {\ttfamily  void \doxylink{main_8c_a6288eba0f8e8ad3ab1544ad731eb7667}{main(void)} \{ \doxylink{mcc_8c_a5e8391114a0cf91ac20002be25e3d352}{SYSTEM\+\_\+\+Initialize()};}
+
+{\ttfamily  if(CAN\+\_\+\+CONFIGURATION\+\_\+\+MODE == \doxylink{can1_8h_a13c7bd1d1ef21aeb5d77c4b38b4de387}{CAN1\+\_\+\+Operation\+Mode\+Get()}) \{ if(CAN\+\_\+\+OP\+\_\+\+MODE\+\_\+\+REQUEST\+\_\+\+SUCCESS == CAN1\+\_\+\+Operation\+Mode\+Set(\+CAN\+\_\+\+NORMAL\+\_\+\+FD\+\_\+\+MODE)) \{ User Application code \} \}}
+
+{\ttfamily  while (1) \{ \} \} } Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{can1_8c_ad0c8182be05f920e8eeaefe55d47ec66_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{can1_8c_ad0c8182be05f920e8eeaefe55d47ec66_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{can1_8c_a80dd5a2837348066495899cf332b88e7}\index{can1.c@{can1.c}!CAN1\_Receive@{CAN1\_Receive}}
+\index{CAN1\_Receive@{CAN1\_Receive}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{CAN1\_Receive()}{CAN1\_Receive()}}
+{\footnotesize\ttfamily \label{can1_8c_a80dd5a2837348066495899cf332b88e7} 
+bool CAN1\+\_\+\+Receive (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCAN__MSG__OBJ}{CAN\+\_\+\+MSG\+\_\+\+OBJ}} \texorpdfstring{$\ast$}{*}}]{rx\+Can\+Msg}{}\end{DoxyParamCaption})}
+
+@\+Summary Reads the message object from CAN receive FIFO.
+
+@\+Description This routine reads a message object from the CAN receive FIFO.
+
+@\+Preconditions \doxylink{can1_8h_add8850a15e40f5316f9e614fd70ec956}{CAN1\+\_\+\+Initialize()} function should be called before calling this function. The \doxylink{can1_8h_ac27e97593d8d9bd7787d116910adc40d}{CAN1\+\_\+\+Received\+Message\+Count\+Get()} function should be checked to see if the receiver is not empty before calling this function.
+
+@\+Param rx\+Can\+Msg -\/ pointer to the message object
+
+@\+Returns true -\/ Receive successful false -\/ Receive failure
+
+@\+Example {\ttfamily  void \doxylink{main_8c_a6288eba0f8e8ad3ab1544ad731eb7667}{main(void)} \{ \doxylink{structCAN__MSG__OBJ}{CAN\+\_\+\+MSG\+\_\+\+OBJ} msg;}
+
+{\ttfamily  \doxylink{mcc_8c_a5e8391114a0cf91ac20002be25e3d352}{SYSTEM\+\_\+\+Initialize()};}
+
+{\ttfamily  if(CAN\+\_\+\+CONFIGURATION\+\_\+\+MODE == \doxylink{can1_8h_a13c7bd1d1ef21aeb5d77c4b38b4de387}{CAN1\+\_\+\+Operation\+Mode\+Get()}) \{ if(CAN\+\_\+\+OP\+\_\+\+MODE\+\_\+\+REQUEST\+\_\+\+SUCCESS == CAN1\+\_\+\+Operation\+Mode\+Set(\+CAN\+\_\+\+NORMAL\+\_\+\+FD\+\_\+\+MODE)) \{ while(1) \{ if(\+CAN1\+\_\+\+Received\+Message\+Count\+Get() $>$ 0) \{ if(true == CAN1\+\_\+\+Receive(\&msg)) \{ break; \} \} \} \} \}}
+
+{\ttfamily  while (1); \} } \Hypertarget{can1_8c_ac27e97593d8d9bd7787d116910adc40d}\index{can1.c@{can1.c}!CAN1\_ReceivedMessageCountGet@{CAN1\_ReceivedMessageCountGet}}
+\index{CAN1\_ReceivedMessageCountGet@{CAN1\_ReceivedMessageCountGet}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{CAN1\_ReceivedMessageCountGet()}{CAN1\_ReceivedMessageCountGet()}}
+{\footnotesize\ttfamily \label{can1_8c_ac27e97593d8d9bd7787d116910adc40d} 
+uint8\+\_\+t CAN1\+\_\+\+Received\+Message\+Count\+Get (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+@\+Summary CAN RX FIFO number of messages that are received.
+
+@\+Description This returns the number of messages that are received.
+
+@\+Preconditions CAN1\+\_\+\+Initialize function should be called before calling this function.
+
+@\+Param None
+
+@\+Returns Number of message received.
+
+@\+Example {\ttfamily  void \doxylink{main_8c_a6288eba0f8e8ad3ab1544ad731eb7667}{main(void)} \{ \doxylink{structCAN__MSG__OBJ}{CAN\+\_\+\+MSG\+\_\+\+OBJ} msg;}
+
+{\ttfamily  \doxylink{mcc_8c_a5e8391114a0cf91ac20002be25e3d352}{SYSTEM\+\_\+\+Initialize()};}
+
+{\ttfamily  if(CAN\+\_\+\+CONFIGURATION\+\_\+\+MODE == \doxylink{can1_8h_a13c7bd1d1ef21aeb5d77c4b38b4de387}{CAN1\+\_\+\+Operation\+Mode\+Get()}) \{ if(CAN\+\_\+\+OP\+\_\+\+MODE\+\_\+\+REQUEST\+\_\+\+SUCCESS == CAN1\+\_\+\+Operation\+Mode\+Set(\+CAN\+\_\+\+NORMAL\+\_\+\+FD\+\_\+\+MODE)) \{ while(1) \{ if(\+CAN1\+\_\+\+Received\+Message\+Count\+Get() $>$ 0) \{ CAN1\+\_\+\+Receive(\&msg); \} \} \} \} \} } \Hypertarget{can1_8c_ac201145a6280d9b203fab7b4a86f0b9c}\index{can1.c@{can1.c}!CAN1\_ReceiveFrom@{CAN1\_ReceiveFrom}}
+\index{CAN1\_ReceiveFrom@{CAN1\_ReceiveFrom}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{CAN1\_ReceiveFrom()}{CAN1\_ReceiveFrom()}}
+{\footnotesize\ttfamily \label{can1_8c_ac201145a6280d9b203fab7b4a86f0b9c} 
+bool CAN1\+\_\+\+Receive\+From (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{can1_8h_ae694b6344b5151b19c3430d420c90178}{CAN1\+\_\+\+RX\+\_\+\+FIFO\+\_\+\+CHANNELS}}}]{fifo\+Channel}{, }\item[{\mbox{\hyperlink{structCAN__MSG__OBJ}{CAN\+\_\+\+MSG\+\_\+\+OBJ}} \texorpdfstring{$\ast$}{*}}]{rx\+Can\+Msg}{}\end{DoxyParamCaption})}
+
+@\+Summary Reads the message object from the specified CAN receive FIFO.
+
+@\+Description This routine reads a message object from the specified CAN receive FIFO.
+
+@\+Preconditions \doxylink{can1_8h_add8850a15e40f5316f9e614fd70ec956}{CAN1\+\_\+\+Initialize()} function should be called before calling this function.
+
+@\+Param fifo\+Channel -\/ CAN RX FIFO channel rx\+Can\+Msg -\/ pointer to the message object
+
+@\+Returns true -\/ Receive successful false -\/ Receive failure
+
+@\+Example {\ttfamily  volatile \doxylink{structCAN__MSG__OBJ}{CAN\+\_\+\+MSG\+\_\+\+OBJ} g\+Msg;}
+
+{\ttfamily  void Custom\+FIFO1\+Handler(void) \{ CAN1\+\_\+\+Receive\+From(\+FIFO1, \&g\+Msg)); \}}
+
+{\ttfamily  void \doxylink{main_8c_a6288eba0f8e8ad3ab1544ad731eb7667}{main(void)} \{ \doxylink{mcc_8c_a5e8391114a0cf91ac20002be25e3d352}{SYSTEM\+\_\+\+Initialize()}; CAN1\+\_\+\+Set\+FIFO1\+Full\+Handler(\&\+Custom\+FIFO1\+Handler);}
+
+{\ttfamily  INTERRUPT\+\_\+\+Global\+Interrupt\+Enable();}
+
+{\ttfamily  while(1); \} } Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{can1_8c_ac201145a6280d9b203fab7b4a86f0b9c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{can1_8c_a2ab3a4b1d98cfdb2679eae9cb80bfad8}\index{can1.c@{can1.c}!CAN1\_RX\_FIFO\_ResetInfo@{CAN1\_RX\_FIFO\_ResetInfo}}
+\index{CAN1\_RX\_FIFO\_ResetInfo@{CAN1\_RX\_FIFO\_ResetInfo}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{CAN1\_RX\_FIFO\_ResetInfo()}{CAN1\_RX\_FIFO\_ResetInfo()}}
+{\footnotesize\ttfamily \label{can1_8c_a2ab3a4b1d98cfdb2679eae9cb80bfad8} 
+void CAN1\+\_\+\+RX\+\_\+\+FIFO\+\_\+\+Reset\+Info (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{can1_8c_a2ab3a4b1d98cfdb2679eae9cb80bfad8_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{can1_8c_ac0e353f71ae1d417bb26ee15497d553e}\index{can1.c@{can1.c}!CAN1\_SetBusErrorInterruptHandler@{CAN1\_SetBusErrorInterruptHandler}}
+\index{CAN1\_SetBusErrorInterruptHandler@{CAN1\_SetBusErrorInterruptHandler}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{CAN1\_SetBusErrorInterruptHandler()}{CAN1\_SetBusErrorInterruptHandler()}}
+{\footnotesize\ttfamily \label{can1_8c_ac0e353f71ae1d417bb26ee15497d553e} 
+void CAN1\+\_\+\+Set\+Bus\+Error\+Interrupt\+Handler (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{handler~}{)(void)}\end{DoxyParamCaption})}
+
+@\+Summary Sets the CAN bus error interrupt handler.
+
+@\+Description This routine sets the CAN bus error interrupt handler.
+
+@\+Param Address of the callback routine.
+
+@\+Returns None
+
+@\+Example {\ttfamily  Note\+: Example code here is not based on MCC UI configuration, this is a sample code to demonstrate CAN transmit APIs usage. \begin{DoxyVerb}volatile bool gBusErrorOccurred = false;
+
+void CAN1_BusError(void)
+{
+    gBusErrorOccurred = true;
+\end{DoxyVerb}
+ CAN Bus Error application code \}}
+
+{\ttfamily  void \doxylink{main_8c_a6288eba0f8e8ad3ab1544ad731eb7667}{main(void)} \{ \doxylink{structCAN__MSG__OBJ}{CAN\+\_\+\+MSG\+\_\+\+OBJ} msg; uint8\+\_\+t data\mbox{[}8\mbox{]} = \{0x41,0x42,0x43,0x44,0x45,0x46,0x47,0x48\};}
+
+{\ttfamily  \doxylink{mcc_8c_a5e8391114a0cf91ac20002be25e3d352}{SYSTEM\+\_\+\+Initialize()}; CAN1\+\_\+\+Set\+Bus\+Error\+Interrupt\+Handler(\&\+CAN1\+\_\+\+Bus\+Error); CAN1\+\_\+\+Operation\+Mode\+Set(\+CAN\+\_\+\+CONFIGURATION\+\_\+\+MODE);}
+
+{\ttfamily  if(CAN\+\_\+\+CONFIGURATION\+\_\+\+MODE == \doxylink{can1_8h_a13c7bd1d1ef21aeb5d77c4b38b4de387}{CAN1\+\_\+\+Operation\+Mode\+Get()}) \{ ~\newline
+ if(CAN\+\_\+\+OP\+\_\+\+MODE\+\_\+\+REQUEST\+\_\+\+SUCCESS == CAN1\+\_\+\+Operation\+Mode\+Set(\+CAN\+\_\+\+NORMAL\+\_\+\+FD\+\_\+\+MODE)) \{ msg.\+msg\+Id = 0x1\+FFFF; msg.\+field.\+format\+Type = CAN\+\_\+\+FD\+\_\+\+FORMAT; msg.\+field.\+brs = CAN\+\_\+\+NON\+\_\+\+BRS\+\_\+\+MODE; msg.\+field.\+frame\+Type = CAN\+\_\+\+FRAME\+\_\+\+DATA; msg.\+field.\+id\+Type = CAN\+\_\+\+FRAME\+\_\+\+EXT; msg.\+field.\+dlc = DLC\+\_\+8; msg.\+data = data;}
+
+{\ttfamily  while(1) \{ ~\newline
+ if(CAN\+\_\+\+TX\+\_\+\+FIFO\+\_\+\+AVAILABLE == (CAN1\+\_\+\+Transmit\+FIFOStatus\+Get(\+CAN1\+\_\+\+TX\+\_\+\+FIFO1) \& CAN\+\_\+\+TX\+\_\+\+FIFO\+\_\+\+AVAILABLE)) \{ CAN1\+\_\+\+Transmit(\+CAN1\+\_\+\+TX\+\_\+\+FIFO1, \&msg); \}}
+
+{\ttfamily  if(g\+Bus\+Error\+Occurred == true) \{ break; \} \} \} \}}
+
+{\ttfamily  while(1); \} } \Hypertarget{can1_8c_ad9b7a7c50d7ac3ef28590fcd916bb42d}\index{can1.c@{can1.c}!CAN1\_SetBusWakeUpActivityInterruptHandler@{CAN1\_SetBusWakeUpActivityInterruptHandler}}
+\index{CAN1\_SetBusWakeUpActivityInterruptHandler@{CAN1\_SetBusWakeUpActivityInterruptHandler}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{CAN1\_SetBusWakeUpActivityInterruptHandler()}{CAN1\_SetBusWakeUpActivityInterruptHandler()}}
+{\footnotesize\ttfamily \label{can1_8c_ad9b7a7c50d7ac3ef28590fcd916bb42d} 
+void CAN1\+\_\+\+Set\+Bus\+Wake\+Up\+Activity\+Interrupt\+Handler (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{handler~}{)(void)}\end{DoxyParamCaption})}
+
+@\+Summary Sets the CAN bus wake-\/\+Up activity interrupt handler.
+
+@\+Description This routine sets the CAN bus wake-\/\+Up activity interrupt handler.
+
+@\+Param Address of the callback routine.
+
+@\+Returns None
+
+@\+Example {\ttfamily  volatile bool g\+Bus\+Wake\+Up\+Occurred = false;}
+
+{\ttfamily  void CAN1\+\_\+\+Bus\+Wake\+Up\+Activity(void) \{ g\+Bus\+Wake\+Up\+Occurred = true; CAN Bus Wake\+Up activity application code \}}
+
+{\ttfamily  void \doxylink{main_8c_a6288eba0f8e8ad3ab1544ad731eb7667}{main(void)} \{ \doxylink{mcc_8c_a5e8391114a0cf91ac20002be25e3d352}{SYSTEM\+\_\+\+Initialize()}; CAN1\+\_\+\+Set\+Bus\+Wake\+Up\+Activity\+Interrupt\+Handler(\&\+CAN1\+\_\+\+Bus\+Wake\+Up\+Activity); CAN1\+\_\+\+Operation\+Mode\+Set(\+CAN\+\_\+\+CONFIGURATION\+\_\+\+MODE);}
+
+{\ttfamily  if(CAN\+\_\+\+CONFIGURATION\+\_\+\+MODE == \doxylink{can1_8h_a13c7bd1d1ef21aeb5d77c4b38b4de387}{CAN1\+\_\+\+Operation\+Mode\+Get()}) \{ if(CAN\+\_\+\+OP\+\_\+\+MODE\+\_\+\+REQUEST\+\_\+\+SUCCESS == CAN1\+\_\+\+Operation\+Mode\+Set(\+CAN\+\_\+\+NORMAL\+\_\+\+FD\+\_\+\+MODE)) \{ \doxylink{can1_8h_a41d9a27d9d5e04efcb58c31006f43f98}{CAN1\+\_\+\+Sleep()};}
+
+{\ttfamily Check CAN1 module is in CAN\+\_\+\+DISABLE\+\_\+\+MODE if(CAN\+\_\+\+DISABLE\+\_\+\+MODE == \doxylink{can1_8h_a13c7bd1d1ef21aeb5d77c4b38b4de387}{CAN1\+\_\+\+Operation\+Mode\+Get()}) \{ Sleep(); //\+Call sleep instruction}
+
+{\ttfamily  while(1) \{ if(g\+Bus\+Wake\+Up\+Occurred == true) \{ break; \} ~\newline
+ \} \} \} \}}
+
+{\ttfamily  while(1); \} } \Hypertarget{can1_8c_ae7a6b83df49337bb35317d11bda38692}\index{can1.c@{can1.c}!CAN1\_SetFIFO1NotEmptyHandler@{CAN1\_SetFIFO1NotEmptyHandler}}
+\index{CAN1\_SetFIFO1NotEmptyHandler@{CAN1\_SetFIFO1NotEmptyHandler}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{CAN1\_SetFIFO1NotEmptyHandler()}{CAN1\_SetFIFO1NotEmptyHandler()}}
+{\footnotesize\ttfamily \label{can1_8c_ae7a6b83df49337bb35317d11bda38692} 
+void CAN1\+\_\+\+Set\+FIFO1\+Not\+Empty\+Handler (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{handler~}{)(void)}\end{DoxyParamCaption})}
+
+@\+Summary Sets the RX FIFO Not Empty interrupt handler.
+
+@\+Description This routine sets the RX FIFO Not Empty interrupt handler for FIFO1.
+
+@\+Param Address of the callback routine.
+
+@\+Returns None
+
+@\+Example {\ttfamily  volatile \doxylink{structCAN__MSG__OBJ}{CAN\+\_\+\+MSG\+\_\+\+OBJ} g\+Msg;}
+
+{\ttfamily  void Custom\+FIFO1\+Handler(void) \{ CAN1\+\_\+\+Receive\+From(\+FIFO1, \&g\+Msg); \}}
+
+{\ttfamily  void \doxylink{main_8c_a6288eba0f8e8ad3ab1544ad731eb7667}{main(void)} \{ \doxylink{mcc_8c_a5e8391114a0cf91ac20002be25e3d352}{SYSTEM\+\_\+\+Initialize()}; CAN1\+\_\+\+Set\+FIFO1\+Not\+Empty\+Handler(\&\+Custom\+FIFO1\+Handler);}
+
+{\ttfamily  INTERRUPT\+\_\+\+Global\+Interrupt\+Enable();}
+
+{\ttfamily  while(1); \} } Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{can1_8c_ae7a6b83df49337bb35317d11bda38692_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{can1_8c_a61fa4bf094f295746b4632e49d24514d}\index{can1.c@{can1.c}!CAN1\_SetInvalidMessageInterruptHandler@{CAN1\_SetInvalidMessageInterruptHandler}}
+\index{CAN1\_SetInvalidMessageInterruptHandler@{CAN1\_SetInvalidMessageInterruptHandler}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{CAN1\_SetInvalidMessageInterruptHandler()}{CAN1\_SetInvalidMessageInterruptHandler()}}
+{\footnotesize\ttfamily \label{can1_8c_a61fa4bf094f295746b4632e49d24514d} 
+void CAN1\+\_\+\+Set\+Invalid\+Message\+Interrupt\+Handler (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{handler~}{)(void)}\end{DoxyParamCaption})}
+
+@\+Summary Sets the invalid message interrupt handler.
+
+@\+Description This routine sets the invalid message interrupt handler.
+
+@\+Param Address of the callback routine.
+
+@\+Returns None
+
+@\+Example {\ttfamily  Note\+: Example code here is not based on MCC UI configuration, this is a sample code to demonstrate CAN transmit APIs usage. \begin{DoxyVerb}volatile bool gInvalidMsgOccurred = false;
+
+void CAN1_InvalidMessage(void)
+{
+    gInvalidMsgOccurred = true;
+\end{DoxyVerb}
+ CAN Invalid Message application code \}}
+
+{\ttfamily  void \doxylink{main_8c_a6288eba0f8e8ad3ab1544ad731eb7667}{main(void)} \{ \doxylink{structCAN__MSG__OBJ}{CAN\+\_\+\+MSG\+\_\+\+OBJ} msg; uint8\+\_\+t data\mbox{[}8\mbox{]} = \{0x41,0x42,0x43,0x44,0x45,0x46,0x47,0x48\};}
+
+{\ttfamily  \doxylink{mcc_8c_a5e8391114a0cf91ac20002be25e3d352}{SYSTEM\+\_\+\+Initialize()}; CAN1\+\_\+\+Set\+Invalid\+Message\+Interrupt\+Handler(\&\+CAN1\+\_\+\+Invalid\+Message); CAN1\+\_\+\+Operation\+Mode\+Set(\+CAN\+\_\+\+CONFIGURATION\+\_\+\+MODE);}
+
+{\ttfamily  if(CAN\+\_\+\+CONFIGURATION\+\_\+\+MODE == \doxylink{can1_8h_a13c7bd1d1ef21aeb5d77c4b38b4de387}{CAN1\+\_\+\+Operation\+Mode\+Get()}) \{ ~\newline
+ if(CAN\+\_\+\+OP\+\_\+\+MODE\+\_\+\+REQUEST\+\_\+\+SUCCESS == CAN1\+\_\+\+Operation\+Mode\+Set(\+CAN\+\_\+\+NORMAL\+\_\+\+FD\+\_\+\+MODE)) \{ msg.\+msg\+Id = 0x1\+FFFF; msg.\+field.\+format\+Type = CAN\+\_\+\+FD\+\_\+\+FORMAT; msg.\+field.\+brs = CAN\+\_\+\+NON\+\_\+\+BRS\+\_\+\+MODE; msg.\+field.\+frame\+Type = CAN\+\_\+\+FRAME\+\_\+\+DATA; msg.\+field.\+id\+Type = CAN\+\_\+\+FRAME\+\_\+\+EXT; msg.\+field.\+dlc = DLC\+\_\+8; msg.\+data = data;}
+
+{\ttfamily  while(1) \{ ~\newline
+ if(CAN\+\_\+\+TX\+\_\+\+FIFO\+\_\+\+AVAILABLE == (CAN1\+\_\+\+Transmit\+FIFOStatus\+Get(\+CAN1\+\_\+\+TX\+\_\+\+FIFO1) \& CAN\+\_\+\+TX\+\_\+\+FIFO\+\_\+\+AVAILABLE)) \{ CAN1\+\_\+\+Transmit(\+CAN1\+\_\+\+TX\+\_\+\+FIFO1, \&msg); \}}
+
+{\ttfamily  if(g\+Invalid\+Msg\+Occurred == true) \{ break; \} \} \}}
+
+{\ttfamily  while(1); \} } \Hypertarget{can1_8c_ac7822a59dd4bf825557bb609da828cc8}\index{can1.c@{can1.c}!CAN1\_SetModeChangeInterruptHandler@{CAN1\_SetModeChangeInterruptHandler}}
+\index{CAN1\_SetModeChangeInterruptHandler@{CAN1\_SetModeChangeInterruptHandler}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{CAN1\_SetModeChangeInterruptHandler()}{CAN1\_SetModeChangeInterruptHandler()}}
+{\footnotesize\ttfamily \label{can1_8c_ac7822a59dd4bf825557bb609da828cc8} 
+void CAN1\+\_\+\+Set\+Mode\+Change\+Interrupt\+Handler (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{handler~}{)(void)}\end{DoxyParamCaption})}
+
+@\+Summary Sets the CAN mode change interrupt handler.
+
+@\+Description This routine sets the CAN mode change interrupt handler.
+
+@\+Param Address of the callback routine.
+
+@\+Returns None
+
+@\+Example {\ttfamily  volatile bool g\+Mode\+Change\+Occurred = false;}
+
+{\ttfamily  void CAN1\+\_\+\+Mode\+Change(void) \{ g\+Mode\+Change\+Occurred = true; CAN Mode Change application code \}}
+
+{\ttfamily  void \doxylink{main_8c_a6288eba0f8e8ad3ab1544ad731eb7667}{main(void)} \{ \doxylink{structCAN__MSG__OBJ}{CAN\+\_\+\+MSG\+\_\+\+OBJ} msg;}
+
+{\ttfamily  \doxylink{mcc_8c_a5e8391114a0cf91ac20002be25e3d352}{SYSTEM\+\_\+\+Initialize()}; CAN1\+\_\+\+Set\+Mode\+Change\+Interrupt\+Handler(\&\+CAN1\+\_\+\+Mode\+Change); CAN1\+\_\+\+Operation\+Mode\+Set(\+CAN\+\_\+\+CONFIGURATION\+\_\+\+MODE);}
+
+{\ttfamily  if(CAN\+\_\+\+CONFIGURATION\+\_\+\+MODE == \doxylink{can1_8h_a13c7bd1d1ef21aeb5d77c4b38b4de387}{CAN1\+\_\+\+Operation\+Mode\+Get()}) \{ if(CAN\+\_\+\+OP\+\_\+\+MODE\+\_\+\+REQUEST\+\_\+\+SUCCESS == CAN1\+\_\+\+Operation\+Mode\+Set(\+CAN\+\_\+\+NORMAL\+\_\+\+FD\+\_\+\+MODE)) \{ while(1) \{ if(g\+Mode\+Change\+Occurred == true) \{ break; \} ~\newline
+ \} \} \}}
+
+{\ttfamily  while (1); \} } \Hypertarget{can1_8c_aa17b7ffab8784720b377c7fb09ef8e3e}\index{can1.c@{can1.c}!CAN1\_SetRxBufferOverFlowInterruptHandler@{CAN1\_SetRxBufferOverFlowInterruptHandler}}
+\index{CAN1\_SetRxBufferOverFlowInterruptHandler@{CAN1\_SetRxBufferOverFlowInterruptHandler}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{CAN1\_SetRxBufferOverFlowInterruptHandler()}{CAN1\_SetRxBufferOverFlowInterruptHandler()}}
+{\footnotesize\ttfamily \label{can1_8c_aa17b7ffab8784720b377c7fb09ef8e3e} 
+void CAN1\+\_\+\+Set\+Rx\+Buffer\+Over\+Flow\+Interrupt\+Handler (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{handler~}{)(void)}\end{DoxyParamCaption})}
+
+@\+Summary Sets the CAN receive overflow interrupt handler.
+
+@\+Description This routine sets the CAN receive overflow interrupt handler.
+
+@\+Param Address of the callback routine.
+
+@\+Returns None
+
+@\+Example {\ttfamily  volatile bool g\+Rx\+Over\+Flow\+Occurred = false;}
+
+{\ttfamily  void CAN1\+\_\+\+Rx\+Buffer\+Over\+Flow(void) \{ g\+Rx\+Over\+Flow\+Occurred = true; CAN Receive Buffer Over\+Flow application code \}}
+
+{\ttfamily  void \doxylink{main_8c_a6288eba0f8e8ad3ab1544ad731eb7667}{main(void)} \{ ~\newline
+ \doxylink{mcc_8c_a5e8391114a0cf91ac20002be25e3d352}{SYSTEM\+\_\+\+Initialize()}; CAN1\+\_\+\+Set\+Rx\+Buffer\+Over\+Flow\+Interrupt\+Handler(\&\+CAN1\+\_\+\+Rx\+Buffer\+Over\+Flow); CAN1\+\_\+\+Operation\+Mode\+Set(\+CAN\+\_\+\+CONFIGURATION\+\_\+\+MODE);}
+
+{\ttfamily  if(CAN\+\_\+\+CONFIGURATION\+\_\+\+MODE == \doxylink{can1_8h_a13c7bd1d1ef21aeb5d77c4b38b4de387}{CAN1\+\_\+\+Operation\+Mode\+Get()}) \{ ~\newline
+ if(CAN\+\_\+\+OP\+\_\+\+MODE\+\_\+\+REQUEST\+\_\+\+SUCCESS == CAN1\+\_\+\+Operation\+Mode\+Set(\+CAN\+\_\+\+NORMAL\+\_\+\+FD\+\_\+\+MODE)) \{ while(1) \{ if(g\+Rx\+Over\+Flow\+Occurred == true) \{ g\+Rx\+Over\+Flow\+Occurred = false; User Application code break;}
+
+{\ttfamily  \} \} \} \}}
+
+{\ttfamily  while(1); \} } Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{can1_8c_aa17b7ffab8784720b377c7fb09ef8e3e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{can1_8c_a25485f398d83106a6d15548731934d52}\index{can1.c@{can1.c}!CAN1\_SetSystemErrorInterruptHandler@{CAN1\_SetSystemErrorInterruptHandler}}
+\index{CAN1\_SetSystemErrorInterruptHandler@{CAN1\_SetSystemErrorInterruptHandler}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{CAN1\_SetSystemErrorInterruptHandler()}{CAN1\_SetSystemErrorInterruptHandler()}}
+{\footnotesize\ttfamily \label{can1_8c_a25485f398d83106a6d15548731934d52} 
+void CAN1\+\_\+\+Set\+System\+Error\+Interrupt\+Handler (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{handler~}{)(void)}\end{DoxyParamCaption})}
+
+@\+Summary Sets the CAN system error interrupt handler.
+
+@\+Description This routine sets the CAN system error interrupt handler.
+
+@\+Param Address of the callback routine.
+
+@\+Returns None
+
+@\+Example {\ttfamily  Note\+: Example code here is not based on MCC UI configuration, this is a sample code to demonstrate CAN transmit APIs usage. \begin{DoxyVerb}volatile bool gSystemOccurred = false;
+
+void CAN1_SystemError(void)
+{
+    gSystemOccurred = true;
+\end{DoxyVerb}
+ CAN System Error application code \}}
+
+{\ttfamily  void \doxylink{main_8c_a6288eba0f8e8ad3ab1544ad731eb7667}{main(void)} \{ \doxylink{structCAN__MSG__OBJ}{CAN\+\_\+\+MSG\+\_\+\+OBJ} msg; uint8\+\_\+t data\mbox{[}8\mbox{]} = \{0x41,0x42,0x43,0x44,0x45,0x46,0x47,0x48\};}
+
+{\ttfamily  \doxylink{mcc_8c_a5e8391114a0cf91ac20002be25e3d352}{SYSTEM\+\_\+\+Initialize()}; CAN1\+\_\+\+Set\+System\+Error\+Interrupt\+Handler(\&\+CAN1\+\_\+\+System\+Error); CAN1\+\_\+\+Operation\+Mode\+Set(\+CAN\+\_\+\+CONFIGURATION\+\_\+\+MODE);}
+
+{\ttfamily  if(CAN\+\_\+\+CONFIGURATION\+\_\+\+MODE == \doxylink{can1_8h_a13c7bd1d1ef21aeb5d77c4b38b4de387}{CAN1\+\_\+\+Operation\+Mode\+Get()}) \{ ~\newline
+ if(CAN\+\_\+\+OP\+\_\+\+MODE\+\_\+\+REQUEST\+\_\+\+SUCCESS == CAN1\+\_\+\+Operation\+Mode\+Set(\+CAN\+\_\+\+NORMAL\+\_\+\+FD\+\_\+\+MODE)) \{ msg.\+msg\+Id = 0x1\+FFFF; msg.\+field.\+format\+Type = CAN\+\_\+\+FD\+\_\+\+FORMAT; msg.\+field.\+brs = CAN\+\_\+\+NON\+\_\+\+BRS\+\_\+\+MODE; msg.\+field.\+frame\+Type = CAN\+\_\+\+FRAME\+\_\+\+DATA; msg.\+field.\+id\+Type = CAN\+\_\+\+FRAME\+\_\+\+EXT; msg.\+field.\+dlc = DLC\+\_\+8; msg.\+data = data;}
+
+{\ttfamily  while(1) \{ ~\newline
+ if(CAN\+\_\+\+TX\+\_\+\+FIFO\+\_\+\+AVAILABLE == (CAN1\+\_\+\+Transmit\+FIFOStatus\+Get(\+CAN1\+\_\+\+TX\+\_\+\+FIFO1) \& CAN\+\_\+\+TX\+\_\+\+FIFO\+\_\+\+AVAILABLE)) \{ CAN1\+\_\+\+Transmit(\+CAN1\+\_\+\+TX\+\_\+\+FIFO1, \&msg); \}}
+
+{\ttfamily  if(g\+System\+Occurred == true) \{ break; \} \}}
+
+{\ttfamily  \} \}}
+
+{\ttfamily  while(1); \} } \Hypertarget{can1_8c_a093ae655e1306ceb3a9b0c43a5de7dcc}\index{can1.c@{can1.c}!CAN1\_SetTxAttemptInterruptHandler@{CAN1\_SetTxAttemptInterruptHandler}}
+\index{CAN1\_SetTxAttemptInterruptHandler@{CAN1\_SetTxAttemptInterruptHandler}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{CAN1\_SetTxAttemptInterruptHandler()}{CAN1\_SetTxAttemptInterruptHandler()}}
+{\footnotesize\ttfamily \label{can1_8c_a093ae655e1306ceb3a9b0c43a5de7dcc} 
+void CAN1\+\_\+\+Set\+Tx\+Attempt\+Interrupt\+Handler (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{handler~}{)(void)}\end{DoxyParamCaption})}
+
+@\+Summary Sets the CAN transmit attempt interrupt handler.
+
+@\+Description This routine sets the CAN transmit attempt interrupt handler.
+
+@\+Param Address of the callback routine.
+
+@\+Returns None
+
+@\+Example {\ttfamily  Note\+: Example code here is not based on MCC UI configuration, this is a sample code to demonstrate CAN transmit APIs usage. \begin{DoxyVerb}volatile bool gTxAttemptOccurred = false;
+
+void CAN1_TxAttempt(void)
+{
+    gTxAttemptOccurred = true;
+\end{DoxyVerb}
+ CAN Transmit Attempt application code \}}
+
+{\ttfamily  void \doxylink{main_8c_a6288eba0f8e8ad3ab1544ad731eb7667}{main(void)} \{ \doxylink{structCAN__MSG__OBJ}{CAN\+\_\+\+MSG\+\_\+\+OBJ} msg; uint8\+\_\+t data\mbox{[}8\mbox{]} = \{0x41,0x42,0x43,0x44,0x45,0x46,0x47,0x48\};}
+
+{\ttfamily  \doxylink{mcc_8c_a5e8391114a0cf91ac20002be25e3d352}{SYSTEM\+\_\+\+Initialize()}; CAN1\+\_\+\+Set\+Tx\+Attempt\+Interrupt\+Handler(\&\+CAN1\+\_\+\+Tx\+Attempt); CAN1\+\_\+\+Operation\+Mode\+Set(\+CAN\+\_\+\+CONFIGURATION\+\_\+\+MODE);}
+
+{\ttfamily  if(CAN\+\_\+\+CONFIGURATION\+\_\+\+MODE == \doxylink{can1_8h_a13c7bd1d1ef21aeb5d77c4b38b4de387}{CAN1\+\_\+\+Operation\+Mode\+Get()}) \{ ~\newline
+ if(CAN\+\_\+\+OP\+\_\+\+MODE\+\_\+\+REQUEST\+\_\+\+SUCCESS == CAN1\+\_\+\+Operation\+Mode\+Set(\+CAN\+\_\+\+NORMAL\+\_\+\+FD\+\_\+\+MODE)) \{ msg.\+msg\+Id = 0x1\+FFFF; msg.\+field.\+format\+Type = CAN\+\_\+\+FD\+\_\+\+FORMAT; msg.\+field.\+brs = CAN\+\_\+\+NON\+\_\+\+BRS\+\_\+\+MODE; msg.\+field.\+frame\+Type = CAN\+\_\+\+FRAME\+\_\+\+DATA; msg.\+field.\+id\+Type = CAN\+\_\+\+FRAME\+\_\+\+EXT; msg.\+field.\+dlc = DLC\+\_\+8; msg.\+data = data;}
+
+{\ttfamily  while(1) \{ ~\newline
+ if(CAN\+\_\+\+TX\+\_\+\+FIFO\+\_\+\+AVAILABLE == (CAN1\+\_\+\+Transmit\+FIFOStatus\+Get(\+CAN1\+\_\+\+TX\+\_\+\+FIFO1) \& CAN\+\_\+\+TX\+\_\+\+FIFO\+\_\+\+AVAILABLE)) \{ CAN1\+\_\+\+Transmit(\+CAN1\+\_\+\+TX\+\_\+\+FIFO1, \&msg); \}}
+
+{\ttfamily  if(g\+Tx\+Attempt\+Occurred == true) \{ break; \} \} \} \}}
+
+{\ttfamily  while(1); \} } \Hypertarget{can1_8c_a75daa010297c42080400a5f4e7ad8bd8}\index{can1.c@{can1.c}!CAN1\_SetTXQNotFullHandler@{CAN1\_SetTXQNotFullHandler}}
+\index{CAN1\_SetTXQNotFullHandler@{CAN1\_SetTXQNotFullHandler}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{CAN1\_SetTXQNotFullHandler()}{CAN1\_SetTXQNotFullHandler()}}
+{\footnotesize\ttfamily \label{can1_8c_a75daa010297c42080400a5f4e7ad8bd8} 
+void CAN1\+\_\+\+Set\+TXQNot\+Full\+Handler (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{handler~}{)(void)}\end{DoxyParamCaption})}
+
+@\+Summary Sets the TXQ Not Full interrupt handler.
+
+@\+Description This routine sets the TXQ Not Full interrupt handler for TXQ.
+
+@\+Param Address of the callback routine.
+
+@\+Returns None
+
+@\+Example {\ttfamily  volatile \doxylink{structCAN__MSG__OBJ}{CAN\+\_\+\+MSG\+\_\+\+OBJ} g\+Msg;}
+
+{\ttfamily  void Custom\+TXQHandler(void) \{ CAN1\+\_\+\+Transmit(\+CAN1\+\_\+\+TX\+\_\+\+FIFO1, \&g\+Msg); \}}
+
+{\ttfamily  void \doxylink{main_8c_a6288eba0f8e8ad3ab1544ad731eb7667}{main(void)} \{ uint8\+\_\+t data\mbox{[}8\mbox{]} = \{0x41,0x42,0x43,0x44,0x45,0x46,0x47,0x48\}; g\+Msg.\+msg\+Id = 0x1\+FFFF; g\+Msg.\+field.\+format\+Type = CAN\+\_\+\+FD\+\_\+\+FORMAT; g\+Msg.\+field.\+brs = CAN\+\_\+\+NON\+\_\+\+BRS\+\_\+\+MODE; g\+Msg.\+field.\+frame\+Type = CAN\+\_\+\+FRAME\+\_\+\+DATA; g\+Msg.\+field.\+id\+Type = CAN\+\_\+\+FRAME\+\_\+\+EXT; g\+Msg.\+field.\+dlc = DLC\+\_\+8; g\+Msg.\+data = data;}
+
+{\ttfamily  \doxylink{mcc_8c_a5e8391114a0cf91ac20002be25e3d352}{SYSTEM\+\_\+\+Initialize()}; CAN1\+\_\+\+Set\+TXQNot\+Full\+Handler(\&\+Custom\+TXQHandler);}
+
+{\ttfamily  INTERRUPT\+\_\+\+Global\+Interrupt\+Enable();}
+
+{\ttfamily  while(1); \} } Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{can1_8c_a75daa010297c42080400a5f4e7ad8bd8_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{can1_8c_a41d9a27d9d5e04efcb58c31006f43f98}\index{can1.c@{can1.c}!CAN1\_Sleep@{CAN1\_Sleep}}
+\index{CAN1\_Sleep@{CAN1\_Sleep}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{CAN1\_Sleep()}{CAN1\_Sleep()}}
+{\footnotesize\ttfamily \label{can1_8c_a41d9a27d9d5e04efcb58c31006f43f98} 
+void CAN1\+\_\+\+Sleep (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+@\+Summary Puts CAN module in sleep mode.
+
+@\+Description This routine puts CAN module in sleep mode.
+
+@\+Preconditions CAN1\+\_\+\+Initialize function should be called before calling this function.
+
+@\+Param None
+
+@\+Returns None
+
+@\+Example {\ttfamily  void \doxylink{main_8c_a6288eba0f8e8ad3ab1544ad731eb7667}{main(void)} \{ ~\newline
+ \doxylink{mcc_8c_a5e8391114a0cf91ac20002be25e3d352}{SYSTEM\+\_\+\+Initialize()};}
+
+{\ttfamily  if(CAN\+\_\+\+CONFIGURATION\+\_\+\+MODE == \doxylink{can1_8h_a13c7bd1d1ef21aeb5d77c4b38b4de387}{CAN1\+\_\+\+Operation\+Mode\+Get()}) \{ if(CAN\+\_\+\+OP\+\_\+\+MODE\+\_\+\+REQUEST\+\_\+\+SUCCESS == CAN1\+\_\+\+Operation\+Mode\+Set(\+CAN\+\_\+\+NORMAL\+\_\+\+FD\+\_\+\+MODE)) \{ \doxylink{can1_8h_a41d9a27d9d5e04efcb58c31006f43f98}{CAN1\+\_\+\+Sleep()};}
+
+{\ttfamily  if(CAN\+\_\+\+DISABLE\+\_\+\+MODE == \doxylink{can1_8h_a13c7bd1d1ef21aeb5d77c4b38b4de387}{CAN1\+\_\+\+Operation\+Mode\+Get()}) \{ Sleep(); //\+Call sleep instruction C1\+INTLbits.\+WAKIF = 0; // Clear Wake-\/\+Up interrupt flag}
+
+{\ttfamily Recover to Normal mode if(CAN\+\_\+\+OP\+\_\+\+MODE\+\_\+\+REQUEST\+\_\+\+SUCCESS == CAN1\+\_\+\+Operation\+Mode\+Set(\+CAN\+\_\+\+CONFIGURATION\+\_\+\+MODE)) \{ if(CAN\+\_\+\+OP\+\_\+\+MODE\+\_\+\+REQUEST\+\_\+\+SUCCESS == CAN1\+\_\+\+Operation\+Mode\+Set(\+CAN\+\_\+\+NORMAL\+\_\+\+FD\+\_\+\+MODE)) \{ User Application code ~\newline
+ \} \} \} \} \}}
+
+{\ttfamily  while(1); \} } Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{can1_8c_a41d9a27d9d5e04efcb58c31006f43f98_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{can1_8c_ae913df029bccca892ab57f08d458a718}\index{can1.c@{can1.c}!CAN1\_Transmit@{CAN1\_Transmit}}
+\index{CAN1\_Transmit@{CAN1\_Transmit}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{CAN1\_Transmit()}{CAN1\_Transmit()}}
+{\footnotesize\ttfamily \label{can1_8c_ae913df029bccca892ab57f08d458a718} 
+\mbox{\hyperlink{can__types_8h_ac37a68dffec74794a3a4a35ed97dc78f}{CAN\+\_\+\+TX\+\_\+\+MSG\+\_\+\+REQUEST\+\_\+\+STATUS}} CAN1\+\_\+\+Transmit (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{can1_8h_ab388b6c55924e1586db7a9d6f5913754}{CAN1\+\_\+\+TX\+\_\+\+FIFO\+\_\+\+CHANNELS}}}]{fifo\+Channel}{, }\item[{\mbox{\hyperlink{structCAN__MSG__OBJ}{CAN\+\_\+\+MSG\+\_\+\+OBJ}} \texorpdfstring{$\ast$}{*}}]{tx\+Can\+Msg}{}\end{DoxyParamCaption})}
+
+@\+Summary Writes a message object to the CAN TX FIFO.
+
+@\+Description This routine writes a message object to the CAN TX FIFO.
+
+@\+Preconditions CAN1\+\_\+\+Initialize function should be called before calling this function. The transfer status should be checked to see if transmitter is not full before calling this function.
+
+@\+Param fifo\+Channel -\/ CAN TX priority FIFO selection tx\+Can\+Msg -\/ pointer to the message object
+
+@\+Returns CAN Transmit message status. CAN\+\_\+\+TX\+\_\+\+MSG\+\_\+\+REQUEST\+\_\+\+SUCCESS -\/ Transmit message object successfully placed into transmit FIFO CAN\+\_\+\+TX\+\_\+\+MSG\+\_\+\+REQUEST\+\_\+\+DLC\+\_\+\+EXCEED\+\_\+\+ERROR -\/ Transmit message object DLC size is more than transmit FIFO configured DLC size CAN\+\_\+\+TX\+\_\+\+MSG\+\_\+\+REQUEST\+\_\+\+BRS\+\_\+\+ERROR -\/ Transmit FIFO configured has Non BRS mode and CAN TX Message object has BRS enabled CAN\+\_\+\+TX\+\_\+\+MSG\+\_\+\+REQUEST\+\_\+\+FIFO\+\_\+\+FULL -\/ Transmit FIFO Full
+
+@\+Example {\ttfamily  \#define CAN\+\_\+\+TX\+\_\+\+BUFF "{}\+TEMPERATURE SENSOR ON"{}}
+
+{\ttfamily  void \doxylink{main_8c_a6288eba0f8e8ad3ab1544ad731eb7667}{main(void)} \{ \doxylink{structCAN__MSG__OBJ}{CAN\+\_\+\+MSG\+\_\+\+OBJ} msg; uint8\+\_\+t data\mbox{[}32\mbox{]} = CAN\+\_\+\+TX\+\_\+\+BUFF;}
+
+{\ttfamily  \doxylink{mcc_8c_a5e8391114a0cf91ac20002be25e3d352}{SYSTEM\+\_\+\+Initialize()};}
+
+{\ttfamily  if(CAN\+\_\+\+CONFIGURATION\+\_\+\+MODE == \doxylink{can1_8h_a13c7bd1d1ef21aeb5d77c4b38b4de387}{CAN1\+\_\+\+Operation\+Mode\+Get()}) \{ if(CAN\+\_\+\+OP\+\_\+\+MODE\+\_\+\+REQUEST\+\_\+\+SUCCESS == CAN1\+\_\+\+Operation\+Mode\+Set(\+CAN\+\_\+\+NORMAL\+\_\+\+FD\+\_\+\+MODE)) \{ msg.\+msg\+Id = 0x1\+FFFF; msg.\+field.\+format\+Type = CAN\+\_\+\+FD\+\_\+\+FORMAT; msg.\+field.\+brs = CAN\+\_\+\+NON\+\_\+\+BRS\+\_\+\+MODE; msg.\+field.\+frame\+Type = CAN\+\_\+\+FRAME\+\_\+\+DATA; msg.\+field.\+id\+Type = CAN\+\_\+\+FRAME\+\_\+\+EXT; msg.\+field.\+dlc = DLC\+\_\+32; msg.\+data = data;}
+
+{\ttfamily  if(CAN\+\_\+\+TX\+\_\+\+FIFO\+\_\+\+AVAILABLE == (CAN1\+\_\+\+Transmit\+FIFOStatus\+Get(\+CAN1\+\_\+\+TX\+\_\+\+FIFO1) \& CAN\+\_\+\+TX\+\_\+\+FIFO\+\_\+\+AVAILABLE)) \{ CAN1\+\_\+\+Transmit(\+CAN1\+\_\+\+TX\+\_\+\+FIFO1, \&msg); \} \} \}}
+
+{\ttfamily  while(1); \} } Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{can1_8c_ae913df029bccca892ab57f08d458a718_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{can1_8c_a24602980ff517c4a7b86205254fee54a}\index{can1.c@{can1.c}!CAN1\_TransmitFIFOStatusGet@{CAN1\_TransmitFIFOStatusGet}}
+\index{CAN1\_TransmitFIFOStatusGet@{CAN1\_TransmitFIFOStatusGet}!can1.c@{can1.c}}
+\doxysubsubsection{\texorpdfstring{CAN1\_TransmitFIFOStatusGet()}{CAN1\_TransmitFIFOStatusGet()}}
+{\footnotesize\ttfamily \label{can1_8c_a24602980ff517c4a7b86205254fee54a} 
+\mbox{\hyperlink{can__types_8h_a5b83a493815db579d910f8280984c50b}{CAN\+\_\+\+TX\+\_\+\+FIFO\+\_\+\+STATUS}} CAN1\+\_\+\+Transmit\+FIFOStatus\+Get (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{can1_8h_ab388b6c55924e1586db7a9d6f5913754}{CAN1\+\_\+\+TX\+\_\+\+FIFO\+\_\+\+CHANNELS}}}]{fifo\+Channel}{}\end{DoxyParamCaption})}
+
+@\+Summary CAN transmitter FIFO status.
+
+@\+Description This returns the CAN transmitter FIFO status.
+
+@\+Preconditions CAN1\+\_\+\+Initialize function should be called before calling this function.
+
+@\+Param fifo\+Channel -\/ CAN TX priority FIFO selection
+
+@\+Returns CAN Transmit FIFO status. CAN\+\_\+\+TX\+\_\+\+FIFO\+\_\+\+FULL -\/ CAN Transmit FIFO is full CAN\+\_\+\+TX\+\_\+\+FIFO\+\_\+\+AVAILABLE -\/ CAN Transmit FIFO message space is available
+
+@\+Example {\ttfamily  \#define CAN\+\_\+\+TX\+\_\+\+BUFF "{}\+TEMPERATURE SENSOR ON"{}}
+
+{\ttfamily  void \doxylink{main_8c_a6288eba0f8e8ad3ab1544ad731eb7667}{main(void)} \{ \doxylink{structCAN__MSG__OBJ}{CAN\+\_\+\+MSG\+\_\+\+OBJ} msg; uint8\+\_\+t data\mbox{[}32\mbox{]} = CAN\+\_\+\+TX\+\_\+\+BUFF;}
+
+{\ttfamily  \doxylink{mcc_8c_a5e8391114a0cf91ac20002be25e3d352}{SYSTEM\+\_\+\+Initialize()};}
+
+{\ttfamily  if(CAN\+\_\+\+CONFIGURATION\+\_\+\+MODE == \doxylink{can1_8h_a13c7bd1d1ef21aeb5d77c4b38b4de387}{CAN1\+\_\+\+Operation\+Mode\+Get()}) \{ ~\newline
+ if(CAN\+\_\+\+OP\+\_\+\+MODE\+\_\+\+REQUEST\+\_\+\+SUCCESS == CAN1\+\_\+\+Operation\+Mode\+Set(\+CAN\+\_\+\+NORMAL\+\_\+\+FD\+\_\+\+MODE)) \{ msg.\+msg\+Id = 0x1\+FFFF; msg.\+field.\+format\+Type = CAN\+\_\+\+FD\+\_\+\+FORMAT; msg.\+field.\+brs = CAN\+\_\+\+NON\+\_\+\+BRS\+\_\+\+MODE; msg.\+field.\+frame\+Type = CAN\+\_\+\+FRAME\+\_\+\+DATA; msg.\+field.\+id\+Type = CAN\+\_\+\+FRAME\+\_\+\+EXT; msg.\+field.\+dlc = DLC\+\_\+32; msg.\+data = data;}
+
+{\ttfamily  if(CAN\+\_\+\+TX\+\_\+\+FIFO\+\_\+\+AVAILABLE == (CAN1\+\_\+\+Transmit\+FIFOStatus\+Get(\+CAN1\+\_\+\+TX\+\_\+\+FIFO1) \& CAN\+\_\+\+TX\+\_\+\+FIFO\+\_\+\+AVAILABLE)) \{ CAN1\+\_\+\+Transmit(\+CAN1\+\_\+\+TX\+\_\+\+FIFO1, \&msg); \} \} \}}
+
+{\ttfamily  while(1); \} } Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{can1_8c_a24602980ff517c4a7b86205254fee54a_icgraph}
+\end{center}
+\end{figure}

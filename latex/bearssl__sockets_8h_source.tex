@@ -1,0 +1,145 @@
+\doxysection{bearssl\+\_\+sockets.\+h}
+\hypertarget{bearssl__sockets_8h_source}{}\label{bearssl__sockets_8h_source}\index{linux/matesocketcan/templates/bearssl\_sockets.h@{linux/matesocketcan/templates/bearssl\_sockets.h}}
+\mbox{\hyperlink{bearssl__sockets_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#if\ !defined(\_\_BEARSSL\_SOCKET\_TEMPLATE\_H\_\_)}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_BEARSSL\_SOCKET\_TEMPLATE\_H\_\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <sys/socket.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <netdb.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <errno.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <fcntl.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <bearssl.h>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{comment}{//\#include\ "{}mqtt\_pal.h"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ Low-\/level\ data\ read\ callback\ for\ the\ simplified\ SSL\ I/O\ API.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00016\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ sock\_read(\textcolor{keywordtype}{void}\ *ctx,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *buf,\ \textcolor{keywordtype}{size\_t}\ len)\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ ssize\_t\ rlen;}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordflow}{for}\ (;;)\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ rlen\ =\ read(*(\textcolor{keywordtype}{int}\ *)ctx,\ buf,\ len);}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rlen\ <\ 0)\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (errno\ ==\ EINTR)\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (errno\ ==\ EWOULDBLOCK\ ||\ errno\ ==\ EAGAIN)\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rlen\ =\ 0;}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00037\ \ \ \ \ \}}
+\DoxyCodeLine{00038\ \ \ \ \ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keywordtype}{int})rlen;}
+\DoxyCodeLine{00040\ \}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00043\ \textcolor{comment}{\ *\ Low-\/level\ data\ write\ callback\ for\ the\ simplified\ SSL\ I/O\ API.}}
+\DoxyCodeLine{00044\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00045\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ sock\_write(\textcolor{keywordtype}{void}\ *ctx,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *buf,\ \textcolor{keywordtype}{size\_t}\ len)\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ ssize\_t\ wlen;}
+\DoxyCodeLine{00047\ \ \ \ \ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordflow}{for}\ (;;)\ \{}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ wlen\ =\ write(*(\textcolor{keywordtype}{int}\ *)ctx,\ buf,\ len);}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (wlen\ <=\ 0\ \&\&\ errno\ ==\ EINTR)\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keywordtype}{int})wlen;}
+\DoxyCodeLine{00055\ \ \ \ \ \}}
+\DoxyCodeLine{00056\ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ host\_connect(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *host,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{mqtt__pub_8c_ad723da1801ae1586eb330380e2d9a912}{port}})\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{struct\ }hostent\ *he;}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{struct\ }in\_addr\ **addr\_list;}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordflow}{if}\ (NULL\ ==\ (he\ =\ gethostbyname(host)))}
+\DoxyCodeLine{00063\ \ \ \ \ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}Failed\ to\ resolve\ host\ name\(\backslash\)n"{}});}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00066\ \ \ \ \ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ addr\_list\ =\ (\textcolor{keyword}{struct\ }in\_addr\ **)\ he-\/>h\_addr\_list;}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{mqtt__pub_8c_ad2c8fb3df3a737e0685e902870a611d2}{sockfd}}\ =\ -\/1;}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{int}\ rv;}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{int}\ i;}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordflow}{if}\ (-\/1\ ==\ (\mbox{\hyperlink{mqtt__pub_8c_ad2c8fb3df3a737e0685e902870a611d2}{sockfd}}\ =\ socket(AF\_INET,\ SOCK\_STREAM,\ IPPROTO\_IP)))}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{struct\ }sockaddr\_in\ server;}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ server.sin\_family\ =\ AF\_INET;}
+\DoxyCodeLine{00080\ \ \ \ \ server.sin\_port\ =\ htons(atoi(\mbox{\hyperlink{mqtt__pub_8c_ad723da1801ae1586eb330380e2d9a912}{port}}));}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{comment}{/*\ open\ the\ first\ possible\ socket\ */}}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ addr\_list[i]\ !=\ NULL;\ i++)}
+\DoxyCodeLine{00084\ \ \ \ \ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ memcpy(\&server.sin\_addr.s\_addr,\ he-\/>h\_addr\_list[0],\ he-\/>h\_length);}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (0\ >\ (rv\ =\ connect(\mbox{\hyperlink{mqtt__pub_8c_ad2c8fb3df3a737e0685e902870a611d2}{sockfd}},\ (\textcolor{keyword}{struct}\ sockaddr\ *)\&server\ ,\ \textcolor{keyword}{sizeof}(server))))\ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ flags\ =\ fcntl(\mbox{\hyperlink{mqtt__pub_8c_ad2c8fb3df3a737e0685e902870a611d2}{sockfd}},\ F\_GETFL,\ 0);}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ flags\ |=\ O\_NONBLOCK;}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ fcntl(\mbox{\hyperlink{mqtt__pub_8c_ad2c8fb3df3a737e0685e902870a611d2}{sockfd}},\ F\_SETFL,\ flags);}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00096\ \ \ \ \ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordflow}{if}\ (addr\_list[i]\ ==\ NULL)}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mqtt__pub_8c_ad2c8fb3df3a737e0685e902870a611d2}{sockfd}}\ =\ -\/1;}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{comment}{/*\ return\ the\ new\ socket\ fd\ */}}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{mqtt__pub_8c_ad2c8fb3df3a737e0685e902870a611d2}{sockfd}};}
+\DoxyCodeLine{00103\ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{bearssl__sockets_8h_a853587b977bfa7ebdc2a056995508265}{open\_nb\_socket}}(bearssl\_context\ *ctx,}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *hostname,}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{mqtt__pub_8c_ad723da1801ae1586eb330380e2d9a912}{port}},}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *bearssl\_iobuf,}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ bearssl\_iobuf\_len)\ \{}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{comment}{/*\ initialize\ the\ BearSSL\ engine\ */}}
+\DoxyCodeLine{00112\ \ \ \ \ br\_ssl\_client\_init\_full(\&ctx-\/>sc,\ \&ctx-\/>xc,\ ctx-\/>anchOut,\ ctx-\/>ta\_count);}
+\DoxyCodeLine{00113\ \ \ \ \ br\_ssl\_engine\_set\_buffer(\&ctx-\/>sc.eng,\ bearssl\_iobuf,\ bearssl\_iobuf\_len,\ 1);}
+\DoxyCodeLine{00114\ \ \ \ \ br\_ssl\_client\_reset(\&ctx-\/>sc,\ hostname,\ 0);}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordflow}{if}\ (-\/1\ ==\ (ctx-\/>fd\ =\ host\_connect(hostname,\ \mbox{\hyperlink{mqtt__pub_8c_ad723da1801ae1586eb330380e2d9a912}{port}})))}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ ctx-\/>low\_read\ =\ sock\_read;}
+\DoxyCodeLine{00120\ \ \ \ \ ctx-\/>low\_write\ =\ sock\_write;}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00123\ \}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{bearssl__sockets_8h_ad1cbc183f82752580965c62ffeb7ba18}{close\_socket}}(bearssl\_context\ *ctx)\ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordtype}{int}\ rc;}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ br\_ssl\_engine\_close(\&ctx-\/>sc.eng);}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordflow}{if}\ (ctx-\/>fd\ !=\ 0)\ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ shutdown(ctx-\/>fd,\ SHUT\_RDWR);}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ rc\ =\ close(ctx-\/>fd);}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ ctx-\/>fd\ =\ 0;}
+\DoxyCodeLine{00134\ \ \ \ \ \}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordflow}{return}\ rc;}
+\DoxyCodeLine{00137\ \}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

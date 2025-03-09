@@ -1,0 +1,136 @@
+\doxysection{eadog.\+h}
+\hypertarget{eadog_8h_source}{}\label{eadog_8h_source}\mbox{\hyperlink{eadog_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ File:\ \ \ eadog.h}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ Author:\ root}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ Created\ on\ July\ 27,\ 2015,\ 2:05\ PM}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{comment}{/*\ Parts\ taken\ from:}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ Modified\ for\ XC8\ and\ with\ SPI\ using\ ring\ buffers\ with\ interrupts}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ file:\ EA-\/DOGM\_MIO.c}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ version:\ 2.03}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ \ \ \ \ description:\ Multi\ I/O\ driver\ for\ EA\ DOGM\ displays}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ Uses\ 8Bit,\ SPI\ HW\ or\ SPI\ SW\ (bitbang)}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ \ \ \ \ written\ by\ :\ Michael\ Bradley\ (mbradley@mculabs.com)}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ \ \ contributions:\ Imaginos\ (CCS\ forum),\ Emil\ Nad\ (8Bit\ testing)}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ jgschmidt\ (CCS\ forum)}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#ifndef\ EADOG\_H}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ EADOG\_H}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#ifdef\ \ \_\_cplusplus}}
+\DoxyCodeLine{00024\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{qconfig_8h}{qconfig.h}}"{}}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ USEMCC\_SPI}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#ifndef\ CAN\_REMOTE\_NODMA}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ USE\_LCD\_DMA}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structspi1__configuration__t_a430fa528340d660fc70b29c26cf20183}{con0}};}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structspi1__configuration__t_a9388dc2dccf6bde0c3585ce4c2d5cf06}{con1}};}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structspi1__configuration__t_a14912c148f966f93823e580e266d09eb}{con2}};}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structspi1__configuration__t_ae6a3e8755dc67d806f4689f25b386636}{baud}};}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structspi1__configuration__t_a97d486d6926f9137837e1d8ecf0bbfdd}{operation}};}
+\DoxyCodeLine{00039\ \ \ \ \ \}\ \mbox{\hyperlink{structspi1__configuration__t}{spi1\_configuration\_t}};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ EADOGM\_CMD\_CLR\ \ \ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ EADOGM\_CMD\_CURSOR\_ON\ \ \ \ 0b00001111}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ EADOGM\_CMD\_CURSOR\_OFF\ \ \ 0b00001100}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ EADOGM\_CMD\_DISPLAY\_ON\ \ \ 0b00001100}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ EADOGM\_CMD\_DISPLAY\_OFF\ \ 0b00001000}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ EADOGM\_CMD\_DDRAM\_ADDR\ \ \ 0b10000000}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ EADOGM\_CMD\_CGRAM\_ADDR\ \ \ 0b01000000}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ EADOGM\_CMD\_SELECT\_R0\ \ \ \ 0b00011000}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ EADOGM\_CMD\_SELECT\_R1\ \ \ \ 0b00010000}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ EADOGM\_CMD\_SET\_TABLE2\ \ \ 0b00101010}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ EADOGM\_COLSPAN\ \ \ \ \ \ \ \ \ \ 16}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ LCD\_CMD\_MASK\ \ \ \ 0x01}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ LCD\_CMD\_SET\ 0x100}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ LCD\_CLEAR\_HOME\ \ 0x04}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ LCD\_CMD\_ON\ \ 0x41}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ LCD\_CMD\_OFF\ 0x42}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#define\ LCD\_CMD\_HOME\ \ \ \ 0x46}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#define\ LCD\_CMD\_CLR\ 0x51}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ LCD\_CMD\_CONT\ \ \ \ 0x52}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ LCD\_CMD\_BRI\ 0x53}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ NHD\_CMD\ \ \ \ \ 0xFE}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ NHD\_POS\ \ \ \ \ 0x45}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ NHD\_BL\_OFF\ \ 1}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#define\ NHD\_BL\_LOW\ \ 2}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#define\ NHD\_BL\_MED\ \ 5}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ NHD\_BL\_HIGH\ 8}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#define\ NHD\_CONT\ \ \ \ 50}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ NHD\_T\_DELAY\ 8}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ NHD\_S\_DELAY\ 200}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#define\ NHD\_L\_DELAY\ 800}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#define\ LCD0\ \ \ \ \ \ \ \ 0}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#define\ LCD1\ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#define\ LCD2\ \ \ \ \ \ \ \ 2}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#define\ LCD3\ \ \ \ \ \ \ \ 3}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#define\ DIM\_DELAY\ \ \ 6}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#define\ NSB\ \ \ \ \ 5}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#define\ LSB\ \ \ \ \ 21}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#define\ LCD\_PWR\_DELAY\ \ \ 350000}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{eadog_8h_a3ff828022c3c7d1ef14e5879c8404350}{wdtdelay}}(\textcolor{keyword}{const}\ uint32\_t);}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{eadog_8h_ab5c89a01791e81a5efcee4e25a938a7e}{init\_display}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{eadog_8h_a5d89523c6da6150f0e42c89f8f717f0e}{no\_dma\_set\_lcd}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{eadog_8h_a995271797e78d3a83788f8f1fc0df7ed}{send\_lcd\_data\_dma}}(\textcolor{keyword}{const}\ uint8\_t);}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{eadog_8h_ae38700d7bcec53c06f15d40cd8aefa31}{send\_lcd\_cmd\_dma}}(\textcolor{keyword}{const}\ uint8\_t);}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{eadog_8h_a129fcb5a77657c7362612cd1a8ef9dd1}{send\_lcd\_pos\_dma}}(\textcolor{keyword}{const}\ uint8\_t);}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{eadog_8h_aa1f14a3ecc647d99fcf5ea0281eb433a}{start\_lcd}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{eadog_8h_a41e751304b342050075d6a42885e5be9}{wait\_lcd\_set}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{eadog_8h_a6c1680eb5821cfbf5d7dc689a2774846}{wait\_lcd\_check}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{eadog_8h_ad1c508e21d80c901ee119631b8d06349}{wait\_lcd\_done}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{eadog_8h_ace2eafc28f81059e7f8011f94e800b6d}{eaDogM\_WriteChr}}(\textcolor{keyword}{const}\ int8\_t);}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{eadog_8h_a4c99c21f8f16fbd0bba6db689af3a545}{eaDogM\_WriteCommand}}(\textcolor{keyword}{const}\ uint8\_t);}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{eadog_8h_a11a453eee4bda3ace8c287ee98a37a77}{eaDogM\_SetPos}}(\textcolor{keyword}{const}\ uint8\_t,\ \textcolor{keyword}{const}\ uint8\_t);}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{eadog_8h_acfe4822a02e0a83bc9271e9cd73dc5c8}{eaDogM\_ClearRow}}(\textcolor{keyword}{const}\ uint8\_t);}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{eadog_8h_abdf8cb128258dcce825732deb3bb707e}{eaDogM\_WriteString}}(\textcolor{keywordtype}{char}\ *);}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{eadog_8h_a293a42d10ba9bdf0f56ab58c60304dd4}{eaDogM\_WriteStringAtPos}}(\textcolor{keyword}{const}\ uint8\_t,\ \textcolor{keyword}{const}\ uint8\_t,\ \textcolor{keywordtype}{char}\ *);}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{eadog_8h_a1ba60d595359aeb5a90c8cf505e589de}{eaDogM\_WriteIntAtPos}}(\textcolor{keyword}{const}\ uint8\_t,\ \textcolor{keyword}{const}\ uint8\_t,\ \textcolor{keyword}{const}\ uint8\_t);}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{eadog_8h_a87fc96664b3d2453106c0db1b7ea4d68}{eaDogM\_WriteByteToCGRAM}}(\textcolor{keyword}{const}\ uint8\_t,\ \textcolor{keyword}{const}\ uint8\_t);}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{eadog_8h_a11ed063f692473d6d9ab18042ad1a97e}{set\_lcd\_dim}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{bool});}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{eadog_8h_ad822556b41ddbb73595fd5a11e9e5bb0}{check\_lcd\_dim}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{bool});}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordtype}{char}\ *\ \mbox{\hyperlink{eadog_8h_a6336c0c9442e66b2b2048c50d135ce02}{eaDogM\_Scroll\_String}}(\textcolor{keywordtype}{char}\ *);}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{eadog_8h_acc9ccd8c6efcbbefec86c4122d0065f2}{eaDogM\_Scroll\_Task}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{comment}{//\ DMA\ complete\ flag}}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{eadog_8h_af97a7634a90dd5ed782b7124540c7818}{clear\_lcd\_done}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{eadog_8h_ad48c238ccf5961cfd48b7660c65f7839}{spi\_rec\_done}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{eadog_8h_a05b74a75d1b7203983c749ca8bfcb12e}{can\_fd\_lcd\_mirror}}(\textcolor{keyword}{const}\ uint8\_t,\ \textcolor{keywordtype}{char}\ *);}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#define\ eaDogM\_Cls()\ \ \ \ \ \ \ \ \ \ \ \ \ eaDogM\_WriteCommand(EADOGM\_CMD\_CLR)}}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#define\ eaDogM\_CursorOn()\ \ \ \ \ \ \ \ eaDogM\_WriteCommand(EADOGM\_CMD\_CURSOR\_ON)}}
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#define\ eaDogM\_CursorOff()\ \ \ \ \ \ \ eaDogM\_WriteCommand(EADOGM\_CMD\_CURSOR\_OFF)}}
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\#define\ eaDogM\_DisplayOn()\ \ \ \ \ \ \ eaDogM\_WriteCommand(EADOGM\_CMD\_DISPLAY\_ON)}}
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#define\ eaDogM\_DisplayOff()\ \ \ \ \ \ eaDogM\_WriteCommand(EADOGM\_CMD\_DISPLAY\_OFF)}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00122\ \textcolor{comment}{\ \ \ \ \ *\ characters\ per\ line\ on\ the\ display}}
+\DoxyCodeLine{00123\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\#define\ max\_strlen\ \ 20}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\#ifdef\ \ \_\_cplusplus}}
+\DoxyCodeLine{00127\ \}}
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{/*\ EADOG\_H\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00131\ }
+
+\end{DoxyCode}

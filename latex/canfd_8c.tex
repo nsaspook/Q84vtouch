@@ -1,0 +1,280 @@
+\doxysection{canfd.\+c File Reference}
+\hypertarget{canfd_8c}{}\label{canfd_8c}\index{canfd.c@{canfd.c}}
+{\ttfamily \#include "{}canfd.\+h"{}}\newline
+Include dependency graph for canfd.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{canfd_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{canfd_8c_a369ea76a14f2a9ac1fd1120985a5febc}{Can1\+FIFO1\+Not\+Empty\+Handler}} (void)
+\item 
+void \mbox{\hyperlink{canfd_8c_ad62faa46dc11f1a1e7b2efa6a460582f}{can\+\_\+mirror\+\_\+print}} (void)
+\item 
+void \mbox{\hyperlink{canfd_8c_a29a7687004bc2ca4fe3a3ad2ed5d4f6b}{can\+\_\+fd\+\_\+tx}} (void)
+\item 
+void \mbox{\hyperlink{canfd_8c_a09603ea6c3ec888054e217e43d2f463d}{can\+\_\+setup}} (void)
+\item 
+void \mbox{\hyperlink{canfd_8c_ae83b9e5eede2fbaa2f524f82a14ebe65}{can\+\_\+fd\+\_\+lcd\+\_\+mirror}} (const uint8\+\_\+t r, char \texorpdfstring{$\ast$}{*}str\+Ptr)
+\item 
+void \mbox{\hyperlink{canfd_8c_aa74b37318c7f7322c16d8df246d48e98}{TXQNot\+Full\+Handler}} (void)
+\item 
+void \mbox{\hyperlink{canfd_8c_ac3dee03c58f64582bf9873b82234e5c0}{can\+\_\+blob\+\_\+set}} (\mbox{\hyperlink{structblob__type}{blob\+\_\+type}} \texorpdfstring{$\ast$}{*}data)
+\item 
+bool \mbox{\hyperlink{canfd_8c_a564a217e586a5d52d2a528e9dc8c0f3b}{get\+\_\+blob\+\_\+tx}} (void)
+\item 
+\mbox{\hyperlink{structblob__type}{blob\+\_\+type}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{canfd_8c_a068fecc2db8b788b688445ca4481da11}{can\+\_\+blob\+\_\+get}} (\mbox{\hyperlink{structblob__type}{blob\+\_\+type}} \texorpdfstring{$\ast$}{*}data)
+\item 
+bool \mbox{\hyperlink{canfd_8c_af5dbb2fdb5176f1044c8a8d206e56c57}{get\+\_\+blob\+\_\+rx}} (void)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structCAN__MSG__OBJ}{CAN\+\_\+\+MSG\+\_\+\+OBJ}} \mbox{\hyperlink{canfd_8c_a4a571b914c982845c387da16ef8efab1}{msg}} \mbox{[}\mbox{\hyperlink{canfd_8h_ab477abe5e6605e100c49a8ab72a7f036}{CANFD\+\_\+\+NBUF}}\mbox{]}
+\item 
+volatile uint8\+\_\+t \mbox{\hyperlink{canfd_8c_a1cfda93430cb60b084a6ca848f44b3a7}{rx\+Msg\+Data}} \mbox{[}\mbox{\hyperlink{canfd_8h_a0c8f844d74630794e991c5c714a1934c}{CAN\+\_\+\+REC\+\_\+\+BUFFERS}}\mbox{]}\mbox{[}\mbox{\hyperlink{canfd_8h_a3c69ec33266b2d06ac84ad7a6049873e}{CANFD\+\_\+\+BYTES}}\mbox{]}
+\item 
+volatile \mbox{\hyperlink{structcan__frames__t}{can\+\_\+frames\+\_\+t}} \mbox{\hyperlink{canfd_8c_a959d51107284735b720ea6940504fccd}{can\+\_\+packets}}
+\item 
+volatile \mbox{\hyperlink{structcan__rec__count__t}{can\+\_\+rec\+\_\+count\+\_\+t}} \mbox{\hyperlink{canfd_8c_a517c6622f7c90637e31ff52be0656e13}{can\+\_\+rec\+\_\+count}}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>uint16\_t \mbox{\hyperlink{canfd_8c_a23918116644a51f1645ad079bfcd0343}{Word}}\\
+\>struct \{\\
+\>\>uint8\_t \mbox{\hyperlink{canfd_8c_a5f501eb95fd51eccd5f90d04ff93376f}{Byte1}}: 8\\
+\>\>uint8\_t \mbox{\hyperlink{canfd_8c_a32bc510ced875f57c4eeec62ffb30e89}{Byte2}}: 8\\
+\>\} \mbox{\hyperlink{canfd_8c_a69cdda5d59536343df2abb37bed08c1d}{structBytes}}\\
+\} \mbox{\hyperlink{canfd_8c_a616fce2f9db60bd3d7538414678a3e69}{myVar}}\\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{canfd_8c_a369ea76a14f2a9ac1fd1120985a5febc}\index{canfd.c@{canfd.c}!Can1FIFO1NotEmptyHandler@{Can1FIFO1NotEmptyHandler}}
+\index{Can1FIFO1NotEmptyHandler@{Can1FIFO1NotEmptyHandler}!canfd.c@{canfd.c}}
+\doxysubsubsection{\texorpdfstring{Can1FIFO1NotEmptyHandler()}{Can1FIFO1NotEmptyHandler()}}
+{\footnotesize\ttfamily \label{canfd_8c_a369ea76a14f2a9ac1fd1120985a5febc} 
+void Can1\+FIFO1\+Not\+Empty\+Handler (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{canfd_8c_a369ea76a14f2a9ac1fd1120985a5febc_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{canfd_8c_a369ea76a14f2a9ac1fd1120985a5febc_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{canfd_8c_a068fecc2db8b788b688445ca4481da11}\index{canfd.c@{canfd.c}!can\_blob\_get@{can\_blob\_get}}
+\index{can\_blob\_get@{can\_blob\_get}!canfd.c@{canfd.c}}
+\doxysubsubsection{\texorpdfstring{can\_blob\_get()}{can\_blob\_get()}}
+{\footnotesize\ttfamily \label{canfd_8c_a068fecc2db8b788b688445ca4481da11} 
+\mbox{\hyperlink{structblob__type}{blob\+\_\+type}} \texorpdfstring{$\ast$}{*} can\+\_\+blob\+\_\+get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structblob__type}{blob\+\_\+type}} \texorpdfstring{$\ast$}{*}}]{data}{}\end{DoxyParamCaption})}
+
+\Hypertarget{canfd_8c_ac3dee03c58f64582bf9873b82234e5c0}\index{canfd.c@{canfd.c}!can\_blob\_set@{can\_blob\_set}}
+\index{can\_blob\_set@{can\_blob\_set}!canfd.c@{canfd.c}}
+\doxysubsubsection{\texorpdfstring{can\_blob\_set()}{can\_blob\_set()}}
+{\footnotesize\ttfamily \label{canfd_8c_ac3dee03c58f64582bf9873b82234e5c0} 
+void can\+\_\+blob\+\_\+set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structblob__type}{blob\+\_\+type}} \texorpdfstring{$\ast$}{*}}]{data}{}\end{DoxyParamCaption})}
+
+\Hypertarget{canfd_8c_ae83b9e5eede2fbaa2f524f82a14ebe65}\index{canfd.c@{canfd.c}!can\_fd\_lcd\_mirror@{can\_fd\_lcd\_mirror}}
+\index{can\_fd\_lcd\_mirror@{can\_fd\_lcd\_mirror}!canfd.c@{canfd.c}}
+\doxysubsubsection{\texorpdfstring{can\_fd\_lcd\_mirror()}{can\_fd\_lcd\_mirror()}}
+{\footnotesize\ttfamily \label{canfd_8c_ae83b9e5eede2fbaa2f524f82a14ebe65} 
+void can\+\_\+fd\+\_\+lcd\+\_\+mirror (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{r}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{str\+Ptr}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{canfd_8c_ae83b9e5eede2fbaa2f524f82a14ebe65_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{canfd_8c_ae83b9e5eede2fbaa2f524f82a14ebe65_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{canfd_8c_a29a7687004bc2ca4fe3a3ad2ed5d4f6b}\index{canfd.c@{canfd.c}!can\_fd\_tx@{can\_fd\_tx}}
+\index{can\_fd\_tx@{can\_fd\_tx}!canfd.c@{canfd.c}}
+\doxysubsubsection{\texorpdfstring{can\_fd\_tx()}{can\_fd\_tx()}}
+{\footnotesize\ttfamily \label{canfd_8c_a29a7687004bc2ca4fe3a3ad2ed5d4f6b} 
+void can\+\_\+fd\+\_\+tx (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{canfd_8c_a29a7687004bc2ca4fe3a3ad2ed5d4f6b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{canfd_8c_a29a7687004bc2ca4fe3a3ad2ed5d4f6b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{canfd_8c_ad62faa46dc11f1a1e7b2efa6a460582f}\index{canfd.c@{canfd.c}!can\_mirror\_print@{can\_mirror\_print}}
+\index{can\_mirror\_print@{can\_mirror\_print}!canfd.c@{canfd.c}}
+\doxysubsubsection{\texorpdfstring{can\_mirror\_print()}{can\_mirror\_print()}}
+{\footnotesize\ttfamily \label{canfd_8c_ad62faa46dc11f1a1e7b2efa6a460582f} 
+void can\+\_\+mirror\+\_\+print (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{canfd_8c_ad62faa46dc11f1a1e7b2efa6a460582f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=254pt]{canfd_8c_ad62faa46dc11f1a1e7b2efa6a460582f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{canfd_8c_a09603ea6c3ec888054e217e43d2f463d}\index{canfd.c@{canfd.c}!can\_setup@{can\_setup}}
+\index{can\_setup@{can\_setup}!canfd.c@{canfd.c}}
+\doxysubsubsection{\texorpdfstring{can\_setup()}{can\_setup()}}
+{\footnotesize\ttfamily \label{canfd_8c_a09603ea6c3ec888054e217e43d2f463d} 
+void can\+\_\+setup (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{canfd_8c_a09603ea6c3ec888054e217e43d2f463d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{canfd_8c_a09603ea6c3ec888054e217e43d2f463d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{canfd_8c_af5dbb2fdb5176f1044c8a8d206e56c57}\index{canfd.c@{canfd.c}!get\_blob\_rx@{get\_blob\_rx}}
+\index{get\_blob\_rx@{get\_blob\_rx}!canfd.c@{canfd.c}}
+\doxysubsubsection{\texorpdfstring{get\_blob\_rx()}{get\_blob\_rx()}}
+{\footnotesize\ttfamily \label{canfd_8c_af5dbb2fdb5176f1044c8a8d206e56c57} 
+bool get\+\_\+blob\+\_\+rx (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{canfd_8c_a564a217e586a5d52d2a528e9dc8c0f3b}\index{canfd.c@{canfd.c}!get\_blob\_tx@{get\_blob\_tx}}
+\index{get\_blob\_tx@{get\_blob\_tx}!canfd.c@{canfd.c}}
+\doxysubsubsection{\texorpdfstring{get\_blob\_tx()}{get\_blob\_tx()}}
+{\footnotesize\ttfamily \label{canfd_8c_a564a217e586a5d52d2a528e9dc8c0f3b} 
+bool get\+\_\+blob\+\_\+tx (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{canfd_8c_aa74b37318c7f7322c16d8df246d48e98}\index{canfd.c@{canfd.c}!TXQNotFullHandler@{TXQNotFullHandler}}
+\index{TXQNotFullHandler@{TXQNotFullHandler}!canfd.c@{canfd.c}}
+\doxysubsubsection{\texorpdfstring{TXQNotFullHandler()}{TXQNotFullHandler()}}
+{\footnotesize\ttfamily \label{canfd_8c_aa74b37318c7f7322c16d8df246d48e98} 
+void TXQNot\+Full\+Handler (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{canfd_8c_aa74b37318c7f7322c16d8df246d48e98_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{canfd_8c_a5f501eb95fd51eccd5f90d04ff93376f}\index{canfd.c@{canfd.c}!Byte1@{Byte1}}
+\index{Byte1@{Byte1}!canfd.c@{canfd.c}}
+\doxysubsubsection{\texorpdfstring{Byte1}{Byte1}}
+{\footnotesize\ttfamily \label{canfd_8c_a5f501eb95fd51eccd5f90d04ff93376f} 
+uint8\+\_\+t Byte1}
+
+\Hypertarget{canfd_8c_a32bc510ced875f57c4eeec62ffb30e89}\index{canfd.c@{canfd.c}!Byte2@{Byte2}}
+\index{Byte2@{Byte2}!canfd.c@{canfd.c}}
+\doxysubsubsection{\texorpdfstring{Byte2}{Byte2}}
+{\footnotesize\ttfamily \label{canfd_8c_a32bc510ced875f57c4eeec62ffb30e89} 
+uint8\+\_\+t Byte2}
+
+\Hypertarget{canfd_8c_a959d51107284735b720ea6940504fccd}\index{canfd.c@{canfd.c}!can\_packets@{can\_packets}}
+\index{can\_packets@{can\_packets}!canfd.c@{canfd.c}}
+\doxysubsubsection{\texorpdfstring{can\_packets}{can\_packets}}
+{\footnotesize\ttfamily \label{canfd_8c_a959d51107284735b720ea6940504fccd} 
+volatile \mbox{\hyperlink{structcan__frames__t}{can\+\_\+frames\+\_\+t}} can\+\_\+packets}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ .rec\_count\ =\ 0,}
+\DoxyCodeLine{\ \ \ \ .tx\_count\ =\ 0,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{canfd_8c_a517c6622f7c90637e31ff52be0656e13}\index{canfd.c@{canfd.c}!can\_rec\_count@{can\_rec\_count}}
+\index{can\_rec\_count@{can\_rec\_count}!canfd.c@{canfd.c}}
+\doxysubsubsection{\texorpdfstring{can\_rec\_count}{can\_rec\_count}}
+{\footnotesize\ttfamily \label{canfd_8c_a517c6622f7c90637e31ff52be0656e13} 
+volatile \mbox{\hyperlink{structcan__rec__count__t}{can\+\_\+rec\+\_\+count\+\_\+t}} can\+\_\+rec\+\_\+count}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ .rec\_count\ =\ 0,}
+\DoxyCodeLine{\ \ \ \ .rec\_flag\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{canfd_8c_a4a571b914c982845c387da16ef8efab1}\index{canfd.c@{canfd.c}!msg@{msg}}
+\index{msg@{msg}!canfd.c@{canfd.c}}
+\doxysubsubsection{\texorpdfstring{msg}{msg}}
+{\footnotesize\ttfamily \label{canfd_8c_a4a571b914c982845c387da16ef8efab1} 
+\mbox{\hyperlink{structCAN__MSG__OBJ}{CAN\+\_\+\+MSG\+\_\+\+OBJ}} msg\mbox{[}\mbox{\hyperlink{canfd_8h_ab477abe5e6605e100c49a8ab72a7f036}{CANFD\+\_\+\+NBUF}}\mbox{]}}
+
+\Hypertarget{canfd_8c_a616fce2f9db60bd3d7538414678a3e69}\index{canfd.c@{canfd.c}!myVar@{myVar}}
+\index{myVar@{myVar}!canfd.c@{canfd.c}}
+\doxysubsubsection{\texorpdfstring{[union]}{[union]}}
+{\footnotesize\ttfamily \label{canfd_8c_a616fce2f9db60bd3d7538414678a3e69} 
+union  \{ ... \}  my\+Var}
+
+\Hypertarget{canfd_8c_a1cfda93430cb60b084a6ca848f44b3a7}\index{canfd.c@{canfd.c}!rxMsgData@{rxMsgData}}
+\index{rxMsgData@{rxMsgData}!canfd.c@{canfd.c}}
+\doxysubsubsection{\texorpdfstring{rxMsgData}{rxMsgData}}
+{\footnotesize\ttfamily \label{canfd_8c_a1cfda93430cb60b084a6ca848f44b3a7} 
+volatile uint8\+\_\+t rx\+Msg\+Data\mbox{[}\mbox{\hyperlink{canfd_8h_a0c8f844d74630794e991c5c714a1934c}{CAN\+\_\+\+REC\+\_\+\+BUFFERS}}\mbox{]}\mbox{[}\mbox{\hyperlink{canfd_8h_a3c69ec33266b2d06ac84ad7a6049873e}{CANFD\+\_\+\+BYTES}}\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}\ no\ data\ \ \ \ \ \ \ \ \ \ \ \ "{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}\ no\_data0\ \ \ \ \ \ \ \ \ \ \ "{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}\ no\ info1\ \ \ \ \ \ \ \ \ \ \ "{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}\ no\ info2\ \ \ \ \ \ \ \ \ \ \ "{}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{canfd_8c_a69cdda5d59536343df2abb37bed08c1d}\index{canfd.c@{canfd.c}!structBytes@{structBytes}}
+\index{structBytes@{structBytes}!canfd.c@{canfd.c}}
+\doxysubsubsection{\texorpdfstring{[struct]}{[struct]}}
+{\footnotesize\ttfamily \label{canfd_8c_a69cdda5d59536343df2abb37bed08c1d} 
+struct  \{ ... \}  struct\+Bytes}
+
+\Hypertarget{canfd_8c_a23918116644a51f1645ad079bfcd0343}\index{canfd.c@{canfd.c}!Word@{Word}}
+\index{Word@{Word}!canfd.c@{canfd.c}}
+\doxysubsubsection{\texorpdfstring{Word}{Word}}
+{\footnotesize\ttfamily \label{canfd_8c_a23918116644a51f1645ad079bfcd0343} 
+uint16\+\_\+t Word}
+

@@ -1,0 +1,17 @@
+\doxysection{simple\+\_\+subscriber.\+c}
+\hypertarget{simple_subscriber_8c-example}{}\label{simple_subscriber_8c-example}A simple program that subscribes to a single topic and prints all updates that are received.
+
+Usage\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./bin/simple\_subscriber\ [address\ [port\ [topic]]]}
+
+\end{DoxyCode}
+
+
+Where {\ttfamily address} is the address of the MQTT broker, {\ttfamily port} is the port number the MQTT broker is running on, and {\ttfamily topic} is the name of the topic subscribe to. Note that all these arguments are optional and the defaults are {\ttfamily address} = {\ttfamily "{}test.\+mosquitto.\+org"{}}, {\ttfamily port} = {\ttfamily "{}1883"{}}, and {\ttfamily topic} = "{}datetime"{}.
+
+
+\begin{DoxyCodeInclude}{0}
+
+\end{DoxyCodeInclude}
+ 

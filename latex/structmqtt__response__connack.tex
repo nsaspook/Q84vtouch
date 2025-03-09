@@ -1,0 +1,62 @@
+\doxysection{mqtt\+\_\+response\+\_\+connack Struct Reference}
+\hypertarget{structmqtt__response__connack}{}\label{structmqtt__response__connack}\index{mqtt\_response\_connack@{mqtt\_response\_connack}}
+
+
+A connection response datastructure.  
+
+
+
+
+{\ttfamily \#include $<$mqtt.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structmqtt__response__connack_a1583e72ac8f111a02dc358fd52aecdbf}{session\+\_\+present\+\_\+flag}}
+\begin{DoxyCompactList}\small\item\em Allows client and broker to check if they have a consistent view about whether there is already a stored session state. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__unpackers_ga07e480dfa5738e60c54ad0447ddb1a25}{MQTTConnack\+Return\+Code}} \mbox{\hyperlink{structmqtt__response__connack_a54995c3252ea2954e0dffc8726bb7d5a}{return\+\_\+code}}
+\begin{DoxyCompactList}\small\item\em The return code of the connection request. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Related Symbols}
+(Note that these are not member symbols.) \begin{DoxyCompactItemize}
+\item 
+ssize\+\_\+t \mbox{\hyperlink{group__unpackers_gaa174fec8a214d65ee887b5b6c9b79d78}{mqtt\+\_\+unpack\+\_\+connack\+\_\+response}} (struct \mbox{\hyperlink{structmqtt__response}{mqtt\+\_\+response}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{structmqtt__response}{mqtt\+\_\+response}}, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf)
+\begin{DoxyCompactList}\small\item\em Deserialize a CONNACK response from {\ttfamily buf}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A connection response datastructure. 
+
+\begin{DoxySeeAlso}{See also}
+\href{http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/os/mqtt-v3.1.1-os.html\#_Toc398718033}{\texttt{ MQTT v3.\+1.\+1\+: CONNACK -\/ Acknowledgement connection response. }} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structmqtt__response__connack_a54995c3252ea2954e0dffc8726bb7d5a}\index{mqtt\_response\_connack@{mqtt\_response\_connack}!return\_code@{return\_code}}
+\index{return\_code@{return\_code}!mqtt\_response\_connack@{mqtt\_response\_connack}}
+\doxysubsubsection{\texorpdfstring{return\_code}{return\_code}}
+{\footnotesize\ttfamily \label{structmqtt__response__connack_a54995c3252ea2954e0dffc8726bb7d5a} 
+enum \mbox{\hyperlink{group__unpackers_ga07e480dfa5738e60c54ad0447ddb1a25}{MQTTConnack\+Return\+Code}} return\+\_\+code}
+
+
+
+The return code of the connection request. 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__unpackers_ga07e480dfa5738e60c54ad0447ddb1a25}{MQTTConnack\+Return\+Code} 
+\end{DoxySeeAlso}
+\Hypertarget{structmqtt__response__connack_a1583e72ac8f111a02dc358fd52aecdbf}\index{mqtt\_response\_connack@{mqtt\_response\_connack}!session\_present\_flag@{session\_present\_flag}}
+\index{session\_present\_flag@{session\_present\_flag}!mqtt\_response\_connack@{mqtt\_response\_connack}}
+\doxysubsubsection{\texorpdfstring{session\_present\_flag}{session\_present\_flag}}
+{\footnotesize\ttfamily \label{structmqtt__response__connack_a1583e72ac8f111a02dc358fd52aecdbf} 
+uint8\+\_\+t session\+\_\+present\+\_\+flag}
+
+
+
+Allows client and broker to check if they have a consistent view about whether there is already a stored session state. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+linux/matesocketcan/\mbox{\hyperlink{mqtt_8h}{mqtt.\+h}}\end{DoxyCompactItemize}

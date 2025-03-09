@@ -1,0 +1,239 @@
+\doxysection{dio.\+h File Reference}
+\hypertarget{dio_8h}{}\label{dio_8h}\index{dio.h@{dio.h}}
+{\ttfamily \#include $<$xc.\+h$>$}\newline
+{\ttfamily \#include "{}mate\+Q84.\+X/mcc\+\_\+generated\+\_\+files/pin\+\_\+manager.\+h"{}}\newline
+Include dependency graph for dio.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{dio_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dio_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{dio_8h_a15c429da3000ca1703e3aba853967721}{DAY\+\_\+\+RELAY\+\_\+\+ON}}~\mbox{\hyperlink{pin__manager_8h_a7a8a28c91e481c97b8deba22c87c920e}{RELAY\+\_\+\+Set\+High}}()
+\item 
+\#define \mbox{\hyperlink{dio_8h_a80be77385d22d9804cdc88ac3bc2d3d0}{DAY\+\_\+\+RELAY\+\_\+\+OFF}}~\mbox{\hyperlink{pin__manager_8h_a12b67fced13d353952c1687d9aeb83c2}{RELAY\+\_\+\+Set\+Low}}()
+\item 
+\#define \mbox{\hyperlink{dio_8h_a8a8d28a5effd45d871cf863b46a9773e}{NIGHT\+\_\+\+RELAY\+\_\+\+ON}}~\mbox{\hyperlink{pin__manager_8h_aa0f25d9e8db7d36b9b75fbb60b353da4}{MISC\+\_\+\+Set\+High}}()
+\item 
+\#define \mbox{\hyperlink{dio_8h_a6bdbfe5641a6004eb58d6096bb8340a4}{NIGHT\+\_\+\+RELAY\+\_\+\+OFF}}~\mbox{\hyperlink{pin__manager_8h_a891f101722728c79f825d137536de40e}{MISC\+\_\+\+Set\+Low}}()
+\item 
+\#define \mbox{\hyperlink{dio_8h_aae972b7424b2cc4e3866b8a0f80a9518}{CHARGER\+\_\+\+RELAY\+\_\+\+ON}}~\mbox{\hyperlink{pin__manager_8h_abe77549cc3f13f1a44cf0a7e46923e4f}{CHARGER\+\_\+\+Set\+High}}()
+\item 
+\#define \mbox{\hyperlink{dio_8h_a9fc9aec9cc8026ebbdeccbd88d3374d5}{CHARGER\+\_\+\+RELAY\+\_\+\+OFF}}~\mbox{\hyperlink{pin__manager_8h_a76b41afd9cbc4071a5fe2968499146e7}{CHARGER\+\_\+\+Set\+Low}}()
+\item 
+\#define \mbox{\hyperlink{dio_8h_a8d76ab7853325fadd2f09fc53c6d8a94}{D\+\_\+\+SW\+\_\+\+A\+\_\+\+PIN}}~\mbox{\hyperlink{pin__manager_8h_acdd084cfffc5664bb779133a237291cf}{A\+\_\+\+SWITCH\+\_\+\+Get\+Value}}()
+\item 
+\#define \mbox{\hyperlink{dio_8h_ad9a32ec7622ad6038ded86c388b56cdf}{D\+\_\+\+SW\+\_\+\+L\+\_\+\+PIN}}~\mbox{\hyperlink{pin__manager_8h_a99e173eaf0a434eddd4b11fed2ac378a}{L\+\_\+\+SWITCH\+\_\+\+Get\+Value}}()
+\item 
+\#define \mbox{\hyperlink{dio_8h_ad543dede1aef803b447d4528a5c9665f}{D\+\_\+\+SW\+\_\+\+M\+\_\+\+PIN}}~\mbox{\hyperlink{pin__manager_8h_a5f96029fd3b2209617edde8d00e217d6}{M\+\_\+\+SWITCH\+\_\+\+Get\+Value}}()
+\item 
+\#define \mbox{\hyperlink{dio_8h_a794962e47c77ce4f3c603d3b3f03ee2d}{debounce\+\_\+time}}~300
+\item 
+\#define \mbox{\hyperlink{dio_8h_a6f706f87759e55127c8fcf826e044883}{SW\+\_\+\+NO}}~0
+\item 
+\#define \mbox{\hyperlink{dio_8h_a7713b5979dca206a0758cb0d37d7d2d7}{SW\+\_\+\+NC}}~1
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{dio_8h_ae885e7cc1ca1c0d01d42f26535be391b}{D\+\_\+\+SW}} \{ \mbox{\hyperlink{dio_8h_ae885e7cc1ca1c0d01d42f26535be391bada29d98d0f1eb9a3d34c91c9044aaec3}{D\+\_\+\+SW\+\_\+A}} = 0
+, \mbox{\hyperlink{dio_8h_ae885e7cc1ca1c0d01d42f26535be391baa91ebd4a40143436aa84b63ce3baad7b}{D\+\_\+\+SW\+\_\+L}}
+, \mbox{\hyperlink{dio_8h_ae885e7cc1ca1c0d01d42f26535be391ba51ad5e48bfcffaf4eb99277b1e81cfed}{D\+\_\+\+SW\+\_\+M}}
+, \mbox{\hyperlink{dio_8h_ae885e7cc1ca1c0d01d42f26535be391ba2d73b4d069d82eda0584a85bd26862ea}{D\+\_\+\+SW\+\_\+\+COUNT}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{dio_8h_a8e8a491c2fda49a610570061bffcd31c}{init\+\_\+all\+\_\+switch}} (void)
+\item 
+void \mbox{\hyperlink{dio_8h_a0d4d72f387de2149313602eb6d76d819}{button\+\_\+press\+\_\+check}} (void)
+\item 
+void \mbox{\hyperlink{dio_8h_ad9bdab99bc48edead8e806b4c62eed43}{all\+\_\+relays\+\_\+off}} (void)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{dio_8h_aa04abdd98fbfff4cd5b0cb7c2df7d6ea}{sw\+\_\+contact\+\_\+types}} \mbox{[}\mbox{\hyperlink{dio_8h_ae885e7cc1ca1c0d01d42f26535be391ba2d73b4d069d82eda0584a85bd26862ea}{D\+\_\+\+SW\+\_\+\+COUNT}}\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{dio_8h_a9fc9aec9cc8026ebbdeccbd88d3374d5}\index{dio.h@{dio.h}!CHARGER\_RELAY\_OFF@{CHARGER\_RELAY\_OFF}}
+\index{CHARGER\_RELAY\_OFF@{CHARGER\_RELAY\_OFF}!dio.h@{dio.h}}
+\doxysubsubsection{\texorpdfstring{CHARGER\_RELAY\_OFF}{CHARGER\_RELAY\_OFF}}
+{\footnotesize\ttfamily \label{dio_8h_a9fc9aec9cc8026ebbdeccbd88d3374d5} 
+\#define CHARGER\+\_\+\+RELAY\+\_\+\+OFF~\mbox{\hyperlink{pin__manager_8h_a76b41afd9cbc4071a5fe2968499146e7}{CHARGER\+\_\+\+Set\+Low}}()}
+
+\Hypertarget{dio_8h_aae972b7424b2cc4e3866b8a0f80a9518}\index{dio.h@{dio.h}!CHARGER\_RELAY\_ON@{CHARGER\_RELAY\_ON}}
+\index{CHARGER\_RELAY\_ON@{CHARGER\_RELAY\_ON}!dio.h@{dio.h}}
+\doxysubsubsection{\texorpdfstring{CHARGER\_RELAY\_ON}{CHARGER\_RELAY\_ON}}
+{\footnotesize\ttfamily \label{dio_8h_aae972b7424b2cc4e3866b8a0f80a9518} 
+\#define CHARGER\+\_\+\+RELAY\+\_\+\+ON~\mbox{\hyperlink{pin__manager_8h_abe77549cc3f13f1a44cf0a7e46923e4f}{CHARGER\+\_\+\+Set\+High}}()}
+
+\Hypertarget{dio_8h_a8d76ab7853325fadd2f09fc53c6d8a94}\index{dio.h@{dio.h}!D\_SW\_A\_PIN@{D\_SW\_A\_PIN}}
+\index{D\_SW\_A\_PIN@{D\_SW\_A\_PIN}!dio.h@{dio.h}}
+\doxysubsubsection{\texorpdfstring{D\_SW\_A\_PIN}{D\_SW\_A\_PIN}}
+{\footnotesize\ttfamily \label{dio_8h_a8d76ab7853325fadd2f09fc53c6d8a94} 
+\#define D\+\_\+\+SW\+\_\+\+A\+\_\+\+PIN~\mbox{\hyperlink{pin__manager_8h_acdd084cfffc5664bb779133a237291cf}{A\+\_\+\+SWITCH\+\_\+\+Get\+Value}}()}
+
+\Hypertarget{dio_8h_ad9a32ec7622ad6038ded86c388b56cdf}\index{dio.h@{dio.h}!D\_SW\_L\_PIN@{D\_SW\_L\_PIN}}
+\index{D\_SW\_L\_PIN@{D\_SW\_L\_PIN}!dio.h@{dio.h}}
+\doxysubsubsection{\texorpdfstring{D\_SW\_L\_PIN}{D\_SW\_L\_PIN}}
+{\footnotesize\ttfamily \label{dio_8h_ad9a32ec7622ad6038ded86c388b56cdf} 
+\#define D\+\_\+\+SW\+\_\+\+L\+\_\+\+PIN~\mbox{\hyperlink{pin__manager_8h_a99e173eaf0a434eddd4b11fed2ac378a}{L\+\_\+\+SWITCH\+\_\+\+Get\+Value}}()}
+
+\Hypertarget{dio_8h_ad543dede1aef803b447d4528a5c9665f}\index{dio.h@{dio.h}!D\_SW\_M\_PIN@{D\_SW\_M\_PIN}}
+\index{D\_SW\_M\_PIN@{D\_SW\_M\_PIN}!dio.h@{dio.h}}
+\doxysubsubsection{\texorpdfstring{D\_SW\_M\_PIN}{D\_SW\_M\_PIN}}
+{\footnotesize\ttfamily \label{dio_8h_ad543dede1aef803b447d4528a5c9665f} 
+\#define D\+\_\+\+SW\+\_\+\+M\+\_\+\+PIN~\mbox{\hyperlink{pin__manager_8h_a5f96029fd3b2209617edde8d00e217d6}{M\+\_\+\+SWITCH\+\_\+\+Get\+Value}}()}
+
+\Hypertarget{dio_8h_a80be77385d22d9804cdc88ac3bc2d3d0}\index{dio.h@{dio.h}!DAY\_RELAY\_OFF@{DAY\_RELAY\_OFF}}
+\index{DAY\_RELAY\_OFF@{DAY\_RELAY\_OFF}!dio.h@{dio.h}}
+\doxysubsubsection{\texorpdfstring{DAY\_RELAY\_OFF}{DAY\_RELAY\_OFF}}
+{\footnotesize\ttfamily \label{dio_8h_a80be77385d22d9804cdc88ac3bc2d3d0} 
+\#define DAY\+\_\+\+RELAY\+\_\+\+OFF~\mbox{\hyperlink{pin__manager_8h_a12b67fced13d353952c1687d9aeb83c2}{RELAY\+\_\+\+Set\+Low}}()}
+
+\Hypertarget{dio_8h_a15c429da3000ca1703e3aba853967721}\index{dio.h@{dio.h}!DAY\_RELAY\_ON@{DAY\_RELAY\_ON}}
+\index{DAY\_RELAY\_ON@{DAY\_RELAY\_ON}!dio.h@{dio.h}}
+\doxysubsubsection{\texorpdfstring{DAY\_RELAY\_ON}{DAY\_RELAY\_ON}}
+{\footnotesize\ttfamily \label{dio_8h_a15c429da3000ca1703e3aba853967721} 
+\#define DAY\+\_\+\+RELAY\+\_\+\+ON~\mbox{\hyperlink{pin__manager_8h_a7a8a28c91e481c97b8deba22c87c920e}{RELAY\+\_\+\+Set\+High}}()}
+
+\Hypertarget{dio_8h_a794962e47c77ce4f3c603d3b3f03ee2d}\index{dio.h@{dio.h}!debounce\_time@{debounce\_time}}
+\index{debounce\_time@{debounce\_time}!dio.h@{dio.h}}
+\doxysubsubsection{\texorpdfstring{debounce\_time}{debounce\_time}}
+{\footnotesize\ttfamily \label{dio_8h_a794962e47c77ce4f3c603d3b3f03ee2d} 
+\#define debounce\+\_\+time~300}
+
+\Hypertarget{dio_8h_a6bdbfe5641a6004eb58d6096bb8340a4}\index{dio.h@{dio.h}!NIGHT\_RELAY\_OFF@{NIGHT\_RELAY\_OFF}}
+\index{NIGHT\_RELAY\_OFF@{NIGHT\_RELAY\_OFF}!dio.h@{dio.h}}
+\doxysubsubsection{\texorpdfstring{NIGHT\_RELAY\_OFF}{NIGHT\_RELAY\_OFF}}
+{\footnotesize\ttfamily \label{dio_8h_a6bdbfe5641a6004eb58d6096bb8340a4} 
+\#define NIGHT\+\_\+\+RELAY\+\_\+\+OFF~\mbox{\hyperlink{pin__manager_8h_a891f101722728c79f825d137536de40e}{MISC\+\_\+\+Set\+Low}}()}
+
+\Hypertarget{dio_8h_a8a8d28a5effd45d871cf863b46a9773e}\index{dio.h@{dio.h}!NIGHT\_RELAY\_ON@{NIGHT\_RELAY\_ON}}
+\index{NIGHT\_RELAY\_ON@{NIGHT\_RELAY\_ON}!dio.h@{dio.h}}
+\doxysubsubsection{\texorpdfstring{NIGHT\_RELAY\_ON}{NIGHT\_RELAY\_ON}}
+{\footnotesize\ttfamily \label{dio_8h_a8a8d28a5effd45d871cf863b46a9773e} 
+\#define NIGHT\+\_\+\+RELAY\+\_\+\+ON~\mbox{\hyperlink{pin__manager_8h_aa0f25d9e8db7d36b9b75fbb60b353da4}{MISC\+\_\+\+Set\+High}}()}
+
+\Hypertarget{dio_8h_a7713b5979dca206a0758cb0d37d7d2d7}\index{dio.h@{dio.h}!SW\_NC@{SW\_NC}}
+\index{SW\_NC@{SW\_NC}!dio.h@{dio.h}}
+\doxysubsubsection{\texorpdfstring{SW\_NC}{SW\_NC}}
+{\footnotesize\ttfamily \label{dio_8h_a7713b5979dca206a0758cb0d37d7d2d7} 
+\#define SW\+\_\+\+NC~1}
+
+\Hypertarget{dio_8h_a6f706f87759e55127c8fcf826e044883}\index{dio.h@{dio.h}!SW\_NO@{SW\_NO}}
+\index{SW\_NO@{SW\_NO}!dio.h@{dio.h}}
+\doxysubsubsection{\texorpdfstring{SW\_NO}{SW\_NO}}
+{\footnotesize\ttfamily \label{dio_8h_a6f706f87759e55127c8fcf826e044883} 
+\#define SW\+\_\+\+NO~0}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{dio_8h_ae885e7cc1ca1c0d01d42f26535be391b}\index{dio.h@{dio.h}!D\_SW@{D\_SW}}
+\index{D\_SW@{D\_SW}!dio.h@{dio.h}}
+\doxysubsubsection{\texorpdfstring{D\_SW}{D\_SW}}
+{\footnotesize\ttfamily \label{dio_8h_ae885e7cc1ca1c0d01d42f26535be391b} 
+enum \mbox{\hyperlink{dio_8h_ae885e7cc1ca1c0d01d42f26535be391b}{D\+\_\+\+SW}}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{D\_SW\_A@{D\_SW\_A}!dio.h@{dio.h}}\index{dio.h@{dio.h}!D\_SW\_A@{D\_SW\_A}}}\Hypertarget{dio_8h_ae885e7cc1ca1c0d01d42f26535be391bada29d98d0f1eb9a3d34c91c9044aaec3}\label{dio_8h_ae885e7cc1ca1c0d01d42f26535be391bada29d98d0f1eb9a3d34c91c9044aaec3} 
+D\+\_\+\+SW\+\_\+A&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{D\_SW\_L@{D\_SW\_L}!dio.h@{dio.h}}\index{dio.h@{dio.h}!D\_SW\_L@{D\_SW\_L}}}\Hypertarget{dio_8h_ae885e7cc1ca1c0d01d42f26535be391baa91ebd4a40143436aa84b63ce3baad7b}\label{dio_8h_ae885e7cc1ca1c0d01d42f26535be391baa91ebd4a40143436aa84b63ce3baad7b} 
+D\+\_\+\+SW\+\_\+L&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{D\_SW\_M@{D\_SW\_M}!dio.h@{dio.h}}\index{dio.h@{dio.h}!D\_SW\_M@{D\_SW\_M}}}\Hypertarget{dio_8h_ae885e7cc1ca1c0d01d42f26535be391ba51ad5e48bfcffaf4eb99277b1e81cfed}\label{dio_8h_ae885e7cc1ca1c0d01d42f26535be391ba51ad5e48bfcffaf4eb99277b1e81cfed} 
+D\+\_\+\+SW\+\_\+M&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{D\_SW\_COUNT@{D\_SW\_COUNT}!dio.h@{dio.h}}\index{dio.h@{dio.h}!D\_SW\_COUNT@{D\_SW\_COUNT}}}\Hypertarget{dio_8h_ae885e7cc1ca1c0d01d42f26535be391ba2d73b4d069d82eda0584a85bd26862ea}\label{dio_8h_ae885e7cc1ca1c0d01d42f26535be391ba2d73b4d069d82eda0584a85bd26862ea} 
+D\+\_\+\+SW\+\_\+\+COUNT&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{dio_8h_ad9bdab99bc48edead8e806b4c62eed43}\index{dio.h@{dio.h}!all\_relays\_off@{all\_relays\_off}}
+\index{all\_relays\_off@{all\_relays\_off}!dio.h@{dio.h}}
+\doxysubsubsection{\texorpdfstring{all\_relays\_off()}{all\_relays\_off()}}
+{\footnotesize\ttfamily \label{dio_8h_ad9bdab99bc48edead8e806b4c62eed43} 
+void all\+\_\+relays\+\_\+off (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dio_8h_ad9bdab99bc48edead8e806b4c62eed43_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{dio_8h_a0d4d72f387de2149313602eb6d76d819}\index{dio.h@{dio.h}!button\_press\_check@{button\_press\_check}}
+\index{button\_press\_check@{button\_press\_check}!dio.h@{dio.h}}
+\doxysubsubsection{\texorpdfstring{button\_press\_check()}{button\_press\_check()}}
+{\footnotesize\ttfamily \label{dio_8h_a0d4d72f387de2149313602eb6d76d819} 
+void button\+\_\+press\+\_\+check (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dio_8h_a0d4d72f387de2149313602eb6d76d819_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{dio_8h_a8e8a491c2fda49a610570061bffcd31c}\index{dio.h@{dio.h}!init\_all\_switch@{init\_all\_switch}}
+\index{init\_all\_switch@{init\_all\_switch}!dio.h@{dio.h}}
+\doxysubsubsection{\texorpdfstring{init\_all\_switch()}{init\_all\_switch()}}
+{\footnotesize\ttfamily \label{dio_8h_a8e8a491c2fda49a610570061bffcd31c} 
+void init\+\_\+all\+\_\+switch (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dio_8h_a8e8a491c2fda49a610570061bffcd31c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=243pt]{dio_8h_a8e8a491c2fda49a610570061bffcd31c_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{dio_8h_aa04abdd98fbfff4cd5b0cb7c2df7d6ea}\index{dio.h@{dio.h}!sw\_contact\_types@{sw\_contact\_types}}
+\index{sw\_contact\_types@{sw\_contact\_types}!dio.h@{dio.h}}
+\doxysubsubsection{\texorpdfstring{sw\_contact\_types}{sw\_contact\_types}}
+{\footnotesize\ttfamily \label{dio_8h_aa04abdd98fbfff4cd5b0cb7c2df7d6ea} 
+const uint8\+\_\+t sw\+\_\+contact\+\_\+types\mbox{[}\mbox{\hyperlink{dio_8h_ae885e7cc1ca1c0d01d42f26535be391ba2d73b4d069d82eda0584a85bd26862ea}{D\+\_\+\+SW\+\_\+\+COUNT}}\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{dio_8h_a6f706f87759e55127c8fcf826e044883}{SW\_NO}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{dio_8h_a6f706f87759e55127c8fcf826e044883}{SW\_NO}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{dio_8h_a7713b5979dca206a0758cb0d37d7d2d7}{SW\_NC}},}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}

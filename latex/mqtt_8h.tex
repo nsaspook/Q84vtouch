@@ -1,0 +1,445 @@
+\doxysection{linux/matesocketcan/mqtt.h File Reference}
+\hypertarget{mqtt_8h}{}\label{mqtt_8h}\index{linux/matesocketcan/mqtt.h@{linux/matesocketcan/mqtt.h}}
+
+
+Declares all the MQTT-\/C functions and datastructures.  
+
+
+{\ttfamily \#include "{}mqtt\+\_\+pal.\+h"{}}\newline
+Include dependency graph for mqtt.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=198pt]{mqtt_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{mqtt_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structmqtt__fixed__header}{mqtt\+\_\+fixed\+\_\+header}}
+\begin{DoxyCompactList}\small\item\em The fixed header of an MQTT control packet. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmqtt__response__connack}{mqtt\+\_\+response\+\_\+connack}}
+\begin{DoxyCompactList}\small\item\em A connection response datastructure. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmqtt__response__publish}{mqtt\+\_\+response\+\_\+publish}}
+\begin{DoxyCompactList}\small\item\em A publish packet received from the broker. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmqtt__response__puback}{mqtt\+\_\+response\+\_\+puback}}
+\begin{DoxyCompactList}\small\item\em A publish acknowledgement for messages that were published with QoS level 1. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmqtt__response__pubrec}{mqtt\+\_\+response\+\_\+pubrec}}
+\begin{DoxyCompactList}\small\item\em The response packet to a PUBLISH packet with QoS level 2. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmqtt__response__pubrel}{mqtt\+\_\+response\+\_\+pubrel}}
+\begin{DoxyCompactList}\small\item\em The response to a PUBREC packet. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmqtt__response__pubcomp}{mqtt\+\_\+response\+\_\+pubcomp}}
+\begin{DoxyCompactList}\small\item\em The response to a PUBREL packet. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmqtt__response__suback}{mqtt\+\_\+response\+\_\+suback}}
+\begin{DoxyCompactList}\small\item\em The response to a subscription request. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmqtt__response__unsuback}{mqtt\+\_\+response\+\_\+unsuback}}
+\begin{DoxyCompactList}\small\item\em The brokers response to a UNSUBSCRIBE request. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmqtt__response__pingresp}{mqtt\+\_\+response\+\_\+pingresp}}
+\begin{DoxyCompactList}\small\item\em The response to a ping request. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmqtt__response}{mqtt\+\_\+response}}
+\begin{DoxyCompactList}\small\item\em A struct used to deserialize/interpret an incoming packet from the broker. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmqtt__queued__message}{mqtt\+\_\+queued\+\_\+message}}
+\begin{DoxyCompactList}\small\item\em A message in a \doxylink{structmqtt__message__queue}{mqtt\+\_\+message\+\_\+queue}. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmqtt__message__queue}{mqtt\+\_\+message\+\_\+queue}}
+\begin{DoxyCompactList}\small\item\em A message queue. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}}
+\begin{DoxyCompactList}\small\item\em An MQTT client. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__packers_ga50781ed232e8fd19a071d07566579974}{MQTT\+\_\+\+PROTOCOL\+\_\+\+LEVEL}}~0x04
+\begin{DoxyCompactList}\small\item\em The protocol identifier for MQTT v3.\+1.\+1. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{mqtt_8h_a86c09e2666bd14722fa165ed904f78cb}{\+\_\+\+\_\+\+ALL\+\_\+\+MQTT\+\_\+\+ERRORS}}(MQTT\+\_\+\+ERROR)
+\begin{DoxyCompactList}\small\item\em A macro used to declare the enum \doxylink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors} and associated error messages (the members of the num) at the same time. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{mqtt_8h_aed8760364c7992625d06c93d12b2496d}{GENERATE\+\_\+\+ENUM}}(ENUM)
+\begin{DoxyCompactList}\small\item\em A macro used to generate the enum \doxylink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors} from \doxylink{mqtt_8h_a86c09e2666bd14722fa165ed904f78cb}{\+\_\+\+\_\+\+ALL\+\_\+\+MQTT\+\_\+\+ERRORS}. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{mqtt_8h_adf58d994c35f18ec84b628d8321f52e5}{GENERATE\+\_\+\+STRING}}(STRING)
+\begin{DoxyCompactList}\small\item\em A macro used to generate the error messages associated with \doxylink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors} from \doxylink{mqtt_8h_a86c09e2666bd14722fa165ed904f78cb}{\+\_\+\+\_\+\+ALL\+\_\+\+MQTT\+\_\+\+ERRORS}. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{mqtt_8h_a9f3be391755b744ee33832caf82b9749}{\+\_\+\+\_\+mqtt\+\_\+packed\+\_\+cstrlen}}(x)
+\begin{DoxyCompactList}\small\item\em A macro to get the MQTT string length from a c-\/string. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__packers_ga6501874871fce6b65d972430afa64fb8}{MQTT\+\_\+\+SUBSCRIBE\+\_\+\+REQUEST\+\_\+\+MAX\+\_\+\+NUM\+\_\+\+TOPICS}}~8
+\begin{DoxyCompactList}\small\item\em The maximum number topics that can be subscribed to in a single call to mqtt\+\_\+pack\+\_\+subscribe\+\_\+request. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__packers_gaff4017b7a1668b6ad6e0d006d0fdf10e}{MQTT\+\_\+\+UNSUBSCRIBE\+\_\+\+REQUEST\+\_\+\+MAX\+\_\+\+NUM\+\_\+\+TOPICS}}~8
+\begin{DoxyCompactList}\small\item\em The maximum number topics that can be subscribed to in a single call to mqtt\+\_\+pack\+\_\+unsubscribe\+\_\+request. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__details_gadfa141880e5b30429bd89018da0c8d94}{mqtt\+\_\+mq\+\_\+get}}(mq\+\_\+ptr,  index)
+\begin{DoxyCompactList}\small\item\em Returns the \doxylink{structmqtt__queued__message}{mqtt\+\_\+queued\+\_\+message} at {\ttfamily index}. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__details_ga4be078d9d0bd6183b9082f3217622223}{mqtt\+\_\+mq\+\_\+length}}(mq\+\_\+ptr)
+\begin{DoxyCompactList}\small\item\em Returns the number of messages in the message queue, {\ttfamily mq\+\_\+ptr}. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__details_ga8cd873da2116975ce39b313f93068d83}{mqtt\+\_\+mq\+\_\+currsz}}(mq\+\_\+ptr)
+\begin{DoxyCompactList}\small\item\em Used internally to recalculate the {\ttfamily curr\+\_\+sz}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__unpackers_gacbd36b88ec7f62bc161b07e1a0aed679}{MQTTControl\+Packet\+Type}} \{ \newline
+\mbox{\hyperlink{group__unpackers_ggacbd36b88ec7f62bc161b07e1a0aed679ac82ec571db883b701b3e062db61a9408}{MQTT\+\_\+\+CONTROL\+\_\+\+CONNECT}} = 1u
+, \mbox{\hyperlink{group__unpackers_ggacbd36b88ec7f62bc161b07e1a0aed679ac4f13496814d2b529f0537b71ffe1cdf}{MQTT\+\_\+\+CONTROL\+\_\+\+CONNACK}} = 2u
+, \mbox{\hyperlink{group__unpackers_ggacbd36b88ec7f62bc161b07e1a0aed679a54f09665c3957a13c6ff55863bc86c06}{MQTT\+\_\+\+CONTROL\+\_\+\+PUBLISH}} = 3u
+, \mbox{\hyperlink{group__unpackers_ggacbd36b88ec7f62bc161b07e1a0aed679af0457f2c5906583a9112f3d2c0ccfb59}{MQTT\+\_\+\+CONTROL\+\_\+\+PUBACK}} = 4u
+, \newline
+\mbox{\hyperlink{group__unpackers_ggacbd36b88ec7f62bc161b07e1a0aed679a39c3f450e13d6a1e87b62cf79f96cf83}{MQTT\+\_\+\+CONTROL\+\_\+\+PUBREC}} = 5u
+, \mbox{\hyperlink{group__unpackers_ggacbd36b88ec7f62bc161b07e1a0aed679aa64e17b5247a6b7550739eebf52cb2c9}{MQTT\+\_\+\+CONTROL\+\_\+\+PUBREL}} = 6u
+, \mbox{\hyperlink{group__unpackers_ggacbd36b88ec7f62bc161b07e1a0aed679ab2c6c750cb67d721e9e46ce44f69af21}{MQTT\+\_\+\+CONTROL\+\_\+\+PUBCOMP}} = 7u
+, \mbox{\hyperlink{group__unpackers_ggacbd36b88ec7f62bc161b07e1a0aed679a968375071029f8a1adb627ea3bd175db}{MQTT\+\_\+\+CONTROL\+\_\+\+SUBSCRIBE}} = 8u
+, \newline
+\mbox{\hyperlink{group__unpackers_ggacbd36b88ec7f62bc161b07e1a0aed679ace15e56c302f716980b4235914866e54}{MQTT\+\_\+\+CONTROL\+\_\+\+SUBACK}} = 9u
+, \mbox{\hyperlink{group__unpackers_ggacbd36b88ec7f62bc161b07e1a0aed679aaab242590b4d41018e19f41701be51f3}{MQTT\+\_\+\+CONTROL\+\_\+\+UNSUBSCRIBE}} = 10u
+, \mbox{\hyperlink{group__unpackers_ggacbd36b88ec7f62bc161b07e1a0aed679a9084892e26432dbface9e5e001fcde16}{MQTT\+\_\+\+CONTROL\+\_\+\+UNSUBACK}} = 11u
+, \mbox{\hyperlink{group__unpackers_ggacbd36b88ec7f62bc161b07e1a0aed679a1c76fcf01223b8ca5ca7a9a6f255da79}{MQTT\+\_\+\+CONTROL\+\_\+\+PINGREQ}} = 12u
+, \newline
+\mbox{\hyperlink{group__unpackers_ggacbd36b88ec7f62bc161b07e1a0aed679a375c1cc1a6243362c39329506a367c87}{MQTT\+\_\+\+CONTROL\+\_\+\+PINGRESP}} = 13u
+, \mbox{\hyperlink{group__unpackers_ggacbd36b88ec7f62bc161b07e1a0aed679a8368c077d1056eb3ab600eb6205b9dd4}{MQTT\+\_\+\+CONTROL\+\_\+\+DISCONNECT}} = 14u
+ \}
+\begin{DoxyCompactList}\small\item\em An enumeration of the MQTT control packet types. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors}} \{ \mbox{\hyperlink{group__api_ggad0c901a8d30691ed0ca17915b691b7e7afbc9a979afb91468adb4ac3621ffd867}{MQTT\+\_\+\+ERROR\+\_\+\+UNKNOWN}} = INT\+\_\+\+MIN
+, \mbox{\hyperlink{group__api_ggad0c901a8d30691ed0ca17915b691b7e7acd22fa3c2d0371be61655883cbc57ec3}{MQTT\+\_\+\+OK}} = 1
+ \}
+\begin{DoxyCompactList}\small\item\em An enumeration of error codes. Error messages can be retrieved by calling \doxylink{group__api_gad2450e11094eba170a7fee52e2ad8a03}{mqtt\+\_\+error\+\_\+str}. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__unpackers_ga07e480dfa5738e60c54ad0447ddb1a25}{MQTTConnack\+Return\+Code}} \{ \newline
+\mbox{\hyperlink{group__unpackers_gga07e480dfa5738e60c54ad0447ddb1a25a8ed62964c597ddea739324ac904e423a}{MQTT\+\_\+\+CONNACK\+\_\+\+ACCEPTED}} = 0u
+, \mbox{\hyperlink{group__unpackers_gga07e480dfa5738e60c54ad0447ddb1a25a6630a3751629a3bffa7c4d10255942cc}{MQTT\+\_\+\+CONNACK\+\_\+\+REFUSED\+\_\+\+PROTOCOL\+\_\+\+VERSION}} = 1u
+, \mbox{\hyperlink{group__unpackers_gga07e480dfa5738e60c54ad0447ddb1a25a008fd8f71e743057757dcb06ddbfdaef}{MQTT\+\_\+\+CONNACK\+\_\+\+REFUSED\+\_\+\+IDENTIFIER\+\_\+\+REJECTED}} = 2u
+, \mbox{\hyperlink{group__unpackers_gga07e480dfa5738e60c54ad0447ddb1a25ab8f59dfc09af88dd3099932b25123e61}{MQTT\+\_\+\+CONNACK\+\_\+\+REFUSED\+\_\+\+SERVER\+\_\+\+UNAVAILABLE}} = 3u
+, \newline
+\mbox{\hyperlink{group__unpackers_gga07e480dfa5738e60c54ad0447ddb1a25aa4ff9b812e7b4ba789bc55ee5e6da622}{MQTT\+\_\+\+CONNACK\+\_\+\+REFUSED\+\_\+\+BAD\+\_\+\+USER\+\_\+\+NAME\+\_\+\+OR\+\_\+\+PASSWORD}} = 4u
+, \mbox{\hyperlink{group__unpackers_gga07e480dfa5738e60c54ad0447ddb1a25a4a231c1d42dfd20e926b3f5deafc04bf}{MQTT\+\_\+\+CONNACK\+\_\+\+REFUSED\+\_\+\+NOT\+\_\+\+AUTHORIZED}} = 5u
+ \}
+\begin{DoxyCompactList}\small\item\em An enumeration of the return codes returned in a CONNACK packet. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__unpackers_ga2d626b05e589a148ce2e9e97f41302ae}{MQTTSuback\+Return\+Codes}} \{ \mbox{\hyperlink{group__unpackers_gga2d626b05e589a148ce2e9e97f41302aea1bbe099b18a7f0ed878ebb0a60e1210a}{MQTT\+\_\+\+SUBACK\+\_\+\+SUCCESS\+\_\+\+MAX\+\_\+\+QOS\+\_\+0}} = 0u
+, \mbox{\hyperlink{group__unpackers_gga2d626b05e589a148ce2e9e97f41302aeadf939e22b959e88c15e3c6bab55967d8}{MQTT\+\_\+\+SUBACK\+\_\+\+SUCCESS\+\_\+\+MAX\+\_\+\+QOS\+\_\+1}} = 1u
+, \mbox{\hyperlink{group__unpackers_gga2d626b05e589a148ce2e9e97f41302aea1c6c926f38967dfe73d4ecfbeb495288}{MQTT\+\_\+\+SUBACK\+\_\+\+SUCCESS\+\_\+\+MAX\+\_\+\+QOS\+\_\+2}} = 2u
+, \mbox{\hyperlink{group__unpackers_gga2d626b05e589a148ce2e9e97f41302aea08b9651ef43ea219f29125fcb43952f7}{MQTT\+\_\+\+SUBACK\+\_\+\+FAILURE}} = 128u
+ \}
+\begin{DoxyCompactList}\small\item\em An enumeration of subscription acknowledgement return codes. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__packers_gad6fa84a96a940fe4eae6ffca1a6d945f}{MQTTConnect\+Flags}} \{ \newline
+\mbox{\hyperlink{group__packers_ggad6fa84a96a940fe4eae6ffca1a6d945fabdfc545bcb1ec20ed77cbb817fad6c0f}{MQTT\+\_\+\+CONNECT\+\_\+\+RESERVED}} = 1u
+, \mbox{\hyperlink{group__packers_ggad6fa84a96a940fe4eae6ffca1a6d945fa7b8e672215d48bd2b5895f816dc656f0}{MQTT\+\_\+\+CONNECT\+\_\+\+CLEAN\+\_\+\+SESSION}} = 2u
+, \mbox{\hyperlink{group__packers_ggad6fa84a96a940fe4eae6ffca1a6d945faee6c4a1be1fa545ecff8654f34241574}{MQTT\+\_\+\+CONNECT\+\_\+\+WILL\+\_\+\+FLAG}} = 4u
+, \mbox{\hyperlink{group__packers_ggad6fa84a96a940fe4eae6ffca1a6d945fa59ea6cf8b44ba699439cca9d2510bcf5}{MQTT\+\_\+\+CONNECT\+\_\+\+WILL\+\_\+\+QOS\+\_\+0}} = (0u \& 0x03) \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 3
+, \newline
+\mbox{\hyperlink{group__packers_ggad6fa84a96a940fe4eae6ffca1a6d945fae686c05071db5ba9662e83b8aea0a562}{MQTT\+\_\+\+CONNECT\+\_\+\+WILL\+\_\+\+QOS\+\_\+1}} = (1u \& 0x03) \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 3
+, \mbox{\hyperlink{group__packers_ggad6fa84a96a940fe4eae6ffca1a6d945fac08adc0bc69a367162b6109952a632c6}{MQTT\+\_\+\+CONNECT\+\_\+\+WILL\+\_\+\+QOS\+\_\+2}} = (2u \& 0x03) \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 3
+, \mbox{\hyperlink{group__packers_ggad6fa84a96a940fe4eae6ffca1a6d945fa0059d93efdf00ab05fde33f85cb80921}{MQTT\+\_\+\+CONNECT\+\_\+\+WILL\+\_\+\+RETAIN}} = 32u
+, \mbox{\hyperlink{group__packers_ggad6fa84a96a940fe4eae6ffca1a6d945fa0e87378997e56c672e9b4087b0b59842}{MQTT\+\_\+\+CONNECT\+\_\+\+PASSWORD}} = 64u
+, \newline
+\mbox{\hyperlink{group__packers_ggad6fa84a96a940fe4eae6ffca1a6d945fab9935021bbd3ed4b33e78f103c21660d}{MQTT\+\_\+\+CONNECT\+\_\+\+USER\+\_\+\+NAME}} = 128u
+ \}
+\begin{DoxyCompactList}\small\item\em An enumeration of CONNECT packet flags. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__packers_gad38a41e1c497f9bcd2477c005f280b23}{MQTTPublish\+Flags}} \{ \newline
+\mbox{\hyperlink{group__packers_ggad38a41e1c497f9bcd2477c005f280b23a901629943a1ec81724994238f8a01e88}{MQTT\+\_\+\+PUBLISH\+\_\+\+DUP}} = 8u
+, \mbox{\hyperlink{group__packers_ggad38a41e1c497f9bcd2477c005f280b23a362587dae0b440d3c8971380db054ea6}{MQTT\+\_\+\+PUBLISH\+\_\+\+QOS\+\_\+0}} = ((0u \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 1) \& 0x06)
+, \mbox{\hyperlink{group__packers_ggad38a41e1c497f9bcd2477c005f280b23af0a8628fa4bb6d1f05615e544cd658fa}{MQTT\+\_\+\+PUBLISH\+\_\+\+QOS\+\_\+1}} = ((1u \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 1) \& 0x06)
+, \mbox{\hyperlink{group__packers_ggad38a41e1c497f9bcd2477c005f280b23aaf5031369276a157f79b6018d02bd71d}{MQTT\+\_\+\+PUBLISH\+\_\+\+QOS\+\_\+2}} = ((2u \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 1) \& 0x06)
+, \newline
+\mbox{\hyperlink{group__packers_ggad38a41e1c497f9bcd2477c005f280b23a3d64a9fe521730c9c36fe6c9cc7ef20b}{MQTT\+\_\+\+PUBLISH\+\_\+\+QOS\+\_\+\+MASK}} = ((3u \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 1) \& 0x06)
+, \mbox{\hyperlink{group__packers_ggad38a41e1c497f9bcd2477c005f280b23ace00e2256ee42c06cd32622d28450429}{MQTT\+\_\+\+PUBLISH\+\_\+\+RETAIN}} = 0x01
+ \}
+\begin{DoxyCompactList}\small\item\em An enumeration of the PUBLISH flags. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__details_ga28b018ca5d1c81101d36f9c0d532a0d0}{MQTTQueued\+Message\+State}} \{ \mbox{\hyperlink{group__details_gga28b018ca5d1c81101d36f9c0d532a0d0a3b253ea42cffbf3b9de68ea875214dc6}{MQTT\+\_\+\+QUEUED\+\_\+\+UNSENT}}
+, \mbox{\hyperlink{group__details_gga28b018ca5d1c81101d36f9c0d532a0d0a1fada2f64335662a43aa99137ee1827b}{MQTT\+\_\+\+QUEUED\+\_\+\+AWAITING\+\_\+\+ACK}}
+, \mbox{\hyperlink{group__details_gga28b018ca5d1c81101d36f9c0d532a0d0a32f4560e2822153e07026f560c1d2c98}{MQTT\+\_\+\+QUEUED\+\_\+\+COMPLETE}}
+ \}
+\begin{DoxyCompactList}\small\item\em An enumeration of queued message states. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__api_gad2450e11094eba170a7fee52e2ad8a03}{mqtt\+\_\+error\+\_\+str}} (enum \mbox{\hyperlink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors}} error)
+\begin{DoxyCompactList}\small\item\em Returns an error message for error code, {\ttfamily error}. \end{DoxyCompactList}\item 
+ssize\+\_\+t \mbox{\hyperlink{mqtt_8h_a3968f3df67a7ded8f3e21faad10139c9}{\+\_\+\+\_\+mqtt\+\_\+pack\+\_\+uint16}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, uint16\+\_\+t integer)
+\begin{DoxyCompactList}\small\item\em Pack a MQTT 16 bit integer, given a native 16 bit integer . \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{mqtt_8h_a053442c47812d3a3ef1b9525a2520c78}{\+\_\+\+\_\+mqtt\+\_\+unpack\+\_\+uint16}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf)
+\begin{DoxyCompactList}\small\item\em Unpack a MQTT 16 bit integer to a native 16 bit integer. \end{DoxyCompactList}\item 
+ssize\+\_\+t \mbox{\hyperlink{mqtt_8h_a223d30d2e6b84824ed995eda885d1e5d}{\+\_\+\+\_\+mqtt\+\_\+pack\+\_\+str}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, const char \texorpdfstring{$\ast$}{*}str)
+\begin{DoxyCompactList}\small\item\em Pack a MQTT string, given a c-\/string {\ttfamily str}. \end{DoxyCompactList}\item 
+ssize\+\_\+t \mbox{\hyperlink{group__unpackers_gad596aa5faf7f79e05fb15da33321db10}{mqtt\+\_\+unpack\+\_\+fixed\+\_\+header}} (struct \mbox{\hyperlink{structmqtt__response}{mqtt\+\_\+response}} \texorpdfstring{$\ast$}{*}response, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, size\+\_\+t bufsz)
+\begin{DoxyCompactList}\small\item\em Deserialize the contents of {\ttfamily buf} into an \doxylink{structmqtt__fixed__header}{mqtt\+\_\+fixed\+\_\+header} object. \end{DoxyCompactList}\item 
+ssize\+\_\+t \mbox{\hyperlink{group__packers_ga52d369e6e7d44539aab6732375288623}{mqtt\+\_\+pack\+\_\+fixed\+\_\+header}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, size\+\_\+t bufsz, const struct \mbox{\hyperlink{structmqtt__fixed__header}{mqtt\+\_\+fixed\+\_\+header}} \texorpdfstring{$\ast$}{*}fixed\+\_\+header)
+\begin{DoxyCompactList}\small\item\em Serialize an \doxylink{structmqtt__fixed__header}{mqtt\+\_\+fixed\+\_\+header} and write it to {\ttfamily buf}. \end{DoxyCompactList}\item 
+ssize\+\_\+t \mbox{\hyperlink{group__packers_ga327bce82ca8cce7f45e50e0edeb60987}{mqtt\+\_\+pack\+\_\+connection\+\_\+request}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, size\+\_\+t bufsz, const char \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_ab4524148feaa9d4fe5c15722114aedf5}{client\+\_\+id}}, const char \texorpdfstring{$\ast$}{*}will\+\_\+topic, const void \texorpdfstring{$\ast$}{*}will\+\_\+message, size\+\_\+t will\+\_\+message\+\_\+size, const char \texorpdfstring{$\ast$}{*}user\+\_\+name, const char \texorpdfstring{$\ast$}{*}password, uint8\+\_\+t \mbox{\hyperlink{mqtt__pub_8c_a16548771900c3e7c13b759795547ea00}{connect\+\_\+flags}}, uint16\+\_\+t keep\+\_\+alive)
+\begin{DoxyCompactList}\small\item\em Serialize a connection request into a buffer. \end{DoxyCompactList}\item 
+ssize\+\_\+t \mbox{\hyperlink{group__packers_gac277410744d12f3a091f3aa276ce465c}{mqtt\+\_\+pack\+\_\+publish\+\_\+request}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, size\+\_\+t bufsz, const char \texorpdfstring{$\ast$}{*}topic\+\_\+name, uint16\+\_\+t packet\+\_\+id, const void \texorpdfstring{$\ast$}{*}application\+\_\+message, size\+\_\+t application\+\_\+message\+\_\+size, uint8\+\_\+t publish\+\_\+flags)
+\begin{DoxyCompactList}\small\item\em Serialize a PUBLISH request and put it in {\ttfamily buf}. \end{DoxyCompactList}\item 
+ssize\+\_\+t \mbox{\hyperlink{group__packers_ga9cbd954d6bffd8fb0a06a6e4d34e4949}{mqtt\+\_\+pack\+\_\+pubxxx\+\_\+request}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, size\+\_\+t bufsz, enum \mbox{\hyperlink{group__unpackers_gacbd36b88ec7f62bc161b07e1a0aed679}{MQTTControl\+Packet\+Type}} control\+\_\+type, uint16\+\_\+t packet\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Serialize a PUBACK, PUBREC, PUBREL, or PUBCOMP packet and put it in {\ttfamily buf}. \end{DoxyCompactList}\item 
+ssize\+\_\+t \mbox{\hyperlink{group__packers_ga38ee59ca9d618d53da7d7c9bf0397942}{mqtt\+\_\+pack\+\_\+subscribe\+\_\+request}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, size\+\_\+t bufsz, unsigned int packet\+\_\+id,...)
+\begin{DoxyCompactList}\small\item\em Serialize a SUBSCRIBE packet and put it in {\ttfamily buf}. \end{DoxyCompactList}\item 
+ssize\+\_\+t \mbox{\hyperlink{group__packers_gaa863cb90857670e8faa6b18a1103e0d6}{mqtt\+\_\+pack\+\_\+unsubscribe\+\_\+request}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, size\+\_\+t bufsz, unsigned int packet\+\_\+id,...)
+\begin{DoxyCompactList}\small\item\em Serialize a UNSUBSCRIBE packet and put it in {\ttfamily buf}. \end{DoxyCompactList}\item 
+ssize\+\_\+t \mbox{\hyperlink{group__packers_gac11b5cc5c6bbbf386c2515c823965a82}{mqtt\+\_\+pack\+\_\+ping\+\_\+request}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, size\+\_\+t bufsz)
+\begin{DoxyCompactList}\small\item\em Serialize a PINGREQ and put it into {\ttfamily buf}. \end{DoxyCompactList}\item 
+ssize\+\_\+t \mbox{\hyperlink{group__packers_ga7842c85a0711df31f2e9ce31a9253999}{mqtt\+\_\+pack\+\_\+disconnect}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, size\+\_\+t bufsz)
+\begin{DoxyCompactList}\small\item\em Serialize a DISCONNECT and put it into {\ttfamily buf}. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{group__details_ga7ca75c661980d4af50493f59a386f378}{\+\_\+\+\_\+mqtt\+\_\+next\+\_\+pid}} (struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}})
+\begin{DoxyCompactList}\small\item\em Generate a new next packet ID. \end{DoxyCompactList}\item 
+ssize\+\_\+t \mbox{\hyperlink{group__details_gacf553ca88f48350dbde0dc3b96e550f7}{\+\_\+\+\_\+mqtt\+\_\+send}} (struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}})
+\begin{DoxyCompactList}\small\item\em Handles egress client traffic. \end{DoxyCompactList}\item 
+ssize\+\_\+t \mbox{\hyperlink{group__details_ga4d50a465c684a5ecd1c000f811fa601e}{\+\_\+\+\_\+mqtt\+\_\+recv}} (struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}})
+\begin{DoxyCompactList}\small\item\em Handles ingress client traffic. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors}} \mbox{\hyperlink{group__api_gae3d3aafc7588ed53a90c9f66fc620a6e}{mqtt\+\_\+sync}} (struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}})
+\begin{DoxyCompactList}\small\item\em Function that does the actual sending and receiving of traffic from the network. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors}} \mbox{\hyperlink{group__api_gaa5dab8a06f016b09c7a5259274b3b3ce}{mqtt\+\_\+init}} (struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}}, mqtt\+\_\+pal\+\_\+socket\+\_\+handle \mbox{\hyperlink{mqtt__pub_8c_ad2c8fb3df3a737e0685e902870a611d2}{sockfd}}, uint8\+\_\+t \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a502b31a8d53cdcbf11c58e3978f30b75}{sendbuf}}, size\+\_\+t sendbufsz, uint8\+\_\+t \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_af3e47aa072f18ac9539f8e53c70cc547}{recvbuf}}, size\+\_\+t recvbufsz, void(\texorpdfstring{$\ast$}{*}publish\+\_\+response\+\_\+callback)(void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mateQ84_8X_2main_8c_a26b2a0469c474a0b173b3791e5c4eb80}{state}}, struct \mbox{\hyperlink{structmqtt__response__publish}{mqtt\+\_\+response\+\_\+publish}} \texorpdfstring{$\ast$}{*}publish))
+\begin{DoxyCompactList}\small\item\em Initializes an MQTT client. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__api_ga4becaa66425469cf462b531aa7eb1ac9}{mqtt\+\_\+init\+\_\+reconnect}} (struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}}, void(\texorpdfstring{$\ast$}{*}reconnect\+\_\+callback)(struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}}, void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mateQ84_8X_2main_8c_a26b2a0469c474a0b173b3791e5c4eb80}{state}}), void \texorpdfstring{$\ast$}{*}reconnect\+\_\+state, void(\texorpdfstring{$\ast$}{*}publish\+\_\+response\+\_\+callback)(void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mateQ84_8X_2main_8c_a26b2a0469c474a0b173b3791e5c4eb80}{state}}, struct \mbox{\hyperlink{structmqtt__response__publish}{mqtt\+\_\+response\+\_\+publish}} \texorpdfstring{$\ast$}{*}publish))
+\begin{DoxyCompactList}\small\item\em Initializes an MQTT client and enables automatic reconnections. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__api_gaf5ae4b5b880431ef1bcd72f343de9ac6}{mqtt\+\_\+reinit}} (struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}}, mqtt\+\_\+pal\+\_\+socket\+\_\+handle socketfd, uint8\+\_\+t \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a502b31a8d53cdcbf11c58e3978f30b75}{sendbuf}}, size\+\_\+t sendbufsz, uint8\+\_\+t \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_af3e47aa072f18ac9539f8e53c70cc547}{recvbuf}}, size\+\_\+t recvbufsz)
+\begin{DoxyCompactList}\small\item\em Safely assign/reassign a socket and buffers to an new/existing client. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors}} \mbox{\hyperlink{group__api_gadbe914e5a9d4f93314c4e7637cb4f7b3}{mqtt\+\_\+connect}} (struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}}, const char \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_ab4524148feaa9d4fe5c15722114aedf5}{client\+\_\+id}}, const char \texorpdfstring{$\ast$}{*}will\+\_\+topic, const void \texorpdfstring{$\ast$}{*}will\+\_\+message, size\+\_\+t will\+\_\+message\+\_\+size, const char \texorpdfstring{$\ast$}{*}user\+\_\+name, const char \texorpdfstring{$\ast$}{*}password, uint8\+\_\+t \mbox{\hyperlink{mqtt__pub_8c_a16548771900c3e7c13b759795547ea00}{connect\+\_\+flags}}, uint16\+\_\+t keep\+\_\+alive)
+\begin{DoxyCompactList}\small\item\em Establishes a session with the MQTT broker. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors}} \mbox{\hyperlink{group__api_gaf97b13371c254248416dcaf5890cec49}{mqtt\+\_\+publish}} (struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}}, const char \texorpdfstring{$\ast$}{*}topic\+\_\+name, const void \texorpdfstring{$\ast$}{*}application\+\_\+message, size\+\_\+t application\+\_\+message\+\_\+size, uint8\+\_\+t publish\+\_\+flags)
+\begin{DoxyCompactList}\small\item\em Publish an application message. \end{DoxyCompactList}\item 
+ssize\+\_\+t \mbox{\hyperlink{group__details_gae09d4412a871ecec31377db55cc54228}{\+\_\+\+\_\+mqtt\+\_\+puback}} (struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}}, uint16\+\_\+t packet\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Acknowledge an ingree publish with QOS==1. \end{DoxyCompactList}\item 
+ssize\+\_\+t \mbox{\hyperlink{group__details_ga874c62f7a20b6adf13dbed2b4e2dd985}{\+\_\+\+\_\+mqtt\+\_\+pubrec}} (struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}}, uint16\+\_\+t packet\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Acknowledge an ingree publish with QOS==2. \end{DoxyCompactList}\item 
+ssize\+\_\+t \mbox{\hyperlink{group__details_ga427f9191ab9967b75e0a7a2f7fa0dca0}{\+\_\+\+\_\+mqtt\+\_\+pubrel}} (struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}}, uint16\+\_\+t packet\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Acknowledge an ingree PUBREC packet. \end{DoxyCompactList}\item 
+ssize\+\_\+t \mbox{\hyperlink{group__details_ga86ddd2a08fbe4bd351dfd161db93303d}{\+\_\+\+\_\+mqtt\+\_\+pubcomp}} (struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}}, uint16\+\_\+t packet\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Acknowledge an ingree PUBREL packet. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors}} \mbox{\hyperlink{group__api_gaea5da9b546f6e91eb77c9eff9c478de5}{mqtt\+\_\+subscribe}} (struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}}, const char \texorpdfstring{$\ast$}{*}topic\+\_\+name, int max\+\_\+qos\+\_\+level)
+\begin{DoxyCompactList}\small\item\em Subscribe to a topic. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors}} \mbox{\hyperlink{group__api_ga08d16571dfefa690698c0cca5cca7a1d}{mqtt\+\_\+unsubscribe}} (struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}}, const char \texorpdfstring{$\ast$}{*}topic\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Unsubscribe from a topic. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors}} \mbox{\hyperlink{group__api_gae472795684a1d973bfb89d075d17a29e}{mqtt\+\_\+ping}} (struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}})
+\begin{DoxyCompactList}\small\item\em Ping the broker. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors}} \mbox{\hyperlink{mqtt_8h_a444875d32fd56990f7c5a8251159d6bf}{\+\_\+\+\_\+mqtt\+\_\+ping}} (struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}})
+\begin{DoxyCompactList}\small\item\em Ping the broker without locking/unlocking the mutex. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors}} \mbox{\hyperlink{group__api_ga95d9981735ab4495d3d65e8056611126}{mqtt\+\_\+disconnect}} (struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}})
+\begin{DoxyCompactList}\small\item\em Terminate the session with the MQTT broker. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors}} \mbox{\hyperlink{group__api_ga325eeac7ab4873de8850f4e6af4dce01}{mqtt\+\_\+reconnect}} (struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}})
+\begin{DoxyCompactList}\small\item\em Terminate the session with the MQTT broker and prepare to reconnect. Client code should call \doxylink{group__api_gae3d3aafc7588ed53a90c9f66fc620a6e}{mqtt\+\_\+sync} immediately after this call to prevent message loss. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Declares all the MQTT-\/C functions and datastructures. 
+
+\begin{DoxyNote}{Note}
+You should {\ttfamily \#include \texorpdfstring{$<$}{<}\doxylink{mqtt_8h}{mqtt.\+h}\texorpdfstring{$>$}{>}}. 
+\end{DoxyNote}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{mqtt_8h_a86c09e2666bd14722fa165ed904f78cb}\index{mqtt.h@{mqtt.h}!\_\_ALL\_MQTT\_ERRORS@{\_\_ALL\_MQTT\_ERRORS}}
+\index{\_\_ALL\_MQTT\_ERRORS@{\_\_ALL\_MQTT\_ERRORS}!mqtt.h@{mqtt.h}}
+\doxysubsubsection{\texorpdfstring{\_\_ALL\_MQTT\_ERRORS}{\_\_ALL\_MQTT\_ERRORS}}
+{\footnotesize\ttfamily \label{mqtt_8h_a86c09e2666bd14722fa165ed904f78cb} 
+\#define \+\_\+\+\_\+\+ALL\+\_\+\+MQTT\+\_\+\+ERRORS(\begin{DoxyParamCaption}\item[{}]{MQTT\+\_\+\+ERROR}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ MQTT\_ERROR(MQTT\_ERROR\_NULLPTR)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ MQTT\_ERROR(MQTT\_ERROR\_CONTROL\_FORBIDDEN\_TYPE)\ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ MQTT\_ERROR(MQTT\_ERROR\_CONTROL\_INVALID\_FLAGS)\ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ MQTT\_ERROR(MQTT\_ERROR\_CONTROL\_WRONG\_TYPE)\ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ MQTT\_ERROR(MQTT\_ERROR\_CONNECT\_CLIENT\_ID\_REFUSED)\ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ MQTT\_ERROR(MQTT\_ERROR\_CONNECT\_NULL\_WILL\_MESSAGE)\ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ MQTT\_ERROR(MQTT\_ERROR\_CONNECT\_FORBIDDEN\_WILL\_QOS)\ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ MQTT\_ERROR(MQTT\_ERROR\_CONNACK\_FORBIDDEN\_FLAGS)\ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ MQTT\_ERROR(MQTT\_ERROR\_CONNACK\_FORBIDDEN\_CODE)\ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ MQTT\_ERROR(MQTT\_ERROR\_PUBLISH\_FORBIDDEN\_QOS)\ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ MQTT\_ERROR(MQTT\_ERROR\_SUBSCRIBE\_TOO\_MANY\_TOPICS)\ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ MQTT\_ERROR(MQTT\_ERROR\_MALFORMED\_RESPONSE)\ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ MQTT\_ERROR(MQTT\_ERROR\_UNSUBSCRIBE\_TOO\_MANY\_TOPICS)\ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ MQTT\_ERROR(MQTT\_ERROR\_RESPONSE\_INVALID\_CONTROL\_TYPE)\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ MQTT\_ERROR(MQTT\_ERROR\_CONNECT\_NOT\_CALLED)\ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ MQTT\_ERROR(MQTT\_ERROR\_SEND\_BUFFER\_IS\_FULL)\ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ MQTT\_ERROR(MQTT\_ERROR\_SOCKET\_ERROR)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ MQTT\_ERROR(MQTT\_ERROR\_MALFORMED\_REQUEST)\ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ MQTT\_ERROR(MQTT\_ERROR\_RECV\_BUFFER\_TOO\_SMALL)\ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ MQTT\_ERROR(MQTT\_ERROR\_ACK\_OF\_UNKNOWN)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ MQTT\_ERROR(MQTT\_ERROR\_NOT\_IMPLEMENTED)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ MQTT\_ERROR(MQTT\_ERROR\_CONNECTION\_REFUSED)\ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ MQTT\_ERROR(MQTT\_ERROR\_SUBSCRIBE\_FAILED)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ MQTT\_ERROR(MQTT\_ERROR\_CONNECTION\_CLOSED)\ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ MQTT\_ERROR(MQTT\_ERROR\_INITIAL\_RECONNECT)\ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ MQTT\_ERROR(MQTT\_ERROR\_INVALID\_REMAINING\_LENGTH)\ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ MQTT\_ERROR(MQTT\_ERROR\_CLEAN\_SESSION\_IS\_REQUIRED)\ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ MQTT\_ERROR(MQTT\_ERROR\_RECONNECT\_FAILED)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ MQTT\_ERROR(MQTT\_ERROR\_RECONNECTING)}
+
+\end{DoxyCode}
+
+
+A macro used to declare the enum \doxylink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors} and associated error messages (the members of the num) at the same time. 
+
+\Hypertarget{mqtt_8h_a9f3be391755b744ee33832caf82b9749}\index{mqtt.h@{mqtt.h}!\_\_mqtt\_packed\_cstrlen@{\_\_mqtt\_packed\_cstrlen}}
+\index{\_\_mqtt\_packed\_cstrlen@{\_\_mqtt\_packed\_cstrlen}!mqtt.h@{mqtt.h}}
+\doxysubsubsection{\texorpdfstring{\_\_mqtt\_packed\_cstrlen}{\_\_mqtt\_packed\_cstrlen}}
+{\footnotesize\ttfamily \label{mqtt_8h_a9f3be391755b744ee33832caf82b9749} 
+\#define \+\_\+\+\_\+mqtt\+\_\+packed\+\_\+cstrlen(\begin{DoxyParamCaption}\item[{}]{x}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(2\ +\ (\textcolor{keywordtype}{unsigned}\ int)strlen(x))}
+
+\end{DoxyCode}
+
+
+A macro to get the MQTT string length from a c-\/string. 
+
+\Hypertarget{mqtt_8h_aed8760364c7992625d06c93d12b2496d}\index{mqtt.h@{mqtt.h}!GENERATE\_ENUM@{GENERATE\_ENUM}}
+\index{GENERATE\_ENUM@{GENERATE\_ENUM}!mqtt.h@{mqtt.h}}
+\doxysubsubsection{\texorpdfstring{GENERATE\_ENUM}{GENERATE\_ENUM}}
+{\footnotesize\ttfamily \label{mqtt_8h_aed8760364c7992625d06c93d12b2496d} 
+\#define GENERATE\+\_\+\+ENUM(\begin{DoxyParamCaption}\item[{}]{ENUM}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ENUM,}
+
+\end{DoxyCode}
+
+
+A macro used to generate the enum \doxylink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors} from \doxylink{mqtt_8h_a86c09e2666bd14722fa165ed904f78cb}{\+\_\+\+\_\+\+ALL\+\_\+\+MQTT\+\_\+\+ERRORS}. 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{mqtt_8h_a86c09e2666bd14722fa165ed904f78cb}{\+\_\+\+\_\+\+ALL\+\_\+\+MQTT\+\_\+\+ERRORS} 
+\end{DoxySeeAlso}
+\Hypertarget{mqtt_8h_adf58d994c35f18ec84b628d8321f52e5}\index{mqtt.h@{mqtt.h}!GENERATE\_STRING@{GENERATE\_STRING}}
+\index{GENERATE\_STRING@{GENERATE\_STRING}!mqtt.h@{mqtt.h}}
+\doxysubsubsection{\texorpdfstring{GENERATE\_STRING}{GENERATE\_STRING}}
+{\footnotesize\ttfamily \label{mqtt_8h_adf58d994c35f18ec84b628d8321f52e5} 
+\#define GENERATE\+\_\+\+STRING(\begin{DoxyParamCaption}\item[{}]{STRING}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#STRING,}}
+
+\end{DoxyCode}
+
+
+A macro used to generate the error messages associated with \doxylink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors} from \doxylink{mqtt_8h_a86c09e2666bd14722fa165ed904f78cb}{\+\_\+\+\_\+\+ALL\+\_\+\+MQTT\+\_\+\+ERRORS}. 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{mqtt_8h_a86c09e2666bd14722fa165ed904f78cb}{\+\_\+\+\_\+\+ALL\+\_\+\+MQTT\+\_\+\+ERRORS} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{mqtt_8h_a223d30d2e6b84824ed995eda885d1e5d}\index{mqtt.h@{mqtt.h}!\_\_mqtt\_pack\_str@{\_\_mqtt\_pack\_str}}
+\index{\_\_mqtt\_pack\_str@{\_\_mqtt\_pack\_str}!mqtt.h@{mqtt.h}}
+\doxysubsubsection{\texorpdfstring{\_\_mqtt\_pack\_str()}{\_\_mqtt\_pack\_str()}}
+{\footnotesize\ttfamily \label{mqtt_8h_a223d30d2e6b84824ed995eda885d1e5d} 
+ssize\+\_\+t \+\_\+\+\_\+mqtt\+\_\+pack\+\_\+str (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{str}{}\end{DoxyParamCaption})}
+
+
+
+Pack a MQTT string, given a c-\/string {\ttfamily str}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em buf} & the buffer that the MQTT string will be written to. \\
+\hline
+\mbox{\texttt{ in}}  & {\em str} & the c-\/string to be written to {\ttfamily buf}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+This function provides no error checking.
+\end{DoxyWarning}
+\begin{DoxyReturn}{Returns}
+strlen(str) + 2 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=177pt]{mqtt_8h_a223d30d2e6b84824ed995eda885d1e5d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=177pt]{mqtt_8h_a223d30d2e6b84824ed995eda885d1e5d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{mqtt_8h_a3968f3df67a7ded8f3e21faad10139c9}\index{mqtt.h@{mqtt.h}!\_\_mqtt\_pack\_uint16@{\_\_mqtt\_pack\_uint16}}
+\index{\_\_mqtt\_pack\_uint16@{\_\_mqtt\_pack\_uint16}!mqtt.h@{mqtt.h}}
+\doxysubsubsection{\texorpdfstring{\_\_mqtt\_pack\_uint16()}{\_\_mqtt\_pack\_uint16()}}
+{\footnotesize\ttfamily \label{mqtt_8h_a3968f3df67a7ded8f3e21faad10139c9} 
+ssize\+\_\+t \+\_\+\+\_\+mqtt\+\_\+pack\+\_\+uint16 (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint16\+\_\+t}]{integer}{}\end{DoxyParamCaption})}
+
+
+
+Pack a MQTT 16 bit integer, given a native 16 bit integer . 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em buf} & the buffer that the MQTT integer will be written to. \\
+\hline
+\mbox{\texttt{ in}}  & {\em integer} & the native integer to be written to {\ttfamily buf}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+This function provides no error checking.
+\end{DoxyWarning}
+\begin{DoxyReturn}{Returns}
+2 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=195pt]{mqtt_8h_a3968f3df67a7ded8f3e21faad10139c9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=195pt]{mqtt_8h_a3968f3df67a7ded8f3e21faad10139c9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{mqtt_8h_a444875d32fd56990f7c5a8251159d6bf}\index{mqtt.h@{mqtt.h}!\_\_mqtt\_ping@{\_\_mqtt\_ping}}
+\index{\_\_mqtt\_ping@{\_\_mqtt\_ping}!mqtt.h@{mqtt.h}}
+\doxysubsubsection{\texorpdfstring{\_\_mqtt\_ping()}{\_\_mqtt\_ping()}}
+{\footnotesize\ttfamily \label{mqtt_8h_a444875d32fd56990f7c5a8251159d6bf} 
+enum \mbox{\hyperlink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors}} \+\_\+\+\_\+mqtt\+\_\+ping (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}}]{client}{}\end{DoxyParamCaption})}
+
+
+
+Ping the broker without locking/unlocking the mutex. 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__api_gae472795684a1d973bfb89d075d17a29e}{mqtt\+\_\+ping} 
+\end{DoxySeeAlso}
+\Hypertarget{mqtt_8h_a053442c47812d3a3ef1b9525a2520c78}\index{mqtt.h@{mqtt.h}!\_\_mqtt\_unpack\_uint16@{\_\_mqtt\_unpack\_uint16}}
+\index{\_\_mqtt\_unpack\_uint16@{\_\_mqtt\_unpack\_uint16}!mqtt.h@{mqtt.h}}
+\doxysubsubsection{\texorpdfstring{\_\_mqtt\_unpack\_uint16()}{\_\_mqtt\_unpack\_uint16()}}
+{\footnotesize\ttfamily \label{mqtt_8h_a053442c47812d3a3ef1b9525a2520c78} 
+uint16\+\_\+t \+\_\+\+\_\+mqtt\+\_\+unpack\+\_\+uint16 (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{buf}{}\end{DoxyParamCaption})}
+
+
+
+Unpack a MQTT 16 bit integer to a native 16 bit integer. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em buf} & the buffer that the MQTT integer will be read from.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+This function provides no error checking and does not modify {\ttfamily buf}.
+\end{DoxyWarning}
+\begin{DoxyReturn}{Returns}
+The native integer 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=207pt]{mqtt_8h_a053442c47812d3a3ef1b9525a2520c78_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=207pt]{mqtt_8h_a053442c47812d3a3ef1b9525a2520c78_icgraph}
+\end{center}
+\end{figure}

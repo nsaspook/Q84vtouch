@@ -1,0 +1,124 @@
+\doxysection{mqtt\+\_\+message\+\_\+queue Struct Reference}
+\hypertarget{structmqtt__message__queue}{}\label{structmqtt__message__queue}\index{mqtt\_message\_queue@{mqtt\_message\_queue}}
+
+
+A message queue.  
+
+
+
+
+{\ttfamily \#include $<$mqtt.\+h$>$}
+
+
+
+Collaboration diagram for mqtt\+\_\+message\+\_\+queue\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=211pt]{structmqtt__message__queue__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structmqtt__message__queue_a6173d4ae6cabbc095f530f2c31490d88}{mem\+\_\+start}}
+\begin{DoxyCompactList}\small\item\em The start of the message queue\textquotesingle{}s memory block. \end{DoxyCompactList}\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structmqtt__message__queue_a2a3611ebea79f99a1cdfbe4320a794b0}{mem\+\_\+end}}
+\begin{DoxyCompactList}\small\item\em The end of the message queue\textquotesingle{}s memory block. \end{DoxyCompactList}\item 
+uint8\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structmqtt__message__queue_a2158c932588480e03463af9a429027c1}{curr}}
+\begin{DoxyCompactList}\small\item\em A pointer to the position in the buffer you can pack bytes at. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{structmqtt__message__queue_a1bce4ca9a01a7cfbc0b9860569ea246e}{curr\+\_\+sz}}
+\begin{DoxyCompactList}\small\item\em The number of bytes that can be written to {\ttfamily curr}. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmqtt__queued__message}{mqtt\+\_\+queued\+\_\+message}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structmqtt__message__queue_a5bf737573f56d0759e543f69e438cbb1}{queue\+\_\+tail}}
+\begin{DoxyCompactList}\small\item\em The tail of the array of mqtt\+\_\+queued\+\_\+messages\textquotesingle{}s. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Related Symbols}
+(Note that these are not member symbols.) \begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__details_ga0da861c969387bf8d0229924543d9bb7}{mqtt\+\_\+mq\+\_\+init}} (struct \mbox{\hyperlink{structmqtt__message__queue}{mqtt\+\_\+message\+\_\+queue}} \texorpdfstring{$\ast$}{*}mq, void \texorpdfstring{$\ast$}{*}buf, size\+\_\+t bufsz)
+\begin{DoxyCompactList}\small\item\em Initialize a message queue. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__details_gadb54c413b4d884619c50cc20ee6eb084}{mqtt\+\_\+mq\+\_\+clean}} (struct \mbox{\hyperlink{structmqtt__message__queue}{mqtt\+\_\+message\+\_\+queue}} \texorpdfstring{$\ast$}{*}mq)
+\begin{DoxyCompactList}\small\item\em Clear as many messages from the front of the queue as possible. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmqtt__queued__message}{mqtt\+\_\+queued\+\_\+message}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__details_gaa34e6af3ab1af60ebf8fe7b86be868fc}{mqtt\+\_\+mq\+\_\+register}} (struct \mbox{\hyperlink{structmqtt__message__queue}{mqtt\+\_\+message\+\_\+queue}} \texorpdfstring{$\ast$}{*}mq, size\+\_\+t nbytes)
+\begin{DoxyCompactList}\small\item\em Register a message that was just added to the buffer. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmqtt__queued__message}{mqtt\+\_\+queued\+\_\+message}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__details_ga7ff481382af50e917941f1e7a787a36a}{mqtt\+\_\+mq\+\_\+find}} (const struct \mbox{\hyperlink{structmqtt__message__queue}{mqtt\+\_\+message\+\_\+queue}} \texorpdfstring{$\ast$}{*}mq, enum \mbox{\hyperlink{group__unpackers_gacbd36b88ec7f62bc161b07e1a0aed679}{MQTTControl\+Packet\+Type}} control\+\_\+type, const uint16\+\_\+t \texorpdfstring{$\ast$}{*}packet\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Find a message in the message queue. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A message queue. 
+
+\begin{DoxyNote}{Note}
+This struct is used internally to manage sending messages. 
+
+The only members the user should use are {\ttfamily curr} and {\ttfamily curr\+\_\+sz}. 
+\end{DoxyNote}
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structmqtt__message__queue_a2158c932588480e03463af9a429027c1}\index{mqtt\_message\_queue@{mqtt\_message\_queue}!curr@{curr}}
+\index{curr@{curr}!mqtt\_message\_queue@{mqtt\_message\_queue}}
+\doxysubsubsection{\texorpdfstring{curr}{curr}}
+{\footnotesize\ttfamily \label{structmqtt__message__queue_a2158c932588480e03463af9a429027c1} 
+uint8\+\_\+t\texorpdfstring{$\ast$}{*} curr}
+
+
+
+A pointer to the position in the buffer you can pack bytes at. 
+
+\begin{DoxyNote}{Note}
+Immediately after packing bytes at {\ttfamily curr} you {\itshape must} call mqtt\+\_\+mq\+\_\+register. 
+\end{DoxyNote}
+\Hypertarget{structmqtt__message__queue_a1bce4ca9a01a7cfbc0b9860569ea246e}\index{mqtt\_message\_queue@{mqtt\_message\_queue}!curr\_sz@{curr\_sz}}
+\index{curr\_sz@{curr\_sz}!mqtt\_message\_queue@{mqtt\_message\_queue}}
+\doxysubsubsection{\texorpdfstring{curr\_sz}{curr\_sz}}
+{\footnotesize\ttfamily \label{structmqtt__message__queue_a1bce4ca9a01a7cfbc0b9860569ea246e} 
+size\+\_\+t curr\+\_\+sz}
+
+
+
+The number of bytes that can be written to {\ttfamily curr}. 
+
+\begin{DoxyNote}{Note}
+curr\+\_\+sz will decrease by more than the number of bytes you write to {\ttfamily curr}. This is because the \doxylink{structmqtt__queued__message}{mqtt\+\_\+queued\+\_\+message} structs share the same memory (and thus, a \doxylink{structmqtt__queued__message}{mqtt\+\_\+queued\+\_\+message} must be allocated in the message queue\textquotesingle{}s memory whenever a new message is registered). 
+\end{DoxyNote}
+\Hypertarget{structmqtt__message__queue_a2a3611ebea79f99a1cdfbe4320a794b0}\index{mqtt\_message\_queue@{mqtt\_message\_queue}!mem\_end@{mem\_end}}
+\index{mem\_end@{mem\_end}!mqtt\_message\_queue@{mqtt\_message\_queue}}
+\doxysubsubsection{\texorpdfstring{mem\_end}{mem\_end}}
+{\footnotesize\ttfamily \label{structmqtt__message__queue_a2a3611ebea79f99a1cdfbe4320a794b0} 
+void\texorpdfstring{$\ast$}{*} mem\+\_\+end}
+
+
+
+The end of the message queue\textquotesingle{}s memory block. 
+
+\Hypertarget{structmqtt__message__queue_a6173d4ae6cabbc095f530f2c31490d88}\index{mqtt\_message\_queue@{mqtt\_message\_queue}!mem\_start@{mem\_start}}
+\index{mem\_start@{mem\_start}!mqtt\_message\_queue@{mqtt\_message\_queue}}
+\doxysubsubsection{\texorpdfstring{mem\_start}{mem\_start}}
+{\footnotesize\ttfamily \label{structmqtt__message__queue_a6173d4ae6cabbc095f530f2c31490d88} 
+void\texorpdfstring{$\ast$}{*} mem\+\_\+start}
+
+
+
+The start of the message queue\textquotesingle{}s memory block. 
+
+\begin{DoxyWarning}{Warning}
+This member should {\itshape not} be manually changed. 
+\end{DoxyWarning}
+\Hypertarget{structmqtt__message__queue_a5bf737573f56d0759e543f69e438cbb1}\index{mqtt\_message\_queue@{mqtt\_message\_queue}!queue\_tail@{queue\_tail}}
+\index{queue\_tail@{queue\_tail}!mqtt\_message\_queue@{mqtt\_message\_queue}}
+\doxysubsubsection{\texorpdfstring{queue\_tail}{queue\_tail}}
+{\footnotesize\ttfamily \label{structmqtt__message__queue_a5bf737573f56d0759e543f69e438cbb1} 
+struct \mbox{\hyperlink{structmqtt__queued__message}{mqtt\+\_\+queued\+\_\+message}}\texorpdfstring{$\ast$}{*} queue\+\_\+tail}
+
+
+
+The tail of the array of mqtt\+\_\+queued\+\_\+messages\textquotesingle{}s. 
+
+\begin{DoxyNote}{Note}
+This member should not be used manually. 
+\end{DoxyNote}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+linux/matesocketcan/\mbox{\hyperlink{mqtt_8h}{mqtt.\+h}}\end{DoxyCompactItemize}

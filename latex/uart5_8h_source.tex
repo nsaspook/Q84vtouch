@@ -1,0 +1,110 @@
+\doxysection{uart5.\+h}
+\hypertarget{uart5_8h_source}{}\label{uart5_8h_source}\index{mateQ84.X/mcc\_generated\_files/uart5.h@{mateQ84.X/mcc\_generated\_files/uart5.h}}
+\mbox{\hyperlink{uart5_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ \ \ \ (c)\ 2018\ Microchip\ Technology\ Inc.\ and\ its\ subsidiaries.\ }}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ \ \ \ }}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ \ \ \ Subject\ to\ your\ compliance\ with\ these\ terms,\ you\ may\ use\ Microchip\ software\ and\ any\ }}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ \ \ \ derivatives\ exclusively\ with\ Microchip\ products.\ It\ is\ your\ responsibility\ to\ comply\ with\ third\ party\ }}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ \ \ \ license\ terms\ applicable\ to\ your\ use\ of\ third\ party\ software\ (including\ open\ source\ software)\ that\ }}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ \ \ \ may\ accompany\ Microchip\ software.}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ \ \ \ }}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ \ \ \ THIS\ SOFTWARE\ IS\ SUPPLIED\ BY\ MICROCHIP\ "{}AS\ IS"{}.\ NO\ WARRANTIES,\ WHETHER\ }}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ \ \ \ EXPRESS,\ IMPLIED\ OR\ STATUTORY,\ APPLY\ TO\ THIS\ SOFTWARE,\ INCLUDING\ ANY\ }}
+\DoxyCodeLine{00034\ \textcolor{comment}{\ \ \ \ IMPLIED\ WARRANTIES\ OF\ NON-\/INFRINGEMENT,\ MERCHANTABILITY,\ AND\ FITNESS\ }}
+\DoxyCodeLine{00035\ \textcolor{comment}{\ \ \ \ FOR\ A\ PARTICULAR\ PURPOSE.}}
+\DoxyCodeLine{00036\ \textcolor{comment}{\ \ \ \ }}
+\DoxyCodeLine{00037\ \textcolor{comment}{\ \ \ \ IN\ NO\ EVENT\ WILL\ MICROCHIP\ BE\ LIABLE\ FOR\ ANY\ INDIRECT,\ SPECIAL,\ PUNITIVE,\ }}
+\DoxyCodeLine{00038\ \textcolor{comment}{\ \ \ \ INCIDENTAL\ OR\ CONSEQUENTIAL\ LOSS,\ DAMAGE,\ COST\ OR\ EXPENSE\ OF\ ANY\ KIND\ }}
+\DoxyCodeLine{00039\ \textcolor{comment}{\ \ \ \ WHATSOEVER\ RELATED\ TO\ THE\ SOFTWARE,\ HOWEVER\ CAUSED,\ EVEN\ IF\ MICROCHIP\ }}
+\DoxyCodeLine{00040\ \textcolor{comment}{\ \ \ \ HAS\ BEEN\ ADVISED\ OF\ THE\ POSSIBILITY\ OR\ THE\ DAMAGES\ ARE\ FORESEEABLE.\ TO\ }}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ \ \ \ THE\ FULLEST\ EXTENT\ ALLOWED\ BY\ LAW,\ MICROCHIP'S\ TOTAL\ LIABILITY\ ON\ ALL\ }}
+\DoxyCodeLine{00042\ \textcolor{comment}{\ \ \ \ CLAIMS\ IN\ ANY\ WAY\ RELATED\ TO\ THIS\ SOFTWARE\ WILL\ NOT\ EXCEED\ THE\ AMOUNT\ }}
+\DoxyCodeLine{00043\ \textcolor{comment}{\ \ \ \ OF\ FEES,\ IF\ ANY,\ THAT\ YOU\ HAVE\ PAID\ DIRECTLY\ TO\ MICROCHIP\ FOR\ THIS\ }}
+\DoxyCodeLine{00044\ \textcolor{comment}{\ \ \ \ SOFTWARE.}}
+\DoxyCodeLine{00045\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#ifndef\ UART5\_H}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ UART5\_H}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#include\ <xc.h>}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus\ \ }\textcolor{comment}{//\ Provide\ C++\ Compatibility}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#define\ UART5\_DataReady\ \ (UART5\_is\_rx\_ready())}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{union\ }\{}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{unionuart5__status__t_af7f1032f7b5a7f3b69827b650e1e6442}{perr}}\ :\ 1;}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{unionuart5__status__t_ac0a53829c3a0a280025ae6bbb85e88f8}{ferr}}\ :\ 1;}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{unionuart5__status__t_a8e7505a43bf03e13302937d789ce63ae}{oerr}}\ :\ 1;}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{unionuart5__status__t_a6a6017ea077b575677a11d733ec137a3}{reserved}}\ :\ 5;}
+\DoxyCodeLine{00080\ \ \ \ \ \};}
+\DoxyCodeLine{00081\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{unionuart5__status__t_ade818037fd6c985038ff29656089758d}{status}};}
+\DoxyCodeLine{00082\ \}\mbox{\hyperlink{unionuart5__status__t}{uart5\_status\_t}};}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00087\ \textcolor{keyword}{extern}\ \textcolor{keyword}{volatile}\ uint8\_t\ \mbox{\hyperlink{uart5_8c_ad26928b90624caf36199ba272a9fa0af}{uart5TxBufferRemaining}};}
+\DoxyCodeLine{00088\ \textcolor{keyword}{extern}\ \textcolor{keyword}{volatile}\ uint8\_t\ \mbox{\hyperlink{uart5_8c_af3b77d67effd15ef6a952eac3c5e92c2}{uart5RxCount}};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00115\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{uart5_8h_a990372f1e7e95df18123e9d524721f68}{UART5\_Initialize}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00163\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{uart5_8h_a580c388f7b852d1a939cdb9b65df67a6}{UART5\_is\_rx\_ready}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00211\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{uart5_8h_a412d2b12f20e46ad4d956fa92f3e0c16}{UART5\_is\_tx\_ready}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00258\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{uart5_8h_aa2c255ad0516c10a12dec8fc4b3e73f2}{UART5\_is\_tx\_done}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00306\ \mbox{\hyperlink{unionuart5__status__t}{uart5\_status\_t}}\ \mbox{\hyperlink{uart5_8h_a40ac5813391ea36a98b40d958207e05d}{UART5\_get\_last\_status}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00355\ uint8\_t\ \mbox{\hyperlink{uart5_8h_af2eaec0a40ded07b2b73f8ed6a0fb181}{UART5\_Read}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00356\ }
+\DoxyCodeLine{00380\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{uart5_8h_a249390b845af6d29d434413ac7190eba}{UART5\_Write}}(uint8\_t\ txData);}
+\DoxyCodeLine{00381\ \ \ \ \ \ }
+\DoxyCodeLine{00401\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{uart5_8h_a85abc651b78d6a725ff4a086297f002f}{UART5\_Transmit\_ISR}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00422\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{uart5_8h_a4b9dca4919c942a727bfb05d0be240ee}{UART5\_Receive\_ISR}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00423\ }
+\DoxyCodeLine{00443\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{uart5_8h_a7b12c4f1a7addfa0a27718f1a843d2c9}{UART5\_RxDataHandler}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00444\ }
+\DoxyCodeLine{00461\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{uart5_8h_a6ce1302f8a43f189c7fd1df4854f9b3b}{UART5\_SetFramingErrorHandler}}(\textcolor{keywordtype}{void}\ (*\ interruptHandler)(\textcolor{keywordtype}{void}));}
+\DoxyCodeLine{00462\ }
+\DoxyCodeLine{00479\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{uart5_8h_a727f3ee471075b3c13cce61d0e7bc75a}{UART5\_SetOverrunErrorHandler}}(\textcolor{keywordtype}{void}\ (*\ interruptHandler)(\textcolor{keywordtype}{void}));}
+\DoxyCodeLine{00480\ }
+\DoxyCodeLine{00497\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{uart5_8h_ab7362dbf9e375e5b9348908406fe8863}{UART5\_SetErrorHandler}}(\textcolor{keywordtype}{void}\ (*\ interruptHandler)(\textcolor{keywordtype}{void}));}
+\DoxyCodeLine{00498\ }
+\DoxyCodeLine{00499\ }
+\DoxyCodeLine{00500\ }
+\DoxyCodeLine{00517\ void\ (*\mbox{\hyperlink{uart5_8h_ade8a2effc85fdff2d7741250f7f0dfee}{UART5\_RxInterruptHandler}})(void);}
+\DoxyCodeLine{00518\ }
+\DoxyCodeLine{00535\ void\ (*\mbox{\hyperlink{uart5_8h_a207be5e9a4ecdca3ce6dac1812b65204}{UART5\_TxInterruptHandler}})(void);}
+\DoxyCodeLine{00536\ }
+\DoxyCodeLine{00537\ }
+\DoxyCodeLine{00538\ }
+\DoxyCodeLine{00555\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{uart5_8h_a8c465d87741b7570c0ad3a999c4e2c8b}{UART5\_SetRxInterruptHandler}}(\textcolor{keywordtype}{void}\ (*\ InterruptHandler)(\textcolor{keywordtype}{void}));}
+\DoxyCodeLine{00556\ }
+\DoxyCodeLine{00573\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{uart5_8h_ae1a5412d6d6287586f05b0ff39065bf7}{UART5\_SetTxInterruptHandler}}(\textcolor{keywordtype}{void}\ (*\ InterruptHandler)(\textcolor{keywordtype}{void}));}
+\DoxyCodeLine{00574\ }
+\DoxyCodeLine{00575\ }
+\DoxyCodeLine{00576\ }
+\DoxyCodeLine{00577\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus\ \ }\textcolor{comment}{//\ Provide\ C++\ Compatibility}}
+\DoxyCodeLine{00578\ }
+\DoxyCodeLine{00579\ \ \ \ \ \}}
+\DoxyCodeLine{00580\ }
+\DoxyCodeLine{00581\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00582\ }
+\DoxyCodeLine{00583\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ UART5\_H}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

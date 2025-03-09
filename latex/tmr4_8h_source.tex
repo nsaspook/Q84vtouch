@@ -1,0 +1,372 @@
+\doxysection{tmr4.\+h}
+\hypertarget{tmr4_8h_source}{}\label{tmr4_8h_source}\index{mateQ84.X/mcc\_generated\_files/tmr4.h@{mateQ84.X/mcc\_generated\_files/tmr4.h}}
+\mbox{\hyperlink{tmr4_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ \ \ \ (c)\ 2018\ Microchip\ Technology\ Inc.\ and\ its\ subsidiaries.\ }}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ \ \ \ }}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ \ \ \ Subject\ to\ your\ compliance\ with\ these\ terms,\ you\ may\ use\ Microchip\ software\ and\ any\ }}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ \ \ \ derivatives\ exclusively\ with\ Microchip\ products.\ It\ is\ your\ responsibility\ to\ comply\ with\ third\ party\ }}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ \ \ \ license\ terms\ applicable\ to\ your\ use\ of\ third\ party\ software\ (including\ open\ source\ software)\ that\ }}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ \ \ \ may\ accompany\ Microchip\ software.}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ \ \ \ }}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ \ \ \ THIS\ SOFTWARE\ IS\ SUPPLIED\ BY\ MICROCHIP\ "{}AS\ IS"{}.\ NO\ WARRANTIES,\ WHETHER\ }}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ \ \ \ EXPRESS,\ IMPLIED\ OR\ STATUTORY,\ APPLY\ TO\ THIS\ SOFTWARE,\ INCLUDING\ ANY\ }}
+\DoxyCodeLine{00034\ \textcolor{comment}{\ \ \ \ IMPLIED\ WARRANTIES\ OF\ NON-\/INFRINGEMENT,\ MERCHANTABILITY,\ AND\ FITNESS\ }}
+\DoxyCodeLine{00035\ \textcolor{comment}{\ \ \ \ FOR\ A\ PARTICULAR\ PURPOSE.}}
+\DoxyCodeLine{00036\ \textcolor{comment}{\ \ \ \ }}
+\DoxyCodeLine{00037\ \textcolor{comment}{\ \ \ \ IN\ NO\ EVENT\ WILL\ MICROCHIP\ BE\ LIABLE\ FOR\ ANY\ INDIRECT,\ SPECIAL,\ PUNITIVE,\ }}
+\DoxyCodeLine{00038\ \textcolor{comment}{\ \ \ \ INCIDENTAL\ OR\ CONSEQUENTIAL\ LOSS,\ DAMAGE,\ COST\ OR\ EXPENSE\ OF\ ANY\ KIND\ }}
+\DoxyCodeLine{00039\ \textcolor{comment}{\ \ \ \ WHATSOEVER\ RELATED\ TO\ THE\ SOFTWARE,\ HOWEVER\ CAUSED,\ EVEN\ IF\ MICROCHIP\ }}
+\DoxyCodeLine{00040\ \textcolor{comment}{\ \ \ \ HAS\ BEEN\ ADVISED\ OF\ THE\ POSSIBILITY\ OR\ THE\ DAMAGES\ ARE\ FORESEEABLE.\ TO\ }}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ \ \ \ THE\ FULLEST\ EXTENT\ ALLOWED\ BY\ LAW,\ MICROCHIP'S\ TOTAL\ LIABILITY\ ON\ ALL\ }}
+\DoxyCodeLine{00042\ \textcolor{comment}{\ \ \ \ CLAIMS\ IN\ ANY\ WAY\ RELATED\ TO\ THIS\ SOFTWARE\ WILL\ NOT\ EXCEED\ THE\ AMOUNT\ }}
+\DoxyCodeLine{00043\ \textcolor{comment}{\ \ \ \ OF\ FEES,\ IF\ ANY,\ THAT\ YOU\ HAVE\ PAID\ DIRECTLY\ TO\ MICROCHIP\ FOR\ THIS\ }}
+\DoxyCodeLine{00044\ \textcolor{comment}{\ \ \ \ SOFTWARE.}}
+\DoxyCodeLine{00045\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#ifndef\ TMR4\_H}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ TMR4\_H}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus\ \ }\textcolor{comment}{//\ Provide\ C++\ Compatibility}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00080\ \{}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{comment}{/*\ Roll-\/over\ Pulse\ mode\ clears\ the\ TMRx\ upon\ TMRx\ =\ PRx,\ then\ continue\ running.}}
+\DoxyCodeLine{00083\ \textcolor{comment}{\ \ \ \ ON\ bit\ must\ be\ set\ and\ is\ not\ affected\ by\ Resets}}
+\DoxyCodeLine{00084\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \textcolor{comment}{/*\ Roll-\/over\ Pulse\ mode\ indicates\ that\ Timer\ starts}}
+\DoxyCodeLine{00087\ \textcolor{comment}{\ \ \ immediately\ upon\ ON\ =\ 1\ (Software\ Control)}}
+\DoxyCodeLine{00088\ \textcolor{comment}{\ \ \ */}}
+\DoxyCodeLine{00089\ \ \ \ \mbox{\hyperlink{tmr4_8h_a540c8ef50d7bd58f3dfe215692af0cc5a9d21420c84ddcd08aa9b19d77b05b922}{TMR4\_ROP\_STARTS\_TMRON}},}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \textcolor{comment}{/*\ Roll-\/over\ Pulse\ mode\ indicates\ that\ the\ Timer\ starts}}
+\DoxyCodeLine{00092\ \textcolor{comment}{\ \ \ \ \ \ \ when\ ON\ =\ 1\ and\ TMRx\_ers\ =\ 1.\ Stops\ when\ TMRx\_ers\ =\ 0}}
+\DoxyCodeLine{00093\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00094\ \ \ \ \mbox{\hyperlink{tmr4_8h_a540c8ef50d7bd58f3dfe215692af0cc5a99a1eefe35a8658f2a955e207b41bba9}{TMR4\_ROP\_STARTS\_TMRON\_ERSHIGH}},}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \textcolor{comment}{/*\ Roll-\/over\ Pulse\ mode\ indicates\ that\ the\ Timer\ starts}}
+\DoxyCodeLine{00097\ \textcolor{comment}{\ \ \ \ \ \ when\ ON\ =\ 1\ and\ TMRx\_ers\ =\ 0.\ Stops\ when\ TMRx\_ers\ =\ 1}}
+\DoxyCodeLine{00098\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00099\ \ \ \ \mbox{\hyperlink{tmr4_8h_a540c8ef50d7bd58f3dfe215692af0cc5aa3dd1233023416d39f5315dda0e9b3ae}{TMR4\_ROP\_STARTS\_TMRON\_ERSLOW}},}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \textcolor{comment}{/*\ Roll-\/over\ Pulse\ mode\ indicates\ that\ the\ Timer\ resets}}
+\DoxyCodeLine{00102\ \textcolor{comment}{\ \ \ upon\ rising\ or\ falling\ edge\ of\ TMRx\_ers}}
+\DoxyCodeLine{00103\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00104\ \ \ \ \mbox{\hyperlink{tmr4_8h_a540c8ef50d7bd58f3dfe215692af0cc5a6021e86caf18fbcbf71474926ad493aa}{TMR4\_ROP\_RESETS\_ERSBOTHEDGE}},}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \textcolor{comment}{/*\ Roll-\/over\ Pulse\ mode\ indicates\ that\ the\ Timer\ resets}}
+\DoxyCodeLine{00107\ \textcolor{comment}{\ \ \ \ upon\ rising\ edge\ of\ TMRx\_ers}}
+\DoxyCodeLine{00108\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00109\ \ \ \ \mbox{\hyperlink{tmr4_8h_a540c8ef50d7bd58f3dfe215692af0cc5aa38b997a13ed63d0dd75378ec7dafd72}{TMR4\_ROP\_RESETS\_ERSRISINGEDGE}},}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \textcolor{comment}{/*\ Roll-\/over\ Pulse\ mode\ indicates\ that\ the\ Timer\ resets}}
+\DoxyCodeLine{00112\ \textcolor{comment}{\ \ \ upon\ falling\ edge\ of\ TMRx\_ers}}
+\DoxyCodeLine{00113\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00114\ \ \ \ \mbox{\hyperlink{tmr4_8h_a540c8ef50d7bd58f3dfe215692af0cc5a728ae6a3e318dd77ac38443021305cd2}{TMR4\_ROP\_RESETS\_ERSFALLINGEDGE}},}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \textcolor{comment}{/*\ Roll-\/over\ Pulse\ mode\ indicates\ that\ the\ Timer\ resets}}
+\DoxyCodeLine{00117\ \textcolor{comment}{\ \ \ upon\ TMRx\_ers\ =\ 0}}
+\DoxyCodeLine{00118\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00119\ \ \ \ \mbox{\hyperlink{tmr4_8h_a540c8ef50d7bd58f3dfe215692af0cc5aa1955bcade3c51517f18a50b373a8654}{TMR4\_ROP\_RESETS\_ERSLOW}},}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \textcolor{comment}{/*\ Roll-\/over\ Pulse\ mode\ indicates\ that\ the\ Timer\ resets}}
+\DoxyCodeLine{00122\ \textcolor{comment}{\ \ \ upon\ TMRx\_ers\ =\ 1}}
+\DoxyCodeLine{00123\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00124\ \ \ \ \mbox{\hyperlink{tmr4_8h_a540c8ef50d7bd58f3dfe215692af0cc5aa7304341b7a7b2722028cabef0dffb1b}{TMR4\_ROP\_RESETS\_ERSHIGH}},}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{comment}{/*In\ all\ One-\/Shot\ mode\ the\ timer\ resets\ and\ the\ ON\ bit\ is}}
+\DoxyCodeLine{00127\ \textcolor{comment}{\ \ \ \ cleared\ when\ the\ timer\ value\ matches\ the\ PRx\ period}}
+\DoxyCodeLine{00128\ \textcolor{comment}{\ \ \ \ value.\ The\ ON\ bit\ must\ be\ set\ by\ software\ to\ start}}
+\DoxyCodeLine{00129\ \textcolor{comment}{\ \ \ \ another\ timer\ cycle.}}
+\DoxyCodeLine{00130\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \textcolor{comment}{/*\ One\ shot\ mode\ indicates\ that\ the\ Timer\ starts}}
+\DoxyCodeLine{00133\ \textcolor{comment}{\ \ \ \ immediately\ upon\ ON\ =\ 1\ (Software\ Control)}}
+\DoxyCodeLine{00134\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00135\ \ \ \ \mbox{\hyperlink{tmr4_8h_a540c8ef50d7bd58f3dfe215692af0cc5a7bc7fad0cace6260f7dd41bee335b751}{TMR4\_OS\_STARTS\_TMRON}},}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \ \textcolor{comment}{/*\ One\ shot\ mode\ indicates\ that\ the\ Timer\ starts}}
+\DoxyCodeLine{00138\ \textcolor{comment}{\ \ \ \ when\ a\ rising\ edge\ is\ detected\ on\ the\ TMRx\_ers}}
+\DoxyCodeLine{00139\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00140\ \ \ \ \mbox{\hyperlink{tmr4_8h_a540c8ef50d7bd58f3dfe215692af0cc5a5dc2f1fb6ac9d1f240b7c3233afa39ec}{TMR4\_OS\_STARTS\_ERSRISINGEDGE}}\ ,}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \textcolor{comment}{/*\ One\ shot\ mode\ indicates\ that\ the\ Timer\ starts}}
+\DoxyCodeLine{00143\ \textcolor{comment}{\ \ \ \ when\ a\ falling\ edge\ is\ detected\ on\ the\ TMRx\_ers}}
+\DoxyCodeLine{00144\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00145\ \ \ \ \mbox{\hyperlink{tmr4_8h_a540c8ef50d7bd58f3dfe215692af0cc5aa31d9efd76fa2fdf690dd142579acaa9}{TMR4\_OS\_STARTS\_ERSFALLINGEDGE}}\ ,}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ \ \textcolor{comment}{/*\ One\ shot\ mode\ indicates\ that\ the\ Timer\ starts}}
+\DoxyCodeLine{00148\ \textcolor{comment}{\ \ \ \ when\ either\ a\ rising\ or\ falling\ edge\ is\ detected\ on\ TMRx\_ers}}
+\DoxyCodeLine{00149\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00150\ \ \ \ \mbox{\hyperlink{tmr4_8h_a540c8ef50d7bd58f3dfe215692af0cc5a16f24a722c192e46b33698cce4483233}{TMR4\_OS\_STARTS\_ERSBOTHEDGE}},}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \textcolor{comment}{/*\ One\ shot\ mode\ indicates\ that\ the\ Timer\ starts}}
+\DoxyCodeLine{00153\ \textcolor{comment}{\ \ \ \ upon\ first\ TMRx\_ers\ rising\ edge\ and\ resets\ on\ all}}
+\DoxyCodeLine{00154\ \textcolor{comment}{\ \ \ \ subsequent\ TMRx\_ers\ rising\ edges}}
+\DoxyCodeLine{00155\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00156\ \ \ \ \mbox{\hyperlink{tmr4_8h_a540c8ef50d7bd58f3dfe215692af0cc5a9c5c118e6a4b22423d1e8398d803ce92}{TMR4\_OS\_STARTS\_ERSFIRSTRISINGEDGE}},}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \textcolor{comment}{/*\ One\ shot\ mode\ indicates\ that\ the\ Timer\ starts}}
+\DoxyCodeLine{00159\ \textcolor{comment}{\ \ \ \ upon\ first\ TMRx\_ers\ falling\ edge\ and\ restarts\ on\ all}}
+\DoxyCodeLine{00160\ \textcolor{comment}{\ \ \ \ subsequent\ TMRx\_ers\ falling\ edges}}
+\DoxyCodeLine{00161\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00162\ \ \ \ \mbox{\hyperlink{tmr4_8h_a540c8ef50d7bd58f3dfe215692af0cc5af81ffa341bf97fc3dd4fe19fb22c748e}{TMR4\_OS\_STARTS\_ERSFIRSTFALLINGEDGE}},}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \textcolor{comment}{/*\ One\ shot\ mode\ indicates\ that\ the\ Timer\ starts}}
+\DoxyCodeLine{00165\ \textcolor{comment}{\ \ \ \ when\ a\ rising\ edge\ is\ detected\ on\ the\ TMRx\_ers,}}
+\DoxyCodeLine{00166\ \textcolor{comment}{\ \ \ \ resets\ upon\ TMRx\_ers\ =\ 0}}
+\DoxyCodeLine{00167\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00168\ \ \ \ \mbox{\hyperlink{tmr4_8h_a540c8ef50d7bd58f3dfe215692af0cc5a99135f330ce57d181c3b5a1d156a7962}{TMR4\_OS\_STARTS\_ERSRISINGEDGEDETECT}},}
+\DoxyCodeLine{00169\ \ \ \ \ \ \textcolor{comment}{/*\ One\ shot\ mode\ indicates\ that\ the\ Timer\ starts}}
+\DoxyCodeLine{00170\ \textcolor{comment}{\ \ \ \ when\ a\ falling\ edge\ is\ detected\ on\ the\ TMRx\_ers,}}
+\DoxyCodeLine{00171\ \textcolor{comment}{\ \ \ \ resets\ upon\ TMRx\_ers\ =\ 1}}
+\DoxyCodeLine{00172\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00173\ \ \ \ \mbox{\hyperlink{tmr4_8h_a540c8ef50d7bd58f3dfe215692af0cc5aeb2e7a68ec46ded200df009165b79b01}{TMR4\_OS\_STARTS\_ERSFALLINGEDGEDETECT}},}
+\DoxyCodeLine{00174\ \ \ \ }
+\DoxyCodeLine{00175\ \ \ \ \textcolor{comment}{/*\ One\ shot\ mode\ indicates\ that\ the\ Timer\ starts}}
+\DoxyCodeLine{00176\ \textcolor{comment}{\ \ \ \ when\ a\ TMRx\_ers\ =\ 1,ON\ =1\ and\ resets\ upon\ TMRx\_ers\ =0}}
+\DoxyCodeLine{00177\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00178\ \ \ \ \mbox{\hyperlink{tmr4_8h_a540c8ef50d7bd58f3dfe215692af0cc5a7d7c175c7b57c40eac328272894be0e2}{TMR4\_OS\_STARTS\_TMRON\_ERSHIGH}}\ =\ 0x16,}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00180\ \ \ \ \textcolor{comment}{/*\ One\ shot\ mode\ indicates\ that\ the\ Timer\ starts}}
+\DoxyCodeLine{00181\ \textcolor{comment}{\ \ \ \ \ when\ a\ TMRx\_ers\ =\ 0,ON\ =\ 1\ and\ resets\ upon\ TMRx\_ers\ =1\ }}
+\DoxyCodeLine{00182\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00183\ \ \ \ \mbox{\hyperlink{tmr4_8h_a540c8ef50d7bd58f3dfe215692af0cc5aefda85bf1cf89f2812bc0ca917ddc045}{TMR4\_OS\_STARTS\_TMRON\_ERSLOW}}\ =\ 0x17,}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00185\ \ \ \ \textcolor{comment}{/*In\ all\ Mono-\/Stable\ mode\ the\ ON\ bit\ must\ be\ initially\ set,but}}
+\DoxyCodeLine{00186\ \textcolor{comment}{\ \ \ \ \ not\ cleared\ upon\ the\ TMRx\ =\ PRx,\ and\ the\ timer\ will\ start\ upon}}
+\DoxyCodeLine{00187\ \textcolor{comment}{\ \ \ \ \ an\ TMRx\_ers\ start\ event\ following\ TMRx\ =\ PRx.*/}}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00189\ \ \ \ \textcolor{comment}{/*\ Mono\ Stable\ mode\ indicates\ that\ the\ Timer\ starts}}
+\DoxyCodeLine{00190\ \textcolor{comment}{\ \ \ \ \ \ when\ a\ rising\ edge\ is\ detected\ on\ the\ TMRx\_ers\ and\ ON\ =\ 1}}
+\DoxyCodeLine{00191\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00192\ \ \ \ \mbox{\hyperlink{tmr4_8h_a540c8ef50d7bd58f3dfe215692af0cc5a50152e2a227d604e07909436b818af21}{TMR4\_MS\_STARTS\_TMRON\_ERSRISINGEDGEDETECT}}\ =\ 0x11,}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00194\ \ \ \ \textcolor{comment}{/*\ Mono\ Stable\ mode\ indicates\ that\ the\ Timer\ starts}}
+\DoxyCodeLine{00195\ \textcolor{comment}{\ \ \ \ \ \ when\ a\ falling\ edge\ is\ detected\ on\ the\ TMRx\_ers\ and\ ON\ =\ 1}}
+\DoxyCodeLine{00196\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00197\ \ \ \ \mbox{\hyperlink{tmr4_8h_a540c8ef50d7bd58f3dfe215692af0cc5abfb43c4c6a191f07a6b1e6062c31342f}{TMR4\_MS\_STARTS\_TMRON\_ERSFALLINGEDGEDETECT}}\ =\ 0x12,}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00199\ \ \ \ \textcolor{comment}{/*\ Mono\ Stable\ mode\ indicates\ that\ the\ Timer\ starts}}
+\DoxyCodeLine{00200\ \textcolor{comment}{\ \ \ \ \ \ when\ \ either\ a\ rising\ or\ falling\ edge\ is\ detected\ on\ TMRx\_ers\ }}
+\DoxyCodeLine{00201\ \textcolor{comment}{\ \ \ \ \ \ and\ ON\ =\ 1}}
+\DoxyCodeLine{00202\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00203\ \ \ \ \mbox{\hyperlink{tmr4_8h_a540c8ef50d7bd58f3dfe215692af0cc5afa36f87f5926b6c3476e898daf845c98}{TMR4\_MS\_STARTS\_TMRON\_ERSBOTHEDGE}}\ =\ 0x13}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00205\ \}\ \mbox{\hyperlink{tmr4_8h_a540c8ef50d7bd58f3dfe215692af0cc5}{TMR4\_HLT\_MODE}};}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00221\ \{}
+\DoxyCodeLine{00222\ \ \ \ \ \ \textcolor{comment}{/*\ T4INPPS\ is\ the\ Timer\ external\ reset\ source}}
+\DoxyCodeLine{00223\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00224\ \ \ \ \ \mbox{\hyperlink{tmr4_8h_ab6c28f9692b48739cd63f472f767239aad6eadac9cf1f321b2a90fcdafaba2481}{TMR4\_T4INPPS}},}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ \ \ \ \ \textcolor{comment}{/*\ Timer2\ Postscale\ is\ the\ Timer\ external\ reset\ source\ }}
+\DoxyCodeLine{00227\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00228\ \ \ \ \ \mbox{\hyperlink{tmr4_8h_ab6c28f9692b48739cd63f472f767239aa302cc0b0bac5eadab549c407cd990a39}{TMR4\_T2POSTSCALED}},}
+\DoxyCodeLine{00229\ \ \ \ \ }
+\DoxyCodeLine{00230\ \ \ \ \ \textcolor{comment}{/*\ Reserved\ enum\ cannot\ be\ used\ }}
+\DoxyCodeLine{00231\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00232\ \ \ \ \ \mbox{\hyperlink{tmr4_8h_ab6c28f9692b48739cd63f472f767239aa2e7f548865c8a642af0080cfd91862cf}{TMR4\_RESERVED}},}
+\DoxyCodeLine{00233\ \ \ \ \ }
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{comment}{/*\ Timer6\ Postscale\ is\ the\ Timer\ external\ reset\ source\ }}
+\DoxyCodeLine{00235\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00236\ \ \ \ \ \mbox{\hyperlink{tmr4_8h_ab6c28f9692b48739cd63f472f767239aa8cdb4bf087c5902853745c2b6d7db8a7}{TMR4\_T6POSTSCALED}},}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \ \ \ \ \textcolor{comment}{/*\ CCP1\_OUT\ is\ the\ Timer\ external\ reset\ source\ }}
+\DoxyCodeLine{00239\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00240\ \ \ \ \ \mbox{\hyperlink{tmr4_8h_ab6c28f9692b48739cd63f472f767239aa45d0b45d4d32947a2f58f83f26298d0a}{TMR4\_CCP1\_OUT}},}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \ \ \ \ \textcolor{comment}{/*\ CCP2\_OUT\ is\ the\ Timer\ external\ reset\ source\ }}
+\DoxyCodeLine{00243\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00244\ \ \ \ \ \mbox{\hyperlink{tmr4_8h_ab6c28f9692b48739cd63f472f767239aa1cebe3e13651d080467b22541dda3f85}{TMR4\_CCP2\_OUT}},}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \ \ \ \ \textcolor{comment}{/*\ CCP3\_OUT\ is\ the\ Timer\ external\ reset\ source\ }}
+\DoxyCodeLine{00247\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00248\ \ \ \ \ \mbox{\hyperlink{tmr4_8h_ab6c28f9692b48739cd63f472f767239aada381084a6f96b624dbb5641e1bd857a}{TMR4\_CCP3\_OUT}},}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ \ \ \ \ \textcolor{comment}{/*\ PWM1S1P1\_out\ is\ the\ Timer\ external\ reset\ source\ }}
+\DoxyCodeLine{00251\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00252\ \ \ \ \ \mbox{\hyperlink{tmr4_8h_ab6c28f9692b48739cd63f472f767239aaf7586eca3cfb13c7a4e6ece199e81e03}{TMR4\_PWM1S1P1\_OUT}},}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{comment}{/*\ PWM1S1P2\_out\ is\ the\ Timer\ external\ reset\ source\ }}
+\DoxyCodeLine{00255\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00256\ \ \ \ \ \mbox{\hyperlink{tmr4_8h_ab6c28f9692b48739cd63f472f767239aae024f451936f8ed932c49eccd4634b4b}{TMR4\_PWM1S1P2\_OUT}},}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00258\ \ \ \ \ \textcolor{comment}{/*\ PWM2S1P1\_out\ is\ the\ Timer\ external\ reset\ source\ }}
+\DoxyCodeLine{00259\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00260\ \ \ \ \ \mbox{\hyperlink{tmr4_8h_ab6c28f9692b48739cd63f472f767239aa1b790d86eff733a4258373f1efb323b5}{TMR4\_PWM2S1P1\_OUT}},}
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00262\ \ \ \ \ \textcolor{comment}{/*\ PWM2S1P2\_out\ is\ the\ Timer\ external\ reset\ source\ }}
+\DoxyCodeLine{00263\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00264\ \ \ \ \ \mbox{\hyperlink{tmr4_8h_ab6c28f9692b48739cd63f472f767239aa90265ee8a2325c1da21969493e629b1e}{TMR4\_PWM2S1P2\_OUT}},}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00266\ \ \ \ \ \textcolor{comment}{/*\ PWM3S1P1\_out\ is\ the\ Timer\ external\ reset\ source\ }}
+\DoxyCodeLine{00267\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00268\ \ \ \ \ \mbox{\hyperlink{tmr4_8h_ab6c28f9692b48739cd63f472f767239aa7398b5f269a5926ad5653a08eae2daf2}{TMR4\_PWM3S1P1\_OUT}},}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00270\ \ \ \ \ \textcolor{comment}{/*\ PWM3S1P2\_out\ is\ the\ Timer\ external\ reset\ source\ }}
+\DoxyCodeLine{00271\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00272\ \ \ \ \ \mbox{\hyperlink{tmr4_8h_ab6c28f9692b48739cd63f472f767239aadaf971b7e00846da91c483f2a1088168}{TMR4\_PWM3S1P2\_OUT}},}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00274\ \ \ \ \ \textcolor{comment}{/*\ Reserved\ enum\ cannot\ be\ used\ }}
+\DoxyCodeLine{00275\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00276\ \ \ \ \ \mbox{\hyperlink{tmr4_8h_ab6c28f9692b48739cd63f472f767239aa9ca318e906be83ceede49c07e93ec87f}{TMR4\_RESERVED\_2}},}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00278\ \ \ \ \ \textcolor{comment}{/*\ Reserved\ enum\ cannot\ be\ used\ }}
+\DoxyCodeLine{00279\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00280\ \ \ \ \ \mbox{\hyperlink{tmr4_8h_ab6c28f9692b48739cd63f472f767239aa20a12f31f924aeb0cf4a7eae763f0eb7}{TMR4\_RESERVED\_3}},}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00282\ \ \ \ \ \textcolor{comment}{/*\ CMP1\_OUT\ is\ the\ Timer\ external\ reset\ source\ }}
+\DoxyCodeLine{00283\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00284\ \ \ \ \ \mbox{\hyperlink{tmr4_8h_ab6c28f9692b48739cd63f472f767239aa2056c31ad1c43e6c4102ea876350027f}{TMR4\_CMP1\_OUT}},}
+\DoxyCodeLine{00285\ }
+\DoxyCodeLine{00286\ \ \ \ \ \textcolor{comment}{/*\ CMP2\_OUT\ is\ the\ Timer\ external\ reset\ source\ }}
+\DoxyCodeLine{00287\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00288\ \ \ \ \ \mbox{\hyperlink{tmr4_8h_ab6c28f9692b48739cd63f472f767239aa46728eca63490f400fcad447e9423120}{TMR4\_CMP2\_OUT}},}
+\DoxyCodeLine{00289\ }
+\DoxyCodeLine{00290\ \ \ \ \ \textcolor{comment}{/*\ ZCD\_Output\ is\ the\ Timer\ external\ reset\ source\ }}
+\DoxyCodeLine{00291\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00292\ \ \ \ \ \mbox{\hyperlink{tmr4_8h_ab6c28f9692b48739cd63f472f767239aa8fd74842bf683302c0f5784d63d8ca36}{TMR4\_ZCD\_OUTPUT}},}
+\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00294\ \ \ \ \ \textcolor{comment}{/*\ CLC1\_out\ is\ the\ Timer\ external\ reset\ source\ }}
+\DoxyCodeLine{00295\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00296\ \ \ \ \ \mbox{\hyperlink{tmr4_8h_ab6c28f9692b48739cd63f472f767239aab80dbd9b83b5f1bdb04a917e5fa961c7}{TMR4\_CLC1\_OUT}},}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00298\ \ \ \ \ \textcolor{comment}{/*\ CLC2\_out\ is\ the\ Timer\ external\ reset\ source\ }}
+\DoxyCodeLine{00299\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00300\ \ \ \ \ \mbox{\hyperlink{tmr4_8h_ab6c28f9692b48739cd63f472f767239aa544e6e35fcf210450517d7b076384fa3}{TMR4\_CLC2\_OUT}},}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00302\ \ \ \ \ \textcolor{comment}{/*\ CLC3\_out\ is\ the\ Timer\ external\ reset\ source\ }}
+\DoxyCodeLine{00303\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00304\ \ \ \ \ \mbox{\hyperlink{tmr4_8h_ab6c28f9692b48739cd63f472f767239aa03ae0395a30f33f45426e050c403c926}{TMR4\_CLC3\_OUT}},}
+\DoxyCodeLine{00305\ }
+\DoxyCodeLine{00306\ \ \ \ \ \textcolor{comment}{/*\ CLC4\_out\ is\ the\ Timer\ external\ reset\ source\ }}
+\DoxyCodeLine{00307\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00308\ \ \ \ \ \mbox{\hyperlink{tmr4_8h_ab6c28f9692b48739cd63f472f767239aa1a7bd4c10b58174feb1e0865447f7eb4}{TMR4\_CLC4\_OUT}},\ \ }
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00310\ \ \ \ \ \textcolor{comment}{/*\ CLC5\_out\ is\ the\ Timer\ external\ reset\ source\ }}
+\DoxyCodeLine{00311\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00312\ \ \ \ \ \mbox{\hyperlink{tmr4_8h_ab6c28f9692b48739cd63f472f767239aa0501664ca93a98ce0c9e24fafb4e3cbf}{TMR4\_CLC5\_OUT}},}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00314\ \ \ \ \ \textcolor{comment}{/*\ CLC6\_out\ is\ the\ Timer\ external\ reset\ source\ }}
+\DoxyCodeLine{00315\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00316\ \ \ \ \ \mbox{\hyperlink{tmr4_8h_ab6c28f9692b48739cd63f472f767239aaa996d123f81795b099d00bcaa5d378c0}{TMR4\_CLC6\_OUT}},}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00318\ \ \ \ \ \textcolor{comment}{/*\ CLC7\_out\ is\ the\ Timer\ external\ reset\ source\ }}
+\DoxyCodeLine{00319\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00320\ \ \ \ \ \mbox{\hyperlink{tmr4_8h_ab6c28f9692b48739cd63f472f767239aa3e3821967b362f0d5458169bcacee1d0}{TMR4\_CLC7\_OUT}},}
+\DoxyCodeLine{00321\ \ \ \ \ }
+\DoxyCodeLine{00322\ \ \ \ \ \textcolor{comment}{/*\ CLC8\_out\ is\ the\ Timer\ external\ reset\ source\ }}
+\DoxyCodeLine{00323\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00324\ \ \ \ \ \mbox{\hyperlink{tmr4_8h_ab6c28f9692b48739cd63f472f767239aaba84d63f8f6cfc29b12f4cd76726df36}{TMR4\_CLC8\_OUT}},}
+\DoxyCodeLine{00325\ }
+\DoxyCodeLine{00326\ \ \ \ \ \textcolor{comment}{/*\ UART1\_rx\_edge\ is\ the\ Timer\ external\ reset\ source\ }}
+\DoxyCodeLine{00327\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00328\ \ \ \ \ \mbox{\hyperlink{tmr4_8h_ab6c28f9692b48739cd63f472f767239aa0757c2ac493b86e921e03d64985f943a}{TMR4\_UART1\_RX\_EDGE}},}
+\DoxyCodeLine{00329\ }
+\DoxyCodeLine{00330\ \ \ \ \ \textcolor{comment}{/*\ UART1\_tx\_edge\ is\ the\ Timer\ external\ reset\ source\ }}
+\DoxyCodeLine{00331\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00332\ \ \ \ \ \mbox{\hyperlink{tmr4_8h_ab6c28f9692b48739cd63f472f767239aa8f26ca4bd7e7d10d973cd89395638aec}{TMR4\_UART1\_TX\_EDGE}},}
+\DoxyCodeLine{00333\ }
+\DoxyCodeLine{00334\ \ \ \ \ \textcolor{comment}{/*\ UART2\_rx\_edge\ is\ the\ Timer\ external\ reset\ source\ }}
+\DoxyCodeLine{00335\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00336\ \ \ \ \ \mbox{\hyperlink{tmr4_8h_ab6c28f9692b48739cd63f472f767239aa2389e94702666a0822905b6232e43110}{TMR4\_UART2\_RX\_EDGE}},}
+\DoxyCodeLine{00337\ }
+\DoxyCodeLine{00338\ \ \ \ \ \textcolor{comment}{/*\ UART2\_tx\_edge\ is\ the\ Timer\ external\ reset\ source\ }}
+\DoxyCodeLine{00339\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00340\ \ \ \ \ \mbox{\hyperlink{tmr4_8h_ab6c28f9692b48739cd63f472f767239aaa9402b39f7c32791c2ff3424b5d6f993}{TMR4\_UART2\_TX\_EDGE}},}
+\DoxyCodeLine{00341\ }
+\DoxyCodeLine{00342\ \ \ \ \ \textcolor{comment}{/*\ UART3\_rx\_edge\ is\ the\ Timer\ external\ reset\ source\ }}
+\DoxyCodeLine{00343\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00344\ \ \ \ \ \mbox{\hyperlink{tmr4_8h_ab6c28f9692b48739cd63f472f767239aa2a9b4f270c5b5fc8bcef8eeef58f9f76}{TMR4\_UART3\_RX\_EDGE}},}
+\DoxyCodeLine{00345\ }
+\DoxyCodeLine{00346\ \ \ \ \ \textcolor{comment}{/*\ UART3\_tx\_edge\ is\ the\ Timer\ external\ reset\ source\ }}
+\DoxyCodeLine{00347\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00348\ \ \ \ \ \mbox{\hyperlink{tmr4_8h_ab6c28f9692b48739cd63f472f767239aa274b23a47c3f897dc05ba63489008b75}{TMR4\_UART3\_TX\_EDGE}},}
+\DoxyCodeLine{00349\ }
+\DoxyCodeLine{00350\ \ \ \ \ \textcolor{comment}{/*\ UART4\_rx\_edge\ is\ the\ Timer\ external\ reset\ source\ }}
+\DoxyCodeLine{00351\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00352\ \ \ \ \ \mbox{\hyperlink{tmr4_8h_ab6c28f9692b48739cd63f472f767239aa935da66f35a559960d49616b374bc13d}{TMR4\_UART4\_RX\_EDGE}},}
+\DoxyCodeLine{00353\ }
+\DoxyCodeLine{00354\ \ \ \ \ \textcolor{comment}{/*\ UART4\_tx\_edge\ is\ the\ Timer\ external\ reset\ source\ }}
+\DoxyCodeLine{00355\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00356\ \ \ \ \ \mbox{\hyperlink{tmr4_8h_ab6c28f9692b48739cd63f472f767239aab4798e33d5f6a91ce807390a4162792d}{TMR4\_UART4\_TX\_EDGE}},}
+\DoxyCodeLine{00357\ }
+\DoxyCodeLine{00358\ \ \ \ \ \textcolor{comment}{/*\ UART5\_rx\_edge\ is\ the\ Timer\ external\ reset\ source\ }}
+\DoxyCodeLine{00359\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00360\ \ \ \ \ \mbox{\hyperlink{tmr4_8h_ab6c28f9692b48739cd63f472f767239aafcaeb04f2d3b5c263bee32054773664c}{TMR4\_UART5\_RX\_EDGE}},}
+\DoxyCodeLine{00361\ }
+\DoxyCodeLine{00362\ \ \ \ \ \textcolor{comment}{/*\ UART5\_tx\_edge\ is\ the\ Timer\ external\ reset\ source\ }}
+\DoxyCodeLine{00363\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00364\ \ \ \ \ \mbox{\hyperlink{tmr4_8h_ab6c28f9692b48739cd63f472f767239aa9a54f56076000e9f2951b7e06fe4134a}{TMR4\_UART5\_TX\_EDGE}},}
+\DoxyCodeLine{00365\ }
+\DoxyCodeLine{00366\ \ \ \ \ \textcolor{comment}{/*\ Reserved\ enum\ cannot\ be\ used\ }}
+\DoxyCodeLine{00367\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00368\ \ \ \ \ \mbox{\hyperlink{tmr4_8h_ab6c28f9692b48739cd63f472f767239aaad71e099d0189593dc2c1ddca669518a}{TMR4\_RESERVED\_4}}}
+\DoxyCodeLine{00369\ }
+\DoxyCodeLine{00370\ }
+\DoxyCodeLine{00371\ \}\ \mbox{\hyperlink{tmr4_8h_ab6c28f9692b48739cd63f472f767239a}{TMR4\_HLT\_EXT\_RESET\_SOURCE}};}
+\DoxyCodeLine{00372\ }
+\DoxyCodeLine{00373\ }
+\DoxyCodeLine{00377\ }
+\DoxyCodeLine{00381\ }
+\DoxyCodeLine{00413\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{tmr4_8h_a9d06de36998e68680af819a51c02715b}{TMR4\_Initialize}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00414\ }
+\DoxyCodeLine{00449\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{tmr4_8h_a64d9299828fa2b5186c03bdebdd464e7}{TMR4\_ModeSet}}(\mbox{\hyperlink{tmr4_8h_a540c8ef50d7bd58f3dfe215692af0cc5}{TMR4\_HLT\_MODE}}\ mode);}
+\DoxyCodeLine{00450\ }
+\DoxyCodeLine{00484\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{tmr4_8h_a59f1d905922aa48b8e2281f2c24092d7}{TMR4\_ExtResetSourceSet}}(\mbox{\hyperlink{tmr4_8h_ab6c28f9692b48739cd63f472f767239a}{TMR4\_HLT\_EXT\_RESET\_SOURCE}}\ reset);}
+\DoxyCodeLine{00485\ }
+\DoxyCodeLine{00513\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{tmr4_8h_a5666192e1d8ab908db0bae00c9d243fb}{TMR4\_Start}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00514\ }
+\DoxyCodeLine{00542\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{tmr4_8h_a08cc752e0d5622957129c49c2fe5c90c}{TMR4\_StartTimer}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00543\ }
+\DoxyCodeLine{00574\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{tmr4_8h_a6d19dd15af20bd2ba1b4c142b0b744e7}{TMR4\_Stop}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00575\ }
+\DoxyCodeLine{00606\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{tmr4_8h_a0789a41c6994261eba406296ae087022}{TMR4\_StopTimer}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00607\ }
+\DoxyCodeLine{00641\ uint8\_t\ \mbox{\hyperlink{tmr4_8h_a9d8b34102a57a2a65e8cd2697593a578}{TMR4\_Counter8BitGet}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00642\ }
+\DoxyCodeLine{00676\ uint8\_t\ \mbox{\hyperlink{tmr4_8h_a71a042c0b873d77659d7ccb42b2a04f6}{TMR4\_ReadTimer}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00677\ }
+\DoxyCodeLine{00715\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{tmr4_8h_a163b7507ee64251795b19a3275114b05}{TMR4\_Counter8BitSet}}(uint8\_t\ timerVal);}
+\DoxyCodeLine{00716\ }
+\DoxyCodeLine{00754\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{tmr4_8h_a0c150fa8fe1d61fe4d2accaf474cdcd2}{TMR4\_WriteTimer}}(uint8\_t\ timerVal);}
+\DoxyCodeLine{00755\ }
+\DoxyCodeLine{00806\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{tmr4_8h_a9500fc742dbf30e7c7018a3c0f88367b}{TMR4\_Period8BitSet}}(uint8\_t\ periodVal);}
+\DoxyCodeLine{00807\ }
+\DoxyCodeLine{00858\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{tmr4_8h_a7f1dd192cee45bd7786b6a453bc0eba1}{TMR4\_LoadPeriodRegister}}(uint8\_t\ periodVal);}
+\DoxyCodeLine{00859\ }
+\DoxyCodeLine{00860\ }
+\DoxyCodeLine{00877\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{tmr4_8h_a5023000e3c77f593628ae86eb9c3772d}{TMR4\_SetInterruptHandler}}(\textcolor{keywordtype}{void}\ (*\ InterruptHandler)(\textcolor{keywordtype}{void}));}
+\DoxyCodeLine{00878\ }
+\DoxyCodeLine{00895\ \textcolor{keyword}{extern}\ void\ (*\mbox{\hyperlink{tmr4_8c_a68060483ea8ac694e413a598a1e2bbea}{TMR4\_InterruptHandler}})(void);}
+\DoxyCodeLine{00896\ }
+\DoxyCodeLine{00913\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{tmr4_8h_a593154af41d3b557a3ffc041d1beb170}{TMR4\_DefaultInterruptHandler}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00914\ }
+\DoxyCodeLine{00915\ }
+\DoxyCodeLine{00916\ \textcolor{preprocessor}{\ \#ifdef\ \_\_cplusplus\ \ }\textcolor{comment}{//\ Provide\ C++\ Compatibility}}
+\DoxyCodeLine{00917\ }
+\DoxyCodeLine{00918\ \ \ \ \ \}}
+\DoxyCodeLine{00919\ }
+\DoxyCodeLine{00920\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00921\ }
+\DoxyCodeLine{00922\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ TMR4\_H}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

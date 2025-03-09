@@ -1,0 +1,111 @@
+\doxysection{Platform abstraction layer}
+\hypertarget{group__pal}{}\label{group__pal}\index{Platform abstraction layer@{Platform abstraction layer}}
+
+
+Documentation of the types and calls required to port MQTT-\/C to a new platform.  
+
+
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+ssize\+\_\+t \mbox{\hyperlink{group__pal_ga9111a3f19c6ff3e5c22c93b1066898f5}{mqtt\+\_\+pal\+\_\+sendall}} (mqtt\+\_\+pal\+\_\+socket\+\_\+handle fd, const void \texorpdfstring{$\ast$}{*}buf, size\+\_\+t len, int flags)
+\begin{DoxyCompactList}\small\item\em Sends all the bytes in a buffer. \end{DoxyCompactList}\item 
+ssize\+\_\+t \mbox{\hyperlink{group__pal_ga013a74368db595f9832c9fe717a84f4d}{mqtt\+\_\+pal\+\_\+recvall}} (mqtt\+\_\+pal\+\_\+socket\+\_\+handle fd, void \texorpdfstring{$\ast$}{*}buf, size\+\_\+t bufsz, int flags)
+\begin{DoxyCompactList}\small\item\em Non-\/blocking receive all the byte available. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Documentation of the types and calls required to port MQTT-\/C to a new platform. 
+
+\doxylink{mqtt__pal_8h}{mqtt\+\_\+pal.\+h} is the {\itshape only} header file included in \doxylink{mqtt_8c}{mqtt.\+c}. Therefore, to port MQTT-\/C to a new platform the following types, functions, constants, and macros must be defined in \doxylink{mqtt__pal_8h}{mqtt\+\_\+pal.\+h}\+:
+\begin{DoxyItemize}
+\item Types\+:
+\begin{DoxyItemize}
+\item {\ttfamily size\+\_\+t}, {\ttfamily ssize\+\_\+t} 
+\item {\ttfamily uint8\+\_\+t}, {\ttfamily uint16\+\_\+t}, {\ttfamily uint32\+\_\+t} 
+\item {\ttfamily va\+\_\+list} 
+\item {\ttfamily mqtt\+\_\+pal\+\_\+time\+\_\+t} \+: return type of {\ttfamily MQTT\+\_\+\+PAL\+\_\+\+TIME()} 
+\item {\ttfamily mqtt\+\_\+pal\+\_\+mutex\+\_\+t} \+: type of the argument that is passed to {\ttfamily MQTT\+\_\+\+PAL\+\_\+\+MUTEX\+\_\+\+LOCK} and {\ttfamily MQTT\+\_\+\+PAL\+\_\+\+MUTEX\+\_\+\+RELEASE} 
+\end{DoxyItemize}
+\item Functions\+:
+\begin{DoxyItemize}
+\item {\ttfamily memcpy}, {\ttfamily strlen} 
+\item {\ttfamily va\+\_\+start}, {\ttfamily va\+\_\+arg}, {\ttfamily va\+\_\+end} 
+\end{DoxyItemize}
+\item Constants\+:
+\begin{DoxyItemize}
+\item {\ttfamily INT\+\_\+\+MIN} 
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+Additionally, three macro\textquotesingle{}s are required\+:
+\begin{DoxyItemize}
+\item {\ttfamily MQTT\+\_\+\+PAL\+\_\+\+HTONS(s)} \+: host-\/to-\/network endian conversion for uint16\+\_\+t.
+\item {\ttfamily MQTT\+\_\+\+PAL\+\_\+\+NTOHS(s)} \+: network-\/to-\/host endian conversion for uint16\+\_\+t.
+\item {\ttfamily MQTT\+\_\+\+PAL\+\_\+\+TIME()} \+: returns \mbox{[}type\+: {\ttfamily mqtt\+\_\+pal\+\_\+time\+\_\+t}\mbox{]} current time in seconds.
+\item {\ttfamily MQTT\+\_\+\+PAL\+\_\+\+MUTEX\+\_\+\+LOCK(mtx\+\_\+pointer)} \+: macro that locks the mutex pointed to by {\ttfamily mtx\+\_\+pointer}.
+\item {\ttfamily MQTT\+\_\+\+PAL\+\_\+\+MUTEX\+\_\+\+RELEASE(mtx\+\_\+pointer)} \+: macro that unlocks the mutex pointed to by {\ttfamily mtx\+\_\+pointer}.
+\end{DoxyItemize}
+
+Lastly, \doxylink{group__pal_ga9111a3f19c6ff3e5c22c93b1066898f5}{mqtt\+\_\+pal\+\_\+sendall} and \doxylink{group__pal_ga013a74368db595f9832c9fe717a84f4d}{mqtt\+\_\+pal\+\_\+recvall}, must be implemented in \doxylink{mqtt__pal_8c}{mqtt\+\_\+pal.\+c} for sending and receiving data using the platforms socket calls. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{group__pal_ga013a74368db595f9832c9fe717a84f4d}\index{Platform abstraction layer@{Platform abstraction layer}!mqtt\_pal\_recvall@{mqtt\_pal\_recvall}}
+\index{mqtt\_pal\_recvall@{mqtt\_pal\_recvall}!Platform abstraction layer@{Platform abstraction layer}}
+\doxysubsubsection{\texorpdfstring{mqtt\_pal\_recvall()}{mqtt\_pal\_recvall()}}
+{\footnotesize\ttfamily \label{group__pal_ga013a74368db595f9832c9fe717a84f4d} 
+ssize\+\_\+t mqtt\+\_\+pal\+\_\+recvall (\begin{DoxyParamCaption}\item[{mqtt\+\_\+pal\+\_\+socket\+\_\+handle}]{fd}{, }\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{size\+\_\+t}]{bufsz}{, }\item[{int}]{flags}{}\end{DoxyParamCaption})}
+
+
+
+Non-\/blocking receive all the byte available. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fd} & The file-\/descriptor (or handle) of the socket. \\
+\hline
+\mbox{\texttt{ in}}  & {\em buf} & A pointer to the receive buffer. \\
+\hline
+\mbox{\texttt{ in}}  & {\em bufsz} & The max number of bytes that can be put into {\ttfamily buf}. \\
+\hline
+\mbox{\texttt{ in}}  & {\em flags} & Flags which are passed to the underlying socket.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of bytes received if successful, an \doxylink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors} otherwise.
+\end{DoxyReturn}
+Note about the error handling\+:
+\begin{DoxyItemize}
+\item On an error, if some bytes have been processed already, this function should return the number of bytes successfully processed. (partial success)
+\item Otherwise, if the error is an equivalent of EAGAIN, return 0.
+\item Otherwise, return MQTT\+\_\+\+ERROR\+\_\+\+SOCKET\+\_\+\+ERROR. 
+\end{DoxyItemize}\Hypertarget{group__pal_ga9111a3f19c6ff3e5c22c93b1066898f5}\index{Platform abstraction layer@{Platform abstraction layer}!mqtt\_pal\_sendall@{mqtt\_pal\_sendall}}
+\index{mqtt\_pal\_sendall@{mqtt\_pal\_sendall}!Platform abstraction layer@{Platform abstraction layer}}
+\doxysubsubsection{\texorpdfstring{mqtt\_pal\_sendall()}{mqtt\_pal\_sendall()}}
+{\footnotesize\ttfamily \label{group__pal_ga9111a3f19c6ff3e5c22c93b1066898f5} 
+ssize\+\_\+t mqtt\+\_\+pal\+\_\+sendall (\begin{DoxyParamCaption}\item[{mqtt\+\_\+pal\+\_\+socket\+\_\+handle}]{fd}{, }\item[{const void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{size\+\_\+t}]{len}{, }\item[{int}]{flags}{}\end{DoxyParamCaption})}
+
+
+
+Sends all the bytes in a buffer. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fd} & The file-\/descriptor (or handle) of the socket. \\
+\hline
+\mbox{\texttt{ in}}  & {\em buf} & A pointer to the first byte in the buffer to send. \\
+\hline
+\mbox{\texttt{ in}}  & {\em len} & The number of bytes to send (starting at {\ttfamily buf}). \\
+\hline
+\mbox{\texttt{ in}}  & {\em flags} & Flags which are passed to the underlying socket.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of bytes sent if successful, an \doxylink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors} otherwise.
+\end{DoxyReturn}
+Note about the error handling\+:
+\begin{DoxyItemize}
+\item On an error, if some bytes have been processed already, this function should return the number of bytes successfully processed. (partial success)
+\item Otherwise, if the error is an equivalent of EAGAIN, return 0.
+\item Otherwise, return MQTT\+\_\+\+ERROR\+\_\+\+SOCKET\+\_\+\+ERROR. 
+\end{DoxyItemize}

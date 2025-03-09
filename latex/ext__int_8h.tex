@@ -1,0 +1,331 @@
+\doxysection{tdr.\+X/mcc\+\_\+generated\+\_\+files/ext\+\_\+int.h File Reference}
+\hypertarget{ext__int_8h}{}\label{ext__int_8h}\index{tdr.X/mcc\_generated\_files/ext\_int.h@{tdr.X/mcc\_generated\_files/ext\_int.h}}
+{\ttfamily \#include $<$xc.\+h$>$}\newline
+Include dependency graph for ext\+\_\+int.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=198pt]{ext__int_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ext__int_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{ext__int_8h_a8e7abf8be52b07db0c88d13477e35f44}{EXT\+\_\+\+INT0\+\_\+\+Interrupt\+Flag\+Clear}}()
+\item 
+\#define \mbox{\hyperlink{ext__int_8h_a0db8ca2f31f4a7e0695084f57e08dbb9}{EXT\+\_\+\+INT0\+\_\+\+Interrupt\+Disable}}()
+\item 
+\#define \mbox{\hyperlink{ext__int_8h_aef2a0181da9598389a17428f2bb499b7}{EXT\+\_\+\+INT0\+\_\+\+Interrupt\+Enable}}()
+\item 
+\#define \mbox{\hyperlink{ext__int_8h_a6b27f7c25cf9107e87ac4518895e1996}{EXT\+\_\+\+INT0\+\_\+rising\+Edge\+Set}}()
+\item 
+\#define \mbox{\hyperlink{ext__int_8h_a3e0ed70f0248e7266f12f15e125dd9af}{EXT\+\_\+\+INT0\+\_\+falling\+Edge\+Set}}()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{ext__int_8h_a6c40d2f45ec674f28815ad65b2c753d5}{EXT\+\_\+\+INT\+\_\+\+Initialize}} (void)
+\item 
+void \mbox{\hyperlink{ext__int_8h_adda2a514bbb7e8e8d9b0a850f2cc728e}{INT0\+\_\+\+ISR}} (void)
+\item 
+void \mbox{\hyperlink{ext__int_8h_a65bcc7f5fd45615ab6110412d62d60dd}{INT0\+\_\+\+Call\+Back}} (void)
+\item 
+void \mbox{\hyperlink{ext__int_8h_a4bda8f69112ff74b316079155eab8a9c}{INT0\+\_\+\+Set\+Interrupt\+Handler}} (void(\texorpdfstring{$\ast$}{*}Interrupt\+Handler)(void))
+\item 
+void \mbox{\hyperlink{ext__int_8h_aa775b159f418a494f6afeaf5d1dd6118}{INT0\+\_\+\+Default\+Interrupt\+Handler}} (void)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{ext__int_8h_ad6255d5886da2e6a49d678612333915b}{INT0\+\_\+\+Interrupt\+Handler}} )(void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{ext__int_8h_a3e0ed70f0248e7266f12f15e125dd9af}\index{ext\_int.h@{ext\_int.h}!EXT\_INT0\_fallingEdgeSet@{EXT\_INT0\_fallingEdgeSet}}
+\index{EXT\_INT0\_fallingEdgeSet@{EXT\_INT0\_fallingEdgeSet}!ext\_int.h@{ext\_int.h}}
+\doxysubsubsection{\texorpdfstring{EXT\_INT0\_fallingEdgeSet}{EXT\_INT0\_fallingEdgeSet}}
+{\footnotesize\ttfamily \label{ext__int_8h_a3e0ed70f0248e7266f12f15e125dd9af} 
+\#define EXT\+\_\+\+INT0\+\_\+falling\+Edge\+Set(\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(INTCON2bits.INTEDG0\ =\ 0)}
+
+\end{DoxyCode}
+@\+Summary Sets the edge detect of the external interrupt to positive edge.
+
+@\+Description This routine set the edge detect of the extern interrupt to positive edge. ~\newline
+ After this routine is called the interrupt flag will be set when the external interrupt pins level transitions from a low to high level.
+
+@\+Preconditions None.
+
+@\+Returns None.
+
+@\+Param None.
+
+@\+Example Setting the external interrupt to handle positive edge interrupts {\ttfamily  set the edge \doxylink{ext__int_8h_a3e0ed70f0248e7266f12f15e125dd9af}{EXT\+\_\+\+INT0\+\_\+falling\+Edge\+Set()}; clear the interrupt flag and enable the interrupt \doxylink{ext__int_8h_a8e7abf8be52b07db0c88d13477e35f44}{EXT\+\_\+\+INT0\+\_\+\+Interrupt\+Flag\+Clear()}; \doxylink{ext__int_8h_aef2a0181da9598389a17428f2bb499b7}{EXT\+\_\+\+INT0\+\_\+\+Interrupt\+Enable()}; } \Hypertarget{ext__int_8h_a0db8ca2f31f4a7e0695084f57e08dbb9}\index{ext\_int.h@{ext\_int.h}!EXT\_INT0\_InterruptDisable@{EXT\_INT0\_InterruptDisable}}
+\index{EXT\_INT0\_InterruptDisable@{EXT\_INT0\_InterruptDisable}!ext\_int.h@{ext\_int.h}}
+\doxysubsubsection{\texorpdfstring{EXT\_INT0\_InterruptDisable}{EXT\_INT0\_InterruptDisable}}
+{\footnotesize\ttfamily \label{ext__int_8h_a0db8ca2f31f4a7e0695084f57e08dbb9} 
+\#define EXT\+\_\+\+INT0\+\_\+\+Interrupt\+Disable(\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(INTCONbits.INT0IE\ =\ 0)}
+
+\end{DoxyCode}
+@\+Summary Clears the interrupt enable for INT0
+
+@\+Description This routine clears the interrupt enable for the external interrupt, INT0. After calling this routine, external interrupts on this pin will not be serviced by the interrupt handler, INT0.
+
+@\+Preconditions None.
+
+@\+Returns None.
+
+@\+Param None.
+
+@\+Example Changing the external interrupt edge detect from negative to positive {\ttfamily  clear the interrupt enable \doxylink{ext__int_8h_a0db8ca2f31f4a7e0695084f57e08dbb9}{EXT\+\_\+\+INT0\+\_\+\+Interrupt\+Disable()}; change the edge \doxylink{ext__int_8h_a3e0ed70f0248e7266f12f15e125dd9af}{EXT\+\_\+\+INT0\+\_\+falling\+Edge\+Set()}; clear the interrupt flag and re-\/enable the interrupt \doxylink{ext__int_8h_a8e7abf8be52b07db0c88d13477e35f44}{EXT\+\_\+\+INT0\+\_\+\+Interrupt\+Flag\+Clear()}; \doxylink{ext__int_8h_aef2a0181da9598389a17428f2bb499b7}{EXT\+\_\+\+INT0\+\_\+\+Interrupt\+Enable()}; } \Hypertarget{ext__int_8h_aef2a0181da9598389a17428f2bb499b7}\index{ext\_int.h@{ext\_int.h}!EXT\_INT0\_InterruptEnable@{EXT\_INT0\_InterruptEnable}}
+\index{EXT\_INT0\_InterruptEnable@{EXT\_INT0\_InterruptEnable}!ext\_int.h@{ext\_int.h}}
+\doxysubsubsection{\texorpdfstring{EXT\_INT0\_InterruptEnable}{EXT\_INT0\_InterruptEnable}}
+{\footnotesize\ttfamily \label{ext__int_8h_aef2a0181da9598389a17428f2bb499b7} 
+\#define EXT\+\_\+\+INT0\+\_\+\+Interrupt\+Enable(\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(INTCONbits.INT0IE\ =\ 1)}
+
+\end{DoxyCode}
+@\+Summary Sets the interrupt enable for INT0
+
+@\+Description This routine sets the interrupt enable for the external interrupt, INT0. After calling this routine, external interrupts on this pin will be serviced by the interrupt handler, INT0.
+
+@\+Preconditions None.
+
+@\+Returns None.
+
+@\+Param None.
+
+@\+Example Setting the external interrupt to handle positive edge interrupts {\ttfamily  set the edge \doxylink{ext__int_8h_a3e0ed70f0248e7266f12f15e125dd9af}{EXT\+\_\+\+INT0\+\_\+falling\+Edge\+Set()}; clear the interrupt flag and enable the interrupt \doxylink{ext__int_8h_a8e7abf8be52b07db0c88d13477e35f44}{EXT\+\_\+\+INT0\+\_\+\+Interrupt\+Flag\+Clear()}; \doxylink{ext__int_8h_aef2a0181da9598389a17428f2bb499b7}{EXT\+\_\+\+INT0\+\_\+\+Interrupt\+Enable()}; } \Hypertarget{ext__int_8h_a8e7abf8be52b07db0c88d13477e35f44}\index{ext\_int.h@{ext\_int.h}!EXT\_INT0\_InterruptFlagClear@{EXT\_INT0\_InterruptFlagClear}}
+\index{EXT\_INT0\_InterruptFlagClear@{EXT\_INT0\_InterruptFlagClear}!ext\_int.h@{ext\_int.h}}
+\doxysubsubsection{\texorpdfstring{EXT\_INT0\_InterruptFlagClear}{EXT\_INT0\_InterruptFlagClear}}
+{\footnotesize\ttfamily \label{ext__int_8h_a8e7abf8be52b07db0c88d13477e35f44} 
+\#define EXT\+\_\+\+INT0\+\_\+\+Interrupt\+Flag\+Clear(\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(INTCONbits.INT0IF\ =\ 0)}
+
+\end{DoxyCode}
+EXT\+\_\+\+INT Generated Driver File
+
+@\+Company Microchip Technology Inc.
+
+@\+File Name \doxylink{ext__int_8c}{ext\+\_\+int.\+c}
+
+@\+Summary This is the generated driver implementation file for the EXT\+\_\+\+INT driver using PIC10 / PIC12 / PIC16 / PIC18 MCUs
+
+@\+Description This source file provides implementations for driver APIs for EXT\+\_\+\+INT. Generation Information \+: Product Revision \+: PIC10 / PIC12 / PIC16 / PIC18 MCUs -\/ 1.\+81.\+8 Device \+: PIC18\+F25\+K22 Driver Version \+: 1.\+11 The generated drivers are tested against the following\+: Compiler \+: XC8 2.\+36 and above MPLAB \+: MPLAB X 6.\+00 Section\+: Includes Section\+: Macros @\+Summary Clears the interrupt flag for INT0
+
+@\+Description This routine clears the interrupt flag for the external interrupt, INT0.
+
+@\+Preconditions None.
+
+@\+Returns None.
+
+@\+Param None.
+
+@\+Example {\ttfamily  void \doxylink{ext__int_8h_adda2a514bbb7e8e8d9b0a850f2cc728e}{INT0\+\_\+\+ISR(void)} \{ User Area Begin-\/\texorpdfstring{$>$}{>}code}
+
+{\ttfamily User Area End-\/\texorpdfstring{$>$}{>}code \doxylink{ext__int_8h_a8e7abf8be52b07db0c88d13477e35f44}{EXT\+\_\+\+INT0\+\_\+\+Interrupt\+Flag\+Clear()}; \} } \Hypertarget{ext__int_8h_a6b27f7c25cf9107e87ac4518895e1996}\index{ext\_int.h@{ext\_int.h}!EXT\_INT0\_risingEdgeSet@{EXT\_INT0\_risingEdgeSet}}
+\index{EXT\_INT0\_risingEdgeSet@{EXT\_INT0\_risingEdgeSet}!ext\_int.h@{ext\_int.h}}
+\doxysubsubsection{\texorpdfstring{EXT\_INT0\_risingEdgeSet}{EXT\_INT0\_risingEdgeSet}}
+{\footnotesize\ttfamily \label{ext__int_8h_a6b27f7c25cf9107e87ac4518895e1996} 
+\#define EXT\+\_\+\+INT0\+\_\+rising\+Edge\+Set(\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(INTCON2bits.INTEDG0\ =\ 1)}
+
+\end{DoxyCode}
+@\+Summary Sets the edge detect of the external interrupt to negative edge.
+
+@\+Description This routine set the edge detect of the extern interrupt to negative edge. ~\newline
+ After this routine is called the interrupt flag will be set when the external interrupt pins level transitions from a high to low level.
+
+@\+Preconditions None.
+
+@\+Returns None.
+
+@\+Param None.
+
+@\+Example Setting the external interrupt to handle negative edge interrupts {\ttfamily  set the edge \doxylink{ext__int_8h_a3e0ed70f0248e7266f12f15e125dd9af}{EXT\+\_\+\+INT0\+\_\+falling\+Edge\+Set()}; clear the interrupt flag and enable the interrupt \doxylink{ext__int_8h_a8e7abf8be52b07db0c88d13477e35f44}{EXT\+\_\+\+INT0\+\_\+\+Interrupt\+Flag\+Clear()}; \doxylink{ext__int_8h_aef2a0181da9598389a17428f2bb499b7}{EXT\+\_\+\+INT0\+\_\+\+Interrupt\+Enable()}; } 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{ext__int_8h_a6c40d2f45ec674f28815ad65b2c753d5}\index{ext\_int.h@{ext\_int.h}!EXT\_INT\_Initialize@{EXT\_INT\_Initialize}}
+\index{EXT\_INT\_Initialize@{EXT\_INT\_Initialize}!ext\_int.h@{ext\_int.h}}
+\doxysubsubsection{\texorpdfstring{EXT\_INT\_Initialize()}{EXT\_INT\_Initialize()}}
+{\footnotesize\ttfamily \label{ext__int_8h_a6c40d2f45ec674f28815ad65b2c753d5} 
+void EXT\+\_\+\+INT\+\_\+\+Initialize (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Section\+: External Interrupt Initializers @\+Summary Initializes the external interrupt pins
+
+@\+Description This routine initializes the EXT\+\_\+\+INT driver to detect the configured edge, clear the interrupt flag and enable the interrupt.
+
+The following external interrupts will be initialized\+: INT0 -\/ EXT\+\_\+\+INT0
+
+@\+Preconditions None.
+
+@\+Returns None.
+
+@\+Param None.
+
+@\+Example Initialize the external interrupt pins {\ttfamily  \doxylink{ext__int_8h_a6c40d2f45ec674f28815ad65b2c753d5}{EXT\+\_\+\+INT\+\_\+\+Initialize()}; } Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ext__int_8h_a6c40d2f45ec674f28815ad65b2c753d5_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=323pt]{ext__int_8h_a6c40d2f45ec674f28815ad65b2c753d5_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{ext__int_8h_a65bcc7f5fd45615ab6110412d62d60dd}\index{ext\_int.h@{ext\_int.h}!INT0\_CallBack@{INT0\_CallBack}}
+\index{INT0\_CallBack@{INT0\_CallBack}!ext\_int.h@{ext\_int.h}}
+\doxysubsubsection{\texorpdfstring{INT0\_CallBack()}{INT0\_CallBack()}}
+{\footnotesize\ttfamily \label{ext__int_8h_a65bcc7f5fd45615ab6110412d62d60dd} 
+void INT0\+\_\+\+Call\+Back (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+@\+Summary Callback function for EXT\+\_\+\+INT0 -\/ INT0
+
+@\+Description Allows for a specific callback function to be called in the INT0 ISR. It also allows for a non-\/specific interrupt handler to be called at runtime.
+
+@\+Preconditions EXT\+\_\+\+INT intializer called
+
+@\+Returns None.
+
+@\+Param None.
+
+@\+Example EXT\+\_\+\+INT\+\_\+\+Initializer(); void \doxylink{ext__int_8h_a65bcc7f5fd45615ab6110412d62d60dd}{INT0\+\_\+\+Call\+Back()}; Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=263pt]{ext__int_8h_a65bcc7f5fd45615ab6110412d62d60dd_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{ext__int_8h_aa775b159f418a494f6afeaf5d1dd6118}\index{ext\_int.h@{ext\_int.h}!INT0\_DefaultInterruptHandler@{INT0\_DefaultInterruptHandler}}
+\index{INT0\_DefaultInterruptHandler@{INT0\_DefaultInterruptHandler}!ext\_int.h@{ext\_int.h}}
+\doxysubsubsection{\texorpdfstring{INT0\_DefaultInterruptHandler()}{INT0\_DefaultInterruptHandler()}}
+{\footnotesize\ttfamily \label{ext__int_8h_aa775b159f418a494f6afeaf5d1dd6118} 
+void INT0\+\_\+\+Default\+Interrupt\+Handler (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+@\+Summary Default Interrupt Handler for EXT\+\_\+\+INT0 -\/ INT0 pin
+
+@\+Description This is a predefined interrupt handler to be used together with the \doxylink{ext__int_8h_a4bda8f69112ff74b316079155eab8a9c}{INT0\+\_\+\+Set\+Interrupt\+Handler()} method. This handler is called every time the INT0 ISR is executed.
+
+@\+Preconditions EXT\+\_\+\+INT intializer called
+
+@\+Returns None.
+
+@\+Param None.
+
+@\+Example EXT\+\_\+\+INT\+\_\+\+Initializer(); INT0\+\_\+\+Set\+Interrupt\+Handler(\+INT0\+\_\+\+Default\+Interrupt\+Handler); Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ext__int_8h_aa775b159f418a494f6afeaf5d1dd6118_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{ext__int_8h_adda2a514bbb7e8e8d9b0a850f2cc728e}\index{ext\_int.h@{ext\_int.h}!INT0\_ISR@{INT0\_ISR}}
+\index{INT0\_ISR@{INT0\_ISR}!ext\_int.h@{ext\_int.h}}
+\doxysubsubsection{\texorpdfstring{INT0\_ISR()}{INT0\_ISR()}}
+{\footnotesize\ttfamily \label{ext__int_8h_adda2a514bbb7e8e8d9b0a850f2cc728e} 
+void INT0\+\_\+\+ISR (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Section\+: External Interrupt Handlers @\+Summary Interrupt Service Routine for EXT\+\_\+\+INT0 -\/ INT0 pin
+
+@\+Description This ISR will execute whenever the signal on the INT0 pin will transition to the preconfigured state.
+
+@\+Preconditions EXT\+\_\+\+INT intializer called
+
+@\+Returns None.
+
+@\+Param None. Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=263pt]{ext__int_8h_adda2a514bbb7e8e8d9b0a850f2cc728e_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{ext__int_8h_a4bda8f69112ff74b316079155eab8a9c}\index{ext\_int.h@{ext\_int.h}!INT0\_SetInterruptHandler@{INT0\_SetInterruptHandler}}
+\index{INT0\_SetInterruptHandler@{INT0\_SetInterruptHandler}!ext\_int.h@{ext\_int.h}}
+\doxysubsubsection{\texorpdfstring{INT0\_SetInterruptHandler()}{INT0\_SetInterruptHandler()}}
+{\footnotesize\ttfamily \label{ext__int_8h_a4bda8f69112ff74b316079155eab8a9c} 
+void INT0\+\_\+\+Set\+Interrupt\+Handler (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{Interrupt\+Handler~}{)(void)}\end{DoxyParamCaption})}
+
+@\+Summary Interrupt Handler Setter for EXT\+\_\+\+INT0 -\/ INT0 pin
+
+@\+Description Allows selecting an interrupt handler for EXT\+\_\+\+INT0 -\/ INT0 at application runtime
+
+@\+Preconditions EXT\+\_\+\+INT intializer called
+
+@\+Returns None.
+
+@\+Param Interrupt\+Handler function pointer.
+
+@\+Example EXT\+\_\+\+INT\+\_\+\+Initializer(); INT0\+\_\+\+Set\+Interrupt\+Handler(\+My\+Interrupt\+Handler); Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ext__int_8h_a4bda8f69112ff74b316079155eab8a9c_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{ext__int_8h_ad6255d5886da2e6a49d678612333915b}\index{ext\_int.h@{ext\_int.h}!INT0\_InterruptHandler@{INT0\_InterruptHandler}}
+\index{INT0\_InterruptHandler@{INT0\_InterruptHandler}!ext\_int.h@{ext\_int.h}}
+\doxysubsubsection{\texorpdfstring{INT0\_InterruptHandler}{INT0\_InterruptHandler}}
+{\footnotesize\ttfamily \label{ext__int_8h_ad6255d5886da2e6a49d678612333915b} 
+void(\texorpdfstring{$\ast$}{*} INT0\+\_\+\+Interrupt\+Handler) (void) (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+@\+Summary Dynamic Interrupt Handler for EXT\+\_\+\+INT0 -\/ INT0 pin
+
+@\+Description This is the dynamic interrupt handler to be used together with the \doxylink{ext__int_8c_a4bda8f69112ff74b316079155eab8a9c}{INT0\+\_\+\+Set\+Interrupt\+Handler()} method. This handler is called every time the INT0 ISR is executed and allows any function to be registered at runtime.
+
+@\+Preconditions EXT\+\_\+\+INT intializer called
+
+@\+Returns None.
+
+@\+Param None.
+
+@\+Example EXT\+\_\+\+INT\+\_\+\+Initializer(); INT0\+\_\+\+Set\+Interrupt\+Handler(\+INT0\+\_\+\+Interrupt\+Handler);
+
+EXT\+\_\+\+INT Generated Driver File
+
+@\+Company Microchip Technology Inc.
+
+@\+File Name \doxylink{ext__int_8c}{ext\+\_\+int.\+c}
+
+@\+Summary This is the generated driver implementation file for the EXT\+\_\+\+INT driver using PIC10 / PIC12 / PIC16 / PIC18 MCUs
+
+@\+Description This source file provides implementations for driver APIs for EXT\+\_\+\+INT. Generation Information \+: Product Revision \+: PIC10 / PIC12 / PIC16 / PIC18 MCUs -\/ 1.\+81.\+8 Device \+: PIC18\+F25\+K22 Driver Version \+: 1.\+11 The generated drivers are tested against the following\+: Compiler \+: XC8 2.\+36 and above MPLAB \+: MPLAB X 6.\+00 Section\+: Includes 

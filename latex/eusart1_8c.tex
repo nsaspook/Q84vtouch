@@ -1,0 +1,633 @@
+\doxysection{tdr.\+X/mcc\+\_\+generated\+\_\+files/eusart1.c File Reference}
+\hypertarget{eusart1_8c}{}\label{eusart1_8c}\index{tdr.X/mcc\_generated\_files/eusart1.c@{tdr.X/mcc\_generated\_files/eusart1.c}}
+{\ttfamily \#include "{}eusart1.\+h"{}}\newline
+Include dependency graph for eusart1.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=338pt]{eusart1_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{eusart1_8c_a1c74f6788eacb6fb0fe6c604f395a8ab}{EUSART1\+\_\+\+TX\+\_\+\+BUFFER\+\_\+\+SIZE}}~64
+\item 
+\#define \mbox{\hyperlink{eusart1_8c_a642958f0262c1fa43f73055039f9e69c}{EUSART1\+\_\+\+RX\+\_\+\+BUFFER\+\_\+\+SIZE}}~64
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{eusart1_8c_ad551fd18f88e50d53d18c345e0819b60}{EUSART1\+\_\+\+Default\+Framing\+Error\+Handler}} (void)
+\item 
+void \mbox{\hyperlink{eusart1_8c_a3d463ab78d0a1a0346dbb5f5e9a44647}{EUSART1\+\_\+\+Default\+Overrun\+Error\+Handler}} (void)
+\item 
+void \mbox{\hyperlink{eusart1_8c_a9c10ba53dd6112ac70e8e82a146dd39b}{EUSART1\+\_\+\+Default\+Error\+Handler}} (void)
+\item 
+void \mbox{\hyperlink{eusart1_8c_a17236c1d3fc2264f13ed077b4fc6973e}{EUSART1\+\_\+\+Initialize}} (void)
+\item 
+bool \mbox{\hyperlink{eusart1_8c_a3cc9de3f3d2a8588be3bd85084011a68}{EUSART1\+\_\+is\+\_\+tx\+\_\+ready}} (void)
+\item 
+bool \mbox{\hyperlink{eusart1_8c_a51236ea81a98a25986a6733fbf291621}{EUSART1\+\_\+is\+\_\+rx\+\_\+ready}} (void)
+\item 
+bool \mbox{\hyperlink{eusart1_8c_a7b5f2ddacf3a8b27a5edff78996e66f5}{EUSART1\+\_\+is\+\_\+tx\+\_\+done}} (void)
+\item 
+\mbox{\hyperlink{unioneusart1__status__t}{eusart1\+\_\+status\+\_\+t}} \mbox{\hyperlink{eusart1_8c_a3dc796228d84a0c6a57dc207ed14daae}{EUSART1\+\_\+get\+\_\+last\+\_\+status}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{eusart1_8c_ab4dd58b431d4f59c5b78f909b0b9cb0b}{EUSART1\+\_\+\+Read}} (void)
+\item 
+void \mbox{\hyperlink{eusart1_8c_a6acb88a121ac046bf5ae77f9a3521350}{EUSART1\+\_\+\+Write}} (uint8\+\_\+t tx\+Data)
+\item 
+int \mbox{\hyperlink{eusart1_8c_af5978fab9fa6dd4ced1c3a8ab1251f7b}{getch}} (void)
+\item 
+void \mbox{\hyperlink{eusart1_8c_ac21d964993393c2bf9bbdb592f025c15}{putch}} (char tx\+Data)
+\item 
+void \mbox{\hyperlink{eusart1_8c_a5f3a2616f3513e5aa47264fa6e918104}{EUSART1\+\_\+\+Transmit\+\_\+\+ISR}} (void)
+\item 
+void \mbox{\hyperlink{eusart1_8c_af6867c294ab8008a59cdc81a74272669}{EUSART1\+\_\+\+Receive\+\_\+\+ISR}} (void)
+\item 
+void \mbox{\hyperlink{eusart1_8c_a059ef83fc11ba2fbe279fe185b0e3832}{EUSART1\+\_\+\+Rx\+Data\+Handler}} (void)
+\item 
+void \mbox{\hyperlink{eusart1_8c_aa4a8db092efc718cf508792a0a521dba}{EUSART1\+\_\+\+Set\+Framing\+Error\+Handler}} (void(\texorpdfstring{$\ast$}{*}interrupt\+Handler)(void))
+\item 
+void \mbox{\hyperlink{eusart1_8c_a8129057b0391bb8de6fa1058057c589e}{EUSART1\+\_\+\+Set\+Overrun\+Error\+Handler}} (void(\texorpdfstring{$\ast$}{*}interrupt\+Handler)(void))
+\item 
+void \mbox{\hyperlink{eusart1_8c_a1ce96cef41cc2e985c8a600873f3d688}{EUSART1\+\_\+\+Set\+Error\+Handler}} (void(\texorpdfstring{$\ast$}{*}interrupt\+Handler)(void))
+\item 
+void \mbox{\hyperlink{eusart1_8c_a112907665b51b5eac0ef40c80a8c0847}{EUSART1\+\_\+\+Set\+Tx\+Interrupt\+Handler}} (void(\texorpdfstring{$\ast$}{*}interrupt\+Handler)(void))
+\item 
+void \mbox{\hyperlink{eusart1_8c_a66a557ddf06eda003b454c56b5f6fa2b}{EUSART1\+\_\+\+Set\+Rx\+Interrupt\+Handler}} (void(\texorpdfstring{$\ast$}{*}interrupt\+Handler)(void))
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+volatile uint8\+\_\+t \mbox{\hyperlink{eusart1_8c_af9a429c373459af1e2da50e9a2f02719}{eusart1\+Tx\+Head}} = 0
+\item 
+volatile uint8\+\_\+t \mbox{\hyperlink{eusart1_8c_a6dc2fea196d284cace6cf984af46165f}{eusart1\+Tx\+Tail}} = 0
+\item 
+volatile uint8\+\_\+t \mbox{\hyperlink{eusart1_8c_a441887ac8335b0f6ceed5696e42b6b30}{eusart1\+Tx\+Buffer}} \mbox{[}\mbox{\hyperlink{eusart1_8c_a1c74f6788eacb6fb0fe6c604f395a8ab}{EUSART1\+\_\+\+TX\+\_\+\+BUFFER\+\_\+\+SIZE}}\mbox{]}
+\item 
+volatile uint8\+\_\+t \mbox{\hyperlink{eusart1_8c_a60e1cd80da2c5389aa7458e8af1a651a}{eusart1\+Tx\+Buffer\+Remaining}}
+\item 
+volatile uint8\+\_\+t \mbox{\hyperlink{eusart1_8c_a3edd611815ab0a84ebf348449e3cf135}{eusart1\+Rx\+Head}} = 0
+\item 
+volatile uint8\+\_\+t \mbox{\hyperlink{eusart1_8c_a72676c6462b4f80b1d7e791a82bf1e20}{eusart1\+Rx\+Tail}} = 0
+\item 
+volatile uint8\+\_\+t \mbox{\hyperlink{eusart1_8c_a9f953e2d0a8e2cdb9e7f36ace3c7b17a}{eusart1\+Rx\+Buffer}} \mbox{[}\mbox{\hyperlink{eusart1_8c_a642958f0262c1fa43f73055039f9e69c}{EUSART1\+\_\+\+RX\+\_\+\+BUFFER\+\_\+\+SIZE}}\mbox{]}
+\item 
+volatile \mbox{\hyperlink{unioneusart1__status__t}{eusart1\+\_\+status\+\_\+t}} \mbox{\hyperlink{eusart1_8c_a3c4a003a0ca1e9d04caf6eca92833522}{eusart1\+Rx\+Status\+Buffer}} \mbox{[}\mbox{\hyperlink{eusart1_8c_a642958f0262c1fa43f73055039f9e69c}{EUSART1\+\_\+\+RX\+\_\+\+BUFFER\+\_\+\+SIZE}}\mbox{]}
+\item 
+volatile uint8\+\_\+t \mbox{\hyperlink{eusart1_8c_ab6e9a7238b7754678619a44374419718}{eusart1\+Rx\+Count}}
+\item 
+volatile \mbox{\hyperlink{unioneusart1__status__t}{eusart1\+\_\+status\+\_\+t}} \mbox{\hyperlink{eusart1_8c_a8f5fe769231559381402518edf3005de}{eusart1\+Rx\+Last\+Error}}
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{eusart1_8c_a70443f1897367ed72791d9547eb06766}{EUSART1\+\_\+\+Tx\+Default\+Interrupt\+Handler}} )(void)
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{eusart1_8c_a880bcfd3bf2ca46fd0f4a14b2a0a3b9d}{EUSART1\+\_\+\+Rx\+Default\+Interrupt\+Handler}} )(void)
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{eusart1_8c_a29be52aecc13884fad7f3c9707b58936}{EUSART1\+\_\+\+Framing\+Error\+Handler}} )(void)
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{eusart1_8c_ad312829b7b826ae814c9b3b94fd42567}{EUSART1\+\_\+\+Overrun\+Error\+Handler}} )(void)
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{eusart1_8c_abc6ac02650c89fd0f804ce8f9e4be29a}{EUSART1\+\_\+\+Error\+Handler}} )(void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{eusart1_8c_a642958f0262c1fa43f73055039f9e69c}\index{eusart1.c@{eusart1.c}!EUSART1\_RX\_BUFFER\_SIZE@{EUSART1\_RX\_BUFFER\_SIZE}}
+\index{EUSART1\_RX\_BUFFER\_SIZE@{EUSART1\_RX\_BUFFER\_SIZE}!eusart1.c@{eusart1.c}}
+\doxysubsubsection{\texorpdfstring{EUSART1\_RX\_BUFFER\_SIZE}{EUSART1\_RX\_BUFFER\_SIZE}}
+{\footnotesize\ttfamily \label{eusart1_8c_a642958f0262c1fa43f73055039f9e69c} 
+\#define EUSART1\+\_\+\+RX\+\_\+\+BUFFER\+\_\+\+SIZE~64}
+
+\Hypertarget{eusart1_8c_a1c74f6788eacb6fb0fe6c604f395a8ab}\index{eusart1.c@{eusart1.c}!EUSART1\_TX\_BUFFER\_SIZE@{EUSART1\_TX\_BUFFER\_SIZE}}
+\index{EUSART1\_TX\_BUFFER\_SIZE@{EUSART1\_TX\_BUFFER\_SIZE}!eusart1.c@{eusart1.c}}
+\doxysubsubsection{\texorpdfstring{EUSART1\_TX\_BUFFER\_SIZE}{EUSART1\_TX\_BUFFER\_SIZE}}
+{\footnotesize\ttfamily \label{eusart1_8c_a1c74f6788eacb6fb0fe6c604f395a8ab} 
+\#define EUSART1\+\_\+\+TX\+\_\+\+BUFFER\+\_\+\+SIZE~64}
+
+EUSART1 Generated Driver File
+
+@\+Company Microchip Technology Inc.
+
+@\+File Name \doxylink{eusart1_8c}{eusart1.\+c}
+
+@\+Summary This is the generated driver implementation file for the EUSART1 driver using PIC10 / PIC12 / PIC16 / PIC18 MCUs
+
+@\+Description This source file provides APIs for EUSART1. Generation Information \+: Product Revision \+: PIC10 / PIC12 / PIC16 / PIC18 MCUs -\/ 1.\+81.\+8 Device \+: PIC18\+F25\+K22 Driver Version \+: 2.\+1.\+1 The generated drivers are tested against the following\+: Compiler \+: XC8 2.\+36 and above MPLAB \+: MPLAB X 6.\+00 Section\+: Included Files Section\+: Macro Declarations 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{eusart1_8c_a9c10ba53dd6112ac70e8e82a146dd39b}\index{eusart1.c@{eusart1.c}!EUSART1\_DefaultErrorHandler@{EUSART1\_DefaultErrorHandler}}
+\index{EUSART1\_DefaultErrorHandler@{EUSART1\_DefaultErrorHandler}!eusart1.c@{eusart1.c}}
+\doxysubsubsection{\texorpdfstring{EUSART1\_DefaultErrorHandler()}{EUSART1\_DefaultErrorHandler()}}
+{\footnotesize\ttfamily \label{eusart1_8c_a9c10ba53dd6112ac70e8e82a146dd39b} 
+void EUSART1\+\_\+\+Default\+Error\+Handler (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{eusart1_8c_a9c10ba53dd6112ac70e8e82a146dd39b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{eusart1_8c_a9c10ba53dd6112ac70e8e82a146dd39b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{eusart1_8c_ad551fd18f88e50d53d18c345e0819b60}\index{eusart1.c@{eusart1.c}!EUSART1\_DefaultFramingErrorHandler@{EUSART1\_DefaultFramingErrorHandler}}
+\index{EUSART1\_DefaultFramingErrorHandler@{EUSART1\_DefaultFramingErrorHandler}!eusart1.c@{eusart1.c}}
+\doxysubsubsection{\texorpdfstring{EUSART1\_DefaultFramingErrorHandler()}{EUSART1\_DefaultFramingErrorHandler()}}
+{\footnotesize\ttfamily \label{eusart1_8c_ad551fd18f88e50d53d18c345e0819b60} 
+void EUSART1\+\_\+\+Default\+Framing\+Error\+Handler (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{eusart1_8c_ad551fd18f88e50d53d18c345e0819b60_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{eusart1_8c_a3d463ab78d0a1a0346dbb5f5e9a44647}\index{eusart1.c@{eusart1.c}!EUSART1\_DefaultOverrunErrorHandler@{EUSART1\_DefaultOverrunErrorHandler}}
+\index{EUSART1\_DefaultOverrunErrorHandler@{EUSART1\_DefaultOverrunErrorHandler}!eusart1.c@{eusart1.c}}
+\doxysubsubsection{\texorpdfstring{EUSART1\_DefaultOverrunErrorHandler()}{EUSART1\_DefaultOverrunErrorHandler()}}
+{\footnotesize\ttfamily \label{eusart1_8c_a3d463ab78d0a1a0346dbb5f5e9a44647} 
+void EUSART1\+\_\+\+Default\+Overrun\+Error\+Handler (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{eusart1_8c_a3d463ab78d0a1a0346dbb5f5e9a44647_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{eusart1_8c_a3dc796228d84a0c6a57dc207ed14daae}\index{eusart1.c@{eusart1.c}!EUSART1\_get\_last\_status@{EUSART1\_get\_last\_status}}
+\index{EUSART1\_get\_last\_status@{EUSART1\_get\_last\_status}!eusart1.c@{eusart1.c}}
+\doxysubsubsection{\texorpdfstring{EUSART1\_get\_last\_status()}{EUSART1\_get\_last\_status()}}
+{\footnotesize\ttfamily \label{eusart1_8c_a3dc796228d84a0c6a57dc207ed14daae} 
+\mbox{\hyperlink{unioneusart1__status__t}{eusart1\+\_\+status\+\_\+t}} EUSART1\+\_\+get\+\_\+last\+\_\+status (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+@\+Summary Gets the error status of the last read byte.
+
+@\+Description This routine gets the error status of the last read byte.
+
+@\+Preconditions \doxylink{eusart1_8h_a17236c1d3fc2264f13ed077b4fc6973e}{EUSART1\+\_\+\+Initialize()} function should have been called before calling this function. The returned value is only updated after a read is called.
+
+@\+Param None
+
+@\+Returns the status of the last read byte
+
+@\+Example {\ttfamily  void \doxylink{main_8c_a6288eba0f8e8ad3ab1544ad731eb7667}{main(void)} \{ volatile uint8\+\_\+t rx\+Data; volatile \doxylink{unioneusart1__status__t}{eusart1\+\_\+status\+\_\+t} rx\+Status;}
+
+{\ttfamily Initialize the device \doxylink{mateQ84_8X_2mcc__generated__files_2mcc_8c_a5e8391114a0cf91ac20002be25e3d352}{SYSTEM\+\_\+\+Initialize()};}
+
+{\ttfamily Enable the Global Interrupts INTERRUPT\+\_\+\+Global\+Interrupt\+Enable();}
+
+{\ttfamily  while(1) \{ Logic to echo received data if(\+EUSART1\+\_\+is\+\_\+rx\+\_\+ready()) \{ rx\+Data = \doxylink{eusart1_8h_ab4dd58b431d4f59c5b78f909b0b9cb0b}{EUSART1\+\_\+\+Read()}; rx\+Status = \doxylink{eusart1_8h_a3dc796228d84a0c6a57dc207ed14daae}{EUSART1\+\_\+get\+\_\+last\+\_\+status()}; if(rx\+Status.\+ferr)\{ LED\+\_\+0\+\_\+\+Set\+High(); \} \} \} \} } \Hypertarget{eusart1_8c_a17236c1d3fc2264f13ed077b4fc6973e}\index{eusart1.c@{eusart1.c}!EUSART1\_Initialize@{EUSART1\_Initialize}}
+\index{EUSART1\_Initialize@{EUSART1\_Initialize}!eusart1.c@{eusart1.c}}
+\doxysubsubsection{\texorpdfstring{EUSART1\_Initialize()}{EUSART1\_Initialize()}}
+{\footnotesize\ttfamily \label{eusart1_8c_a17236c1d3fc2264f13ed077b4fc6973e} 
+void EUSART1\+\_\+\+Initialize (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+@\+Summary Initialization routine that takes inputs from the EUSART1 GUI.
+
+@\+Description This routine initializes the EUSART1 driver. This routine must be called before any other EUSART1 routine is called.
+
+@\+Preconditions None
+
+@\+Param None
+
+@\+Returns None
+
+@\+Comment Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{eusart1_8c_a17236c1d3fc2264f13ed077b4fc6973e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=329pt]{eusart1_8c_a17236c1d3fc2264f13ed077b4fc6973e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{eusart1_8c_a51236ea81a98a25986a6733fbf291621}\index{eusart1.c@{eusart1.c}!EUSART1\_is\_rx\_ready@{EUSART1\_is\_rx\_ready}}
+\index{EUSART1\_is\_rx\_ready@{EUSART1\_is\_rx\_ready}!eusart1.c@{eusart1.c}}
+\doxysubsubsection{\texorpdfstring{EUSART1\_is\_rx\_ready()}{EUSART1\_is\_rx\_ready()}}
+{\footnotesize\ttfamily \label{eusart1_8c_a51236ea81a98a25986a6733fbf291621} 
+bool EUSART1\+\_\+is\+\_\+rx\+\_\+ready (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+@\+Summary Checks if the EUSART1 receiver ready for reading
+
+@\+Description This routine checks if EUSART1 receiver has received data and ready to be read
+
+@\+Preconditions \doxylink{eusart1_8h_a17236c1d3fc2264f13ed077b4fc6973e}{EUSART1\+\_\+\+Initialize()} function should be called before calling this function EUSART1 receiver should be enabled before calling this function
+
+@\+Param None
+
+@\+Returns Status of EUSART1 receiver TRUE\+: EUSART1 receiver is ready for reading FALSE\+: EUSART1 receiver is not ready for reading
+
+@\+Example {\ttfamily  void \doxylink{main_8c_a6288eba0f8e8ad3ab1544ad731eb7667}{main(void)} \{ volatile uint8\+\_\+t rx\+Data;}
+
+{\ttfamily Initialize the device \doxylink{mateQ84_8X_2mcc__generated__files_2mcc_8c_a5e8391114a0cf91ac20002be25e3d352}{SYSTEM\+\_\+\+Initialize()};}
+
+{\ttfamily  while(1) \{ Logic to echo received data if(\+EUSART1\+\_\+is\+\_\+rx\+\_\+ready()) \{ rx\+Data = \doxylink{uart1_8c_a4e34071aa3125eb037bd6ae844c7ffbb}{UART1\+\_\+\+Read()}; if(\+EUSART1\+\_\+is\+\_\+tx\+\_\+ready()) \{ EUSART1\+\_\+\+Write(rx\+Data); \} \} \} \} } \Hypertarget{eusart1_8c_a7b5f2ddacf3a8b27a5edff78996e66f5}\index{eusart1.c@{eusart1.c}!EUSART1\_is\_tx\_done@{EUSART1\_is\_tx\_done}}
+\index{EUSART1\_is\_tx\_done@{EUSART1\_is\_tx\_done}!eusart1.c@{eusart1.c}}
+\doxysubsubsection{\texorpdfstring{EUSART1\_is\_tx\_done()}{EUSART1\_is\_tx\_done()}}
+{\footnotesize\ttfamily \label{eusart1_8c_a7b5f2ddacf3a8b27a5edff78996e66f5} 
+bool EUSART1\+\_\+is\+\_\+tx\+\_\+done (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+@\+Summary Checks if EUSART1 data is transmitted
+
+@\+Description This function return the status of transmit shift register
+
+@\+Preconditions \doxylink{eusart1_8h_a17236c1d3fc2264f13ed077b4fc6973e}{EUSART1\+\_\+\+Initialize()} function should be called before calling this function EUSART1 transmitter should be enabled and EUSART1\+\_\+\+Write should be called before calling this function
+
+@\+Param None
+
+@\+Returns Status of EUSART1 receiver TRUE\+: Data completely shifted out if the USART shift register FALSE\+: Data is not completely shifted out of the shift register
+
+@\+Example {\ttfamily  void \doxylink{main_8c_a6288eba0f8e8ad3ab1544ad731eb7667}{main(void)} \{ volatile uint8\+\_\+t rx\+Data;}
+
+{\ttfamily Initialize the device \doxylink{mateQ84_8X_2mcc__generated__files_2mcc_8c_a5e8391114a0cf91ac20002be25e3d352}{SYSTEM\+\_\+\+Initialize()};}
+
+{\ttfamily  while(1) \{ if(\+EUSART1\+\_\+is\+\_\+tx\+\_\+ready()) \{ LED\+\_\+0\+\_\+\+Set\+High(); EUSART1\+Write(rx\+Data); \} if(\doxylink{eusart1_8h_a7b5f2ddacf3a8b27a5edff78996e66f5}{EUSART1\+\_\+is\+\_\+tx\+\_\+done()} \{ LED\+\_\+0\+\_\+\+Set\+Low(); \} \} \} } \Hypertarget{eusart1_8c_a3cc9de3f3d2a8588be3bd85084011a68}\index{eusart1.c@{eusart1.c}!EUSART1\_is\_tx\_ready@{EUSART1\_is\_tx\_ready}}
+\index{EUSART1\_is\_tx\_ready@{EUSART1\_is\_tx\_ready}!eusart1.c@{eusart1.c}}
+\doxysubsubsection{\texorpdfstring{EUSART1\_is\_tx\_ready()}{EUSART1\_is\_tx\_ready()}}
+{\footnotesize\ttfamily \label{eusart1_8c_a3cc9de3f3d2a8588be3bd85084011a68} 
+bool EUSART1\+\_\+is\+\_\+tx\+\_\+ready (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+@\+Summary Checks if the EUSART1 transmitter is ready to transmit data
+
+@\+Description This routine checks if EUSART1 transmitter is ready to accept and transmit data byte
+
+@\+Preconditions \doxylink{eusart1_8h_a17236c1d3fc2264f13ed077b4fc6973e}{EUSART1\+\_\+\+Initialize()} function should have been called before calling this function. EUSART1 transmitter should be enabled before calling this function
+
+@\+Param None
+
+@\+Returns Status of EUSART1 transmitter TRUE\+: EUSART1 transmitter is ready FALSE\+: EUSART1 transmitter is not ready
+
+@\+Example {\ttfamily  void \doxylink{main_8c_a6288eba0f8e8ad3ab1544ad731eb7667}{main(void)} \{ volatile uint8\+\_\+t rx\+Data;}
+
+{\ttfamily Initialize the device \doxylink{mateQ84_8X_2mcc__generated__files_2mcc_8c_a5e8391114a0cf91ac20002be25e3d352}{SYSTEM\+\_\+\+Initialize()};}
+
+{\ttfamily  while(1) \{ Logic to echo received data if(\+EUSART1\+\_\+is\+\_\+rx\+\_\+ready()) \{ rx\+Data = \doxylink{uart1_8c_a4e34071aa3125eb037bd6ae844c7ffbb}{UART1\+\_\+\+Read()}; if(\+EUSART1\+\_\+is\+\_\+tx\+\_\+ready()) \{ EUSART1\+Write(rx\+Data); \} \} \} \} } \Hypertarget{eusart1_8c_ab4dd58b431d4f59c5b78f909b0b9cb0b}\index{eusart1.c@{eusart1.c}!EUSART1\_Read@{EUSART1\_Read}}
+\index{EUSART1\_Read@{EUSART1\_Read}!eusart1.c@{eusart1.c}}
+\doxysubsubsection{\texorpdfstring{EUSART1\_Read()}{EUSART1\_Read()}}
+{\footnotesize\ttfamily \label{eusart1_8c_ab4dd58b431d4f59c5b78f909b0b9cb0b} 
+uint8\+\_\+t EUSART1\+\_\+\+Read (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+@\+Summary Read a byte of data from the EUSART1.
+
+@\+Description This routine reads a byte of data from the EUSART1.
+
+@\+Preconditions \doxylink{eusart1_8h_a17236c1d3fc2264f13ed077b4fc6973e}{EUSART1\+\_\+\+Initialize()} function should have been called before calling this function. The transfer status should be checked to see if the receiver is not empty before calling this function.
+
+@\+Param None
+
+@\+Returns A data byte received by the driver. Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=252pt]{eusart1_8c_ab4dd58b431d4f59c5b78f909b0b9cb0b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{eusart1_8c_af6867c294ab8008a59cdc81a74272669}\index{eusart1.c@{eusart1.c}!EUSART1\_Receive\_ISR@{EUSART1\_Receive\_ISR}}
+\index{EUSART1\_Receive\_ISR@{EUSART1\_Receive\_ISR}!eusart1.c@{eusart1.c}}
+\doxysubsubsection{\texorpdfstring{EUSART1\_Receive\_ISR()}{EUSART1\_Receive\_ISR()}}
+{\footnotesize\ttfamily \label{eusart1_8c_af6867c294ab8008a59cdc81a74272669} 
+void EUSART1\+\_\+\+Receive\+\_\+\+ISR (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+@\+Summary Maintains the driver\textquotesingle{}s receiver state machine and implements its ISR
+
+@\+Description This routine is used to maintain the driver\textquotesingle{}s internal receiver state machine.\+This interrupt service routine is called when the state of the receiver needs to be maintained in a non polled manner.
+
+@\+Preconditions \doxylink{eusart1_8h_a17236c1d3fc2264f13ed077b4fc6973e}{EUSART1\+\_\+\+Initialize()} function should have been called for the ISR to execute correctly.
+
+@\+Param None
+
+@\+Returns None Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{eusart1_8c_af6867c294ab8008a59cdc81a74272669_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{eusart1_8c_af6867c294ab8008a59cdc81a74272669_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{eusart1_8c_a059ef83fc11ba2fbe279fe185b0e3832}\index{eusart1.c@{eusart1.c}!EUSART1\_RxDataHandler@{EUSART1\_RxDataHandler}}
+\index{EUSART1\_RxDataHandler@{EUSART1\_RxDataHandler}!eusart1.c@{eusart1.c}}
+\doxysubsubsection{\texorpdfstring{EUSART1\_RxDataHandler()}{EUSART1\_RxDataHandler()}}
+{\footnotesize\ttfamily \label{eusart1_8c_a059ef83fc11ba2fbe279fe185b0e3832} 
+void EUSART1\+\_\+\+Rx\+Data\+Handler (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+@\+Summary Maintains the driver\textquotesingle{}s receiver state machine
+
+@\+Description This routine is called by the receive state routine and is used to maintain the driver\textquotesingle{}s internal receiver state machine. It should be called by a custom ISR to maintain normal behavior
+
+@\+Preconditions \doxylink{eusart1_8h_a17236c1d3fc2264f13ed077b4fc6973e}{EUSART1\+\_\+\+Initialize()} function should have been called for the ISR to execute correctly.
+
+@\+Param None
+
+@\+Returns None Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{eusart1_8c_a059ef83fc11ba2fbe279fe185b0e3832_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{eusart1_8c_a1ce96cef41cc2e985c8a600873f3d688}\index{eusart1.c@{eusart1.c}!EUSART1\_SetErrorHandler@{EUSART1\_SetErrorHandler}}
+\index{EUSART1\_SetErrorHandler@{EUSART1\_SetErrorHandler}!eusart1.c@{eusart1.c}}
+\doxysubsubsection{\texorpdfstring{EUSART1\_SetErrorHandler()}{EUSART1\_SetErrorHandler()}}
+{\footnotesize\ttfamily \label{eusart1_8c_a1ce96cef41cc2e985c8a600873f3d688} 
+void EUSART1\+\_\+\+Set\+Error\+Handler (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{interrupt\+Handler~}{)(void)}\end{DoxyParamCaption})}
+
+@\+Summary Set EUSART1 Error Handler
+
+@\+Description This API sets the function to be called upon EUSART1 error
+
+@\+Preconditions Initialize the EUSART1 module before calling this API
+
+@\+Param Address of function to be set as error handler
+
+@\+Returns None Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{eusart1_8c_a1ce96cef41cc2e985c8a600873f3d688_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{eusart1_8c_aa4a8db092efc718cf508792a0a521dba}\index{eusart1.c@{eusart1.c}!EUSART1\_SetFramingErrorHandler@{EUSART1\_SetFramingErrorHandler}}
+\index{EUSART1\_SetFramingErrorHandler@{EUSART1\_SetFramingErrorHandler}!eusart1.c@{eusart1.c}}
+\doxysubsubsection{\texorpdfstring{EUSART1\_SetFramingErrorHandler()}{EUSART1\_SetFramingErrorHandler()}}
+{\footnotesize\ttfamily \label{eusart1_8c_aa4a8db092efc718cf508792a0a521dba} 
+void EUSART1\+\_\+\+Set\+Framing\+Error\+Handler (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{interrupt\+Handler~}{)(void)}\end{DoxyParamCaption})}
+
+@\+Summary Set EUSART1 Framing Error Handler
+
+@\+Description This API sets the function to be called upon EUSART1 framing error
+
+@\+Preconditions Initialize the EUSART1 before calling this API
+
+@\+Param Address of function to be set as framing error handler
+
+@\+Returns None Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{eusart1_8c_aa4a8db092efc718cf508792a0a521dba_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{eusart1_8c_a8129057b0391bb8de6fa1058057c589e}\index{eusart1.c@{eusart1.c}!EUSART1\_SetOverrunErrorHandler@{EUSART1\_SetOverrunErrorHandler}}
+\index{EUSART1\_SetOverrunErrorHandler@{EUSART1\_SetOverrunErrorHandler}!eusart1.c@{eusart1.c}}
+\doxysubsubsection{\texorpdfstring{EUSART1\_SetOverrunErrorHandler()}{EUSART1\_SetOverrunErrorHandler()}}
+{\footnotesize\ttfamily \label{eusart1_8c_a8129057b0391bb8de6fa1058057c589e} 
+void EUSART1\+\_\+\+Set\+Overrun\+Error\+Handler (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{interrupt\+Handler~}{)(void)}\end{DoxyParamCaption})}
+
+@\+Summary Set EUSART1 Overrun Error Handler
+
+@\+Description This API sets the function to be called upon EUSART1 overrun error
+
+@\+Preconditions Initialize the EUSART1 module before calling this API
+
+@\+Param Address of function to be set as overrun error handler
+
+@\+Returns None Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{eusart1_8c_a8129057b0391bb8de6fa1058057c589e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{eusart1_8c_a66a557ddf06eda003b454c56b5f6fa2b}\index{eusart1.c@{eusart1.c}!EUSART1\_SetRxInterruptHandler@{EUSART1\_SetRxInterruptHandler}}
+\index{EUSART1\_SetRxInterruptHandler@{EUSART1\_SetRxInterruptHandler}!eusart1.c@{eusart1.c}}
+\doxysubsubsection{\texorpdfstring{EUSART1\_SetRxInterruptHandler()}{EUSART1\_SetRxInterruptHandler()}}
+{\footnotesize\ttfamily \label{eusart1_8c_a66a557ddf06eda003b454c56b5f6fa2b} 
+void EUSART1\+\_\+\+Set\+Rx\+Interrupt\+Handler (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{interrupt\+Handler~}{)(void)}\end{DoxyParamCaption})}
+
+@\+Summary Sets the receive handler function to be called by the interrupt service
+
+@\+Description Calling this function will set a new custom function that will be called when the receive interrupt needs servicing.
+
+@\+Preconditions \doxylink{eusart1_8h_a17236c1d3fc2264f13ed077b4fc6973e}{EUSART1\+\_\+\+Initialize()} function should have been called for the ISR to execute correctly.
+
+@\+Param A pointer to the new function
+
+@\+Returns None Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{eusart1_8c_a66a557ddf06eda003b454c56b5f6fa2b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{eusart1_8c_a112907665b51b5eac0ef40c80a8c0847}\index{eusart1.c@{eusart1.c}!EUSART1\_SetTxInterruptHandler@{EUSART1\_SetTxInterruptHandler}}
+\index{EUSART1\_SetTxInterruptHandler@{EUSART1\_SetTxInterruptHandler}!eusart1.c@{eusart1.c}}
+\doxysubsubsection{\texorpdfstring{EUSART1\_SetTxInterruptHandler()}{EUSART1\_SetTxInterruptHandler()}}
+{\footnotesize\ttfamily \label{eusart1_8c_a112907665b51b5eac0ef40c80a8c0847} 
+void EUSART1\+\_\+\+Set\+Tx\+Interrupt\+Handler (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{interrupt\+Handler~}{)(void)}\end{DoxyParamCaption})}
+
+@\+Summary Sets the transmit handler function to be called by the interrupt service
+
+@\+Description Calling this function will set a new custom function that will be called when the transmit interrupt needs servicing.
+
+@\+Preconditions \doxylink{eusart1_8h_a17236c1d3fc2264f13ed077b4fc6973e}{EUSART1\+\_\+\+Initialize()} function should have been called for the ISR to execute correctly.
+
+@\+Param A pointer to the new function
+
+@\+Returns None Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{eusart1_8c_a112907665b51b5eac0ef40c80a8c0847_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{eusart1_8c_a5f3a2616f3513e5aa47264fa6e918104}\index{eusart1.c@{eusart1.c}!EUSART1\_Transmit\_ISR@{EUSART1\_Transmit\_ISR}}
+\index{EUSART1\_Transmit\_ISR@{EUSART1\_Transmit\_ISR}!eusart1.c@{eusart1.c}}
+\doxysubsubsection{\texorpdfstring{EUSART1\_Transmit\_ISR()}{EUSART1\_Transmit\_ISR()}}
+{\footnotesize\ttfamily \label{eusart1_8c_a5f3a2616f3513e5aa47264fa6e918104} 
+void EUSART1\+\_\+\+Transmit\+\_\+\+ISR (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+@\+Summary Maintains the driver\textquotesingle{}s transmitter state machine and implements its ISR.
+
+@\+Description This routine is used to maintain the driver\textquotesingle{}s internal transmitter state machine.\+This interrupt service routine is called when the state of the transmitter needs to be maintained in a non polled manner.
+
+@\+Preconditions \doxylink{eusart1_8h_a17236c1d3fc2264f13ed077b4fc6973e}{EUSART1\+\_\+\+Initialize()} function should have been called for the ISR to execute correctly.
+
+@\+Param None
+
+@\+Returns None Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{eusart1_8c_a5f3a2616f3513e5aa47264fa6e918104_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{eusart1_8c_a6acb88a121ac046bf5ae77f9a3521350}\index{eusart1.c@{eusart1.c}!EUSART1\_Write@{EUSART1\_Write}}
+\index{EUSART1\_Write@{EUSART1\_Write}!eusart1.c@{eusart1.c}}
+\doxysubsubsection{\texorpdfstring{EUSART1\_Write()}{EUSART1\_Write()}}
+{\footnotesize\ttfamily \label{eusart1_8c_a6acb88a121ac046bf5ae77f9a3521350} 
+void EUSART1\+\_\+\+Write (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{tx\+Data}{}\end{DoxyParamCaption})}
+
+@\+Summary Writes a byte of data to the EUSART1.
+
+@\+Description This routine writes a byte of data to the EUSART1.
+
+@\+Preconditions \doxylink{eusart1_8h_a17236c1d3fc2264f13ed077b4fc6973e}{EUSART1\+\_\+\+Initialize()} function should have been called before calling this function. The transfer status should be checked to see if transmitter is not busy before calling this function.
+
+@\+Param tx\+Data -\/ Data byte to write to the EUSART1
+
+@\+Returns None Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=254pt]{eusart1_8c_a6acb88a121ac046bf5ae77f9a3521350_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{eusart1_8c_af5978fab9fa6dd4ced1c3a8ab1251f7b}\index{eusart1.c@{eusart1.c}!getch@{getch}}
+\index{getch@{getch}!eusart1.c@{eusart1.c}}
+\doxysubsubsection{\texorpdfstring{getch()}{getch()}}
+{\footnotesize\ttfamily \label{eusart1_8c_af5978fab9fa6dd4ced1c3a8ab1251f7b} 
+int getch (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=252pt]{eusart1_8c_af5978fab9fa6dd4ced1c3a8ab1251f7b_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{eusart1_8c_ac21d964993393c2bf9bbdb592f025c15}\index{eusart1.c@{eusart1.c}!putch@{putch}}
+\index{putch@{putch}!eusart1.c@{eusart1.c}}
+\doxysubsubsection{\texorpdfstring{putch()}{putch()}}
+{\footnotesize\ttfamily \label{eusart1_8c_ac21d964993393c2bf9bbdb592f025c15} 
+void putch (\begin{DoxyParamCaption}\item[{char}]{tx\+Data}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=254pt]{eusart1_8c_ac21d964993393c2bf9bbdb592f025c15_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{eusart1_8c_abc6ac02650c89fd0f804ce8f9e4be29a}\index{eusart1.c@{eusart1.c}!EUSART1\_ErrorHandler@{EUSART1\_ErrorHandler}}
+\index{EUSART1\_ErrorHandler@{EUSART1\_ErrorHandler}!eusart1.c@{eusart1.c}}
+\doxysubsubsection{\texorpdfstring{EUSART1\_ErrorHandler}{EUSART1\_ErrorHandler}}
+{\footnotesize\ttfamily \label{eusart1_8c_abc6ac02650c89fd0f804ce8f9e4be29a} 
+void(\texorpdfstring{$\ast$}{*} EUSART1\+\_\+\+Error\+Handler) (void) (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{eusart1_8c_a29be52aecc13884fad7f3c9707b58936}\index{eusart1.c@{eusart1.c}!EUSART1\_FramingErrorHandler@{EUSART1\_FramingErrorHandler}}
+\index{EUSART1\_FramingErrorHandler@{EUSART1\_FramingErrorHandler}!eusart1.c@{eusart1.c}}
+\doxysubsubsection{\texorpdfstring{EUSART1\_FramingErrorHandler}{EUSART1\_FramingErrorHandler}}
+{\footnotesize\ttfamily \label{eusart1_8c_a29be52aecc13884fad7f3c9707b58936} 
+void(\texorpdfstring{$\ast$}{*} EUSART1\+\_\+\+Framing\+Error\+Handler) (void) (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{eusart1_8c_ad312829b7b826ae814c9b3b94fd42567}\index{eusart1.c@{eusart1.c}!EUSART1\_OverrunErrorHandler@{EUSART1\_OverrunErrorHandler}}
+\index{EUSART1\_OverrunErrorHandler@{EUSART1\_OverrunErrorHandler}!eusart1.c@{eusart1.c}}
+\doxysubsubsection{\texorpdfstring{EUSART1\_OverrunErrorHandler}{EUSART1\_OverrunErrorHandler}}
+{\footnotesize\ttfamily \label{eusart1_8c_ad312829b7b826ae814c9b3b94fd42567} 
+void(\texorpdfstring{$\ast$}{*} EUSART1\+\_\+\+Overrun\+Error\+Handler) (void) (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{eusart1_8c_a880bcfd3bf2ca46fd0f4a14b2a0a3b9d}\index{eusart1.c@{eusart1.c}!EUSART1\_RxDefaultInterruptHandler@{EUSART1\_RxDefaultInterruptHandler}}
+\index{EUSART1\_RxDefaultInterruptHandler@{EUSART1\_RxDefaultInterruptHandler}!eusart1.c@{eusart1.c}}
+\doxysubsubsection{\texorpdfstring{EUSART1\_RxDefaultInterruptHandler}{EUSART1\_RxDefaultInterruptHandler}}
+{\footnotesize\ttfamily \label{eusart1_8c_a880bcfd3bf2ca46fd0f4a14b2a0a3b9d} 
+void(\texorpdfstring{$\ast$}{*} EUSART1\+\_\+\+Rx\+Default\+Interrupt\+Handler) (void) (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{eusart1_8c_a70443f1897367ed72791d9547eb06766}\index{eusart1.c@{eusart1.c}!EUSART1\_TxDefaultInterruptHandler@{EUSART1\_TxDefaultInterruptHandler}}
+\index{EUSART1\_TxDefaultInterruptHandler@{EUSART1\_TxDefaultInterruptHandler}!eusart1.c@{eusart1.c}}
+\doxysubsubsection{\texorpdfstring{EUSART1\_TxDefaultInterruptHandler}{EUSART1\_TxDefaultInterruptHandler}}
+{\footnotesize\ttfamily \label{eusart1_8c_a70443f1897367ed72791d9547eb06766} 
+void(\texorpdfstring{$\ast$}{*} EUSART1\+\_\+\+Tx\+Default\+Interrupt\+Handler) (void) (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Section\+: EUSART1 APIs \Hypertarget{eusart1_8c_a9f953e2d0a8e2cdb9e7f36ace3c7b17a}\index{eusart1.c@{eusart1.c}!eusart1RxBuffer@{eusart1RxBuffer}}
+\index{eusart1RxBuffer@{eusart1RxBuffer}!eusart1.c@{eusart1.c}}
+\doxysubsubsection{\texorpdfstring{eusart1RxBuffer}{eusart1RxBuffer}}
+{\footnotesize\ttfamily \label{eusart1_8c_a9f953e2d0a8e2cdb9e7f36ace3c7b17a} 
+volatile uint8\+\_\+t eusart1\+Rx\+Buffer\mbox{[}\mbox{\hyperlink{eusart1_8c_a642958f0262c1fa43f73055039f9e69c}{EUSART1\+\_\+\+RX\+\_\+\+BUFFER\+\_\+\+SIZE}}\mbox{]}}
+
+\Hypertarget{eusart1_8c_ab6e9a7238b7754678619a44374419718}\index{eusart1.c@{eusart1.c}!eusart1RxCount@{eusart1RxCount}}
+\index{eusart1RxCount@{eusart1RxCount}!eusart1.c@{eusart1.c}}
+\doxysubsubsection{\texorpdfstring{eusart1RxCount}{eusart1RxCount}}
+{\footnotesize\ttfamily \label{eusart1_8c_ab6e9a7238b7754678619a44374419718} 
+volatile uint8\+\_\+t eusart1\+Rx\+Count}
+
+\Hypertarget{eusart1_8c_a3edd611815ab0a84ebf348449e3cf135}\index{eusart1.c@{eusart1.c}!eusart1RxHead@{eusart1RxHead}}
+\index{eusart1RxHead@{eusart1RxHead}!eusart1.c@{eusart1.c}}
+\doxysubsubsection{\texorpdfstring{eusart1RxHead}{eusart1RxHead}}
+{\footnotesize\ttfamily \label{eusart1_8c_a3edd611815ab0a84ebf348449e3cf135} 
+volatile uint8\+\_\+t eusart1\+Rx\+Head = 0}
+
+\Hypertarget{eusart1_8c_a8f5fe769231559381402518edf3005de}\index{eusart1.c@{eusart1.c}!eusart1RxLastError@{eusart1RxLastError}}
+\index{eusart1RxLastError@{eusart1RxLastError}!eusart1.c@{eusart1.c}}
+\doxysubsubsection{\texorpdfstring{eusart1RxLastError}{eusart1RxLastError}}
+{\footnotesize\ttfamily \label{eusart1_8c_a8f5fe769231559381402518edf3005de} 
+volatile \mbox{\hyperlink{unioneusart1__status__t}{eusart1\+\_\+status\+\_\+t}} eusart1\+Rx\+Last\+Error}
+
+\Hypertarget{eusart1_8c_a3c4a003a0ca1e9d04caf6eca92833522}\index{eusart1.c@{eusart1.c}!eusart1RxStatusBuffer@{eusart1RxStatusBuffer}}
+\index{eusart1RxStatusBuffer@{eusart1RxStatusBuffer}!eusart1.c@{eusart1.c}}
+\doxysubsubsection{\texorpdfstring{eusart1RxStatusBuffer}{eusart1RxStatusBuffer}}
+{\footnotesize\ttfamily \label{eusart1_8c_a3c4a003a0ca1e9d04caf6eca92833522} 
+volatile \mbox{\hyperlink{unioneusart1__status__t}{eusart1\+\_\+status\+\_\+t}} eusart1\+Rx\+Status\+Buffer\mbox{[}\mbox{\hyperlink{eusart1_8c_a642958f0262c1fa43f73055039f9e69c}{EUSART1\+\_\+\+RX\+\_\+\+BUFFER\+\_\+\+SIZE}}\mbox{]}}
+
+\Hypertarget{eusart1_8c_a72676c6462b4f80b1d7e791a82bf1e20}\index{eusart1.c@{eusart1.c}!eusart1RxTail@{eusart1RxTail}}
+\index{eusart1RxTail@{eusart1RxTail}!eusart1.c@{eusart1.c}}
+\doxysubsubsection{\texorpdfstring{eusart1RxTail}{eusart1RxTail}}
+{\footnotesize\ttfamily \label{eusart1_8c_a72676c6462b4f80b1d7e791a82bf1e20} 
+volatile uint8\+\_\+t eusart1\+Rx\+Tail = 0}
+
+\Hypertarget{eusart1_8c_a441887ac8335b0f6ceed5696e42b6b30}\index{eusart1.c@{eusart1.c}!eusart1TxBuffer@{eusart1TxBuffer}}
+\index{eusart1TxBuffer@{eusart1TxBuffer}!eusart1.c@{eusart1.c}}
+\doxysubsubsection{\texorpdfstring{eusart1TxBuffer}{eusart1TxBuffer}}
+{\footnotesize\ttfamily \label{eusart1_8c_a441887ac8335b0f6ceed5696e42b6b30} 
+volatile uint8\+\_\+t eusart1\+Tx\+Buffer\mbox{[}\mbox{\hyperlink{eusart1_8c_a1c74f6788eacb6fb0fe6c604f395a8ab}{EUSART1\+\_\+\+TX\+\_\+\+BUFFER\+\_\+\+SIZE}}\mbox{]}}
+
+\Hypertarget{eusart1_8c_a60e1cd80da2c5389aa7458e8af1a651a}\index{eusart1.c@{eusart1.c}!eusart1TxBufferRemaining@{eusart1TxBufferRemaining}}
+\index{eusart1TxBufferRemaining@{eusart1TxBufferRemaining}!eusart1.c@{eusart1.c}}
+\doxysubsubsection{\texorpdfstring{eusart1TxBufferRemaining}{eusart1TxBufferRemaining}}
+{\footnotesize\ttfamily \label{eusart1_8c_a60e1cd80da2c5389aa7458e8af1a651a} 
+volatile uint8\+\_\+t eusart1\+Tx\+Buffer\+Remaining}
+
+Section\+: Global variables \Hypertarget{eusart1_8c_af9a429c373459af1e2da50e9a2f02719}\index{eusart1.c@{eusart1.c}!eusart1TxHead@{eusart1TxHead}}
+\index{eusart1TxHead@{eusart1TxHead}!eusart1.c@{eusart1.c}}
+\doxysubsubsection{\texorpdfstring{eusart1TxHead}{eusart1TxHead}}
+{\footnotesize\ttfamily \label{eusart1_8c_af9a429c373459af1e2da50e9a2f02719} 
+volatile uint8\+\_\+t eusart1\+Tx\+Head = 0}
+
+Section\+: Global Variables \Hypertarget{eusart1_8c_a6dc2fea196d284cace6cf984af46165f}\index{eusart1.c@{eusart1.c}!eusart1TxTail@{eusart1TxTail}}
+\index{eusart1TxTail@{eusart1TxTail}!eusart1.c@{eusart1.c}}
+\doxysubsubsection{\texorpdfstring{eusart1TxTail}{eusart1TxTail}}
+{\footnotesize\ttfamily \label{eusart1_8c_a6dc2fea196d284cace6cf984af46165f} 
+volatile uint8\+\_\+t eusart1\+Tx\+Tail = 0}
+

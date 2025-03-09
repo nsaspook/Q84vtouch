@@ -1,0 +1,616 @@
+\doxysection{mate\+Q84.\+X/main.c File Reference}
+\hypertarget{mateQ84_8X_2main_8c}{}\label{mateQ84_8X_2main_8c}\index{mateQ84.X/main.c@{mateQ84.X/main.c}}
+{\ttfamily \#include $<$xc.\+h$>$}\newline
+{\ttfamily \#include "{}mxcmd.\+h"{}}\newline
+{\ttfamily \#include "{}../timers.\+h"{}}\newline
+{\ttfamily \#include "{}../modbus\+\_\+master.\+h"{}}\newline
+{\ttfamily \#include "{}../canfd.\+h"{}}\newline
+{\ttfamily \#include "{}../batmon.\+h"{}}\newline
+Include dependency graph for main.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{mateQ84_8X_2main_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{mateQ84_8X_2main_8c_ab5db7ed54fa10eddd07ed56a5a4a0a4d}{PACE}}~31000
+\item 
+\#define \mbox{\hyperlink{mateQ84_8X_2main_8c_ac5c85a6a18b2073865149b2c0554ce8d}{CMD\+\_\+\+LEN}}~8
+\item 
+\#define \mbox{\hyperlink{mateQ84_8X_2main_8c_ad141aca0d4b8783339bd17ead63f247a}{REC\+\_\+\+LEN}}~5
+\item 
+\#define \mbox{\hyperlink{mateQ84_8X_2main_8c_a87e5b966aaaac7e57cb60fc140f266d2}{REC\+\_\+\+STATUS\+\_\+\+LEN}}~16
+\item 
+\#define \mbox{\hyperlink{mateQ84_8X_2main_8c_a544b80d48a99338c462d6b61e056adc0}{REC\+\_\+\+LOG\+\_\+\+LEN}}~17
+\item 
+\#define \mbox{\hyperlink{mateQ84_8X_2main_8c_a37fe5215c7e86bb667f4e483833ae5ea}{E\+\_\+\+UPDATE}}~10
+\item 
+\#define \mbox{\hyperlink{mateQ84_8X_2main_8c_aa21e1af664db00c9eda109c5c2cd9ce1}{E\+\_\+\+SAVE}}~3
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443e}{state\+\_\+type}} \{ \newline
+\mbox{\hyperlink{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443eacbcbc09c941eac752a6b026a21159c1e}{state\+\_\+init}}
+, \mbox{\hyperlink{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443ea6939baa5b812b8fd4f2528c84f60d6d2}{state\+\_\+status}}
+, \mbox{\hyperlink{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443ea0f9b02075db4a5f8ee8aefe115c1792f}{state\+\_\+panel}}
+, \mbox{\hyperlink{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443ea8787ada923740a61140f28be790b73f9}{state\+\_\+batteryv}}
+, \newline
+\mbox{\hyperlink{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443ea1eed1c501c3c1f70af97ff40a0ba8732}{state\+\_\+batterya}}
+, \mbox{\hyperlink{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443eaef9d9a5761da119b97de9b338737507c}{state\+\_\+watts}}
+, \mbox{\hyperlink{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443ea9b9412401000483fcbd66717d5995471}{state\+\_\+fwrev}}
+, \mbox{\hyperlink{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443ea165d0cacbb6d8ea794b00015d50ee2c6}{state\+\_\+time}}
+, \newline
+\mbox{\hyperlink{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443eaf4a07069032726b532db84c76efac251}{state\+\_\+date}}
+, \mbox{\hyperlink{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443ea3963f25bce9159c0f5e852a0c3b0ab87}{state\+\_\+mx\+\_\+log}}
+, \mbox{\hyperlink{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443ea4c5445ce523b1b8d5b8a75432f2fa277}{state\+\_\+misc}}
+, \mbox{\hyperlink{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443ea06ed9e54e89981f5aa3927849dc541e6}{state\+\_\+mx\+\_\+status}}
+, \newline
+\mbox{\hyperlink{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443ea4eebcc1176d32b97c8d56fa426916fc4}{state\+\_\+last}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{mateQ84_8X_2main_8c_a4d9b50da7fde15cbdfb6a6f0dfc432fd}{state\+\_\+init\+\_\+cb}} (void)
+\item 
+void \mbox{\hyperlink{mateQ84_8X_2main_8c_aa9c46eb7904210cf0cbf02bc0c4062a5}{state\+\_\+status\+\_\+cb}} (void)
+\item 
+void \mbox{\hyperlink{mateQ84_8X_2main_8c_a20b30f6102c07d94534d5b43fdb080ef}{state\+\_\+panelv\+\_\+cb}} (void)
+\item 
+void \mbox{\hyperlink{mateQ84_8X_2main_8c_a30306737e380e115b30b3da054757fc3}{state\+\_\+batteryv\+\_\+cb}} (void)
+\item 
+void \mbox{\hyperlink{mateQ84_8X_2main_8c_aa82896cdfa2dd36383c0742d58e8c92a}{state\+\_\+batterya\+\_\+cb}} (void)
+\item 
+void \mbox{\hyperlink{mateQ84_8X_2main_8c_af3290b8821f2e6ed5119ce06c85c1999}{state\+\_\+watts\+\_\+cb}} (void)
+\item 
+void \mbox{\hyperlink{mateQ84_8X_2main_8c_ac9da20e296b4c39476ef56238d74c18e}{state\+\_\+misc\+\_\+cb}} (void)
+\item 
+void \mbox{\hyperlink{mateQ84_8X_2main_8c_a3637d623e98d289cea0301c9e9fd49f5}{state\+\_\+mx\+\_\+status\+\_\+cb}} (void)
+\item 
+void \mbox{\hyperlink{mateQ84_8X_2main_8c_ab5b37987f9ee7cbe7aeda963141dd9a6}{state\+\_\+mx\+\_\+log\+\_\+cb}} (void)
+\item 
+void \mbox{\hyperlink{mateQ84_8X_2main_8c_a8ae1626500453fd6c71c95a8a88c29d7}{wdtdelay}} (const uint32\+\_\+t delay)
+\item 
+void \mbox{\hyperlink{mateQ84_8X_2main_8c_a6288eba0f8e8ad3ab1544ad731eb7667}{main}} (void)
+\item 
+char \mbox{\hyperlink{mateQ84_8X_2main_8c_a2c7bc8ae77786e8970ac3f03b92a1d00}{spinners}} (uint8\+\_\+t shape, const uint8\+\_\+t reset)
+\item 
+void \mbox{\hyperlink{mateQ84_8X_2main_8c_a9cbf505667eb91703734b609fd3193f3}{run\+\_\+day\+\_\+to\+\_\+night}} (void)
+\item 
+void \mbox{\hyperlink{mateQ84_8X_2main_8c_a075ee7d57eabca595ad66174b39f15af}{run\+\_\+night\+\_\+to\+\_\+day}} (void)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+volatile uint16\+\_\+t \mbox{\hyperlink{mateQ84_8X_2main_8c_a13b6090652ee42171ac58f007930d94a}{cc\+\_\+mode}} = \mbox{\hyperlink{mxcmd_8h_afeeec1ac8e29380d5d210b6b6279263ca92c6d26701ea777100da78967bb4c39d}{STATUS\+\_\+\+LAST}}
+\item 
+volatile uint16\+\_\+t \mbox{\hyperlink{mateQ84_8X_2main_8c_a347524e781f1fadcc7b60d6bc6e39f95}{mx\+\_\+code}} = 0x00
+\item 
+uint16\+\_\+t \mbox{\hyperlink{mateQ84_8X_2main_8c_a5428a6793379f1ef5f92afe41c67c2b9}{volt\+\_\+whole}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{mateQ84_8X_2main_8c_ab77553b372e2cb618b2934a21f5012ea}{bat\+\_\+amp\+\_\+whole}} = \mbox{\hyperlink{mxcmd_8h_ad7f415ff3a4955e12e67c1f98ec7f6ed}{AMP\+\_\+\+WHOLE\+\_\+\+ZERO}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{mateQ84_8X_2main_8c_aa1ffff7253c4e877ed1564a008e2b3d5}{panel\+\_\+watts}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{mateQ84_8X_2main_8c_af6592ba43281a17840991c7b82b108de}{volt\+\_\+fract}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{mateQ84_8X_2main_8c_a7eecd7139621d24f6891dba43a54cd34}{vf}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{mateQ84_8X_2main_8c_a0a7d1eab37aff09f0b4fcd0a3013663c}{vw}}
+\item 
+enum \mbox{\hyperlink{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443e}{state\+\_\+type}} \mbox{\hyperlink{mateQ84_8X_2main_8c_a26b2a0469c474a0b173b3791e5c4eb80}{state}} = \mbox{\hyperlink{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443eacbcbc09c941eac752a6b026a21159c1e}{state\+\_\+init}}
+\item 
+char \mbox{\hyperlink{mateQ84_8X_2main_8c_acd60ad1d27dc0b60769dbbac39039d90}{buffer}} \mbox{[}\mbox{\hyperlink{mxcmd_8h_a3a898da0ee1d34f3af799123ff98a160}{MAX\+\_\+\+B\+\_\+\+BUF}}\mbox{]} = "{}Boot Init Display "{}
+\item 
+char \mbox{\hyperlink{mateQ84_8X_2main_8c_a8d28894362bf5fdeb00e73d635aee010}{info\+\_\+buffer}} \mbox{[}\mbox{\hyperlink{mxcmd_8h_a3a898da0ee1d34f3af799123ff98a160}{MAX\+\_\+\+B\+\_\+\+BUF}}\mbox{]}
+\item 
+char \mbox{\hyperlink{mateQ84_8X_2main_8c_a6b22d01e082103d8535db39e63799b3f}{log\+\_\+buffer}} \mbox{[}\mbox{\hyperlink{mxcmd_8h_a3a898da0ee1d34f3af799123ff98a160}{MAX\+\_\+\+B\+\_\+\+BUF}}\mbox{]}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{mateQ84_8X_2main_8c_a2fd487055c79a1c6b3ffa3dcd59b98fb}{build\+\_\+date}} = \+\_\+\+\_\+\+DATE\+\_\+\+\_\+
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{mateQ84_8X_2main_8c_a0c1b6525ab4582a08673967cfee5b994}{build\+\_\+time}} = \+\_\+\+\_\+\+TIME\+\_\+\+\_\+
+\item 
+volatile uint16\+\_\+t \mbox{\hyperlink{mateQ84_8X_2main_8c_ada284e1e4e960e3a4fd5c0b0a93314e1}{tick\+Count}} \mbox{[}\mbox{\hyperlink{timers_8h_ad499250d949643c5a12161767059a3d2abaa7883f9d3702d4c1fba3442fec0595}{TMR\+\_\+\+COUNT}}\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{mateQ84_8X_2main_8c_a291300ae743744403406be58a1f88e1d}{fw\+\_\+state}} = 0
+\item 
+time\+\_\+t \mbox{\hyperlink{mateQ84_8X_2main_8c_ac18c97a79841b0af9e0d0d378b9e721c}{can\+\_\+timer}} = 1694196350
+\item 
+struct tm \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{mateQ84_8X_2main_8c_a6ff82a57d15d1e2c8b6aea4f501d8a0f}{can\+\_\+newtime}}
+\item 
+bool \mbox{\hyperlink{mateQ84_8X_2main_8c_a4037bec0093b20c624c13b0c770282ce}{show\+\_\+can}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{mateQ84_8X_2main_8c_af8bddcf8afd3ef3f8da7c110c6eeb981}{time\+\_\+show\+\_\+can}}
+\item 
+\mbox{\hyperlink{structB__type}{B\+\_\+type}} \mbox{\hyperlink{mateQ84_8X_2main_8c_a390edc6dc84cb12feefd336799714268}{B}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{mateQ84_8X_2main_8c_ac5c85a6a18b2073865149b2c0554ce8d}\index{main.c@{main.c}!CMD\_LEN@{CMD\_LEN}}
+\index{CMD\_LEN@{CMD\_LEN}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{CMD\_LEN}{CMD\_LEN}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_ac5c85a6a18b2073865149b2c0554ce8d} 
+\#define CMD\+\_\+\+LEN~8}
+
+\Hypertarget{mateQ84_8X_2main_8c_aa21e1af664db00c9eda109c5c2cd9ce1}\index{main.c@{main.c}!E\_SAVE@{E\_SAVE}}
+\index{E\_SAVE@{E\_SAVE}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{E\_SAVE}{E\_SAVE}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_aa21e1af664db00c9eda109c5c2cd9ce1} 
+\#define E\+\_\+\+SAVE~3}
+
+\Hypertarget{mateQ84_8X_2main_8c_a37fe5215c7e86bb667f4e483833ae5ea}\index{main.c@{main.c}!E\_UPDATE@{E\_UPDATE}}
+\index{E\_UPDATE@{E\_UPDATE}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{E\_UPDATE}{E\_UPDATE}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_a37fe5215c7e86bb667f4e483833ae5ea} 
+\#define E\+\_\+\+UPDATE~10}
+
+\Hypertarget{mateQ84_8X_2main_8c_ab5db7ed54fa10eddd07ed56a5a4a0a4d}\index{main.c@{main.c}!PACE@{PACE}}
+\index{PACE@{PACE}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{PACE}{PACE}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_ab5db7ed54fa10eddd07ed56a5a4a0a4d} 
+\#define PACE~31000}
+
+Generated Main Source File
+
+Company\+: Microchip Technology Inc.
+
+File Name\+: main.\+c
+
+Summary\+: This is the main file generated using PIC10 / PIC12 / PIC16 / PIC18 MCUs
+
+Description\+: This header file provides implementations for driver APIs for all modules selected in the GUI. Generation Information \+: Product Revision \+: PIC10 / PIC12 / PIC16 / PIC18 MCUs -\/ 1.\+81.\+8 Device \+: PIC18\+F14\+Q41 Driver Version \+: 2.\+00 \Hypertarget{mateQ84_8X_2main_8c_ad141aca0d4b8783339bd17ead63f247a}\index{main.c@{main.c}!REC\_LEN@{REC\_LEN}}
+\index{REC\_LEN@{REC\_LEN}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{REC\_LEN}{REC\_LEN}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_ad141aca0d4b8783339bd17ead63f247a} 
+\#define REC\+\_\+\+LEN~5}
+
+\Hypertarget{mateQ84_8X_2main_8c_a544b80d48a99338c462d6b61e056adc0}\index{main.c@{main.c}!REC\_LOG\_LEN@{REC\_LOG\_LEN}}
+\index{REC\_LOG\_LEN@{REC\_LOG\_LEN}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{REC\_LOG\_LEN}{REC\_LOG\_LEN}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_a544b80d48a99338c462d6b61e056adc0} 
+\#define REC\+\_\+\+LOG\+\_\+\+LEN~17}
+
+\Hypertarget{mateQ84_8X_2main_8c_a87e5b966aaaac7e57cb60fc140f266d2}\index{main.c@{main.c}!REC\_STATUS\_LEN@{REC\_STATUS\_LEN}}
+\index{REC\_STATUS\_LEN@{REC\_STATUS\_LEN}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{REC\_STATUS\_LEN}{REC\_STATUS\_LEN}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_a87e5b966aaaac7e57cb60fc140f266d2} 
+\#define REC\+\_\+\+STATUS\+\_\+\+LEN~16}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443e}\index{main.c@{main.c}!state\_type@{state\_type}}
+\index{state\_type@{state\_type}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{state\_type}{state\_type}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443e} 
+enum \mbox{\hyperlink{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443e}{state\+\_\+type}}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{state\_init@{state\_init}!main.c@{main.c}}\index{main.c@{main.c}!state\_init@{state\_init}}}\Hypertarget{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443eacbcbc09c941eac752a6b026a21159c1e}\label{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443eacbcbc09c941eac752a6b026a21159c1e} 
+state\+\_\+init&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{state\_status@{state\_status}!main.c@{main.c}}\index{main.c@{main.c}!state\_status@{state\_status}}}\Hypertarget{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443ea6939baa5b812b8fd4f2528c84f60d6d2}\label{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443ea6939baa5b812b8fd4f2528c84f60d6d2} 
+state\+\_\+status&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{state\_panel@{state\_panel}!main.c@{main.c}}\index{main.c@{main.c}!state\_panel@{state\_panel}}}\Hypertarget{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443ea0f9b02075db4a5f8ee8aefe115c1792f}\label{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443ea0f9b02075db4a5f8ee8aefe115c1792f} 
+state\+\_\+panel&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{state\_batteryv@{state\_batteryv}!main.c@{main.c}}\index{main.c@{main.c}!state\_batteryv@{state\_batteryv}}}\Hypertarget{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443ea8787ada923740a61140f28be790b73f9}\label{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443ea8787ada923740a61140f28be790b73f9} 
+state\+\_\+batteryv&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{state\_batterya@{state\_batterya}!main.c@{main.c}}\index{main.c@{main.c}!state\_batterya@{state\_batterya}}}\Hypertarget{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443ea1eed1c501c3c1f70af97ff40a0ba8732}\label{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443ea1eed1c501c3c1f70af97ff40a0ba8732} 
+state\+\_\+batterya&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{state\_watts@{state\_watts}!main.c@{main.c}}\index{main.c@{main.c}!state\_watts@{state\_watts}}}\Hypertarget{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443eaef9d9a5761da119b97de9b338737507c}\label{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443eaef9d9a5761da119b97de9b338737507c} 
+state\+\_\+watts&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{state\_fwrev@{state\_fwrev}!main.c@{main.c}}\index{main.c@{main.c}!state\_fwrev@{state\_fwrev}}}\Hypertarget{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443ea9b9412401000483fcbd66717d5995471}\label{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443ea9b9412401000483fcbd66717d5995471} 
+state\+\_\+fwrev&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{state\_time@{state\_time}!main.c@{main.c}}\index{main.c@{main.c}!state\_time@{state\_time}}}\Hypertarget{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443ea165d0cacbb6d8ea794b00015d50ee2c6}\label{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443ea165d0cacbb6d8ea794b00015d50ee2c6} 
+state\+\_\+time&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{state\_date@{state\_date}!main.c@{main.c}}\index{main.c@{main.c}!state\_date@{state\_date}}}\Hypertarget{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443eaf4a07069032726b532db84c76efac251}\label{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443eaf4a07069032726b532db84c76efac251} 
+state\+\_\+date&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{state\_mx\_log@{state\_mx\_log}!main.c@{main.c}}\index{main.c@{main.c}!state\_mx\_log@{state\_mx\_log}}}\Hypertarget{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443ea3963f25bce9159c0f5e852a0c3b0ab87}\label{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443ea3963f25bce9159c0f5e852a0c3b0ab87} 
+state\+\_\+mx\+\_\+log&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{state\_misc@{state\_misc}!main.c@{main.c}}\index{main.c@{main.c}!state\_misc@{state\_misc}}}\Hypertarget{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443ea4c5445ce523b1b8d5b8a75432f2fa277}\label{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443ea4c5445ce523b1b8d5b8a75432f2fa277} 
+state\+\_\+misc&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{state\_mx\_status@{state\_mx\_status}!main.c@{main.c}}\index{main.c@{main.c}!state\_mx\_status@{state\_mx\_status}}}\Hypertarget{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443ea06ed9e54e89981f5aa3927849dc541e6}\label{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443ea06ed9e54e89981f5aa3927849dc541e6} 
+state\+\_\+mx\+\_\+status&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{state\_last@{state\_last}!main.c@{main.c}}\index{main.c@{main.c}!state\_last@{state\_last}}}\Hypertarget{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443ea4eebcc1176d32b97c8d56fa426916fc4}\label{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443ea4eebcc1176d32b97c8d56fa426916fc4} 
+state\+\_\+last&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{mateQ84_8X_2main_8c_a6288eba0f8e8ad3ab1544ad731eb7667}\index{main.c@{main.c}!main@{main}}
+\index{main@{main}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_a6288eba0f8e8ad3ab1544ad731eb7667} 
+void main (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{mateQ84_8X_2main_8c_a6288eba0f8e8ad3ab1544ad731eb7667_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{mateQ84_8X_2main_8c_a9cbf505667eb91703734b609fd3193f3}\index{main.c@{main.c}!run\_day\_to\_night@{run\_day\_to\_night}}
+\index{run\_day\_to\_night@{run\_day\_to\_night}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{run\_day\_to\_night()}{run\_day\_to\_night()}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_a9cbf505667eb91703734b609fd3193f3} 
+void run\+\_\+day\+\_\+to\+\_\+night (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=340pt]{mateQ84_8X_2main_8c_a9cbf505667eb91703734b609fd3193f3_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{mateQ84_8X_2main_8c_a9cbf505667eb91703734b609fd3193f3_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{mateQ84_8X_2main_8c_a075ee7d57eabca595ad66174b39f15af}\index{main.c@{main.c}!run\_night\_to\_day@{run\_night\_to\_day}}
+\index{run\_night\_to\_day@{run\_night\_to\_day}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{run\_night\_to\_day()}{run\_night\_to\_day()}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_a075ee7d57eabca595ad66174b39f15af} 
+void run\+\_\+night\+\_\+to\+\_\+day (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=340pt]{mateQ84_8X_2main_8c_a075ee7d57eabca595ad66174b39f15af_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{mateQ84_8X_2main_8c_a075ee7d57eabca595ad66174b39f15af_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{mateQ84_8X_2main_8c_a2c7bc8ae77786e8970ac3f03b92a1d00}\index{main.c@{main.c}!spinners@{spinners}}
+\index{spinners@{spinners}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{spinners()}{spinners()}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_a2c7bc8ae77786e8970ac3f03b92a1d00} 
+char spinners (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{shape}{, }\item[{const uint8\+\_\+t}]{reset}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=215pt]{mateQ84_8X_2main_8c_a2c7bc8ae77786e8970ac3f03b92a1d00_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{mateQ84_8X_2main_8c_aa82896cdfa2dd36383c0742d58e8c92a}\index{main.c@{main.c}!state\_batterya\_cb@{state\_batterya\_cb}}
+\index{state\_batterya\_cb@{state\_batterya\_cb}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{state\_batterya\_cb()}{state\_batterya\_cb()}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_aa82896cdfa2dd36383c0742d58e8c92a} 
+void state\+\_\+batterya\+\_\+cb (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=261pt]{mateQ84_8X_2main_8c_aa82896cdfa2dd36383c0742d58e8c92a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{mateQ84_8X_2main_8c_a30306737e380e115b30b3da054757fc3}\index{main.c@{main.c}!state\_batteryv\_cb@{state\_batteryv\_cb}}
+\index{state\_batteryv\_cb@{state\_batteryv\_cb}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{state\_batteryv\_cb()}{state\_batteryv\_cb()}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_a30306737e380e115b30b3da054757fc3} 
+void state\+\_\+batteryv\+\_\+cb (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=261pt]{mateQ84_8X_2main_8c_a30306737e380e115b30b3da054757fc3_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{mateQ84_8X_2main_8c_a4d9b50da7fde15cbdfb6a6f0dfc432fd}\index{main.c@{main.c}!state\_init\_cb@{state\_init\_cb}}
+\index{state\_init\_cb@{state\_init\_cb}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{state\_init\_cb()}{state\_init\_cb()}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_a4d9b50da7fde15cbdfb6a6f0dfc432fd} 
+void state\+\_\+init\+\_\+cb (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{mateQ84_8X_2main_8c_a4d9b50da7fde15cbdfb6a6f0dfc432fd_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{mateQ84_8X_2main_8c_a4d9b50da7fde15cbdfb6a6f0dfc432fd_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{mateQ84_8X_2main_8c_ac9da20e296b4c39476ef56238d74c18e}\index{main.c@{main.c}!state\_misc\_cb@{state\_misc\_cb}}
+\index{state\_misc\_cb@{state\_misc\_cb}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{state\_misc\_cb()}{state\_misc\_cb()}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_ac9da20e296b4c39476ef56238d74c18e} 
+void state\+\_\+misc\+\_\+cb (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=243pt]{mateQ84_8X_2main_8c_ac9da20e296b4c39476ef56238d74c18e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{mateQ84_8X_2main_8c_ab5b37987f9ee7cbe7aeda963141dd9a6}\index{main.c@{main.c}!state\_mx\_log\_cb@{state\_mx\_log\_cb}}
+\index{state\_mx\_log\_cb@{state\_mx\_log\_cb}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{state\_mx\_log\_cb()}{state\_mx\_log\_cb()}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_ab5b37987f9ee7cbe7aeda963141dd9a6} 
+void state\+\_\+mx\+\_\+log\+\_\+cb (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=256pt]{mateQ84_8X_2main_8c_ab5b37987f9ee7cbe7aeda963141dd9a6_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{mateQ84_8X_2main_8c_a3637d623e98d289cea0301c9e9fd49f5}\index{main.c@{main.c}!state\_mx\_status\_cb@{state\_mx\_status\_cb}}
+\index{state\_mx\_status\_cb@{state\_mx\_status\_cb}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{state\_mx\_status\_cb()}{state\_mx\_status\_cb()}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_a3637d623e98d289cea0301c9e9fd49f5} 
+void state\+\_\+mx\+\_\+status\+\_\+cb (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{mateQ84_8X_2main_8c_a3637d623e98d289cea0301c9e9fd49f5_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=271pt]{mateQ84_8X_2main_8c_a3637d623e98d289cea0301c9e9fd49f5_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{mateQ84_8X_2main_8c_a20b30f6102c07d94534d5b43fdb080ef}\index{main.c@{main.c}!state\_panelv\_cb@{state\_panelv\_cb}}
+\index{state\_panelv\_cb@{state\_panelv\_cb}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{state\_panelv\_cb()}{state\_panelv\_cb()}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_a20b30f6102c07d94534d5b43fdb080ef} 
+void state\+\_\+panelv\+\_\+cb (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=253pt]{mateQ84_8X_2main_8c_a20b30f6102c07d94534d5b43fdb080ef_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{mateQ84_8X_2main_8c_aa9c46eb7904210cf0cbf02bc0c4062a5}\index{main.c@{main.c}!state\_status\_cb@{state\_status\_cb}}
+\index{state\_status\_cb@{state\_status\_cb}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{state\_status\_cb()}{state\_status\_cb()}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_aa9c46eb7904210cf0cbf02bc0c4062a5} 
+void state\+\_\+status\+\_\+cb (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=250pt]{mateQ84_8X_2main_8c_aa9c46eb7904210cf0cbf02bc0c4062a5_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{mateQ84_8X_2main_8c_af3290b8821f2e6ed5119ce06c85c1999}\index{main.c@{main.c}!state\_watts\_cb@{state\_watts\_cb}}
+\index{state\_watts\_cb@{state\_watts\_cb}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{state\_watts\_cb()}{state\_watts\_cb()}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_af3290b8821f2e6ed5119ce06c85c1999} 
+void state\+\_\+watts\+\_\+cb (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=247pt]{mateQ84_8X_2main_8c_af3290b8821f2e6ed5119ce06c85c1999_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{mateQ84_8X_2main_8c_a8ae1626500453fd6c71c95a8a88c29d7}\index{main.c@{main.c}!wdtdelay@{wdtdelay}}
+\index{wdtdelay@{wdtdelay}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{wdtdelay()}{wdtdelay()}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_a8ae1626500453fd6c71c95a8a88c29d7} 
+void wdtdelay (\begin{DoxyParamCaption}\item[{const uint32\+\_\+t}]{delay}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{mateQ84_8X_2main_8c_a8ae1626500453fd6c71c95a8a88c29d7_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{mateQ84_8X_2main_8c_a390edc6dc84cb12feefd336799714268}\index{main.c@{main.c}!B@{B}}
+\index{B@{B}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{B}{B}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_a390edc6dc84cb12feefd336799714268} 
+\mbox{\hyperlink{structB__type}{B\+\_\+type}} B}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ .one\_sec\_flag\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{\ \ \ \ .ten\_sec\_flag\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{\ \ \ \ .pacing\ =\ 0,}
+\DoxyCodeLine{\ \ \ \ .rx\_count\ =\ 0,}
+\DoxyCodeLine{\ \ \ \ .flush\ =\ 0,}
+\DoxyCodeLine{\ \ \ \ .canbus\_online\ =\ 0,}
+\DoxyCodeLine{\ \ \ \ .modbus\_online\ =\ 0,}
+\DoxyCodeLine{\ \ \ \ .log.select\ =\ 1,}
+\DoxyCodeLine{\ \ \ \ .pv\_high\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{\ \ \ \ .pv\_prev\ =\ \mbox{\hyperlink{mxcmd_8h_afeeec1ac8e29380d5d210b6b6279263ca3574bf919327eb086b30c9c358c11105}{STATUS\_SLEEPING}},}
+\DoxyCodeLine{\ \ \ \ .pv\_update\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{\ \ \ \ .once\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{\ \ \ \ .log.type\ =\ 1,\ }
+\DoxyCodeLine{\ \ \ \ .display\_dim\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{\ \ \ \ .display\_update\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{\ \ \ \ .dim\_delay\ =\ \mbox{\hyperlink{eadog_8h_a65041631a3a21ddef404472dfd33e166}{DIM\_DELAY}},}
+\DoxyCodeLine{\ \ \ \ .display\_on\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{mateQ84_8X_2main_8c_ab77553b372e2cb618b2934a21f5012ea}\index{main.c@{main.c}!bat\_amp\_whole@{bat\_amp\_whole}}
+\index{bat\_amp\_whole@{bat\_amp\_whole}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{bat\_amp\_whole}{bat\_amp\_whole}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_ab77553b372e2cb618b2934a21f5012ea} 
+uint16\+\_\+t bat\+\_\+amp\+\_\+whole = \mbox{\hyperlink{mxcmd_8h_ad7f415ff3a4955e12e67c1f98ec7f6ed}{AMP\+\_\+\+WHOLE\+\_\+\+ZERO}}}
+
+\Hypertarget{mateQ84_8X_2main_8c_acd60ad1d27dc0b60769dbbac39039d90}\index{main.c@{main.c}!buffer@{buffer}}
+\index{buffer@{buffer}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{buffer}{buffer}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_acd60ad1d27dc0b60769dbbac39039d90} 
+char buffer\mbox{[}\mbox{\hyperlink{mxcmd_8h_a3a898da0ee1d34f3af799123ff98a160}{MAX\+\_\+\+B\+\_\+\+BUF}}\mbox{]} = "{}Boot Init Display "{}}
+
+\Hypertarget{mateQ84_8X_2main_8c_a2fd487055c79a1c6b3ffa3dcd59b98fb}\index{main.c@{main.c}!build\_date@{build\_date}}
+\index{build\_date@{build\_date}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{build\_date}{build\_date}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_a2fd487055c79a1c6b3ffa3dcd59b98fb} 
+const char\texorpdfstring{$\ast$}{*} build\+\_\+date = \+\_\+\+\_\+\+DATE\+\_\+\+\_\+}
+
+\Hypertarget{mateQ84_8X_2main_8c_a0c1b6525ab4582a08673967cfee5b994}\index{main.c@{main.c}!build\_time@{build\_time}}
+\index{build\_time@{build\_time}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{build\_time}{build\_time}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_a0c1b6525ab4582a08673967cfee5b994} 
+const char \texorpdfstring{$\ast$}{*} build\+\_\+time = \+\_\+\+\_\+\+TIME\+\_\+\+\_\+}
+
+\Hypertarget{mateQ84_8X_2main_8c_a6ff82a57d15d1e2c8b6aea4f501d8a0f}\index{main.c@{main.c}!can\_newtime@{can\_newtime}}
+\index{can\_newtime@{can\_newtime}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{can\_newtime}{can\_newtime}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_a6ff82a57d15d1e2c8b6aea4f501d8a0f} 
+struct tm\texorpdfstring{$\ast$}{*} can\+\_\+newtime}
+
+\Hypertarget{mateQ84_8X_2main_8c_ac18c97a79841b0af9e0d0d378b9e721c}\index{main.c@{main.c}!can\_timer@{can\_timer}}
+\index{can\_timer@{can\_timer}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{can\_timer}{can\_timer}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_ac18c97a79841b0af9e0d0d378b9e721c} 
+time\+\_\+t can\+\_\+timer = 1694196350}
+
+\Hypertarget{mateQ84_8X_2main_8c_a13b6090652ee42171ac58f007930d94a}\index{main.c@{main.c}!cc\_mode@{cc\_mode}}
+\index{cc\_mode@{cc\_mode}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{cc\_mode}{cc\_mode}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_a13b6090652ee42171ac58f007930d94a} 
+volatile uint16\+\_\+t cc\+\_\+mode = \mbox{\hyperlink{mxcmd_8h_afeeec1ac8e29380d5d210b6b6279263ca92c6d26701ea777100da78967bb4c39d}{STATUS\+\_\+\+LAST}}}
+
+\Hypertarget{mateQ84_8X_2main_8c_a291300ae743744403406be58a1f88e1d}\index{main.c@{main.c}!fw\_state@{fw\_state}}
+\index{fw\_state@{fw\_state}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{fw\_state}{fw\_state}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_a291300ae743744403406be58a1f88e1d} 
+uint8\+\_\+t fw\+\_\+state = 0}
+
+\Hypertarget{mateQ84_8X_2main_8c_a8d28894362bf5fdeb00e73d635aee010}\index{main.c@{main.c}!info\_buffer@{info\_buffer}}
+\index{info\_buffer@{info\_buffer}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{info\_buffer}{info\_buffer}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_a8d28894362bf5fdeb00e73d635aee010} 
+char info\+\_\+buffer\mbox{[}\mbox{\hyperlink{mxcmd_8h_a3a898da0ee1d34f3af799123ff98a160}{MAX\+\_\+\+B\+\_\+\+BUF}}\mbox{]}}
+
+\Hypertarget{mateQ84_8X_2main_8c_a6b22d01e082103d8535db39e63799b3f}\index{main.c@{main.c}!log\_buffer@{log\_buffer}}
+\index{log\_buffer@{log\_buffer}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{log\_buffer}{log\_buffer}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_a6b22d01e082103d8535db39e63799b3f} 
+char log\+\_\+buffer\mbox{[}\mbox{\hyperlink{mxcmd_8h_a3a898da0ee1d34f3af799123ff98a160}{MAX\+\_\+\+B\+\_\+\+BUF}}\mbox{]}}
+
+\Hypertarget{mateQ84_8X_2main_8c_a347524e781f1fadcc7b60d6bc6e39f95}\index{main.c@{main.c}!mx\_code@{mx\_code}}
+\index{mx\_code@{mx\_code}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{mx\_code}{mx\_code}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_a347524e781f1fadcc7b60d6bc6e39f95} 
+volatile uint16\+\_\+t mx\+\_\+code = 0x00}
+
+\Hypertarget{mateQ84_8X_2main_8c_aa1ffff7253c4e877ed1564a008e2b3d5}\index{main.c@{main.c}!panel\_watts@{panel\_watts}}
+\index{panel\_watts@{panel\_watts}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{panel\_watts}{panel\_watts}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_aa1ffff7253c4e877ed1564a008e2b3d5} 
+uint16\+\_\+t panel\+\_\+watts}
+
+\Hypertarget{mateQ84_8X_2main_8c_a4037bec0093b20c624c13b0c770282ce}\index{main.c@{main.c}!show\_can@{show\_can}}
+\index{show\_can@{show\_can}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{show\_can}{show\_can}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_a4037bec0093b20c624c13b0c770282ce} 
+bool show\+\_\+can}
+
+\Hypertarget{mateQ84_8X_2main_8c_a26b2a0469c474a0b173b3791e5c4eb80}\index{main.c@{main.c}!state@{state}}
+\index{state@{state}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{state}{state}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_a26b2a0469c474a0b173b3791e5c4eb80} 
+enum \mbox{\hyperlink{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443e}{state\+\_\+type}} state = \mbox{\hyperlink{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443eacbcbc09c941eac752a6b026a21159c1e}{state\+\_\+init}}}
+
+\Hypertarget{mateQ84_8X_2main_8c_ada284e1e4e960e3a4fd5c0b0a93314e1}\index{main.c@{main.c}!tickCount@{tickCount}}
+\index{tickCount@{tickCount}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{tickCount}{tickCount}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_ada284e1e4e960e3a4fd5c0b0a93314e1} 
+volatile uint16\+\_\+t tick\+Count\mbox{[}\mbox{\hyperlink{timers_8h_ad499250d949643c5a12161767059a3d2abaa7883f9d3702d4c1fba3442fec0595}{TMR\+\_\+\+COUNT}}\mbox{]}}
+
+\Hypertarget{mateQ84_8X_2main_8c_af8bddcf8afd3ef3f8da7c110c6eeb981}\index{main.c@{main.c}!time\_show\_can@{time\_show\_can}}
+\index{time\_show\_can@{time\_show\_can}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{time\_show\_can}{time\_show\_can}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_af8bddcf8afd3ef3f8da7c110c6eeb981} 
+uint8\+\_\+t time\+\_\+show\+\_\+can}
+
+\Hypertarget{mateQ84_8X_2main_8c_a7eecd7139621d24f6891dba43a54cd34}\index{main.c@{main.c}!vf@{vf}}
+\index{vf@{vf}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{vf}{vf}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_a7eecd7139621d24f6891dba43a54cd34} 
+uint16\+\_\+t vf}
+
+\Hypertarget{mateQ84_8X_2main_8c_af6592ba43281a17840991c7b82b108de}\index{main.c@{main.c}!volt\_fract@{volt\_fract}}
+\index{volt\_fract@{volt\_fract}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{volt\_fract}{volt\_fract}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_af6592ba43281a17840991c7b82b108de} 
+uint16\+\_\+t volt\+\_\+fract}
+
+\Hypertarget{mateQ84_8X_2main_8c_a5428a6793379f1ef5f92afe41c67c2b9}\index{main.c@{main.c}!volt\_whole@{volt\_whole}}
+\index{volt\_whole@{volt\_whole}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{volt\_whole}{volt\_whole}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_a5428a6793379f1ef5f92afe41c67c2b9} 
+uint16\+\_\+t volt\+\_\+whole}
+
+\Hypertarget{mateQ84_8X_2main_8c_a0a7d1eab37aff09f0b4fcd0a3013663c}\index{main.c@{main.c}!vw@{vw}}
+\index{vw@{vw}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{vw}{vw}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_a0a7d1eab37aff09f0b4fcd0a3013663c} 
+uint16\+\_\+t vw}
+

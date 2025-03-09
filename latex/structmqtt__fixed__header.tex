@@ -1,0 +1,54 @@
+\doxysection{mqtt\+\_\+fixed\+\_\+header Struct Reference}
+\hypertarget{structmqtt__fixed__header}{}\label{structmqtt__fixed__header}\index{mqtt\_fixed\_header@{mqtt\_fixed\_header}}
+
+
+The fixed header of an MQTT control packet.  
+
+
+
+
+{\ttfamily \#include $<$mqtt.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__unpackers_gacbd36b88ec7f62bc161b07e1a0aed679}{MQTTControl\+Packet\+Type}} \mbox{\hyperlink{structmqtt__fixed__header_a38137e33da64798868b8bbc24dc44d23}{control\+\_\+type}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structmqtt__fixed__header_a0b2c864e38b4b39b4832cea95e9dd9b5}{control\+\_\+flags}}\+: 4
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structmqtt__fixed__header_aa5c106b271f831833cc61a73ab48ba04}{remaining\+\_\+length}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The fixed header of an MQTT control packet. 
+
+\begin{DoxySeeAlso}{See also}
+\href{http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/os/mqtt-v3.1.1-os.html\#_Toc398718020}{\texttt{ MQTT v3.\+1.\+1\+: Fixed Header }} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structmqtt__fixed__header_a0b2c864e38b4b39b4832cea95e9dd9b5}\index{mqtt\_fixed\_header@{mqtt\_fixed\_header}!control\_flags@{control\_flags}}
+\index{control\_flags@{control\_flags}!mqtt\_fixed\_header@{mqtt\_fixed\_header}}
+\doxysubsubsection{\texorpdfstring{control\_flags}{control\_flags}}
+{\footnotesize\ttfamily \label{structmqtt__fixed__header_a0b2c864e38b4b39b4832cea95e9dd9b5} 
+uint32\+\_\+t control\+\_\+flags}
+
+The packets control flags. \Hypertarget{structmqtt__fixed__header_a38137e33da64798868b8bbc24dc44d23}\index{mqtt\_fixed\_header@{mqtt\_fixed\_header}!control\_type@{control\_type}}
+\index{control\_type@{control\_type}!mqtt\_fixed\_header@{mqtt\_fixed\_header}}
+\doxysubsubsection{\texorpdfstring{control\_type}{control\_type}}
+{\footnotesize\ttfamily \label{structmqtt__fixed__header_a38137e33da64798868b8bbc24dc44d23} 
+enum \mbox{\hyperlink{group__unpackers_gacbd36b88ec7f62bc161b07e1a0aed679}{MQTTControl\+Packet\+Type}} control\+\_\+type}
+
+The type of packet. \Hypertarget{structmqtt__fixed__header_aa5c106b271f831833cc61a73ab48ba04}\index{mqtt\_fixed\_header@{mqtt\_fixed\_header}!remaining\_length@{remaining\_length}}
+\index{remaining\_length@{remaining\_length}!mqtt\_fixed\_header@{mqtt\_fixed\_header}}
+\doxysubsubsection{\texorpdfstring{remaining\_length}{remaining\_length}}
+{\footnotesize\ttfamily \label{structmqtt__fixed__header_aa5c106b271f831833cc61a73ab48ba04} 
+uint32\+\_\+t remaining\+\_\+length}
+
+The remaining size of the packet in bytes (i.\+e. the size of variable header and payload). 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+linux/matesocketcan/\mbox{\hyperlink{mqtt_8h}{mqtt.\+h}}\end{DoxyCompactItemize}

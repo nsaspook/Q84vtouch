@@ -1,0 +1,71 @@
+\doxysection{ext\+\_\+int.\+h}
+\hypertarget{ext__int_8h_source}{}\label{ext__int_8h_source}\index{tdr.X/mcc\_generated\_files/ext\_int.h@{tdr.X/mcc\_generated\_files/ext\_int.h}}
+\mbox{\hyperlink{ext__int_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ \ \ \ (c)\ 2018\ Microchip\ Technology\ Inc.\ and\ its\ subsidiaries.\ }}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ \ \ \ }}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ \ \ \ Subject\ to\ your\ compliance\ with\ these\ terms,\ you\ may\ use\ Microchip\ software\ and\ any\ }}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ \ \ \ derivatives\ exclusively\ with\ Microchip\ products.\ It\ is\ your\ responsibility\ to\ comply\ with\ third\ party\ }}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ \ \ \ license\ terms\ applicable\ to\ your\ use\ of\ third\ party\ software\ (including\ open\ source\ software)\ that\ }}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ \ \ \ may\ accompany\ Microchip\ software.}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ \ \ \ }}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ \ \ \ THIS\ SOFTWARE\ IS\ SUPPLIED\ BY\ MICROCHIP\ "{}AS\ IS"{}.\ NO\ WARRANTIES,\ WHETHER\ }}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ \ \ \ EXPRESS,\ IMPLIED\ OR\ STATUTORY,\ APPLY\ TO\ THIS\ SOFTWARE,\ INCLUDING\ ANY\ }}
+\DoxyCodeLine{00034\ \textcolor{comment}{\ \ \ \ IMPLIED\ WARRANTIES\ OF\ NON-\/INFRINGEMENT,\ MERCHANTABILITY,\ AND\ FITNESS\ }}
+\DoxyCodeLine{00035\ \textcolor{comment}{\ \ \ \ FOR\ A\ PARTICULAR\ PURPOSE.}}
+\DoxyCodeLine{00036\ \textcolor{comment}{\ \ \ \ }}
+\DoxyCodeLine{00037\ \textcolor{comment}{\ \ \ \ IN\ NO\ EVENT\ WILL\ MICROCHIP\ BE\ LIABLE\ FOR\ ANY\ INDIRECT,\ SPECIAL,\ PUNITIVE,\ }}
+\DoxyCodeLine{00038\ \textcolor{comment}{\ \ \ \ INCIDENTAL\ OR\ CONSEQUENTIAL\ LOSS,\ DAMAGE,\ COST\ OR\ EXPENSE\ OF\ ANY\ KIND\ }}
+\DoxyCodeLine{00039\ \textcolor{comment}{\ \ \ \ WHATSOEVER\ RELATED\ TO\ THE\ SOFTWARE,\ HOWEVER\ CAUSED,\ EVEN\ IF\ MICROCHIP\ }}
+\DoxyCodeLine{00040\ \textcolor{comment}{\ \ \ \ HAS\ BEEN\ ADVISED\ OF\ THE\ POSSIBILITY\ OR\ THE\ DAMAGES\ ARE\ FORESEEABLE.\ TO\ }}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ \ \ \ THE\ FULLEST\ EXTENT\ ALLOWED\ BY\ LAW,\ MICROCHIP'S\ TOTAL\ LIABILITY\ ON\ ALL\ }}
+\DoxyCodeLine{00042\ \textcolor{comment}{\ \ \ \ CLAIMS\ IN\ ANY\ WAY\ RELATED\ TO\ THIS\ SOFTWARE\ WILL\ NOT\ EXCEED\ THE\ AMOUNT\ }}
+\DoxyCodeLine{00043\ \textcolor{comment}{\ \ \ \ OF\ FEES,\ IF\ ANY,\ THAT\ YOU\ HAVE\ PAID\ DIRECTLY\ TO\ MICROCHIP\ FOR\ THIS\ }}
+\DoxyCodeLine{00044\ \textcolor{comment}{\ \ \ \ SOFTWARE.}}
+\DoxyCodeLine{00045\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#ifndef\ \_EXT\_INT\_H}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ \_EXT\_INT\_H}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#include\ <xc.h>}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{comment}{//\ Provide\ C++\ Compatibility}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus\ \ }}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#define\ EXT\_INT0\_InterruptFlagClear()\ \ \ \ \ \ \ (INTCONbits.INT0IF\ =\ 0)}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\#define\ EXT\_INT0\_InterruptDisable()\ \ \ \ \ (INTCONbits.INT0IE\ =\ 0)}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00157\ \textcolor{preprocessor}{\#define\ EXT\_INT0\_InterruptEnable()\ \ \ \ \ \ \ (INTCONbits.INT0IE\ =\ 1)}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00188\ \textcolor{preprocessor}{\#define\ EXT\_INT0\_risingEdgeSet()\ \ \ \ \ \ \ \ \ \ (INTCON2bits.INTEDG0\ =\ 1)}}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00219\ \textcolor{preprocessor}{\#define\ EXT\_INT0\_fallingEdgeSet()\ \ \ \ \ \ \ \ \ \ (INTCON2bits.INTEDG0\ =\ 0)}\textcolor{preprocessor}{}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00250\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{ext__int_8h_a6c40d2f45ec674f28815ad65b2c753d5}{EXT\_INT\_Initialize}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00272\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{ext__int_8h_adda2a514bbb7e8e8d9b0a850f2cc728e}{INT0\_ISR}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00296\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{ext__int_8h_a65bcc7f5fd45615ab6110412d62d60dd}{INT0\_CallBack}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00297\ }
+\DoxyCodeLine{00319\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{ext__int_8h_a4bda8f69112ff74b316079155eab8a9c}{INT0\_SetInterruptHandler}}(\textcolor{keywordtype}{void}\ (*\ InterruptHandler)(\textcolor{keywordtype}{void}));}
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00343\ \textcolor{keyword}{extern}\ void\ (*\mbox{\hyperlink{ext__int_8c_ad6255d5886da2e6a49d678612333915b}{INT0\_InterruptHandler}})(void);}
+\DoxyCodeLine{00344\ }
+\DoxyCodeLine{00367\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{ext__int_8h_aa775b159f418a494f6afeaf5d1dd6118}{INT0\_DefaultInterruptHandler}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00368\ }
+\DoxyCodeLine{00369\ \textcolor{comment}{//\ Provide\ C++\ Compatibility}}
+\DoxyCodeLine{00370\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus\ \ }}
+\DoxyCodeLine{00371\ }
+\DoxyCodeLine{00372\ \}}
+\DoxyCodeLine{00373\ }
+\DoxyCodeLine{00374\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00375\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

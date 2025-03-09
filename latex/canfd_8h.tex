@@ -1,0 +1,458 @@
+\doxysection{canfd.\+h File Reference}
+\hypertarget{canfd_8h}{}\label{canfd_8h}\index{canfd.h@{canfd.h}}
+{\ttfamily \#include "{}qconfig.\+h"{}}\newline
+{\ttfamily \#include "{}mate\+Q84.\+X/mxcmd.\+h"{}}\newline
+{\ttfamily \#include "{}modbus\+\_\+master.\+h"{}}\newline
+{\ttfamily \#include "{}batmon.\+h"{}}\newline
+Include dependency graph for canfd.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{canfd_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=258pt]{canfd_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structcan__rec__count__t}{can\+\_\+rec\+\_\+count\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structcan__frames__t}{can\+\_\+frames\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structblob__type}{blob\+\_\+type}}
+\item 
+union \mbox{\hyperlink{unionblob__log}{blob\+\_\+log}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{canfd_8h_a57fb00fe2b4b4bb895a51de249d50ed5}{DATA\+\_\+\+DEBUG}}
+\item 
+\#define \mbox{\hyperlink{canfd_8h_ac46dcc574224cef6df5612bb0e46f66b}{NO\+\_\+\+NODE\+\_\+\+ID}}
+\item 
+\#define \mbox{\hyperlink{canfd_8h_a65365b57084e368bead2ff6f93b896bb}{NODE\+\_\+\+ID\+\_\+\+SHIFT}}~4
+\item 
+\#define \mbox{\hyperlink{canfd_8h_ae09a691684758a884003d7b13dd707f6}{USE\+\_\+\+FD}}
+\item 
+\#define \mbox{\hyperlink{canfd_8h_a3c69ec33266b2d06ac84ad7a6049873e}{CANFD\+\_\+\+BYTES}}~64
+\item 
+\#define \mbox{\hyperlink{canfd_8h_ab477abe5e6605e100c49a8ab72a7f036}{CANFD\+\_\+\+NBUF}}~3
+\item 
+\#define \mbox{\hyperlink{canfd_8h_aae5094eab3ab5cd834e82e401df5cd50}{CAN\+\_\+\+RX\+\_\+\+TRIES}}~8
+\item 
+\#define \mbox{\hyperlink{canfd_8h_a0c8f844d74630794e991c5c714a1934c}{CAN\+\_\+\+REC\+\_\+\+BUFFERS}}~4
+\item 
+\#define \mbox{\hyperlink{canfd_8h_a4840f2ab152530bc29c43abaae681a72}{CAN\+\_\+\+LOW\+\_\+\+BUF}}~0
+\item 
+\#define \mbox{\hyperlink{canfd_8h_ac9551aea7f1d010d38da258ba6b3a47e}{CAN\+\_\+\+HIGH\+\_\+\+BUF}}~1
+\item 
+\#define \mbox{\hyperlink{canfd_8h_aa228ab8ec1e27d6d4ede66db737f61a9}{CAN\+\_\+\+INFO\+\_\+\+BUF}}~2
+\item 
+\#define \mbox{\hyperlink{canfd_8h_a2ab61180599f791b16ff9aab6b0d8cc9}{CAN\+\_\+\+ERROR\+\_\+\+BUF}}~3
+\item 
+\#define \mbox{\hyperlink{canfd_8h_a6ddce1e1004e2df96fb0032c70be2d15}{CAN\+\_\+\+MIRRORS}}~4
+\item 
+\#define \mbox{\hyperlink{canfd_8h_ab4d6931e21fa0d97e42d3430125fc9cb}{EMON\+\_\+M}}~0x1
+\item 
+\#define \mbox{\hyperlink{canfd_8h_a0a00350f1a08b53b34d10da719e9b587}{EMON\+\_\+\+SL}}~0x2
+\item 
+\#define \mbox{\hyperlink{canfd_8h_abb1bd190102ddcc6238e71e023e0ac7f}{EMON\+\_\+\+SU}}~0x3
+\item 
+\#define \mbox{\hyperlink{canfd_8h_a5e7887a6fa998d48728ab28e2651303f}{EMON\+\_\+\+MR}}~0x4
+\item 
+\#define \mbox{\hyperlink{canfd_8h_a4402a37f0a16bb1c0d6535001ace8809}{EMON\+\_\+\+TM}}~0xA
+\item 
+\#define \mbox{\hyperlink{canfd_8h_a0e851ffa6b3b6f475c217696d73d8aad}{EMON\+\_\+\+DS}}~0xB
+\item 
+\#define \mbox{\hyperlink{canfd_8h_acaee992a03919f6a53baf5830c0c0d46}{EMON\+\_\+\+DM}}~0xE
+\item 
+\#define \mbox{\hyperlink{canfd_8h_af02910f716132150f79596778900a634}{EMON\+\_\+\+ER}}~0xF
+\item 
+\#define \mbox{\hyperlink{canfd_8h_a793129beb0d28ffcc15248a09f9d333b}{EMON\+\_\+\+CO}}~0xC
+\item 
+\#define \mbox{\hyperlink{canfd_8h_a7826d7b67c2425e04508f376b03ea68a}{EMON\+\_\+\+DA}}~0xD
+\item 
+\#define \mbox{\hyperlink{canfd_8h_a9c1e4729afc16df172e3bf35fe48db76}{MIRR0\+R\+\_\+\+BUF}}~\mbox{\hyperlink{canfd_8h_ab477abe5e6605e100c49a8ab72a7f036}{CANFD\+\_\+\+NBUF}}-\/1
+\item 
+\#define \mbox{\hyperlink{canfd_8h_a9af8f4188fb727ccaffd092ea148db14}{LCD\+\_\+\+BUF\+\_\+\+SIZ}}~22
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{canfd_8h_aa74b37318c7f7322c16d8df246d48e98}{TXQNot\+Full\+Handler}} (void)
+\item 
+void \mbox{\hyperlink{canfd_8h_a369ea76a14f2a9ac1fd1120985a5febc}{Can1\+FIFO1\+Not\+Empty\+Handler}} (void)
+\item 
+void \mbox{\hyperlink{canfd_8h_a29a7687004bc2ca4fe3a3ad2ed5d4f6b}{can\+\_\+fd\+\_\+tx}} (void)
+\item 
+void \mbox{\hyperlink{canfd_8h_a09603ea6c3ec888054e217e43d2f463d}{can\+\_\+setup}} (void)
+\item 
+void \mbox{\hyperlink{canfd_8h_a05b74a75d1b7203983c749ca8bfcb12e}{can\+\_\+fd\+\_\+lcd\+\_\+mirror}} (const uint8\+\_\+t, char \texorpdfstring{$\ast$}{*})
+\item 
+void \mbox{\hyperlink{canfd_8h_ad62faa46dc11f1a1e7b2efa6a460582f}{can\+\_\+mirror\+\_\+print}} (void)
+\item 
+void \mbox{\hyperlink{canfd_8h_ae62671c4f47f8858c84f147a52a44237}{can\+\_\+blob\+\_\+set}} (\mbox{\hyperlink{structblob__type}{blob\+\_\+type}} \texorpdfstring{$\ast$}{*})
+\item 
+\mbox{\hyperlink{structblob__type}{blob\+\_\+type}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{canfd_8h_acb6bcc9bf2aa4d3a784a25705e36a822}{can\+\_\+blob\+\_\+get}} (\mbox{\hyperlink{structblob__type}{blob\+\_\+type}} \texorpdfstring{$\ast$}{*})
+\item 
+bool \mbox{\hyperlink{canfd_8h_a564a217e586a5d52d2a528e9dc8c0f3b}{get\+\_\+blob\+\_\+tx}} (void)
+\item 
+bool \mbox{\hyperlink{canfd_8h_af5dbb2fdb5176f1044c8a8d206e56c57}{get\+\_\+blob\+\_\+rx}} (void)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+volatile \mbox{\hyperlink{structcan__rec__count__t}{can\+\_\+rec\+\_\+count\+\_\+t}} \mbox{\hyperlink{canfd_8h_a517c6622f7c90637e31ff52be0656e13}{can\+\_\+rec\+\_\+count}}
+\item 
+\mbox{\hyperlink{structCAN__MSG__OBJ}{CAN\+\_\+\+MSG\+\_\+\+OBJ}} \mbox{\hyperlink{canfd_8h_a63d949d7a86821ef7192ba2087c42ff4}{msg}} \mbox{[}3\mbox{]}
+\item 
+volatile uint8\+\_\+t \mbox{\hyperlink{canfd_8h_a1cfda93430cb60b084a6ca848f44b3a7}{rx\+Msg\+Data}} \mbox{[}\mbox{\hyperlink{canfd_8h_a0c8f844d74630794e991c5c714a1934c}{CAN\+\_\+\+REC\+\_\+\+BUFFERS}}\mbox{]}\mbox{[}\mbox{\hyperlink{canfd_8h_a3c69ec33266b2d06ac84ad7a6049873e}{CANFD\+\_\+\+BYTES}}\mbox{]}
+\item 
+time\+\_\+t \mbox{\hyperlink{canfd_8h_ac18c97a79841b0af9e0d0d378b9e721c}{can\+\_\+timer}}
+\item 
+struct tm \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{canfd_8h_a6ff82a57d15d1e2c8b6aea4f501d8a0f}{can\+\_\+newtime}}
+\item 
+volatile \mbox{\hyperlink{structcan__frames__t}{can\+\_\+frames\+\_\+t}} \mbox{\hyperlink{canfd_8h_a959d51107284735b720ea6940504fccd}{can\+\_\+packets}}
+\item 
+char \mbox{\hyperlink{canfd_8h_a8d28894362bf5fdeb00e73d635aee010}{info\+\_\+buffer}} \mbox{[}\mbox{\hyperlink{mxcmd_8h_a3a898da0ee1d34f3af799123ff98a160}{MAX\+\_\+\+B\+\_\+\+BUF}}\mbox{]}
+\item 
+char \mbox{\hyperlink{canfd_8h_a6b22d01e082103d8535db39e63799b3f}{log\+\_\+buffer}} \mbox{[}\mbox{\hyperlink{mxcmd_8h_a3a898da0ee1d34f3af799123ff98a160}{MAX\+\_\+\+B\+\_\+\+BUF}}\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{canfd_8h_a2ab61180599f791b16ff9aab6b0d8cc9}\index{canfd.h@{canfd.h}!CAN\_ERROR\_BUF@{CAN\_ERROR\_BUF}}
+\index{CAN\_ERROR\_BUF@{CAN\_ERROR\_BUF}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{CAN\_ERROR\_BUF}{CAN\_ERROR\_BUF}}
+{\footnotesize\ttfamily \label{canfd_8h_a2ab61180599f791b16ff9aab6b0d8cc9} 
+\#define CAN\+\_\+\+ERROR\+\_\+\+BUF~3}
+
+\Hypertarget{canfd_8h_ac9551aea7f1d010d38da258ba6b3a47e}\index{canfd.h@{canfd.h}!CAN\_HIGH\_BUF@{CAN\_HIGH\_BUF}}
+\index{CAN\_HIGH\_BUF@{CAN\_HIGH\_BUF}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{CAN\_HIGH\_BUF}{CAN\_HIGH\_BUF}}
+{\footnotesize\ttfamily \label{canfd_8h_ac9551aea7f1d010d38da258ba6b3a47e} 
+\#define CAN\+\_\+\+HIGH\+\_\+\+BUF~1}
+
+\Hypertarget{canfd_8h_aa228ab8ec1e27d6d4ede66db737f61a9}\index{canfd.h@{canfd.h}!CAN\_INFO\_BUF@{CAN\_INFO\_BUF}}
+\index{CAN\_INFO\_BUF@{CAN\_INFO\_BUF}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{CAN\_INFO\_BUF}{CAN\_INFO\_BUF}}
+{\footnotesize\ttfamily \label{canfd_8h_aa228ab8ec1e27d6d4ede66db737f61a9} 
+\#define CAN\+\_\+\+INFO\+\_\+\+BUF~2}
+
+\Hypertarget{canfd_8h_a4840f2ab152530bc29c43abaae681a72}\index{canfd.h@{canfd.h}!CAN\_LOW\_BUF@{CAN\_LOW\_BUF}}
+\index{CAN\_LOW\_BUF@{CAN\_LOW\_BUF}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{CAN\_LOW\_BUF}{CAN\_LOW\_BUF}}
+{\footnotesize\ttfamily \label{canfd_8h_a4840f2ab152530bc29c43abaae681a72} 
+\#define CAN\+\_\+\+LOW\+\_\+\+BUF~0}
+
+\Hypertarget{canfd_8h_a6ddce1e1004e2df96fb0032c70be2d15}\index{canfd.h@{canfd.h}!CAN\_MIRRORS@{CAN\_MIRRORS}}
+\index{CAN\_MIRRORS@{CAN\_MIRRORS}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{CAN\_MIRRORS}{CAN\_MIRRORS}}
+{\footnotesize\ttfamily \label{canfd_8h_a6ddce1e1004e2df96fb0032c70be2d15} 
+\#define CAN\+\_\+\+MIRRORS~4}
+
+\Hypertarget{canfd_8h_a0c8f844d74630794e991c5c714a1934c}\index{canfd.h@{canfd.h}!CAN\_REC\_BUFFERS@{CAN\_REC\_BUFFERS}}
+\index{CAN\_REC\_BUFFERS@{CAN\_REC\_BUFFERS}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{CAN\_REC\_BUFFERS}{CAN\_REC\_BUFFERS}}
+{\footnotesize\ttfamily \label{canfd_8h_a0c8f844d74630794e991c5c714a1934c} 
+\#define CAN\+\_\+\+REC\+\_\+\+BUFFERS~4}
+
+\Hypertarget{canfd_8h_aae5094eab3ab5cd834e82e401df5cd50}\index{canfd.h@{canfd.h}!CAN\_RX\_TRIES@{CAN\_RX\_TRIES}}
+\index{CAN\_RX\_TRIES@{CAN\_RX\_TRIES}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{CAN\_RX\_TRIES}{CAN\_RX\_TRIES}}
+{\footnotesize\ttfamily \label{canfd_8h_aae5094eab3ab5cd834e82e401df5cd50} 
+\#define CAN\+\_\+\+RX\+\_\+\+TRIES~8}
+
+\Hypertarget{canfd_8h_a3c69ec33266b2d06ac84ad7a6049873e}\index{canfd.h@{canfd.h}!CANFD\_BYTES@{CANFD\_BYTES}}
+\index{CANFD\_BYTES@{CANFD\_BYTES}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{CANFD\_BYTES}{CANFD\_BYTES}}
+{\footnotesize\ttfamily \label{canfd_8h_a3c69ec33266b2d06ac84ad7a6049873e} 
+\#define CANFD\+\_\+\+BYTES~64}
+
+\Hypertarget{canfd_8h_ab477abe5e6605e100c49a8ab72a7f036}\index{canfd.h@{canfd.h}!CANFD\_NBUF@{CANFD\_NBUF}}
+\index{CANFD\_NBUF@{CANFD\_NBUF}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{CANFD\_NBUF}{CANFD\_NBUF}}
+{\footnotesize\ttfamily \label{canfd_8h_ab477abe5e6605e100c49a8ab72a7f036} 
+\#define CANFD\+\_\+\+NBUF~3}
+
+\Hypertarget{canfd_8h_a57fb00fe2b4b4bb895a51de249d50ed5}\index{canfd.h@{canfd.h}!DATA\_DEBUG@{DATA\_DEBUG}}
+\index{DATA\_DEBUG@{DATA\_DEBUG}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{DATA\_DEBUG}{DATA\_DEBUG}}
+{\footnotesize\ttfamily \label{canfd_8h_a57fb00fe2b4b4bb895a51de249d50ed5} 
+\#define DATA\+\_\+\+DEBUG}
+
+\Hypertarget{canfd_8h_a793129beb0d28ffcc15248a09f9d333b}\index{canfd.h@{canfd.h}!EMON\_CO@{EMON\_CO}}
+\index{EMON\_CO@{EMON\_CO}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{EMON\_CO}{EMON\_CO}}
+{\footnotesize\ttfamily \label{canfd_8h_a793129beb0d28ffcc15248a09f9d333b} 
+\#define EMON\+\_\+\+CO~0xC}
+
+\Hypertarget{canfd_8h_a7826d7b67c2425e04508f376b03ea68a}\index{canfd.h@{canfd.h}!EMON\_DA@{EMON\_DA}}
+\index{EMON\_DA@{EMON\_DA}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{EMON\_DA}{EMON\_DA}}
+{\footnotesize\ttfamily \label{canfd_8h_a7826d7b67c2425e04508f376b03ea68a} 
+\#define EMON\+\_\+\+DA~0xD}
+
+\Hypertarget{canfd_8h_acaee992a03919f6a53baf5830c0c0d46}\index{canfd.h@{canfd.h}!EMON\_DM@{EMON\_DM}}
+\index{EMON\_DM@{EMON\_DM}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{EMON\_DM}{EMON\_DM}}
+{\footnotesize\ttfamily \label{canfd_8h_acaee992a03919f6a53baf5830c0c0d46} 
+\#define EMON\+\_\+\+DM~0xE}
+
+\Hypertarget{canfd_8h_a0e851ffa6b3b6f475c217696d73d8aad}\index{canfd.h@{canfd.h}!EMON\_DS@{EMON\_DS}}
+\index{EMON\_DS@{EMON\_DS}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{EMON\_DS}{EMON\_DS}}
+{\footnotesize\ttfamily \label{canfd_8h_a0e851ffa6b3b6f475c217696d73d8aad} 
+\#define EMON\+\_\+\+DS~0xB}
+
+\Hypertarget{canfd_8h_af02910f716132150f79596778900a634}\index{canfd.h@{canfd.h}!EMON\_ER@{EMON\_ER}}
+\index{EMON\_ER@{EMON\_ER}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{EMON\_ER}{EMON\_ER}}
+{\footnotesize\ttfamily \label{canfd_8h_af02910f716132150f79596778900a634} 
+\#define EMON\+\_\+\+ER~0xF}
+
+\Hypertarget{canfd_8h_ab4d6931e21fa0d97e42d3430125fc9cb}\index{canfd.h@{canfd.h}!EMON\_M@{EMON\_M}}
+\index{EMON\_M@{EMON\_M}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{EMON\_M}{EMON\_M}}
+{\footnotesize\ttfamily \label{canfd_8h_ab4d6931e21fa0d97e42d3430125fc9cb} 
+\#define EMON\+\_\+M~0x1}
+
+\Hypertarget{canfd_8h_a5e7887a6fa998d48728ab28e2651303f}\index{canfd.h@{canfd.h}!EMON\_MR@{EMON\_MR}}
+\index{EMON\_MR@{EMON\_MR}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{EMON\_MR}{EMON\_MR}}
+{\footnotesize\ttfamily \label{canfd_8h_a5e7887a6fa998d48728ab28e2651303f} 
+\#define EMON\+\_\+\+MR~0x4}
+
+\Hypertarget{canfd_8h_a0a00350f1a08b53b34d10da719e9b587}\index{canfd.h@{canfd.h}!EMON\_SL@{EMON\_SL}}
+\index{EMON\_SL@{EMON\_SL}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{EMON\_SL}{EMON\_SL}}
+{\footnotesize\ttfamily \label{canfd_8h_a0a00350f1a08b53b34d10da719e9b587} 
+\#define EMON\+\_\+\+SL~0x2}
+
+\Hypertarget{canfd_8h_abb1bd190102ddcc6238e71e023e0ac7f}\index{canfd.h@{canfd.h}!EMON\_SU@{EMON\_SU}}
+\index{EMON\_SU@{EMON\_SU}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{EMON\_SU}{EMON\_SU}}
+{\footnotesize\ttfamily \label{canfd_8h_abb1bd190102ddcc6238e71e023e0ac7f} 
+\#define EMON\+\_\+\+SU~0x3}
+
+\Hypertarget{canfd_8h_a4402a37f0a16bb1c0d6535001ace8809}\index{canfd.h@{canfd.h}!EMON\_TM@{EMON\_TM}}
+\index{EMON\_TM@{EMON\_TM}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{EMON\_TM}{EMON\_TM}}
+{\footnotesize\ttfamily \label{canfd_8h_a4402a37f0a16bb1c0d6535001ace8809} 
+\#define EMON\+\_\+\+TM~0xA}
+
+\Hypertarget{canfd_8h_a9af8f4188fb727ccaffd092ea148db14}\index{canfd.h@{canfd.h}!LCD\_BUF\_SIZ@{LCD\_BUF\_SIZ}}
+\index{LCD\_BUF\_SIZ@{LCD\_BUF\_SIZ}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{LCD\_BUF\_SIZ}{LCD\_BUF\_SIZ}}
+{\footnotesize\ttfamily \label{canfd_8h_a9af8f4188fb727ccaffd092ea148db14} 
+\#define LCD\+\_\+\+BUF\+\_\+\+SIZ~22}
+
+\Hypertarget{canfd_8h_a9c1e4729afc16df172e3bf35fe48db76}\index{canfd.h@{canfd.h}!MIRR0R\_BUF@{MIRR0R\_BUF}}
+\index{MIRR0R\_BUF@{MIRR0R\_BUF}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{MIRR0R\_BUF}{MIRR0R\_BUF}}
+{\footnotesize\ttfamily \label{canfd_8h_a9c1e4729afc16df172e3bf35fe48db76} 
+\#define MIRR0\+R\+\_\+\+BUF~\mbox{\hyperlink{canfd_8h_ab477abe5e6605e100c49a8ab72a7f036}{CANFD\+\_\+\+NBUF}}-\/1}
+
+\Hypertarget{canfd_8h_ac46dcc574224cef6df5612bb0e46f66b}\index{canfd.h@{canfd.h}!NO\_NODE\_ID@{NO\_NODE\_ID}}
+\index{NO\_NODE\_ID@{NO\_NODE\_ID}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{NO\_NODE\_ID}{NO\_NODE\_ID}}
+{\footnotesize\ttfamily \label{canfd_8h_ac46dcc574224cef6df5612bb0e46f66b} 
+\#define NO\+\_\+\+NODE\+\_\+\+ID}
+
+\Hypertarget{canfd_8h_a65365b57084e368bead2ff6f93b896bb}\index{canfd.h@{canfd.h}!NODE\_ID\_SHIFT@{NODE\_ID\_SHIFT}}
+\index{NODE\_ID\_SHIFT@{NODE\_ID\_SHIFT}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{NODE\_ID\_SHIFT}{NODE\_ID\_SHIFT}}
+{\footnotesize\ttfamily \label{canfd_8h_a65365b57084e368bead2ff6f93b896bb} 
+\#define NODE\+\_\+\+ID\+\_\+\+SHIFT~4}
+
+\Hypertarget{canfd_8h_ae09a691684758a884003d7b13dd707f6}\index{canfd.h@{canfd.h}!USE\_FD@{USE\_FD}}
+\index{USE\_FD@{USE\_FD}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{USE\_FD}{USE\_FD}}
+{\footnotesize\ttfamily \label{canfd_8h_ae09a691684758a884003d7b13dd707f6} 
+\#define USE\+\_\+\+FD}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{canfd_8h_a369ea76a14f2a9ac1fd1120985a5febc}\index{canfd.h@{canfd.h}!Can1FIFO1NotEmptyHandler@{Can1FIFO1NotEmptyHandler}}
+\index{Can1FIFO1NotEmptyHandler@{Can1FIFO1NotEmptyHandler}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{Can1FIFO1NotEmptyHandler()}{Can1FIFO1NotEmptyHandler()}}
+{\footnotesize\ttfamily \label{canfd_8h_a369ea76a14f2a9ac1fd1120985a5febc} 
+void Can1\+FIFO1\+Not\+Empty\+Handler (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{canfd_8h_a369ea76a14f2a9ac1fd1120985a5febc_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{canfd_8h_a369ea76a14f2a9ac1fd1120985a5febc_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{canfd_8h_acb6bcc9bf2aa4d3a784a25705e36a822}\index{canfd.h@{canfd.h}!can\_blob\_get@{can\_blob\_get}}
+\index{can\_blob\_get@{can\_blob\_get}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{can\_blob\_get()}{can\_blob\_get()}}
+{\footnotesize\ttfamily \label{canfd_8h_acb6bcc9bf2aa4d3a784a25705e36a822} 
+\mbox{\hyperlink{structblob__type}{blob\+\_\+type}} \texorpdfstring{$\ast$}{*} can\+\_\+blob\+\_\+get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structblob__type}{blob\+\_\+type}} \texorpdfstring{$\ast$}{*}}]{data}{}\end{DoxyParamCaption})}
+
+\Hypertarget{canfd_8h_ae62671c4f47f8858c84f147a52a44237}\index{canfd.h@{canfd.h}!can\_blob\_set@{can\_blob\_set}}
+\index{can\_blob\_set@{can\_blob\_set}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{can\_blob\_set()}{can\_blob\_set()}}
+{\footnotesize\ttfamily \label{canfd_8h_ae62671c4f47f8858c84f147a52a44237} 
+void can\+\_\+blob\+\_\+set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structblob__type}{blob\+\_\+type}} \texorpdfstring{$\ast$}{*}}]{data}{}\end{DoxyParamCaption})}
+
+\Hypertarget{canfd_8h_a05b74a75d1b7203983c749ca8bfcb12e}\index{canfd.h@{canfd.h}!can\_fd\_lcd\_mirror@{can\_fd\_lcd\_mirror}}
+\index{can\_fd\_lcd\_mirror@{can\_fd\_lcd\_mirror}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{can\_fd\_lcd\_mirror()}{can\_fd\_lcd\_mirror()}}
+{\footnotesize\ttfamily \label{canfd_8h_a05b74a75d1b7203983c749ca8bfcb12e} 
+void can\+\_\+fd\+\_\+lcd\+\_\+mirror (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{r}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{str\+Ptr}{}\end{DoxyParamCaption})}
+
+\Hypertarget{canfd_8h_a29a7687004bc2ca4fe3a3ad2ed5d4f6b}\index{canfd.h@{canfd.h}!can\_fd\_tx@{can\_fd\_tx}}
+\index{can\_fd\_tx@{can\_fd\_tx}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{can\_fd\_tx()}{can\_fd\_tx()}}
+{\footnotesize\ttfamily \label{canfd_8h_a29a7687004bc2ca4fe3a3ad2ed5d4f6b} 
+void can\+\_\+fd\+\_\+tx (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{canfd_8h_a29a7687004bc2ca4fe3a3ad2ed5d4f6b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{canfd_8h_a29a7687004bc2ca4fe3a3ad2ed5d4f6b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{canfd_8h_ad62faa46dc11f1a1e7b2efa6a460582f}\index{canfd.h@{canfd.h}!can\_mirror\_print@{can\_mirror\_print}}
+\index{can\_mirror\_print@{can\_mirror\_print}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{can\_mirror\_print()}{can\_mirror\_print()}}
+{\footnotesize\ttfamily \label{canfd_8h_ad62faa46dc11f1a1e7b2efa6a460582f} 
+void can\+\_\+mirror\+\_\+print (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{canfd_8h_ad62faa46dc11f1a1e7b2efa6a460582f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=254pt]{canfd_8h_ad62faa46dc11f1a1e7b2efa6a460582f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{canfd_8h_a09603ea6c3ec888054e217e43d2f463d}\index{canfd.h@{canfd.h}!can\_setup@{can\_setup}}
+\index{can\_setup@{can\_setup}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{can\_setup()}{can\_setup()}}
+{\footnotesize\ttfamily \label{canfd_8h_a09603ea6c3ec888054e217e43d2f463d} 
+void can\+\_\+setup (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{canfd_8h_a09603ea6c3ec888054e217e43d2f463d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{canfd_8h_a09603ea6c3ec888054e217e43d2f463d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{canfd_8h_af5dbb2fdb5176f1044c8a8d206e56c57}\index{canfd.h@{canfd.h}!get\_blob\_rx@{get\_blob\_rx}}
+\index{get\_blob\_rx@{get\_blob\_rx}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{get\_blob\_rx()}{get\_blob\_rx()}}
+{\footnotesize\ttfamily \label{canfd_8h_af5dbb2fdb5176f1044c8a8d206e56c57} 
+bool get\+\_\+blob\+\_\+rx (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{canfd_8h_a564a217e586a5d52d2a528e9dc8c0f3b}\index{canfd.h@{canfd.h}!get\_blob\_tx@{get\_blob\_tx}}
+\index{get\_blob\_tx@{get\_blob\_tx}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{get\_blob\_tx()}{get\_blob\_tx()}}
+{\footnotesize\ttfamily \label{canfd_8h_a564a217e586a5d52d2a528e9dc8c0f3b} 
+bool get\+\_\+blob\+\_\+tx (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{canfd_8h_aa74b37318c7f7322c16d8df246d48e98}\index{canfd.h@{canfd.h}!TXQNotFullHandler@{TXQNotFullHandler}}
+\index{TXQNotFullHandler@{TXQNotFullHandler}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{TXQNotFullHandler()}{TXQNotFullHandler()}}
+{\footnotesize\ttfamily \label{canfd_8h_aa74b37318c7f7322c16d8df246d48e98} 
+void TXQNot\+Full\+Handler (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{canfd_8h_aa74b37318c7f7322c16d8df246d48e98_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{canfd_8h_a6ff82a57d15d1e2c8b6aea4f501d8a0f}\index{canfd.h@{canfd.h}!can\_newtime@{can\_newtime}}
+\index{can\_newtime@{can\_newtime}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{can\_newtime}{can\_newtime}}
+{\footnotesize\ttfamily \label{canfd_8h_a6ff82a57d15d1e2c8b6aea4f501d8a0f} 
+struct tm\texorpdfstring{$\ast$}{*} can\+\_\+newtime\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{canfd_8h_a959d51107284735b720ea6940504fccd}\index{canfd.h@{canfd.h}!can\_packets@{can\_packets}}
+\index{can\_packets@{can\_packets}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{can\_packets}{can\_packets}}
+{\footnotesize\ttfamily \label{canfd_8h_a959d51107284735b720ea6940504fccd} 
+volatile \mbox{\hyperlink{structcan__frames__t}{can\+\_\+frames\+\_\+t}} can\+\_\+packets\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{canfd_8h_a517c6622f7c90637e31ff52be0656e13}\index{canfd.h@{canfd.h}!can\_rec\_count@{can\_rec\_count}}
+\index{can\_rec\_count@{can\_rec\_count}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{can\_rec\_count}{can\_rec\_count}}
+{\footnotesize\ttfamily \label{canfd_8h_a517c6622f7c90637e31ff52be0656e13} 
+volatile \mbox{\hyperlink{structcan__rec__count__t}{can\+\_\+rec\+\_\+count\+\_\+t}} can\+\_\+rec\+\_\+count\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{canfd_8h_ac18c97a79841b0af9e0d0d378b9e721c}\index{canfd.h@{canfd.h}!can\_timer@{can\_timer}}
+\index{can\_timer@{can\_timer}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{can\_timer}{can\_timer}}
+{\footnotesize\ttfamily \label{canfd_8h_ac18c97a79841b0af9e0d0d378b9e721c} 
+time\+\_\+t can\+\_\+timer\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{canfd_8h_a8d28894362bf5fdeb00e73d635aee010}\index{canfd.h@{canfd.h}!info\_buffer@{info\_buffer}}
+\index{info\_buffer@{info\_buffer}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{info\_buffer}{info\_buffer}}
+{\footnotesize\ttfamily \label{canfd_8h_a8d28894362bf5fdeb00e73d635aee010} 
+char info\+\_\+buffer\mbox{[}\mbox{\hyperlink{mxcmd_8h_a3a898da0ee1d34f3af799123ff98a160}{MAX\+\_\+\+B\+\_\+\+BUF}}\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{canfd_8h_a6b22d01e082103d8535db39e63799b3f}\index{canfd.h@{canfd.h}!log\_buffer@{log\_buffer}}
+\index{log\_buffer@{log\_buffer}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{log\_buffer}{log\_buffer}}
+{\footnotesize\ttfamily \label{canfd_8h_a6b22d01e082103d8535db39e63799b3f} 
+char log\+\_\+buffer\mbox{[}\mbox{\hyperlink{mxcmd_8h_a3a898da0ee1d34f3af799123ff98a160}{MAX\+\_\+\+B\+\_\+\+BUF}}\mbox{]}}
+
+\Hypertarget{canfd_8h_a63d949d7a86821ef7192ba2087c42ff4}\index{canfd.h@{canfd.h}!msg@{msg}}
+\index{msg@{msg}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{msg}{msg}}
+{\footnotesize\ttfamily \label{canfd_8h_a63d949d7a86821ef7192ba2087c42ff4} 
+\mbox{\hyperlink{structCAN__MSG__OBJ}{CAN\+\_\+\+MSG\+\_\+\+OBJ}} msg\mbox{[}3\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{canfd_8h_a1cfda93430cb60b084a6ca848f44b3a7}\index{canfd.h@{canfd.h}!rxMsgData@{rxMsgData}}
+\index{rxMsgData@{rxMsgData}!canfd.h@{canfd.h}}
+\doxysubsubsection{\texorpdfstring{rxMsgData}{rxMsgData}}
+{\footnotesize\ttfamily \label{canfd_8h_a1cfda93430cb60b084a6ca848f44b3a7} 
+volatile uint8\+\_\+t rx\+Msg\+Data\mbox{[}\mbox{\hyperlink{canfd_8h_a0c8f844d74630794e991c5c714a1934c}{CAN\+\_\+\+REC\+\_\+\+BUFFERS}}\mbox{]}\mbox{[}\mbox{\hyperlink{canfd_8h_a3c69ec33266b2d06ac84ad7a6049873e}{CANFD\+\_\+\+BYTES}}\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+

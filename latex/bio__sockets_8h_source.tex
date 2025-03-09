@@ -1,0 +1,34 @@
+\doxysection{bio\+\_\+sockets.\+h}
+\hypertarget{bio__sockets_8h_source}{}\label{bio__sockets_8h_source}\index{linux/matesocketcan/templates/bio\_sockets.h@{linux/matesocketcan/templates/bio\_sockets.h}}
+\mbox{\hyperlink{bio__sockets_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#if\ !defined(\_\_BIO\_SOCKET\_TEMPLATE\_H\_\_)}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_BIO\_SOCKET\_TEMPLATE\_H\_\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <openssl/bio.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <openssl/ssl.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <openssl/err.h>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ \ \ \ A\ template\ for\ opening\ a\ non-\/blocking\ BIO\ socket.}}
+\DoxyCodeLine{00010\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00011\ BIO*\ \mbox{\hyperlink{bio__sockets_8h_ad8b4e8efed3de982d610c7a1c047160d}{open\_nb\_socket}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{mqtt__pub_8c_a5642146bf8774069f4d9f5de656aed90}{addr}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{mqtt__pub_8c_ad723da1801ae1586eb330380e2d9a912}{port}})\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ BIO*\ bio\ =\ BIO\_new\_connect(\mbox{\hyperlink{mqtt__pub_8c_a5642146bf8774069f4d9f5de656aed90}{addr}});}
+\DoxyCodeLine{00013\ \ \ \ \ BIO\_set\_nbio(bio,\ 1);}
+\DoxyCodeLine{00014\ \ \ \ \ BIO\_set\_conn\_port(bio,\ \mbox{\hyperlink{mqtt__pub_8c_ad723da1801ae1586eb330380e2d9a912}{port}});}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{comment}{/*\ timeout\ after\ 10\ seconds\ */}}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ad20e89e0c86aa812dc3a8e2fb7b5777b}{start\_time}}\ =\ time(NULL);}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordflow}{while}(BIO\_do\_connect(bio)\ ==\ 0\ \&\&\ (\textcolor{keywordtype}{int})time(NULL)\ -\/\ \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ad20e89e0c86aa812dc3a8e2fb7b5777b}{start\_time}}\ <\ 10);}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordflow}{if}\ (BIO\_do\_connect(bio)\ <=\ 0)\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}Failed\ to\ open\ socket:\ BIO\_do\_connect\ returned\ <=\ 0\(\backslash\)n"{}});}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00023\ \ \ \ \ \}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordflow}{return}\ bio;\ }
+\DoxyCodeLine{00026\ \}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

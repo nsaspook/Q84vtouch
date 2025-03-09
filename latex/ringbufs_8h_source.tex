@@ -1,0 +1,46 @@
+\doxysection{ringbufs.\+h}
+\hypertarget{ringbufs_8h_source}{}\label{ringbufs_8h_source}\mbox{\hyperlink{ringbufs_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*\ }}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ File:\ \ \ ringbufs.h}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ Author:\ rootswitcDC\ circuit\ breakerh\ debounce\ icdebounce\ icfuse\ type\ T}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ Created\ on\ July\ 25,\ 2015,\ 2:03\ PM}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ RINGBUFS\_H}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ RINGBUFS\_H}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#ifdef\ \ \_\_cplusplus}}
+\DoxyCodeLine{00012\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ RBUF\_SIZE\ \ \ \ 32}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structringBufS__t}{ringBufS\_t}}\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structringBufS__t_a0ee22aa827067e77fbdc8ca5d5d6f87b}{buf}}[\mbox{\hyperlink{ringbufs_8h_a3979138d69702d83185bef951f48dcd5}{RBUF\_SIZE}}];}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structringBufS__t_a9794c0e61506b826b49b458708ae2489}{head}};}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structringBufS__t_a8db7f977b77e4e4d588ef0d3e04ada16}{tail}};}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structringBufS__t_a20302e2c99a60d3f612dba57e3f6333b}{count}};}
+\DoxyCodeLine{00024\ \ \ \ \ \}\ \mbox{\hyperlink{structringBufS__t}{ringBufS\_t}};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{ringbufs_8h_a34e5704237c7472ddc44d0dc33181cf5}{ringBufS\_init}}(\textcolor{keyword}{volatile}\ \mbox{\hyperlink{structringBufS__t}{ringBufS\_t}}\ *\_this);}
+\DoxyCodeLine{00027\ \ \ \ \ int8\_t\ \mbox{\hyperlink{ringbufs_8h_a35cc95280d10e20a261938e56b6a614a}{ringBufS\_empty}}(\mbox{\hyperlink{structringBufS__t}{ringBufS\_t}}\ *\_this);}
+\DoxyCodeLine{00028\ \ \ \ \ int8\_t\ \mbox{\hyperlink{ringbufs_8h_aaf5edf59424df3782d371ebae7b8f1d5}{ringBufS\_full}}(\mbox{\hyperlink{structringBufS__t}{ringBufS\_t}}\ *\_this);}
+\DoxyCodeLine{00029\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{ringbufs_8h_adc3bc6838d1f9fa6e1f958c0038ded86}{ringBufS\_get}}(\mbox{\hyperlink{structringBufS__t}{ringBufS\_t}}\ *\_this);}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{ringbufs_8h_affc9992c49c8184c104a5d96587b949b}{ringBufS\_put}}(\mbox{\hyperlink{structringBufS__t}{ringBufS\_t}}\ *\_this,\ \textcolor{keyword}{const}\ uint8\_t\ c);}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{ringbufs_8h_afd07784b578ae76b66595ca22f2df9ab}{ringBufS\_put\_dma}}(\mbox{\hyperlink{structringBufS__t}{ringBufS\_t}}\ *\_this,\ \textcolor{keyword}{const}\ uint8\_t\ c);}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{ringbufs_8h_aa5507b2a945c0b3aa19db7109ebfb2c7}{ringBufS\_put\_dma\_cpy}}(\mbox{\hyperlink{structringBufS__t}{ringBufS\_t}}\ *,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *,\ \textcolor{keyword}{const}\ uint8\_t);}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{ringbufs_8h_a0e2217f2e9636995ed1fa648627218ca}{ringBufS\_flush}}(\mbox{\hyperlink{structringBufS__t}{ringBufS\_t}}\ *\_this,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ clearBuffer);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#ifdef\ \ \_\_cplusplus}}
+\DoxyCodeLine{00037\ \}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{/*\ RINGBUFS\_H\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00041\ }
+
+\end{DoxyCode}

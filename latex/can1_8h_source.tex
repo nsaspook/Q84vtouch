@@ -1,0 +1,114 @@
+\doxysection{can1.\+h}
+\hypertarget{can1_8h_source}{}\label{can1_8h_source}\index{mateQ84.X/mcc\_generated\_files/can1.h@{mateQ84.X/mcc\_generated\_files/can1.h}}
+\mbox{\hyperlink{can1_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ \ \ \ (c)\ 2018\ Microchip\ Technology\ Inc.\ and\ its\ subsidiaries.\ }}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ \ \ \ }}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ \ \ \ Subject\ to\ your\ compliance\ with\ these\ terms,\ you\ may\ use\ Microchip\ software\ and\ any\ }}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ \ \ \ derivatives\ exclusively\ with\ Microchip\ products.\ It\ is\ your\ responsibility\ to\ comply\ with\ third\ party\ }}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ \ \ \ license\ terms\ applicable\ to\ your\ use\ of\ third\ party\ software\ (including\ open\ source\ software)\ that\ }}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ \ \ \ may\ accompany\ Microchip\ software.}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ \ \ \ }}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ \ \ \ THIS\ SOFTWARE\ IS\ SUPPLIED\ BY\ MICROCHIP\ "{}AS\ IS"{}.\ NO\ WARRANTIES,\ WHETHER\ }}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ \ \ \ EXPRESS,\ IMPLIED\ OR\ STATUTORY,\ APPLY\ TO\ THIS\ SOFTWARE,\ INCLUDING\ ANY\ }}
+\DoxyCodeLine{00034\ \textcolor{comment}{\ \ \ \ IMPLIED\ WARRANTIES\ OF\ NON-\/INFRINGEMENT,\ MERCHANTABILITY,\ AND\ FITNESS\ }}
+\DoxyCodeLine{00035\ \textcolor{comment}{\ \ \ \ FOR\ A\ PARTICULAR\ PURPOSE.}}
+\DoxyCodeLine{00036\ \textcolor{comment}{\ \ \ \ }}
+\DoxyCodeLine{00037\ \textcolor{comment}{\ \ \ \ IN\ NO\ EVENT\ WILL\ MICROCHIP\ BE\ LIABLE\ FOR\ ANY\ INDIRECT,\ SPECIAL,\ PUNITIVE,\ }}
+\DoxyCodeLine{00038\ \textcolor{comment}{\ \ \ \ INCIDENTAL\ OR\ CONSEQUENTIAL\ LOSS,\ DAMAGE,\ COST\ OR\ EXPENSE\ OF\ ANY\ KIND\ }}
+\DoxyCodeLine{00039\ \textcolor{comment}{\ \ \ \ WHATSOEVER\ RELATED\ TO\ THE\ SOFTWARE,\ HOWEVER\ CAUSED,\ EVEN\ IF\ MICROCHIP\ }}
+\DoxyCodeLine{00040\ \textcolor{comment}{\ \ \ \ HAS\ BEEN\ ADVISED\ OF\ THE\ POSSIBILITY\ OR\ THE\ DAMAGES\ ARE\ FORESEEABLE.\ TO\ }}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ \ \ \ THE\ FULLEST\ EXTENT\ ALLOWED\ BY\ LAW,\ MICROCHIP'S\ TOTAL\ LIABILITY\ ON\ ALL\ }}
+\DoxyCodeLine{00042\ \textcolor{comment}{\ \ \ \ CLAIMS\ IN\ ANY\ WAY\ RELATED\ TO\ THIS\ SOFTWARE\ WILL\ NOT\ EXCEED\ THE\ AMOUNT\ }}
+\DoxyCodeLine{00043\ \textcolor{comment}{\ \ \ \ OF\ FEES,\ IF\ ANY,\ THAT\ YOU\ HAVE\ PAID\ DIRECTLY\ TO\ MICROCHIP\ FOR\ THIS\ }}
+\DoxyCodeLine{00044\ \textcolor{comment}{\ \ \ \ SOFTWARE.}}
+\DoxyCodeLine{00045\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#ifndef\ CAN1\_H}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ CAN1\_H}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{can__types_8h}{can\_types.h}}"{}}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{comment}{//\ Transmit\ FIFO's\ Custom\ Name}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#define\ CAN1\_TX\_TXQ\ TXQ}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ CAN1\_TX\_FIFO2\ FIFO2}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ CAN1\_TX\_FIFO3\ FIFO3}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ }
+\DoxyCodeLine{00064\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \mbox{\hyperlink{can1_8h_ab388b6c55924e1586db7a9d6f5913754ac119500b75a0ec69ebfa70cbcfd37c23}{TXQ}}\ =\ 0,}
+\DoxyCodeLine{00066\ \ \ \ \ \mbox{\hyperlink{can1_8h_ab388b6c55924e1586db7a9d6f5913754a09c403e3c764d482712dda04eafef42d}{FIFO2}}\ =\ 2,}
+\DoxyCodeLine{00067\ \ \ \ \ \mbox{\hyperlink{can1_8h_ab388b6c55924e1586db7a9d6f5913754aaf5685c0b73b1163cc5692efb4e707aa}{FIFO3}}\ =\ 3}
+\DoxyCodeLine{00068\ \}\ \mbox{\hyperlink{can1_8h_ab388b6c55924e1586db7a9d6f5913754}{CAN1\_TX\_FIFO\_CHANNELS}};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00071\ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{can1_8h_ae694b6344b5151b19c3430d420c90178a9cdc8958973e1889b39317af679b79ef}{FIFO1}}\ =\ 1}
+\DoxyCodeLine{00073\ \}\ \mbox{\hyperlink{can1_8h_ae694b6344b5151b19c3430d420c90178}{CAN1\_RX\_FIFO\_CHANNELS}};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00110\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{can1_8h_add8850a15e40f5316f9e614fd70ec956}{CAN1\_Initialize}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00151\ \mbox{\hyperlink{can__types_8h_a89d5894e1e1c614eb64d163304613f19}{CAN\_OP\_MODE\_STATUS}}\ \mbox{\hyperlink{can1_8h_a6ca097a34d3922b6dc418e8c8e645578}{CAN1\_OperationModeSet}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{can__types_8h_adf6f08edd09adf034118a73a7acea9f9}{CAN\_OP\_MODES}}\ reqestMode);}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00189\ \mbox{\hyperlink{can__types_8h_adf6f08edd09adf034118a73a7acea9f9}{CAN\_OP\_MODES}}\ \mbox{\hyperlink{can1_8h_a13c7bd1d1ef21aeb5d77c4b38b4de387}{CAN1\_OperationModeGet}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00239\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{can1_8h_a80dd5a2837348066495899cf332b88e7}{CAN1\_Receive}}(\mbox{\hyperlink{structCAN__MSG__OBJ}{CAN\_MSG\_OBJ}}\ *rxCanMsg);}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00279\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{can1_8h_ad900bba9e7b4d64ac9f7b38fcbb8cfd0}{CAN1\_ReceiveFrom}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{can1_8h_ae694b6344b5151b19c3430d420c90178}{CAN1\_RX\_FIFO\_CHANNELS}}\ fifoChannel,\ \mbox{\hyperlink{structCAN__MSG__OBJ}{CAN\_MSG\_OBJ}}\ *rxCanMsg);}
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00338\ \mbox{\hyperlink{can__types_8h_ac37a68dffec74794a3a4a35ed97dc78f}{CAN\_TX\_MSG\_REQUEST\_STATUS}}\ \mbox{\hyperlink{can1_8h_ae913df029bccca892ab57f08d458a718}{CAN1\_Transmit}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{can1_8h_ab388b6c55924e1586db7a9d6f5913754}{CAN1\_TX\_FIFO\_CHANNELS}}\ fifoChannel,\ \mbox{\hyperlink{structCAN__MSG__OBJ}{CAN\_MSG\_OBJ}}\ *txCanMsg);}
+\DoxyCodeLine{00339\ }
+\DoxyCodeLine{00394\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{can1_8h_ac9e9e8b218ed1a35652664480d37503c}{CAN1\_IsBusOff}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00395\ }
+\DoxyCodeLine{00452\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{can1_8h_aae9b18d3820bb5869a11fc5c86b16814}{CAN1\_IsTxErrorPassive}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00453\ }
+\DoxyCodeLine{00511\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{can1_8h_aa4f79791cf95061d42e14d6ee7b8fffa}{CAN1\_IsTxErrorWarning}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00512\ }
+\DoxyCodeLine{00570\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{can1_8h_a316196579419bca66dce31449a5dac11}{CAN1\_IsTxErrorActive}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00571\ }
+\DoxyCodeLine{00618\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{can1_8h_a9d993d04b570d3daac708a864b751950}{CAN1\_IsRxErrorPassive}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00619\ }
+\DoxyCodeLine{00666\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{can1_8h_a32d1f2ea47cd724c4c278063ac5b68f3}{CAN1\_IsRxErrorWarning}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00667\ }
+\DoxyCodeLine{00714\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{can1_8h_a6d9c583ae763f27f4010371932f3fa01}{CAN1\_IsRxErrorActive}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00715\ }
+\DoxyCodeLine{00765\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{can1_8h_a41d9a27d9d5e04efcb58c31006f43f98}{CAN1\_Sleep}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00766\ }
+\DoxyCodeLine{00819\ \mbox{\hyperlink{can__types_8h_a5b83a493815db579d910f8280984c50b}{CAN\_TX\_FIFO\_STATUS}}\ \mbox{\hyperlink{can1_8h_a24602980ff517c4a7b86205254fee54a}{CAN1\_TransmitFIFOStatusGet}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{can1_8h_ab388b6c55924e1586db7a9d6f5913754}{CAN1\_TX\_FIFO\_CHANNELS}}\ fifoChannel);}
+\DoxyCodeLine{00820\ }
+\DoxyCodeLine{00861\ uint8\_t\ \mbox{\hyperlink{can1_8h_ac27e97593d8d9bd7787d116910adc40d}{CAN1\_ReceivedMessageCountGet}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00862\ }
+\DoxyCodeLine{00928\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{can1_8h_a61fa4bf094f295746b4632e49d24514d}{CAN1\_SetInvalidMessageInterruptHandler}}(\textcolor{keywordtype}{void}\ (*handler)(\textcolor{keywordtype}{void}));}
+\DoxyCodeLine{00929\ }
+\DoxyCodeLine{00985\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{can1_8h_ad9b7a7c50d7ac3ef28590fcd916bb42d}{CAN1\_SetBusWakeUpActivityInterruptHandler}}(\textcolor{keywordtype}{void}\ (*handler)(\textcolor{keywordtype}{void}));}
+\DoxyCodeLine{00986\ }
+\DoxyCodeLine{01053\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{can1_8h_ac0e353f71ae1d417bb26ee15497d553e}{CAN1\_SetBusErrorInterruptHandler}}(\textcolor{keywordtype}{void}\ (*handler)(\textcolor{keywordtype}{void}));}
+\DoxyCodeLine{01054\ }
+\DoxyCodeLine{01104\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{can1_8h_ac7822a59dd4bf825557bb609da828cc8}{CAN1\_SetModeChangeInterruptHandler}}(\textcolor{keywordtype}{void}\ (*handler)(\textcolor{keywordtype}{void}));}
+\DoxyCodeLine{01105\ }
+\DoxyCodeLine{01173\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{can1_8h_a25485f398d83106a6d15548731934d52}{CAN1\_SetSystemErrorInterruptHandler}}(\textcolor{keywordtype}{void}\ (*handler)(\textcolor{keywordtype}{void}));}
+\DoxyCodeLine{01174\ }
+\DoxyCodeLine{01241\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{can1_8h_a093ae655e1306ceb3a9b0c43a5de7dcc}{CAN1\_SetTxAttemptInterruptHandler}}(\textcolor{keywordtype}{void}\ (*handler)(\textcolor{keywordtype}{void}));}
+\DoxyCodeLine{01242\ }
+\DoxyCodeLine{01293\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{can1_8h_aa17b7ffab8784720b377c7fb09ef8e3e}{CAN1\_SetRxBufferOverFlowInterruptHandler}}(\textcolor{keywordtype}{void}\ (*handler)(\textcolor{keywordtype}{void}));}
+\DoxyCodeLine{01294\ }
+\DoxyCodeLine{01328\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{can1_8h_ae7a6b83df49337bb35317d11bda38692}{CAN1\_SetFIFO1NotEmptyHandler}}(\textcolor{keywordtype}{void}\ (*handler)(\textcolor{keywordtype}{void}));}
+\DoxyCodeLine{01329\ }
+\DoxyCodeLine{01372\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{can1_8h_a75daa010297c42080400a5f4e7ad8bd8}{CAN1\_SetTXQNotFullHandler}}(\textcolor{keywordtype}{void}\ (*handler)(\textcolor{keywordtype}{void}));}
+\DoxyCodeLine{01373\ }
+\DoxyCodeLine{01416\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{can1_8h_a29648921247739e7c026e30172936e06}{CAN1\_SetFIFO2nullHandler}}(\textcolor{keywordtype}{void}\ (*handler)(\textcolor{keywordtype}{void}));}
+\DoxyCodeLine{01417\ }
+\DoxyCodeLine{01460\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{can1_8h_a53268de3588984b3d99f838b67894172}{CAN1\_SetFIFO3nullHandler}}(\textcolor{keywordtype}{void}\ (*handler)(\textcolor{keywordtype}{void}));}
+\DoxyCodeLine{01461\ }
+\DoxyCodeLine{01462\ }
+\DoxyCodeLine{01463\ }
+\DoxyCodeLine{01464\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//CAN1\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,100 @@
+\doxysection{openssl\+\_\+sockets.\+h}
+\hypertarget{openssl__sockets_8h_source}{}\label{openssl__sockets_8h_source}\index{linux/matesocketcan/templates/openssl\_sockets.h@{linux/matesocketcan/templates/openssl\_sockets.h}}
+\mbox{\hyperlink{openssl__sockets_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#if\ !defined(\_\_OPENSSL\_SOCKET\_TEMPLATE\_H\_\_)}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_OPENSSL\_SOCKET\_TEMPLATE\_H\_\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <openssl/bio.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <openssl/ssl.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <openssl/err.h>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ \ \ \ A\ template\ for\ opening\ a\ non-\/blocking\ OpenSSL\ connection.}}
+\DoxyCodeLine{00012\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00013\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{openssl__sockets_8h_afd4035cf073b17cfda834aa661b2a30f}{open\_nb\_socket}}(BIO**\ \ \ \ \ \ \ bio,}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SSL\_CTX**\ \ \ ssl\_ctx,}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{mqtt__pub_8c_a5642146bf8774069f4d9f5de656aed90}{addr}},}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{mqtt__pub_8c_ad723da1801ae1586eb330380e2d9a912}{port}},}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ ca\_file,}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ ca\_path,}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ cert\_file,}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ key\_file);}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{openssl__sockets_8h_afd4035cf073b17cfda834aa661b2a30f}{open\_nb\_socket}}(BIO**\ \ \ \ \ \ \ bio,}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SSL\_CTX**\ \ \ ssl\_ctx,}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{mqtt__pub_8c_a5642146bf8774069f4d9f5de656aed90}{addr}},}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{mqtt__pub_8c_ad723da1801ae1586eb330380e2d9a912}{port}},}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ ca\_file,}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ ca\_path,}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ cert\_file,}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ key\_file)}
+\DoxyCodeLine{00030\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ *ssl\_ctx\ =\ SSL\_CTX\_new(SSLv23\_client\_method());}
+\DoxyCodeLine{00032\ \ \ \ \ SSL*\ ssl;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{comment}{/*\ load\ certificate\ */}}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordflow}{if}\ (!SSL\_CTX\_load\_verify\_locations(*ssl\_ctx,\ ca\_file,\ ca\_path))\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}error:\ failed\ to\ load\ ca\ certificate\(\backslash\)n"{}});}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ exit(1);}
+\DoxyCodeLine{00038\ \ \ \ \ \}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordflow}{if}\ (cert\_file\ \&\&\ key\_file)}
+\DoxyCodeLine{00041\ \ \ \ \ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!SSL\_CTX\_use\_certificate\_file(*ssl\_ctx,\ cert\_file,\ SSL\_FILETYPE\_PEM))}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}error:\ failed\ to\ load\ client\ certificate\(\backslash\)n"{}});}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ exit(1);}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!SSL\_CTX\_use\_PrivateKey\_file(*ssl\_ctx,\ key\_file,\ SSL\_FILETYPE\_PEM))}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}error:\ failed\ to\ load\ client\ key\(\backslash\)n"{}});}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ exit(1);}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00053\ \ \ \ \ \}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{/*\ open\ BIO\ socket\ */}}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{char}\ *\ addr\_copy\ =\ (\textcolor{keywordtype}{char}*)malloc(strlen(\mbox{\hyperlink{mqtt__pub_8c_a5642146bf8774069f4d9f5de656aed90}{addr}})\ +\ 1);}
+\DoxyCodeLine{00057\ \ \ \ \ strcpy(addr\_copy,\mbox{\hyperlink{mqtt__pub_8c_a5642146bf8774069f4d9f5de656aed90}{addr}});}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{char}\ *\ port\_copy\ =\ (\textcolor{keywordtype}{char}*)malloc(strlen(\mbox{\hyperlink{mqtt__pub_8c_ad723da1801ae1586eb330380e2d9a912}{port}})\ +\ 1);}
+\DoxyCodeLine{00059\ \ \ \ \ strcpy(port\_copy,\mbox{\hyperlink{mqtt__pub_8c_ad723da1801ae1586eb330380e2d9a912}{port}});}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ *bio\ =\ BIO\_new\_ssl\_connect(*ssl\_ctx);}
+\DoxyCodeLine{00062\ \ \ \ \ BIO\_get\_ssl(*bio,\ \&ssl);}
+\DoxyCodeLine{00063\ \ \ \ \ SSL\_set\_mode(ssl,\ SSL\_MODE\_AUTO\_RETRY);}
+\DoxyCodeLine{00064\ \ \ \ \ BIO\_set\_conn\_hostname(*bio,\ addr\_copy);}
+\DoxyCodeLine{00065\ \ \ \ \ BIO\_set\_nbio(*bio,\ 1);}
+\DoxyCodeLine{00066\ \ \ \ \ BIO\_set\_conn\_port(*bio,\ port\_copy);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ free(addr\_copy);}
+\DoxyCodeLine{00069\ \ \ \ \ free(port\_copy);}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{comment}{/*\ wait\ for\ connect\ with\ 10\ second\ timeout\ */}}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ad20e89e0c86aa812dc3a8e2fb7b5777b}{start\_time}}\ =\ (int)time(NULL);}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{int}\ do\_connect\_rv\ =\ (int)BIO\_do\_connect(*bio);}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordflow}{while}(do\_connect\_rv\ <=\ 0\ \&\&\ BIO\_should\_retry(*bio)\ \&\&\ (\textcolor{keywordtype}{int})time(NULL)\ -\/\ \mbox{\hyperlink{raw_8githubusercontent_8com__linux-can__can-utils__master__canfdtest_8c_ad20e89e0c86aa812dc3a8e2fb7b5777b}{start\_time}}\ <\ 10)\ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ do\_connect\_rv\ =\ (int)BIO\_do\_connect(*bio);}
+\DoxyCodeLine{00076\ \ \ \ \ \}}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordflow}{if}\ (do\_connect\_rv\ <=\ 0)\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}error:\ \%s\(\backslash\)n"{}},\ ERR\_reason\_error\_string(ERR\_get\_error()));}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ BIO\_free\_all(*bio);}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ SSL\_CTX\_free(*ssl\_ctx);}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ *bio\ =\ NULL;}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ *ssl\_ctx=NULL;}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00084\ \ \ \ \ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{comment}{/*\ verify\ certificate\ */}}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordflow}{if}\ (SSL\_get\_verify\_result(ssl)\ !=\ X509\_V\_OK)\ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Handle\ the\ failed\ verification\ */}}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}error:\ x509\ certificate\ verification\ failed\(\backslash\)n"{}});}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ exit(1);}
+\DoxyCodeLine{00091\ \ \ \ \ \}}
+\DoxyCodeLine{00092\ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

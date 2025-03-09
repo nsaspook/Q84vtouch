@@ -1,0 +1,74 @@
+\doxysection{dma1.\+h}
+\hypertarget{dma1_8h_source}{}\label{dma1_8h_source}\index{mateQ84.X/mcc\_generated\_files/dma1.h@{mateQ84.X/mcc\_generated\_files/dma1.h}}
+\mbox{\hyperlink{dma1_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ \ \ \ (c)\ 2018\ Microchip\ Technology\ Inc.\ and\ its\ subsidiaries.\ }}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ \ \ \ }}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ \ \ \ Subject\ to\ your\ compliance\ with\ these\ terms,\ you\ may\ use\ Microchip\ software\ and\ any\ }}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ \ \ \ derivatives\ exclusively\ with\ Microchip\ products.\ It\ is\ your\ responsibility\ to\ comply\ with\ third\ party\ }}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ \ \ \ license\ terms\ applicable\ to\ your\ use\ of\ third\ party\ software\ (including\ open\ source\ software)\ that\ }}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ \ \ \ may\ accompany\ Microchip\ software.}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ \ \ \ }}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ \ \ \ THIS\ SOFTWARE\ IS\ SUPPLIED\ BY\ MICROCHIP\ "{}AS\ IS"{}.\ NO\ WARRANTIES,\ WHETHER\ }}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ \ \ \ EXPRESS,\ IMPLIED\ OR\ STATUTORY,\ APPLY\ TO\ THIS\ SOFTWARE,\ INCLUDING\ ANY\ }}
+\DoxyCodeLine{00034\ \textcolor{comment}{\ \ \ \ IMPLIED\ WARRANTIES\ OF\ NON-\/INFRINGEMENT,\ MERCHANTABILITY,\ AND\ FITNESS\ }}
+\DoxyCodeLine{00035\ \textcolor{comment}{\ \ \ \ FOR\ A\ PARTICULAR\ PURPOSE.}}
+\DoxyCodeLine{00036\ \textcolor{comment}{\ \ \ \ }}
+\DoxyCodeLine{00037\ \textcolor{comment}{\ \ \ \ IN\ NO\ EVENT\ WILL\ MICROCHIP\ BE\ LIABLE\ FOR\ ANY\ INDIRECT,\ SPECIAL,\ PUNITIVE,\ }}
+\DoxyCodeLine{00038\ \textcolor{comment}{\ \ \ \ INCIDENTAL\ OR\ CONSEQUENTIAL\ LOSS,\ DAMAGE,\ COST\ OR\ EXPENSE\ OF\ ANY\ KIND\ }}
+\DoxyCodeLine{00039\ \textcolor{comment}{\ \ \ \ WHATSOEVER\ RELATED\ TO\ THE\ SOFTWARE,\ HOWEVER\ CAUSED,\ EVEN\ IF\ MICROCHIP\ }}
+\DoxyCodeLine{00040\ \textcolor{comment}{\ \ \ \ HAS\ BEEN\ ADVISED\ OF\ THE\ POSSIBILITY\ OR\ THE\ DAMAGES\ ARE\ FORESEEABLE.\ TO\ }}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ \ \ \ THE\ FULLEST\ EXTENT\ ALLOWED\ BY\ LAW,\ MICROCHIP'S\ TOTAL\ LIABILITY\ ON\ ALL\ }}
+\DoxyCodeLine{00042\ \textcolor{comment}{\ \ \ \ CLAIMS\ IN\ ANY\ WAY\ RELATED\ TO\ THIS\ SOFTWARE\ WILL\ NOT\ EXCEED\ THE\ AMOUNT\ }}
+\DoxyCodeLine{00043\ \textcolor{comment}{\ \ \ \ OF\ FEES,\ IF\ ANY,\ THAT\ YOU\ HAVE\ PAID\ DIRECTLY\ TO\ MICROCHIP\ FOR\ THIS\ }}
+\DoxyCodeLine{00044\ \textcolor{comment}{\ \ \ \ SOFTWARE.}}
+\DoxyCodeLine{00045\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#ifndef\ DMA1\_H}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ DMA1\_H}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ uint8\_t\ \mbox{\hyperlink{dma1_8h_a67f4641547275f0fdfed68a7ec2a0eda}{lcd\_dma\_buf}}[32];}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00063\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dma1_8h_aa2c61b8f6b780b5ba3636e243110b2c0}{DMA1\_Initialize}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00070\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dma1_8h_a46038044d494d70a6a5550e7ea7e6398}{DMA1\_SelectSourceRegion}}(uint8\_t\ region);}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00077\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dma1_8h_af08f65d8fda791b936b6002d6f99a8b9}{DMA1\_SetSourceAddress}}(uint24\_t\ address);}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00084\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dma1_8h_ae884ca7585fae35c74bea4280b7196e4}{DMA1\_SetDestinationAddress}}(uint16\_t\ address);}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00091\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dma1_8h_a588bbb7b8de53c6c248521c065b1c67c}{DMA1\_SetSourceSize}}(uint16\_t\ size);}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00098\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dma1_8h_adcca916ff14153cec2abd8555bed3b80}{DMA1\_SetDestinationSize}}(uint16\_t\ size);}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00105\ uint24\_t\ \mbox{\hyperlink{dma1_8h_a0ea127f25b8ea8f9c8a5295f1de98689}{DMA1\_GetSourcePointer}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00112\ uint16\_t\ \mbox{\hyperlink{dma1_8h_a8f8740187e08a7d86dd74a6fece848b7}{DMA1\_GetDestinationPointer}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00119\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dma1_8h_acdfade37e1010b967effa3db20c9e179}{DMA1\_SetStartTrigger}}(uint8\_t\ sirq);}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00126\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dma1_8h_a99814229b86ce3963202ec7fe2367413}{DMA1\_SetAbortTrigger}}(uint8\_t\ airq);}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00133\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dma1_8h_a429b128d3d71db5166f95756f85e6c25}{DMA1\_StartTransfer}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00140\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dma1_8h_aeefadc0b26cc4c9d270b2b9718b0086d}{DMA1\_StartTransferWithTrigger}}(\textcolor{keywordtype}{void});\ \ }
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00147\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dma1_8h_a38dea7a8034b8e6ef64bcdfbfb56d5eb}{DMA1\_StopTransfer}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00154\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dma1_8h_a1a8eada7dc2ad3a1ff98e959f84540ad}{DMA1\_SetDMAPriority}}(uint8\_t\ priority);}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00161\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dma1_8h_aa0772d5e1df3ecc950c3b533e79c8da5}{DMA1\_SetSCNTIInterruptHandler}}(\textcolor{keywordtype}{void}\ (*\ InterruptHandler)(\textcolor{keywordtype}{void}));}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00169\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dma1_8h_aa77915adcb3ed8153117994f4c7270c6}{DMA1\_SetAIInterruptHandler}}(\textcolor{keywordtype}{void}\ (*\ InterruptHandler)(\textcolor{keywordtype}{void}));}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00176\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dma1_8h_ab0e210b21ca6001ffa14e4978fad6bb3}{DMA1\_SetORIInterruptHandler}}(\textcolor{keywordtype}{void}\ (*\ InterruptHandler)(\textcolor{keywordtype}{void}));}
+\DoxyCodeLine{00182\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dma1_8h_a3897bc2630cc436c8fd1d728f3ee489f}{DMA1\_DefaultInterruptHandler}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00183\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//DMA1\_H}}
+
+\end{DoxyCode}

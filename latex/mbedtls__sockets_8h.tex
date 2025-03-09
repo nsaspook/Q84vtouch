@@ -1,0 +1,111 @@
+\doxysection{linux/matesocketcan/templates/mbedtls\+\_\+sockets.h File Reference}
+\hypertarget{mbedtls__sockets_8h}{}\label{mbedtls__sockets_8h}\index{linux/matesocketcan/templates/mbedtls\_sockets.h@{linux/matesocketcan/templates/mbedtls\_sockets.h}}
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$mbedtls/error.\+h$>$}\newline
+{\ttfamily \#include $<$mbedtls/entropy.\+h$>$}\newline
+{\ttfamily \#include $<$mbedtls/ctr\+\_\+drbg.\+h$>$}\newline
+{\ttfamily \#include $<$mbedtls/net\+\_\+sockets.\+h$>$}\newline
+{\ttfamily \#include $<$mbedtls/ssl.\+h$>$}\newline
+Include dependency graph for mbedtls\+\_\+sockets.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{mbedtls__sockets_8h__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structmbedtls__context}{mbedtls\+\_\+context}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{mbedtls__sockets_8h_a7315a36b5a33a0ebc630315bde70c05c}{MBEDTLS\+\_\+\+NET\+\_\+\+POLL\+\_\+\+READ}}~1
+\item 
+\#define \mbox{\hyperlink{mbedtls__sockets_8h_a78ab08a462896b76aa4edeefe57e9c59}{MBEDTLS\+\_\+\+NET\+\_\+\+POLL\+\_\+\+WRITE}}~1
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{mbedtls__sockets_8h_ab91fb801098214f91e032866d7493494}{mbedtls\+\_\+net\+\_\+poll}} (mbedtls\+\_\+net\+\_\+context \texorpdfstring{$\ast$}{*}ctx, uint32\+\_\+t rw, uint32\+\_\+t timeout)
+\item 
+void \mbox{\hyperlink{mbedtls__sockets_8h_af42b8c4606cebe58b226d2a125241ca6}{failed}} (const char \texorpdfstring{$\ast$}{*}fn, int rv)
+\item 
+void \mbox{\hyperlink{mbedtls__sockets_8h_ac3d484b8aeb642c50d1a135c3adced4f}{cert\+\_\+verify\+\_\+failed}} (uint32\+\_\+t rv)
+\item 
+void \mbox{\hyperlink{mbedtls__sockets_8h_a62af1ea8cc9ed47a2f911803835e9b59}{open\+\_\+nb\+\_\+socket}} (struct \mbox{\hyperlink{structmbedtls__context}{mbedtls\+\_\+context}} \texorpdfstring{$\ast$}{*}ctx, const char \texorpdfstring{$\ast$}{*}hostname, const char \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_ad723da1801ae1586eb330380e2d9a912}{port}}, const char \texorpdfstring{$\ast$}{*}ca\+\_\+file)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{mbedtls__sockets_8h_a7315a36b5a33a0ebc630315bde70c05c}\index{mbedtls\_sockets.h@{mbedtls\_sockets.h}!MBEDTLS\_NET\_POLL\_READ@{MBEDTLS\_NET\_POLL\_READ}}
+\index{MBEDTLS\_NET\_POLL\_READ@{MBEDTLS\_NET\_POLL\_READ}!mbedtls\_sockets.h@{mbedtls\_sockets.h}}
+\doxysubsubsection{\texorpdfstring{MBEDTLS\_NET\_POLL\_READ}{MBEDTLS\_NET\_POLL\_READ}}
+{\footnotesize\ttfamily \label{mbedtls__sockets_8h_a7315a36b5a33a0ebc630315bde70c05c} 
+\#define MBEDTLS\+\_\+\+NET\+\_\+\+POLL\+\_\+\+READ~1}
+
+\Hypertarget{mbedtls__sockets_8h_a78ab08a462896b76aa4edeefe57e9c59}\index{mbedtls\_sockets.h@{mbedtls\_sockets.h}!MBEDTLS\_NET\_POLL\_WRITE@{MBEDTLS\_NET\_POLL\_WRITE}}
+\index{MBEDTLS\_NET\_POLL\_WRITE@{MBEDTLS\_NET\_POLL\_WRITE}!mbedtls\_sockets.h@{mbedtls\_sockets.h}}
+\doxysubsubsection{\texorpdfstring{MBEDTLS\_NET\_POLL\_WRITE}{MBEDTLS\_NET\_POLL\_WRITE}}
+{\footnotesize\ttfamily \label{mbedtls__sockets_8h_a78ab08a462896b76aa4edeefe57e9c59} 
+\#define MBEDTLS\+\_\+\+NET\+\_\+\+POLL\+\_\+\+WRITE~1}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{mbedtls__sockets_8h_ac3d484b8aeb642c50d1a135c3adced4f}\index{mbedtls\_sockets.h@{mbedtls\_sockets.h}!cert\_verify\_failed@{cert\_verify\_failed}}
+\index{cert\_verify\_failed@{cert\_verify\_failed}!mbedtls\_sockets.h@{mbedtls\_sockets.h}}
+\doxysubsubsection{\texorpdfstring{cert\_verify\_failed()}{cert\_verify\_failed()}}
+{\footnotesize\ttfamily \label{mbedtls__sockets_8h_ac3d484b8aeb642c50d1a135c3adced4f} 
+void cert\+\_\+verify\+\_\+failed (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{rv}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=313pt]{mbedtls__sockets_8h_ac3d484b8aeb642c50d1a135c3adced4f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{mbedtls__sockets_8h_af42b8c4606cebe58b226d2a125241ca6}\index{mbedtls\_sockets.h@{mbedtls\_sockets.h}!failed@{failed}}
+\index{failed@{failed}!mbedtls\_sockets.h@{mbedtls\_sockets.h}}
+\doxysubsubsection{\texorpdfstring{failed()}{failed()}}
+{\footnotesize\ttfamily \label{mbedtls__sockets_8h_af42b8c4606cebe58b226d2a125241ca6} 
+void failed (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{fn}{, }\item[{int}]{rv}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=255pt]{mbedtls__sockets_8h_af42b8c4606cebe58b226d2a125241ca6_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{mbedtls__sockets_8h_ab91fb801098214f91e032866d7493494}\index{mbedtls\_sockets.h@{mbedtls\_sockets.h}!mbedtls\_net\_poll@{mbedtls\_net\_poll}}
+\index{mbedtls\_net\_poll@{mbedtls\_net\_poll}!mbedtls\_sockets.h@{mbedtls\_sockets.h}}
+\doxysubsubsection{\texorpdfstring{mbedtls\_net\_poll()}{mbedtls\_net\_poll()}}
+{\footnotesize\ttfamily \label{mbedtls__sockets_8h_ab91fb801098214f91e032866d7493494} 
+int mbedtls\+\_\+net\+\_\+poll (\begin{DoxyParamCaption}\item[{mbedtls\+\_\+net\+\_\+context \texorpdfstring{$\ast$}{*}}]{ctx}{, }\item[{uint32\+\_\+t}]{rw}{, }\item[{uint32\+\_\+t}]{timeout}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=312pt]{mbedtls__sockets_8h_ab91fb801098214f91e032866d7493494_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{mbedtls__sockets_8h_a62af1ea8cc9ed47a2f911803835e9b59}\index{mbedtls\_sockets.h@{mbedtls\_sockets.h}!open\_nb\_socket@{open\_nb\_socket}}
+\index{open\_nb\_socket@{open\_nb\_socket}!mbedtls\_sockets.h@{mbedtls\_sockets.h}}
+\doxysubsubsection{\texorpdfstring{open\_nb\_socket()}{open\_nb\_socket()}}
+{\footnotesize\ttfamily \label{mbedtls__sockets_8h_a62af1ea8cc9ed47a2f911803835e9b59} 
+void open\+\_\+nb\+\_\+socket (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structmbedtls__context}{mbedtls\+\_\+context}} \texorpdfstring{$\ast$}{*}}]{ctx}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{hostname}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{port}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{ca\+\_\+file}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=313pt]{mbedtls__sockets_8h_a62af1ea8cc9ed47a2f911803835e9b59_cgraph}
+\end{center}
+\end{figure}

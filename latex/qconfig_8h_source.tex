@@ -1,0 +1,109 @@
+\doxysection{qconfig.\+h}
+\hypertarget{qconfig_8h_source}{}\label{qconfig_8h_source}\mbox{\hyperlink{qconfig_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*\ Microchip\ Technology\ Inc.\ and\ its\ subsidiaries.\ \ You\ may\ use\ this\ software\ }}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ and\ any\ derivatives\ exclusively\ with\ Microchip\ products.\ }}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ }}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ THIS\ SOFTWARE\ IS\ SUPPLIED\ BY\ MICROCHIP\ "{}AS\ IS"{}.\ \ NO\ WARRANTIES,\ WHETHER\ }}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ EXPRESS,\ IMPLIED\ OR\ STATUTORY,\ APPLY\ TO\ THIS\ SOFTWARE,\ INCLUDING\ ANY\ IMPLIED\ }}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ WARRANTIES\ OF\ NON-\/INFRINGEMENT,\ MERCHANTABILITY,\ AND\ FITNESS\ FOR\ A\ }}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ PARTICULAR\ PURPOSE,\ OR\ ITS\ INTERACTION\ WITH\ MICROCHIP\ PRODUCTS,\ COMBINATION\ }}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ WITH\ ANY\ OTHER\ PRODUCTS,\ OR\ USE\ IN\ ANY\ APPLICATION.\ }}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ IN\ NO\ EVENT\ WILL\ MICROCHIP\ BE\ LIABLE\ FOR\ ANY\ INDIRECT,\ SPECIAL,\ PUNITIVE,\ }}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ INCIDENTAL\ OR\ CONSEQUENTIAL\ LOSS,\ DAMAGE,\ COST\ OR\ EXPENSE\ OF\ ANY\ KIND\ }}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ WHATSOEVER\ RELATED\ TO\ THE\ SOFTWARE,\ HOWEVER\ CAUSED,\ EVEN\ IF\ MICROCHIP\ HAS\ }}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ BEEN\ ADVISED\ OF\ THE\ POSSIBILITY\ OR\ THE\ DAMAGES\ ARE\ FORESEEABLE.\ \ TO\ THE\ }}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ FULLEST\ EXTENT\ ALLOWED\ BY\ LAW,\ MICROCHIP'S\ TOTAL\ LIABILITY\ ON\ ALL\ CLAIMS\ }}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ IN\ ANY\ WAY\ RELATED\ TO\ THIS\ SOFTWARE\ WILL\ NOT\ EXCEED\ THE\ AMOUNT\ OF\ FEES,\ IF\ }}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ ANY,\ THAT\ YOU\ HAVE\ PAID\ DIRECTLY\ TO\ MICROCHIP\ FOR\ THIS\ SOFTWARE.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *\ MICROCHIP\ PROVIDES\ THIS\ SOFTWARE\ CONDITIONALLY\ UPON\ YOUR\ ACCEPTANCE\ OF\ THESE\ }}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ *\ TERMS.\ }}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{comment}{/*\ }}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ *\ File:\ \ \ }}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ *\ Author:\ }}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ *\ Comments:}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ *\ Revision\ history:\ }}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ This\ is\ a\ guard\ condition\ so\ that\ contents\ of\ this\ file\ are\ not\ included}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ more\ than\ once.\ \ }}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#ifndef\ QCONFIG\_H}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ QCONFIG\_H}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ <xc.h>}\ \textcolor{comment}{//\ include\ processor\ files\ -\/\ each\ processor\ file\ is\ guarded.\ \ }}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#include\ <time.h>}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#include\ <math.h>}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{trace_8h}{trace.h}}"{}}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{dio_8h}{dio.h}}"{}}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{comment}{//\#define\ CAN\_REMOTE\ \ \ \ //\ can\ received\ data\ on\ LCD\ for\ remote\ mate\ board}}
+\DoxyCodeLine{00044\ \textcolor{comment}{//\#define\ CAN\_REMOTE\_NODMA\ //\ don't\ use\ DMA\ in\ remote\ mode}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#ifdef\ TRACE}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ INT\_TRACE\ \ \ INT\_TRACE\_Toggle()\ }\textcolor{comment}{//\ Ext\_IO\ PIN\ 5}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ INT\_TRACE\ \ \ "{}"{}}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{comment}{//\#define\ DATA\_DEBUG\ //\ show\ CANBUS\ registers}}
+\DoxyCodeLine{00053\ \textcolor{comment}{//\#define\ SDEBUG\ \ \ \ \ \ \ \ //\ FM80\ date/time\ DIAG\ scrolling\ text\ debug\ messages}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ NHD\ \ \ \ \ }\textcolor{comment}{//\ 4x20\ SPI\ display}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00057\ \textcolor{comment}{\ *\ timers\ used}}
+\DoxyCodeLine{00058\ \textcolor{comment}{\ *\ 0\ \ \ \ one\ second\ task}}
+\DoxyCodeLine{00059\ \textcolor{comment}{\ *\ 2\ \ \ \ ten\ second\ task}}
+\DoxyCodeLine{00060\ \textcolor{comment}{\ *\ 4\ \ \ \ 500us\ FM80\ I/O\ polling,\ sw\ timers\ and\ button\ press\ task}}
+\DoxyCodeLine{00061\ \textcolor{comment}{\ *\ 5\ \ \ \ 500ms\ modbus\ task}}
+\DoxyCodeLine{00062\ \textcolor{comment}{\ *\ 6\ \ \ \ 2ms\ modbus\ task}}
+\DoxyCodeLine{00063\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{comment}{/*\ spinner\ defines\ */}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#define\ MAX\_SHAPES\ \ 6}}
+\DoxyCodeLine{00067\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{qconfig_8h_aaa556a3b545d7b05ff4afda0d7cc0588}{spin}}[\mbox{\hyperlink{qconfig_8h_a258c547b1f322860cdb3f4f6f3142961}{MAX\_SHAPES}}][20]\ =\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{stringliteral}{"{}||//-\/-\/"{}},\ \textcolor{comment}{//\ classic\ LCD\ version\ with\ no\ \(\backslash\)\ character}}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{stringliteral}{"{}||//-\/-\/\(\backslash\)\(\backslash\)\(\backslash\)\(\backslash\)"{}},\ \textcolor{comment}{//\ classic}}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{stringliteral}{"{}OOOOOO-\/-\/\_\_-\/"{}},\ \textcolor{comment}{//\ eye\ blink}}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{stringliteral}{"{}vv<<\string^\string^>>"{}},\ \textcolor{comment}{//\ point\ spinner}}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{stringliteral}{"{}..**x\#x\#XX||-\/-\/"{}},\ \textcolor{comment}{//\ warp\ portal}}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{stringliteral}{"{}..ooOOoo"{}}\ \textcolor{comment}{//\ ball\ bouncer}}
+\DoxyCodeLine{00074\ \};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#define\ SPIN\_VAL\_UPDATE\ 5}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structspi__link__type}{spi\_link\_type}}\ \{\ \textcolor{comment}{//\ internal\ SPI\ state\ table}}
+\DoxyCodeLine{00079\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structspi__link__type_afd8c315c1149dbb7e4c4db0562291d06}{SPI\_LCD}}\ :\ 1;}
+\DoxyCodeLine{00080\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structspi__link__type_afe9684b1b5838571278fa10c46f21aa4}{SPI\_AUX}}\ :\ 1;}
+\DoxyCodeLine{00081\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structspi__link__type_a70dcbbe4cf811da02a705cb489289e69}{LCD\_TIMER}}\ :\ 1;}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ \mbox{\hyperlink{structspi__link__type_a3cab39579e0640aa27bca41c93d21019}{LCD\_DATA}}\ :\ 1;}
+\DoxyCodeLine{00083\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structspi__link__type_adc4674f6ea53803d98fa2ec36759e77d}{delay}};}
+\DoxyCodeLine{00084\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structspi__link__type_a7947c7e436bdd1bbe498d0ae1eb37490}{config}};}
+\DoxyCodeLine{00085\ \ \ \ \ uint8\_t\ *\ \mbox{\hyperlink{structspi__link__type_ac9e3b089b1d0923accccfe6cf74aabb1}{txbuf}};}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{volatile}\ int32\_t\ \mbox{\hyperlink{structspi__link__type_ae385aac6ddd0c8a964ef0a97a1fea4b9}{int\_count}};}
+\DoxyCodeLine{00087\ \};}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{keyword}{extern}\ \textcolor{keyword}{volatile}\ uint16\_t\ \mbox{\hyperlink{mateQ84_8X_2main_8c_a13b6090652ee42171ac58f007930d94a}{cc\_mode}};}
+\DoxyCodeLine{00090\ \textcolor{keyword}{extern}\ uint16\_t\ \mbox{\hyperlink{mateQ84_8X_2main_8c_aa1ffff7253c4e877ed1564a008e2b3d5}{panel\_watts}},\ \mbox{\hyperlink{mateQ84_8X_2main_8c_a5428a6793379f1ef5f92afe41c67c2b9}{volt\_whole}},\ \mbox{\hyperlink{mateQ84_8X_2main_8c_ab77553b372e2cb618b2934a21f5012ea}{bat\_amp\_whole}},\ \mbox{\hyperlink{mateQ84_8X_2main_8c_af6592ba43281a17840991c7b82b108de}{volt\_fract}},\ \mbox{\hyperlink{mateQ84_8X_2main_8c_a0a7d1eab37aff09f0b4fcd0a3013663c}{vw}};}
+\DoxyCodeLine{00091\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{qconfig_8h_a9ea28862fc0d3821e23f3fdd9a6dc440}{spinners}}(uint8\_t,\ \textcolor{keyword}{const}\ uint8\_t);}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#ifdef\ \ \_\_cplusplus}}
+\DoxyCodeLine{00094\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ \_\_cplusplus\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{comment}{//\ TODO\ If\ C++\ is\ being\ used,\ regular\ C\ code\ needs\ function\ names\ to\ have\ C\ }}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{comment}{//\ linkage\ so\ the\ functions\ can\ be\ used\ by\ the\ c\ code.\ }}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#ifdef\ \ \_\_cplusplus}}
+\DoxyCodeLine{00101\ \}}
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ \_\_cplusplus\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{/*\ XC\_HEADER\_TEMPLATE\_H\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

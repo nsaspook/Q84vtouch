@@ -1,0 +1,259 @@
+\doxysection{batmon.\+c File Reference}
+\hypertarget{batmon_8c}{}\label{batmon_8c}\index{batmon.c@{batmon.c}}
+{\ttfamily \#include "{}batmon.\+h"{}}\newline
+{\ttfamily \#include "{}dio.\+h"{}}\newline
+Include dependency graph for batmon.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{batmon_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structEB__data}{EB\+\_\+data}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{batmon_8c_ad3aa99c36d34b3c5ab1dd5973a8b92af}{get\+\_\+\+EEPROM}} (void)
+\item 
+bool \mbox{\hyperlink{batmon_8c_acaf2c3f31713fd984939d9a6fa2a09ed}{initbm\+\_\+data}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}EB)
+\item 
+void \mbox{\hyperlink{batmon_8c_abbecfe08a8067da1d2daaef283c614c6}{wr\+\_\+bm\+\_\+data}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}EB)
+\item 
+void \mbox{\hyperlink{batmon_8c_a160aba7dd1ed1077ba586114e8dc20cc}{get\+\_\+bm\+\_\+data}} (\mbox{\hyperlink{structEB__data}{EB\+\_\+data}} \texorpdfstring{$\ast$}{*}EB)
+\item 
+void \mbox{\hyperlink{batmon_8c_afb90aa0295eaeb354e4c5cd2b0fb7bcd}{compute\+\_\+bm\+\_\+data}} (\mbox{\hyperlink{structEB__data}{EB\+\_\+data}} \texorpdfstring{$\ast$}{*}EB)
+\item 
+void \mbox{\hyperlink{batmon_8c_a4e559943b300b91a879ff08d4daa4e79}{DATAEE\+\_\+\+Write\+Byte}} (const uint16\+\_\+t b\+Add, const uint8\+\_\+t b\+Data)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{batmon_8c_a43503c9f548cfd1f8f90725d966b5a43}{DATAEE\+\_\+\+Read\+Byte}} (const uint16\+\_\+t b\+Add)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{batmon_8c_a69ec5e5e21e10a162890ab673c76fa6a}{Volts\+\_\+to\+\_\+\+SOC}} (const uint16\+\_\+t bvw, const uint16\+\_\+t bvf)
+\item 
+\mbox{\hyperlink{batmon_8h_ad2a35b1a4377b6b59d25fe4b683b0b94}{device\+\_\+id\+\_\+data\+\_\+t}} \mbox{\hyperlink{batmon_8c_ac7c8f22b0d243f33067e05205e1f0d90}{Device\+ID\+\_\+\+Read}} (\mbox{\hyperlink{batmon_8h_abd4955723914b0e2686709ae05736cae}{device\+\_\+id\+\_\+address\+\_\+t}} address)
+\item 
+void \mbox{\hyperlink{batmon_8c_a6561f5e8a9faaab240e263bec23c52e3}{update\+\_\+time}} (struct tm \texorpdfstring{$\ast$}{*}ts, \mbox{\hyperlink{structEB__data}{EB\+\_\+data}} \texorpdfstring{$\ast$}{*}EB)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structEB__data}{EB\+\_\+data}} \mbox{\hyperlink{batmon_8c_a1f24021d46a0b6b9a3a50effcf98d885}{EBD}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{batmon_8c_a6f0ab32b77902d82849b60327ac8e8a3}{EBD\+\_\+update}} = 0
+\item 
+float \mbox{\hyperlink{batmon_8c_a6d4c959b440098e0b9e21564cecee331}{pv\+\_\+\+Wh\+\_\+daily}} = 0.\+0f
+\item 
+float \mbox{\hyperlink{batmon_8c_a9932dbc7e6df4aff32e5e0c7d3025bc5}{pv\+\_\+\+Wh\+\_\+daily\+\_\+prev}} = 0.\+0f
+\item 
+float \mbox{\hyperlink{batmon_8c_a32b8086e52ab3581927dca7f9f1cbd53}{ac\+\_\+\+Wh\+\_\+daily}} = 0.\+0f
+\item 
+float \mbox{\hyperlink{batmon_8c_adb85989b5fc1eaaac4b62235c9cf8a2a}{ac\+\_\+\+Wh\+\_\+daily\+\_\+prev}} = 0.\+0f
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{batmon_8c_afb90aa0295eaeb354e4c5cd2b0fb7bcd}\index{batmon.c@{batmon.c}!compute\_bm\_data@{compute\_bm\_data}}
+\index{compute\_bm\_data@{compute\_bm\_data}!batmon.c@{batmon.c}}
+\doxysubsubsection{\texorpdfstring{compute\_bm\_data()}{compute\_bm\_data()}}
+{\footnotesize\ttfamily \label{batmon_8c_afb90aa0295eaeb354e4c5cd2b0fb7bcd} 
+void compute\+\_\+bm\+\_\+data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structEB__data}{EB\+\_\+data}} \texorpdfstring{$\ast$}{*}}]{EB}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{batmon_8c_afb90aa0295eaeb354e4c5cd2b0fb7bcd_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{batmon_8c_afb90aa0295eaeb354e4c5cd2b0fb7bcd_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{batmon_8c_a43503c9f548cfd1f8f90725d966b5a43}\index{batmon.c@{batmon.c}!DATAEE\_ReadByte@{DATAEE\_ReadByte}}
+\index{DATAEE\_ReadByte@{DATAEE\_ReadByte}!batmon.c@{batmon.c}}
+\doxysubsubsection{\texorpdfstring{DATAEE\_ReadByte()}{DATAEE\_ReadByte()}}
+{\footnotesize\ttfamily \label{batmon_8c_a43503c9f548cfd1f8f90725d966b5a43} 
+uint8\+\_\+t DATAEE\+\_\+\+Read\+Byte (\begin{DoxyParamCaption}\item[{const uint16\+\_\+t}]{b\+Add}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{batmon_8c_a43503c9f548cfd1f8f90725d966b5a43_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{batmon_8c_a4e559943b300b91a879ff08d4daa4e79}\index{batmon.c@{batmon.c}!DATAEE\_WriteByte@{DATAEE\_WriteByte}}
+\index{DATAEE\_WriteByte@{DATAEE\_WriteByte}!batmon.c@{batmon.c}}
+\doxysubsubsection{\texorpdfstring{DATAEE\_WriteByte()}{DATAEE\_WriteByte()}}
+{\footnotesize\ttfamily \label{batmon_8c_a4e559943b300b91a879ff08d4daa4e79} 
+void DATAEE\+\_\+\+Write\+Byte (\begin{DoxyParamCaption}\item[{const uint16\+\_\+t}]{b\+Add}{, }\item[{const uint8\+\_\+t}]{b\+Data}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{batmon_8c_a4e559943b300b91a879ff08d4daa4e79_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{batmon_8c_ac7c8f22b0d243f33067e05205e1f0d90}\index{batmon.c@{batmon.c}!DeviceID\_Read@{DeviceID\_Read}}
+\index{DeviceID\_Read@{DeviceID\_Read}!batmon.c@{batmon.c}}
+\doxysubsubsection{\texorpdfstring{DeviceID\_Read()}{DeviceID\_Read()}}
+{\footnotesize\ttfamily \label{batmon_8c_ac7c8f22b0d243f33067e05205e1f0d90} 
+\mbox{\hyperlink{batmon_8h_ad2a35b1a4377b6b59d25fe4b683b0b94}{device\+\_\+id\+\_\+data\+\_\+t}} Device\+ID\+\_\+\+Read (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{batmon_8h_abd4955723914b0e2686709ae05736cae}{device\+\_\+id\+\_\+address\+\_\+t}}}]{address}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=248pt]{batmon_8c_ac7c8f22b0d243f33067e05205e1f0d90_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{batmon_8c_a160aba7dd1ed1077ba586114e8dc20cc}\index{batmon.c@{batmon.c}!get\_bm\_data@{get\_bm\_data}}
+\index{get\_bm\_data@{get\_bm\_data}!batmon.c@{batmon.c}}
+\doxysubsubsection{\texorpdfstring{get\_bm\_data()}{get\_bm\_data()}}
+{\footnotesize\ttfamily \label{batmon_8c_a160aba7dd1ed1077ba586114e8dc20cc} 
+void get\+\_\+bm\+\_\+data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structEB__data}{EB\+\_\+data}} \texorpdfstring{$\ast$}{*}}]{EB}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{batmon_8c_a160aba7dd1ed1077ba586114e8dc20cc_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{batmon_8c_a160aba7dd1ed1077ba586114e8dc20cc_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{batmon_8c_ad3aa99c36d34b3c5ab1dd5973a8b92af}\index{batmon.c@{batmon.c}!get\_EEPROM@{get\_EEPROM}}
+\index{get\_EEPROM@{get\_EEPROM}!batmon.c@{batmon.c}}
+\doxysubsubsection{\texorpdfstring{get\_EEPROM()}{get\_EEPROM()}}
+{\footnotesize\ttfamily \label{batmon_8c_ad3aa99c36d34b3c5ab1dd5973a8b92af} 
+\mbox{\hyperlink{structEB__data}{EB\+\_\+data}} \texorpdfstring{$\ast$}{*} get\+\_\+\+EEPROM (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{batmon_8c_acaf2c3f31713fd984939d9a6fa2a09ed}\index{batmon.c@{batmon.c}!initbm\_data@{initbm\_data}}
+\index{initbm\_data@{initbm\_data}!batmon.c@{batmon.c}}
+\doxysubsubsection{\texorpdfstring{initbm\_data()}{initbm\_data()}}
+{\footnotesize\ttfamily \label{batmon_8c_acaf2c3f31713fd984939d9a6fa2a09ed} 
+bool initbm\+\_\+data (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{EB}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{batmon_8c_acaf2c3f31713fd984939d9a6fa2a09ed_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{batmon_8c_acaf2c3f31713fd984939d9a6fa2a09ed_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{batmon_8c_a6561f5e8a9faaab240e263bec23c52e3}\index{batmon.c@{batmon.c}!update\_time@{update\_time}}
+\index{update\_time@{update\_time}!batmon.c@{batmon.c}}
+\doxysubsubsection{\texorpdfstring{update\_time()}{update\_time()}}
+{\footnotesize\ttfamily \label{batmon_8c_a6561f5e8a9faaab240e263bec23c52e3} 
+void update\+\_\+time (\begin{DoxyParamCaption}\item[{struct tm \texorpdfstring{$\ast$}{*}}]{ts}{, }\item[{\mbox{\hyperlink{structEB__data}{EB\+\_\+data}} \texorpdfstring{$\ast$}{*}}]{EB}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{batmon_8c_a6561f5e8a9faaab240e263bec23c52e3_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{batmon_8c_a69ec5e5e21e10a162890ab673c76fa6a}\index{batmon.c@{batmon.c}!Volts\_to\_SOC@{Volts\_to\_SOC}}
+\index{Volts\_to\_SOC@{Volts\_to\_SOC}!batmon.c@{batmon.c}}
+\doxysubsubsection{\texorpdfstring{Volts\_to\_SOC()}{Volts\_to\_SOC()}}
+{\footnotesize\ttfamily \label{batmon_8c_a69ec5e5e21e10a162890ab673c76fa6a} 
+uint16\+\_\+t Volts\+\_\+to\+\_\+\+SOC (\begin{DoxyParamCaption}\item[{const uint16\+\_\+t}]{bvw}{, }\item[{const uint16\+\_\+t}]{bvf}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{batmon_8c_a69ec5e5e21e10a162890ab673c76fa6a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{batmon_8c_abbecfe08a8067da1d2daaef283c614c6}\index{batmon.c@{batmon.c}!wr\_bm\_data@{wr\_bm\_data}}
+\index{wr\_bm\_data@{wr\_bm\_data}!batmon.c@{batmon.c}}
+\doxysubsubsection{\texorpdfstring{wr\_bm\_data()}{wr\_bm\_data()}}
+{\footnotesize\ttfamily \label{batmon_8c_abbecfe08a8067da1d2daaef283c614c6} 
+void wr\+\_\+bm\+\_\+data (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{EB}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=301pt]{batmon_8c_abbecfe08a8067da1d2daaef283c614c6_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{batmon_8c_abbecfe08a8067da1d2daaef283c614c6_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{batmon_8c_a32b8086e52ab3581927dca7f9f1cbd53}\index{batmon.c@{batmon.c}!ac\_Wh\_daily@{ac\_Wh\_daily}}
+\index{ac\_Wh\_daily@{ac\_Wh\_daily}!batmon.c@{batmon.c}}
+\doxysubsubsection{\texorpdfstring{ac\_Wh\_daily}{ac\_Wh\_daily}}
+{\footnotesize\ttfamily \label{batmon_8c_a32b8086e52ab3581927dca7f9f1cbd53} 
+float ac\+\_\+\+Wh\+\_\+daily = 0.\+0f}
+
+\Hypertarget{batmon_8c_adb85989b5fc1eaaac4b62235c9cf8a2a}\index{batmon.c@{batmon.c}!ac\_Wh\_daily\_prev@{ac\_Wh\_daily\_prev}}
+\index{ac\_Wh\_daily\_prev@{ac\_Wh\_daily\_prev}!batmon.c@{batmon.c}}
+\doxysubsubsection{\texorpdfstring{ac\_Wh\_daily\_prev}{ac\_Wh\_daily\_prev}}
+{\footnotesize\ttfamily \label{batmon_8c_adb85989b5fc1eaaac4b62235c9cf8a2a} 
+float ac\+\_\+\+Wh\+\_\+daily\+\_\+prev = 0.\+0f}
+
+\Hypertarget{batmon_8c_a1f24021d46a0b6b9a3a50effcf98d885}\index{batmon.c@{batmon.c}!EBD@{EBD}}
+\index{EBD@{EBD}!batmon.c@{batmon.c}}
+\doxysubsubsection{\texorpdfstring{EBD}{EBD}}
+{\footnotesize\ttfamily \label{batmon_8c_a1f24021d46a0b6b9a3a50effcf98d885} 
+\mbox{\hyperlink{structEB__data}{EB\+\_\+data}} EBD}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ .checkmark\ =\ \mbox{\hyperlink{batmon_8h_a9ffd0f3a60100ccf5f0038e42ba9d507}{BM\_CM}},}
+\DoxyCodeLine{\ \ \ \ .version\ =\ \mbox{\hyperlink{batmon_8h_a15bc5122dbf4cb55e97b41be0a86da4a}{BM\_EEPROM\_VER}},}
+\DoxyCodeLine{\ \ \ \ .loaded\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{\ \ \ \ .bat\_cycles\ =\ 0,}
+\DoxyCodeLine{\ \ \ \ .bat\_energy\ =\ \mbox{\hyperlink{batmon_8h_a8d494fefcb05c5a447c0b73b15ec0740}{BAT\_ENERGY}},}
+\DoxyCodeLine{\ \ \ \ .bat\_mode\ =\ 0,}
+\DoxyCodeLine{\ \ \ \ .bat\_time\ =\ 0,}
+\DoxyCodeLine{\ \ \ \ .crc\ =\ 0,}
+\DoxyCodeLine{\ \ \ \ .alt\_display\ =\ 1,\ }
+\DoxyCodeLine{\ \ \ \ .q84\_sequence\ =\ 0,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{batmon_8c_a6f0ab32b77902d82849b60327ac8e8a3}\index{batmon.c@{batmon.c}!EBD\_update@{EBD\_update}}
+\index{EBD\_update@{EBD\_update}!batmon.c@{batmon.c}}
+\doxysubsubsection{\texorpdfstring{EBD\_update}{EBD\_update}}
+{\footnotesize\ttfamily \label{batmon_8c_a6f0ab32b77902d82849b60327ac8e8a3} 
+uint16\+\_\+t EBD\+\_\+update = 0}
+
+\Hypertarget{batmon_8c_a6d4c959b440098e0b9e21564cecee331}\index{batmon.c@{batmon.c}!pv\_Wh\_daily@{pv\_Wh\_daily}}
+\index{pv\_Wh\_daily@{pv\_Wh\_daily}!batmon.c@{batmon.c}}
+\doxysubsubsection{\texorpdfstring{pv\_Wh\_daily}{pv\_Wh\_daily}}
+{\footnotesize\ttfamily \label{batmon_8c_a6d4c959b440098e0b9e21564cecee331} 
+float pv\+\_\+\+Wh\+\_\+daily = 0.\+0f}
+
+\Hypertarget{batmon_8c_a9932dbc7e6df4aff32e5e0c7d3025bc5}\index{batmon.c@{batmon.c}!pv\_Wh\_daily\_prev@{pv\_Wh\_daily\_prev}}
+\index{pv\_Wh\_daily\_prev@{pv\_Wh\_daily\_prev}!batmon.c@{batmon.c}}
+\doxysubsubsection{\texorpdfstring{pv\_Wh\_daily\_prev}{pv\_Wh\_daily\_prev}}
+{\footnotesize\ttfamily \label{batmon_8c_a9932dbc7e6df4aff32e5e0c7d3025bc5} 
+float pv\+\_\+\+Wh\+\_\+daily\+\_\+prev = 0.\+0f}
+

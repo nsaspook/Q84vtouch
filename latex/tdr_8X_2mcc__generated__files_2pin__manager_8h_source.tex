@@ -1,0 +1,175 @@
+\doxysection{pin\+\_\+manager.\+h}
+\hypertarget{tdr_8X_2mcc__generated__files_2pin__manager_8h_source}{}\label{tdr_8X_2mcc__generated__files_2pin__manager_8h_source}\index{tdr.X/mcc\_generated\_files/pin\_manager.h@{tdr.X/mcc\_generated\_files/pin\_manager.h}}
+\mbox{\hyperlink{tdr_8X_2mcc__generated__files_2pin__manager_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ \ \ \ (c)\ 2018\ Microchip\ Technology\ Inc.\ and\ its\ subsidiaries.\ }}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ \ \ \ }}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ \ \ \ Subject\ to\ your\ compliance\ with\ these\ terms,\ you\ may\ use\ Microchip\ software\ and\ any\ }}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ \ \ \ derivatives\ exclusively\ with\ Microchip\ products.\ It\ is\ your\ responsibility\ to\ comply\ with\ third\ party\ }}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ \ \ \ license\ terms\ applicable\ to\ your\ use\ of\ third\ party\ software\ (including\ open\ source\ software)\ that\ }}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ \ \ \ may\ accompany\ Microchip\ software.}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ \ \ \ }}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ \ \ \ THIS\ SOFTWARE\ IS\ SUPPLIED\ BY\ MICROCHIP\ "{}AS\ IS"{}.\ NO\ WARRANTIES,\ WHETHER\ }}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ \ \ \ EXPRESS,\ IMPLIED\ OR\ STATUTORY,\ APPLY\ TO\ THIS\ SOFTWARE,\ INCLUDING\ ANY\ }}
+\DoxyCodeLine{00034\ \textcolor{comment}{\ \ \ \ IMPLIED\ WARRANTIES\ OF\ NON-\/INFRINGEMENT,\ MERCHANTABILITY,\ AND\ FITNESS\ }}
+\DoxyCodeLine{00035\ \textcolor{comment}{\ \ \ \ FOR\ A\ PARTICULAR\ PURPOSE.}}
+\DoxyCodeLine{00036\ \textcolor{comment}{\ \ \ \ }}
+\DoxyCodeLine{00037\ \textcolor{comment}{\ \ \ \ IN\ NO\ EVENT\ WILL\ MICROCHIP\ BE\ LIABLE\ FOR\ ANY\ INDIRECT,\ SPECIAL,\ PUNITIVE,\ }}
+\DoxyCodeLine{00038\ \textcolor{comment}{\ \ \ \ INCIDENTAL\ OR\ CONSEQUENTIAL\ LOSS,\ DAMAGE,\ COST\ OR\ EXPENSE\ OF\ ANY\ KIND\ }}
+\DoxyCodeLine{00039\ \textcolor{comment}{\ \ \ \ WHATSOEVER\ RELATED\ TO\ THE\ SOFTWARE,\ HOWEVER\ CAUSED,\ EVEN\ IF\ MICROCHIP\ }}
+\DoxyCodeLine{00040\ \textcolor{comment}{\ \ \ \ HAS\ BEEN\ ADVISED\ OF\ THE\ POSSIBILITY\ OR\ THE\ DAMAGES\ ARE\ FORESEEABLE.\ TO\ }}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ \ \ \ THE\ FULLEST\ EXTENT\ ALLOWED\ BY\ LAW,\ MICROCHIP'S\ TOTAL\ LIABILITY\ ON\ ALL\ }}
+\DoxyCodeLine{00042\ \textcolor{comment}{\ \ \ \ CLAIMS\ IN\ ANY\ WAY\ RELATED\ TO\ THIS\ SOFTWARE\ WILL\ NOT\ EXCEED\ THE\ AMOUNT\ }}
+\DoxyCodeLine{00043\ \textcolor{comment}{\ \ \ \ OF\ FEES,\ IF\ ANY,\ THAT\ YOU\ HAVE\ PAID\ DIRECTLY\ TO\ MICROCHIP\ FOR\ THIS\ }}
+\DoxyCodeLine{00044\ \textcolor{comment}{\ \ \ \ SOFTWARE.}}
+\DoxyCodeLine{00045\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#ifndef\ PIN\_MANAGER\_H}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ PIN\_MANAGER\_H}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#include\ <xc.h>}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ INPUT\ \ \ 1}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ OUTPUT\ \ 0}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#define\ HIGH\ \ \ \ 1}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ LOW\ \ \ \ \ 0}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ ANALOG\ \ \ \ \ \ 1}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ DIGITAL\ \ \ \ \ 0}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#define\ PULL\_UP\_ENABLED\ \ \ \ \ \ 1}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#define\ PULL\_UP\_DISABLED\ \ \ \ \ 0}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{comment}{//\ get/set\ channel\_AN0\ aliases}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#define\ channel\_AN0\_TRIS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TRISAbits.TRISA0}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ channel\_AN0\_LAT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LATAbits.LATA0}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ channel\_AN0\_PORT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PORTAbits.RA0}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#define\ channel\_AN0\_ANS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ANSELAbits.ANSA0}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#define\ channel\_AN0\_SetHigh()\ \ \ \ \ \ \ \ \ \ \ \ do\ \{\ LATAbits.LATA0\ =\ 1;\ \}\ while(0)}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#define\ channel\_AN0\_SetLow()\ \ \ \ \ \ \ \ \ \ \ \ \ do\ \{\ LATAbits.LATA0\ =\ 0;\ \}\ while(0)}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#define\ channel\_AN0\_Toggle()\ \ \ \ \ \ \ \ \ \ \ \ \ do\ \{\ LATAbits.LATA0\ =\ \string~LATAbits.LATA0;\ \}\ while(0)}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#define\ channel\_AN0\_GetValue()\ \ \ \ \ \ \ \ \ \ \ PORTAbits.RA0}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#define\ channel\_AN0\_SetDigitalInput()\ \ \ \ do\ \{\ TRISAbits.TRISA0\ =\ 1;\ \}\ while(0)}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#define\ channel\_AN0\_SetDigitalOutput()\ \ \ do\ \{\ TRISAbits.TRISA0\ =\ 0;\ \}\ while(0)}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#define\ channel\_AN0\_SetAnalogMode()\ \ \ \ \ \ do\ \{\ ANSELAbits.ANSA0\ =\ 1;\ \}\ while(0)}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#define\ channel\_AN0\_SetDigitalMode()\ \ \ \ \ do\ \{\ ANSELAbits.ANSA0\ =\ 0;\ \}\ while(0)}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{comment}{//\ get/set\ RB0\ procedures}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#define\ RB0\_SetHigh()\ \ \ \ \ \ \ \ \ \ \ \ do\ \{\ LATBbits.LATB0\ =\ 1;\ \}\ while(0)}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#define\ RB0\_SetLow()\ \ \ \ \ \ \ \ \ \ \ \ \ do\ \{\ LATBbits.LATB0\ =\ 0;\ \}\ while(0)}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#define\ RB0\_Toggle()\ \ \ \ \ \ \ \ \ \ \ \ \ do\ \{\ LATBbits.LATB0\ =\ \string~LATBbits.LATB0;\ \}\ while(0)}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#define\ RB0\_GetValue()\ \ \ \ \ \ \ \ \ \ \ \ \ \ PORTBbits.RB0}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#define\ RB0\_SetDigitalInput()\ \ \ \ do\ \{\ TRISBbits.TRISB0\ =\ 1;\ \}\ while(0)}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#define\ RB0\_SetDigitalOutput()\ \ \ do\ \{\ TRISBbits.TRISB0\ =\ 0;\ \}\ while(0)}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#define\ RB0\_SetPullup()\ \ \ \ \ \ \ \ \ \ \ \ \ do\ \{\ WPUBbits.WPUB0\ =\ 1;\ \}\ while(0)}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#define\ RB0\_ResetPullup()\ \ \ \ \ \ \ \ \ \ \ do\ \{\ WPUBbits.WPUB0\ =\ 0;\ \}\ while(0)}}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#define\ RB0\_SetAnalogMode()\ \ \ \ \ \ \ \ \ do\ \{\ ANSELBbits.ANSB0\ =\ 1;\ \}\ while(0)}}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#define\ RB0\_SetDigitalMode()\ \ \ \ \ \ \ \ do\ \{\ ANSELBbits.ANSB0\ =\ 0;\ \}\ while(0)}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{comment}{//\ get/set\ IO\_RB2\ aliases}}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#define\ IO\_RB2\_TRIS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TRISBbits.TRISB2}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#define\ IO\_RB2\_LAT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LATBbits.LATB2}}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#define\ IO\_RB2\_PORT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PORTBbits.RB2}}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#define\ IO\_RB2\_WPU\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WPUBbits.WPUB2}}
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\#define\ IO\_RB2\_ANS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ANSELBbits.ANSB2}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#define\ IO\_RB2\_SetHigh()\ \ \ \ \ \ \ \ \ \ \ \ do\ \{\ LATBbits.LATB2\ =\ 1;\ \}\ while(0)}}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#define\ IO\_RB2\_SetLow()\ \ \ \ \ \ \ \ \ \ \ \ \ do\ \{\ LATBbits.LATB2\ =\ 0;\ \}\ while(0)}}
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#define\ IO\_RB2\_Toggle()\ \ \ \ \ \ \ \ \ \ \ \ \ do\ \{\ LATBbits.LATB2\ =\ \string~LATBbits.LATB2;\ \}\ while(0)}}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#define\ IO\_RB2\_GetValue()\ \ \ \ \ \ \ \ \ \ \ PORTBbits.RB2}}
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#define\ IO\_RB2\_SetDigitalInput()\ \ \ \ do\ \{\ TRISBbits.TRISB2\ =\ 1;\ \}\ while(0)}}
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\#define\ IO\_RB2\_SetDigitalOutput()\ \ \ do\ \{\ TRISBbits.TRISB2\ =\ 0;\ \}\ while(0)}}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#define\ IO\_RB2\_SetPullup()\ \ \ \ \ \ \ \ \ \ do\ \{\ WPUBbits.WPUB2\ =\ 1;\ \}\ while(0)}}
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#define\ IO\_RB2\_ResetPullup()\ \ \ \ \ \ \ \ do\ \{\ WPUBbits.WPUB2\ =\ 0;\ \}\ while(0)}}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#define\ IO\_RB2\_SetAnalogMode()\ \ \ \ \ \ do\ \{\ ANSELBbits.ANSB2\ =\ 1;\ \}\ while(0)}}
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#define\ IO\_RB2\_SetDigitalMode()\ \ \ \ \ do\ \{\ ANSELBbits.ANSB2\ =\ 0;\ \}\ while(0)}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{comment}{//\ get/set\ IO\_RB3\ aliases}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#define\ IO\_RB3\_TRIS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TRISBbits.TRISB3}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#define\ IO\_RB3\_LAT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LATBbits.LATB3}}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#define\ IO\_RB3\_PORT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PORTBbits.RB3}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#define\ IO\_RB3\_WPU\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WPUBbits.WPUB3}}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#define\ IO\_RB3\_ANS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ANSELBbits.ANSB3}}
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#define\ IO\_RB3\_SetHigh()\ \ \ \ \ \ \ \ \ \ \ \ do\ \{\ LATBbits.LATB3\ =\ 1;\ \}\ while(0)}}
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\#define\ IO\_RB3\_SetLow()\ \ \ \ \ \ \ \ \ \ \ \ \ do\ \{\ LATBbits.LATB3\ =\ 0;\ \}\ while(0)}}
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#define\ IO\_RB3\_Toggle()\ \ \ \ \ \ \ \ \ \ \ \ \ do\ \{\ LATBbits.LATB3\ =\ \string~LATBbits.LATB3;\ \}\ while(0)}}
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\#define\ IO\_RB3\_GetValue()\ \ \ \ \ \ \ \ \ \ \ PORTBbits.RB3}}
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#define\ IO\_RB3\_SetDigitalInput()\ \ \ \ do\ \{\ TRISBbits.TRISB3\ =\ 1;\ \}\ while(0)}}
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\#define\ IO\_RB3\_SetDigitalOutput()\ \ \ do\ \{\ TRISBbits.TRISB3\ =\ 0;\ \}\ while(0)}}
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\#define\ IO\_RB3\_SetPullup()\ \ \ \ \ \ \ \ \ \ do\ \{\ WPUBbits.WPUB3\ =\ 1;\ \}\ while(0)}}
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\#define\ IO\_RB3\_ResetPullup()\ \ \ \ \ \ \ \ do\ \{\ WPUBbits.WPUB3\ =\ 0;\ \}\ while(0)}}
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#define\ IO\_RB3\_SetAnalogMode()\ \ \ \ \ \ do\ \{\ ANSELBbits.ANSB3\ =\ 1;\ \}\ while(0)}}
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\#define\ IO\_RB3\_SetDigitalMode()\ \ \ \ \ do\ \{\ ANSELBbits.ANSB3\ =\ 0;\ \}\ while(0)}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \textcolor{comment}{//\ get/set\ DLED1\ aliases}}
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\#define\ DLED1\_TRIS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TRISCbits.TRISC1}}
+\DoxyCodeLine{00130\ \textcolor{preprocessor}{\#define\ DLED1\_LAT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LATCbits.LATC1}}
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\#define\ DLED1\_PORT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PORTCbits.RC1}}
+\DoxyCodeLine{00132\ \textcolor{preprocessor}{\#define\ DLED1\_SetHigh()\ \ \ \ \ \ \ \ \ \ \ \ do\ \{\ LATCbits.LATC1\ =\ 1;\ \}\ while(0)}}
+\DoxyCodeLine{00133\ \textcolor{preprocessor}{\#define\ DLED1\_SetLow()\ \ \ \ \ \ \ \ \ \ \ \ \ do\ \{\ LATCbits.LATC1\ =\ 0;\ \}\ while(0)}}
+\DoxyCodeLine{00134\ \textcolor{preprocessor}{\#define\ DLED1\_Toggle()\ \ \ \ \ \ \ \ \ \ \ \ \ do\ \{\ LATCbits.LATC1\ =\ \string~LATCbits.LATC1;\ \}\ while(0)}}
+\DoxyCodeLine{00135\ \textcolor{preprocessor}{\#define\ DLED1\_GetValue()\ \ \ \ \ \ \ \ \ \ \ PORTCbits.RC1}}
+\DoxyCodeLine{00136\ \textcolor{preprocessor}{\#define\ DLED1\_SetDigitalInput()\ \ \ \ do\ \{\ TRISCbits.TRISC1\ =\ 1;\ \}\ while(0)}}
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\#define\ DLED1\_SetDigitalOutput()\ \ \ do\ \{\ TRISCbits.TRISC1\ =\ 0;\ \}\ while(0)}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \textcolor{comment}{//\ get/set\ DLED2\ aliases}}
+\DoxyCodeLine{00140\ \textcolor{preprocessor}{\#define\ DLED2\_TRIS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TRISCbits.TRISC2}}
+\DoxyCodeLine{00141\ \textcolor{preprocessor}{\#define\ DLED2\_LAT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LATCbits.LATC2}}
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\#define\ DLED2\_PORT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PORTCbits.RC2}}
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\#define\ DLED2\_ANS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ANSELCbits.ANSC2}}
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\#define\ DLED2\_SetHigh()\ \ \ \ \ \ \ \ \ \ \ \ do\ \{\ LATCbits.LATC2\ =\ 1;\ \}\ while(0)}}
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\#define\ DLED2\_SetLow()\ \ \ \ \ \ \ \ \ \ \ \ \ do\ \{\ LATCbits.LATC2\ =\ 0;\ \}\ while(0)}}
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\#define\ DLED2\_Toggle()\ \ \ \ \ \ \ \ \ \ \ \ \ do\ \{\ LATCbits.LATC2\ =\ \string~LATCbits.LATC2;\ \}\ while(0)}}
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\#define\ DLED2\_GetValue()\ \ \ \ \ \ \ \ \ \ \ PORTCbits.RC2}}
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\#define\ DLED2\_SetDigitalInput()\ \ \ \ do\ \{\ TRISCbits.TRISC2\ =\ 1;\ \}\ while(0)}}
+\DoxyCodeLine{00149\ \textcolor{preprocessor}{\#define\ DLED2\_SetDigitalOutput()\ \ \ do\ \{\ TRISCbits.TRISC2\ =\ 0;\ \}\ while(0)}}
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\#define\ DLED2\_SetAnalogMode()\ \ \ \ \ \ do\ \{\ ANSELCbits.ANSC2\ =\ 1;\ \}\ while(0)}}
+\DoxyCodeLine{00151\ \textcolor{preprocessor}{\#define\ DLED2\_SetDigitalMode()\ \ \ \ \ do\ \{\ ANSELCbits.ANSC2\ =\ 0;\ \}\ while(0)}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \textcolor{comment}{//\ get/set\ DLED3\ aliases}}
+\DoxyCodeLine{00154\ \textcolor{preprocessor}{\#define\ DLED3\_TRIS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TRISCbits.TRISC3}}
+\DoxyCodeLine{00155\ \textcolor{preprocessor}{\#define\ DLED3\_LAT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LATCbits.LATC3}}
+\DoxyCodeLine{00156\ \textcolor{preprocessor}{\#define\ DLED3\_PORT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PORTCbits.RC3}}
+\DoxyCodeLine{00157\ \textcolor{preprocessor}{\#define\ DLED3\_ANS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ANSELCbits.ANSC3}}
+\DoxyCodeLine{00158\ \textcolor{preprocessor}{\#define\ DLED3\_SetHigh()\ \ \ \ \ \ \ \ \ \ \ \ do\ \{\ LATCbits.LATC3\ =\ 1;\ \}\ while(0)}}
+\DoxyCodeLine{00159\ \textcolor{preprocessor}{\#define\ DLED3\_SetLow()\ \ \ \ \ \ \ \ \ \ \ \ \ do\ \{\ LATCbits.LATC3\ =\ 0;\ \}\ while(0)}}
+\DoxyCodeLine{00160\ \textcolor{preprocessor}{\#define\ DLED3\_Toggle()\ \ \ \ \ \ \ \ \ \ \ \ \ do\ \{\ LATCbits.LATC3\ =\ \string~LATCbits.LATC3;\ \}\ while(0)}}
+\DoxyCodeLine{00161\ \textcolor{preprocessor}{\#define\ DLED3\_GetValue()\ \ \ \ \ \ \ \ \ \ \ PORTCbits.RC3}}
+\DoxyCodeLine{00162\ \textcolor{preprocessor}{\#define\ DLED3\_SetDigitalInput()\ \ \ \ do\ \{\ TRISCbits.TRISC3\ =\ 1;\ \}\ while(0)}}
+\DoxyCodeLine{00163\ \textcolor{preprocessor}{\#define\ DLED3\_SetDigitalOutput()\ \ \ do\ \{\ TRISCbits.TRISC3\ =\ 0;\ \}\ while(0)}}
+\DoxyCodeLine{00164\ \textcolor{preprocessor}{\#define\ DLED3\_SetAnalogMode()\ \ \ \ \ \ do\ \{\ ANSELCbits.ANSC3\ =\ 1;\ \}\ while(0)}}
+\DoxyCodeLine{00165\ \textcolor{preprocessor}{\#define\ DLED3\_SetDigitalMode()\ \ \ \ \ do\ \{\ ANSELCbits.ANSC3\ =\ 0;\ \}\ while(0)}}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \textcolor{comment}{//\ get/set\ RC6\ procedures}}
+\DoxyCodeLine{00168\ \textcolor{preprocessor}{\#define\ RC6\_SetHigh()\ \ \ \ \ \ \ \ \ \ \ \ do\ \{\ LATCbits.LATC6\ =\ 1;\ \}\ while(0)}}
+\DoxyCodeLine{00169\ \textcolor{preprocessor}{\#define\ RC6\_SetLow()\ \ \ \ \ \ \ \ \ \ \ \ \ do\ \{\ LATCbits.LATC6\ =\ 0;\ \}\ while(0)}}
+\DoxyCodeLine{00170\ \textcolor{preprocessor}{\#define\ RC6\_Toggle()\ \ \ \ \ \ \ \ \ \ \ \ \ do\ \{\ LATCbits.LATC6\ =\ \string~LATCbits.LATC6;\ \}\ while(0)}}
+\DoxyCodeLine{00171\ \textcolor{preprocessor}{\#define\ RC6\_GetValue()\ \ \ \ \ \ \ \ \ \ \ \ \ \ PORTCbits.RC6}}
+\DoxyCodeLine{00172\ \textcolor{preprocessor}{\#define\ RC6\_SetDigitalInput()\ \ \ \ do\ \{\ TRISCbits.TRISC6\ =\ 1;\ \}\ while(0)}}
+\DoxyCodeLine{00173\ \textcolor{preprocessor}{\#define\ RC6\_SetDigitalOutput()\ \ \ do\ \{\ TRISCbits.TRISC6\ =\ 0;\ \}\ while(0)}}
+\DoxyCodeLine{00174\ \textcolor{preprocessor}{\#define\ RC6\_SetAnalogMode()\ \ \ \ \ \ \ \ \ do\ \{\ ANSELCbits.ANSC6\ =\ 1;\ \}\ while(0)}}
+\DoxyCodeLine{00175\ \textcolor{preprocessor}{\#define\ RC6\_SetDigitalMode()\ \ \ \ \ \ \ \ do\ \{\ ANSELCbits.ANSC6\ =\ 0;\ \}\ while(0)}}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \textcolor{comment}{//\ get/set\ RC7\ procedures}}
+\DoxyCodeLine{00178\ \textcolor{preprocessor}{\#define\ RC7\_SetHigh()\ \ \ \ \ \ \ \ \ \ \ \ do\ \{\ LATCbits.LATC7\ =\ 1;\ \}\ while(0)}}
+\DoxyCodeLine{00179\ \textcolor{preprocessor}{\#define\ RC7\_SetLow()\ \ \ \ \ \ \ \ \ \ \ \ \ do\ \{\ LATCbits.LATC7\ =\ 0;\ \}\ while(0)}}
+\DoxyCodeLine{00180\ \textcolor{preprocessor}{\#define\ RC7\_Toggle()\ \ \ \ \ \ \ \ \ \ \ \ \ do\ \{\ LATCbits.LATC7\ =\ \string~LATCbits.LATC7;\ \}\ while(0)}}
+\DoxyCodeLine{00181\ \textcolor{preprocessor}{\#define\ RC7\_GetValue()\ \ \ \ \ \ \ \ \ \ \ \ \ \ PORTCbits.RC7}}
+\DoxyCodeLine{00182\ \textcolor{preprocessor}{\#define\ RC7\_SetDigitalInput()\ \ \ \ do\ \{\ TRISCbits.TRISC7\ =\ 1;\ \}\ while(0)}}
+\DoxyCodeLine{00183\ \textcolor{preprocessor}{\#define\ RC7\_SetDigitalOutput()\ \ \ do\ \{\ TRISCbits.TRISC7\ =\ 0;\ \}\ while(0)}}
+\DoxyCodeLine{00184\ \textcolor{preprocessor}{\#define\ RC7\_SetAnalogMode()\ \ \ \ \ \ \ \ \ do\ \{\ ANSELCbits.ANSC7\ =\ 1;\ \}\ while(0)}}
+\DoxyCodeLine{00185\ \textcolor{preprocessor}{\#define\ RC7\_SetDigitalMode()\ \ \ \ \ \ \ \ do\ \{\ ANSELCbits.ANSC7\ =\ 0;\ \}\ while(0)}}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00197\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{mateQ84_8X_2mcc__generated__files_2pin__manager_8h_a50357774183a136d9490f64ad0d5c6cb}{PIN\_MANAGER\_Initialize}}\ (\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00209\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{tdr_8X_2mcc__generated__files_2pin__manager_8h_a6ff320d017cf9b99ba9045f24d7ec896}{PIN\_MANAGER\_IOC}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ PIN\_MANAGER\_H}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

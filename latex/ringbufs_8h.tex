@@ -1,0 +1,136 @@
+\doxysection{ringbufs.\+h File Reference}
+\hypertarget{ringbufs_8h}{}\label{ringbufs_8h}\index{ringbufs.h@{ringbufs.h}}
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+Include dependency graph for ringbufs.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=285pt]{ringbufs_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=145pt]{ringbufs_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structringBufS__t}{ring\+Buf\+S\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{ringbufs_8h_a3979138d69702d83185bef951f48dcd5}{RBUF\+\_\+\+SIZE}}~32
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct ring\+Buf\+S\+\_\+t \mbox{\hyperlink{ringbufs_8h_aa5eceade01632aebac2d54dcd423b617}{ring\+Buf\+S\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{ringbufs_8h_a34e5704237c7472ddc44d0dc33181cf5}{ring\+Buf\+S\+\_\+init}} (volatile \mbox{\hyperlink{structringBufS__t}{ring\+Buf\+S\+\_\+t}} \texorpdfstring{$\ast$}{*}\+\_\+this)
+\item 
+int8\+\_\+t \mbox{\hyperlink{ringbufs_8h_a35cc95280d10e20a261938e56b6a614a}{ring\+Buf\+S\+\_\+empty}} (\mbox{\hyperlink{structringBufS__t}{ring\+Buf\+S\+\_\+t}} \texorpdfstring{$\ast$}{*}\+\_\+this)
+\item 
+int8\+\_\+t \mbox{\hyperlink{ringbufs_8h_aaf5edf59424df3782d371ebae7b8f1d5}{ring\+Buf\+S\+\_\+full}} (\mbox{\hyperlink{structringBufS__t}{ring\+Buf\+S\+\_\+t}} \texorpdfstring{$\ast$}{*}\+\_\+this)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{ringbufs_8h_adc3bc6838d1f9fa6e1f958c0038ded86}{ring\+Buf\+S\+\_\+get}} (\mbox{\hyperlink{structringBufS__t}{ring\+Buf\+S\+\_\+t}} \texorpdfstring{$\ast$}{*}\+\_\+this)
+\item 
+void \mbox{\hyperlink{ringbufs_8h_affc9992c49c8184c104a5d96587b949b}{ring\+Buf\+S\+\_\+put}} (\mbox{\hyperlink{structringBufS__t}{ring\+Buf\+S\+\_\+t}} \texorpdfstring{$\ast$}{*}\+\_\+this, const uint8\+\_\+t c)
+\item 
+void \mbox{\hyperlink{ringbufs_8h_afd07784b578ae76b66595ca22f2df9ab}{ring\+Buf\+S\+\_\+put\+\_\+dma}} (\mbox{\hyperlink{structringBufS__t}{ring\+Buf\+S\+\_\+t}} \texorpdfstring{$\ast$}{*}\+\_\+this, const uint8\+\_\+t c)
+\item 
+void \mbox{\hyperlink{ringbufs_8h_aa5507b2a945c0b3aa19db7109ebfb2c7}{ring\+Buf\+S\+\_\+put\+\_\+dma\+\_\+cpy}} (\mbox{\hyperlink{structringBufS__t}{ring\+Buf\+S\+\_\+t}} \texorpdfstring{$\ast$}{*}, const char \texorpdfstring{$\ast$}{*}, const uint8\+\_\+t)
+\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{ringbufs_8h_a0e2217f2e9636995ed1fa648627218ca}{ring\+Buf\+S\+\_\+flush}} (\mbox{\hyperlink{structringBufS__t}{ring\+Buf\+S\+\_\+t}} \texorpdfstring{$\ast$}{*}\+\_\+this, const bool clear\+Buffer)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{ringbufs_8h_a3979138d69702d83185bef951f48dcd5}\index{ringbufs.h@{ringbufs.h}!RBUF\_SIZE@{RBUF\_SIZE}}
+\index{RBUF\_SIZE@{RBUF\_SIZE}!ringbufs.h@{ringbufs.h}}
+\doxysubsubsection{\texorpdfstring{RBUF\_SIZE}{RBUF\_SIZE}}
+{\footnotesize\ttfamily \label{ringbufs_8h_a3979138d69702d83185bef951f48dcd5} 
+\#define RBUF\+\_\+\+SIZE~32}
+
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{ringbufs_8h_aa5eceade01632aebac2d54dcd423b617}\index{ringbufs.h@{ringbufs.h}!ringBufS\_t@{ringBufS\_t}}
+\index{ringBufS\_t@{ringBufS\_t}!ringbufs.h@{ringbufs.h}}
+\doxysubsubsection{\texorpdfstring{ringBufS\_t}{ringBufS\_t}}
+{\footnotesize\ttfamily \label{ringbufs_8h_aa5eceade01632aebac2d54dcd423b617} 
+typedef struct ring\+Buf\+S\+\_\+t ring\+Buf\+S\+\_\+t}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{ringbufs_8h_a35cc95280d10e20a261938e56b6a614a}\index{ringbufs.h@{ringbufs.h}!ringBufS\_empty@{ringBufS\_empty}}
+\index{ringBufS\_empty@{ringBufS\_empty}!ringbufs.h@{ringbufs.h}}
+\doxysubsubsection{\texorpdfstring{ringBufS\_empty()}{ringBufS\_empty()}}
+{\footnotesize\ttfamily \label{ringbufs_8h_a35cc95280d10e20a261938e56b6a614a} 
+int8\+\_\+t ring\+Buf\+S\+\_\+empty (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structringBufS__t}{ring\+Buf\+S\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{\+\_\+this}{}\end{DoxyParamCaption})}
+
+\Hypertarget{ringbufs_8h_a0e2217f2e9636995ed1fa648627218ca}\index{ringbufs.h@{ringbufs.h}!ringBufS\_flush@{ringBufS\_flush}}
+\index{ringBufS\_flush@{ringBufS\_flush}!ringbufs.h@{ringbufs.h}}
+\doxysubsubsection{\texorpdfstring{ringBufS\_flush()}{ringBufS\_flush()}}
+{\footnotesize\ttfamily \label{ringbufs_8h_a0e2217f2e9636995ed1fa648627218ca} 
+void \texorpdfstring{$\ast$}{*} ring\+Buf\+S\+\_\+flush (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structringBufS__t}{ring\+Buf\+S\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{\+\_\+this}{, }\item[{const bool}]{clear\+Buffer}{}\end{DoxyParamCaption})}
+
+\Hypertarget{ringbufs_8h_aaf5edf59424df3782d371ebae7b8f1d5}\index{ringbufs.h@{ringbufs.h}!ringBufS\_full@{ringBufS\_full}}
+\index{ringBufS\_full@{ringBufS\_full}!ringbufs.h@{ringbufs.h}}
+\doxysubsubsection{\texorpdfstring{ringBufS\_full()}{ringBufS\_full()}}
+{\footnotesize\ttfamily \label{ringbufs_8h_aaf5edf59424df3782d371ebae7b8f1d5} 
+int8\+\_\+t ring\+Buf\+S\+\_\+full (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structringBufS__t}{ring\+Buf\+S\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{\+\_\+this}{}\end{DoxyParamCaption})}
+
+\Hypertarget{ringbufs_8h_adc3bc6838d1f9fa6e1f958c0038ded86}\index{ringbufs.h@{ringbufs.h}!ringBufS\_get@{ringBufS\_get}}
+\index{ringBufS\_get@{ringBufS\_get}!ringbufs.h@{ringbufs.h}}
+\doxysubsubsection{\texorpdfstring{ringBufS\_get()}{ringBufS\_get()}}
+{\footnotesize\ttfamily \label{ringbufs_8h_adc3bc6838d1f9fa6e1f958c0038ded86} 
+uint8\+\_\+t ring\+Buf\+S\+\_\+get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structringBufS__t}{ring\+Buf\+S\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{\+\_\+this}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=268pt]{ringbufs_8h_adc3bc6838d1f9fa6e1f958c0038ded86_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{ringbufs_8h_a34e5704237c7472ddc44d0dc33181cf5}\index{ringbufs.h@{ringbufs.h}!ringBufS\_init@{ringBufS\_init}}
+\index{ringBufS\_init@{ringBufS\_init}!ringbufs.h@{ringbufs.h}}
+\doxysubsubsection{\texorpdfstring{ringBufS\_init()}{ringBufS\_init()}}
+{\footnotesize\ttfamily \label{ringbufs_8h_a34e5704237c7472ddc44d0dc33181cf5} 
+void \texorpdfstring{$\ast$}{*} ring\+Buf\+S\+\_\+init (\begin{DoxyParamCaption}\item[{volatile \mbox{\hyperlink{structringBufS__t}{ring\+Buf\+S\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{\+\_\+this}{}\end{DoxyParamCaption})}
+
+\Hypertarget{ringbufs_8h_affc9992c49c8184c104a5d96587b949b}\index{ringbufs.h@{ringbufs.h}!ringBufS\_put@{ringBufS\_put}}
+\index{ringBufS\_put@{ringBufS\_put}!ringbufs.h@{ringbufs.h}}
+\doxysubsubsection{\texorpdfstring{ringBufS\_put()}{ringBufS\_put()}}
+{\footnotesize\ttfamily \label{ringbufs_8h_affc9992c49c8184c104a5d96587b949b} 
+void ring\+Buf\+S\+\_\+put (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structringBufS__t}{ring\+Buf\+S\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{\+\_\+this}{, }\item[{const uint8\+\_\+t}]{c}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=268pt]{ringbufs_8h_affc9992c49c8184c104a5d96587b949b_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{ringbufs_8h_afd07784b578ae76b66595ca22f2df9ab}\index{ringbufs.h@{ringbufs.h}!ringBufS\_put\_dma@{ringBufS\_put\_dma}}
+\index{ringBufS\_put\_dma@{ringBufS\_put\_dma}!ringbufs.h@{ringbufs.h}}
+\doxysubsubsection{\texorpdfstring{ringBufS\_put\_dma()}{ringBufS\_put\_dma()}}
+{\footnotesize\ttfamily \label{ringbufs_8h_afd07784b578ae76b66595ca22f2df9ab} 
+void ring\+Buf\+S\+\_\+put\+\_\+dma (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structringBufS__t}{ring\+Buf\+S\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{\+\_\+this}{, }\item[{const uint8\+\_\+t}]{c}{}\end{DoxyParamCaption})}
+
+\Hypertarget{ringbufs_8h_aa5507b2a945c0b3aa19db7109ebfb2c7}\index{ringbufs.h@{ringbufs.h}!ringBufS\_put\_dma\_cpy@{ringBufS\_put\_dma\_cpy}}
+\index{ringBufS\_put\_dma\_cpy@{ringBufS\_put\_dma\_cpy}!ringbufs.h@{ringbufs.h}}
+\doxysubsubsection{\texorpdfstring{ringBufS\_put\_dma\_cpy()}{ringBufS\_put\_dma\_cpy()}}
+{\footnotesize\ttfamily \label{ringbufs_8h_aa5507b2a945c0b3aa19db7109ebfb2c7} 
+void ring\+Buf\+S\+\_\+put\+\_\+dma\+\_\+cpy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structringBufS__t}{ring\+Buf\+S\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{\+\_\+this}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{ptr}{, }\item[{const uint8\+\_\+t}]{len}{}\end{DoxyParamCaption})}
+

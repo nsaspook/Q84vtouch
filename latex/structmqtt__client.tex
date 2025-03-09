@@ -1,0 +1,340 @@
+\doxysection{mqtt\+\_\+client Struct Reference}
+\hypertarget{structmqtt__client}{}\label{structmqtt__client}\index{mqtt\_client@{mqtt\_client}}
+
+
+An MQTT client.  
+
+
+
+
+{\ttfamily \#include $<$mqtt.\+h$>$}
+
+
+
+Collaboration diagram for mqtt\+\_\+client\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=211pt]{structmqtt__client__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+mqtt\+\_\+pal\+\_\+socket\+\_\+handle \mbox{\hyperlink{structmqtt__client_a225acfc6e3b507028831b74f6f042746}{socketfd}}
+\begin{DoxyCompactList}\small\item\em The socket connecting to the MQTT broker. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{structmqtt__client_a41239668dd89728a44317c80ab04cb03}{pid\+\_\+lfsr}}
+\begin{DoxyCompactList}\small\item\em The LFSR state used to generate packet ID\textquotesingle{}s. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{structmqtt__client_a0a946f63bb5f47d908dc1eca9a022538}{keep\+\_\+alive}}
+\begin{DoxyCompactList}\small\item\em The keep-\/alive time in seconds. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{structmqtt__client_a22e1952dd6b27e6ba862a3d6ed34289b}{number\+\_\+of\+\_\+keep\+\_\+alives}}
+\begin{DoxyCompactList}\small\item\em A counter counting pings that have been sent to keep the connection alive. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{structmqtt__client_aac3c52ce139a2514f7d66d3fdca809fe}{send\+\_\+offset}}
+\begin{DoxyCompactList}\small\item\em The current sent offset. \end{DoxyCompactList}\item 
+mqtt\+\_\+pal\+\_\+time\+\_\+t \mbox{\hyperlink{structmqtt__client_aab207e4f35a9a1fe6fba0c32498e5b7a}{time\+\_\+of\+\_\+last\+\_\+send}}
+\begin{DoxyCompactList}\small\item\em The timestamp of the last message sent to the buffer. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors}} \mbox{\hyperlink{structmqtt__client_a520cc1444ce673aaffbf7be0d2e9a952}{error}}
+\begin{DoxyCompactList}\small\item\em The error state of the client. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{structmqtt__client_ab5794aa058e2e8ace3ed3ababa501606}{response\+\_\+timeout}}
+\begin{DoxyCompactList}\small\item\em The timeout period in seconds. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{structmqtt__client_a2232eec2a1ec51177291698bc3fde9c3}{number\+\_\+of\+\_\+timeouts}}
+\begin{DoxyCompactList}\small\item\em A counter counting the number of timeouts that have occurred. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structmqtt__client_a64b11679a89020ef43c8493ecef84e5a}{typical\+\_\+response\+\_\+time}}
+\begin{DoxyCompactList}\small\item\em Approximately much time it has typically taken to receive responses from the broker. \end{DoxyCompactList}\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structmqtt__client_a6321fe432b8bc49436436c1d75859e78}{publish\+\_\+response\+\_\+callback}} )(void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mateQ84_8X_2main_8c_a26b2a0469c474a0b173b3791e5c4eb80}{state}}, struct \mbox{\hyperlink{structmqtt__response__publish}{mqtt\+\_\+response\+\_\+publish}} \texorpdfstring{$\ast$}{*}publish)
+\begin{DoxyCompactList}\small\item\em The callback that is called whenever a publish is received from the broker. \end{DoxyCompactList}\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structmqtt__client_aca624b149b55e16f67bfbec79babd357}{publish\+\_\+response\+\_\+callback\+\_\+state}}
+\begin{DoxyCompactList}\small\item\em A pointer to any publish\+\_\+response\+\_\+callback state information you need. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors}}(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structmqtt__client_adf6fb6ace1b7649456a0d1498c33c69f}{inspector\+\_\+callback}} )(struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*})
+\begin{DoxyCompactList}\small\item\em A user-\/specified callback, triggered on each \doxylink{group__api_gae3d3aafc7588ed53a90c9f66fc620a6e}{mqtt\+\_\+sync}, allowing the user to perform state inspections (and custom socket error detection) on the client. \end{DoxyCompactList}\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structmqtt__client_a4feaa8fc7e7299739a46bd8f749e92c0}{reconnect\+\_\+callback}} )(struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}, void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*})
+\begin{DoxyCompactList}\small\item\em A callback that is called whenever the client is in an error state. \end{DoxyCompactList}\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structmqtt__client_ab05ec37421a7337bee91335f6fb52b15}{reconnect\+\_\+state}}
+\begin{DoxyCompactList}\small\item\em A pointer to some state. A pointer to this member is passed to \doxylink{structmqtt__client_a4feaa8fc7e7299739a46bd8f749e92c0}{reconnect\+\_\+callback}. \end{DoxyCompactList}\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>uint8\_t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structmqtt__client_a5c2386023964b7a91330f2d95a9950c8}{mem\_start}}\\
+\>\>{\em The start of the receive buffer\textquotesingle{}s memory. }\\
+\>size\_t \mbox{\hyperlink{structmqtt__client_a9ea6497b2a03cb576a118c6635607d67}{mem\_size}}\\
+\>\>{\em The size of the receive buffer\textquotesingle{}s memory. }\\
+\>uint8\_t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structmqtt__client_a2158c932588480e03463af9a429027c1}{curr}}\\
+\>\>{\em A pointer to the next writable location in the receive buffer. }\\
+\>size\_t \mbox{\hyperlink{structmqtt__client_a1bce4ca9a01a7cfbc0b9860569ea246e}{curr\_sz}}\\
+\>\>{\em The number of bytes that are still writable at curr. }\\
+\} \mbox{\hyperlink{structmqtt__client_aeed0c5a8b2438f06a447b058530700fd}{recv\_buffer}}\\
+
+\end{tabbing}\begin{DoxyCompactList}\small\item\em The buffer where ingress data is temporarily stored. \end{DoxyCompactList}\item 
+mqtt\+\_\+pal\+\_\+mutex\+\_\+t \mbox{\hyperlink{structmqtt__client_affe66249283f03e673870e7e35ac10f0}{mutex}}
+\begin{DoxyCompactList}\small\item\em A variable passed to support thread-\/safety. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmqtt__message__queue}{mqtt\+\_\+message\+\_\+queue}} \mbox{\hyperlink{structmqtt__client_afea711803823816d1cf5ca910e956400}{mq}}
+\begin{DoxyCompactList}\small\item\em The sending message queue. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+An MQTT client. 
+
+\begin{DoxyNote}{Note}
+All members can be manipulated via the related functions. 
+\end{DoxyNote}
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structmqtt__client_a2158c932588480e03463af9a429027c1}\index{mqtt\_client@{mqtt\_client}!curr@{curr}}
+\index{curr@{curr}!mqtt\_client@{mqtt\_client}}
+\doxysubsubsection{\texorpdfstring{curr}{curr}}
+{\footnotesize\ttfamily \label{structmqtt__client_a2158c932588480e03463af9a429027c1} 
+uint8\+\_\+t\texorpdfstring{$\ast$}{*} curr}
+
+
+
+A pointer to the next writable location in the receive buffer. 
+
+\Hypertarget{structmqtt__client_a1bce4ca9a01a7cfbc0b9860569ea246e}\index{mqtt\_client@{mqtt\_client}!curr\_sz@{curr\_sz}}
+\index{curr\_sz@{curr\_sz}!mqtt\_client@{mqtt\_client}}
+\doxysubsubsection{\texorpdfstring{curr\_sz}{curr\_sz}}
+{\footnotesize\ttfamily \label{structmqtt__client_a1bce4ca9a01a7cfbc0b9860569ea246e} 
+size\+\_\+t curr\+\_\+sz}
+
+
+
+The number of bytes that are still writable at curr. 
+
+\Hypertarget{structmqtt__client_a520cc1444ce673aaffbf7be0d2e9a952}\index{mqtt\_client@{mqtt\_client}!error@{error}}
+\index{error@{error}!mqtt\_client@{mqtt\_client}}
+\doxysubsubsection{\texorpdfstring{error}{error}}
+{\footnotesize\ttfamily \label{structmqtt__client_a520cc1444ce673aaffbf7be0d2e9a952} 
+enum \mbox{\hyperlink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors}} error}
+
+
+
+The error state of the client. 
+
+error should be MQTT\+\_\+\+OK for the entirety of the connection.
+
+\begin{DoxyNote}{Note}
+The error state will be MQTT\+\_\+\+ERROR\+\_\+\+CONNECT\+\_\+\+NOT\+\_\+\+CALLED until you call mqtt\+\_\+connect. 
+\end{DoxyNote}
+\Hypertarget{structmqtt__client_adf6fb6ace1b7649456a0d1498c33c69f}\index{mqtt\_client@{mqtt\_client}!inspector\_callback@{inspector\_callback}}
+\index{inspector\_callback@{inspector\_callback}!mqtt\_client@{mqtt\_client}}
+\doxysubsubsection{\texorpdfstring{inspector\_callback}{inspector\_callback}}
+{\footnotesize\ttfamily \label{structmqtt__client_adf6fb6ace1b7649456a0d1498c33c69f} 
+enum \mbox{\hyperlink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors}}(\texorpdfstring{$\ast$}{*} inspector\+\_\+callback) (struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*})}
+
+
+
+A user-\/specified callback, triggered on each \doxylink{group__api_gae3d3aafc7588ed53a90c9f66fc620a6e}{mqtt\+\_\+sync}, allowing the user to perform state inspections (and custom socket error detection) on the client. 
+
+This callback is triggered on each call to \doxylink{group__api_gae3d3aafc7588ed53a90c9f66fc620a6e}{mqtt\+\_\+sync}. If it returns MQTT\+\_\+\+OK then \doxylink{group__api_gae3d3aafc7588ed53a90c9f66fc620a6e}{mqtt\+\_\+sync} will continue normally (performing reads and writes). If it returns an error then \doxylink{group__api_gae3d3aafc7588ed53a90c9f66fc620a6e}{mqtt\+\_\+sync} will not call reads and writes.
+
+This callback can be used to perform custom error detection, namely platform specific socket error detection, and force the client into an error state.
+
+This member is always initialized to NULL but it can be manually set at any time. \Hypertarget{structmqtt__client_a0a946f63bb5f47d908dc1eca9a022538}\index{mqtt\_client@{mqtt\_client}!keep\_alive@{keep\_alive}}
+\index{keep\_alive@{keep\_alive}!mqtt\_client@{mqtt\_client}}
+\doxysubsubsection{\texorpdfstring{keep\_alive}{keep\_alive}}
+{\footnotesize\ttfamily \label{structmqtt__client_a0a946f63bb5f47d908dc1eca9a022538} 
+uint16\+\_\+t keep\+\_\+alive}
+
+
+
+The keep-\/alive time in seconds. 
+
+\Hypertarget{structmqtt__client_a9ea6497b2a03cb576a118c6635607d67}\index{mqtt\_client@{mqtt\_client}!mem\_size@{mem\_size}}
+\index{mem\_size@{mem\_size}!mqtt\_client@{mqtt\_client}}
+\doxysubsubsection{\texorpdfstring{mem\_size}{mem\_size}}
+{\footnotesize\ttfamily \label{structmqtt__client_a9ea6497b2a03cb576a118c6635607d67} 
+size\+\_\+t mem\+\_\+size}
+
+
+
+The size of the receive buffer\textquotesingle{}s memory. 
+
+\Hypertarget{structmqtt__client_a5c2386023964b7a91330f2d95a9950c8}\index{mqtt\_client@{mqtt\_client}!mem\_start@{mem\_start}}
+\index{mem\_start@{mem\_start}!mqtt\_client@{mqtt\_client}}
+\doxysubsubsection{\texorpdfstring{mem\_start}{mem\_start}}
+{\footnotesize\ttfamily \label{structmqtt__client_a5c2386023964b7a91330f2d95a9950c8} 
+uint8\+\_\+t\texorpdfstring{$\ast$}{*} mem\+\_\+start}
+
+
+
+The start of the receive buffer\textquotesingle{}s memory. 
+
+\Hypertarget{structmqtt__client_afea711803823816d1cf5ca910e956400}\index{mqtt\_client@{mqtt\_client}!mq@{mq}}
+\index{mq@{mq}!mqtt\_client@{mqtt\_client}}
+\doxysubsubsection{\texorpdfstring{mq}{mq}}
+{\footnotesize\ttfamily \label{structmqtt__client_afea711803823816d1cf5ca910e956400} 
+struct \mbox{\hyperlink{structmqtt__message__queue}{mqtt\+\_\+message\+\_\+queue}} mq}
+
+
+
+The sending message queue. 
+
+\Hypertarget{structmqtt__client_affe66249283f03e673870e7e35ac10f0}\index{mqtt\_client@{mqtt\_client}!mutex@{mutex}}
+\index{mutex@{mutex}!mqtt\_client@{mqtt\_client}}
+\doxysubsubsection{\texorpdfstring{mutex}{mutex}}
+{\footnotesize\ttfamily \label{structmqtt__client_affe66249283f03e673870e7e35ac10f0} 
+mqtt\+\_\+pal\+\_\+mutex\+\_\+t mutex}
+
+
+
+A variable passed to support thread-\/safety. 
+
+A pointer to this variable is passed to {\ttfamily MQTT\+\_\+\+PAL\+\_\+\+MUTEX\+\_\+\+LOCK}, and {\ttfamily MQTT\+\_\+\+PAL\+\_\+\+MUTEX\+\_\+\+UNLOCK}. \Hypertarget{structmqtt__client_a22e1952dd6b27e6ba862a3d6ed34289b}\index{mqtt\_client@{mqtt\_client}!number\_of\_keep\_alives@{number\_of\_keep\_alives}}
+\index{number\_of\_keep\_alives@{number\_of\_keep\_alives}!mqtt\_client@{mqtt\_client}}
+\doxysubsubsection{\texorpdfstring{number\_of\_keep\_alives}{number\_of\_keep\_alives}}
+{\footnotesize\ttfamily \label{structmqtt__client_a22e1952dd6b27e6ba862a3d6ed34289b} 
+int number\+\_\+of\+\_\+keep\+\_\+alives}
+
+
+
+A counter counting pings that have been sent to keep the connection alive. 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{structmqtt__client_a0a946f63bb5f47d908dc1eca9a022538}{keep\+\_\+alive} 
+\end{DoxySeeAlso}
+\Hypertarget{structmqtt__client_a2232eec2a1ec51177291698bc3fde9c3}\index{mqtt\_client@{mqtt\_client}!number\_of\_timeouts@{number\_of\_timeouts}}
+\index{number\_of\_timeouts@{number\_of\_timeouts}!mqtt\_client@{mqtt\_client}}
+\doxysubsubsection{\texorpdfstring{number\_of\_timeouts}{number\_of\_timeouts}}
+{\footnotesize\ttfamily \label{structmqtt__client_a2232eec2a1ec51177291698bc3fde9c3} 
+int number\+\_\+of\+\_\+timeouts}
+
+
+
+A counter counting the number of timeouts that have occurred. 
+
+\Hypertarget{structmqtt__client_a41239668dd89728a44317c80ab04cb03}\index{mqtt\_client@{mqtt\_client}!pid\_lfsr@{pid\_lfsr}}
+\index{pid\_lfsr@{pid\_lfsr}!mqtt\_client@{mqtt\_client}}
+\doxysubsubsection{\texorpdfstring{pid\_lfsr}{pid\_lfsr}}
+{\footnotesize\ttfamily \label{structmqtt__client_a41239668dd89728a44317c80ab04cb03} 
+uint16\+\_\+t pid\+\_\+lfsr}
+
+
+
+The LFSR state used to generate packet ID\textquotesingle{}s. 
+
+\Hypertarget{structmqtt__client_a6321fe432b8bc49436436c1d75859e78}\index{mqtt\_client@{mqtt\_client}!publish\_response\_callback@{publish\_response\_callback}}
+\index{publish\_response\_callback@{publish\_response\_callback}!mqtt\_client@{mqtt\_client}}
+\doxysubsubsection{\texorpdfstring{publish\_response\_callback}{publish\_response\_callback}}
+{\footnotesize\ttfamily \label{structmqtt__client_a6321fe432b8bc49436436c1d75859e78} 
+void(\texorpdfstring{$\ast$}{*} publish\+\_\+response\+\_\+callback) (void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mateQ84_8X_2main_8c_a26b2a0469c474a0b173b3791e5c4eb80}{state}}, struct \mbox{\hyperlink{structmqtt__response__publish}{mqtt\+\_\+response\+\_\+publish}} \texorpdfstring{$\ast$}{*}publish)}
+
+
+
+The callback that is called whenever a publish is received from the broker. 
+
+Any topics that you have subscribed to will be returned from the broker as \doxylink{structmqtt__response__publish}{mqtt\+\_\+response\+\_\+publish} messages. All the publishes received from the broker will be passed to this function.
+
+\begin{DoxyNote}{Note}
+A pointer to publish\+\_\+response\+\_\+callback\+\_\+state is always passed to the callback. Use publish\+\_\+response\+\_\+callback\+\_\+state to keep track of any state information you need. 
+\end{DoxyNote}
+\Hypertarget{structmqtt__client_aca624b149b55e16f67bfbec79babd357}\index{mqtt\_client@{mqtt\_client}!publish\_response\_callback\_state@{publish\_response\_callback\_state}}
+\index{publish\_response\_callback\_state@{publish\_response\_callback\_state}!mqtt\_client@{mqtt\_client}}
+\doxysubsubsection{\texorpdfstring{publish\_response\_callback\_state}{publish\_response\_callback\_state}}
+{\footnotesize\ttfamily \label{structmqtt__client_aca624b149b55e16f67bfbec79babd357} 
+void\texorpdfstring{$\ast$}{*} publish\+\_\+response\+\_\+callback\+\_\+state}
+
+
+
+A pointer to any publish\+\_\+response\+\_\+callback state information you need. 
+
+\begin{DoxyNote}{Note}
+A pointer to this pointer will always be publish\+\_\+response\+\_\+callback upon receiving a publish message from the broker. 
+\end{DoxyNote}
+\Hypertarget{structmqtt__client_a4feaa8fc7e7299739a46bd8f749e92c0}\index{mqtt\_client@{mqtt\_client}!reconnect\_callback@{reconnect\_callback}}
+\index{reconnect\_callback@{reconnect\_callback}!mqtt\_client@{mqtt\_client}}
+\doxysubsubsection{\texorpdfstring{reconnect\_callback}{reconnect\_callback}}
+{\footnotesize\ttfamily \label{structmqtt__client_a4feaa8fc7e7299739a46bd8f749e92c0} 
+void(\texorpdfstring{$\ast$}{*} reconnect\+\_\+callback) (struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}, void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*})}
+
+
+
+A callback that is called whenever the client is in an error state. 
+
+This callback is responsible for\+: application level error handling, closing previous sockets, and reestabilishing the connection to the broker and session configurations (i.\+e. subscriptions). \Hypertarget{structmqtt__client_ab05ec37421a7337bee91335f6fb52b15}\index{mqtt\_client@{mqtt\_client}!reconnect\_state@{reconnect\_state}}
+\index{reconnect\_state@{reconnect\_state}!mqtt\_client@{mqtt\_client}}
+\doxysubsubsection{\texorpdfstring{reconnect\_state}{reconnect\_state}}
+{\footnotesize\ttfamily \label{structmqtt__client_ab05ec37421a7337bee91335f6fb52b15} 
+void\texorpdfstring{$\ast$}{*} reconnect\+\_\+state}
+
+
+
+A pointer to some state. A pointer to this member is passed to \doxylink{structmqtt__client_a4feaa8fc7e7299739a46bd8f749e92c0}{reconnect\+\_\+callback}. 
+
+\Hypertarget{structmqtt__client_aeed0c5a8b2438f06a447b058530700fd}\index{mqtt\_client@{mqtt\_client}!recv\_buffer@{recv\_buffer}}
+\index{recv\_buffer@{recv\_buffer}!mqtt\_client@{mqtt\_client}}
+\doxysubsubsection{\texorpdfstring{[struct]}{[struct]}}
+{\footnotesize\ttfamily \label{structmqtt__client_aeed0c5a8b2438f06a447b058530700fd} 
+struct  \{ ... \}  recv\+\_\+buffer}
+
+
+
+The buffer where ingress data is temporarily stored. 
+
+\Hypertarget{structmqtt__client_ab5794aa058e2e8ace3ed3ababa501606}\index{mqtt\_client@{mqtt\_client}!response\_timeout@{response\_timeout}}
+\index{response\_timeout@{response\_timeout}!mqtt\_client@{mqtt\_client}}
+\doxysubsubsection{\texorpdfstring{response\_timeout}{response\_timeout}}
+{\footnotesize\ttfamily \label{structmqtt__client_ab5794aa058e2e8ace3ed3ababa501606} 
+int response\+\_\+timeout}
+
+
+
+The timeout period in seconds. 
+
+If the broker doesn\textquotesingle{}t return an ACK within response\+\_\+timeout seconds a timeout will occur and the message will be retransmitted.
+
+\begin{DoxyNote}{Note}
+The default value is 30 \mbox{[}seconds\mbox{]} but you can change it at any time. 
+\end{DoxyNote}
+\Hypertarget{structmqtt__client_aac3c52ce139a2514f7d66d3fdca809fe}\index{mqtt\_client@{mqtt\_client}!send\_offset@{send\_offset}}
+\index{send\_offset@{send\_offset}!mqtt\_client@{mqtt\_client}}
+\doxysubsubsection{\texorpdfstring{send\_offset}{send\_offset}}
+{\footnotesize\ttfamily \label{structmqtt__client_aac3c52ce139a2514f7d66d3fdca809fe} 
+size\+\_\+t send\+\_\+offset}
+
+
+
+The current sent offset. 
+
+This is used to allow partial send commands. \Hypertarget{structmqtt__client_a225acfc6e3b507028831b74f6f042746}\index{mqtt\_client@{mqtt\_client}!socketfd@{socketfd}}
+\index{socketfd@{socketfd}!mqtt\_client@{mqtt\_client}}
+\doxysubsubsection{\texorpdfstring{socketfd}{socketfd}}
+{\footnotesize\ttfamily \label{structmqtt__client_a225acfc6e3b507028831b74f6f042746} 
+mqtt\+\_\+pal\+\_\+socket\+\_\+handle socketfd}
+
+
+
+The socket connecting to the MQTT broker. 
+
+\Hypertarget{structmqtt__client_aab207e4f35a9a1fe6fba0c32498e5b7a}\index{mqtt\_client@{mqtt\_client}!time\_of\_last\_send@{time\_of\_last\_send}}
+\index{time\_of\_last\_send@{time\_of\_last\_send}!mqtt\_client@{mqtt\_client}}
+\doxysubsubsection{\texorpdfstring{time\_of\_last\_send}{time\_of\_last\_send}}
+{\footnotesize\ttfamily \label{structmqtt__client_aab207e4f35a9a1fe6fba0c32498e5b7a} 
+mqtt\+\_\+pal\+\_\+time\+\_\+t time\+\_\+of\+\_\+last\+\_\+send}
+
+
+
+The timestamp of the last message sent to the buffer. 
+
+This is used to detect the need for keep-\/alive pings.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{structmqtt__client_a0a946f63bb5f47d908dc1eca9a022538}{keep\+\_\+alive} 
+\end{DoxySeeAlso}
+\Hypertarget{structmqtt__client_a64b11679a89020ef43c8493ecef84e5a}\index{mqtt\_client@{mqtt\_client}!typical\_response\_time@{typical\_response\_time}}
+\index{typical\_response\_time@{typical\_response\_time}!mqtt\_client@{mqtt\_client}}
+\doxysubsubsection{\texorpdfstring{typical\_response\_time}{typical\_response\_time}}
+{\footnotesize\ttfamily \label{structmqtt__client_a64b11679a89020ef43c8493ecef84e5a} 
+float typical\+\_\+response\+\_\+time}
+
+
+
+Approximately much time it has typically taken to receive responses from the broker. 
+
+\begin{DoxyNote}{Note}
+This is tracked using a exponential-\/averaging. 
+\end{DoxyNote}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+linux/matesocketcan/\mbox{\hyperlink{mqtt_8h}{mqtt.\+h}}\end{DoxyCompactItemize}

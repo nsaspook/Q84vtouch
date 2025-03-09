@@ -1,0 +1,500 @@
+\doxysection{mate\+Q84.\+X/mcc\+\_\+generated\+\_\+files/tmr4.c File Reference}
+\hypertarget{tmr4_8c}{}\label{tmr4_8c}\index{mateQ84.X/mcc\_generated\_files/tmr4.c@{mateQ84.X/mcc\_generated\_files/tmr4.c}}
+{\ttfamily \#include $<$xc.\+h$>$}\newline
+{\ttfamily \#include "{}tmr4.\+h"{}}\newline
+{\ttfamily \#include "{}interrupt\+\_\+manager.\+h"{}}\newline
+Include dependency graph for tmr4.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=319pt]{tmr4_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{tmr4_8c_a9d06de36998e68680af819a51c02715b}{TMR4\+\_\+\+Initialize}} (void)
+\item 
+void \mbox{\hyperlink{tmr4_8c_a64d9299828fa2b5186c03bdebdd464e7}{TMR4\+\_\+\+Mode\+Set}} (\mbox{\hyperlink{tmr4_8h_a540c8ef50d7bd58f3dfe215692af0cc5}{TMR4\+\_\+\+HLT\+\_\+\+MODE}} mode)
+\item 
+void \mbox{\hyperlink{tmr4_8c_a59f1d905922aa48b8e2281f2c24092d7}{TMR4\+\_\+\+Ext\+Reset\+Source\+Set}} (\mbox{\hyperlink{tmr4_8h_ab6c28f9692b48739cd63f472f767239a}{TMR4\+\_\+\+HLT\+\_\+\+EXT\+\_\+\+RESET\+\_\+\+SOURCE}} reset)
+\item 
+void \mbox{\hyperlink{tmr4_8c_a5666192e1d8ab908db0bae00c9d243fb}{TMR4\+\_\+\+Start}} (void)
+\item 
+void \mbox{\hyperlink{tmr4_8c_a08cc752e0d5622957129c49c2fe5c90c}{TMR4\+\_\+\+Start\+Timer}} (void)
+\item 
+void \mbox{\hyperlink{tmr4_8c_a6d19dd15af20bd2ba1b4c142b0b744e7}{TMR4\+\_\+\+Stop}} (void)
+\item 
+void \mbox{\hyperlink{tmr4_8c_a0789a41c6994261eba406296ae087022}{TMR4\+\_\+\+Stop\+Timer}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{tmr4_8c_a9d8b34102a57a2a65e8cd2697593a578}{TMR4\+\_\+\+Counter8\+Bit\+Get}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{tmr4_8c_a71a042c0b873d77659d7ccb42b2a04f6}{TMR4\+\_\+\+Read\+Timer}} (void)
+\item 
+void \mbox{\hyperlink{tmr4_8c_a163b7507ee64251795b19a3275114b05}{TMR4\+\_\+\+Counter8\+Bit\+Set}} (uint8\+\_\+t timer\+Val)
+\item 
+void \mbox{\hyperlink{tmr4_8c_a0c150fa8fe1d61fe4d2accaf474cdcd2}{TMR4\+\_\+\+Write\+Timer}} (uint8\+\_\+t timer\+Val)
+\item 
+void \mbox{\hyperlink{tmr4_8c_a9500fc742dbf30e7c7018a3c0f88367b}{TMR4\+\_\+\+Period8\+Bit\+Set}} (uint8\+\_\+t period\+Val)
+\item 
+void \mbox{\hyperlink{tmr4_8c_a7f1dd192cee45bd7786b6a453bc0eba1}{TMR4\+\_\+\+Load\+Period\+Register}} (uint8\+\_\+t period\+Val)
+\item 
+void \mbox{\hyperlink{tmr4_8c_aa3d1d4eaff14c747516bc13d783ef9d4}{\+\_\+\+\_\+interrupt}} (irq(TMR4), base(8))
+\item 
+void \mbox{\hyperlink{tmr4_8c_a5023000e3c77f593628ae86eb9c3772d}{TMR4\+\_\+\+Set\+Interrupt\+Handler}} (void(\texorpdfstring{$\ast$}{*}Interrupt\+Handler)(void))
+\item 
+void \mbox{\hyperlink{tmr4_8c_a593154af41d3b557a3ffc041d1beb170}{TMR4\+\_\+\+Default\+Interrupt\+Handler}} (void)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{tmr4_8c_a68060483ea8ac694e413a598a1e2bbea}{TMR4\+\_\+\+Interrupt\+Handler}} )(void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{tmr4_8c_aa3d1d4eaff14c747516bc13d783ef9d4}\index{tmr4.c@{tmr4.c}!\_\_interrupt@{\_\_interrupt}}
+\index{\_\_interrupt@{\_\_interrupt}!tmr4.c@{tmr4.c}}
+\doxysubsubsection{\texorpdfstring{\_\_interrupt()}{\_\_interrupt()}}
+{\footnotesize\ttfamily \label{tmr4_8c_aa3d1d4eaff14c747516bc13d783ef9d4} 
+void \+\_\+\+\_\+interrupt (\begin{DoxyParamCaption}\item[{irq(TMR4)}]{}{, }\item[{base(8)}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{tmr4_8c_a9d8b34102a57a2a65e8cd2697593a578}\index{tmr4.c@{tmr4.c}!TMR4\_Counter8BitGet@{TMR4\_Counter8BitGet}}
+\index{TMR4\_Counter8BitGet@{TMR4\_Counter8BitGet}!tmr4.c@{tmr4.c}}
+\doxysubsubsection{\texorpdfstring{TMR4\_Counter8BitGet()}{TMR4\_Counter8BitGet()}}
+{\footnotesize\ttfamily \label{tmr4_8c_a9d8b34102a57a2a65e8cd2697593a578} 
+uint8\+\_\+t TMR4\+\_\+\+Counter8\+Bit\+Get (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+@\+Summary Reads the TMR4 register.
+
+@\+Description This function reads the TMR4 register value and return it.
+
+@\+Preconditions Initialize the TMR4 before calling this function.
+
+@\+Param None
+
+@\+Returns This function returns the current value of TMR4 register.
+
+@\+Example {\ttfamily  Initialize TMR4 module}
+
+{\ttfamily Start TMR4 \doxylink{tmr4_8h_a5666192e1d8ab908db0bae00c9d243fb}{TMR4\+\_\+\+Start()};}
+
+{\ttfamily Read the current value of TMR4 if(0 == \doxylink{tmr4_8h_a9d8b34102a57a2a65e8cd2697593a578}{TMR4\+\_\+\+Counter8\+Bit\+Get()}) \{ Do something else...}
+
+{\ttfamily Reload the TMR value \doxylink{tmr4_8h_a9500fc742dbf30e7c7018a3c0f88367b}{TMR4\+\_\+\+Period8\+Bit\+Set()}; \} } Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=343pt]{tmr4_8c_a9d8b34102a57a2a65e8cd2697593a578_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{tmr4_8c_a163b7507ee64251795b19a3275114b05}\index{tmr4.c@{tmr4.c}!TMR4\_Counter8BitSet@{TMR4\_Counter8BitSet}}
+\index{TMR4\_Counter8BitSet@{TMR4\_Counter8BitSet}!tmr4.c@{tmr4.c}}
+\doxysubsubsection{\texorpdfstring{TMR4\_Counter8BitSet()}{TMR4\_Counter8BitSet()}}
+{\footnotesize\ttfamily \label{tmr4_8c_a163b7507ee64251795b19a3275114b05} 
+void TMR4\+\_\+\+Counter8\+Bit\+Set (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{timer\+Val}{}\end{DoxyParamCaption})}
+
+@\+Summary Writes the TMR4 register.
+
+@\+Description This function writes the TMR4 register. This function must be called after the initialization of TMR4.
+
+@\+Preconditions Initialize the TMR4 before calling this function.
+
+@\+Param timer\+Val -\/ Value to write into TMR4 register.
+
+@\+Returns None
+
+@\+Example {\ttfamily  \#define PERIOD 0x80 \#define ZERO 0x00}
+
+{\ttfamily  while(1) \{ Read the TMR4 register if(ZERO == \doxylink{tmr4_8h_a9d8b34102a57a2a65e8cd2697593a578}{TMR4\+\_\+\+Counter8\+Bit\+Get()}) \{ Do something else...}
+
+{\ttfamily Write the TMR4 register TMR4\+\_\+\+Counter8\+Bit\+Set(\+PERIOD); \}}
+
+{\ttfamily Do something else... \} } Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=343pt]{tmr4_8c_a163b7507ee64251795b19a3275114b05_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{tmr4_8c_a593154af41d3b557a3ffc041d1beb170}\index{tmr4.c@{tmr4.c}!TMR4\_DefaultInterruptHandler@{TMR4\_DefaultInterruptHandler}}
+\index{TMR4\_DefaultInterruptHandler@{TMR4\_DefaultInterruptHandler}!tmr4.c@{tmr4.c}}
+\doxysubsubsection{\texorpdfstring{TMR4\_DefaultInterruptHandler()}{TMR4\_DefaultInterruptHandler()}}
+{\footnotesize\ttfamily \label{tmr4_8c_a593154af41d3b557a3ffc041d1beb170} 
+void TMR4\+\_\+\+Default\+Interrupt\+Handler (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+@\+Summary Default Timer Interrupt Handler
+
+@\+Description This is the default Interrupt Handler function
+
+@\+Preconditions Initialize the TMR4 module with interrupt before calling this isr.
+
+@\+Param None
+
+@\+Returns None Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{tmr4_8c_a593154af41d3b557a3ffc041d1beb170_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{tmr4_8c_a59f1d905922aa48b8e2281f2c24092d7}\index{tmr4.c@{tmr4.c}!TMR4\_ExtResetSourceSet@{TMR4\_ExtResetSourceSet}}
+\index{TMR4\_ExtResetSourceSet@{TMR4\_ExtResetSourceSet}!tmr4.c@{tmr4.c}}
+\doxysubsubsection{\texorpdfstring{TMR4\_ExtResetSourceSet()}{TMR4\_ExtResetSourceSet()}}
+{\footnotesize\ttfamily \label{tmr4_8c_a59f1d905922aa48b8e2281f2c24092d7} 
+void TMR4\+\_\+\+Ext\+Reset\+Source\+Set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tmr4_8h_ab6c28f9692b48739cd63f472f767239a}{TMR4\+\_\+\+HLT\+\_\+\+EXT\+\_\+\+RESET\+\_\+\+SOURCE}}}]{reset}{}\end{DoxyParamCaption})}
+
+@\+Summary Configures the HLT external reset source.
+
+@\+Description Writes the T4\+RSTbits.\+RSEL bits.
+
+@\+Preconditions Initialize the TMR4 before calling this function.
+
+@\+Param reset -\/ Value to write into T4\+RSTbits.\+RSEL bits.
+
+@\+Returns None
+
+@\+Example {\ttfamily  \doxylink{main_8c_a6288eba0f8e8ad3ab1544ad731eb7667}{main()} \{ \begin{DoxyVerb}TMR4_HLT_EXT_RESET_SOURCE hltresetsrc;
+hltresetsrc = T2IN;
+\end{DoxyVerb}
+}
+
+{\ttfamily Initialize TMR4 module}
+
+{\ttfamily Set the HLT mode TMR4\+\_\+\+Ext\+Reset\+Source\+Set(hltresetsrc);}
+
+{\ttfamily Do something else... \} } \Hypertarget{tmr4_8c_a9d06de36998e68680af819a51c02715b}\index{tmr4.c@{tmr4.c}!TMR4\_Initialize@{TMR4\_Initialize}}
+\index{TMR4\_Initialize@{TMR4\_Initialize}!tmr4.c@{tmr4.c}}
+\doxysubsubsection{\texorpdfstring{TMR4\_Initialize()}{TMR4\_Initialize()}}
+{\footnotesize\ttfamily \label{tmr4_8c_a9d06de36998e68680af819a51c02715b} 
+void TMR4\+\_\+\+Initialize (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Section\+: TMR4 APIs Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{tmr4_8c_a9d06de36998e68680af819a51c02715b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{tmr4_8c_a9d06de36998e68680af819a51c02715b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{tmr4_8c_a7f1dd192cee45bd7786b6a453bc0eba1}\index{tmr4.c@{tmr4.c}!TMR4\_LoadPeriodRegister@{TMR4\_LoadPeriodRegister}}
+\index{TMR4\_LoadPeriodRegister@{TMR4\_LoadPeriodRegister}!tmr4.c@{tmr4.c}}
+\doxysubsubsection{\texorpdfstring{TMR4\_LoadPeriodRegister()}{TMR4\_LoadPeriodRegister()}}
+{\footnotesize\ttfamily \label{tmr4_8c_a7f1dd192cee45bd7786b6a453bc0eba1} 
+void TMR4\+\_\+\+Load\+Period\+Register (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{period\+Val}{}\end{DoxyParamCaption})}
+
+@\+Summary Load value to Period Register.
+
+@\+Description This function writes the value to PR4 register. This function must be called after the initialization of TMR4.
+
+@\+Preconditions Initialize the TMR4 before calling this function.
+
+@\+Param period\+Val -\/ Value to load into TMR4 register.
+
+@\+Returns None
+
+@\+Example {\ttfamily  \#define PERIOD1 0x80 \#define PERIOD2 0x40 \#define ZERO 0x00}
+
+{\ttfamily  while(1) \{ Read the TMR4 register if(ZERO == \doxylink{tmr4_8h_a71a042c0b873d77659d7ccb42b2a04f6}{TMR4\+\_\+\+Read\+Timer()}) \{ Do something else... \begin{DoxyVerb}        if(flag)
+        {
+            flag = 0;
+\end{DoxyVerb}
+}
+
+{\ttfamily Load Period 1 value TMR4\+\_\+\+Load\+Period\+Register(\+PERIOD1); \} else \{ flag = 1;}
+
+{\ttfamily Load Period 2 value TMR4\+\_\+\+Load\+Period\+Register(\+PERIOD2); \} \}}
+
+{\ttfamily Do something else... \} } Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{tmr4_8c_a7f1dd192cee45bd7786b6a453bc0eba1_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{tmr4_8c_a64d9299828fa2b5186c03bdebdd464e7}\index{tmr4.c@{tmr4.c}!TMR4\_ModeSet@{TMR4\_ModeSet}}
+\index{TMR4\_ModeSet@{TMR4\_ModeSet}!tmr4.c@{tmr4.c}}
+\doxysubsubsection{\texorpdfstring{TMR4\_ModeSet()}{TMR4\_ModeSet()}}
+{\footnotesize\ttfamily \label{tmr4_8c_a64d9299828fa2b5186c03bdebdd464e7} 
+void TMR4\+\_\+\+Mode\+Set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tmr4_8h_a540c8ef50d7bd58f3dfe215692af0cc5}{TMR4\+\_\+\+HLT\+\_\+\+MODE}}}]{mode}{}\end{DoxyParamCaption})}
+
+@\+Summary Configures the Hardware Limit Timer mode.
+
+@\+Description Writes the T4\+HLTbits.\+MODE bits.
+
+@\+Preconditions Initialize the TMR4 before calling this function.
+
+@\+Param mode -\/ Value to write into T4\+HLTbits.\+MODE bits.
+
+@\+Returns None
+
+@\+Example {\ttfamily  \doxylink{main_8c_a6288eba0f8e8ad3ab1544ad731eb7667}{main()} \{ \begin{DoxyVerb}TMR4_HLT_MODE hltmode;
+hltmode = TMR4_ROP_STARTS_TMRON_EN;
+\end{DoxyVerb}
+}
+
+{\ttfamily Initialize TMR4 module TMR4.\+Initialize();}
+
+{\ttfamily Set the HLT mode TMR4\+\_\+\+Mode\+Set (hltmode);}
+
+{\ttfamily Do something else... \} } \Hypertarget{tmr4_8c_a9500fc742dbf30e7c7018a3c0f88367b}\index{tmr4.c@{tmr4.c}!TMR4\_Period8BitSet@{TMR4\_Period8BitSet}}
+\index{TMR4\_Period8BitSet@{TMR4\_Period8BitSet}!tmr4.c@{tmr4.c}}
+\doxysubsubsection{\texorpdfstring{TMR4\_Period8BitSet()}{TMR4\_Period8BitSet()}}
+{\footnotesize\ttfamily \label{tmr4_8c_a9500fc742dbf30e7c7018a3c0f88367b} 
+void TMR4\+\_\+\+Period8\+Bit\+Set (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{period\+Val}{}\end{DoxyParamCaption})}
+
+@\+Summary Load value to Period Register.
+
+@\+Description This function writes the value to PR4 register. This function must be called after the initialization of TMR4.
+
+@\+Preconditions Initialize the TMR4 before calling this function.
+
+@\+Param period\+Val -\/ Value to load into TMR4 register.
+
+@\+Returns None
+
+@\+Example {\ttfamily  \#define PERIOD1 0x80 \#define PERIOD2 0x40 \#define ZERO 0x00}
+
+{\ttfamily  while(1) \{ Read the TMR4 register if(ZERO == \doxylink{tmr4_8h_a9d8b34102a57a2a65e8cd2697593a578}{TMR4\+\_\+\+Counter8\+Bit\+Get()}) \{ Do something else... \begin{DoxyVerb}        if(flag)
+        {
+            flag = 0;
+\end{DoxyVerb}
+}
+
+{\ttfamily Load Period 1 value TMR4\+\_\+\+Period8\+Bit\+Set(\+PERIOD1); \} else \{ flag = 1;}
+
+{\ttfamily Load Period 2 value TMR4\+\_\+\+Period8\+Bit\+Set(\+PERIOD2); \} \}}
+
+{\ttfamily Do something else... \} } Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{tmr4_8c_a9500fc742dbf30e7c7018a3c0f88367b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{tmr4_8c_a71a042c0b873d77659d7ccb42b2a04f6}\index{tmr4.c@{tmr4.c}!TMR4\_ReadTimer@{TMR4\_ReadTimer}}
+\index{TMR4\_ReadTimer@{TMR4\_ReadTimer}!tmr4.c@{tmr4.c}}
+\doxysubsubsection{\texorpdfstring{TMR4\_ReadTimer()}{TMR4\_ReadTimer()}}
+{\footnotesize\ttfamily \label{tmr4_8c_a71a042c0b873d77659d7ccb42b2a04f6} 
+uint8\+\_\+t TMR4\+\_\+\+Read\+Timer (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+@\+Summary Reads the TMR4 register.
+
+@\+Description This function reads the TMR4 register value and return it.
+
+@\+Preconditions Initialize the TMR4 before calling this function.
+
+@\+Param None
+
+@\+Returns This function returns the current value of TMR4 register.
+
+@\+Example {\ttfamily  Initialize TMR4 module}
+
+{\ttfamily Start TMR4 \doxylink{tmr4_8h_a08cc752e0d5622957129c49c2fe5c90c}{TMR4\+\_\+\+Start\+Timer()};}
+
+{\ttfamily Read the current value of TMR4 if(0 == \doxylink{tmr4_8h_a71a042c0b873d77659d7ccb42b2a04f6}{TMR4\+\_\+\+Read\+Timer()}) \{ Do something else...}
+
+{\ttfamily Reload the TMR value \doxylink{tmr4_8h_a7f1dd192cee45bd7786b6a453bc0eba1}{TMR4\+\_\+\+Load\+Period\+Register()}; \} } Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=343pt]{tmr4_8c_a71a042c0b873d77659d7ccb42b2a04f6_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{tmr4_8c_a5023000e3c77f593628ae86eb9c3772d}\index{tmr4.c@{tmr4.c}!TMR4\_SetInterruptHandler@{TMR4\_SetInterruptHandler}}
+\index{TMR4\_SetInterruptHandler@{TMR4\_SetInterruptHandler}!tmr4.c@{tmr4.c}}
+\doxysubsubsection{\texorpdfstring{TMR4\_SetInterruptHandler()}{TMR4\_SetInterruptHandler()}}
+{\footnotesize\ttfamily \label{tmr4_8c_a5023000e3c77f593628ae86eb9c3772d} 
+void TMR4\+\_\+\+Set\+Interrupt\+Handler (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{Interrupt\+Handler~}{)(void)}\end{DoxyParamCaption})}
+
+@\+Summary Set Timer Interrupt Handler
+
+@\+Description This sets the function to be called during the ISR
+
+@\+Preconditions Initialize the TMR4 module with interrupt before calling this.
+
+@\+Param Address of function to be set
+
+@\+Returns None Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{tmr4_8c_a5023000e3c77f593628ae86eb9c3772d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{tmr4_8c_a5666192e1d8ab908db0bae00c9d243fb}\index{tmr4.c@{tmr4.c}!TMR4\_Start@{TMR4\_Start}}
+\index{TMR4\_Start@{TMR4\_Start}!tmr4.c@{tmr4.c}}
+\doxysubsubsection{\texorpdfstring{TMR4\_Start()}{TMR4\_Start()}}
+{\footnotesize\ttfamily \label{tmr4_8c_a5666192e1d8ab908db0bae00c9d243fb} 
+void TMR4\+\_\+\+Start (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+@\+Summary This function starts the TMR4.
+
+@\+Description This function starts the TMR4 operation. This function must be called after the initialization of TMR4.
+
+@\+Preconditions Initialize the TMR4 before calling this function.
+
+@\+Param None
+
+@\+Returns None
+
+@\+Example {\ttfamily  Initialize TMR4 module}
+
+{\ttfamily Start TMR4 \doxylink{tmr4_8h_a5666192e1d8ab908db0bae00c9d243fb}{TMR4\+\_\+\+Start()};}
+
+{\ttfamily Do something else... } Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{tmr4_8c_a5666192e1d8ab908db0bae00c9d243fb_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{tmr4_8c_a08cc752e0d5622957129c49c2fe5c90c}\index{tmr4.c@{tmr4.c}!TMR4\_StartTimer@{TMR4\_StartTimer}}
+\index{TMR4\_StartTimer@{TMR4\_StartTimer}!tmr4.c@{tmr4.c}}
+\doxysubsubsection{\texorpdfstring{TMR4\_StartTimer()}{TMR4\_StartTimer()}}
+{\footnotesize\ttfamily \label{tmr4_8c_a08cc752e0d5622957129c49c2fe5c90c} 
+void TMR4\+\_\+\+Start\+Timer (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+@\+Summary This function starts the TMR4.
+
+@\+Description This function starts the TMR4 operation. This function must be called after the initialization of TMR4.
+
+@\+Preconditions Initialize the TMR4 before calling this function.
+
+@\+Param None
+
+@\+Returns None
+
+@\+Example {\ttfamily  Initialize TMR4 module}
+
+{\ttfamily Start TMR4 \doxylink{tmr4_8h_a08cc752e0d5622957129c49c2fe5c90c}{TMR4\+\_\+\+Start\+Timer()};}
+
+{\ttfamily Do something else... } Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=290pt]{tmr4_8c_a08cc752e0d5622957129c49c2fe5c90c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=258pt]{tmr4_8c_a08cc752e0d5622957129c49c2fe5c90c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{tmr4_8c_a6d19dd15af20bd2ba1b4c142b0b744e7}\index{tmr4.c@{tmr4.c}!TMR4\_Stop@{TMR4\_Stop}}
+\index{TMR4\_Stop@{TMR4\_Stop}!tmr4.c@{tmr4.c}}
+\doxysubsubsection{\texorpdfstring{TMR4\_Stop()}{TMR4\_Stop()}}
+{\footnotesize\ttfamily \label{tmr4_8c_a6d19dd15af20bd2ba1b4c142b0b744e7} 
+void TMR4\+\_\+\+Stop (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+@\+Summary This function stops the TMR4.
+
+@\+Description This function stops the TMR4 operation. This function must be called after the start of TMR4.
+
+@\+Preconditions Initialize the TMR4 before calling this function.
+
+@\+Param None
+
+@\+Returns None
+
+@\+Example {\ttfamily  Initialize TMR4 module}
+
+{\ttfamily Start TMR4 \doxylink{tmr4_8h_a5666192e1d8ab908db0bae00c9d243fb}{TMR4\+\_\+\+Start()};}
+
+{\ttfamily Do something else...}
+
+{\ttfamily Stop TMR4; \doxylink{tmr4_8h_a6d19dd15af20bd2ba1b4c142b0b744e7}{TMR4\+\_\+\+Stop()}; } Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=286pt]{tmr4_8c_a6d19dd15af20bd2ba1b4c142b0b744e7_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{tmr4_8c_a0789a41c6994261eba406296ae087022}\index{tmr4.c@{tmr4.c}!TMR4\_StopTimer@{TMR4\_StopTimer}}
+\index{TMR4\_StopTimer@{TMR4\_StopTimer}!tmr4.c@{tmr4.c}}
+\doxysubsubsection{\texorpdfstring{TMR4\_StopTimer()}{TMR4\_StopTimer()}}
+{\footnotesize\ttfamily \label{tmr4_8c_a0789a41c6994261eba406296ae087022} 
+void TMR4\+\_\+\+Stop\+Timer (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+@\+Summary This function stops the TMR4.
+
+@\+Description This function stops the TMR4 operation. This function must be called after the start of TMR4.
+
+@\+Preconditions Initialize the TMR4 before calling this function.
+
+@\+Param None
+
+@\+Returns None
+
+@\+Example {\ttfamily  Initialize TMR4 module}
+
+{\ttfamily Start TMR4 \doxylink{tmr4_8h_a08cc752e0d5622957129c49c2fe5c90c}{TMR4\+\_\+\+Start\+Timer()};}
+
+{\ttfamily Do something else...}
+
+{\ttfamily Stop TMR4; \doxylink{tmr4_8h_a0789a41c6994261eba406296ae087022}{TMR4\+\_\+\+Stop\+Timer()}; } Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=286pt]{tmr4_8c_a0789a41c6994261eba406296ae087022_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{tmr4_8c_a0c150fa8fe1d61fe4d2accaf474cdcd2}\index{tmr4.c@{tmr4.c}!TMR4\_WriteTimer@{TMR4\_WriteTimer}}
+\index{TMR4\_WriteTimer@{TMR4\_WriteTimer}!tmr4.c@{tmr4.c}}
+\doxysubsubsection{\texorpdfstring{TMR4\_WriteTimer()}{TMR4\_WriteTimer()}}
+{\footnotesize\ttfamily \label{tmr4_8c_a0c150fa8fe1d61fe4d2accaf474cdcd2} 
+void TMR4\+\_\+\+Write\+Timer (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{timer\+Val}{}\end{DoxyParamCaption})}
+
+@\+Summary Writes the TMR4 register.
+
+@\+Description This function writes the TMR4 register. This function must be called after the initialization of TMR4.
+
+@\+Preconditions Initialize the TMR4 before calling this function.
+
+@\+Param timer\+Val -\/ Value to write into TMR4 register.
+
+@\+Returns None
+
+@\+Example {\ttfamily  \#define PERIOD 0x80 \#define ZERO 0x00}
+
+{\ttfamily  while(1) \{ Read the TMR4 register if(ZERO == \doxylink{tmr4_8h_a71a042c0b873d77659d7ccb42b2a04f6}{TMR4\+\_\+\+Read\+Timer()}) \{ Do something else...}
+
+{\ttfamily Write the TMR4 register TMR4\+\_\+\+Write\+Timer(\+PERIOD); \}}
+
+{\ttfamily Do something else... \} } Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=343pt]{tmr4_8c_a0c150fa8fe1d61fe4d2accaf474cdcd2_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{tmr4_8c_a68060483ea8ac694e413a598a1e2bbea}\index{tmr4.c@{tmr4.c}!TMR4\_InterruptHandler@{TMR4\_InterruptHandler}}
+\index{TMR4\_InterruptHandler@{TMR4\_InterruptHandler}!tmr4.c@{tmr4.c}}
+\doxysubsubsection{\texorpdfstring{TMR4\_InterruptHandler}{TMR4\_InterruptHandler}}
+{\footnotesize\ttfamily \label{tmr4_8c_a68060483ea8ac694e413a598a1e2bbea} 
+void(\texorpdfstring{$\ast$}{*} TMR4\+\_\+\+Interrupt\+Handler) (void) (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+TMR4 Generated Driver File
+
+@\+Company Microchip Technology Inc.
+
+@\+File Name \doxylink{tmr4_8c}{tmr4.\+c}
+
+@\+Summary This is the generated driver implementation file for the TMR4 driver using PIC10 / PIC12 / PIC16 / PIC18 MCUs
+
+@\+Description This source file provides APIs for TMR4. Generation Information \+: Product Revision \+: PIC10 / PIC12 / PIC16 / PIC18 MCUs -\/ 1.\+81.\+8 Device \+: PIC18\+F47\+Q84 Driver Version \+: 2.\+11 The generated drivers are tested against the following\+: Compiler \+: XC8 2.\+36 and above MPLAB \+: MPLAB X 6.\+00 Section\+: Included Files Section\+: Global Variables Definitions 

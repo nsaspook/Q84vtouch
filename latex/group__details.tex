@@ -1,0 +1,375 @@
+\doxysection{Utilities}
+\hypertarget{group__details}{}\label{group__details}\index{Utilities@{Utilities}}
+
+
+Developer documentation for the utilities used to implement the MQTT-\/C client.  
+
+
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structmqtt__queued__message}{mqtt\+\_\+queued\+\_\+message}}
+\begin{DoxyCompactList}\small\item\em A message in a \doxylink{structmqtt__message__queue}{mqtt\+\_\+message\+\_\+queue}. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmqtt__message__queue}{mqtt\+\_\+message\+\_\+queue}}
+\begin{DoxyCompactList}\small\item\em A message queue. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}}
+\begin{DoxyCompactList}\small\item\em An MQTT client. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__details_gadfa141880e5b30429bd89018da0c8d94}{mqtt\+\_\+mq\+\_\+get}}(mq\+\_\+ptr,  index)
+\begin{DoxyCompactList}\small\item\em Returns the \doxylink{structmqtt__queued__message}{mqtt\+\_\+queued\+\_\+message} at {\ttfamily index}. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__details_ga4be078d9d0bd6183b9082f3217622223}{mqtt\+\_\+mq\+\_\+length}}(mq\+\_\+ptr)
+\begin{DoxyCompactList}\small\item\em Returns the number of messages in the message queue, {\ttfamily mq\+\_\+ptr}. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__details_ga8cd873da2116975ce39b313f93068d83}{mqtt\+\_\+mq\+\_\+currsz}}(mq\+\_\+ptr)
+\begin{DoxyCompactList}\small\item\em Used internally to recalculate the {\ttfamily curr\+\_\+sz}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__details_ga28b018ca5d1c81101d36f9c0d532a0d0}{MQTTQueued\+Message\+State}} \{ \mbox{\hyperlink{group__details_gga28b018ca5d1c81101d36f9c0d532a0d0a3b253ea42cffbf3b9de68ea875214dc6}{MQTT\+\_\+\+QUEUED\+\_\+\+UNSENT}}
+, \mbox{\hyperlink{group__details_gga28b018ca5d1c81101d36f9c0d532a0d0a1fada2f64335662a43aa99137ee1827b}{MQTT\+\_\+\+QUEUED\+\_\+\+AWAITING\+\_\+\+ACK}}
+, \mbox{\hyperlink{group__details_gga28b018ca5d1c81101d36f9c0d532a0d0a32f4560e2822153e07026f560c1d2c98}{MQTT\+\_\+\+QUEUED\+\_\+\+COMPLETE}}
+ \}
+\begin{DoxyCompactList}\small\item\em An enumeration of queued message states. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{group__details_ga7ca75c661980d4af50493f59a386f378}{\+\_\+\+\_\+mqtt\+\_\+next\+\_\+pid}} (struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}})
+\begin{DoxyCompactList}\small\item\em Generate a new next packet ID. \end{DoxyCompactList}\item 
+ssize\+\_\+t \mbox{\hyperlink{group__details_gacf553ca88f48350dbde0dc3b96e550f7}{\+\_\+\+\_\+mqtt\+\_\+send}} (struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}})
+\begin{DoxyCompactList}\small\item\em Handles egress client traffic. \end{DoxyCompactList}\item 
+ssize\+\_\+t \mbox{\hyperlink{group__details_ga4d50a465c684a5ecd1c000f811fa601e}{\+\_\+\+\_\+mqtt\+\_\+recv}} (struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}})
+\begin{DoxyCompactList}\small\item\em Handles ingress client traffic. \end{DoxyCompactList}\item 
+ssize\+\_\+t \mbox{\hyperlink{group__details_gae09d4412a871ecec31377db55cc54228}{\+\_\+\+\_\+mqtt\+\_\+puback}} (struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}}, uint16\+\_\+t packet\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Acknowledge an ingree publish with QOS==1. \end{DoxyCompactList}\item 
+ssize\+\_\+t \mbox{\hyperlink{group__details_ga874c62f7a20b6adf13dbed2b4e2dd985}{\+\_\+\+\_\+mqtt\+\_\+pubrec}} (struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}}, uint16\+\_\+t packet\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Acknowledge an ingree publish with QOS==2. \end{DoxyCompactList}\item 
+ssize\+\_\+t \mbox{\hyperlink{group__details_ga427f9191ab9967b75e0a7a2f7fa0dca0}{\+\_\+\+\_\+mqtt\+\_\+pubrel}} (struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}}, uint16\+\_\+t packet\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Acknowledge an ingree PUBREC packet. \end{DoxyCompactList}\item 
+ssize\+\_\+t \mbox{\hyperlink{group__details_ga86ddd2a08fbe4bd351dfd161db93303d}{\+\_\+\+\_\+mqtt\+\_\+pubcomp}} (struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}}, uint16\+\_\+t packet\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Acknowledge an ingree PUBREL packet. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__details_ga0da861c969387bf8d0229924543d9bb7}{mqtt\+\_\+mq\+\_\+init}} (struct \mbox{\hyperlink{structmqtt__message__queue}{mqtt\+\_\+message\+\_\+queue}} \texorpdfstring{$\ast$}{*}mq, void \texorpdfstring{$\ast$}{*}buf, size\+\_\+t bufsz)
+\begin{DoxyCompactList}\small\item\em Initialize a message queue. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__details_gadb54c413b4d884619c50cc20ee6eb084}{mqtt\+\_\+mq\+\_\+clean}} (struct \mbox{\hyperlink{structmqtt__message__queue}{mqtt\+\_\+message\+\_\+queue}} \texorpdfstring{$\ast$}{*}mq)
+\begin{DoxyCompactList}\small\item\em Clear as many messages from the front of the queue as possible. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmqtt__queued__message}{mqtt\+\_\+queued\+\_\+message}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__details_gaa34e6af3ab1af60ebf8fe7b86be868fc}{mqtt\+\_\+mq\+\_\+register}} (struct \mbox{\hyperlink{structmqtt__message__queue}{mqtt\+\_\+message\+\_\+queue}} \texorpdfstring{$\ast$}{*}mq, size\+\_\+t nbytes)
+\begin{DoxyCompactList}\small\item\em Register a message that was just added to the buffer. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmqtt__queued__message}{mqtt\+\_\+queued\+\_\+message}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__details_ga7ff481382af50e917941f1e7a787a36a}{mqtt\+\_\+mq\+\_\+find}} (const struct \mbox{\hyperlink{structmqtt__message__queue}{mqtt\+\_\+message\+\_\+queue}} \texorpdfstring{$\ast$}{*}mq, enum \mbox{\hyperlink{group__unpackers_gacbd36b88ec7f62bc161b07e1a0aed679}{MQTTControl\+Packet\+Type}} control\+\_\+type, const uint16\+\_\+t \texorpdfstring{$\ast$}{*}packet\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Find a message in the message queue. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Developer documentation for the utilities used to implement the MQTT-\/C client. 
+
+\begin{DoxyNote}{Note}
+To deserialize a packet from a buffer use mqtt\+\_\+unpack\+\_\+response (it\textquotesingle{}s the only function you need). 
+\end{DoxyNote}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{group__details_ga8cd873da2116975ce39b313f93068d83}\index{Utilities@{Utilities}!mqtt\_mq\_currsz@{mqtt\_mq\_currsz}}
+\index{mqtt\_mq\_currsz@{mqtt\_mq\_currsz}!Utilities@{Utilities}}
+\doxysubsubsection{\texorpdfstring{mqtt\_mq\_currsz}{mqtt\_mq\_currsz}}
+{\footnotesize\ttfamily \label{group__details_ga8cd873da2116975ce39b313f93068d83} 
+\#define mqtt\+\_\+mq\+\_\+currsz(\begin{DoxyParamCaption}\item[{}]{mq\+\_\+ptr}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(((mq\_ptr)-\/>curr\ >=\ (uint8\_t*)\ ((mq\_ptr)-\/>queue\_tail\ -\/\ 1))\ ?\ 0\ :\ ((uint8\_t*)\ ((mq\_ptr)-\/>queue\_tail\ -\/\ 1))\ -\/\ (mq\_ptr)-\/>curr)}
+
+\end{DoxyCode}
+
+
+Used internally to recalculate the {\ttfamily curr\+\_\+sz}. 
+
+\Hypertarget{group__details_gadfa141880e5b30429bd89018da0c8d94}\index{Utilities@{Utilities}!mqtt\_mq\_get@{mqtt\_mq\_get}}
+\index{mqtt\_mq\_get@{mqtt\_mq\_get}!Utilities@{Utilities}}
+\doxysubsubsection{\texorpdfstring{mqtt\_mq\_get}{mqtt\_mq\_get}}
+{\footnotesize\ttfamily \label{group__details_gadfa141880e5b30429bd89018da0c8d94} 
+\#define mqtt\+\_\+mq\+\_\+get(\begin{DoxyParamCaption}\item[{}]{mq\+\_\+ptr}{, }\item[{}]{index}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(((\textcolor{keyword}{struct\ }\mbox{\hyperlink{structmqtt__queued__message}{mqtt\_queued\_message}}*)\ ((mq\_ptr)-\/>mem\_end))\ -\/\ 1\ -\/\ index)}
+
+\end{DoxyCode}
+
+
+Returns the \doxylink{structmqtt__queued__message}{mqtt\+\_\+queued\+\_\+message} at {\ttfamily index}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mq\+\_\+ptr} & A pointer to the message queue. \\
+\hline
+{\em index} & The index of the message.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The \doxylink{structmqtt__queued__message}{mqtt\+\_\+queued\+\_\+message} at {\ttfamily index}. 
+\end{DoxyReturn}
+\Hypertarget{group__details_ga4be078d9d0bd6183b9082f3217622223}\index{Utilities@{Utilities}!mqtt\_mq\_length@{mqtt\_mq\_length}}
+\index{mqtt\_mq\_length@{mqtt\_mq\_length}!Utilities@{Utilities}}
+\doxysubsubsection{\texorpdfstring{mqtt\_mq\_length}{mqtt\_mq\_length}}
+{\footnotesize\ttfamily \label{group__details_ga4be078d9d0bd6183b9082f3217622223} 
+\#define mqtt\+\_\+mq\+\_\+length(\begin{DoxyParamCaption}\item[{}]{mq\+\_\+ptr}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(((\textcolor{keyword}{struct\ }\mbox{\hyperlink{structmqtt__queued__message}{mqtt\_queued\_message}}*)\ ((mq\_ptr)-\/>mem\_end))\ -\/\ (mq\_ptr)-\/>queue\_tail)}
+
+\end{DoxyCode}
+
+
+Returns the number of messages in the message queue, {\ttfamily mq\+\_\+ptr}. 
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{group__details_ga28b018ca5d1c81101d36f9c0d532a0d0}\index{Utilities@{Utilities}!MQTTQueuedMessageState@{MQTTQueuedMessageState}}
+\index{MQTTQueuedMessageState@{MQTTQueuedMessageState}!Utilities@{Utilities}}
+\doxysubsubsection{\texorpdfstring{MQTTQueuedMessageState}{MQTTQueuedMessageState}}
+{\footnotesize\ttfamily \label{group__details_ga28b018ca5d1c81101d36f9c0d532a0d0} 
+enum \mbox{\hyperlink{group__details_ga28b018ca5d1c81101d36f9c0d532a0d0}{MQTTQueued\+Message\+State}}}
+
+
+
+An enumeration of queued message states. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MQTT\_QUEUED\_UNSENT@{MQTT\_QUEUED\_UNSENT}!Utilities@{Utilities}}\index{Utilities@{Utilities}!MQTT\_QUEUED\_UNSENT@{MQTT\_QUEUED\_UNSENT}}}\Hypertarget{group__details_gga28b018ca5d1c81101d36f9c0d532a0d0a3b253ea42cffbf3b9de68ea875214dc6}\label{group__details_gga28b018ca5d1c81101d36f9c0d532a0d0a3b253ea42cffbf3b9de68ea875214dc6} 
+MQTT\+\_\+\+QUEUED\+\_\+\+UNSENT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MQTT\_QUEUED\_AWAITING\_ACK@{MQTT\_QUEUED\_AWAITING\_ACK}!Utilities@{Utilities}}\index{Utilities@{Utilities}!MQTT\_QUEUED\_AWAITING\_ACK@{MQTT\_QUEUED\_AWAITING\_ACK}}}\Hypertarget{group__details_gga28b018ca5d1c81101d36f9c0d532a0d0a1fada2f64335662a43aa99137ee1827b}\label{group__details_gga28b018ca5d1c81101d36f9c0d532a0d0a1fada2f64335662a43aa99137ee1827b} 
+MQTT\+\_\+\+QUEUED\+\_\+\+AWAITING\+\_\+\+ACK&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MQTT\_QUEUED\_COMPLETE@{MQTT\_QUEUED\_COMPLETE}!Utilities@{Utilities}}\index{Utilities@{Utilities}!MQTT\_QUEUED\_COMPLETE@{MQTT\_QUEUED\_COMPLETE}}}\Hypertarget{group__details_gga28b018ca5d1c81101d36f9c0d532a0d0a32f4560e2822153e07026f560c1d2c98}\label{group__details_gga28b018ca5d1c81101d36f9c0d532a0d0a32f4560e2822153e07026f560c1d2c98} 
+MQTT\+\_\+\+QUEUED\+\_\+\+COMPLETE&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{group__details_ga7ca75c661980d4af50493f59a386f378}\index{Utilities@{Utilities}!\_\_mqtt\_next\_pid@{\_\_mqtt\_next\_pid}}
+\index{\_\_mqtt\_next\_pid@{\_\_mqtt\_next\_pid}!Utilities@{Utilities}}
+\doxysubsubsection{\texorpdfstring{\_\_mqtt\_next\_pid()}{\_\_mqtt\_next\_pid()}}
+{\footnotesize\ttfamily \label{group__details_ga7ca75c661980d4af50493f59a386f378} 
+uint16\+\_\+t \+\_\+\+\_\+mqtt\+\_\+next\+\_\+pid (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}}]{client}{}\end{DoxyParamCaption})}
+
+
+
+Generate a new next packet ID. 
+
+Packet ID\textquotesingle{}s are generated using a max-\/length LFSR.
+
+
+\begin{DoxyParams}{Parameters}
+{\em client} & The MQTT client.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The new packet ID that should be used. 
+\end{DoxyReturn}
+\Hypertarget{group__details_gae09d4412a871ecec31377db55cc54228}\index{Utilities@{Utilities}!\_\_mqtt\_puback@{\_\_mqtt\_puback}}
+\index{\_\_mqtt\_puback@{\_\_mqtt\_puback}!Utilities@{Utilities}}
+\doxysubsubsection{\texorpdfstring{\_\_mqtt\_puback()}{\_\_mqtt\_puback()}}
+{\footnotesize\ttfamily \label{group__details_gae09d4412a871ecec31377db55cc54228} 
+ssize\+\_\+t \+\_\+\+\_\+mqtt\+\_\+puback (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}}]{client}{, }\item[{uint16\+\_\+t}]{packet\+\_\+id}{}\end{DoxyParamCaption})}
+
+
+
+Acknowledge an ingree publish with QOS==1. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em client} & The MQTT client. \\
+\hline
+\mbox{\texttt{ in}}  & {\em packet\+\_\+id} & The packet ID of the ingress publish being acknowledged.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily MQTT\+\_\+\+OK} upon success, an \doxylink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors} otherwise. 
+\end{DoxyReturn}
+\Hypertarget{group__details_ga86ddd2a08fbe4bd351dfd161db93303d}\index{Utilities@{Utilities}!\_\_mqtt\_pubcomp@{\_\_mqtt\_pubcomp}}
+\index{\_\_mqtt\_pubcomp@{\_\_mqtt\_pubcomp}!Utilities@{Utilities}}
+\doxysubsubsection{\texorpdfstring{\_\_mqtt\_pubcomp()}{\_\_mqtt\_pubcomp()}}
+{\footnotesize\ttfamily \label{group__details_ga86ddd2a08fbe4bd351dfd161db93303d} 
+ssize\+\_\+t \+\_\+\+\_\+mqtt\+\_\+pubcomp (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}}]{client}{, }\item[{uint16\+\_\+t}]{packet\+\_\+id}{}\end{DoxyParamCaption})}
+
+
+
+Acknowledge an ingree PUBREL packet. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em client} & The MQTT client. \\
+\hline
+\mbox{\texttt{ in}}  & {\em packet\+\_\+id} & The packet ID of the ingress PUBREL being acknowledged.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily MQTT\+\_\+\+OK} upon success, an \doxylink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors} otherwise. 
+\end{DoxyReturn}
+\Hypertarget{group__details_ga874c62f7a20b6adf13dbed2b4e2dd985}\index{Utilities@{Utilities}!\_\_mqtt\_pubrec@{\_\_mqtt\_pubrec}}
+\index{\_\_mqtt\_pubrec@{\_\_mqtt\_pubrec}!Utilities@{Utilities}}
+\doxysubsubsection{\texorpdfstring{\_\_mqtt\_pubrec()}{\_\_mqtt\_pubrec()}}
+{\footnotesize\ttfamily \label{group__details_ga874c62f7a20b6adf13dbed2b4e2dd985} 
+ssize\+\_\+t \+\_\+\+\_\+mqtt\+\_\+pubrec (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}}]{client}{, }\item[{uint16\+\_\+t}]{packet\+\_\+id}{}\end{DoxyParamCaption})}
+
+
+
+Acknowledge an ingree publish with QOS==2. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em client} & The MQTT client. \\
+\hline
+\mbox{\texttt{ in}}  & {\em packet\+\_\+id} & The packet ID of the ingress publish being acknowledged.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily MQTT\+\_\+\+OK} upon success, an \doxylink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors} otherwise. 
+\end{DoxyReturn}
+\Hypertarget{group__details_ga427f9191ab9967b75e0a7a2f7fa0dca0}\index{Utilities@{Utilities}!\_\_mqtt\_pubrel@{\_\_mqtt\_pubrel}}
+\index{\_\_mqtt\_pubrel@{\_\_mqtt\_pubrel}!Utilities@{Utilities}}
+\doxysubsubsection{\texorpdfstring{\_\_mqtt\_pubrel()}{\_\_mqtt\_pubrel()}}
+{\footnotesize\ttfamily \label{group__details_ga427f9191ab9967b75e0a7a2f7fa0dca0} 
+ssize\+\_\+t \+\_\+\+\_\+mqtt\+\_\+pubrel (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}}]{client}{, }\item[{uint16\+\_\+t}]{packet\+\_\+id}{}\end{DoxyParamCaption})}
+
+
+
+Acknowledge an ingree PUBREC packet. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em client} & The MQTT client. \\
+\hline
+\mbox{\texttt{ in}}  & {\em packet\+\_\+id} & The packet ID of the ingress PUBREC being acknowledged.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily MQTT\+\_\+\+OK} upon success, an \doxylink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors} otherwise. 
+\end{DoxyReturn}
+\Hypertarget{group__details_ga4d50a465c684a5ecd1c000f811fa601e}\index{Utilities@{Utilities}!\_\_mqtt\_recv@{\_\_mqtt\_recv}}
+\index{\_\_mqtt\_recv@{\_\_mqtt\_recv}!Utilities@{Utilities}}
+\doxysubsubsection{\texorpdfstring{\_\_mqtt\_recv()}{\_\_mqtt\_recv()}}
+{\footnotesize\ttfamily \label{group__details_ga4d50a465c684a5ecd1c000f811fa601e} 
+ssize\+\_\+t \+\_\+\+\_\+mqtt\+\_\+recv (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}}]{client}{}\end{DoxyParamCaption})}
+
+
+
+Handles ingress client traffic. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em client} & The MQTT client.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+MQTT\+\_\+\+OK upon success, an \doxylink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors} otherwise. 
+\end{DoxyReturn}
+\Hypertarget{group__details_gacf553ca88f48350dbde0dc3b96e550f7}\index{Utilities@{Utilities}!\_\_mqtt\_send@{\_\_mqtt\_send}}
+\index{\_\_mqtt\_send@{\_\_mqtt\_send}!Utilities@{Utilities}}
+\doxysubsubsection{\texorpdfstring{\_\_mqtt\_send()}{\_\_mqtt\_send()}}
+{\footnotesize\ttfamily \label{group__details_gacf553ca88f48350dbde0dc3b96e550f7} 
+ssize\+\_\+t \+\_\+\+\_\+mqtt\+\_\+send (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}}]{client}{}\end{DoxyParamCaption})}
+
+
+
+Handles egress client traffic. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em client} & The MQTT client.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+MQTT\+\_\+\+OK upon success, an \doxylink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors} otherwise. 
+\end{DoxyReturn}
+\Hypertarget{group__details_gadb54c413b4d884619c50cc20ee6eb084}\index{Utilities@{Utilities}!mqtt\_mq\_clean@{mqtt\_mq\_clean}}
+\index{mqtt\_mq\_clean@{mqtt\_mq\_clean}!Utilities@{Utilities}}
+\doxysubsubsection{\texorpdfstring{mqtt\_mq\_clean()}{mqtt\_mq\_clean()}}
+{\footnotesize\ttfamily \label{group__details_gadb54c413b4d884619c50cc20ee6eb084} 
+void mqtt\+\_\+mq\+\_\+clean (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structmqtt__message__queue}{mqtt\+\_\+message\+\_\+queue}} \texorpdfstring{$\ast$}{*}}]{mq}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Clear as many messages from the front of the queue as possible. 
+
+\begin{DoxyNote}{Note}
+Calls to this function are the {\itshape only} way to remove messages from the queue.
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em mq} & The message queue. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{group__details_ga7ff481382af50e917941f1e7a787a36a}\index{Utilities@{Utilities}!mqtt\_mq\_find@{mqtt\_mq\_find}}
+\index{mqtt\_mq\_find@{mqtt\_mq\_find}!Utilities@{Utilities}}
+\doxysubsubsection{\texorpdfstring{mqtt\_mq\_find()}{mqtt\_mq\_find()}}
+{\footnotesize\ttfamily \label{group__details_ga7ff481382af50e917941f1e7a787a36a} 
+struct \mbox{\hyperlink{structmqtt__queued__message}{mqtt\+\_\+queued\+\_\+message}} \texorpdfstring{$\ast$}{*} mqtt\+\_\+mq\+\_\+find (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structmqtt__message__queue}{mqtt\+\_\+message\+\_\+queue}} \texorpdfstring{$\ast$}{*}}]{mq}{, }\item[{enum \mbox{\hyperlink{group__unpackers_gacbd36b88ec7f62bc161b07e1a0aed679}{MQTTControl\+Packet\+Type}}}]{control\+\_\+type}{, }\item[{const uint16\+\_\+t \texorpdfstring{$\ast$}{*}}]{packet\+\_\+id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Find a message in the message queue. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em mq} & The message queue. \\
+\hline
+\mbox{\texttt{ in}}  & {\em control\+\_\+type} & The control type of the message you want to find. \\
+\hline
+\mbox{\texttt{ in}}  & {\em packet\+\_\+id} & The packet ID of the message you want to find. Set to {\ttfamily NULL} if you don\textquotesingle{}t want to specify a packet ID.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The found message. {\ttfamily NULL} if the message was not found. 
+\end{DoxyReturn}
+\Hypertarget{group__details_ga0da861c969387bf8d0229924543d9bb7}\index{Utilities@{Utilities}!mqtt\_mq\_init@{mqtt\_mq\_init}}
+\index{mqtt\_mq\_init@{mqtt\_mq\_init}!Utilities@{Utilities}}
+\doxysubsubsection{\texorpdfstring{mqtt\_mq\_init()}{mqtt\_mq\_init()}}
+{\footnotesize\ttfamily \label{group__details_ga0da861c969387bf8d0229924543d9bb7} 
+void mqtt\+\_\+mq\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structmqtt__message__queue}{mqtt\+\_\+message\+\_\+queue}} \texorpdfstring{$\ast$}{*}}]{mq}{, }\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{size\+\_\+t}]{bufsz}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Initialize a message queue. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em mq} & The message queue to initialize. \\
+\hline
+\mbox{\texttt{ in}}  & {\em buf} & The buffer for this message queue. \\
+\hline
+\mbox{\texttt{ in}}  & {\em bufsz} & The number of bytes in the buffer. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{group__details_gaa34e6af3ab1af60ebf8fe7b86be868fc}\index{Utilities@{Utilities}!mqtt\_mq\_register@{mqtt\_mq\_register}}
+\index{mqtt\_mq\_register@{mqtt\_mq\_register}!Utilities@{Utilities}}
+\doxysubsubsection{\texorpdfstring{mqtt\_mq\_register()}{mqtt\_mq\_register()}}
+{\footnotesize\ttfamily \label{group__details_gaa34e6af3ab1af60ebf8fe7b86be868fc} 
+struct \mbox{\hyperlink{structmqtt__queued__message}{mqtt\+\_\+queued\+\_\+message}} \texorpdfstring{$\ast$}{*} mqtt\+\_\+mq\+\_\+register (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structmqtt__message__queue}{mqtt\+\_\+message\+\_\+queue}} \texorpdfstring{$\ast$}{*}}]{mq}{, }\item[{size\+\_\+t}]{nbytes}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Register a message that was just added to the buffer. 
+
+\begin{DoxyNote}{Note}
+This function should be called immediately following a call to a packer function that returned a positive value. The positive value (number of bytes packed) should be passed to this function.
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em mq} & The message queue. \\
+\hline
+\mbox{\texttt{ in}}  & {\em nbytes} & The number of bytes that were just packed.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+This function will step \doxylink{structmqtt__message__queue_a2158c932588480e03463af9a429027c1}{mqtt\+\_\+message\+\_\+queue\+::curr} and update \doxylink{structmqtt__message__queue_a1bce4ca9a01a7cfbc0b9860569ea246e}{mqtt\+\_\+message\+\_\+queue\+::curr\+\_\+sz}.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+The newly added struct \doxylink{structmqtt__queued__message}{mqtt\+\_\+queued\+\_\+message}. 
+\end{DoxyReturn}

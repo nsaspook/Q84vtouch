@@ -1,0 +1,503 @@
+\doxysection{API}
+\hypertarget{group__api}{}\label{group__api}\index{API@{API}}
+
+
+Documentation of everything you need to know to use the MQTT-\/C client.  
+
+
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors}} \{ \mbox{\hyperlink{group__api_ggad0c901a8d30691ed0ca17915b691b7e7afbc9a979afb91468adb4ac3621ffd867}{MQTT\+\_\+\+ERROR\+\_\+\+UNKNOWN}} = INT\+\_\+\+MIN
+, \mbox{\hyperlink{group__api_ggad0c901a8d30691ed0ca17915b691b7e7acd22fa3c2d0371be61655883cbc57ec3}{MQTT\+\_\+\+OK}} = 1
+ \}
+\begin{DoxyCompactList}\small\item\em An enumeration of error codes. Error messages can be retrieved by calling \doxylink{group__api_gad2450e11094eba170a7fee52e2ad8a03}{mqtt\+\_\+error\+\_\+str}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__api_gad2450e11094eba170a7fee52e2ad8a03}{mqtt\+\_\+error\+\_\+str}} (enum \mbox{\hyperlink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors}} error)
+\begin{DoxyCompactList}\small\item\em Returns an error message for error code, {\ttfamily error}. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors}} \mbox{\hyperlink{group__api_gae3d3aafc7588ed53a90c9f66fc620a6e}{mqtt\+\_\+sync}} (struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}})
+\begin{DoxyCompactList}\small\item\em Function that does the actual sending and receiving of traffic from the network. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors}} \mbox{\hyperlink{group__api_gaa5dab8a06f016b09c7a5259274b3b3ce}{mqtt\+\_\+init}} (struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}}, mqtt\+\_\+pal\+\_\+socket\+\_\+handle \mbox{\hyperlink{mqtt__pub_8c_ad2c8fb3df3a737e0685e902870a611d2}{sockfd}}, uint8\+\_\+t \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a502b31a8d53cdcbf11c58e3978f30b75}{sendbuf}}, size\+\_\+t sendbufsz, uint8\+\_\+t \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_af3e47aa072f18ac9539f8e53c70cc547}{recvbuf}}, size\+\_\+t recvbufsz, void(\texorpdfstring{$\ast$}{*}publish\+\_\+response\+\_\+callback)(void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mateQ84_8X_2main_8c_a26b2a0469c474a0b173b3791e5c4eb80}{state}}, struct \mbox{\hyperlink{structmqtt__response__publish}{mqtt\+\_\+response\+\_\+publish}} \texorpdfstring{$\ast$}{*}publish))
+\begin{DoxyCompactList}\small\item\em Initializes an MQTT client. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__api_ga4becaa66425469cf462b531aa7eb1ac9}{mqtt\+\_\+init\+\_\+reconnect}} (struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}}, void(\texorpdfstring{$\ast$}{*}reconnect\+\_\+callback)(struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}}, void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mateQ84_8X_2main_8c_a26b2a0469c474a0b173b3791e5c4eb80}{state}}), void \texorpdfstring{$\ast$}{*}reconnect\+\_\+state, void(\texorpdfstring{$\ast$}{*}publish\+\_\+response\+\_\+callback)(void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mateQ84_8X_2main_8c_a26b2a0469c474a0b173b3791e5c4eb80}{state}}, struct \mbox{\hyperlink{structmqtt__response__publish}{mqtt\+\_\+response\+\_\+publish}} \texorpdfstring{$\ast$}{*}publish))
+\begin{DoxyCompactList}\small\item\em Initializes an MQTT client and enables automatic reconnections. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__api_gaf5ae4b5b880431ef1bcd72f343de9ac6}{mqtt\+\_\+reinit}} (struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}}, mqtt\+\_\+pal\+\_\+socket\+\_\+handle socketfd, uint8\+\_\+t \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a502b31a8d53cdcbf11c58e3978f30b75}{sendbuf}}, size\+\_\+t sendbufsz, uint8\+\_\+t \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_af3e47aa072f18ac9539f8e53c70cc547}{recvbuf}}, size\+\_\+t recvbufsz)
+\begin{DoxyCompactList}\small\item\em Safely assign/reassign a socket and buffers to an new/existing client. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors}} \mbox{\hyperlink{group__api_gadbe914e5a9d4f93314c4e7637cb4f7b3}{mqtt\+\_\+connect}} (struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}}, const char \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_ab4524148feaa9d4fe5c15722114aedf5}{client\+\_\+id}}, const char \texorpdfstring{$\ast$}{*}will\+\_\+topic, const void \texorpdfstring{$\ast$}{*}will\+\_\+message, size\+\_\+t will\+\_\+message\+\_\+size, const char \texorpdfstring{$\ast$}{*}user\+\_\+name, const char \texorpdfstring{$\ast$}{*}password, uint8\+\_\+t \mbox{\hyperlink{mqtt__pub_8c_a16548771900c3e7c13b759795547ea00}{connect\+\_\+flags}}, uint16\+\_\+t keep\+\_\+alive)
+\begin{DoxyCompactList}\small\item\em Establishes a session with the MQTT broker. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors}} \mbox{\hyperlink{group__api_gaf97b13371c254248416dcaf5890cec49}{mqtt\+\_\+publish}} (struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}}, const char \texorpdfstring{$\ast$}{*}topic\+\_\+name, const void \texorpdfstring{$\ast$}{*}application\+\_\+message, size\+\_\+t application\+\_\+message\+\_\+size, uint8\+\_\+t publish\+\_\+flags)
+\begin{DoxyCompactList}\small\item\em Publish an application message. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors}} \mbox{\hyperlink{group__api_gaea5da9b546f6e91eb77c9eff9c478de5}{mqtt\+\_\+subscribe}} (struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}}, const char \texorpdfstring{$\ast$}{*}topic\+\_\+name, int max\+\_\+qos\+\_\+level)
+\begin{DoxyCompactList}\small\item\em Subscribe to a topic. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors}} \mbox{\hyperlink{group__api_ga08d16571dfefa690698c0cca5cca7a1d}{mqtt\+\_\+unsubscribe}} (struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}}, const char \texorpdfstring{$\ast$}{*}topic\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Unsubscribe from a topic. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors}} \mbox{\hyperlink{group__api_gae472795684a1d973bfb89d075d17a29e}{mqtt\+\_\+ping}} (struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}})
+\begin{DoxyCompactList}\small\item\em Ping the broker. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors}} \mbox{\hyperlink{group__api_ga95d9981735ab4495d3d65e8056611126}{mqtt\+\_\+disconnect}} (struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}})
+\begin{DoxyCompactList}\small\item\em Terminate the session with the MQTT broker. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors}} \mbox{\hyperlink{group__api_ga325eeac7ab4873de8850f4e6af4dce01}{mqtt\+\_\+reconnect}} (struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}})
+\begin{DoxyCompactList}\small\item\em Terminate the session with the MQTT broker and prepare to reconnect. Client code should call \doxylink{group__api_gae3d3aafc7588ed53a90c9f66fc620a6e}{mqtt\+\_\+sync} immediately after this call to prevent message loss. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Documentation of everything you need to know to use the MQTT-\/C client. 
+
+This module contains everything you need to know to use MQTT-\/C in your application. For usage examples see\+:
+\begin{DoxyItemize}
+\item \doxylink{simple_publisher_8c-example}{simple\+\_\+publisher.\+c}
+\item \doxylink{simple_subscriber_8c-example}{simple\+\_\+subscriber.\+c}
+\item \doxylink{reconnect_subscriber_8c-example}{reconnect\+\_\+subscriber.\+c}
+\item \doxylink{bio_publisher_8c-example}{bio\+\_\+publisher.\+c}
+\item \doxylink{openssl_publisher_8c-example}{openssl\+\_\+publisher.\+c}
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+MQTT-\/C can be used in both single-\/threaded and multi-\/threaded applications. All the functions in \doxylink{group__api}{API} are thread-\/safe. 
+\end{DoxyNote}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{group__api_gad0c901a8d30691ed0ca17915b691b7e7}\index{API@{API}!MQTTErrors@{MQTTErrors}}
+\index{MQTTErrors@{MQTTErrors}!API@{API}}
+\doxysubsubsection{\texorpdfstring{MQTTErrors}{MQTTErrors}}
+{\footnotesize\ttfamily \label{group__api_gad0c901a8d30691ed0ca17915b691b7e7} 
+enum \mbox{\hyperlink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors}}}
+
+
+
+An enumeration of error codes. Error messages can be retrieved by calling \doxylink{group__api_gad2450e11094eba170a7fee52e2ad8a03}{mqtt\+\_\+error\+\_\+str}. 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__api_gad2450e11094eba170a7fee52e2ad8a03}{mqtt\+\_\+error\+\_\+str} 
+\end{DoxySeeAlso}
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MQTT\_ERROR\_UNKNOWN@{MQTT\_ERROR\_UNKNOWN}!API@{API}}\index{API@{API}!MQTT\_ERROR\_UNKNOWN@{MQTT\_ERROR\_UNKNOWN}}}\Hypertarget{group__api_ggad0c901a8d30691ed0ca17915b691b7e7afbc9a979afb91468adb4ac3621ffd867}\label{group__api_ggad0c901a8d30691ed0ca17915b691b7e7afbc9a979afb91468adb4ac3621ffd867} 
+MQTT\+\_\+\+ERROR\+\_\+\+UNKNOWN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MQTT\_OK@{MQTT\_OK}!API@{API}}\index{API@{API}!MQTT\_OK@{MQTT\_OK}}}\Hypertarget{group__api_ggad0c901a8d30691ed0ca17915b691b7e7acd22fa3c2d0371be61655883cbc57ec3}\label{group__api_ggad0c901a8d30691ed0ca17915b691b7e7acd22fa3c2d0371be61655883cbc57ec3} 
+MQTT\+\_\+\+OK&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{group__api_gadbe914e5a9d4f93314c4e7637cb4f7b3}\index{API@{API}!mqtt\_connect@{mqtt\_connect}}
+\index{mqtt\_connect@{mqtt\_connect}!API@{API}}
+\doxysubsubsection{\texorpdfstring{mqtt\_connect()}{mqtt\_connect()}}
+{\footnotesize\ttfamily \label{group__api_gadbe914e5a9d4f93314c4e7637cb4f7b3} 
+enum \mbox{\hyperlink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors}} mqtt\+\_\+connect (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}}]{client}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{client\+\_\+id}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{will\+\_\+topic}{, }\item[{const void \texorpdfstring{$\ast$}{*}}]{will\+\_\+message}{, }\item[{size\+\_\+t}]{will\+\_\+message\+\_\+size}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{user\+\_\+name}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{password}{, }\item[{uint8\+\_\+t}]{connect\+\_\+flags}{, }\item[{uint16\+\_\+t}]{keep\+\_\+alive}{}\end{DoxyParamCaption})}
+
+
+
+Establishes a session with the MQTT broker. 
+
+\begin{DoxyPrecond}{Precondition}
+mqtt\+\_\+init must have been called.
+\end{DoxyPrecond}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em client} & The MQTT client. \\
+\hline
+\mbox{\texttt{ in}}  & {\em client\+\_\+id} & The unique name identifying the client. (or NULL) \\
+\hline
+\mbox{\texttt{ in}}  & {\em will\+\_\+topic} & The topic name of client\textquotesingle{}s {\ttfamily will\+\_\+message}. If no will message is desired set to {\ttfamily NULL}. \\
+\hline
+\mbox{\texttt{ in}}  & {\em will\+\_\+message} & The application message (data) to be published in the event the client ungracefully disconnects. Set to {\ttfamily NULL} if {\ttfamily will\+\_\+topic} is {\ttfamily NULL}. \\
+\hline
+\mbox{\texttt{ in}}  & {\em will\+\_\+message\+\_\+size} & The size of {\ttfamily will\+\_\+message} in bytes. \\
+\hline
+\mbox{\texttt{ in}}  & {\em user\+\_\+name} & The username to use when establishing the session with the MQTT broker. Set to {\ttfamily NULL} if a username is not required. \\
+\hline
+\mbox{\texttt{ in}}  & {\em password} & The password to use when establishing the session with the MQTT broker. Set to {\ttfamily NULL} if a password is not required. \\
+\hline
+\mbox{\texttt{ in}}  & {\em connect\+\_\+flags} & Additional \doxylink{group__packers_gad6fa84a96a940fe4eae6ffca1a6d945f}{MQTTConnect\+Flags} to use when establishing the connection. These flags are for forcing the session to start clean, {\ttfamily MQTT\+\_\+\+CONNECT\+\_\+\+CLEAN\+\_\+\+SESSION}, the QOS level to publish the {\ttfamily will\+\_\+message} with (provided {\ttfamily will\+\_\+message} != {\ttfamily NULL}), MQTT\+\_\+\+CONNECT\+\_\+\+WILL\+\_\+\+QOS\+\_\+\mbox{[}0,1,2\mbox{]}, and whether or not the broker should retain the {\ttfamily will\+\_\+message}, MQTT\+\_\+\+CONNECT\+\_\+\+WILL\+\_\+\+RETAIN. \\
+\hline
+\mbox{\texttt{ in}}  & {\em keep\+\_\+alive} & The keep-\/alive time in seconds. A reasonable value for this is 400 \mbox{[}seconds\mbox{]}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily MQTT\+\_\+\+OK} upon success, an \doxylink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors} otherwise. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=276pt]{group__api_gadbe914e5a9d4f93314c4e7637cb4f7b3_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__api_ga95d9981735ab4495d3d65e8056611126}\index{API@{API}!mqtt\_disconnect@{mqtt\_disconnect}}
+\index{mqtt\_disconnect@{mqtt\_disconnect}!API@{API}}
+\doxysubsubsection{\texorpdfstring{mqtt\_disconnect()}{mqtt\_disconnect()}}
+{\footnotesize\ttfamily \label{group__api_ga95d9981735ab4495d3d65e8056611126} 
+enum \mbox{\hyperlink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors}} mqtt\+\_\+disconnect (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}}]{client}{}\end{DoxyParamCaption})}
+
+
+
+Terminate the session with the MQTT broker. 
+
+\begin{DoxyPrecond}{Precondition}
+mqtt\+\_\+connect must have been called.
+\end{DoxyPrecond}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em client} & The MQTT client.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+To re-\/establish the session, mqtt\+\_\+connect must be called.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+{\ttfamily MQTT\+\_\+\+OK} upon success, an \doxylink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors} otherwise. 
+\end{DoxyReturn}
+\Hypertarget{group__api_gad2450e11094eba170a7fee52e2ad8a03}\index{API@{API}!mqtt\_error\_str@{mqtt\_error\_str}}
+\index{mqtt\_error\_str@{mqtt\_error\_str}!API@{API}}
+\doxysubsubsection{\texorpdfstring{mqtt\_error\_str()}{mqtt\_error\_str()}}
+{\footnotesize\ttfamily \label{group__api_gad2450e11094eba170a7fee52e2ad8a03} 
+const char \texorpdfstring{$\ast$}{*} mqtt\+\_\+error\+\_\+str (\begin{DoxyParamCaption}\item[{enum \mbox{\hyperlink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors}}}]{error}{}\end{DoxyParamCaption})}
+
+
+
+Returns an error message for error code, {\ttfamily error}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em error} & the error code.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The associated error message. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=166pt]{group__api_gad2450e11094eba170a7fee52e2ad8a03_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=243pt]{group__api_gad2450e11094eba170a7fee52e2ad8a03_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__api_gaa5dab8a06f016b09c7a5259274b3b3ce}\index{API@{API}!mqtt\_init@{mqtt\_init}}
+\index{mqtt\_init@{mqtt\_init}!API@{API}}
+\doxysubsubsection{\texorpdfstring{mqtt\_init()}{mqtt\_init()}}
+{\footnotesize\ttfamily \label{group__api_gaa5dab8a06f016b09c7a5259274b3b3ce} 
+enum \mbox{\hyperlink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors}} mqtt\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}}]{client}{, }\item[{mqtt\+\_\+pal\+\_\+socket\+\_\+handle}]{sockfd}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{sendbuf}{, }\item[{size\+\_\+t}]{sendbufsz}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{recvbuf}{, }\item[{size\+\_\+t}]{recvbufsz}{, }\item[{void(\texorpdfstring{$\ast$}{*}}]{publish\+\_\+response\+\_\+callback~}{)(void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mateQ84_8X_2main_8c_a26b2a0469c474a0b173b3791e5c4eb80}{state}}, struct \mbox{\hyperlink{structmqtt__response__publish}{mqtt\+\_\+response\+\_\+publish}} \texorpdfstring{$\ast$}{*}publish)}\end{DoxyParamCaption})}
+
+
+
+Initializes an MQTT client. 
+
+This function {\itshape must} be called before any other API function calls.
+
+\begin{DoxyPrecond}{Precondition}
+None.
+\end{DoxyPrecond}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em client} & The MQTT client. \\
+\hline
+\mbox{\texttt{ in}}  & {\em sockfd} & The socket file descriptor (or equivalent socket handle, e.\+g. BIO pointer for Open\+SSL sockets) connected to the MQTT broker. \\
+\hline
+\mbox{\texttt{ in}}  & {\em sendbuf} & A buffer that will be used for sending messages to the broker. \\
+\hline
+\mbox{\texttt{ in}}  & {\em sendbufsz} & The size of {\ttfamily sendbuf} in bytes. \\
+\hline
+\mbox{\texttt{ in}}  & {\em recvbuf} & A buffer that will be used for receiving messages from the broker. \\
+\hline
+\mbox{\texttt{ in}}  & {\em recvbufsz} & The size of {\ttfamily recvbuf} in bytes. \\
+\hline
+\mbox{\texttt{ in}}  & {\em publish\+\_\+response\+\_\+callback} & The callback to call whenever application messages are received from the broker.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyPostcond}{Postcondition}
+mqtt\+\_\+connect must be called.
+\end{DoxyPostcond}
+\begin{DoxyNote}{Note}
+{\ttfamily sockfd} is a non-\/blocking TCP connection. 
+
+If {\ttfamily sendbuf} fills up completely during runtime a {\ttfamily MQTT\+\_\+\+ERROR\+\_\+\+SEND\+\_\+\+BUFFER\+\_\+\+IS\+\_\+\+FULL} error will be set. Similarly if {\ttfamily recvbuf} is ever to small to receive a message from the broker an MQTT\+\_\+\+ERROR\+\_\+\+RECV\+\_\+\+BUFFER\+\_\+\+TOO\+\_\+\+SMALL error will be set. 
+
+A pointer to \doxylink{structmqtt__client_aca624b149b55e16f67bfbec79babd357}{publish\+\_\+response\+\_\+callback\+\_\+state} is always passed as the {\ttfamily state} argument to {\ttfamily publish\+\_\+response\+\_\+callback}. Note that the second argument is the \doxylink{structmqtt__response__publish}{mqtt\+\_\+response\+\_\+publish} that was received from the broker.
+\end{DoxyNote}
+\begin{DoxyAttention}{Attention}
+Only initialize an MQTT client once (i.\+e. don\textquotesingle{}t call \doxylink{group__api_gaa5dab8a06f016b09c7a5259274b3b3ce}{mqtt\+\_\+init} or \doxylink{group__api_ga4becaa66425469cf462b531aa7eb1ac9}{mqtt\+\_\+init\+\_\+reconnect} more than once per client). 
+
+{\ttfamily sendbuf} internally mapped to client\textquotesingle{}s message-\/to-\/send queue that actively uses pointer access. In the case of unaligned {\ttfamily sendbuf}, that may lead to Segmentation/\+Hard/\+Memory Faults on systems that do not support unaligned pointer access (e.\+g. ARMv6, ARMv7-\/M). To avoid that, you may use the following technique\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ example\ for\ ARMv7-\/M\ that\ requires\ pointers\ to\ be\ word\ aligned\ (4\ byte\ boundary)}}
+\DoxyCodeLine{\textcolor{keyword}{static}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ mqtt\_tx\_buffer[MAX\_TX\_BUFFER\_SIZE]\ \_\_attribute\_\_((aligned(4)));}
+\DoxyCodeLine{\textcolor{keyword}{static}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ mqtt\_rx\_buffer[MAX\_RX\_BUFFER\_SIZE];}
+\DoxyCodeLine{\textcolor{comment}{//\ ...}}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8c_a6288eba0f8e8ad3ab1544ad731eb7667}{main}}(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ ...}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{group__api_gaa5dab8a06f016b09c7a5259274b3b3ce}{mqtt\_init}}(p\_client,\ p\_client-\/>socketfd,\ mqtt\_tx\_buffer,\ \textcolor{keyword}{sizeof}\ mqtt\_tx\_buffer,\ mqtt\_rx\_buffer,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}\ mqtt\_rx\_buffer,\ message\_callback);}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ ...}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+\end{DoxyAttention}
+\begin{DoxyReturn}{Returns}
+{\ttfamily MQTT\+\_\+\+OK} upon success, an \doxylink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors} otherwise. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=254pt]{group__api_gaa5dab8a06f016b09c7a5259274b3b3ce_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__api_ga4becaa66425469cf462b531aa7eb1ac9}\index{API@{API}!mqtt\_init\_reconnect@{mqtt\_init\_reconnect}}
+\index{mqtt\_init\_reconnect@{mqtt\_init\_reconnect}!API@{API}}
+\doxysubsubsection{\texorpdfstring{mqtt\_init\_reconnect()}{mqtt\_init\_reconnect()}}
+{\footnotesize\ttfamily \label{group__api_ga4becaa66425469cf462b531aa7eb1ac9} 
+void mqtt\+\_\+init\+\_\+reconnect (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}}]{client}{, }\item[{void(\texorpdfstring{$\ast$}{*}}]{reconnect\+\_\+callback~}{)(struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}}, void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mateQ84_8X_2main_8c_a26b2a0469c474a0b173b3791e5c4eb80}{state}}), }\item[{void \texorpdfstring{$\ast$}{*}}]{reconnect\+\_\+state}{, }\item[{void(\texorpdfstring{$\ast$}{*}}]{publish\+\_\+response\+\_\+callback~}{)(void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\mbox{\hyperlink{mateQ84_8X_2main_8c_a26b2a0469c474a0b173b3791e5c4eb80}{state}}, struct \mbox{\hyperlink{structmqtt__response__publish}{mqtt\+\_\+response\+\_\+publish}} \texorpdfstring{$\ast$}{*}publish)}\end{DoxyParamCaption})}
+
+
+
+Initializes an MQTT client and enables automatic reconnections. 
+
+An alternative to \doxylink{group__api_gaa5dab8a06f016b09c7a5259274b3b3ce}{mqtt\+\_\+init} that allows the client to automatically reconnect to the broker after an error occurs (e.\+g. socket error or internal buffer overflows).
+
+This is accomplished by calling the {\ttfamily reconnect\+\_\+callback} whenever the client enters an error state. The job of the {\ttfamily reconnect\+\_\+callback} is to\+: (1) perform error handling/logging, (2) clean up the old connection (i.\+e. close client-\/\texorpdfstring{$>$}{>}socketfd), (3) \doxylink{group__api_gaf5ae4b5b880431ef1bcd72f343de9ac6}{mqtt\+\_\+reinit} the client, and (4) reconfigure the MQTT session by calling \doxylink{group__api_gadbe914e5a9d4f93314c4e7637cb4f7b3}{mqtt\+\_\+connect} followed by other API calls such as \doxylink{group__api_gaea5da9b546f6e91eb77c9eff9c478de5}{mqtt\+\_\+subscribe}.
+
+The first argument to the {\ttfamily reconnect\+\_\+callback} is the client (which will be in an error state) and the second argument is a pointer to a void pointer where you can store some state information. Internally, MQTT-\/C calls the reconnect callback like so\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}}-\/>reconnect\_callback(\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}},\ \&\mbox{\hyperlink{mqtt__pub_8c_a4d6904a1b01ab9b1acda8f26beb7108f}{client}}-\/>reconnect\_state)}
+
+\end{DoxyCode}
+
+
+Note that the {\ttfamily reconnect\+\_\+callback} is also called to setup the initial session. After calling \doxylink{group__api_ga4becaa66425469cf462b531aa7eb1ac9}{mqtt\+\_\+init\+\_\+reconnect} the client will be in the error state {\ttfamily MQTT\+\_\+\+ERROR\+\_\+\+INITIAL\+\_\+\+RECONNECT}.
+
+\begin{DoxyPrecond}{Precondition}
+None.
+\end{DoxyPrecond}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em client} & The MQTT client that will be initialized. \\
+\hline
+\mbox{\texttt{ in}}  & {\em reconnect\+\_\+callback} & The callback that will be called to connect/reconnect the client to the broker and perform application level error handling. \\
+\hline
+\mbox{\texttt{ in}}  & {\em reconnect\+\_\+state} & A pointer to some state data for your {\ttfamily reconnect\+\_\+callback}. If your {\ttfamily reconnect\+\_\+callback} does not require any state information set this to NULL. A pointer to the memory address where the client stores a copy of this pointer is passed as the second argumnet to {\ttfamily reconnect\+\_\+callback}. \\
+\hline
+\mbox{\texttt{ in}}  & {\em publish\+\_\+response\+\_\+callback} & The callback to call whenever application messages are received from the broker.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyPostcond}{Postcondition}
+Call {\ttfamily reconnect\+\_\+callback} yourself, or call \doxylink{group__api_gae3d3aafc7588ed53a90c9f66fc620a6e}{mqtt\+\_\+sync} (which will trigger the call to {\ttfamily reconnect\+\_\+callback}).
+\end{DoxyPostcond}
+\begin{DoxyAttention}{Attention}
+Only initialize an MQTT client once (i.\+e. don\textquotesingle{}t call \doxylink{group__api_gaa5dab8a06f016b09c7a5259274b3b3ce}{mqtt\+\_\+init} or \doxylink{group__api_ga4becaa66425469cf462b531aa7eb1ac9}{mqtt\+\_\+init\+\_\+reconnect} more than once per client). 
+\end{DoxyAttention}
+\Hypertarget{group__api_gae472795684a1d973bfb89d075d17a29e}\index{API@{API}!mqtt\_ping@{mqtt\_ping}}
+\index{mqtt\_ping@{mqtt\_ping}!API@{API}}
+\doxysubsubsection{\texorpdfstring{mqtt\_ping()}{mqtt\_ping()}}
+{\footnotesize\ttfamily \label{group__api_gae472795684a1d973bfb89d075d17a29e} 
+enum \mbox{\hyperlink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors}} mqtt\+\_\+ping (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}}]{client}{}\end{DoxyParamCaption})}
+
+
+
+Ping the broker. 
+
+\begin{DoxyPrecond}{Precondition}
+mqtt\+\_\+connect must have been called.
+\end{DoxyPrecond}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em client} & The MQTT client.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily MQTT\+\_\+\+OK} upon success, an \doxylink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors} otherwise. 
+\end{DoxyReturn}
+\Hypertarget{group__api_gaf97b13371c254248416dcaf5890cec49}\index{API@{API}!mqtt\_publish@{mqtt\_publish}}
+\index{mqtt\_publish@{mqtt\_publish}!API@{API}}
+\doxysubsubsection{\texorpdfstring{mqtt\_publish()}{mqtt\_publish()}}
+{\footnotesize\ttfamily \label{group__api_gaf97b13371c254248416dcaf5890cec49} 
+enum \mbox{\hyperlink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors}} mqtt\+\_\+publish (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}}]{client}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{topic\+\_\+name}{, }\item[{const void \texorpdfstring{$\ast$}{*}}]{application\+\_\+message}{, }\item[{size\+\_\+t}]{application\+\_\+message\+\_\+size}{, }\item[{uint8\+\_\+t}]{publish\+\_\+flags}{}\end{DoxyParamCaption})}
+
+
+
+Publish an application message. 
+
+Publishes an application message to the MQTT broker.
+
+\begin{DoxyPrecond}{Precondition}
+mqtt\+\_\+connect must have been called.
+\end{DoxyPrecond}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em client} & The MQTT client. \\
+\hline
+\mbox{\texttt{ in}}  & {\em topic\+\_\+name} & The name of the topic. \\
+\hline
+\mbox{\texttt{ in}}  & {\em application\+\_\+message} & The data to be published. \\
+\hline
+\mbox{\texttt{ in}}  & {\em application\+\_\+message\+\_\+size} & The size of {\ttfamily application\+\_\+message} in bytes. \\
+\hline
+\mbox{\texttt{ in}}  & {\em publish\+\_\+flags} & \doxylink{group__packers_gad38a41e1c497f9bcd2477c005f280b23}{MQTTPublish\+Flags} to be used, namely the QOS level to publish at (MQTT\+\_\+\+PUBLISH\+\_\+\+QOS\+\_\+\mbox{[}0,1,2\mbox{]}) or whether or not the broker should retain the publish (MQTT\+\_\+\+PUBLISH\+\_\+\+RETAIN).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily MQTT\+\_\+\+OK} upon success, an \doxylink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors} otherwise. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=270pt]{group__api_gaf97b13371c254248416dcaf5890cec49_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__api_ga325eeac7ab4873de8850f4e6af4dce01}\index{API@{API}!mqtt\_reconnect@{mqtt\_reconnect}}
+\index{mqtt\_reconnect@{mqtt\_reconnect}!API@{API}}
+\doxysubsubsection{\texorpdfstring{mqtt\_reconnect()}{mqtt\_reconnect()}}
+{\footnotesize\ttfamily \label{group__api_ga325eeac7ab4873de8850f4e6af4dce01} 
+enum \mbox{\hyperlink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors}} mqtt\+\_\+reconnect (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}}]{client}{}\end{DoxyParamCaption})}
+
+
+
+Terminate the session with the MQTT broker and prepare to reconnect. Client code should call \doxylink{group__api_gae3d3aafc7588ed53a90c9f66fc620a6e}{mqtt\+\_\+sync} immediately after this call to prevent message loss. 
+
+\begin{DoxyNote}{Note}
+The user must provide a reconnect callback function for this to work as expected. See \textbackslash{}r mqtt\+\_\+client\+\_\+reconnect.
+\end{DoxyNote}
+\begin{DoxyPrecond}{Precondition}
+mqtt\+\_\+connect must have been called
+\end{DoxyPrecond}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em client} & The MQTT client.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily MQTT\+\_\+\+OK} upon success, an \doxylink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors} otherwise. 
+\end{DoxyReturn}
+\Hypertarget{group__api_gaf5ae4b5b880431ef1bcd72f343de9ac6}\index{API@{API}!mqtt\_reinit@{mqtt\_reinit}}
+\index{mqtt\_reinit@{mqtt\_reinit}!API@{API}}
+\doxysubsubsection{\texorpdfstring{mqtt\_reinit()}{mqtt\_reinit()}}
+{\footnotesize\ttfamily \label{group__api_gaf5ae4b5b880431ef1bcd72f343de9ac6} 
+void mqtt\+\_\+reinit (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}}]{client}{, }\item[{mqtt\+\_\+pal\+\_\+socket\+\_\+handle}]{socketfd}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{sendbuf}{, }\item[{size\+\_\+t}]{sendbufsz}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{recvbuf}{, }\item[{size\+\_\+t}]{recvbufsz}{}\end{DoxyParamCaption})}
+
+
+
+Safely assign/reassign a socket and buffers to an new/existing client. 
+
+This function also clears the {\ttfamily client} error state. Upon exiting this function {\ttfamily client-\/\texorpdfstring{$>$}{>}error} will be {\ttfamily MQTT\+\_\+\+ERROR\+\_\+\+CONNECT\+\_\+\+NOT\+\_\+\+CALLED} (which will be cleared) as soon as \doxylink{group__api_gadbe914e5a9d4f93314c4e7637cb4f7b3}{mqtt\+\_\+connect} is called.
+
+\begin{DoxyPrecond}{Precondition}
+This function must be called BEFORE \doxylink{group__api_gadbe914e5a9d4f93314c4e7637cb4f7b3}{mqtt\+\_\+connect}.
+\end{DoxyPrecond}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em client} & The MQTT client. \\
+\hline
+\mbox{\texttt{ in}}  & {\em socketfd} & The new socket connected to the broker. \\
+\hline
+\mbox{\texttt{ in}}  & {\em sendbuf} & The buffer that will be used to buffer egress traffic to the broker. \\
+\hline
+\mbox{\texttt{ in}}  & {\em sendbufsz} & The size of {\ttfamily sendbuf} in bytes. \\
+\hline
+\mbox{\texttt{ in}}  & {\em recvbuf} & The buffer that will be used to buffer ingress traffic from the broker. \\
+\hline
+\mbox{\texttt{ in}}  & {\em recvbufsz} & The size of {\ttfamily recvbuf} in bytes.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyPostcond}{Postcondition}
+Call \doxylink{group__api_gadbe914e5a9d4f93314c4e7637cb4f7b3}{mqtt\+\_\+connect}.
+\end{DoxyPostcond}
+\begin{DoxyAttention}{Attention}
+This function should be used in conjunction with clients that have been initialzed with \doxylink{group__api_ga4becaa66425469cf462b531aa7eb1ac9}{mqtt\+\_\+init\+\_\+reconnect}. 
+\end{DoxyAttention}
+\Hypertarget{group__api_gaea5da9b546f6e91eb77c9eff9c478de5}\index{API@{API}!mqtt\_subscribe@{mqtt\_subscribe}}
+\index{mqtt\_subscribe@{mqtt\_subscribe}!API@{API}}
+\doxysubsubsection{\texorpdfstring{mqtt\_subscribe()}{mqtt\_subscribe()}}
+{\footnotesize\ttfamily \label{group__api_gaea5da9b546f6e91eb77c9eff9c478de5} 
+enum \mbox{\hyperlink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors}} mqtt\+\_\+subscribe (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}}]{client}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{topic\+\_\+name}{, }\item[{int}]{max\+\_\+qos\+\_\+level}{}\end{DoxyParamCaption})}
+
+
+
+Subscribe to a topic. 
+
+\begin{DoxyPrecond}{Precondition}
+mqtt\+\_\+connect must have been called.
+\end{DoxyPrecond}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em client} & The MQTT client. \\
+\hline
+\mbox{\texttt{ in}}  & {\em topic\+\_\+name} & The name of the topic to subscribe to. \\
+\hline
+\mbox{\texttt{ in}}  & {\em max\+\_\+qos\+\_\+level} & The maximum QOS level with which the broker can send application messages for this topic.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily MQTT\+\_\+\+OK} upon success, an \doxylink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors} otherwise. 
+\end{DoxyReturn}
+\Hypertarget{group__api_gae3d3aafc7588ed53a90c9f66fc620a6e}\index{API@{API}!mqtt\_sync@{mqtt\_sync}}
+\index{mqtt\_sync@{mqtt\_sync}!API@{API}}
+\doxysubsubsection{\texorpdfstring{mqtt\_sync()}{mqtt\_sync()}}
+{\footnotesize\ttfamily \label{group__api_gae3d3aafc7588ed53a90c9f66fc620a6e} 
+enum \mbox{\hyperlink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors}} mqtt\+\_\+sync (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}}]{client}{}\end{DoxyParamCaption})}
+
+
+
+Function that does the actual sending and receiving of traffic from the network. 
+
+All the other functions in the \doxylink{group__api}{API} simply stage messages for being sent to the broker. This function does the actual sending of those messages. Additionally this function receives traffic (responses and acknowledgements) from the broker and responds to that traffic accordingly. Lastly this function also calls the {\ttfamily publish\+\_\+response\+\_\+callback} when any {\ttfamily MQTT\+\_\+\+CONTROL\+\_\+\+PUBLISH} messages are received.
+
+\begin{DoxyPrecond}{Precondition}
+mqtt\+\_\+init must have been called.
+\end{DoxyPrecond}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em client} & The MQTT client.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyAttention}{Attention}
+It is the responsibility of the application programmer to call this function periodically. All functions in the \doxylink{group__api}{API} are thread-\/safe so it is perfectly reasonable to have a thread dedicated to calling this function every 200 ms or so. MQTT-\/C can be used in single threaded application though by simply calling this functino periodically inside your main thread. See \doxylink{simple_publisher_8c-example}{simple\+\_\+publisher.\+c} and \doxylink{simple_subscriber_8c-example}{simple\+\_\+subscriber.\+c} for examples (specifically the {\ttfamily client\+\_\+refresher} functions).
+\end{DoxyAttention}
+\begin{DoxyReturn}{Returns}
+MQTT\+\_\+\+OK upon success, an \doxylink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors} otherwise. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__api_gae3d3aafc7588ed53a90c9f66fc620a6e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__api_ga08d16571dfefa690698c0cca5cca7a1d}\index{API@{API}!mqtt\_unsubscribe@{mqtt\_unsubscribe}}
+\index{mqtt\_unsubscribe@{mqtt\_unsubscribe}!API@{API}}
+\doxysubsubsection{\texorpdfstring{mqtt\_unsubscribe()}{mqtt\_unsubscribe()}}
+{\footnotesize\ttfamily \label{group__api_ga08d16571dfefa690698c0cca5cca7a1d} 
+enum \mbox{\hyperlink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors}} mqtt\+\_\+unsubscribe (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structmqtt__client}{mqtt\+\_\+client}} \texorpdfstring{$\ast$}{*}}]{client}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{topic\+\_\+name}{}\end{DoxyParamCaption})}
+
+
+
+Unsubscribe from a topic. 
+
+\begin{DoxyPrecond}{Precondition}
+mqtt\+\_\+connect must have been called.
+\end{DoxyPrecond}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em client} & The MQTT client. \\
+\hline
+\mbox{\texttt{ in}}  & {\em topic\+\_\+name} & The name of the topic to unsubscribe from.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily MQTT\+\_\+\+OK} upon success, an \doxylink{group__api_gad0c901a8d30691ed0ca17915b691b7e7}{MQTTErrors} otherwise. 
+\end{DoxyReturn}
