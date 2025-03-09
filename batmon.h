@@ -60,7 +60,7 @@ extern "C" {
 		float volt_whole, bat_amp_whole;
 		float bat_energy;
 		uint16_t cc_mode, bat_cycles, bat_mode, time, date;
-		uint32_t bat_time, fm80_time;
+		uint32_t bat_time, fm80_time, q84_sequence;
 		uint16_t crc;
 	} EB_data;
 
