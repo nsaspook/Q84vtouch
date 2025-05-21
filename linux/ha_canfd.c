@@ -1,11 +1,11 @@
 
 
-/*
+/** \file ha_canfd.c
  * HA_CANFD
  * the mateq84 board sends the collected solar energy data via canbus
  * to the PU2CANFD USB adapter on the Linux HA server. This program
  * posts JSON formatted data the the Home Assistant MQTT server
- * 
+ *
  * Logging only version for EM540 data from the mateQ84 controller module
  * presets have been defaulted for proper CANFD operation using the
  * PU2CANFD USB adapter with 64 byte payloads
@@ -186,7 +186,7 @@ static void print_usage(char *prg)
 }
 
 /*
- * read the canbus data, format to json and post to the MQtt topic
+ * read the canbus data, format to json and post to the MQTT topic
  */
 static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 {
