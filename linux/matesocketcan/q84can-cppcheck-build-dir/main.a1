@@ -1,25 +1,56 @@
 <?xml version="1.0"?>
-<analyzerinfo hash="476181684884463909">
+<analyzerinfo hash="11399564479911262902">
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;unistd.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;unistd.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="/public/Q84vtouch/linux/mqtt_cl/main.c" line="1" column="0"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;stdlib.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;stdlib.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="/public/Q84vtouch/linux/mqtt_cl/main.c" line="2" column="0"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;stdio.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;stdio.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="/public/Q84vtouch/linux/mqtt_cl/main.c" line="3" column="0"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;mqtt_protocol.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;mqtt_protocol.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="/public/Q84vtouch/linux/mqtt_cl/main.c" line="4" column="0"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;mosquitto.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;mosquitto.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="/public/Q84vtouch/linux/mqtt_cl/main.c" line="5" column="0"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;mqtt.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;mqtt.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="/public/Q84vtouch/linux/mqtt_cl/main.c" line="6" column="0"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;sockets.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;sockets.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="/public/Q84vtouch/linux/mqtt_cl/main.c" line="7" column="0"/>
+        </error>
+        <error id="normalCheckLevelMaxBranches" severity="information" msg="Limiting analysis of branches. Use --check-level=exhaustive to analyze all branches." verbose="Limiting analysis of branches. Use --check-level=exhaustive to analyze all branches." file0="/public/Q84vtouch/linux/mqtt_cl/main.c">
+            <location file="/public/Q84vtouch/linux/mqtt_cl/main.c" line="0" column="0"/>
+        </error>
+        <error id="constVariablePointer" severity="style" msg="Variable &apos;tm_info&apos; can be declared as pointer to const" verbose="Variable &apos;tm_info&apos; can be declared as pointer to const" cwe="398" file0="/public/Q84vtouch/linux/mqtt_cl/main.c">
+            <location file="/public/Q84vtouch/linux/mqtt_cl/main.c" line="65" column="20" info="Variable &apos;tm_info&apos; can be declared as pointer to const"/>
+            <symbol>tm_info</symbol>
+        </error>
+        <error id="constParameterCallback" severity="style" msg="Parameter &apos;published&apos; can be declared as pointer to const. However it seems that &apos;publish_callback&apos; is a callback function, if &apos;published&apos; is declared with const you might also need to cast function pointer(s)." verbose="Parameter &apos;published&apos; can be declared as pointer to const. However it seems that &apos;publish_callback&apos; is a callback function, if &apos;published&apos; is declared with const you might also need to cast function pointer(s)." cwe="398" file0="/public/Q84vtouch/linux/mqtt_cl/main.c">
+            <location file="/public/Q84vtouch/linux/mqtt_cl/main.c" line="92" column="68" info="Parameter &apos;published&apos; can be declared as pointer to const"/>
+            <location file="/public/Q84vtouch/linux/mqtt_cl/main.c" line="44" column="84" info="You might need to cast the function pointer here"/>
+            <symbol>published</symbol>
+        </error>
   <FileInfo check="ctu">
-<function-call call-id="/store/solar_software/Q84vtouch/linux/mqtt_cl/main.c:10:6" call-funcname="exit_example" call-argnr="3" file="/store/solar_software/Q84vtouch/linux/mqtt_cl/main.c" line="38" col="21" call-argexpr="NULL" call-argvaluetype="0" call-argvalue="0"/><function-call call-id="/store/solar_software/Q84vtouch/linux/mqtt_cl/main.c:10:6" call-funcname="exit_example" call-argnr="3" file="/store/solar_software/Q84vtouch/linux/mqtt_cl/main.c" line="49" col="21" call-argexpr="NULL" call-argvaluetype="0" call-argvalue="0"/><function-call call-id="/store/solar_software/Q84vtouch/linux/mqtt_cl/main.c:10:6" call-funcname="exit_example" call-argnr="3" file="/store/solar_software/Q84vtouch/linux/mqtt_cl/main.c" line="55" col="21" call-argexpr="NULL" call-argvaluetype="0" call-argvalue="0"/>  </FileInfo>
+<function-call call-id="/public/Q84vtouch/linux/mqtt_cl/main.c:10:6" call-funcname="exit_example" call-argnr="3" file="/public/Q84vtouch/linux/mqtt_cl/main.c" line="38" col="21" call-argexpr="NULL" call-argvaluetype="0" call-argvalue="0" call-argvalue-ufr="0"/><function-call call-id="/public/Q84vtouch/linux/mqtt_cl/main.c:10:6" call-funcname="exit_example" call-argnr="3" file="/public/Q84vtouch/linux/mqtt_cl/main.c" line="49" col="21" call-argexpr="NULL" call-argvaluetype="0" call-argvalue="0" call-argvalue-ufr="0"/><function-call call-id="/public/Q84vtouch/linux/mqtt_cl/main.c:10:6" call-funcname="exit_example" call-argnr="3" file="/public/Q84vtouch/linux/mqtt_cl/main.c" line="55" col="21" call-argexpr="NULL" call-argvaluetype="0" call-argvalue="0" call-argvalue-ufr="0"/><function-call call-id="/public/Q84vtouch/linux/mqtt_cl/main.c:10:6" call-funcname="exit_example" call-argnr="1" file="/public/Q84vtouch/linux/mqtt_cl/main.c" line="84" col="17" call-argexpr="0" call-argvaluetype="0" call-argvalue="0" call-argvalue-ufr="0"/>  </FileInfo>
   <FileInfo check="Bounds checking">
     <array-index>
-    <unsafe-usage my-id="/store/solar_software/Q84vtouch/linux/mqtt_cl/main.c:11:5" my-argnr="2" my-argname="argv" file="/store/solar_software/Q84vtouch/linux/mqtt_cl/main.c" line="58" col="59" value="0"/>
+    <unsafe-usage my-id="/public/Q84vtouch/linux/mqtt_cl/main.c:11:5" my-argnr="2" my-argname="argv" file="/public/Q84vtouch/linux/mqtt_cl/main.c" line="58" col="59" value="0"/>
     </array-index>
   </FileInfo>
   <FileInfo check="Null pointer">
-    <unsafe-usage my-id="/store/solar_software/Q84vtouch/linux/mqtt_cl/main.c:11:5" my-argnr="2" my-argname="argv" file="/store/solar_software/Q84vtouch/linux/mqtt_cl/main.c" line="58" col="59" value="0"/>
+    <unsafe-usage my-id="/public/Q84vtouch/linux/mqtt_cl/main.c:11:5" my-argnr="2" my-argname="argv" file="/public/Q84vtouch/linux/mqtt_cl/main.c" line="58" col="59" value="0"/>
   </FileInfo>
   <FileInfo check="Uninitialized variables">
-    <unsafe-usage my-id="/store/solar_software/Q84vtouch/linux/mqtt_cl/main.c:11:5" my-argnr="2" my-argname="argv" file="/store/solar_software/Q84vtouch/linux/mqtt_cl/main.c" line="58" col="59" value="0"/>
+    <unsafe-usage my-id="/public/Q84vtouch/linux/mqtt_cl/main.c:11:5" my-argnr="2" my-argname="argv" file="/public/Q84vtouch/linux/mqtt_cl/main.c" line="58" col="59" value="0"/>
   </FileInfo>
   <FileInfo check="CheckUnusedFunctions">
-    <functiondecl functionName="main" lineNumber="11"/>
-    <functiondecl functionName="exit_example" lineNumber="86"/>
-    <functiondecl functionName="publish_callback" lineNumber="92"/>
-    <functiondecl functionName="client_refresher" lineNumber="96"/>
-    <functioncall functionName="EXIT_FAILURE"/>
-    <functioncall functionName="EXIT_SUCCESS"/>
+    <functiondecl file="/public/Q84vtouch/linux/mqtt_cl/main.c" functionName="main" lineNumber="11"/>
+    <functiondecl file="/public/Q84vtouch/linux/mqtt_cl/main.c" functionName="exit_example" lineNumber="86"/>
+    <functiondecl file="/public/Q84vtouch/linux/mqtt_cl/main.c" functionName="publish_callback" lineNumber="92"/>
+    <functiondecl file="/public/Q84vtouch/linux/mqtt_cl/main.c" functionName="client_refresher" lineNumber="96"/>
     <functioncall functionName="MQTT_PUBLISH_QOS_0"/>
     <functioncall functionName="NULL"/>
     <functioncall functionName="client_refresher"/>

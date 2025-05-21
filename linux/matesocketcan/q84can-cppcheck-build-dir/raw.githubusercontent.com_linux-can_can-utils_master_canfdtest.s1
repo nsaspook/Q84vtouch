@@ -1,6 +1,6 @@
 skeleton_daemon call:[chdir,close,exit,fork,setsid,signal,sysconf,umask] noreturn:[close,exit]
 print_usage call:[exit,fprintf] noreturn:[exit]
-print_frame global:[FW_Date,FW_Time,acenergy,bamps,bat_energy_kw,bat_energy_scaled,benergy,bvolts,ccmode,client,data_buffer,day_time,deliveredtoken,fout,full_buffer,gasenergy,gridin,gridout,hour_time,json,load,mtoken,pamps,print_hex,pubmsg,pvolts,pwatts,runtime,sequence,solar,start_time,token,watergal] call:[MQTTClient_publishMessage,atof,atoi,cJSON_AddNumberToObject,cJSON_AddStringToObject,cJSON_CreateObject,cJSON_Delete,cJSON_Print,cJSON_free,fflush,fprintf,log_time,printf,strlen,strtok,time,usleep] noreturn:[cJSON_Delete,fflush,fprintf,printf]
+print_frame global:[FW_Date,FW_Time,acamps,acenergy,acvolts,bamps,bat_energy_kw,bat_energy_scaled,benergy,bvolts,ccmode,client,data_buffer,day_time,deliveredtoken,fout,full_buffer,gasenergy,gridin,gridout,hour_time,json,load,mtoken,pamps,print_hex,pubmsg,pvolts,pwatts,runtime,sequence,solar,start_time,token,watergal] call:[MQTTClient_publishMessage,atof,atoi,cJSON_AddNumberToObject,cJSON_AddStringToObject,cJSON_CreateObject,cJSON_Delete,cJSON_Print,cJSON_free,fflush,fprintf,log_time,printf,strlen,strtok,time,usleep] noreturn:[cJSON_Delete,fflush,fprintf,printf]
 print_compare call:[print_frame,printf] noreturn:[print_frame]
 compare_frame global:[can_id_ping,can_id_pong,running] call:[print_compare,printf]
 millisleep call:[clock_nanosleep,printf,while] noreturn:[while]
