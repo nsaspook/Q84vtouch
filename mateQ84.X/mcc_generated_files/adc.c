@@ -121,8 +121,8 @@ void ADC_Initialize(void)
     //ADCHS ANA0; 
     ADPCH = 0x00;
 
-    //ADACQL 10; 
-    ADACQL = 0x0A;
+    //ADACQL 11; 
+    ADACQL = 0x0B;
 
     //ADACQH 0; 
     ADACQH = 0x00;
@@ -202,7 +202,7 @@ void ADC_EnableChannelScan(ADC_context_t context)
 {
     switch (context)
     {
-    case mTouchContext:
+    case mateq84:
         ADCSEL1bits.CHEN = 1;
         break;
     default:
@@ -214,7 +214,7 @@ void ADC_DisableChannelScan(ADC_context_t context)
 {
     switch (context)
     {
-    case mTouchContext:
+    case mateq84:
         ADCSEL1bits.CHEN = 0;
         break;
     default:

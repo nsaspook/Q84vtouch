@@ -107,7 +107,9 @@ uint8_t FM_rx(uint16_t * data)
 	uint8_t count;
 
 	count = rdstart;
-	memcpy(data, (const void *) rbuf, (size_t) (count << 1)); // copy 16-bit values
+	if (count > 0) {
+		memcpy(data, (const void *) rbuf, (size_t) (count << 1)); // copy 16-bit values
+	}
 	rdstart = 0;
 	return count;
 }
