@@ -171,11 +171,11 @@ power.voltage = 5000
 
 ######################## Tool Info ########################
 tool = ToolInfo()
-tool.speedLevel = 1
+tool.speedLevel = 2
 tool.PGCResistance = 4700
 tool.PGDResistance = 4700
-tool.PGCPullDir = 2
-tool.PGDPullDir = 2
+tool.PGCPullDir = 0
+tool.PGDPullDir = 0
 tool.ICSPSelected = 0
 tool.communicationSpeed = 2000
 tool.communicationInterface = "SWD"
@@ -200,15 +200,15 @@ oi.append(o)
 o = Opinfo("write",0x0)
 t = Tinfo()
 t.start = 0x0
-t.end = 0x177f
+t.end = 0x157f
 t.data = "write_Pgm_st_0x0_op2_0.dat"
 t.type = "Pgm"
 t.mask = 0x0
 o.addTI(t)
 t = Tinfo()
-t.start = 0xf700
+t.start = 0xf680
 t.end = 0x1ffff
-t.data = "write_Pgm_st_0xf700_op2_1.dat"
+t.data = "write_Pgm_st_0xf680_op2_1.dat"
 t.type = "Pgm"
 t.mask = 0x0
 o.addTI(t)
@@ -224,6 +224,13 @@ t.start = 0x380000
 t.end = 0x3803ff
 t.data = "write_EEData_st_0x380000_op2_3.dat"
 t.type = "EEData"
+t.mask = 0x0
+o.addTI(t)
+t = Tinfo()
+t.start = 0x200000
+t.end = 0x20003f
+t.data = "write_UserID_st_0x200000_op2_4.dat"
+t.type = "UserID"
 t.mask = 0x0
 o.addTI(t)
 oi.append(o)

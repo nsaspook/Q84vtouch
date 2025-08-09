@@ -41818,8 +41818,8 @@ void delay_ms(const uint16_t);
 # 23 "./mxcmd.h" 2
 
 
- const char build_version[] = "V2.03 FM80 Q84";
-# 86 "./mxcmd.h"
+ const char build_version[] = "V2.04 FM80 Q84";
+# 87 "./mxcmd.h"
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
  const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};
@@ -42299,7 +42299,7 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[512] = "Boot Init Display   ", info_buffer[512], log_buffer[512];
-const char *build_date = "May 22 2025", *build_time = "11:11:40";
+const char *build_date = "Aug  8 2025", *build_time = "15:19:20";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
@@ -42588,7 +42588,7 @@ void main(void)
 
 
 
-      snprintf(buffer, 512, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
+      snprintf(buffer, 512, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], modbus_name[B.modbus_online][0], canbus_name[B.canbus_online][0]);
 
 
       eaDogM_WriteStringAtPos(0, 0, buffer);
@@ -42603,7 +42603,7 @@ void main(void)
 # 571 "main.c"
      snprintf(buffer, 512, "EMon  %6.1fWh   %c%c    ", EB->bat_energy / 360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
      eaDogM_WriteStringAtPos(1, 0, buffer);
-     snprintf(buffer, 512, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
+     snprintf(buffer, 512, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], modbus_name[B.modbus_online][0], canbus_name[B.canbus_online][0]);
      eaDogM_WriteStringAtPos(0, 0, buffer);
 
     }
@@ -42783,6 +42783,8 @@ void state_status_cb(void)
  }
  if (B.FM80_online) {
   cc_mode = abuf[2];
+ } else {
+  cc_mode = STATUS_LAST;
  }
  state = state_watts;
 }

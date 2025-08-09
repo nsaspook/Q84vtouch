@@ -527,7 +527,7 @@ void main(void)
 #ifdef SHOW_MODBUS_DEBUG
 						snprintf(buffer, MAX_B_BUF, "C%u CRC%lu RC%u EC%u          ", C.modbus_command, M.crc_error, M.recv_count, C.req_length);
 #else
-						snprintf(buffer, MAX_B_BUF, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, false), lp_filter(wva, F_wva, false), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
+						snprintf(buffer, MAX_B_BUF, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, false), lp_filter(wva, F_wva, false), state_name[cc_mode][0], modbus_name[B.modbus_online][0], canbus_name[B.canbus_online][0]);
 #endif
 #ifndef CAN_REMOTE
 						eaDogM_WriteStringAtPos(0, 0, buffer);
@@ -570,7 +570,7 @@ void main(void)
 #else
 					snprintf(buffer, MAX_B_BUF, "EMon  %6.1fWh   %c%c    ", EB->bat_energy / TEN_SEC_HOUR, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
 					eaDogM_WriteStringAtPos(1, 0, buffer);
-					snprintf(buffer, MAX_B_BUF, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, false), lp_filter(wva, F_wva, false), state_name[cc_mode][0], canbus_name[B.canbus_online][0], modbus_name[B.modbus_online][0]);
+					snprintf(buffer, MAX_B_BUF, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, false), lp_filter(wva, F_wva, false), state_name[cc_mode][0], modbus_name[B.modbus_online][0], canbus_name[B.canbus_online][0]);
 					eaDogM_WriteStringAtPos(0, 0, buffer);
 #endif
 				}
@@ -764,6 +764,8 @@ void state_status_cb(void)
 	}
 	if (B.FM80_online) { // don't update when offline
 		cc_mode = FMxx_STATE;
+	} else {
+		cc_mode = STATUS_LAST;
 	}
 	state = state_watts;
 }
