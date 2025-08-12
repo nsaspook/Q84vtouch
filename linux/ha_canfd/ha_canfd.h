@@ -53,7 +53,7 @@ extern "C" {
 #define HR_SEC  3600
 #define DAY_SEC  HR_SEC*24
 
-#define LOG_VERSION     "v1.16"
+#define LOG_VERSION     "v1.17"
 #define MQTT_VERSION    "V3.11"
 #ifdef __amd64
 #define ADDRESS         "tcp://10.1.1.172:1883"
@@ -63,7 +63,7 @@ extern "C" {
 #define CLIENTID        "MateQ84_Mqtt"
 #define TOPIC_P         "mateq84/data/solar"
 #define TOPIC_S         "mateq84/data/solar/sub"
-#define QOS             1
+#define QOS             2
 #define TIMEOUT         10000L
 #define SPACING_USEC    500 * 1000
 #define MQTT_TIMEOUT    150
