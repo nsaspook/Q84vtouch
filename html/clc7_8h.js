@@ -1,0 +1,5 @@
+var clc7_8h =
+[
+    [ "CLC7_Initialize", "clc7_8h.html#ace8deece83cba560e161ecf346b9c084", null ],
+    [ "CLC7_OutputStatusGet", "clc7_8h.html#aa48b32e0a1b5dc5ca7ac9a1a9b7ecd28", null ]
+];

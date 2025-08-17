@@ -42299,7 +42299,7 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[512] = "Boot Init Display   ", info_buffer[512], log_buffer[512];
-const char *build_date = "Aug  8 2025", *build_time = "15:19:20";
+const char *build_date = "Aug 15 2025", *build_time = "17:21:22";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 

@@ -4,14 +4,16 @@
 {\ttfamily \#include $<$stdbool.\+h$>$}\newline
 {\ttfamily \#include $<$stdint.\+h$>$}\newline
 {\ttfamily \#include $<$stdio.\+h$>$}\newline
-Include dependency graph for uart2.\+h\+:\nopagebreak
+Include dependency graph for uart2.\+h\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=338pt]{uart2_8h__incl}
 \end{center}
 \end{figure}
-This graph shows which files directly or indirectly include this file\+:\nopagebreak
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -136,14 +138,16 @@ Section\+: UART2 APIs @\+Summary Initialization routine that takes inputs from t
 
 @\+Comment
 
-@\+Example Here is the call graph for this function\+:\nopagebreak
+@\+Example Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{uart2_8h_a1c7f32800f7e5955bc04306b2686a0d7_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -170,7 +174,8 @@ bool UART2\+\_\+is\+\_\+rx\+\_\+ready (\begin{DoxyParamCaption}\item[{void}]{}{}
 
 {\ttfamily Initialize the device \doxylink{mcc_8c_a5e8391114a0cf91ac20002be25e3d352}{SYSTEM\+\_\+\+Initialize()};}
 
-{\ttfamily  while(1) \{ Logic to echo received data if(\+UART2\+\_\+is\+\_\+rx\+\_\+ready()) \{ rx\+Data = \doxylink{uart2_8h_ab56d5afa62daf8dd586d6b8ebf33160d}{UART2\+\_\+\+Read()}; if(\+UART2\+\_\+is\+\_\+tx\+\_\+ready()) \{ UART2\+\_\+\+Write(rx\+Data); \} \} \} \} } Here is the caller graph for this function\+:\nopagebreak
+{\ttfamily  while(1) \{ Logic to echo received data if(\+UART2\+\_\+is\+\_\+rx\+\_\+ready()) \{ rx\+Data = \doxylink{uart2_8h_ab56d5afa62daf8dd586d6b8ebf33160d}{UART2\+\_\+\+Read()}; if(\+UART2\+\_\+is\+\_\+tx\+\_\+ready()) \{ UART2\+\_\+\+Write(rx\+Data); \} \} \} \} } Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -243,7 +248,8 @@ UART2\+\_\+\+Data\+Ready is a macro which checks if any byte is received. Call t
 
 {\ttfamily  printf("{}\textbackslash{}t\textbackslash{}t\+TEST CODE\textbackslash{}n\textbackslash{}r"{}); //\+Enable redirect STDIO to USART before using printf statements printf("{}\textbackslash{}t\textbackslash{}t-\/-\/-\/-\/ -\/-\/-\/-\/\textbackslash{}n\textbackslash{}r"{}); printf("{}\textbackslash{}t\textbackslash{}t\+ECHO TEST\textbackslash{}n\textbackslash{}r"{}); printf("{}\textbackslash{}t\textbackslash{}t-\/-\/-\/-\/ -\/-\/-\/-\/\textbackslash{}n\textbackslash{}n\textbackslash{}r"{}); printf("{}\+Enter any string\+: "{}); do\{ data = \doxylink{uart2_8h_ab56d5afa62daf8dd586d6b8ebf33160d}{UART2\+\_\+\+Read()}; // Read data received UART2\+\_\+\+Write(data); // Echo back the data received \}while(!\+UART2\+\_\+\+Data\+Ready); //check if any data is received}
 
-{\ttfamily  \} } Here is the caller graph for this function\+:\nopagebreak
+{\ttfamily  \} } Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -264,14 +270,16 @@ void UART2\+\_\+\+Receive\+\_\+\+ISR (\begin{DoxyParamCaption}\item[{void}]{}{}\
 
 @\+Param None
 
-@\+Returns None Here is the call graph for this function\+:\nopagebreak
+@\+Returns None Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{uart2_8h_ab813e516bc322e754a679dd3614aab7a_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -292,7 +300,8 @@ void UART2\+\_\+\+Rx\+Data\+Handler (\begin{DoxyParamCaption}\item[{void}]{}{}\e
 
 @\+Param None
 
-@\+Returns None Here is the caller graph for this function\+:\nopagebreak
+@\+Returns None Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -313,7 +322,8 @@ void UART2\+\_\+\+Set\+Error\+Handler (\begin{DoxyParamCaption}\item[{void(\texo
 
 @\+Param Address of function to be set as error handler
 
-@\+Returns None Here is the caller graph for this function\+:\nopagebreak
+@\+Returns None Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -334,7 +344,8 @@ void UART2\+\_\+\+Set\+Framing\+Error\+Handler (\begin{DoxyParamCaption}\item[{v
 
 @\+Param Address of function to be set as framing error handler
 
-@\+Returns None Here is the caller graph for this function\+:\nopagebreak
+@\+Returns None Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -355,7 +366,8 @@ void UART2\+\_\+\+Set\+Overrun\+Error\+Handler (\begin{DoxyParamCaption}\item[{v
 
 @\+Param Address of function to be set as overrun error handler
 
-@\+Returns None Here is the caller graph for this function\+:\nopagebreak
+@\+Returns None Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -376,7 +388,8 @@ void UART2\+\_\+\+Set\+Rx\+Interrupt\+Handler (\begin{DoxyParamCaption}\item[{vo
 
 @\+Param Address of function to be set as receive interrupt handler
 
-@\+Returns None Here is the caller graph for this function\+:\nopagebreak
+@\+Returns None Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -397,7 +410,8 @@ void UART2\+\_\+\+Set\+Tx\+Interrupt\+Handler (\begin{DoxyParamCaption}\item[{vo
 
 @\+Param Address of function to be set as transmit interrupt handler
 
-@\+Returns None Here is the caller graph for this function\+:\nopagebreak
+@\+Returns None Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -418,7 +432,8 @@ void UART2\+\_\+\+Transmit\+\_\+\+ISR (\begin{DoxyParamCaption}\item[{void}]{}{}
 
 @\+Param None
 
-@\+Returns None Here is the caller graph for this function\+:\nopagebreak
+@\+Returns None Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -442,7 +457,8 @@ void UART2\+\_\+\+Write (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{tx\+Data}
 @\+Returns None
 
 @\+Example {\ttfamily  Refer to \doxylink{uart2_8h_ab56d5afa62daf8dd586d6b8ebf33160d}{UART2\+\_\+\+Read()} for an example ~\newline
- } Here is the caller graph for this function\+:\nopagebreak
+ } Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

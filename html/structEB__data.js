@@ -1,0 +1,27 @@
+var structEB__data =
+[
+    [ "alt_display", "structEB__data.html#a8f127fd2fd27098df8d52a1298d22cd6", null ],
+    [ "bat_amp_whole", "structEB__data.html#a6eba2d1b798783e66469ab599e1d125c", null ],
+    [ "bat_cycles", "structEB__data.html#ac9cb4c4bb64a3404d20f0d8e3b571b54", null ],
+    [ "bat_energy", "structEB__data.html#aba95f8c203b1a512ce9f425152452772", null ],
+    [ "bat_mode", "structEB__data.html#a9567e3ec9d8f5e09072f51ba9f82570a", null ],
+    [ "bat_time", "structEB__data.html#ae23756dc8212ffb2add0f1adc8a9f6cd", null ],
+    [ "cc_mode", "structEB__data.html#a847bb5f18084e02e0eef64791ae606ba", null ],
+    [ "checkmark", "structEB__data.html#a2889542c04113b1aadd869d0fc99808c", null ],
+    [ "crc", "structEB__data.html#aa60093a9a5d5d17864cfda66c47733e3", null ],
+    [ "date", "structEB__data.html#a6ab759d8c1c4a264888440e1f0b874fa", null ],
+    [ "ENac", "structEB__data.html#acb09fa02bcd0184bbb1785648d17e059", null ],
+    [ "ENva", "structEB__data.html#af888a1ebe8608a20cc7ba96263aadb93", null ],
+    [ "ENvar", "structEB__data.html#af9f113c8baca62c9f6bcbc7fbdb0a676", null ],
+    [ "ENw", "structEB__data.html#ab903e5585e1e4a4eb859674e170fca81", null ],
+    [ "fm80_time", "structEB__data.html#a7b56f27916fa09ca295f16198bf02bed", null ],
+    [ "FMa", "structEB__data.html#a1962bad9e307d062480da562be6d5a1d", null ],
+    [ "FMbv", "structEB__data.html#a8890a5794a9bea2cab639f1e2d860b15", null ],
+    [ "FMpv", "structEB__data.html#a4a5a0a4db18fbe2ec3562987820adc42", null ],
+    [ "FMw", "structEB__data.html#addcc607e9418d4c2d9865a83b14cbbcc", null ],
+    [ "loaded", "structEB__data.html#a992c70a16169035bc9e2e8f9953d91ed", null ],
+    [ "q84_sequence", "structEB__data.html#a266c453e1d0dcef8437084e146868c22", null ],
+    [ "time", "structEB__data.html#a93658cf9f03a3303cdb292e655c657e7", null ],
+    [ "version", "structEB__data.html#ab22abc2906422da61885ac6c8e6a1a59", null ],
+    [ "volt_whole", "structEB__data.html#ae3643847f8e14970cfdbaedb546fa2d4", null ]
+];

@@ -1,0 +1,65 @@
+var group__details =
+[
+    [ "mqtt_queued_message", "structmqtt__queued__message.html", [
+      [ "control_type", "structmqtt__queued__message.html#a38137e33da64798868b8bbc24dc44d23", null ],
+      [ "packet_id", "structmqtt__queued__message.html#ad051e090f3817f4549df7dc178790f45", null ],
+      [ "size", "structmqtt__queued__message.html#a854352f53b148adc24983a58a1866d66", null ],
+      [ "start", "structmqtt__queued__message.html#a7b78fc8dde7c5c2b76176106e087b1de", null ],
+      [ "state", "structmqtt__queued__message.html#ab0b4524ec505beafeffd5a972b6e4dd4", null ],
+      [ "time_sent", "structmqtt__queued__message.html#afe2e6b7e914518c5557aa10176bd934d", null ]
+    ] ],
+    [ "mqtt_message_queue", "structmqtt__message__queue.html", [
+      [ "mqtt_mq_clean", "group__details.html#gadb54c413b4d884619c50cc20ee6eb084", null ],
+      [ "mqtt_mq_find", "group__details.html#ga7ff481382af50e917941f1e7a787a36a", null ],
+      [ "mqtt_mq_init", "group__details.html#ga0da861c969387bf8d0229924543d9bb7", null ],
+      [ "mqtt_mq_register", "group__details.html#gaa34e6af3ab1af60ebf8fe7b86be868fc", null ],
+      [ "curr", "structmqtt__message__queue.html#a2158c932588480e03463af9a429027c1", null ],
+      [ "curr_sz", "structmqtt__message__queue.html#a1bce4ca9a01a7cfbc0b9860569ea246e", null ],
+      [ "mem_end", "structmqtt__message__queue.html#a2a3611ebea79f99a1cdfbe4320a794b0", null ],
+      [ "mem_start", "structmqtt__message__queue.html#a6173d4ae6cabbc095f530f2c31490d88", null ],
+      [ "queue_tail", "structmqtt__message__queue.html#a5bf737573f56d0759e543f69e438cbb1", null ]
+    ] ],
+    [ "mqtt_client", "structmqtt__client.html", [
+      [ "curr", "structmqtt__client.html#a2158c932588480e03463af9a429027c1", null ],
+      [ "curr_sz", "structmqtt__client.html#a1bce4ca9a01a7cfbc0b9860569ea246e", null ],
+      [ "error", "structmqtt__client.html#a520cc1444ce673aaffbf7be0d2e9a952", null ],
+      [ "inspector_callback", "structmqtt__client.html#adf6fb6ace1b7649456a0d1498c33c69f", null ],
+      [ "keep_alive", "structmqtt__client.html#a0a946f63bb5f47d908dc1eca9a022538", null ],
+      [ "mem_size", "structmqtt__client.html#a9ea6497b2a03cb576a118c6635607d67", null ],
+      [ "mem_start", "structmqtt__client.html#a5c2386023964b7a91330f2d95a9950c8", null ],
+      [ "mq", "structmqtt__client.html#afea711803823816d1cf5ca910e956400", null ],
+      [ "mutex", "structmqtt__client.html#affe66249283f03e673870e7e35ac10f0", null ],
+      [ "number_of_keep_alives", "structmqtt__client.html#a22e1952dd6b27e6ba862a3d6ed34289b", null ],
+      [ "number_of_timeouts", "structmqtt__client.html#a2232eec2a1ec51177291698bc3fde9c3", null ],
+      [ "pid_lfsr", "structmqtt__client.html#a41239668dd89728a44317c80ab04cb03", null ],
+      [ "publish_response_callback", "structmqtt__client.html#a6321fe432b8bc49436436c1d75859e78", null ],
+      [ "publish_response_callback_state", "structmqtt__client.html#aca624b149b55e16f67bfbec79babd357", null ],
+      [ "reconnect_callback", "structmqtt__client.html#a4feaa8fc7e7299739a46bd8f749e92c0", null ],
+      [ "reconnect_state", "structmqtt__client.html#ab05ec37421a7337bee91335f6fb52b15", null ],
+      [ "recv_buffer", "structmqtt__client.html#aeed0c5a8b2438f06a447b058530700fd", null ],
+      [ "response_timeout", "structmqtt__client.html#ab5794aa058e2e8ace3ed3ababa501606", null ],
+      [ "send_offset", "structmqtt__client.html#aac3c52ce139a2514f7d66d3fdca809fe", null ],
+      [ "socketfd", "structmqtt__client.html#a225acfc6e3b507028831b74f6f042746", null ],
+      [ "time_of_last_send", "structmqtt__client.html#aab207e4f35a9a1fe6fba0c32498e5b7a", null ],
+      [ "typical_response_time", "structmqtt__client.html#a64b11679a89020ef43c8493ecef84e5a", null ]
+    ] ],
+    [ "mqtt_mq_currsz", "group__details.html#ga8cd873da2116975ce39b313f93068d83", null ],
+    [ "mqtt_mq_get", "group__details.html#gadfa141880e5b30429bd89018da0c8d94", null ],
+    [ "mqtt_mq_length", "group__details.html#ga4be078d9d0bd6183b9082f3217622223", null ],
+    [ "MQTTQueuedMessageState", "group__details.html#ga28b018ca5d1c81101d36f9c0d532a0d0", [
+      [ "MQTT_QUEUED_UNSENT", "group__details.html#gga28b018ca5d1c81101d36f9c0d532a0d0a3b253ea42cffbf3b9de68ea875214dc6", null ],
+      [ "MQTT_QUEUED_AWAITING_ACK", "group__details.html#gga28b018ca5d1c81101d36f9c0d532a0d0a1fada2f64335662a43aa99137ee1827b", null ],
+      [ "MQTT_QUEUED_COMPLETE", "group__details.html#gga28b018ca5d1c81101d36f9c0d532a0d0a32f4560e2822153e07026f560c1d2c98", null ]
+    ] ],
+    [ "__mqtt_next_pid", "group__details.html#ga7ca75c661980d4af50493f59a386f378", null ],
+    [ "__mqtt_puback", "group__details.html#gae09d4412a871ecec31377db55cc54228", null ],
+    [ "__mqtt_pubcomp", "group__details.html#ga86ddd2a08fbe4bd351dfd161db93303d", null ],
+    [ "__mqtt_pubrec", "group__details.html#ga874c62f7a20b6adf13dbed2b4e2dd985", null ],
+    [ "__mqtt_pubrel", "group__details.html#ga427f9191ab9967b75e0a7a2f7fa0dca0", null ],
+    [ "__mqtt_recv", "group__details.html#ga4d50a465c684a5ecd1c000f811fa601e", null ],
+    [ "__mqtt_send", "group__details.html#gacf553ca88f48350dbde0dc3b96e550f7", null ],
+    [ "mqtt_mq_clean", "group__details.html#gadb54c413b4d884619c50cc20ee6eb084", null ],
+    [ "mqtt_mq_find", "group__details.html#ga7ff481382af50e917941f1e7a787a36a", null ],
+    [ "mqtt_mq_init", "group__details.html#ga0da861c969387bf8d0229924543d9bb7", null ],
+    [ "mqtt_mq_register", "group__details.html#gaa34e6af3ab1af60ebf8fe7b86be868fc", null ]
+];
