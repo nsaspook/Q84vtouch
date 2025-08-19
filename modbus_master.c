@@ -691,16 +691,17 @@ static void em_data_handler(void)
 	em.al1 = mb32_swap(em.al1);
 	em.al2 = mb32_swap(em.al2);
 	em.al3 = mb32_swap(em.al3);
-	em.wl1 = mb32_swap(em.wl1);
+	em.wl1 = mb32_swap(em.wsys);
 	em.wl2 = mb32_swap(em.wl2);
 	em.wl3 = mb32_swap(em.wl3);
-	em.val1 = mb32_swap(em.val1);
+	em.val1 = mb32_swap(em.vasys);
 	em.val2 = mb32_swap(em.val2);
 	em.val3 = mb32_swap(em.val3);
-	em.varl1 = mb32_swap(em.varl1);
+	em.varl1 = mb32_swap(em.varsys);
 	em.varl2 = mb32_swap(em.varl2);
 	em.varl3 = mb32_swap(em.varl3);
 	em.pfl1 = mb16_swap(em.pfl1);
+	em.pfsys = mb16_swap(em.pfsys);
 	em.hz = mb16_swap(em.hz);
 }
 

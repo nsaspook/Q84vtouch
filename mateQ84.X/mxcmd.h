@@ -22,7 +22,7 @@ extern "C" {
 #include "../timers.h"
 
 #define VER	1
-	const char build_version[] = "V2.04 FM80 Q84";
+	const char build_version[] = "V2.05 FM80 Q84";
 	/*
 	 * code changes
 	 * 1.55 remove critical section interrupt disables for FM80 serial
@@ -63,6 +63,7 @@ extern "C" {
 	 * 2.02 LCD can rx/tx logging display
 	 * 2.03 button causing display switches while dimmed fixed, mxlog_ptr having issues with xc8 3.00
 	 * 2.04 change BCM to BMC on the display, try to find source of json NULL error in ha_energy when FM80 start FLOAT
+	 * 2.05 use EM sys varibles for all power
 	 */
 
 #define MAX_B_BUF	512
