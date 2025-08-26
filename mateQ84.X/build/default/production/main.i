@@ -41818,8 +41818,8 @@ void delay_ms(const uint16_t);
 # 23 "./mxcmd.h" 2
 
 
- const char build_version[] = "V2.05 FM80 Q84";
-# 88 "./mxcmd.h"
+ const char build_version[] = "V2.06 FM80 Q84";
+# 89 "./mxcmd.h"
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
  const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};
@@ -41832,8 +41832,11 @@ void delay_ms(const uint16_t);
  const uint16_t cmd_fwreva[] = {0x100, 0x02, 0x00, 0x02, 0x00, 0x00, 0x00, 0x04};
  const uint16_t cmd_fwrevb[] = {0x100, 0x02, 0x00, 0x03, 0x00, 0x00, 0x00, 0x05};
  const uint16_t cmd_fwrevc[] = {0x100, 0x02, 0x00, 0x04, 0x00, 0x00, 0x00, 0x06};
- uint16_t cmd_time[] = {0x100, 0x03, 0x40, 0x04, 0x00, 0x00, 0x00, 0x00};
- uint16_t cmd_date[] = {0x100, 0x03, 0x40, 0x05, 0x00, 0x00, 0x00, 0x00};
+ uint16_t cmd_time[] = {0x100, 0x03, 0x40, 0x04, 0x00, 0x00, 0x00, 0x47};
+ uint16_t cmd_date[] = {0x100, 0x03, 0x40, 0x05, 0x00, 0x00, 0x00, 0x48};
+ const uint16_t cmd_restart_ngit[] = {0x100, 0x03, 0x00, 0xd6, 0x00, 0x00, 0x00, 0xd9};
+ const uint16_t cmd_restart_gti[] = {0x100, 0x03, 0x00, 0xd6, 0x00, 0x01, 0x00, 0xda};
+ const uint16_t cmd_restart[] = {0x100, 0x03, 0x40, 0x02, 0x00, 0x01, 0x00, 0x46};
 
  enum status_type {
   STATUS_SLEEPING = 0,
@@ -41914,6 +41917,10 @@ void delay_ms(const uint16_t);
  extern void wdtdelay(const uint32_t);
  extern float lp_filter(const float, const uint8_t, const int8_t);
  extern uint16_t calc_checksum(uint8_t*, const uint8_t);
+
+ extern void send_mx_cmd(const uint16_t *);
+ extern void rec_mx_cmd(void (* DataHandler)(void), const uint8_t);
+ extern void state_restart_cb(void);
 
  extern B_type B;
 # 199 "main.c" 2
@@ -42299,7 +42306,7 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[512] = "Boot Init Display   ", info_buffer[512], log_buffer[512];
-const char *build_date = "Aug 19 2025", *build_time = "12:14:11";
+const char *build_date = "Aug 25 2025", *build_time = "08:49:20";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
@@ -42327,7 +42334,7 @@ B_type B = {
  .log.type = 1,
  .display_dim = 0,
  .display_update = 0,
- .dim_delay = 6,
+ .dim_delay = 8,
  .display_on = 1,
 };
 
@@ -42346,8 +42353,9 @@ static void volt_f(const uint16_t);
 
 
 
-static void send_mx_cmd(const uint16_t *);
-static void rec_mx_cmd(void (* DataHandler)(void), const uint8_t);
+void send_mx_cmd(const uint16_t *);
+void rec_mx_cmd(void (* DataHandler)(void), const uint8_t);
+void state_restart_cb(void);
 
 
 
@@ -42430,7 +42438,7 @@ void main(void)
 
  }
  eaDogM_WriteStringAtPos(2, 0, buffer);
-# 373 "main.c"
+# 374 "main.c"
  eaDogM_WriteStringAtPos(2, 0, buffer);
  snprintf(buffer, 512, "%s ", "Start Up            ");
  eaDogM_WriteStringAtPos(3, 0, buffer);
@@ -42600,7 +42608,7 @@ void main(void)
      }
     } else {
      M.error = 0;
-# 571 "main.c"
+# 572 "main.c"
      snprintf(buffer, 512, "EMon  %6.1fWh   %c%c    ", EB->bat_energy / 360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
      eaDogM_WriteStringAtPos(1, 0, buffer);
      snprintf(buffer, 512, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], modbus_name[B.modbus_online][0], canbus_name[B.canbus_online][0]);
@@ -42667,7 +42675,7 @@ static void volt_f(const uint16_t voltage)
 
 
 
-static void send_mx_cmd(const uint16_t * cmd)
+void send_mx_cmd(const uint16_t * cmd)
 {
  if (FM_tx_empty()) {
   if (B.pacing++ > 31000) {
@@ -42680,7 +42688,7 @@ static void send_mx_cmd(const uint16_t * cmd)
 
 
 
-static void rec_mx_cmd(void (* DataHandler)(void), const uint8_t rec_len)
+void rec_mx_cmd(void (* DataHandler)(void), const uint8_t rec_len)
 {
  static uint16_t online_count = 0;
 
@@ -42751,7 +42759,7 @@ void state_status_cb(void)
 {
  static uint16_t day_clocks = 0;
  static uint8_t status_prev = STATUS_SLEEPING;
-# 736 "main.c"
+# 737 "main.c"
  if (B.day_check++ > 1200) {
   B.day_check = 0;
   B.once = 0;
@@ -43033,4 +43041,9 @@ void run_night_to_day(void)
  eaDogM_Scroll_String(s_buffer);
  do { LATEbits.LATE1 = 0; } while(0);
  do { LATEbits.LATE0 = 1; } while(0);
+}
+
+void state_restart_cb(void)
+{
+ state = state_init;
 }

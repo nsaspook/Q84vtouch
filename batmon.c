@@ -1,5 +1,6 @@
 #include "batmon.h"
 #include "dio.h"
+#include "mateQ84.X/mxcmd.h"
 
 EB_data EBD = {
 	.checkmark = BM_CM,
@@ -216,6 +217,8 @@ void compute_bm_data(EB_data * EB)
 				B.FM80_charged = true;
 				EB->bat_energy = BAT_ENERGY;
 			}
+			send_mx_cmd(cmd_restart); // send a restart command to the FM80
+//			rec_mx_cmd(state_restart_cb, 5);
 		}
 	} else {
 		net_balance = net_balance; // net drain, inverter correction already applied: possible future second order corrections here

@@ -76,7 +76,7 @@ extern "C" {
 #define LCD2		2
 #define LCD3		3
 
-#define DIM_DELAY	6
+#define DIM_DELAY	8
 
 #define NSB		5
 #define LSB		21

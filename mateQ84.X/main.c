@@ -275,8 +275,9 @@ static void volt_f(const uint16_t);
 /*
  * FM80 send/recv functions
  */
-static void send_mx_cmd(const uint16_t *);
-static void rec_mx_cmd(void (* DataHandler)(void), const uint8_t);
+void send_mx_cmd(const uint16_t *);
+void rec_mx_cmd(void (* DataHandler)(void), const uint8_t);
+void state_restart_cb(void);
 
 /*
  * callbacks to handle FM80 register data
@@ -634,7 +635,7 @@ static void volt_f(const uint16_t voltage)
 /*
  * transmit the cmd data
  */
-static void send_mx_cmd(const uint16_t * cmd)
+void send_mx_cmd(const uint16_t * cmd)
 {
 	if (FM_tx_empty()) {
 		if (B.pacing++ > PACE) {
@@ -647,7 +648,7 @@ static void send_mx_cmd(const uint16_t * cmd)
 /*
  * process received data from the FM80 9n1 serial in abuf 16-bit buffer array with callbacks
  */
-static void rec_mx_cmd(void (* DataHandler)(void), const uint8_t rec_len)
+void rec_mx_cmd(void (* DataHandler)(void), const uint8_t rec_len)
 {
 	static uint16_t online_count = 0;
 
@@ -1014,6 +1015,11 @@ void run_night_to_day(void)
 	eaDogM_Scroll_String(s_buffer);
 	NIGHT_RELAY_OFF;
 	DAY_RELAY_ON;
+}
+
+void state_restart_cb(void)
+{
+	state = state_init;
 }
 /**
  End of File

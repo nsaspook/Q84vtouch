@@ -22,7 +22,7 @@ extern "C" {
 #include "../timers.h"
 
 #define VER	1
-	const char build_version[] = "V2.05 FM80 Q84";
+	const char build_version[] = "V2.06 FM80 Q84";
 	/*
 	 * code changes
 	 * 1.55 remove critical section interrupt disables for FM80 serial
@@ -64,6 +64,7 @@ extern "C" {
 	 * 2.03 button causing display switches while dimmed fixed, mxlog_ptr having issues with xc8 3.00
 	 * 2.04 change BCM to BMC on the display, try to find source of json NULL error in ha_energy when FM80 start FLOAT
 	 * 2.05 use EM sys varibles for all power
+	 * 2.06 fix checksums and add restart command for the FM80
 	 */
 
 #define MAX_B_BUF	512
@@ -97,8 +98,11 @@ extern "C" {
 	const uint16_t cmd_fwreva[] = {0x100, 0x02, 0x00, 0x02, 0x00, 0x00, 0x00, 0x04};
 	const uint16_t cmd_fwrevb[] = {0x100, 0x02, 0x00, 0x03, 0x00, 0x00, 0x00, 0x05};
 	const uint16_t cmd_fwrevc[] = {0x100, 0x02, 0x00, 0x04, 0x00, 0x00, 0x00, 0x06};
-	uint16_t cmd_time[] = {0x100, 0x03, 0x40, 0x04, 0x00, 0x00, 0x00, 0x00};
-	uint16_t cmd_date[] = {0x100, 0x03, 0x40, 0x05, 0x00, 0x00, 0x00, 0x00};
+	uint16_t cmd_time[] = {0x100, 0x03, 0x40, 0x04, 0x00, 0x00, 0x00, 0x47};
+	uint16_t cmd_date[] = {0x100, 0x03, 0x40, 0x05, 0x00, 0x00, 0x00, 0x48};
+	const uint16_t cmd_restart_ngit[] = {0x100, 0x03, 0x00, 0xd6, 0x00, 0x00, 0x00, 0xd9}; // using non-GTI mode
+	const uint16_t cmd_restart_gti[] = {0x100, 0x03, 0x00, 0xd6, 0x00, 0x01, 0x00, 0xda}; // using GTI mode
+	const uint16_t cmd_restart[] = {0x100, 0x03, 0x40, 0x02, 0x00, 0x01, 0x00, 0x46}; // restart command
 
 	enum status_type {
 		STATUS_SLEEPING = 0,
@@ -179,6 +183,10 @@ extern "C" {
 	extern void wdtdelay(const uint32_t);
 	extern float lp_filter(const float, const uint8_t, const int8_t);
 	extern uint16_t calc_checksum(uint8_t*, const uint8_t);
+
+	extern void send_mx_cmd(const uint16_t *);
+	extern void rec_mx_cmd(void (* DataHandler)(void), const uint8_t);
+	extern void state_restart_cb(void);
 
 	extern B_type B;
 
