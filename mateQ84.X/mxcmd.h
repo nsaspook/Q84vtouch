@@ -79,6 +79,7 @@ extern "C" {
 
 #define FM80_ID		0x03
 #define FMxx_STATE	abuf[2]
+#define RESTART_DELAY	30000
 
 #define AMP_WHOLE_ZERO	0
 
@@ -163,7 +164,7 @@ extern "C" {
 	typedef struct B_type {
 		volatile bool ten_sec_flag, one_sec_flag, FM80_charged, pv_high, pv_update, once, a_switch[D_SW_COUNT], a_trigger[D_SW_COUNT], a_type[D_SW_COUNT];
 		volatile uint16_t pacing, rx_count, flush, pv_prev, day_check, node_id, dim_delay;
-		volatile bool FM80_online, FM80_io, LOG, display_dim, display_update, display_on;
+		volatile bool FM80_online, FM80_io, LOG, display_dim, display_update, display_on, FM80_restart;
 		volatile uint8_t canbus_online, modbus_online, alt_display, a_pin[D_SW_COUNT];
 		float run_time, net_balance;
 		uint16_t mui[10];

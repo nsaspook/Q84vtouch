@@ -187,7 +187,7 @@ void get_bm_data(EB_data * EB)
 /*
  * track energy usage and storage of the system
  * with LiFePO4 battery chem this is simple, direct with no major secondary effects over the discharge/charge curve
- * 
+ *
  * auto resets battery energy on charge controller float condition
  *
  */
@@ -217,8 +217,22 @@ void compute_bm_data(EB_data * EB)
 				B.FM80_charged = true;
 				EB->bat_energy = BAT_ENERGY;
 			}
+
+		}
+
+		if (cc_mode == STATUS_FLOATING) {
+			B.FM80_restart = true;
 			send_mx_cmd(cmd_restart); // send a restart command to the FM80
-//			rec_mx_cmd(state_restart_cb, 5);
+			StartTimer(TMR_FMRESTART, RESTART_DELAY); // delay the restart for while
+		}
+
+		if (B.FM80_restart && TimerDone(TMR_FMRESTART) && (cc_mode == STATUS_FLOATING)) {
+			send_mx_cmd(cmd_restart); // send a restart command to the FM80
+			B.FM80_restart = false;
+		} else {
+			if (cc_mode != STATUS_FLOATING) {
+				B.FM80_restart = false;
+			}
 		}
 	} else {
 		net_balance = net_balance; // net drain, inverter correction already applied: possible future second order corrections here

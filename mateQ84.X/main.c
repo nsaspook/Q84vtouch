@@ -258,6 +258,7 @@ B_type B = {
 	.display_update = false,
 	.dim_delay = DIM_DELAY,
 	.display_on = true,
+	.FM80_restart = false,
 };
 
 /*
