@@ -42299,6 +42299,7 @@ enum state_type {
  state_mx_log,
  state_misc,
  state_mx_status,
+ state_restart,
  state_last,
 };
 
@@ -42307,7 +42308,7 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[512] = "Boot Init Display   ", info_buffer[512], log_buffer[512];
-const char *build_date = "Sep  2 2025", *build_time = "16:27:50";
+const char *build_date = "Sep  4 2025", *build_time = "12:31:37";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
@@ -42440,7 +42441,7 @@ void main(void)
 
  }
  eaDogM_WriteStringAtPos(2, 0, buffer);
-# 375 "main.c"
+# 376 "main.c"
  eaDogM_WriteStringAtPos(2, 0, buffer);
  snprintf(buffer, 512, "%s ", "Start Up            ");
  eaDogM_WriteStringAtPos(3, 0, buffer);
@@ -42514,6 +42515,23 @@ void main(void)
   case state_mx_status:
    send_mx_cmd(cmd_mx_status);
    rec_mx_cmd(state_mx_status_cb, 16);
+   break;
+  case state_restart:
+   if ((cc_mode == STATUS_FLOATING) && (B.FM80_charged == 1) && (B.FM80_restart == 0)) {
+    B.FM80_restart = 1;
+    StartTimer(TMR_FMRESTART, 30000);
+   }
+
+   if (B.FM80_restart && TimerDone(TMR_FMRESTART)) {
+    send_mx_cmd(cmd_restart);
+    rec_mx_cmd(state_restart_cb, 5);
+    B.FM80_restart = 0;
+   } else {
+    if (cc_mode != STATUS_FLOATING) {
+     B.FM80_restart = 0;
+    }
+   }
+   state = state_fwrev;
    break;
   case state_fwrev:
    switch (fw_state) {
@@ -42610,7 +42628,7 @@ void main(void)
      }
     } else {
      M.error = 0;
-# 573 "main.c"
+# 591 "main.c"
      snprintf(buffer, 512, "EMon  %6.1fWh   %c%c    ", EB->bat_energy / 360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
      eaDogM_WriteStringAtPos(1, 0, buffer);
      snprintf(buffer, 512, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], modbus_name[B.modbus_online][0], canbus_name[B.canbus_online][0]);
@@ -42761,7 +42779,7 @@ void state_status_cb(void)
 {
  static uint16_t day_clocks = 0;
  static uint8_t status_prev = STATUS_SLEEPING;
-# 738 "main.c"
+# 756 "main.c"
  if (B.day_check++ > 1200) {
   B.day_check = 0;
   B.once = 0;
@@ -42853,7 +42871,6 @@ void state_mx_log_cb(void)
 
  cmd_mx_log[5] = B.log.select;
  cmd_mx_log[7] = 0x16 + B.log.select;
-
 
  state = state_mx_status;
 }
@@ -42948,7 +42965,7 @@ void state_mx_status_cb(void)
    }
   }
  }
- state = state_fwrev;
+ state = state_restart;
 }
 
 static void state_fwrev_cb(void)
@@ -43047,5 +43064,5 @@ void run_night_to_day(void)
 
 void state_restart_cb(void)
 {
- state = state_init;
+ state = state_fwrev;
 }

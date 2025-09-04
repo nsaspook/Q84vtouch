@@ -220,6 +220,7 @@ enum state_type {
 	state_mx_log,
 	state_misc,
 	state_mx_status,
+	state_restart,
 	state_last,
 };
 
@@ -445,6 +446,23 @@ void main(void)
 		case state_mx_status: // wait for ten second flag in this state for logging
 			send_mx_cmd(cmd_mx_status);
 			rec_mx_cmd(state_mx_status_cb, REC_STATUS_LEN);
+			break;
+		case state_restart: // see if we can restart the FM80
+			if ((cc_mode == STATUS_FLOATING) && (B.FM80_charged == true) && (B.FM80_restart == false)) {
+				B.FM80_restart = true;
+				StartTimer(TMR_FMRESTART, RESTART_DELAY); // delay the restart for while
+			}
+
+			if (B.FM80_restart && TimerDone(TMR_FMRESTART)) {
+				send_mx_cmd(cmd_restart); // send a restart command to the FM80
+				rec_mx_cmd(state_restart_cb, REC_LEN);
+				B.FM80_restart = false;
+			} else {
+				if (cc_mode != STATUS_FLOATING) {
+					B.FM80_restart = false;
+				}
+			}
+			state = state_fwrev;
 			break;
 		case state_fwrev:
 			switch (fw_state) {
@@ -826,7 +844,6 @@ void state_mx_log_cb(void)
 
 	cmd_mx_log[5] = B.log.select;
 	cmd_mx_log[7] = 0x16 + B.log.select; // update the checksum
-	//	mxlog_ptr->log.type = 1;
 
 	state = state_mx_status;
 }
@@ -921,7 +938,7 @@ void state_mx_status_cb(void)
 			}
 		}
 	}
-	state = state_fwrev;
+	state = state_restart;
 }
 
 static void state_fwrev_cb(void)
@@ -1020,7 +1037,7 @@ void run_night_to_day(void)
 
 void state_restart_cb(void)
 {
-	state = state_init;
+	state = state_fwrev;
 }
 /**
  End of File
