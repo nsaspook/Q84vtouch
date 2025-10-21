@@ -63,20 +63,21 @@ extern "C" {
 #define CLIENTID        "MateQ84_Mqtt"
 #define TOPIC_P         "mateq84/data/solar"
 #define TOPIC_S         "mateq84/data/solar/sub"
-#define QOS             2
-#define TIMEOUT         10000L
-#define SPACING_USEC    500 * 1000
-#define MQTT_TIMEOUT    150
-
-#define E_MONTH         2266.0f // Kwh
-#define G_MONTH         1000.0f // kWh
-#define E_DAYS          31.0f
-#define E_PER_DAY       E_MONTH/E_DAYS
-#define E_PER_HOUR      E_PER_DAY/24.0f
-#define G_PER_DAY       G_MONTH/E_DAYS
-#define G_PER_HOUR      G_PER_DAY/24.0f
-
 #define PGE_ZERO
+
+	static const uint32_t QOS = 2;
+	static const uint32_t TIMEOUT = 10000L;
+	static const uint32_t SPACING_USEC = 500 * 1000;
+	static const uint32_t MQTT_TIMEOUT = 150;
+
+	static const double E_MONTH = 2266.0f; // Kwh
+	static const double G_MONTH = 1000.0f; // kWh
+	static const double E_DAYS = 31.0f;
+	static const double E_PER_DAY = E_MONTH / E_DAYS;
+	static const double E_PER_HOUR = E_PER_DAY / 24.0f;
+	static const double G_PER_DAY = G_MONTH / E_DAYS;
+	static const double G_PER_HOUR = G_PER_DAY / 24.0f;
+
 #ifdef __cplusplus
 }
 #endif
