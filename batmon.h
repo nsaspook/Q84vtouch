@@ -43,6 +43,8 @@ extern "C" {
 #define BAT_DAY_COUNT	45	// number of reports before updates
 #define BAT_NIGHT_COUNT	90
 #define BAT_RUN_MAX	280.0f  // max displayed run time at current load
+	
+#define PV_LOW_VOLTS	70.0f
 	/*
 	 * System correction factors
 	 */

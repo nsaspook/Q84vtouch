@@ -144,8 +144,6 @@ void eaDogM_WriteString(char *strPtr)
 {
 	uint8_t len = (uint8_t) strlen(strPtr);
 
-	E_TRACE;
-	E_TRACE;
 	wait_lcd_done();
 	wait_lcd_set();
 	CS_SetLow(); /* SPI select display */
@@ -178,9 +176,6 @@ void send_lcd_cmd_dma(const uint8_t strPtr)
  */
 void send_lcd_data_dma(const uint8_t strPtr)
 {
-	E_TRACE;
-	E_TRACE;
-	E_TRACE;
 	wait_lcd_done();
 	wait_lcd_set();
 	CS_SetLow(); /* SPI select display */
@@ -197,7 +192,6 @@ void send_lcd_data_dma(const uint8_t strPtr)
  */
 void send_lcd_pos_dma(const uint8_t strPtr)
 {
-	E_TRACE;
 	wait_lcd_done();
 	wait_lcd_set();
 	CS_SetLow(); /* SPI select display */
@@ -242,7 +236,6 @@ void eaDogM_WriteStringAtPos(const uint8_t r, const uint8_t c, char *strPtr)
 #ifdef USE_LCD_DMA
 	send_lcd_pos_dma(row + c);
 	wdtdelay(NHD_S_DELAY); // display command processing delay
-	E_TRACE;
 #else
 	send_lcd_cmd(0x45);
 	send_lcd_data(row + c);
@@ -339,12 +332,7 @@ void wait_lcd_done(void)
  */
 void clear_lcd_done(void)
 {
-	INT_TRACE; // GPIO interrupt scope trace
 	spi_link.LCD_DATA = false;
-	E_TRACE;
-	E_TRACE;
-	E_TRACE;
-	E_TRACE;
 }
 
 void spi_rec_done(void)

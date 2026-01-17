@@ -22,7 +22,7 @@ extern "C" {
 #include "../timers.h"
 
 #define VER	1
-	const char build_version[] = "V2.06 FM80 Q84";
+	const char build_version[] = "V2.07 FM80 Q84";
 	/*
 	 * code changes
 	 * 1.55 remove critical section interrupt disables for FM80 serial
@@ -65,6 +65,7 @@ extern "C" {
 	 * 2.04 change BCM to BMC on the display, try to find source of json NULL error in ha_energy when FM80 start FLOAT
 	 * 2.05 use EM sys varibles for all power
 	 * 2.06 fix checksums and add restart command for the FM80
+	 * 2.07 add High Voc check for night sleeping condition
 	 */
 
 #define MAX_B_BUF	512
@@ -187,7 +188,6 @@ extern "C" {
 
 	extern void send_mx_cmd(const uint16_t *);
 	extern void rec_mx_cmd(void (* DataHandler)(void), const uint8_t);
-	extern void state_restart_cb(void);
 
 	extern B_type B;
 

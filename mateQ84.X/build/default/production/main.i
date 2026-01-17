@@ -41819,8 +41819,8 @@ void delay_ms(const uint16_t);
 # 23 "./mxcmd.h" 2
 
 
- const char build_version[] = "V2.06 FM80 Q84";
-# 90 "./mxcmd.h"
+ const char build_version[] = "V2.07 FM80 Q84";
+# 91 "./mxcmd.h"
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
  const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};
@@ -41921,7 +41921,6 @@ void delay_ms(const uint16_t);
 
  extern void send_mx_cmd(const uint16_t *);
  extern void rec_mx_cmd(void (* DataHandler)(void), const uint8_t);
- extern void state_restart_cb(void);
 
  extern B_type B;
 # 199 "main.c" 2
@@ -42177,7 +42176,7 @@ void delay_ms(const uint16_t);
 # 1 "./../canfd.h" 1
 # 21 "./../canfd.h"
 # 1 "./../batmon.h" 1
-# 55 "./../batmon.h"
+# 57 "./../batmon.h"
  typedef struct EB_data {
   uint8_t checkmark;
   uint8_t version, alt_display;
@@ -42308,7 +42307,7 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[512] = "Boot Init Display   ", info_buffer[512], log_buffer[512];
-const char *build_date = "Sep  4 2025", *build_time = "12:31:37";
+const char *build_date = "Jan 16 2026", *build_time = "19:45:25";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
@@ -42358,7 +42357,6 @@ static void volt_f(const uint16_t);
 
 void send_mx_cmd(const uint16_t *);
 void rec_mx_cmd(void (* DataHandler)(void), const uint8_t);
-void state_restart_cb(void);
 
 
 
@@ -42375,6 +42373,7 @@ void state_mx_log_cb(void);
 static void state_fwrev_cb(void);
 static void state_time_cb(void);
 static void state_date_cb(void);
+static void state_restart_cb(void);
 
 
 
@@ -42797,7 +42796,7 @@ void state_status_cb(void)
    B.pv_high = 1;
   }
  } else {
-  if (++day_clocks > 90) {
+  if ((++day_clocks > 90) && (EB->FMpv < 70.0f)) {
    day_clocks = 0;
    if (!B.once && (B.pv_prev != STATUS_SLEEPING)) {
     B.day_check = 0;
@@ -43062,7 +43061,7 @@ void run_night_to_day(void)
  do { LATEbits.LATE0 = 1; } while(0);
 }
 
-void state_restart_cb(void)
+static void state_restart_cb(void)
 {
  state = state_fwrev;
 }

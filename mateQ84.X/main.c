@@ -279,7 +279,6 @@ static void volt_f(const uint16_t);
  */
 void send_mx_cmd(const uint16_t *);
 void rec_mx_cmd(void (* DataHandler)(void), const uint8_t);
-void state_restart_cb(void);
 
 /*
  * callbacks to handle FM80 register data
@@ -296,6 +295,7 @@ void state_mx_log_cb(void);
 static void state_fwrev_cb(void);
 static void state_time_cb(void);
 static void state_date_cb(void);
+static void state_restart_cb(void);
 
 /*
  * busy loop delay with WDT reset
@@ -770,7 +770,7 @@ void state_status_cb(void)
 			B.pv_high = true;
 		}
 	} else {
-		if (++day_clocks > BAT_NIGHT_COUNT) {
+		if ((++day_clocks > BAT_NIGHT_COUNT) && (EB->FMpv < PV_LOW_VOLTS)) { // check for High VoC conditions
 			day_clocks = 0;
 			if (!B.once && (B.pv_prev != STATUS_SLEEPING)) { // check for night and update day totals
 				B.day_check = 0;
@@ -1035,7 +1035,7 @@ void run_night_to_day(void)
 	DAY_RELAY_ON;
 }
 
-void state_restart_cb(void)
+static void state_restart_cb(void)
 {
 	state = state_fwrev;
 }
