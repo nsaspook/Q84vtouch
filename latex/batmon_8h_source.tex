@@ -46,77 +46,80 @@
 \DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ BAT\_DAY\_COUNT\ \ \ 45\ \ }\textcolor{comment}{//\ number\ of\ reports\ before\ updates}}
 \DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ BAT\_NIGHT\_COUNT\ 90}}
 \DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ BAT\_RUN\_MAX\ 280.0f\ \ }\textcolor{comment}{//\ max\ displayed\ run\ time\ at\ current\ load}}
-\DoxyCodeLine{00046\ \ \ \ \ \textcolor{comment}{/*}}
-\DoxyCodeLine{00047\ \textcolor{comment}{\ \ \ \ \ *\ System\ correction\ factors}}
-\DoxyCodeLine{00048\ \textcolor{comment}{\ \ \ \ \ */}}
-\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ IDLE\_DRAIN\ \ \ \ \ \ 10.0f\ \ \ }\textcolor{comment}{//\ system\ operational\ drain\ losses\ in\ Wh}}
-\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ INV\_EFF\_VAL\ \ \ \ \ 1.06f\ \ \ }\textcolor{comment}{//\ DC\ watts\ to\ AC\ watt\ inverter\ correction}}
-\DoxyCodeLine{00051\ }
-\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ MAX\_ALT\_DIS\ 3}}
-\DoxyCodeLine{00053\ \ \ \ \ \textcolor{comment}{//\ EEPROM\ data\ storage\ structure}}
+\DoxyCodeLine{00046\ \ \ \ \ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ PV\_LOW\_VOLTS\ \ \ \ 70.0f}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ PV\_HIGH\_VOLTS\ \ \ 132}}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00050\ \textcolor{comment}{\ \ \ \ \ *\ System\ correction\ factors}}
+\DoxyCodeLine{00051\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ IDLE\_DRAIN\ \ \ \ \ \ 10.0f\ \ \ }\textcolor{comment}{//\ system\ operational\ drain\ losses\ in\ Wh}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ INV\_EFF\_VAL\ \ \ \ \ 1.06f\ \ \ }\textcolor{comment}{//\ DC\ watts\ to\ AC\ watt\ inverter\ correction}}
 \DoxyCodeLine{00054\ }
-\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structEB__data}{EB\_data}}\ \{}
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structEB__data_a2889542c04113b1aadd869d0fc99808c}{checkmark}};}
-\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structEB__data_ab22abc2906422da61885ac6c8e6a1a59}{version}},\ \mbox{\hyperlink{structEB__data_a8f127fd2fd27098df8d52a1298d22cd6}{alt\_display}};}
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structEB__data_a992c70a16169035bc9e2e8f9953d91ed}{loaded}};}
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structEB__data_addcc607e9418d4c2d9865a83b14cbbcc}{FMw}},\ \mbox{\hyperlink{structEB__data_a4a5a0a4db18fbe2ec3562987820adc42}{FMpv}},\ \mbox{\hyperlink{structEB__data_a1962bad9e307d062480da562be6d5a1d}{FMa}},\ \mbox{\hyperlink{structEB__data_a8890a5794a9bea2cab639f1e2d860b15}{FMbv}},\ \mbox{\hyperlink{structEB__data_ab903e5585e1e4a4eb859674e170fca81}{ENw}},\ \mbox{\hyperlink{structEB__data_af888a1ebe8608a20cc7ba96263aadb93}{ENva}},\ \mbox{\hyperlink{structEB__data_af9f113c8baca62c9f6bcbc7fbdb0a676}{ENvar}},\ \mbox{\hyperlink{structEB__data_acb09fa02bcd0184bbb1785648d17e059}{ENac}};}
-\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structEB__data_ae3643847f8e14970cfdbaedb546fa2d4}{volt\_whole}},\ \mbox{\hyperlink{structEB__data_a6eba2d1b798783e66469ab599e1d125c}{bat\_amp\_whole}};}
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structEB__data_aba95f8c203b1a512ce9f425152452772}{bat\_energy}};}
-\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structEB__data_a847bb5f18084e02e0eef64791ae606ba}{cc\_mode}},\ \mbox{\hyperlink{structEB__data_ac9cb4c4bb64a3404d20f0d8e3b571b54}{bat\_cycles}},\ \mbox{\hyperlink{structEB__data_a9567e3ec9d8f5e09072f51ba9f82570a}{bat\_mode}},\ \mbox{\hyperlink{structEB__data_a93658cf9f03a3303cdb292e655c657e7}{time}},\ \mbox{\hyperlink{structEB__data_a6ab759d8c1c4a264888440e1f0b874fa}{date}};}
-\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structEB__data_ae23756dc8212ffb2add0f1adc8a9f6cd}{bat\_time}},\ \mbox{\hyperlink{structEB__data_a7b56f27916fa09ca295f16198bf02bed}{fm80\_time}},\ \mbox{\hyperlink{structEB__data_a266c453e1d0dcef8437084e146868c22}{q84\_sequence}};}
-\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structEB__data_aa60093a9a5d5d17864cfda66c47733e3}{crc}};}
-\DoxyCodeLine{00065\ \ \ \ \ \}\ \mbox{\hyperlink{structEB__data}{EB\_data}};}
-\DoxyCodeLine{00066\ }
-\DoxyCodeLine{00067\ \ \ \ \ \textcolor{comment}{/*}}
-\DoxyCodeLine{00068\ \textcolor{comment}{\ \ \ \ \ *\ logging\ data\ format\ for\ printf\ and\ variables}}
-\DoxyCodeLine{00069\ \textcolor{comment}{\ \ \ \ \ */}}
-\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{batmon_8h_a1734e7445d4b61031c1e954d36ee0816}{log\_format}}[]\ =\ \textcolor{stringliteral}{"{}\string^,\%d.\%01d,\%d.\%01d,\%d,\%d.\%01d,\%d,\%.1f,\%.1f,\%.2f,\%.2f,\%d,\%.1f,\%.1f,\%.1f,\%4.1f,\%.2f,\%u,\%5.3f,\%5.3f,\%u,\%s,\string~\(\backslash\)r\(\backslash\)n"{}};}
-\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ LOG\_VARS\ \ \ \ abuf[3]\ -\/\ 128,\ abuf[1]\&0x0f,\ vw,\ vf,\ abuf[2]\ -\/\ 128,\ volt\_whole,\ volt\_fract,\ panel\_watts,\ pv\_Wh\_daily,\ ac\_Wh\_daily,\ B.run\_time,\ \ B.net\_balance,\ cc\_mode,\ ((float)\ em.wl1)\ /\ 10.0f,\ ((float)\ em.val1)\ /\ 10.0f,\ ((float)\ em.varl1)\ /\ 10.0f,\ ((float)\ em.vl1l2)\ /\ 10.0f,\ EBD.bat\_energy\ /\ 3600.0f,\ EBD.bat\_cycles,\ ((float)\ em.pfl1)\ /\ 1000.0f,\ ((float)\ emt.hz)\ /\ 1000.0f,\ B.rx\_count++,buffer}}
-\DoxyCodeLine{00072\ }
-\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#define\ BVSOC\_SLOTS\ \ \ \ \ 12\ \ \ \ \ \ }\textcolor{comment}{//\ 24V\ LiFePO4\ Battery\ to\ SOC\ data\ table\ slots}}
-\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{const}\ uint32\_t\ \mbox{\hyperlink{batmon_8h_a60ed4fd7fcc4a3bf1399b593c56898f6}{BVSOC\_TABLE}}[\mbox{\hyperlink{batmon_8h_aa30a92a619f5bd97c8469a385f693639}{BVSOC\_SLOTS}}][2]\ =\ \{}
-\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ 20000,\ 0,}
-\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ 24000,\ 5,}
-\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ 25000,\ 14,}
-\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ 25600,\ 17,}
-\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ 25800,\ 20,}
-\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ 26000,\ 30,}
-\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ 26200,\ 40,}
-\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ 26400,\ 70,}
-\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ 26600,\ 90,}
-\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ 26800,\ 99,}
-\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ 27200,\ 100,}
-\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ 29200,\ 100\ \textcolor{comment}{//\ charging\ voltage\ guess}}
-\DoxyCodeLine{00087\ \ \ \ \ \};}
-\DoxyCodeLine{00088\ }
-\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{typedef}\ uint16\_t\ \mbox{\hyperlink{batmon_8h_ad2a35b1a4377b6b59d25fe4b683b0b94}{device\_id\_data\_t}};}
-\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{typedef}\ uint24\_t\ \mbox{\hyperlink{batmon_8h_abd4955723914b0e2686709ae05736cae}{device\_id\_address\_t}};}
-\DoxyCodeLine{00091\ \ \ \ \ \mbox{\hyperlink{batmon_8h_ad2a35b1a4377b6b59d25fe4b683b0b94}{device\_id\_data\_t}}\ \mbox{\hyperlink{batmon_8h_a39a1d0b1f4183eadf34e4a964c53a70a}{DeviceID\_Read}}(\mbox{\hyperlink{batmon_8h_abd4955723914b0e2686709ae05736cae}{device\_id\_address\_t}});}
-\DoxyCodeLine{00092\ }
-\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{extern}\ \mbox{\hyperlink{structEB__data}{EB\_data}}\ \mbox{\hyperlink{batmon_8c_a1f24021d46a0b6b9a3a50effcf98d885}{EBD}};}
-\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{extern}\ uint16\_t\ \mbox{\hyperlink{batmon_8c_a6f0ab32b77902d82849b60327ac8e8a3}{EBD\_update}};}
-\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keyword}{struct\ }tm\ *\mbox{\hyperlink{batmon_8h_a6ff82a57d15d1e2c8b6aea4f501d8a0f}{can\_newtime}};}
-\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{batmon_8c_a6d4c959b440098e0b9e21564cecee331}{pv\_Wh\_daily}},\ \mbox{\hyperlink{batmon_8c_a9932dbc7e6df4aff32e5e0c7d3025bc5}{pv\_Wh\_daily\_prev}},\ \mbox{\hyperlink{batmon_8c_a32b8086e52ab3581927dca7f9f1cbd53}{ac\_Wh\_daily}},\ \mbox{\hyperlink{batmon_8c_adb85989b5fc1eaaac4b62235c9cf8a2a}{ac\_Wh\_daily\_prev}};}
-\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{batmon_8h_a075ee7d57eabca595ad66174b39f15af}{run\_night\_to\_day}}(\textcolor{keywordtype}{void});}
-\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{batmon_8h_a9cbf505667eb91703734b609fd3193f3}{run\_day\_to\_night}}(\textcolor{keywordtype}{void});}
-\DoxyCodeLine{00099\ }
-\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{batmon_8h_a9bd0bb4826ad1e0f9cb43ae7ad62a95a}{initbm\_data}}(uint8\_t\ *);}
-\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{batmon_8h_a47b16823f4da92b237bb8b5a19eb8acc}{wr\_bm\_data}}(uint8\_t\ *);}
-\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{batmon_8h_a13b4d58a94868e8e9ec436bb66e16261}{get\_bm\_data}}(\mbox{\hyperlink{structEB__data}{EB\_data}}\ *);}
-\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{batmon_8h_a05be8c7dd6283ae5a7f065d26f0d24bd}{compute\_bm\_data}}(\mbox{\hyperlink{structEB__data}{EB\_data}}\ *);}
-\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{batmon_8h_acd52e079250052fc87b5835daea13181}{update\_time}}(\textcolor{keyword}{struct}\ tm\ *,\ \mbox{\hyperlink{structEB__data}{EB\_data}}\ *);}
-\DoxyCodeLine{00105\ }
-\DoxyCodeLine{00106\ \ \ \ \ \mbox{\hyperlink{structEB__data}{EB\_data}}\ *\ \mbox{\hyperlink{batmon_8h_ad3aa99c36d34b3c5ab1dd5973a8b92af}{get\_EEPROM}}(\textcolor{keywordtype}{void});}
-\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{batmon_8h_a112d1a729a5d6666e53f2f6971bcf7b9}{DATAEE\_WriteByte}}(\textcolor{keyword}{const}\ uint16\_t,\ \textcolor{keyword}{const}\ uint8\_t);}
-\DoxyCodeLine{00108\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{batmon_8h_a5cfcf35db3a2421524591108178d3485}{DATAEE\_ReadByte}}(\textcolor{keyword}{const}\ uint16\_t);}
-\DoxyCodeLine{00109\ }
-\DoxyCodeLine{00110\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{batmon_8h_a15314de4478a071b2726a550b833f18f}{Volts\_to\_SOC}}(\textcolor{keyword}{const}\ uint16\_t,\ \textcolor{keyword}{const}\ uint16\_t);}
-\DoxyCodeLine{00111\ }
-\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#ifdef\ \ \_\_cplusplus}}
-\DoxyCodeLine{00113\ \}}
-\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{00115\ }
-\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{/*\ BATMON\_H\ */}\textcolor{preprocessor}{}}
-\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ MAX\_ALT\_DIS\ 3}}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{//\ EEPROM\ data\ storage\ structure}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structEB__data}{EB\_data}}\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structEB__data_a2889542c04113b1aadd869d0fc99808c}{checkmark}};}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structEB__data_ab22abc2906422da61885ac6c8e6a1a59}{version}},\ \mbox{\hyperlink{structEB__data_a8f127fd2fd27098df8d52a1298d22cd6}{alt\_display}};}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structEB__data_a992c70a16169035bc9e2e8f9953d91ed}{loaded}};}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structEB__data_addcc607e9418d4c2d9865a83b14cbbcc}{FMw}},\ \mbox{\hyperlink{structEB__data_a4a5a0a4db18fbe2ec3562987820adc42}{FMpv}},\ \mbox{\hyperlink{structEB__data_a1962bad9e307d062480da562be6d5a1d}{FMa}},\ \mbox{\hyperlink{structEB__data_a8890a5794a9bea2cab639f1e2d860b15}{FMbv}},\ \mbox{\hyperlink{structEB__data_ab903e5585e1e4a4eb859674e170fca81}{ENw}},\ \mbox{\hyperlink{structEB__data_af888a1ebe8608a20cc7ba96263aadb93}{ENva}},\ \mbox{\hyperlink{structEB__data_af9f113c8baca62c9f6bcbc7fbdb0a676}{ENvar}},\ \mbox{\hyperlink{structEB__data_acb09fa02bcd0184bbb1785648d17e059}{ENac}};}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structEB__data_ae3643847f8e14970cfdbaedb546fa2d4}{volt\_whole}},\ \mbox{\hyperlink{structEB__data_a6eba2d1b798783e66469ab599e1d125c}{bat\_amp\_whole}};}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structEB__data_aba95f8c203b1a512ce9f425152452772}{bat\_energy}};}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structEB__data_a847bb5f18084e02e0eef64791ae606ba}{cc\_mode}},\ \mbox{\hyperlink{structEB__data_ac9cb4c4bb64a3404d20f0d8e3b571b54}{bat\_cycles}},\ \mbox{\hyperlink{structEB__data_a9567e3ec9d8f5e09072f51ba9f82570a}{bat\_mode}},\ \mbox{\hyperlink{structEB__data_a93658cf9f03a3303cdb292e655c657e7}{time}},\ \mbox{\hyperlink{structEB__data_a6ab759d8c1c4a264888440e1f0b874fa}{date}};}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structEB__data_ae23756dc8212ffb2add0f1adc8a9f6cd}{bat\_time}},\ \mbox{\hyperlink{structEB__data_a7b56f27916fa09ca295f16198bf02bed}{fm80\_time}},\ \mbox{\hyperlink{structEB__data_a266c453e1d0dcef8437084e146868c22}{q84\_sequence}};}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structEB__data_aa60093a9a5d5d17864cfda66c47733e3}{crc}};}
+\DoxyCodeLine{00068\ \ \ \ \ \}\ \mbox{\hyperlink{structEB__data}{EB\_data}};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00071\ \textcolor{comment}{\ \ \ \ \ *\ logging\ data\ format\ for\ printf\ and\ variables}}
+\DoxyCodeLine{00072\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{batmon_8h_a1734e7445d4b61031c1e954d36ee0816}{log\_format}}[]\ =\ \textcolor{stringliteral}{"{}\string^,\%d.\%01d,\%d.\%01d,\%d,\%d.\%01d,\%d,\%.1f,\%.1f,\%.2f,\%.2f,\%d,\%.1f,\%.1f,\%.1f,\%4.1f,\%.2f,\%u,\%5.3f,\%5.3f,\%u,\%s,\string~\(\backslash\)r\(\backslash\)n"{}};}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#define\ LOG\_VARS\ \ \ \ abuf[3]\ -\/\ 128,\ abuf[1]\&0x0f,\ vw,\ vf,\ abuf[2]\ -\/\ 128,\ volt\_whole,\ volt\_fract,\ panel\_watts,\ pv\_Wh\_daily,\ ac\_Wh\_daily,\ B.run\_time,\ \ B.net\_balance,\ cc\_mode,\ ((float)\ em.wl1)\ /\ 10.0f,\ ((float)\ em.val1)\ /\ 10.0f,\ ((float)\ em.varl1)\ /\ 10.0f,\ ((float)\ em.vl1l2)\ /\ 10.0f,\ EBD.bat\_energy\ /\ 3600.0f,\ EBD.bat\_cycles,\ ((float)\ em.pfl1)\ /\ 1000.0f,\ ((float)\ emt.hz)\ /\ 1000.0f,\ B.rx\_count++,buffer}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#define\ BVSOC\_SLOTS\ \ \ \ \ 12\ \ \ \ \ \ }\textcolor{comment}{//\ 24V\ LiFePO4\ Battery\ to\ SOC\ data\ table\ slots}}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{const}\ uint32\_t\ \mbox{\hyperlink{batmon_8h_a60ed4fd7fcc4a3bf1399b593c56898f6}{BVSOC\_TABLE}}[\mbox{\hyperlink{batmon_8h_aa30a92a619f5bd97c8469a385f693639}{BVSOC\_SLOTS}}][2]\ =\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ 20000,\ 0,}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ 24000,\ 5,}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ 25000,\ 14,}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ 25600,\ 17,}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ 25800,\ 20,}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ 26000,\ 30,}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ 26200,\ 40,}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ 26400,\ 70,}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ 26600,\ 90,}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ 26800,\ 99,}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ 27200,\ 100,}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ 29200,\ 100\ \textcolor{comment}{//\ charging\ voltage\ guess}}
+\DoxyCodeLine{00090\ \ \ \ \ \};}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{typedef}\ uint16\_t\ \mbox{\hyperlink{batmon_8h_ad2a35b1a4377b6b59d25fe4b683b0b94}{device\_id\_data\_t}};}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{typedef}\ uint24\_t\ \mbox{\hyperlink{batmon_8h_abd4955723914b0e2686709ae05736cae}{device\_id\_address\_t}};}
+\DoxyCodeLine{00094\ \ \ \ \ \mbox{\hyperlink{batmon_8h_ad2a35b1a4377b6b59d25fe4b683b0b94}{device\_id\_data\_t}}\ \mbox{\hyperlink{batmon_8h_a39a1d0b1f4183eadf34e4a964c53a70a}{DeviceID\_Read}}(\mbox{\hyperlink{batmon_8h_abd4955723914b0e2686709ae05736cae}{device\_id\_address\_t}});}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keyword}{extern}\ \mbox{\hyperlink{structEB__data}{EB\_data}}\ \mbox{\hyperlink{batmon_8c_a1f24021d46a0b6b9a3a50effcf98d885}{EBD}};}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{extern}\ uint16\_t\ \mbox{\hyperlink{batmon_8c_a6f0ab32b77902d82849b60327ac8e8a3}{EBD\_update}};}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keyword}{struct\ }tm\ *\mbox{\hyperlink{batmon_8h_a6ff82a57d15d1e2c8b6aea4f501d8a0f}{can\_newtime}};}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{batmon_8c_a6d4c959b440098e0b9e21564cecee331}{pv\_Wh\_daily}},\ \mbox{\hyperlink{batmon_8c_a9932dbc7e6df4aff32e5e0c7d3025bc5}{pv\_Wh\_daily\_prev}},\ \mbox{\hyperlink{batmon_8c_a32b8086e52ab3581927dca7f9f1cbd53}{ac\_Wh\_daily}},\ \mbox{\hyperlink{batmon_8c_adb85989b5fc1eaaac4b62235c9cf8a2a}{ac\_Wh\_daily\_prev}};}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{batmon_8h_a075ee7d57eabca595ad66174b39f15af}{run\_night\_to\_day}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{batmon_8h_a9cbf505667eb91703734b609fd3193f3}{run\_day\_to\_night}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{batmon_8h_a9bd0bb4826ad1e0f9cb43ae7ad62a95a}{initbm\_data}}(uint8\_t\ *);}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{batmon_8h_a47b16823f4da92b237bb8b5a19eb8acc}{wr\_bm\_data}}(uint8\_t\ *);}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{batmon_8h_a13b4d58a94868e8e9ec436bb66e16261}{get\_bm\_data}}(\mbox{\hyperlink{structEB__data}{EB\_data}}\ *);}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{batmon_8h_a05be8c7dd6283ae5a7f065d26f0d24bd}{compute\_bm\_data}}(\mbox{\hyperlink{structEB__data}{EB\_data}}\ *);}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{batmon_8h_acd52e079250052fc87b5835daea13181}{update\_time}}(\textcolor{keyword}{struct}\ tm\ *,\ \mbox{\hyperlink{structEB__data}{EB\_data}}\ *);}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \mbox{\hyperlink{structEB__data}{EB\_data}}\ *\ \mbox{\hyperlink{batmon_8h_ad3aa99c36d34b3c5ab1dd5973a8b92af}{get\_EEPROM}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{batmon_8h_a112d1a729a5d6666e53f2f6971bcf7b9}{DATAEE\_WriteByte}}(\textcolor{keyword}{const}\ uint16\_t,\ \textcolor{keyword}{const}\ uint8\_t);}
+\DoxyCodeLine{00111\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{batmon_8h_a5cfcf35db3a2421524591108178d3485}{DATAEE\_ReadByte}}(\textcolor{keyword}{const}\ uint16\_t);}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{batmon_8h_a15314de4478a071b2726a550b833f18f}{Volts\_to\_SOC}}(\textcolor{keyword}{const}\ uint16\_t,\ \textcolor{keyword}{const}\ uint16\_t);}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#ifdef\ \ \_\_cplusplus}}
+\DoxyCodeLine{00116\ \}}
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{/*\ BATMON\_H\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00120\ }
 
 \end{DoxyCode}

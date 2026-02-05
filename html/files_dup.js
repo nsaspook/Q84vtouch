@@ -20,5 +20,5 @@ var files_dup =
     [ "ringbufs.h", "ringbufs_8h.html", "ringbufs_8h" ],
     [ "timers.c", "timers_8c.html", "timers_8c" ],
     [ "timers.h", "timers_8h.html", "timers_8h" ],
-    [ "trace.h", "trace_8h.html", "trace_8h" ]
+    [ "trace.h", "trace_8h.html", null ]
 ];

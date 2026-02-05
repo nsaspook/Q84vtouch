@@ -12,13 +12,14 @@ var searchData=
   ['state_5fmx_5flog_9',['state_mx_log',['../mateQ84_8X_2main_8c.html#a477695fc20493871eb5faa073e77443ea3963f25bce9159c0f5e852a0c3b0ab87',1,'main.c']]],
   ['state_5fmx_5fstatus_10',['state_mx_status',['../mateQ84_8X_2main_8c.html#a477695fc20493871eb5faa073e77443ea06ed9e54e89981f5aa3927849dc541e6',1,'main.c']]],
   ['state_5fpanel_11',['state_panel',['../mateQ84_8X_2main_8c.html#a477695fc20493871eb5faa073e77443ea0f9b02075db4a5f8ee8aefe115c1792f',1,'main.c']]],
-  ['state_5fstatus_12',['state_status',['../mateQ84_8X_2main_8c.html#a477695fc20493871eb5faa073e77443ea6939baa5b812b8fd4f2528c84f60d6d2',1,'main.c']]],
-  ['state_5ftime_13',['state_time',['../mateQ84_8X_2main_8c.html#a477695fc20493871eb5faa073e77443ea165d0cacbb6d8ea794b00015d50ee2c6',1,'main.c']]],
-  ['state_5fwatts_14',['state_watts',['../mateQ84_8X_2main_8c.html#a477695fc20493871eb5faa073e77443eaef9d9a5761da119b97de9b338737507c',1,'main.c']]],
-  ['status_5fabsorb_15',['STATUS_ABSORB',['../mxcmd_8h.html#afeeec1ac8e29380d5d210b6b6279263ca308498ae73935dbbeef6d999090be434',1,'mxcmd.h']]],
-  ['status_5fbulk_16',['STATUS_BULK',['../mxcmd_8h.html#afeeec1ac8e29380d5d210b6b6279263cadb76d5b8f3fd2444952d8f694148f2e6',1,'mxcmd.h']]],
-  ['status_5fequalize_17',['STATUS_EQUALIZE',['../mxcmd_8h.html#afeeec1ac8e29380d5d210b6b6279263cac29a8349d815d8be6271c0b5564525d1',1,'mxcmd.h']]],
-  ['status_5ffloating_18',['STATUS_FLOATING',['../mxcmd_8h.html#afeeec1ac8e29380d5d210b6b6279263ca6a38a8693714fcf2a74a2062284f4e8c',1,'mxcmd.h']]],
-  ['status_5flast_19',['STATUS_LAST',['../mxcmd_8h.html#afeeec1ac8e29380d5d210b6b6279263ca92c6d26701ea777100da78967bb4c39d',1,'mxcmd.h']]],
-  ['status_5fsleeping_20',['STATUS_SLEEPING',['../mxcmd_8h.html#afeeec1ac8e29380d5d210b6b6279263ca3574bf919327eb086b30c9c358c11105',1,'mxcmd.h']]]
+  ['state_5frestart_12',['state_restart',['../mateQ84_8X_2main_8c.html#a477695fc20493871eb5faa073e77443ead39e1ad9d3b0bdfac0a84cb0c88b2844',1,'main.c']]],
+  ['state_5fstatus_13',['state_status',['../mateQ84_8X_2main_8c.html#a477695fc20493871eb5faa073e77443ea6939baa5b812b8fd4f2528c84f60d6d2',1,'main.c']]],
+  ['state_5ftime_14',['state_time',['../mateQ84_8X_2main_8c.html#a477695fc20493871eb5faa073e77443ea165d0cacbb6d8ea794b00015d50ee2c6',1,'main.c']]],
+  ['state_5fwatts_15',['state_watts',['../mateQ84_8X_2main_8c.html#a477695fc20493871eb5faa073e77443eaef9d9a5761da119b97de9b338737507c',1,'main.c']]],
+  ['status_5fabsorb_16',['STATUS_ABSORB',['../mxcmd_8h.html#afeeec1ac8e29380d5d210b6b6279263ca308498ae73935dbbeef6d999090be434',1,'mxcmd.h']]],
+  ['status_5fbulk_17',['STATUS_BULK',['../mxcmd_8h.html#afeeec1ac8e29380d5d210b6b6279263cadb76d5b8f3fd2444952d8f694148f2e6',1,'mxcmd.h']]],
+  ['status_5fequalize_18',['STATUS_EQUALIZE',['../mxcmd_8h.html#afeeec1ac8e29380d5d210b6b6279263cac29a8349d815d8be6271c0b5564525d1',1,'mxcmd.h']]],
+  ['status_5ffloating_19',['STATUS_FLOATING',['../mxcmd_8h.html#afeeec1ac8e29380d5d210b6b6279263ca6a38a8693714fcf2a74a2062284f4e8c',1,'mxcmd.h']]],
+  ['status_5flast_20',['STATUS_LAST',['../mxcmd_8h.html#afeeec1ac8e29380d5d210b6b6279263ca92c6d26701ea777100da78967bb4c39d',1,'mxcmd.h']]],
+  ['status_5fsleeping_21',['STATUS_SLEEPING',['../mxcmd_8h.html#afeeec1ac8e29380d5d210b6b6279263ca3574bf919327eb086b30c9c358c11105',1,'mxcmd.h']]]
 ];

@@ -2,7 +2,6 @@ var uart2_8c =
 [
     [ "INT_TRACE", "uart2_8c.html#a8f1d4f6a02965ad38fa568705522cd12", null ],
     [ "IO_RB6_Toggle", "uart2_8c.html#a32f5eb830bd0f0745b176ae42362c57d", null ],
-    [ "TRACE", "uart2_8c.html#aad9cc64d45a76ba0d37c00f8cd9caa37", null ],
     [ "UART2_RX_BUFFER_SIZE", "uart2_8c.html#ac4d59577b8684bf554cd1e06ecbc5e6f", null ],
     [ "UART2_TX_BUFFER_SIZE", "uart2_8c.html#ae187a150f1c48f064ca2389fb4b07193", null ],
     [ "__interrupt", "uart2_8c.html#a4e9b3cdde18495470a68ecc6501e9fbc", null ],

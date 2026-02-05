@@ -509,25 +509,25 @@
 #define DLED_SetAnalogMode()      do { ANSELDbits.ANSELD4 = 1; } while(0)
 #define DLED_SetDigitalMode()     do { ANSELDbits.ANSELD4 = 0; } while(0)
 
-// get/set PROG_TRACE aliases
-#define PROG_TRACE_TRIS                 TRISDbits.TRISD5
-#define PROG_TRACE_LAT                  LATDbits.LATD5
-#define PROG_TRACE_PORT                 PORTDbits.RD5
-#define PROG_TRACE_WPU                  WPUDbits.WPUD5
-#define PROG_TRACE_OD                   ODCONDbits.ODCD5
-#define PROG_TRACE_ANS                  ANSELDbits.ANSELD5
-#define PROG_TRACE_SetHigh()            do { LATDbits.LATD5 = 1; } while(0)
-#define PROG_TRACE_SetLow()             do { LATDbits.LATD5 = 0; } while(0)
-#define PROG_TRACE_Toggle()             do { LATDbits.LATD5 = ~LATDbits.LATD5; } while(0)
-#define PROG_TRACE_GetValue()           PORTDbits.RD5
-#define PROG_TRACE_SetDigitalInput()    do { TRISDbits.TRISD5 = 1; } while(0)
-#define PROG_TRACE_SetDigitalOutput()   do { TRISDbits.TRISD5 = 0; } while(0)
-#define PROG_TRACE_SetPullup()          do { WPUDbits.WPUD5 = 1; } while(0)
-#define PROG_TRACE_ResetPullup()        do { WPUDbits.WPUD5 = 0; } while(0)
-#define PROG_TRACE_SetPushPull()        do { ODCONDbits.ODCD5 = 0; } while(0)
-#define PROG_TRACE_SetOpenDrain()       do { ODCONDbits.ODCD5 = 1; } while(0)
-#define PROG_TRACE_SetAnalogMode()      do { ANSELDbits.ANSELD5 = 1; } while(0)
-#define PROG_TRACE_SetDigitalMode()     do { ANSELDbits.ANSELD5 = 0; } while(0)
+// get/set AUX_RELAY aliases
+#define AUX_RELAY_TRIS                 TRISDbits.TRISD5
+#define AUX_RELAY_LAT                  LATDbits.LATD5
+#define AUX_RELAY_PORT                 PORTDbits.RD5
+#define AUX_RELAY_WPU                  WPUDbits.WPUD5
+#define AUX_RELAY_OD                   ODCONDbits.ODCD5
+#define AUX_RELAY_ANS                  ANSELDbits.ANSELD5
+#define AUX_RELAY_SetHigh()            do { LATDbits.LATD5 = 1; } while(0)
+#define AUX_RELAY_SetLow()             do { LATDbits.LATD5 = 0; } while(0)
+#define AUX_RELAY_Toggle()             do { LATDbits.LATD5 = ~LATDbits.LATD5; } while(0)
+#define AUX_RELAY_GetValue()           PORTDbits.RD5
+#define AUX_RELAY_SetDigitalInput()    do { TRISDbits.TRISD5 = 1; } while(0)
+#define AUX_RELAY_SetDigitalOutput()   do { TRISDbits.TRISD5 = 0; } while(0)
+#define AUX_RELAY_SetPullup()          do { WPUDbits.WPUD5 = 1; } while(0)
+#define AUX_RELAY_ResetPullup()        do { WPUDbits.WPUD5 = 0; } while(0)
+#define AUX_RELAY_SetPushPull()        do { ODCONDbits.ODCD5 = 0; } while(0)
+#define AUX_RELAY_SetOpenDrain()       do { ODCONDbits.ODCD5 = 1; } while(0)
+#define AUX_RELAY_SetAnalogMode()      do { ANSELDbits.ANSELD5 = 1; } while(0)
+#define AUX_RELAY_SetDigitalMode()     do { ANSELDbits.ANSELD5 = 0; } while(0)
 
 // get/set RD6 procedures
 #define RD6_SetHigh()            do { LATDbits.LATD6 = 1; } while(0)

@@ -27,6 +27,8 @@ var batmon_8h =
     [ "INV_EFF_VAL", "batmon_8h.html#a1a3942d5f25bf8b7e92ed0f498a077ff", null ],
     [ "LOG_VARS", "batmon_8h.html#a482c5ecde1f9b7d42328bf311286bdef", null ],
     [ "MAX_ALT_DIS", "batmon_8h.html#aad5d2674ab552609c33cf6687cb807f2", null ],
+    [ "PV_HIGH_VOLTS", "batmon_8h.html#a5b070e49e6c2d52109521ab5666f24a7", null ],
+    [ "PV_LOW_VOLTS", "batmon_8h.html#a652569b090ebce36787ca0dec170d996", null ],
     [ "TEN_SEC_HOUR", "batmon_8h.html#aa86b61c0c81d80805eda81eecc432669", null ],
     [ "device_id_address_t", "batmon_8h.html#abd4955723914b0e2686709ae05736cae", null ],
     [ "device_id_data_t", "batmon_8h.html#ad2a35b1a4377b6b59d25fe4b683b0b94", null ],

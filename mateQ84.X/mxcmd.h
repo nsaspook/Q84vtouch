@@ -22,7 +22,7 @@ extern "C" {
 #include "../timers.h"
 
 #define VER	1
-	const char build_version[] = "V2.07 FM80 Q84";
+	const char build_version[] = "V2.08 FM80 Q84";
 	/*
 	 * code changes
 	 * 1.55 remove critical section interrupt disables for FM80 serial
@@ -66,6 +66,7 @@ extern "C" {
 	 * 2.05 use EM sys varibles for all power
 	 * 2.06 fix checksums and add restart command for the FM80
 	 * 2.07 add High Voc check for night sleeping condition
+	 * 2.08 add panel over-volt load switching
 	 */
 
 #define MAX_B_BUF	512
@@ -81,6 +82,8 @@ extern "C" {
 #define FM80_ID		0x03
 #define FMxx_STATE	abuf[2]
 #define RESTART_DELAY	30000
+#define RELAY_DELAY	30 // seconds for panel load in over-volt condition
+#define RELAY_DELAY_OFF	630 // seconds for panel load in over-volt condition to keep load ON
 
 #define AMP_WHOLE_ZERO	0
 

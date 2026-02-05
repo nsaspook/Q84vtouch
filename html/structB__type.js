@@ -15,6 +15,7 @@ var structB__type =
     [ "FM80_charged", "structB__type.html#a07b8d46ed8da1e11a8dba070efdfae1a", null ],
     [ "FM80_io", "structB__type.html#ad8474e635190667ef320be3bf3200c4b", null ],
     [ "FM80_online", "structB__type.html#ada95907d8f352ddc62f30edb3aa4c543", null ],
+    [ "FM80_restart", "structB__type.html#a6a77eaab9b0bde73b17839f0409ad7ab", null ],
     [ "fwrev", "structB__type.html#ae4760b8d426495207a4867e9db773048", null ],
     [ "LOG", "structB__type.html#a5bd1257233f77183900e0ade0da8b7fc", null ],
     [ "log", "structB__type.html#a1f776f3ebe5c9253e3d05a1eba58c18b", null ],

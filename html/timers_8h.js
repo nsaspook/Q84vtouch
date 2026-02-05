@@ -6,6 +6,7 @@ var timers_8h =
       [ "TMR_MBTEST", "timers_8h.html#ad499250d949643c5a12161767059a3d2a69e9bf91e45d432f79f46d3b6eb5efa9", null ],
       [ "TMR_SPIN", "timers_8h.html#ad499250d949643c5a12161767059a3d2a12e24117d5bf79dd0b7357e6b96e541e", null ],
       [ "TMR_DERE", "timers_8h.html#ad499250d949643c5a12161767059a3d2a84ac59e83d705b7fcfc20fb278e570fd", null ],
+      [ "TMR_FMRESTART", "timers_8h.html#ad499250d949643c5a12161767059a3d2a7f47a93cb977316efe4ca359942b696b", null ],
       [ "TMR_COUNT", "timers_8h.html#ad499250d949643c5a12161767059a3d2abaa7883f9d3702d4c1fba3442fec0595", null ]
     ] ],
     [ "delay_ms", "timers_8h.html#a69b9c70237a6daf8af8753b1b91c6779", null ],

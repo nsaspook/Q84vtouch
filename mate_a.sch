@@ -14891,6 +14891,8 @@ Source: &lt;a href="https://ww1.microchip.com/downloads/en/DeviceDoc/PIC18F27-47
 <sheets>
 <sheet>
 <plain>
+<text x="10.16" y="0" size="1.778" layer="91">yellow</text>
+<text x="243.84" y="43.18" size="1.778" layer="91">blue</text>
 </plain>
 <instances>
 <instance part="OK1" gate="G$1" x="68.58" y="-2.54" smashed="yes">
@@ -16572,7 +16574,7 @@ Source: &lt;a href="https://ww1.microchip.com/downloads/en/DeviceDoc/PIC18F27-47
 <label x="223.52" y="15.24" size="1.778" layer="95" rot="R90"/>
 </segment>
 </net>
-<net name="RD5" class="0">
+<net name="AUX_RELAY" class="0">
 <segment>
 <wire x1="86.36" y1="35.56" x2="111.76" y2="35.56" width="0.1524" layer="91"/>
 <junction x="111.76" y="35.56"/>

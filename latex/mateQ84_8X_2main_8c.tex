@@ -6,8 +6,7 @@
 {\ttfamily \#include "{}../modbus\+\_\+master.\+h"{}}\newline
 {\ttfamily \#include "{}../canfd.\+h"{}}\newline
 {\ttfamily \#include "{}../batmon.\+h"{}}\newline
-Include dependency graph for main.\+c\+:
-\nopagebreak
+Include dependency graph for main.\+c\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -50,11 +49,16 @@ enum \mbox{\hyperlink{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443e}{sta
 , \mbox{\hyperlink{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443ea4c5445ce523b1b8d5b8a75432f2fa277}{state\+\_\+misc}}
 , \mbox{\hyperlink{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443ea06ed9e54e89981f5aa3927849dc541e6}{state\+\_\+mx\+\_\+status}}
 , \newline
-\mbox{\hyperlink{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443ea4eebcc1176d32b97c8d56fa426916fc4}{state\+\_\+last}}
+\mbox{\hyperlink{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443ead39e1ad9d3b0bdfac0a84cb0c88b2844}{state\+\_\+restart}}
+, \mbox{\hyperlink{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443ea4eebcc1176d32b97c8d56fa426916fc4}{state\+\_\+last}}
  \}
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{mateQ84_8X_2main_8c_ab7cb83bdae680222ffa81a4e289b3cfc}{send\+\_\+mx\+\_\+cmd}} (const uint16\+\_\+t \texorpdfstring{$\ast$}{*})
+\item 
+void \mbox{\hyperlink{mateQ84_8X_2main_8c_a1981356b6a8de58f86c4128ddf3c6913}{rec\+\_\+mx\+\_\+cmd}} (void(\texorpdfstring{$\ast$}{*}Data\+Handler)(void), const uint8\+\_\+t)
 \item 
 void \mbox{\hyperlink{mateQ84_8X_2main_8c_a4d9b50da7fde15cbdfb6a6f0dfc432fd}{state\+\_\+init\+\_\+cb}} (void)
 \item 
@@ -244,6 +248,10 @@ state\+\_\+misc&\\
 state\+\_\+mx\+\_\+status&\\
 \hline
 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{state\_restart@{state\_restart}!main.c@{main.c}}\index{main.c@{main.c}!state\_restart@{state\_restart}}}\Hypertarget{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443ead39e1ad9d3b0bdfac0a84cb0c88b2844}\label{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443ead39e1ad9d3b0bdfac0a84cb0c88b2844} 
+state\+\_\+restart&\\
+\hline
+
 \raisebox{\heightof{T}}[0pt][0pt]{\index{state\_last@{state\_last}!main.c@{main.c}}\index{main.c@{main.c}!state\_last@{state\_last}}}\Hypertarget{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443ea4eebcc1176d32b97c8d56fa426916fc4}\label{mateQ84_8X_2main_8c_a477695fc20493871eb5faa073e77443ea4eebcc1176d32b97c8d56fa426916fc4} 
 state\+\_\+last&\\
 \hline
@@ -268,22 +276,42 @@ Here is the call graph for this function\+:
 \includegraphics[height=550pt]{mateQ84_8X_2main_8c_a6288eba0f8e8ad3ab1544ad731eb7667_cgraph}
 \end{center}
 \end{figure}
-\Hypertarget{mateQ84_8X_2main_8c_a9cbf505667eb91703734b609fd3193f3}\index{main.c@{main.c}!run\_day\_to\_night@{run\_day\_to\_night}}
-\index{run\_day\_to\_night@{run\_day\_to\_night}!main.c@{main.c}}
-\doxysubsubsection{\texorpdfstring{run\_day\_to\_night()}{run\_day\_to\_night()}}
-{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_a9cbf505667eb91703734b609fd3193f3} 
-void run\+\_\+day\+\_\+to\+\_\+night (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+\Hypertarget{mateQ84_8X_2main_8c_a1981356b6a8de58f86c4128ddf3c6913}\index{main.c@{main.c}!rec\_mx\_cmd@{rec\_mx\_cmd}}
+\index{rec\_mx\_cmd@{rec\_mx\_cmd}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{rec\_mx\_cmd()}{rec\_mx\_cmd()}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_a1981356b6a8de58f86c4128ddf3c6913} 
+void rec\+\_\+mx\+\_\+cmd (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{Data\+Handler~}{)(void), }\item[{const uint8\+\_\+t}]{rec\+\_\+len}{}\end{DoxyParamCaption})}
 
 Here is the call graph for this function\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=340pt]{mateQ84_8X_2main_8c_a9cbf505667eb91703734b609fd3193f3_cgraph}
+\includegraphics[width=273pt]{mateQ84_8X_2main_8c_a1981356b6a8de58f86c4128ddf3c6913_cgraph}
 \end{center}
 \end{figure}
 Here is the caller graph for this function\+:
 \nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=235pt]{mateQ84_8X_2main_8c_a1981356b6a8de58f86c4128ddf3c6913_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{mateQ84_8X_2main_8c_a9cbf505667eb91703734b609fd3193f3}\index{main.c@{main.c}!run\_day\_to\_night@{run\_day\_to\_night}}
+\index{run\_day\_to\_night@{run\_day\_to\_night}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{run\_day\_to\_night()}{run\_day\_to\_night()}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_a9cbf505667eb91703734b609fd3193f3} 
+void run\+\_\+day\+\_\+to\+\_\+night (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=340pt]{mateQ84_8X_2main_8c_a9cbf505667eb91703734b609fd3193f3_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -296,12 +324,32 @@ Here is the caller graph for this function\+:
 {\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_a075ee7d57eabca595ad66174b39f15af} 
 void run\+\_\+night\+\_\+to\+\_\+day (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
 
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=340pt]{mateQ84_8X_2main_8c_a075ee7d57eabca595ad66174b39f15af_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{mateQ84_8X_2main_8c_a075ee7d57eabca595ad66174b39f15af_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{mateQ84_8X_2main_8c_ab7cb83bdae680222ffa81a4e289b3cfc}\index{main.c@{main.c}!send\_mx\_cmd@{send\_mx\_cmd}}
+\index{send\_mx\_cmd@{send\_mx\_cmd}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{send\_mx\_cmd()}{send\_mx\_cmd()}}
+{\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_ab7cb83bdae680222ffa81a4e289b3cfc} 
+void send\+\_\+mx\+\_\+cmd (\begin{DoxyParamCaption}\item[{const uint16\+\_\+t \texorpdfstring{$\ast$}{*}}]{cmd}{}\end{DoxyParamCaption})}
+
 Here is the call graph for this function\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=340pt]{mateQ84_8X_2main_8c_a075ee7d57eabca595ad66174b39f15af_cgraph}
+\includegraphics[width=285pt]{mateQ84_8X_2main_8c_ab7cb83bdae680222ffa81a4e289b3cfc_cgraph}
 \end{center}
 \end{figure}
 Here is the caller graph for this function\+:
@@ -309,7 +357,7 @@ Here is the caller graph for this function\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{mateQ84_8X_2main_8c_a075ee7d57eabca595ad66174b39f15af_icgraph}
+\includegraphics[width=243pt]{mateQ84_8X_2main_8c_ab7cb83bdae680222ffa81a4e289b3cfc_icgraph}
 \end{center}
 \end{figure}
 \Hypertarget{mateQ84_8X_2main_8c_a2c7bc8ae77786e8970ac3f03b92a1d00}\index{main.c@{main.c}!spinners@{spinners}}
@@ -318,8 +366,7 @@ Here is the caller graph for this function\+:
 {\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_a2c7bc8ae77786e8970ac3f03b92a1d00} 
 char spinners (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{shape}{, }\item[{const uint8\+\_\+t}]{reset}{}\end{DoxyParamCaption})}
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -332,8 +379,7 @@ Here is the caller graph for this function\+:
 {\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_aa82896cdfa2dd36383c0742d58e8c92a} 
 void state\+\_\+batterya\+\_\+cb (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -346,8 +392,7 @@ Here is the caller graph for this function\+:
 {\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_a30306737e380e115b30b3da054757fc3} 
 void state\+\_\+batteryv\+\_\+cb (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -360,16 +405,14 @@ Here is the caller graph for this function\+:
 {\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_a4d9b50da7fde15cbdfb6a6f0dfc432fd} 
 void state\+\_\+init\+\_\+cb (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{mateQ84_8X_2main_8c_a4d9b50da7fde15cbdfb6a6f0dfc432fd_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -382,8 +425,7 @@ Here is the caller graph for this function\+:
 {\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_ac9da20e296b4c39476ef56238d74c18e} 
 void state\+\_\+misc\+\_\+cb (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -396,8 +438,7 @@ Here is the caller graph for this function\+:
 {\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_ab5b37987f9ee7cbe7aeda963141dd9a6} 
 void state\+\_\+mx\+\_\+log\+\_\+cb (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -410,16 +451,14 @@ Here is the caller graph for this function\+:
 {\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_a3637d623e98d289cea0301c9e9fd49f5} 
 void state\+\_\+mx\+\_\+status\+\_\+cb (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{mateQ84_8X_2main_8c_a3637d623e98d289cea0301c9e9fd49f5_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -432,8 +471,7 @@ Here is the caller graph for this function\+:
 {\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_a20b30f6102c07d94534d5b43fdb080ef} 
 void state\+\_\+panelv\+\_\+cb (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -446,8 +484,7 @@ Here is the caller graph for this function\+:
 {\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_aa9c46eb7904210cf0cbf02bc0c4062a5} 
 void state\+\_\+status\+\_\+cb (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -460,8 +497,7 @@ Here is the caller graph for this function\+:
 {\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_af3290b8821f2e6ed5119ce06c85c1999} 
 void state\+\_\+watts\+\_\+cb (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -474,8 +510,7 @@ Here is the caller graph for this function\+:
 {\footnotesize\ttfamily \label{mateQ84_8X_2main_8c_a8ae1626500453fd6c71c95a8a88c29d7} 
 void wdtdelay (\begin{DoxyParamCaption}\item[{const uint32\+\_\+t}]{delay}{}\end{DoxyParamCaption})}
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -513,6 +548,7 @@ Here is the caller graph for this function\+:
 \DoxyCodeLine{\ \ \ \ .display\_update\ =\ \textcolor{keyword}{false},}
 \DoxyCodeLine{\ \ \ \ .dim\_delay\ =\ \mbox{\hyperlink{eadog_8h_a65041631a3a21ddef404472dfd33e166}{DIM\_DELAY}},}
 \DoxyCodeLine{\ \ \ \ .display\_on\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{\ \ \ \ .FM80\_restart\ =\ \textcolor{keyword}{false},}
 \DoxyCodeLine{\}}
 
 \end{DoxyCode}

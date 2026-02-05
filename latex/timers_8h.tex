@@ -4,8 +4,7 @@
 {\ttfamily \#include $<$stdbool.\+h$>$}\newline
 {\ttfamily \#include "{}mate\+Q84.\+X/mcc\+\_\+generated\+\_\+files/mcc.\+h"{}}\newline
 {\ttfamily \#include "{}dio.\+h"{}}\newline
-Include dependency graph for timers.\+h\+:
-\nopagebreak
+Include dependency graph for timers.\+h\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -30,6 +29,7 @@ enum \mbox{\hyperlink{timers_8h_ad499250d949643c5a12161767059a3d2}{APP\+\_\+\+TI
 , \mbox{\hyperlink{timers_8h_ad499250d949643c5a12161767059a3d2a12e24117d5bf79dd0b7357e6b96e541e}{TMR\+\_\+\+SPIN}}
 , \newline
 \mbox{\hyperlink{timers_8h_ad499250d949643c5a12161767059a3d2a84ac59e83d705b7fcfc20fb278e570fd}{TMR\+\_\+\+DERE}}
+, \mbox{\hyperlink{timers_8h_ad499250d949643c5a12161767059a3d2a7f47a93cb977316efe4ca359942b696b}{TMR\+\_\+\+FMRESTART}}
 , \mbox{\hyperlink{timers_8h_ad499250d949643c5a12161767059a3d2abaa7883f9d3702d4c1fba3442fec0595}{TMR\+\_\+\+COUNT}}
  \}
 \end{DoxyCompactItemize}
@@ -78,6 +78,10 @@ TMR\+\_\+\+SPIN&\\
 TMR\+\_\+\+DERE&\\
 \hline
 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TMR\_FMRESTART@{TMR\_FMRESTART}!timers.h@{timers.h}}\index{timers.h@{timers.h}!TMR\_FMRESTART@{TMR\_FMRESTART}}}\Hypertarget{timers_8h_ad499250d949643c5a12161767059a3d2a7f47a93cb977316efe4ca359942b696b}\label{timers_8h_ad499250d949643c5a12161767059a3d2a7f47a93cb977316efe4ca359942b696b} 
+TMR\+\_\+\+FMRESTART&\\
+\hline
+
 \raisebox{\heightof{T}}[0pt][0pt]{\index{TMR\_COUNT@{TMR\_COUNT}!timers.h@{timers.h}}\index{timers.h@{timers.h}!TMR\_COUNT@{TMR\_COUNT}}}\Hypertarget{timers_8h_ad499250d949643c5a12161767059a3d2abaa7883f9d3702d4c1fba3442fec0595}\label{timers_8h_ad499250d949643c5a12161767059a3d2abaa7883f9d3702d4c1fba3442fec0595} 
 TMR\+\_\+\+COUNT&\\
 \hline
@@ -94,16 +98,14 @@ TMR\+\_\+\+COUNT&\\
 {\footnotesize\ttfamily \label{timers_8h_a69b9c70237a6daf8af8753b1b91c6779} 
 void delay\+\_\+ms (\begin{DoxyParamCaption}\item[{const uint16\+\_\+t}]{ms}{}\end{DoxyParamCaption})}
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=339pt]{timers_8h_a69b9c70237a6daf8af8753b1b91c6779_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -116,8 +118,7 @@ Here is the caller graph for this function\+:
 {\footnotesize\ttfamily \label{timers_8h_aa7ec4ef9616686e41f92a928010bc44f} 
 void Start\+Timer (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{timer}{, }\item[{const uint16\+\_\+t}]{count}{}\end{DoxyParamCaption})}
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -130,16 +131,14 @@ Here is the caller graph for this function\+:
 {\footnotesize\ttfamily \label{timers_8h_ae92252e85ef5408ff27c2f3d0e32f6d8} 
 void timer\+\_\+ms\+\_\+tick (\begin{DoxyParamCaption}\item[{const uint32\+\_\+t}]{status}{, }\item[{const uintptr\+\_\+t}]{context}{}\end{DoxyParamCaption})}
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=315pt]{timers_8h_ae92252e85ef5408ff27c2f3d0e32f6d8_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -152,8 +151,7 @@ Here is the caller graph for this function\+:
 {\footnotesize\ttfamily \label{timers_8h_a6002dd7c7cad6fa060da2c3a93a481e9} 
 bool Timer\+Done (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{timer}{}\end{DoxyParamCaption})}
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -166,16 +164,14 @@ Here is the caller graph for this function\+:
 {\footnotesize\ttfamily \label{timers_8h_adcd4fad73c37c6d61e3087e1201a33e7} 
 void Wait\+Ms (\begin{DoxyParamCaption}\item[{const uint16\+\_\+t}]{num\+Milliseconds}{}\end{DoxyParamCaption})}
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=239pt]{timers_8h_adcd4fad73c37c6d61e3087e1201a33e7_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

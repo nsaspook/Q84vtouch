@@ -45,6 +45,7 @@ extern "C" {
 #define BAT_RUN_MAX	280.0f  // max displayed run time at current load
 	
 #define PV_LOW_VOLTS	70.0f
+#define PV_HIGH_VOLTS	132
 	/*
 	 * System correction factors
 	 */

@@ -41224,6 +41224,8 @@ void SYSTEM_Initialize(void);
 void OSCILLATOR_Initialize(void);
 # 110 "./mcc_generated_files/mcc.h"
 void PMD_Initialize(void);
+# 122 "./mcc_generated_files/mcc.h"
+void SystemArbiter_Initialize(void);
 # 21 "./mxcmd.h" 2
 # 1 "./../eadog.h" 1
 # 26 "./../eadog.h"
@@ -41819,8 +41821,8 @@ void delay_ms(const uint16_t);
 # 23 "./mxcmd.h" 2
 
 
- const char build_version[] = "V2.07 FM80 Q84";
-# 91 "./mxcmd.h"
+ const char build_version[] = "V2.08 FM80 Q84";
+# 94 "./mxcmd.h"
  const uint16_t cmd_id[] = {0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
  const uint16_t cmd_status[] = {0x100, 0x02, 0x01, 0xc8, 0x00, 0x00, 0x00, 0xcb};
  const uint16_t cmd_mx_status[] = {0x100, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05};
@@ -42176,7 +42178,7 @@ void delay_ms(const uint16_t);
 # 1 "./../canfd.h" 1
 # 21 "./../canfd.h"
 # 1 "./../batmon.h" 1
-# 57 "./../batmon.h"
+# 58 "./../batmon.h"
  typedef struct EB_data {
   uint8_t checkmark;
   uint8_t version, alt_display;
@@ -42307,7 +42309,7 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[512] = "Boot Init Display   ", info_buffer[512], log_buffer[512];
-const char *build_date = "Jan 16 2026", *build_time = "19:45:25";
+const char *build_date = "Jan 26 2026", *build_time = "11:01:54";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
@@ -42375,6 +42377,30 @@ static void state_time_cb(void);
 static void state_date_cb(void);
 static void state_restart_cb(void);
 
+static void OV_Relay(void);
+
+
+
+
+void OV_Relay(void)
+{
+ static uint16_t FM_Relay_Time = 0;
+
+ if ((EB->FMpv > 132) && (!LATEbits.LATE0) && (++FM_Relay_Time > 30)) {
+  FM_Relay_Time = 0;
+  do { LATEbits.LATE0 = 1; } while(0);
+ } else {
+  if (LATEbits.LATE0 && (FM_Relay_Time == 30)) {
+
+  }
+
+  if (LATEbits.LATE0 && (++FM_Relay_Time > 630) || (LATEbits.LATE0 && (cc_mode == STATUS_BULK))) {
+   FM_Relay_Time = 0;
+   do { LATEbits.LATE0 = 0; } while(0);
+  }
+ }
+}
+
 
 
 
@@ -42440,7 +42466,7 @@ void main(void)
 
  }
  eaDogM_WriteStringAtPos(2, 0, buffer);
-# 376 "main.c"
+# 400 "main.c"
  eaDogM_WriteStringAtPos(2, 0, buffer);
  snprintf(buffer, 512, "%s ", "Start Up            ");
  eaDogM_WriteStringAtPos(3, 0, buffer);
@@ -42480,7 +42506,7 @@ void main(void)
  }
  while (1) {
 
-  do { LATDbits.LATD5 = 1; } while(0);
+
 
 
 
@@ -42587,6 +42613,7 @@ void main(void)
 
 
 
+   OV_Relay();
   }
   if (TimerDone(TMR_SPIN)) {
    {
@@ -42627,7 +42654,7 @@ void main(void)
      }
     } else {
      M.error = 0;
-# 591 "main.c"
+# 616 "main.c"
      snprintf(buffer, 512, "EMon  %6.1fWh   %c%c    ", EB->bat_energy / 360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
      eaDogM_WriteStringAtPos(1, 0, buffer);
      snprintf(buffer, 512, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], modbus_name[B.modbus_online][0], canbus_name[B.canbus_online][0]);
@@ -42676,7 +42703,7 @@ void main(void)
 
 
 
-  do { LATDbits.LATD5 = 0; } while(0);
+
 
  }
 }
@@ -42778,7 +42805,7 @@ void state_status_cb(void)
 {
  static uint16_t day_clocks = 0;
  static uint8_t status_prev = STATUS_SLEEPING;
-# 756 "main.c"
+# 781 "main.c"
  if (B.day_check++ > 1200) {
   B.day_check = 0;
   B.once = 0;

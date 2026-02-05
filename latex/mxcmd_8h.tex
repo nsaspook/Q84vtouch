@@ -8,8 +8,7 @@
 {\ttfamily \#include "{}mcc\+\_\+generated\+\_\+files/mcc.\+h"{}}\newline
 {\ttfamily \#include "{}../eadog.\+h"{}}\newline
 {\ttfamily \#include "{}../timers.\+h"{}}\newline
-Include dependency graph for mxcmd.\+h\+:
-\nopagebreak
+Include dependency graph for mxcmd.\+h\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -59,6 +58,12 @@ struct \mbox{\hyperlink{structB__type}{B\+\_\+type}}
 \#define \mbox{\hyperlink{mxcmd_8h_ac2e9a6c67d09502911a2003595e4c3b4}{FM80\+\_\+\+ID}}~0x03
 \item 
 \#define \mbox{\hyperlink{mxcmd_8h_a01e92d2883d3d2f43d4b54918646718f}{FMxx\+\_\+\+STATE}}~abuf\mbox{[}2\mbox{]}
+\item 
+\#define \mbox{\hyperlink{mxcmd_8h_ac80b518bf474040e479be137b6ae744e}{RESTART\+\_\+\+DELAY}}~30000
+\item 
+\#define \mbox{\hyperlink{mxcmd_8h_ad787f815b01fc0e0806ce942df3bf8cf}{RELAY\+\_\+\+DELAY}}~30
+\item 
+\#define \mbox{\hyperlink{mxcmd_8h_a075ff93ac7fe699cbb55c69ad69be64b}{RELAY\+\_\+\+DELAY\+\_\+\+OFF}}~630
 \item 
 \#define \mbox{\hyperlink{mxcmd_8h_ad7f415ff3a4955e12e67c1f98ec7f6ed}{AMP\+\_\+\+WHOLE\+\_\+\+ZERO}}~0
 \item 
@@ -110,11 +115,15 @@ void \mbox{\hyperlink{mxcmd_8h_a3ff828022c3c7d1ef14e5879c8404350}{wdtdelay}} (co
 float \mbox{\hyperlink{mxcmd_8h_a9bb18bfcdf15f760da510549a44b457d}{lp\+\_\+filter}} (const float, const uint8\+\_\+t, const int8\+\_\+t)
 \item 
 uint16\+\_\+t \mbox{\hyperlink{mxcmd_8h_aee7cbe9d1aa37c2a25c44408d9c7e261}{calc\+\_\+checksum}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}, const uint8\+\_\+t)
+\item 
+void \mbox{\hyperlink{mxcmd_8h_ab7cb83bdae680222ffa81a4e289b3cfc}{send\+\_\+mx\+\_\+cmd}} (const uint16\+\_\+t \texorpdfstring{$\ast$}{*})
+\item 
+void \mbox{\hyperlink{mxcmd_8h_a1981356b6a8de58f86c4128ddf3c6913}{rec\+\_\+mx\+\_\+cmd}} (void(\texorpdfstring{$\ast$}{*}Data\+Handler)(void), const uint8\+\_\+t)
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-const char \mbox{\hyperlink{mxcmd_8h_a8140eca72f5bd1556dda03a75798b440}{build\+\_\+version}} \mbox{[}$\,$\mbox{]} = "{}V2.\+04 FM80 Q84"{}
+const char \mbox{\hyperlink{mxcmd_8h_a8140eca72f5bd1556dda03a75798b440}{build\+\_\+version}} \mbox{[}$\,$\mbox{]} = "{}V2.\+08 FM80 Q84"{}
 \item 
 const uint16\+\_\+t \mbox{\hyperlink{mxcmd_8h_aecb52637cc8c82b7d6e46bca7a3562d5}{cmd\+\_\+id}} \mbox{[}$\,$\mbox{]} = \{0x100, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02\}
 \item 
@@ -140,9 +149,15 @@ const uint16\+\_\+t \mbox{\hyperlink{mxcmd_8h_a8ead7762c73e740fddf95e8ecca419d1}
 \item 
 const uint16\+\_\+t \mbox{\hyperlink{mxcmd_8h_aae31dc8067fcc4e19f017b2a9f7d410f}{cmd\+\_\+fwrevc}} \mbox{[}$\,$\mbox{]} = \{0x100, 0x02, 0x00, 0x04, 0x00, 0x00, 0x00, 0x06\}
 \item 
-uint16\+\_\+t \mbox{\hyperlink{mxcmd_8h_a5ffd8c7699d4f0fd1ff7b590ca59f398}{cmd\+\_\+time}} \mbox{[}$\,$\mbox{]} = \{0x100, 0x03, 0x40, 0x04, 0x00, 0x00, 0x00, 0x00\}
+uint16\+\_\+t \mbox{\hyperlink{mxcmd_8h_a5ffd8c7699d4f0fd1ff7b590ca59f398}{cmd\+\_\+time}} \mbox{[}$\,$\mbox{]} = \{0x100, 0x03, 0x40, 0x04, 0x00, 0x00, 0x00, 0x47\}
 \item 
-uint16\+\_\+t \mbox{\hyperlink{mxcmd_8h_a3b56d738debcf016a1c52c23c7a3c7dd}{cmd\+\_\+date}} \mbox{[}$\,$\mbox{]} = \{0x100, 0x03, 0x40, 0x05, 0x00, 0x00, 0x00, 0x00\}
+uint16\+\_\+t \mbox{\hyperlink{mxcmd_8h_a3b56d738debcf016a1c52c23c7a3c7dd}{cmd\+\_\+date}} \mbox{[}$\,$\mbox{]} = \{0x100, 0x03, 0x40, 0x05, 0x00, 0x00, 0x00, 0x48\}
+\item 
+const uint16\+\_\+t \mbox{\hyperlink{mxcmd_8h_a9186e27e2195273586e16c3ac99d5ef3}{cmd\+\_\+restart\+\_\+ngit}} \mbox{[}$\,$\mbox{]} = \{0x100, 0x03, 0x00, 0xd6, 0x00, 0x00, 0x00, 0xd9\}
+\item 
+const uint16\+\_\+t \mbox{\hyperlink{mxcmd_8h_a1a7c8d2a7eb3e66106a7dcdbf4b8f2dc}{cmd\+\_\+restart\+\_\+gti}} \mbox{[}$\,$\mbox{]} = \{0x100, 0x03, 0x00, 0xd6, 0x00, 0x01, 0x00, 0xda\}
+\item 
+const uint16\+\_\+t \mbox{\hyperlink{mxcmd_8h_a023bcca20776fbdb4b3de865524a0eb3}{cmd\+\_\+restart}} \mbox{[}$\,$\mbox{]} = \{0x100, 0x03, 0x40, 0x02, 0x00, 0x01, 0x00, 0x46\}
 \item 
 const char \mbox{\hyperlink{mxcmd_8h_ab33e1a306777b9a7e14c7c24319d15e8}{state\+\_\+name}} \mbox{[}$\,$\mbox{]}\mbox{[}12\mbox{]}
 \item 
@@ -231,6 +246,24 @@ const char \mbox{\hyperlink{mxcmd_8h_a67ce7d17bfe2cb6fc64f0abb78f4d542}{modbus\+
 {\footnotesize\ttfamily \label{mxcmd_8h_ab2decaf473982c166034eeef9fae54bd} 
 \#define ONLINE\+\_\+\+TIMEOUT~30000}
 
+\Hypertarget{mxcmd_8h_ad787f815b01fc0e0806ce942df3bf8cf}\index{mxcmd.h@{mxcmd.h}!RELAY\_DELAY@{RELAY\_DELAY}}
+\index{RELAY\_DELAY@{RELAY\_DELAY}!mxcmd.h@{mxcmd.h}}
+\doxysubsubsection{\texorpdfstring{RELAY\_DELAY}{RELAY\_DELAY}}
+{\footnotesize\ttfamily \label{mxcmd_8h_ad787f815b01fc0e0806ce942df3bf8cf} 
+\#define RELAY\+\_\+\+DELAY~30}
+
+\Hypertarget{mxcmd_8h_a075ff93ac7fe699cbb55c69ad69be64b}\index{mxcmd.h@{mxcmd.h}!RELAY\_DELAY\_OFF@{RELAY\_DELAY\_OFF}}
+\index{RELAY\_DELAY\_OFF@{RELAY\_DELAY\_OFF}!mxcmd.h@{mxcmd.h}}
+\doxysubsubsection{\texorpdfstring{RELAY\_DELAY\_OFF}{RELAY\_DELAY\_OFF}}
+{\footnotesize\ttfamily \label{mxcmd_8h_a075ff93ac7fe699cbb55c69ad69be64b} 
+\#define RELAY\+\_\+\+DELAY\+\_\+\+OFF~630}
+
+\Hypertarget{mxcmd_8h_ac80b518bf474040e479be137b6ae744e}\index{mxcmd.h@{mxcmd.h}!RESTART\_DELAY@{RESTART\_DELAY}}
+\index{RESTART\_DELAY@{RESTART\_DELAY}!mxcmd.h@{mxcmd.h}}
+\doxysubsubsection{\texorpdfstring{RESTART\_DELAY}{RESTART\_DELAY}}
+{\footnotesize\ttfamily \label{mxcmd_8h_ac80b518bf474040e479be137b6ae744e} 
+\#define RESTART\+\_\+\+DELAY~30000}
+
 \Hypertarget{mxcmd_8h_aa7e2cbaa8d2a1d0432847f9576becc92}\index{mxcmd.h@{mxcmd.h}!SPINNER\_SPEED@{SPINNER\_SPEED}}
 \index{SPINNER\_SPEED@{SPINNER\_SPEED}!mxcmd.h@{mxcmd.h}}
 \doxysubsubsection{\texorpdfstring{SPINNER\_SPEED}{SPINNER\_SPEED}}
@@ -302,8 +335,7 @@ STATUS\+\_\+\+LAST&\\
 {\footnotesize\ttfamily \label{mxcmd_8h_aee7cbe9d1aa37c2a25c44408d9c7e261} 
 uint16\+\_\+t calc\+\_\+checksum (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{const uint8\+\_\+t}]{len}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -316,16 +348,14 @@ Here is the caller graph for this function\+:
 {\footnotesize\ttfamily \label{mxcmd_8h_abe0a94adeae8ff00f9ccd6e5c7d0b3aa} 
 void FM\+\_\+io (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{mxcmd_8h_abe0a94adeae8ff00f9ccd6e5c7d0b3aa_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -344,38 +374,77 @@ void FM\+\_\+restart (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCap
 {\footnotesize\ttfamily \label{mxcmd_8h_a2a79ed9db2ba353db0fd0dc4732b5065} 
 uint8\+\_\+t FM\+\_\+rx (\begin{DoxyParamCaption}\item[{uint16\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
 
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=317pt]{mxcmd_8h_a2a79ed9db2ba353db0fd0dc4732b5065_icgraph}
+\end{center}
+\end{figure}
 \Hypertarget{mxcmd_8h_ace552cc9ac75a38c6af6a8535d819220}\index{mxcmd.h@{mxcmd.h}!FM\_rx\_count@{FM\_rx\_count}}
 \index{FM\_rx\_count@{FM\_rx\_count}!mxcmd.h@{mxcmd.h}}
 \doxysubsubsection{\texorpdfstring{FM\_rx\_count()}{FM\_rx\_count()}}
 {\footnotesize\ttfamily \label{mxcmd_8h_ace552cc9ac75a38c6af6a8535d819220} 
 uint8\+\_\+t FM\+\_\+rx\+\_\+count (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
 
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=349pt]{mxcmd_8h_ace552cc9ac75a38c6af6a8535d819220_icgraph}
+\end{center}
+\end{figure}
 \Hypertarget{mxcmd_8h_a6cce652e606a4da5f3b020b69a8f70c1}\index{mxcmd.h@{mxcmd.h}!FM\_rx\_ready@{FM\_rx\_ready}}
 \index{FM\_rx\_ready@{FM\_rx\_ready}!mxcmd.h@{mxcmd.h}}
 \doxysubsubsection{\texorpdfstring{FM\_rx\_ready()}{FM\_rx\_ready()}}
 {\footnotesize\ttfamily \label{mxcmd_8h_a6cce652e606a4da5f3b020b69a8f70c1} 
 bool FM\+\_\+rx\+\_\+ready (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
 
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{mxcmd_8h_a6cce652e606a4da5f3b020b69a8f70c1_icgraph}
+\end{center}
+\end{figure}
 \Hypertarget{mxcmd_8h_a0a8aae91856342d6202bb611a85e33af}\index{mxcmd.h@{mxcmd.h}!FM\_tx@{FM\_tx}}
 \index{FM\_tx@{FM\_tx}!mxcmd.h@{mxcmd.h}}
 \doxysubsubsection{\texorpdfstring{FM\_tx()}{FM\_tx()}}
 {\footnotesize\ttfamily \label{mxcmd_8h_a0a8aae91856342d6202bb611a85e33af} 
 uint8\+\_\+t FM\+\_\+tx (\begin{DoxyParamCaption}\item[{const uint16\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{const uint8\+\_\+t}]{count}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
 
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=325pt]{mxcmd_8h_a0a8aae91856342d6202bb611a85e33af_icgraph}
+\end{center}
+\end{figure}
 \Hypertarget{mxcmd_8h_aa147a86347635feac74ca677afd24391}\index{mxcmd.h@{mxcmd.h}!FM\_tx\_empty@{FM\_tx\_empty}}
 \index{FM\_tx\_empty@{FM\_tx\_empty}!mxcmd.h@{mxcmd.h}}
 \doxysubsubsection{\texorpdfstring{FM\_tx\_empty()}{FM\_tx\_empty()}}
 {\footnotesize\ttfamily \label{mxcmd_8h_aa147a86347635feac74ca677afd24391} 
 bool FM\+\_\+tx\+\_\+empty (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
 
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{mxcmd_8h_aa147a86347635feac74ca677afd24391_icgraph}
+\end{center}
+\end{figure}
 \Hypertarget{mxcmd_8h_a9bb18bfcdf15f760da510549a44b457d}\index{mxcmd.h@{mxcmd.h}!lp\_filter@{lp\_filter}}
 \index{lp\_filter@{lp\_filter}!mxcmd.h@{mxcmd.h}}
 \doxysubsubsection{\texorpdfstring{lp\_filter()}{lp\_filter()}}
 {\footnotesize\ttfamily \label{mxcmd_8h_a9bb18bfcdf15f760da510549a44b457d} 
 float lp\+\_\+filter (\begin{DoxyParamCaption}\item[{const float}]{new}{, }\item[{const uint8\+\_\+t}]{bn}{, }\item[{const int8\+\_\+t}]{slow}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -388,12 +457,55 @@ Here is the caller graph for this function\+:
 {\footnotesize\ttfamily \label{mxcmd_8h_abaf162c1efebcc3af6a46b1ca9b8499b} 
 void onesec\+\_\+io (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
 
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{mxcmd_8h_abaf162c1efebcc3af6a46b1ca9b8499b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{mxcmd_8h_a1981356b6a8de58f86c4128ddf3c6913}\index{mxcmd.h@{mxcmd.h}!rec\_mx\_cmd@{rec\_mx\_cmd}}
+\index{rec\_mx\_cmd@{rec\_mx\_cmd}!mxcmd.h@{mxcmd.h}}
+\doxysubsubsection{\texorpdfstring{rec\_mx\_cmd()}{rec\_mx\_cmd()}}
+{\footnotesize\ttfamily \label{mxcmd_8h_a1981356b6a8de58f86c4128ddf3c6913} 
+void rec\+\_\+mx\+\_\+cmd (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{Data\+Handler~}{)(void), }\item[{const uint8\+\_\+t}]{rec\+\_\+len}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=273pt]{mxcmd_8h_a1981356b6a8de58f86c4128ddf3c6913_cgraph}
+\end{center}
+\end{figure}
 Here is the caller graph for this function\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=222pt]{mxcmd_8h_abaf162c1efebcc3af6a46b1ca9b8499b_icgraph}
+\includegraphics[width=235pt]{mxcmd_8h_a1981356b6a8de58f86c4128ddf3c6913_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{mxcmd_8h_ab7cb83bdae680222ffa81a4e289b3cfc}\index{mxcmd.h@{mxcmd.h}!send\_mx\_cmd@{send\_mx\_cmd}}
+\index{send\_mx\_cmd@{send\_mx\_cmd}!mxcmd.h@{mxcmd.h}}
+\doxysubsubsection{\texorpdfstring{send\_mx\_cmd()}{send\_mx\_cmd()}}
+{\footnotesize\ttfamily \label{mxcmd_8h_ab7cb83bdae680222ffa81a4e289b3cfc} 
+void send\+\_\+mx\+\_\+cmd (\begin{DoxyParamCaption}\item[{const uint16\+\_\+t \texorpdfstring{$\ast$}{*}}]{cmd}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=285pt]{mxcmd_8h_ab7cb83bdae680222ffa81a4e289b3cfc_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=243pt]{mxcmd_8h_ab7cb83bdae680222ffa81a4e289b3cfc_icgraph}
 \end{center}
 \end{figure}
 \Hypertarget{mxcmd_8h_ae0cf98816437fd60a72863fc5d240c7a}\index{mxcmd.h@{mxcmd.h}!tensec\_io@{tensec\_io}}
@@ -402,8 +514,7 @@ Here is the caller graph for this function\+:
 {\footnotesize\ttfamily \label{mxcmd_8h_ae0cf98816437fd60a72863fc5d240c7a} 
 void tensec\+\_\+io (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -416,8 +527,7 @@ Here is the caller graph for this function\+:
 {\footnotesize\ttfamily \label{mxcmd_8h_a3ff828022c3c7d1ef14e5879c8404350} 
 void wdtdelay (\begin{DoxyParamCaption}\item[{const uint32\+\_\+t}]{delay}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -439,7 +549,7 @@ Here is the caller graph for this function\+:
 \index{build\_version@{build\_version}!mxcmd.h@{mxcmd.h}}
 \doxysubsubsection{\texorpdfstring{build\_version}{build\_version}}
 {\footnotesize\ttfamily \label{mxcmd_8h_a8140eca72f5bd1556dda03a75798b440} 
-const char build\+\_\+version\mbox{[}$\,$\mbox{]} = "{}V2.\+04 FM80 Q84"{}}
+const char build\+\_\+version\mbox{[}$\,$\mbox{]} = "{}V2.\+08 FM80 Q84"{}}
 
 \Hypertarget{mxcmd_8h_a74c3ef42093466c0285353477fa763fe}\index{mxcmd.h@{mxcmd.h}!canbus\_name@{canbus\_name}}
 \index{canbus\_name@{canbus\_name}!mxcmd.h@{mxcmd.h}}
@@ -471,7 +581,7 @@ const uint16\+\_\+t cmd\+\_\+batteryv\mbox{[}$\,$\mbox{]} = \{0x100, 0x02, 0x00,
 \index{cmd\_date@{cmd\_date}!mxcmd.h@{mxcmd.h}}
 \doxysubsubsection{\texorpdfstring{cmd\_date}{cmd\_date}}
 {\footnotesize\ttfamily \label{mxcmd_8h_a3b56d738debcf016a1c52c23c7a3c7dd} 
-uint16\+\_\+t cmd\+\_\+date\mbox{[}$\,$\mbox{]} = \{0x100, 0x03, 0x40, 0x05, 0x00, 0x00, 0x00, 0x00\}}
+uint16\+\_\+t cmd\+\_\+date\mbox{[}$\,$\mbox{]} = \{0x100, 0x03, 0x40, 0x05, 0x00, 0x00, 0x00, 0x48\}}
 
 \Hypertarget{mxcmd_8h_adf8d357b507216074d28f782d6004a6b}\index{mxcmd.h@{mxcmd.h}!cmd\_fwreva@{cmd\_fwreva}}
 \index{cmd\_fwreva@{cmd\_fwreva}!mxcmd.h@{mxcmd.h}}
@@ -521,6 +631,24 @@ const uint16\+\_\+t cmd\+\_\+mx\+\_\+status\mbox{[}$\,$\mbox{]} = \{0x100, 0x04,
 {\footnotesize\ttfamily \label{mxcmd_8h_a0cf7b732c406db8adc04ce95e666d487} 
 const uint16\+\_\+t cmd\+\_\+panelv\mbox{[}$\,$\mbox{]} = \{0x100, 0x02, 0x01, 0xc6, 0x00, 0x00, 0x00, 0xc9\}}
 
+\Hypertarget{mxcmd_8h_a023bcca20776fbdb4b3de865524a0eb3}\index{mxcmd.h@{mxcmd.h}!cmd\_restart@{cmd\_restart}}
+\index{cmd\_restart@{cmd\_restart}!mxcmd.h@{mxcmd.h}}
+\doxysubsubsection{\texorpdfstring{cmd\_restart}{cmd\_restart}}
+{\footnotesize\ttfamily \label{mxcmd_8h_a023bcca20776fbdb4b3de865524a0eb3} 
+const uint16\+\_\+t cmd\+\_\+restart\mbox{[}$\,$\mbox{]} = \{0x100, 0x03, 0x40, 0x02, 0x00, 0x01, 0x00, 0x46\}}
+
+\Hypertarget{mxcmd_8h_a1a7c8d2a7eb3e66106a7dcdbf4b8f2dc}\index{mxcmd.h@{mxcmd.h}!cmd\_restart\_gti@{cmd\_restart\_gti}}
+\index{cmd\_restart\_gti@{cmd\_restart\_gti}!mxcmd.h@{mxcmd.h}}
+\doxysubsubsection{\texorpdfstring{cmd\_restart\_gti}{cmd\_restart\_gti}}
+{\footnotesize\ttfamily \label{mxcmd_8h_a1a7c8d2a7eb3e66106a7dcdbf4b8f2dc} 
+const uint16\+\_\+t cmd\+\_\+restart\+\_\+gti\mbox{[}$\,$\mbox{]} = \{0x100, 0x03, 0x00, 0xd6, 0x00, 0x01, 0x00, 0xda\}}
+
+\Hypertarget{mxcmd_8h_a9186e27e2195273586e16c3ac99d5ef3}\index{mxcmd.h@{mxcmd.h}!cmd\_restart\_ngit@{cmd\_restart\_ngit}}
+\index{cmd\_restart\_ngit@{cmd\_restart\_ngit}!mxcmd.h@{mxcmd.h}}
+\doxysubsubsection{\texorpdfstring{cmd\_restart\_ngit}{cmd\_restart\_ngit}}
+{\footnotesize\ttfamily \label{mxcmd_8h_a9186e27e2195273586e16c3ac99d5ef3} 
+const uint16\+\_\+t cmd\+\_\+restart\+\_\+ngit\mbox{[}$\,$\mbox{]} = \{0x100, 0x03, 0x00, 0xd6, 0x00, 0x00, 0x00, 0xd9\}}
+
 \Hypertarget{mxcmd_8h_aea626775adb484c862ebc0e16d976d8a}\index{mxcmd.h@{mxcmd.h}!cmd\_status@{cmd\_status}}
 \index{cmd\_status@{cmd\_status}!mxcmd.h@{mxcmd.h}}
 \doxysubsubsection{\texorpdfstring{cmd\_status}{cmd\_status}}
@@ -531,7 +659,7 @@ const uint16\+\_\+t cmd\+\_\+status\mbox{[}$\,$\mbox{]} = \{0x100, 0x02, 0x01, 0
 \index{cmd\_time@{cmd\_time}!mxcmd.h@{mxcmd.h}}
 \doxysubsubsection{\texorpdfstring{cmd\_time}{cmd\_time}}
 {\footnotesize\ttfamily \label{mxcmd_8h_a5ffd8c7699d4f0fd1ff7b590ca59f398} 
-uint16\+\_\+t cmd\+\_\+time\mbox{[}$\,$\mbox{]} = \{0x100, 0x03, 0x40, 0x04, 0x00, 0x00, 0x00, 0x00\}}
+uint16\+\_\+t cmd\+\_\+time\mbox{[}$\,$\mbox{]} = \{0x100, 0x03, 0x40, 0x04, 0x00, 0x00, 0x00, 0x47\}}
 
 \Hypertarget{mxcmd_8h_adec99d7cd16c2cb84411c7f049bb0413}\index{mxcmd.h@{mxcmd.h}!cmd\_watts@{cmd\_watts}}
 \index{cmd\_watts@{cmd\_watts}!mxcmd.h@{mxcmd.h}}

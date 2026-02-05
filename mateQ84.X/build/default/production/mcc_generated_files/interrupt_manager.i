@@ -41008,6 +41008,8 @@ void SYSTEM_Initialize(void);
 void OSCILLATOR_Initialize(void);
 # 110 "mcc_generated_files/mcc.h"
 void PMD_Initialize(void);
+# 122 "mcc_generated_files/mcc.h"
+void SystemArbiter_Initialize(void);
 # 51 "mcc_generated_files/interrupt_manager.c" 2
 
 void INTERRUPT_Initialize (void)

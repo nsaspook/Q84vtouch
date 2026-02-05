@@ -41007,6 +41007,8 @@ void SYSTEM_Initialize(void);
 void OSCILLATOR_Initialize(void);
 # 110 "mcc_generated_files/mcc.h"
 void PMD_Initialize(void);
+# 122 "mcc_generated_files/mcc.h"
+void SystemArbiter_Initialize(void);
 # 48 "mcc_generated_files/mcc.c" 2
 
 
@@ -41030,6 +41032,7 @@ void SYSTEM_Initialize(void)
     UART5_Initialize();
     SPI1_Initialize();
     CAN1_Initialize();
+    SystemArbiter_Initialize();
 }
 
 void OSCILLATOR_Initialize(void)
@@ -41066,4 +41069,13 @@ void PMD_Initialize(void)
     PMD7 = 0x00;
 
     PMD8 = 0x00;
+}
+
+
+void SystemArbiter_Initialize(void)
+{
+
+    PRLOCK = 0x55;
+    PRLOCK = 0xAA;
+    PRLOCKbits.PRLOCKED = 1;
 }

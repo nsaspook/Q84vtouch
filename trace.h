@@ -17,11 +17,10 @@
 extern "C" {
 #endif
 
-#define TRACE
+//#define TRACE
 // EXT_IO pin 4, MISC_IO pin 6, SPI DMA driver toggles to RB5
 // EXT_IO PIN 5, interrupt toggles to RB6 PGC
 // EXT_IO pin 6, composite I/O from CLC7 to RB7 PGD
-// EXT_IO pin 2, MISC_IO pin 5, main program trace high to RD5
 // EXT_IO pin 3, MISC_IO pin 7, RD7
 
 

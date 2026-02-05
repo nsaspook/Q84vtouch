@@ -297,6 +297,30 @@ static void state_time_cb(void);
 static void state_date_cb(void);
 static void state_restart_cb(void);
 
+static void OV_Relay(void);
+
+/*
+ * try to load down the PV string voltage if it's too high during MPPT sweeps
+ */
+void OV_Relay(void)
+{
+	static uint16_t FM_Relay_Time = 0;
+
+	if ((EB->FMpv > PV_HIGH_VOLTS) && (!RELAY_LAT) && (++FM_Relay_Time > RELAY_DELAY)) {
+		FM_Relay_Time = 0;
+		RELAY_SetHigh();
+	} else {
+		if (RELAY_LAT && (FM_Relay_Time == RELAY_DELAY)) {
+			// nothing
+		}
+		// wait for FMx0 sleep timeout or if FMx0 is in BULK already
+		if (RELAY_LAT && (++FM_Relay_Time > RELAY_DELAY_OFF) || (RELAY_LAT && (cc_mode == STATUS_BULK))) {
+			FM_Relay_Time = 0;
+			RELAY_SetLow();
+		}
+	}
+}
+
 /*
  * busy loop delay with WDT reset
  */
@@ -519,6 +543,7 @@ void main(void)
 			can_newtime = localtime(&can_timer);
 			snprintf(buffer, 21, "%s", asctime(can_newtime));
 #endif
+			OV_Relay();
 		}
 		if (TimerDone(TMR_SPIN)) { // LCD status spinner for charger MODE
 			{
