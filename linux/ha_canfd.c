@@ -54,7 +54,7 @@ time_t start_time = 0, hour_time = 0, day_time = 0;
 
 double benergy, acenergy, load, solar, bvolts, bamps, pvolts, pamps, pwatts, runtime, bat_energy_scaled, bat_energy_kw, acvolts, achz, acpf;
 double gridin = 0.001, gridout = 0.001, gasenergy = 0.001, watergal = 0.1;
-int32_t ccmode = 0, sequence;
+int32_t ccmode = 0, sequence = 0, ovrelay = 0, chrelay = 0;
 
 static const char *const FW_Date = __DATE__;
 static const char *const FW_Time = __TIME__;
@@ -309,6 +309,8 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 				cJSON_AddNumberToObject(json, "pvolts", pvolts);
 				cJSON_AddNumberToObject(json, "pwatts", pwatts);
 				cJSON_AddNumberToObject(json, "pccmode", ccmode);
+				cJSON_AddNumberToObject(json, "ovrelay", ovrelay);
+				cJSON_AddNumberToObject(json, "chrelay", chrelay);
 				// fake data for HA
 				cJSON_AddNumberToObject(json, "gridin", gridin);
 				cJSON_AddNumberToObject(json, "gridout", gridout);
@@ -354,6 +356,8 @@ static void print_frame(canid_t id, const uint8_t *data, int dlc, int inc_data)
 			if (token != NULL) {
 				fprintf(fout, "%s %s ", log_time(false), token);
 				token = strtok(NULL, ",");
+				ovrelay = atoi(token) & 0x01;
+				chrelay = atoi(token) & 0x04;
 				fprintf(fout, " relay outputs: %s Software Version: %s %s %s\r\n", token, LOG_VERSION, FW_Date, FW_Time);
 			}
 		}
