@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   batmon.h
  * Author: root
  *
@@ -24,13 +24,14 @@ extern "C" {
 #define BM_UPDATE_RUN	1800	// while running
 
 	/*
-	 * Energy Battery Bank 
+	 * Energy Battery Bank
 	 * 24V LiFePO4 Battery Parameters
 	 */
+#define BAT_UNITS	2.0f // two batteries
 #define BAT_VOLT        25.6f
-#define BAT_AH          200.0f	
+#define BAT_AH          200.0f*BAT_UNITS
 #define BAT_ENERGY	BAT_VOLT*BAT_AH*TEN_SEC_HOUR // nominal battery voltage and AH rating for 10 second updates
-#define BAT_ENERGY_LOW	BAT_ENERGY*0.5f
+#define BAT_ENERGY_LOW	BAT_ENERGY*0.5f/BAT_UNITS
 #define BAT_OVER_VOLT	30.0f
 #define BAT_OVER_RECON	28.4f
 #define BAT_UNDER_VOLT	23.2f
@@ -43,7 +44,7 @@ extern "C" {
 #define BAT_DAY_COUNT	45	// number of reports before updates
 #define BAT_NIGHT_COUNT	90
 #define BAT_RUN_MAX	280.0f  // max displayed run time at current load
-	
+
 #define PV_LOW_VOLTS	70.0f
 #define PV_HIGH_VOLTS	132
 	/*
