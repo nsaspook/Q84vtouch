@@ -42309,7 +42309,7 @@ volatile uint16_t cc_mode = STATUS_LAST, mx_code = 0x00;
 uint16_t volt_whole, bat_amp_whole = 0, panel_watts, volt_fract, vf, vw;
 volatile enum state_type state = state_init;
 char buffer[512] = "Boot Init Display   ", info_buffer[512], log_buffer[512];
-const char *build_date = "Apr 19 2026", *build_time = "10:03:25";
+const char *build_date = "May  3 2026", *build_time = "10:34:58";
 volatile uint16_t tickCount[TMR_COUNT];
 uint8_t fw_state = 0;
 
@@ -42550,6 +42550,10 @@ void main(void)
    if (B.FM80_restart && TimerDone(TMR_FMRESTART)) {
     send_mx_cmd(cmd_restart);
     rec_mx_cmd(state_restart_cb, 5);
+    send_mx_cmd(cmd_restart);
+    rec_mx_cmd(state_restart_cb, 5);
+    send_mx_cmd(cmd_restart);
+    rec_mx_cmd(state_restart_cb, 5);
     B.FM80_restart = 0;
    } else {
     if (cc_mode != STATUS_FLOATING) {
@@ -42654,7 +42658,7 @@ void main(void)
      }
     } else {
      M.error = 0;
-# 616 "main.c"
+# 620 "main.c"
      snprintf(buffer, 512, "EMon  %6.1fWh   %c%c    ", EB->bat_energy / 360.0f, spinners((uint8_t) 5 - (uint8_t) cc_mode, 0), spinners((uint8_t) 5 - (uint8_t) cc_mode, 0));
      eaDogM_WriteStringAtPos(1, 0, buffer);
      snprintf(buffer, 512, "%6.1fW %6.1fVA %c%c%c   ", lp_filter(wac, F_wac, 0), lp_filter(wva, F_wva, 0), state_name[cc_mode][0], modbus_name[B.modbus_online][0], canbus_name[B.canbus_online][0]);
@@ -42805,7 +42809,7 @@ void state_status_cb(void)
 {
  static uint16_t day_clocks = 0;
  static uint8_t status_prev = STATUS_SLEEPING;
-# 781 "main.c"
+# 785 "main.c"
  if (B.day_check++ > 1200) {
   B.day_check = 0;
   B.once = 0;

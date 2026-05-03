@@ -480,6 +480,10 @@ void main(void)
 			if (B.FM80_restart && TimerDone(TMR_FMRESTART)) {
 				send_mx_cmd(cmd_restart); // send a restart command to the FM80
 				rec_mx_cmd(state_restart_cb, REC_LEN);
+				send_mx_cmd(cmd_restart); // send a restart command to the FM80
+				rec_mx_cmd(state_restart_cb, REC_LEN);
+				send_mx_cmd(cmd_restart); // send a restart command to the FM80
+				rec_mx_cmd(state_restart_cb, REC_LEN);
 				B.FM80_restart = false;
 			} else {
 				if (cc_mode != STATUS_FLOATING) {
