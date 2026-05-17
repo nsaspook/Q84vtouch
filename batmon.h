@@ -40,7 +40,7 @@ extern "C" {
 #define BAT_EFF_VAL     0.985f	//  battery storage energy efficiency
 #define BAT_CYCLES      8
 #define BAT_CHARGED_W	BAT_AH
-#define BAT_CHARGED_V	120.0f
+#define BAT_CHARGED_V	80.0f	// panel voltage during float condition
 #define BAT_DAY_COUNT	45	// number of reports before updates
 #define BAT_NIGHT_COUNT	90
 #define BAT_RUN_MAX	280.0f  // max displayed run time at current load

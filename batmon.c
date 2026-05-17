@@ -212,7 +212,7 @@ void compute_bm_data(EB_data * EB)
 		/*
 		 * try to sync BMS charged condition to monitor charged condition and set full energy levels
 		 */
-		if ((cc_mode == STATUS_FLOATING) && ((EB->FMw > BAT_CHARGED_W) || (EB->FMpv > BAT_CHARGED_V)) && (EB->ENw > BAT_CHARGED_W)) {
+		if ((cc_mode == STATUS_FLOATING) && ((EB->FMw > (BAT_CHARGED_W/0.5f)) || (EB->FMpv > BAT_CHARGED_V)) && (EB->ENw > BAT_CHARGED_W)) {
 			if (!B.FM80_charged) {
 				B.FM80_charged = true;
 				EB->bat_energy = BAT_ENERGY;
