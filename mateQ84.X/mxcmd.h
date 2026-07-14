@@ -22,7 +22,7 @@ extern "C" {
 #include "../timers.h"
 
 #define VER	1
-	const char build_version[] = "V2.08 FM80 Q84";
+	const char build_version[] = "V2.09 FM80 Q84";
 	/*
 	 * code changes
 	 * 1.55 remove critical section interrupt disables for FM80 serial
@@ -67,6 +67,7 @@ extern "C" {
 	 * 2.06 fix checksums and add restart command for the FM80
 	 * 2.07 add High Voc check for night sleeping condition
 	 * 2.08 add panel over-volt load switching
+	 * 2.08 -O3 optimization XC8 firmware
 	 */
 
 #define MAX_B_BUF	512

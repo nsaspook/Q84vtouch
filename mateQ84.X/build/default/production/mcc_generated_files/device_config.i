@@ -4,8 +4,8 @@
 # 295 "<built-in>" 3
 # 1 "<command line>" 1
 # 1 "<built-in>" 2
-# 1 "/ldrv/microchip/xc8/v3.10/pic/include/language_support.h" 1 3
-# 46 "/ldrv/microchip/xc8/v3.10/pic/include/language_support.h" 3
+# 1 "/ldrv/microchip/xc8/v4.00/pic/include/language_support.h" 1 3
+# 46 "/ldrv/microchip/xc8/v4.00/pic/include/language_support.h" 3
 extern char * __stack_lo;
 extern char * __stack_hi;
 
