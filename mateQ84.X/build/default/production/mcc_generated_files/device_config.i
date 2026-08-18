@@ -45,7 +45,7 @@ extern char * __intlo_stack_hi;
 #pragma config ZCD = OFF
 #pragma config PPS1WAY = OFF
 #pragma config STVREN = ON
-#pragma config LVP = OFF
+#pragma config LVP = ON
 #pragma config XINST = OFF
 
 

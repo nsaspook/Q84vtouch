@@ -171,7 +171,7 @@ power.voltage = 5000
 
 ######################## Tool Info ########################
 tool = ToolInfo()
-tool.speedLevel = 2
+tool.speedLevel = 1
 tool.PGCResistance = 4700
 tool.PGDResistance = 4700
 tool.PGCPullDir = 0
@@ -182,17 +182,6 @@ tool.communicationInterface = "SWD"
 tool.physicalActivation = "nohv"
 
 ######################## Operation Info ########################
-o = Opinfo("read",0x100)
-t = Tinfo()
-t.start = 0x380000
-t.end = 0x3803ff
-t.type = "EEData"
-t.data = None
-o.addTI(t)
-o.preserveEEPROM = True
-oi.append(o)
-
-######################## Operation Info ########################
 o = Opinfo("erase",0x0)
 oi.append(o)
 
@@ -201,35 +190,28 @@ o = Opinfo("write",0x0)
 t = Tinfo()
 t.start = 0x0
 t.end = 0x17f
-t.data = "write_Pgm_st_0x0_op2_0.dat"
+t.data = "write_Pgm_st_0x0_op1_0.dat"
 t.type = "Pgm"
 t.mask = 0x0
 o.addTI(t)
 t = Tinfo()
 t.start = 0xf680
 t.end = 0x1f87f
-t.data = "write_Pgm_st_0xf680_op2_1.dat"
+t.data = "write_Pgm_st_0xf680_op1_1.dat"
 t.type = "Pgm"
 t.mask = 0x0
 o.addTI(t)
 t = Tinfo()
 t.start = 0x300000
 t.end = 0x300023
-t.data = "write_Cfg_st_0x300000_op2_2.dat"
+t.data = "write_Cfg_st_0x300000_op1_2.dat"
 t.type = "Cfg"
-t.mask = 0x0
-o.addTI(t)
-t = Tinfo()
-t.start = 0x380000
-t.end = 0x3803ff
-t.data = "write_EEData_st_0x380000_op2_3.dat"
-t.type = "EEData"
 t.mask = 0x0
 o.addTI(t)
 t = Tinfo()
 t.start = 0x200000
 t.end = 0x20003f
-t.data = "write_UserID_st_0x200000_op2_4.dat"
+t.data = "write_UserID_st_0x200000_op1_3.dat"
 t.type = "UserID"
 t.mask = 0x0
 o.addTI(t)

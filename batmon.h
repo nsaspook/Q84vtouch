@@ -51,7 +51,7 @@ extern "C" {
 	 * System correction factors
 	 */
 #define IDLE_DRAIN      10.0f	// system operational drain losses in Wh
-#define INV_EFF_VAL     1.072f	// DC watts to AC watt inverter correction
+#define INV_EFF_VAL     1.06f	// DC watts to AC watt inverter correction
 
 #define MAX_ALT_DIS	3
 	// EEPROM data storage structure
