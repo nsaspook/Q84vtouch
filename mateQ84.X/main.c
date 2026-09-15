@@ -260,6 +260,7 @@ B_type B = {
 	.dim_delay = DIM_DELAY,
 	.display_on = true,
 	.FM80_restart = false,
+    .alt_display = 1,
 };
 
 /*
@@ -651,6 +652,8 @@ void main(void)
 			snprintf(buffer, MAX_B_BUF, "CAN RX %lu TX %lu       ", can_packets.rec_count, can_packets.tx_count);
 			eaDogM_WriteStringAtPos(3, 0, buffer);
 			B.display_update = true;
+			// reset battery energy from voltage when LOG button pressed
+			EB->bat_energy = BAT_ENERGY * ((float) Volts_to_SOC(vw, vf) * 0.01f);
 		}
 		if (B.a_switch[D_SW_M]) {
 			MM_ERROR_S;
